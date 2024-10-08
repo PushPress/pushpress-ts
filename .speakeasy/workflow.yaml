@@ -1,0 +1,14 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    PushPress-OAS:
+        inputs:
+            - location: openapi.yaml
+        overlays:
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas
+targets:
+    push-press:
+        target: typescript
+        source: PushPress-OAS

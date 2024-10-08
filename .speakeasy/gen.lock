@@ -1,0 +1,393 @@
+lockVersion: 2.0.0
+id: e45a2eeb-6880-43cc-81d9-11cca423adc1
+management:
+  docChecksum: 216da02f08dc07e4b36ae4e3d66e1d55
+  docVersion: 3.0.0
+  speakeasyVersion: 1.412.0
+  generationVersion: 2.436.3
+  releaseVersion: 0.0.3
+  configChecksum: ac22447aa083f0d3b116c796f0009522
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.11
+    core: 3.18.2
+    defaultEnabledRetries: 0.1.0
+    devContainers: 2.90.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.1
+    globalSecurity: 2.82.11
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.4
+    groups: 2.81.2
+    nameOverrides: 2.81.2
+    operationTimeout: 0.2.0
+    pagination: 2.82.7
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.1.0
+    serverIDs: 2.81.2
+    unions: 2.85.7
+    webhooks: 1.0.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .eslintrc.cjs
+  - .gitattributes
+  - .npmignore
+  - CONTRIBUTING.md
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/models/components/app.md
+  - docs/models/components/appinstall.md
+  - docs/models/components/appointmentcheckin.md
+  - docs/models/components/checkin.md
+  - docs/models/components/classcheckin.md
+  - docs/models/components/classcheckintype.md
+  - docs/models/components/company.md
+  - docs/models/components/customer.md
+  - docs/models/components/details.md
+  - docs/models/components/eventcheckin.md
+  - docs/models/components/eventcheckintype.md
+  - docs/models/components/security.md
+  - docs/models/components/type.md
+  - docs/models/components/webhook.md
+  - docs/models/operations/createapikeyrequestbody.md
+  - docs/models/operations/createwebhookrequestbody.md
+  - docs/models/operations/deleteapikeyrequest.md
+  - docs/models/operations/deleteappinstallrequest.md
+  - docs/models/operations/deletewebhookrequest.md
+  - docs/models/operations/deletewebhookresponsebody.md
+  - docs/models/operations/extendapikeyrequest.md
+  - docs/models/operations/getappinstallrequest.md
+  - docs/models/operations/getapprequest.md
+  - docs/models/operations/getcheckinrequest.md
+  - docs/models/operations/getcompanyrequest.md
+  - docs/models/operations/getcustomerrequest.md
+  - docs/models/operations/getwebhookrequest.md
+  - docs/models/operations/installapprequest.md
+  - docs/models/operations/installapprequestbody.md
+  - docs/models/operations/listappinstallsrequest.md
+  - docs/models/operations/listappinstallsresponse.md
+  - docs/models/operations/listappinstallsresponsebody.md
+  - docs/models/operations/listcheckinsrequest.md
+  - docs/models/operations/listcheckinsresponse.md
+  - docs/models/operations/listcheckinsresponsebody.md
+  - docs/models/operations/listcompaniesrequest.md
+  - docs/models/operations/listcompaniesresponse.md
+  - docs/models/operations/listcompaniesresponsebody.md
+  - docs/models/operations/listcustomersrequest.md
+  - docs/models/operations/listcustomersresponse.md
+  - docs/models/operations/listcustomersresponsebody.md
+  - docs/models/operations/listwebhooksrequest.md
+  - docs/models/operations/revokeapikeyrequest.md
+  - docs/models/operations/sendemailrequestbody.md
+  - docs/models/operations/sendpingrequestbody.md
+  - docs/models/operations/sendpushrequestbody.md
+  - docs/models/operations/uninstallapprequest.md
+  - docs/models/operations/updatewebhookrequest.md
+  - docs/models/webhooks/checkincreatedeventeventtype.md
+  - docs/models/webhooks/checkincreatedeventrequestbody.md
+  - docs/models/webhooks/checkindeletedeventeventtype.md
+  - docs/models/webhooks/checkindeletedeventrequestbody.md
+  - docs/models/webhooks/checkinupdatedeventeventtype.md
+  - docs/models/webhooks/checkinupdatedeventrequestbody.md
+  - docs/models/webhooks/customercreatedeventrequestbody.md
+  - docs/models/webhooks/customerdeletedeventeventtype.md
+  - docs/models/webhooks/customerdeletedeventrequestbody.md
+  - docs/models/webhooks/customerupdatedeventeventtype.md
+  - docs/models/webhooks/customerupdatedeventrequestbody.md
+  - docs/models/webhooks/eventtype.md
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/appsDelete.ts
+  - src/funcs/appsGet.ts
+  - src/funcs/appsInstall.ts
+  - src/funcs/appsInstallsGet.ts
+  - src/funcs/appsInstallsList.ts
+  - src/funcs/appsList.ts
+  - src/funcs/appsUninstall.ts
+  - src/funcs/checkinsGet.ts
+  - src/funcs/checkinsList.ts
+  - src/funcs/companiesGet.ts
+  - src/funcs/companiesList.ts
+  - src/funcs/customersGet.ts
+  - src/funcs/customersList.ts
+  - src/funcs/keysCreate.ts
+  - src/funcs/keysDelete.ts
+  - src/funcs/keysExtend.ts
+  - src/funcs/keysList.ts
+  - src/funcs/keysRevoke.ts
+  - src/funcs/messagesEmailSend.ts
+  - src/funcs/messagesNotificationsSendPing.ts
+  - src/funcs/messagesPushSend.ts
+  - src/funcs/webhooksCreate.ts
+  - src/funcs/webhooksDelete.ts
+  - src/funcs/webhooksGet.ts
+  - src/funcs/webhooksList.ts
+  - src/funcs/webhooksUpdateWebhook.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/env.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/components/app.ts
+  - src/models/components/appinstall.ts
+  - src/models/components/appointmentcheckin.ts
+  - src/models/components/checkin.ts
+  - src/models/components/classcheckin.ts
+  - src/models/components/company.ts
+  - src/models/components/customer.ts
+  - src/models/components/eventcheckin.ts
+  - src/models/components/index.ts
+  - src/models/components/security.ts
+  - src/models/components/webhook.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/sdkerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/createapikey.ts
+  - src/models/operations/createwebhook.ts
+  - src/models/operations/deleteapikey.ts
+  - src/models/operations/deleteappinstall.ts
+  - src/models/operations/deletewebhook.ts
+  - src/models/operations/extendapikey.ts
+  - src/models/operations/getapp.ts
+  - src/models/operations/getappinstall.ts
+  - src/models/operations/getcheckin.ts
+  - src/models/operations/getcompany.ts
+  - src/models/operations/getcustomer.ts
+  - src/models/operations/getwebhook.ts
+  - src/models/operations/index.ts
+  - src/models/operations/installapp.ts
+  - src/models/operations/listappinstalls.ts
+  - src/models/operations/listcheckins.ts
+  - src/models/operations/listcompanies.ts
+  - src/models/operations/listcustomers.ts
+  - src/models/operations/listwebhooks.ts
+  - src/models/operations/revokeapikey.ts
+  - src/models/operations/sendemail.ts
+  - src/models/operations/sendping.ts
+  - src/models/operations/sendpush.ts
+  - src/models/operations/uninstallapp.ts
+  - src/models/operations/updatewebhook.ts
+  - src/models/webhooks/checkincreatedevent.ts
+  - src/models/webhooks/checkindeletedevent.ts
+  - src/models/webhooks/checkinupdatedevent.ts
+  - src/models/webhooks/customercreatedevent.ts
+  - src/models/webhooks/customerdeletedevent.ts
+  - src/models/webhooks/customerupdatedevent.ts
+  - src/models/webhooks/index.ts
+  - src/sdk/apps.ts
+  - src/sdk/checkins.ts
+  - src/sdk/companies.ts
+  - src/sdk/customers.ts
+  - src/sdk/email.ts
+  - src/sdk/index.ts
+  - src/sdk/installs.ts
+  - src/sdk/keys.ts
+  - src/sdk/messages.ts
+  - src/sdk/notifications.ts
+  - src/sdk/push.ts
+  - src/sdk/sdk.ts
+  - src/sdk/webhooks.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  listApps:
+    speakeasy-default-list-apps:
+      responses:
+        "200":
+          application/json: [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "name": "<value>", "created": "2022-03-24T06:20:14.879Z", "updated": "2024-09-10T04:30:13.188Z"}, {"id": "2766718d-6d46-412e-80ae-e1b9ddf121dc", "name": "<value>", "created": "2023-12-29T19:56:44.465Z", "updated": "2022-11-08T21:35:05.868Z"}, {"id": "c8104fb4-51a7-40cf-8c8f-e07fbc60ab96", "name": "<value>", "created": "2024-06-28T00:46:13.804Z", "updated": "2022-12-27T23:30:11.053Z"}]
+  getApp:
+    speakeasy-default-get-app:
+      parameters:
+        path:
+          app_id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "b888f774-3e7c-4135-a18c-6b985523c4bc", "name": "<value>", "created": "2024-09-23T09:26:26.647Z", "updated": "2022-12-22T20:41:29.028Z"}
+  installApp:
+    speakeasy-default-install-app:
+      parameters:
+        path:
+          app_id: "<id>"
+      requestBody:
+        application/json: {"company": "Hirthe and Sons"}
+  uninstallApp:
+    speakeasy-default-uninstall-app:
+      parameters:
+        path:
+          app_id: "<id>"
+          install_id: "<id>"
+      responses:
+        "204":
+          application/json: {"id": "b7c49b88-93d0-4ded-bf32-cfb3d44b19db", "app": "5bbc12bf-c966-428f-ba9e-b6862103a23f", "company": "34e98ee2-10cd-4efc-ab73-b7dc20600fe3", "status": "<value>", "installed": "2022-03-27T13:04:09.138Z"}
+  deleteAppInstall:
+    speakeasy-default-delete-app-install:
+      parameters:
+        path:
+          app_id: "<id>"
+          install_id: "<id>"
+      responses:
+        "204":
+          application/json: {"id": "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e", "app": "7aa10743-a04f-44af-84fe-b54259caa1ba", "company": "7460ea4f-91d0-4d6c-80a7-ebf643773e38", "status": "<value>", "installed": "2024-11-02T21:25:46.641Z"}
+  listAppInstalls:
+    speakeasy-default-list-app-installs:
+      parameters:
+        path:
+          app_id: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"data": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "app": "1e276671-8d6d-4461-b2e0-aee1b9ddf121", "company": "c2a4c810-4fb4-451a-a70c-fc8fe07fbc60", "status": "<value>", "installed": "2024-01-25T21:46:28.752Z"}, {"id": "960d5611-ff65-473e-90a6-2331ad7c07cc", "app": "81991696-ebd8-434b-b7d8-c2236e085944", "company": "bceb27bd-4753-4d0a-917c-478e329a9ec9", "status": "<value>", "installed": "2023-09-29T09:08:13.966Z"}, {"id": "38e1a630-f5fe-4368-8082-fa02e0874e78", "app": "07648ec2-ed7f-4303-b9de-c6f45d97b2c5", "company": "7f7bcfa2-69af-4219-84d5-861b3fe5754c", "status": "<value>", "installed": "2024-05-10T21:17:41.688Z"}]}
+  getAppInstall:
+    speakeasy-default-get-app-install:
+      parameters:
+        path:
+          app_id: "<id>"
+          install_id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "b888f774-3e7c-4135-a18c-6b985523c4bc", "app": "e50f7622-81da-484b-9c66-1c8a99c6b71b", "company": "ecd62b8f-7112-4aaf-90ab-4e43b4cca371", "status": "<value>", "installed": "2024-11-03T02:18:54.211Z"}
+  createApiKey:
+    speakeasy-default-create-api-key:
+      requestBody:
+        application/json: {"company": "Nienow Inc"}
+  listApiKeys: {}
+  revokeApiKey:
+    speakeasy-default-revoke-api-key:
+      parameters:
+        path:
+          key_id: "<id>"
+  deleteApiKey:
+    speakeasy-default-delete-api-key:
+      parameters:
+        path:
+          key_id: "<id>"
+  extendApiKey:
+    speakeasy-default-extend-api-key:
+      parameters:
+        path:
+          key_id: "<id>"
+  sendEmail:
+    speakeasy-default-send-email:
+      requestBody:
+        application/json: {"to": "Isobel_Brakus@yahoo.com", "subject": "<value>", "body": "<value>", "from": "Fern47@yahoo.com"}
+  sendPing:
+    speakeasy-default-send-ping:
+      requestBody:
+        application/json: {"channel": "<value>", "message": "<value>"}
+  sendPush:
+    speakeasy-default-send-push:
+      requestBody:
+        application/json: {"device_tokens": ["<value>", "<value>"], "title": "<value>", "body": "<value>"}
+  listCompanies:
+    speakeasy-default-list-companies:
+      responses:
+        "200":
+          application/json: {"data": [{"id": "client_1234", "name": "Acme Corp", "subdomain": "acme", "defaultTimezone": "America/Los_Angeles", "phone": "+1-800-555-1234", "email": "info@acme.com", "url": "https://www.acme.com"}]}
+  getCompany:
+    speakeasy-default-get-company:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "client_1234", "name": "Acme Corp", "subdomain": "acme", "defaultTimezone": "America/Los_Angeles", "phone": "+1-800-555-1234", "email": "info@acme.com", "url": "https://www.acme.com"}
+  listCustomers:
+    speakeasy-default-list-customers:
+      parameters:
+        query:
+          company: "Lockman, Pagac and Daugherty"
+      responses:
+        "200":
+          application/json: {"data": [{"id": "usr_1234", "name": "John Doe", "address": "123 Main St, Anytown, USA", "profileImage": "https://example.com/profile.jpg", "email": "john.doe@example.com", "phone": "+1-800-555-1234"}]}
+  getCustomer:
+    speakeasy-default-get-customer:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "usr_1234", "name": "John Doe", "address": "123 Main St, Anytown, USA", "profileImage": "https://example.com/profile.jpg", "email": "john.doe@example.com", "phone": "+1-800-555-1234"}
+  listCheckins:
+    speakeasy-default-list-checkins:
+      parameters:
+        query:
+          company: "Lockman, Pagac and Daugherty"
+      responses:
+        "200":
+          application/json: {"data": []}
+  getCheckin:
+    speakeasy-default-get-checkin:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"details": {"name": "<value>", "type": "EventCheckin", "eventType": "<value>"}, "checkinTime": 558834, "customer": "<value>", "company": "Lebsack and Sons", "name": "<value>"}
+  createWebhook:
+    speakeasy-default-create-webhook:
+      requestBody:
+        application/json: {"url": "https://your-webhook-url.com", "events": ["event_1", "event_2"]}
+      responses:
+        "200":
+          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "4865.89", "updated": "6384.24", "company": "Collier Group"}
+  listWebhooks:
+    speakeasy-default-list-webhooks:
+      parameters:
+        query:
+          company: "Lockman, Pagac and Daugherty"
+      responses:
+        "200":
+          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "2297.17", "updated": "1528.38", "company": "Nikolaus Group"}
+  getWebhook:
+    speakeasy-default-get-webhook:
+      parameters:
+        path:
+          webhook_id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "7003.46", "updated": "5588.34", "company": "Lebsack and Sons"}
+  updateWebhook:
+    speakeasy-default-update-webhook:
+      parameters:
+        path:
+          webhook_id: "<id>"
+      requestBody:
+        application/json: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "5204.28", "updated": "7657.65", "company": "Crist Inc"}
+  deleteWebhook:
+    speakeasy-default-delete-webhook:
+      parameters:
+        path:
+          webhook_id: "<id>"

@@ -1,0 +1,15 @@
+# EventType
+
+## Example Usage
+
+```typescript
+import { EventType } from "pushpress/models/webhooks";
+
+let value: EventType = "created";
+```
+
+## Values
+
+```typescript
+"created"
+```

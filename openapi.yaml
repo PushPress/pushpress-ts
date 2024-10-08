@@ -8,10 +8,10 @@ servers:
     x-speakeasy-server-id: prod
   - url: https://api.pushpressstage.com
     description: staging
-  - url: http://localhost:3033
-    description: local
+    x-speakeasy-server-id: stage
   - url: https://api.pushpressdev.com
     description: development
+    x-speakeasy-server-id: dev
 x-speakeasy-timeout: 10000
 x-speakeasy-retries:
   strategy: backoff
@@ -23,7 +23,6 @@ x-speakeasy-retries:
   statusCodes:
     - 5XX
   retryConnectionErrors: true
-
 components:
   schemas:
     App:
@@ -311,7 +310,6 @@ components:
         company:
           type: string
           description: companyId of the company to which the webhook belongs
-
   securitySchemes:
     api_key:
       type: apiKey
@@ -331,7 +329,6 @@ tags:
     description: manage PushPress appl ecosystem
   - name: Webhooks
     description: create and configure webhooks for PushPress events
-
 paths:
   /apps:
     get:
