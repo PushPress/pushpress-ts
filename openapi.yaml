@@ -89,12 +89,18 @@ components:
       title: Company
       description: Schema representing a company with a pushpress account, whether its a gym, martial arts studio or mermaid swim school
       required:
+        - id
         - name
         - subdomain
         - defaultTimezone
         - phone
         - email
       properties:
+        id:
+          type: string
+          description: Unique identifier for the company
+          examples:
+            - "client_1234"
         name:
           type: string
           description: Name of the company
@@ -128,6 +134,7 @@ components:
       examples:
         - exampleResponse:
           value:
+            id: "client_1234"
             name: "Acme Corp"
             subdomain: "acme"
             defaultTimezone: "America/Los_Angeles"
@@ -139,8 +146,14 @@ components:
       title: Customer
       description: Schema representing a customer, former customer or lead served by Company
       required:
+        - id
         - email
       properties:
+        id:
+          type: string
+          description: Unique identifier for the customer
+          examples:
+            - "usr_1234"
         name:
           type: string
           description: Name of the customer
@@ -166,14 +179,10 @@ components:
           description: Phone number of the customer
           examples:
             - "+1-800-555-1234"
-        deviceToken:
-          type: string
-          description: Device token for push notifications
-          examples:
-            - "abc123xyz456"
       examples:
         - exampleResponse:
             value:
+              id: "usr_1234"
               name: "John Doe"
               email: "john@doe.com"
               address: "123 Main St, Anytown, USA"
@@ -183,10 +192,14 @@ components:
     AppointmentCheckin:
       type: object
       required:
+        - id
         - name
         - type
         - appointmentType
       properties:
+        id:
+          type: string
+          description: Unique identifier for the checkin
         name:
           type: string
           description: Name of the checked-in appointment
@@ -199,10 +212,14 @@ components:
     ClassCheckin:
       type: object
       required:
+        - id
         - name
         - type
         - classType
       properties:
+        id:
+          type: string
+          description: Unique identifier for the checkin
         name:
           type: string
           description: Name of the checked-in class
@@ -215,6 +232,7 @@ components:
     EventCheckin:
       type: object
       required:
+        - id
         - name
         - type
         - eventType
@@ -231,6 +249,7 @@ components:
     Checkin:
       type: object
       required:
+        - id
         - details
         - checkinTime
         - customer
@@ -619,6 +638,7 @@ paths:
                 - to
                 - subject
                 - body
+                - from
               properties:
                 to:
                   type: string
@@ -628,6 +648,15 @@ paths:
                 body:
                   type: string
                 from:
+                  type: string
+                  format: email
+                cc:
+                  type: string
+                  format: email
+                bcc:
+                  type: string
+                  format: email
+                replyTo:
                   type: string
                   format: email
       responses:
@@ -677,16 +706,21 @@ paths:
             schema:
               type: object
               required:
-                - device_token
+                - device_tokens
                 - title
                 - body
               properties:
-                device_token:
-                  type: string
+                device_tokens:
+                  type: array
+                  items:
+                    type: string
                 title:
                   type: string
                 body:
                   type: string
+                metadata:
+                  type: object
+                  additionalProperties: true
       responses:
         "200":
           description: Push notification sent successfully
