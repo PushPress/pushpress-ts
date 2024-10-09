@@ -445,8 +445,11 @@ paths:
           - name: page
             in: parameters
             type: page
+          - name: limit
+            in: parameters
+            type: limit
         outputs:
-          results: $.data
+          results: $.data.resultArray
   /apps/{app_id}/installs/{install_id}/uninstall:
     patch:
       tags:
@@ -767,8 +770,11 @@ paths:
           - name: page
             in: parameters
             type: page
+          - name: limit
+            in: parameters
+            type: limit
         outputs:
-          results: $.data
+          results: $.data.resultArray
   /companies/{id}:
     get:
       tags:
@@ -837,8 +843,11 @@ paths:
           - name: page
             in: parameters
             type: page
+          - name: limit
+            in: parameters
+            type: limit
         outputs:
-          results: $.data
+          results: $.data.resultArray
   /customers/{id}:
     get:
       tags:
@@ -906,8 +915,11 @@ paths:
           - name: page
             in: parameters
             type: page
+          - name: limit
+            in: parameters
+            type: limit
         outputs:
-          results: $.data
+          results: $.data.resultArray
   /checkins/{id}:
     get:
       tags:
