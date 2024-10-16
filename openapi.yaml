@@ -25,6 +25,40 @@ x-speakeasy-retries:
   retryConnectionErrors: true
 components:
   schemas:
+    ApiKey:
+      type: object
+      properties:
+        keyUuid:
+          type: string
+        apiKey:
+          type: string
+        clientUuid:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: number
+        expiresAt:
+          type:
+            - number
+            - "null"
+      required:
+        - keyUuid
+        - apiKey
+        - clientUuid
+        - name
+        - description
+        - createdAt
+      description: Platform API key
+      example:
+        keyUuid: key_asdfghjklqwertyuiop
+        apiKey: sk_zyxvutsrqponmlkjihgfedcba
+        clientUuid: client_asdfghjklqwertyuiop
+        name: My API Key
+        description: Additional description to add context to the key
+        createdAt: 1577836800000
     App:
       type: object
       properties:
@@ -324,7 +358,7 @@ tags:
   - name: Customers
   - name: Companies
   - name: Checkins
-  - name: Keys
+  - name: ApiKeys
   - name: Apps
     description: manage PushPress appl ecosystem
   - name: Webhooks
@@ -531,7 +565,7 @@ paths:
   /keys:
     post:
       tags:
-        - Keys
+        - ApiKeys
       summary: Create a new API key for a  company
       description: Create a new API key for a company.
       operationId: createApiKey
@@ -555,20 +589,24 @@ paths:
       x-speakeasy-name-override: create
     get:
       tags:
-        - Keys
+        - ApiKeys
       summary: List all active API keys for a client
       description: List all active API keys for a client.
       operationId: listApiKeys
       responses:
         "200":
           description: A list of active API keys
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiKey"
         "400":
           description: Bad request
       x-speakeasy-name-override: list
   /keys/{key_id}/revoke:
     patch:
       tags:
-        - Keys
+        - ApiKeys
       summary: Revoke an API key
       description: Revoke (deactivate) an API key.
       operationId: revokeApiKey
@@ -585,9 +623,31 @@ paths:
           description: Bad request
       x-speakeasy-name-override: revoke
   /keys/{key_id}:
+    get:
+      tags:
+        - ApiKeys
+      summary: Retrieve a single API key
+      description: Retrieve a single API key.
+      operationId: getApiKey
+      parameters:
+        - name: key_id
+          in: path
+          required: true
+          description: The ID of the API key to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully retrieved API key
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiKey"
+      x-speakeasy-name-override: get
+      x-speakeasy-group: keys
     delete:
       tags:
-        - Keys
+        - ApiKeys
       summary: Permanently delete an API key
       description: Permanently delete an API key from the system.
       operationId: deleteApiKey
@@ -603,25 +663,6 @@ paths:
         "400":
           description: Bad request
       x-speakeasy-name-override: delete
-  /keys/{key_id}/extend:
-    put:
-      tags:
-        - Keys
-      summary: Extend the expiration of an API key
-      description: Extend the expiration of an API key.
-      operationId: extendApiKey
-      parameters:
-        - name: key_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: API key expiration extended successfully
-        "400":
-          description: Bad request
-      x-speakeasy-name-override: extend
   /messages/email/send:
     post:
       tags:
@@ -728,65 +769,12 @@ paths:
           description: Bad request
       x-speakeasy-name-override: send
       x-speakeasy-group: messages.push
-  /companies:
+  /company:
     get:
       tags:
         - Companies
-      summary: Get a list of all companies
-      operationId: listCompanies
-      parameters:
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            default: 1
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            default: 10
-            minimum: 1
-            maximum: 100
-      responses:
-        "200":
-          description: A paginated response containing a list of companies
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - data
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Company"
-      x-speakeasy-name-override: list
-      x-speakeasy-pagination:
-        type: offsetLimit
-        inputs:
-          - name: page
-            in: parameters
-            type: page
-          - name: limit
-            in: parameters
-            type: limit
-        outputs:
-          results: $.data.resultArray
-  /companies/{id}:
-    get:
-      tags:
-        - Companies
-      summary: Get a company by ID
+      summary: Get company details associated with the API key
       operationId: getCompany
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
       responses:
         "200":
           description: Company details
@@ -802,11 +790,6 @@ paths:
       summary: Get a list of all customers in a
       operationId: listCustomers
       parameters:
-        - name: company
-          in: query
-          required: true
-          schema:
-            type: string
         - name: page
           in: query
           required: false

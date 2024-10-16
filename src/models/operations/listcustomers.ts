@@ -7,7 +7,6 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type ListCustomersRequest = {
-  company: string;
   page?: number | undefined;
   limit?: number | undefined;
 };
@@ -32,14 +31,12 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  company: z.string(),
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
 });
 
 /** @internal */
 export type ListCustomersRequest$Outbound = {
-  company: string;
   page: number;
   limit: number;
 };
@@ -50,7 +47,6 @@ export const ListCustomersRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCustomersRequest
 > = z.object({
-  company: z.string(),
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
 });

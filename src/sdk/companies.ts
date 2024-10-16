@@ -3,38 +3,19 @@
  */
 
 import { companiesGet } from "../funcs/companiesGet.js";
-import { companiesList } from "../funcs/companiesList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
-import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Companies extends ClientSDK {
   /**
-   * Get a list of all companies
-   */
-  async list(
-    request: operations.ListCompaniesRequest,
-    options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListCompaniesResponse>> {
-    return unwrapResultIterator(companiesList(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get a company by ID
+   * Get company details associated with the API key
    */
   async get(
-    request: operations.GetCompanyRequest,
     options?: RequestOptions,
   ): Promise<components.Company> {
     return unwrapAsync(companiesGet(
       this,
-      request,
       options,
     ));
   }

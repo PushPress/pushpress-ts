@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { PushPressCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -23,14 +23,14 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Permanently delete an API key
+ * Create a new API key for a  company
  *
  * @remarks
- * Permanently delete an API key from the system.
+ * Create a new API key for a company.
  */
-export async function keysDelete(
+export async function apiKeysCreate(
   client: PushPressCore,
-  request: operations.DeleteApiKeyRequest,
+  request: operations.CreateApiKeyRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,32 +46,26 @@ export async function keysDelete(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.DeleteApiKeyRequest$outboundSchema.parse(value),
+    (value) => operations.CreateApiKeyRequestBody$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload, { explode: true });
 
-  const pathParams = {
-    key_id: encodeSimple("key_id", payload.key_id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc("/keys/{key_id}")(pathParams);
+  const path = pathToFunc("/keys")();
 
   const headers = new Headers({
+    "Content-Type": "application/json",
     Accept: "*/*",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
-    operationID: "deleteApiKey",
+    operationID: "createApiKey",
     oAuth2Scopes: [],
     securitySource: client._options.apiKey,
   };
@@ -79,7 +73,7 @@ export async function keysDelete(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "DELETE",
+    method: "POST",
     path: path,
     headers: headers,
     body: body,
@@ -122,7 +116,7 @@ export async function keysDelete(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(204, z.void()),
+    M.nil(200, z.void()),
     M.fail([400, "4XX", "5XX"]),
   )(response);
   if (!result.ok) {

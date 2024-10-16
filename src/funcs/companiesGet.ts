@@ -3,9 +3,7 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
-import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -19,15 +17,13 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a company by ID
+ * Get company details associated with the API key
  */
 export async function companiesGet(
   client: PushPressCore,
-  request: operations.GetCompanyRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -41,25 +37,7 @@ export async function companiesGet(
     | ConnectionError
   >
 > {
-  const parsed = safeParse(
-    request,
-    (value) => operations.GetCompanyRequest$outboundSchema.parse(value),
-    "Input validation failed",
-  );
-  if (!parsed.ok) {
-    return parsed;
-  }
-  const payload = parsed.value;
-  const body = null;
-
-  const pathParams = {
-    id: encodeSimple("id", payload.id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc("/companies/{id}")(pathParams);
+  const path = pathToFunc("/company")();
 
   const headers = new Headers({
     Accept: "application/json",
@@ -79,7 +57,6 @@ export async function companiesGet(
     method: "GET",
     path: path,
     headers: headers,
-    body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {

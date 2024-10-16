@@ -6,7 +6,7 @@
 import { ListCheckinsRequest } from "pushpress/models/operations";
 
 let value: ListCheckinsRequest = {
-  company: "Leuschke LLC",
+  company: "Oberbrunner, Barton and Keeling",
 };
 ```
 

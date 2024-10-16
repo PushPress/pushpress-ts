@@ -6,7 +6,7 @@
 import { ListWebhooksRequest } from "pushpress/models/operations";
 
 let value: ListWebhooksRequest = {
-  company: "Jacobi, Turner and Pollich",
+  company: "Reilly Inc",
 };
 ```
 

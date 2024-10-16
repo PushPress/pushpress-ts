@@ -166,8 +166,12 @@ export async function appsInstallsList(
     if (!responseData) {
       return () => null;
     }
-    const results = dlv(responseData, "data");
+    const results = dlv(responseData, "data.resultArray");
     if (!Array.isArray(results) || !results.length) {
+      return () => null;
+    }
+    const limit = request?.limit || 0;
+    if (results.length < limit) {
       return () => null;
     }
 

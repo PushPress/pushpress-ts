@@ -63,7 +63,6 @@ export async function customersList(
   const path = pathToFunc("/customers")();
 
   const query = encodeFormQuery({
-    "company": payload.company,
     "limit": payload.limit,
     "page": payload.page,
   });
@@ -160,8 +159,12 @@ export async function customersList(
     if (!responseData) {
       return () => null;
     }
-    const results = dlv(responseData, "data");
+    const results = dlv(responseData, "data.resultArray");
     if (!Array.isArray(results) || !results.length) {
+      return () => null;
+    }
+    const limit = request?.limit || 0;
+    if (results.length < limit) {
       return () => null;
     }
 

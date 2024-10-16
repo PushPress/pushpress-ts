@@ -51,6 +51,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`apiKeysCreate`](docs/sdks/apikeys/README.md#create) - Create a new API key for a  company
+- [`apiKeysDelete`](docs/sdks/apikeys/README.md#delete) - Permanently delete an API key
+- [`apiKeysList`](docs/sdks/apikeys/README.md#list) - List all active API keys for a client
+- [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API key
 - [`appsDelete`](docs/sdks/apps/README.md#delete) - Hard delete an app (remove all data)
 - [`appsGet`](docs/sdks/apps/README.md#get) - Get details of a specific app
 - [`appsInstall`](docs/sdks/apps/README.md#install) - Install an app for a company
@@ -60,15 +64,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`appsUninstall`](docs/sdks/apps/README.md#uninstall) - Soft uninstall an app (mark it as uninstalled but retain data)
 - [`checkinsGet`](docs/sdks/checkins/README.md#get) - Get a check-in by ID
 - [`checkinsList`](docs/sdks/checkins/README.md#list) - Get a list of all check-ins
-- [`companiesGet`](docs/sdks/companies/README.md#get) - Get a company by ID
-- [`companiesList`](docs/sdks/companies/README.md#list) - Get a list of all companies
+- [`companiesGet`](docs/sdks/companies/README.md#get) - Get company details associated with the API key
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get a customer by ID
 - [`customersList`](docs/sdks/customers/README.md#list) - Get a list of all customers in a
-- [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API key for a  company
-- [`keysDelete`](docs/sdks/keys/README.md#delete) - Permanently delete an API key
-- [`keysExtend`](docs/sdks/keys/README.md#extend) - Extend the expiration of an API key
-- [`keysList`](docs/sdks/keys/README.md#list) - List all active API keys for a client
-- [`keysRevoke`](docs/sdks/keys/README.md#revoke) - Revoke an API key
+- [`keysGet`](docs/sdks/keys/README.md#get) - Retrieve a single API key
 - [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an email
 - [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification

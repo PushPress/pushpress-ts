@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { PushPressCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -23,14 +23,14 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create a new API key for a  company
+ * Revoke an API key
  *
  * @remarks
- * Create a new API key for a company.
+ * Revoke (deactivate) an API key.
  */
-export async function keysCreate(
+export async function apiKeysRevoke(
   client: PushPressCore,
-  request: operations.CreateApiKeyRequestBody,
+  request: operations.RevokeApiKeyRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,26 +46,32 @@ export async function keysCreate(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.CreateApiKeyRequestBody$outboundSchema.parse(value),
+    (value) => operations.RevokeApiKeyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = null;
 
-  const path = pathToFunc("/keys")();
+  const pathParams = {
+    key_id: encodeSimple("key_id", payload.key_id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc("/keys/{key_id}/revoke")(pathParams);
 
   const headers = new Headers({
-    "Content-Type": "application/json",
     Accept: "*/*",
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
-    operationID: "createApiKey",
+    operationID: "revokeApiKey",
     oAuth2Scopes: [],
     securitySource: client._options.apiKey,
   };
@@ -73,7 +79,7 @@ export async function keysCreate(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "POST",
+    method: "PATCH",
     path: path,
     headers: headers,
     body: body,

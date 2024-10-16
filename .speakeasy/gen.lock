@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 216da02f08dc07e4b36ae4e3d66e1d55
+  docChecksum: 891bb2211082e6f2dcfd03cc7eac765f
   docVersion: 3.0.0
-  speakeasyVersion: 1.412.0
-  generationVersion: 2.436.3
-  releaseVersion: 0.0.3
-  configChecksum: ac22447aa083f0d3b116c796f0009522
+  speakeasyVersion: 1.418.4
+  generationVersion: 2.438.3
+  releaseVersion: 0.1.0
+  configChecksum: f07550ebc046d63f4fb8f40d1e3f8dae
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -22,6 +22,7 @@ features:
     globalServerURLs: 2.82.4
     groups: 2.81.2
     nameOverrides: 2.81.2
+    nullables: 0.1.0
     operationTimeout: 0.2.0
     pagination: 2.82.7
     responseFormat: 0.2.3
@@ -41,6 +42,7 @@ generatedFiles:
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
+  - docs/models/components/apikey.md
   - docs/models/components/app.md
   - docs/models/components/appinstall.md
   - docs/models/components/appointmentcheckin.md
@@ -61,11 +63,10 @@ generatedFiles:
   - docs/models/operations/deleteappinstallrequest.md
   - docs/models/operations/deletewebhookrequest.md
   - docs/models/operations/deletewebhookresponsebody.md
-  - docs/models/operations/extendapikeyrequest.md
+  - docs/models/operations/getapikeyrequest.md
   - docs/models/operations/getappinstallrequest.md
   - docs/models/operations/getapprequest.md
   - docs/models/operations/getcheckinrequest.md
-  - docs/models/operations/getcompanyrequest.md
   - docs/models/operations/getcustomerrequest.md
   - docs/models/operations/getwebhookrequest.md
   - docs/models/operations/installapprequest.md
@@ -76,9 +77,6 @@ generatedFiles:
   - docs/models/operations/listcheckinsrequest.md
   - docs/models/operations/listcheckinsresponse.md
   - docs/models/operations/listcheckinsresponsebody.md
-  - docs/models/operations/listcompaniesrequest.md
-  - docs/models/operations/listcompaniesresponse.md
-  - docs/models/operations/listcompaniesresponsebody.md
   - docs/models/operations/listcustomersrequest.md
   - docs/models/operations/listcustomersresponse.md
   - docs/models/operations/listcustomersresponsebody.md
@@ -104,6 +102,10 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/apiKeysCreate.ts
+  - src/funcs/apiKeysDelete.ts
+  - src/funcs/apiKeysList.ts
+  - src/funcs/apiKeysRevoke.ts
   - src/funcs/appsDelete.ts
   - src/funcs/appsGet.ts
   - src/funcs/appsInstall.ts
@@ -114,14 +116,9 @@ generatedFiles:
   - src/funcs/checkinsGet.ts
   - src/funcs/checkinsList.ts
   - src/funcs/companiesGet.ts
-  - src/funcs/companiesList.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
-  - src/funcs/keysCreate.ts
-  - src/funcs/keysDelete.ts
-  - src/funcs/keysExtend.ts
-  - src/funcs/keysList.ts
-  - src/funcs/keysRevoke.ts
+  - src/funcs/keysGet.ts
   - src/funcs/messagesEmailSend.ts
   - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
@@ -150,6 +147,7 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
+  - src/models/components/apikey.ts
   - src/models/components/app.ts
   - src/models/components/appinstall.ts
   - src/models/components/appointmentcheckin.ts
@@ -170,18 +168,16 @@ generatedFiles:
   - src/models/operations/deleteapikey.ts
   - src/models/operations/deleteappinstall.ts
   - src/models/operations/deletewebhook.ts
-  - src/models/operations/extendapikey.ts
+  - src/models/operations/getapikey.ts
   - src/models/operations/getapp.ts
   - src/models/operations/getappinstall.ts
   - src/models/operations/getcheckin.ts
-  - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/getwebhook.ts
   - src/models/operations/index.ts
   - src/models/operations/installapp.ts
   - src/models/operations/listappinstalls.ts
   - src/models/operations/listcheckins.ts
-  - src/models/operations/listcompanies.ts
   - src/models/operations/listcustomers.ts
   - src/models/operations/listwebhooks.ts
   - src/models/operations/revokeapikey.ts
@@ -197,6 +193,7 @@ generatedFiles:
   - src/models/webhooks/customerdeletedevent.ts
   - src/models/webhooks/customerupdatedevent.ts
   - src/models/webhooks/index.ts
+  - src/sdk/apikeys.ts
   - src/sdk/apps.ts
   - src/sdk/checkins.ts
   - src/sdk/companies.ts
@@ -280,7 +277,11 @@ examples:
     speakeasy-default-create-api-key:
       requestBody:
         application/json: {"company": "Nienow Inc"}
-  listApiKeys: {}
+  listApiKeys:
+    speakeasy-default-list-api-keys:
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   revokeApiKey:
     speakeasy-default-revoke-api-key:
       parameters:
@@ -391,3 +392,11 @@ examples:
       parameters:
         path:
           webhook_id: "<id>"
+  getApiKey:
+    speakeasy-default-get-api-key:
+      parameters:
+        path:
+          key_id: "<id>"
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
