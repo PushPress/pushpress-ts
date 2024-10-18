@@ -5,7 +5,7 @@ A paginated response containing a list of check-ins
 ## Example Usage
 
 ```typescript
-import { ListCheckinsResponseBody } from "pushpress/models/operations";
+import { ListCheckinsResponseBody } from "@pushpress/pushpress/models/operations";
 
 let value: ListCheckinsResponseBody = {
   data: [

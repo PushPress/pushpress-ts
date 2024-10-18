@@ -199,7 +199,7 @@ export function resolveGlobalSecurity(
   return resolveSecurity(
     [
       {
-        fieldName: "api_key",
+        fieldName: "API-KEY",
         type: "apiKey:header",
         value: security?.apiKey ?? env().PUSHPRESS_API_KEY,
       },

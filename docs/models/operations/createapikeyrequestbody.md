@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateApiKeyRequestBody } from "pushpress/models/operations";
+import { CreateApiKeyRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateApiKeyRequestBody = {
   company: "Predovic - Satterfield",

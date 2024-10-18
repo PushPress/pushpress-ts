@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CreateWebhookRequestBody } from "pushpress/models/operations";
+import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
   url: "https://your-webhook-url.com",

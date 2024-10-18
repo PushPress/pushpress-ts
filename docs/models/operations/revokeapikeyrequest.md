@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RevokeApiKeyRequest } from "pushpress/models/operations";
+import { RevokeApiKeyRequest } from "@pushpress/pushpress/models/operations";
 
 let value: RevokeApiKeyRequest = {
   keyId: "<id>",

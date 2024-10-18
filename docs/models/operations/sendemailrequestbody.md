@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SendEmailRequestBody } from "pushpress/models/operations";
+import { SendEmailRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: SendEmailRequestBody = {
   to: "Destini.McGlynn37@hotmail.com",

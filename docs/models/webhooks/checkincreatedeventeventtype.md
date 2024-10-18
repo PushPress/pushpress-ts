@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CheckinCreatedEventEventType } from "pushpress/models/webhooks";
+import { CheckinCreatedEventEventType } from "@pushpress/pushpress/models/webhooks";
 
 let value: CheckinCreatedEventEventType = "created";
 ```
