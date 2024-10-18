@@ -1,6 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",

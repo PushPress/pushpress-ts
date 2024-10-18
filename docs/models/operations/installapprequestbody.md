@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { InstallAppRequestBody } from "pushpress/models/operations";
+import { InstallAppRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: InstallAppRequestBody = {
   company: "O'Hara Inc",

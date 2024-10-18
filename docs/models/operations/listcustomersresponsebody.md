@@ -5,7 +5,7 @@ A paginated response containing an array of customerIds
 ## Example Usage
 
 ```typescript
-import { ListCustomersResponseBody } from "pushpress/models/operations";
+import { ListCustomersResponseBody } from "@pushpress/pushpress/models/operations";
 
 let value: ListCustomersResponseBody = {
   data: [

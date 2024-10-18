@@ -19,9 +19,9 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { PushPressCore } from "pushpress/core.js";
-import { appsList } from "pushpress/funcs/appsList.js";
-import { SDKValidationError } from "pushpress/models/errors/sdkvalidationerror.js";
+import { PushPressCore } from "@pushpress/pushpress/core.js";
+import { appsList } from "@pushpress/pushpress/funcs/appsList.js";
+import { SDKValidationError } from "@pushpress/pushpress/models/errors/sdkvalidationerror.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

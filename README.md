@@ -93,7 +93,7 @@ syntax.
 Here's an example of one such pagination call:
 
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
@@ -122,7 +122,7 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
@@ -152,7 +152,7 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   retryConfig: {
@@ -202,8 +202,8 @@ In addition, when custom error responses are specified for an operation, the SDK
 | errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ```typescript
-import { PushPress } from "pushpress";
-import { SDKValidationError } from "pushpress/models/errors";
+import { PushPress } from "@pushpress/pushpress";
+import { SDKValidationError } from "@pushpress/pushpress/models/errors";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
@@ -253,7 +253,7 @@ You can override the default server globally by passing a server name to the `se
 | `dev` | `https://api.pushpressdev.com` | None |
 
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   server: "dev",
@@ -277,7 +277,7 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   serverURL: "https://api.pushpress.com",
@@ -314,8 +314,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { PushPress } from "pushpress";
-import { HTTPClient } from "pushpress/lib/http";
+import { PushPress } from "@pushpress/pushpress";
+import { HTTPClient } from "@pushpress/pushpress/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -358,7 +358,7 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
@@ -387,7 +387,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { PushPress } from "pushpress";
+import { PushPress } from "@pushpress/pushpress";
 
 const sdk = new PushPress({ debugLogger: console });
 ```

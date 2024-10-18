@@ -5,7 +5,7 @@ Schema representing a customer, former customer or lead served by Company
 ## Example Usage
 
 ```typescript
-import { Customer } from "pushpress/models/components";
+import { Customer } from "@pushpress/pushpress/models/components";
 
 let value: Customer = {
   id: "usr_1234",

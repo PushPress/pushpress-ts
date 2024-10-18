@@ -5,7 +5,7 @@ Webhook deleted successfully
 ## Example Usage
 
 ```typescript
-import { DeleteWebhookResponseBody } from "pushpress/models/operations";
+import { DeleteWebhookResponseBody } from "@pushpress/pushpress/models/operations";
 
 let value: DeleteWebhookResponseBody = {};
 ```

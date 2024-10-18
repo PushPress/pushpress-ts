@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListCheckinsRequest } from "pushpress/models/operations";
+import { ListCheckinsRequest } from "@pushpress/pushpress/models/operations";
 
 let value: ListCheckinsRequest = {};
 ```
