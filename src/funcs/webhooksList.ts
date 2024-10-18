@@ -3,9 +3,8 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
-import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -19,7 +18,6 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
-import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -27,7 +25,6 @@ import { Result } from "../types/fp.js";
  */
 export async function webhooksList(
   client: PushPressCore,
-  request: operations.ListWebhooksRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -41,25 +38,14 @@ export async function webhooksList(
     | ConnectionError
   >
 > {
-  const parsed = safeParse(
-    request,
-    (value) => operations.ListWebhooksRequest$outboundSchema.parse(value),
-    "Input validation failed",
-  );
-  if (!parsed.ok) {
-    return parsed;
-  }
-  const payload = parsed.value;
-  const body = null;
-
   const path = pathToFunc("/webhooks")();
-
-  const query = encodeFormQuery({
-    "company": payload.company,
-  });
 
   const headers = new Headers({
     Accept: "application/json",
+    "companyId": encodeSimple("companyId", client._options.companyId, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);
@@ -76,8 +62,6 @@ export async function webhooksList(
     method: "GET",
     path: path,
     headers: headers,
-    query: query,
-    body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {

@@ -5,12 +5,52 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type SendPushGlobals = {
+  companyId?: string | undefined;
+};
+
 export type SendPushRequestBody = {
   deviceTokens: Array<string>;
   title: string;
   body: string;
   metadata?: { [k: string]: any } | undefined;
 };
+
+/** @internal */
+export const SendPushGlobals$inboundSchema: z.ZodType<
+  SendPushGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type SendPushGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const SendPushGlobals$outboundSchema: z.ZodType<
+  SendPushGlobals$Outbound,
+  z.ZodTypeDef,
+  SendPushGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendPushGlobals$ {
+  /** @deprecated use `SendPushGlobals$inboundSchema` instead. */
+  export const inboundSchema = SendPushGlobals$inboundSchema;
+  /** @deprecated use `SendPushGlobals$outboundSchema` instead. */
+  export const outboundSchema = SendPushGlobals$outboundSchema;
+  /** @deprecated use `SendPushGlobals$Outbound` instead. */
+  export type Outbound = SendPushGlobals$Outbound;
+}
 
 /** @internal */
 export const SendPushRequestBody$inboundSchema: z.ZodType<

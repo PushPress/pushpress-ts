@@ -6,6 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListCustomersGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListCustomersRequest = {
   page?: number | undefined;
   limit?: number | undefined;
@@ -24,6 +28,42 @@ export type ListCustomersResponseBody = {
 export type ListCustomersResponse = {
   result: ListCustomersResponseBody;
 };
+
+/** @internal */
+export const ListCustomersGlobals$inboundSchema: z.ZodType<
+  ListCustomersGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type ListCustomersGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const ListCustomersGlobals$outboundSchema: z.ZodType<
+  ListCustomersGlobals$Outbound,
+  z.ZodTypeDef,
+  ListCustomersGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListCustomersGlobals$ {
+  /** @deprecated use `ListCustomersGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListCustomersGlobals$inboundSchema;
+  /** @deprecated use `ListCustomersGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListCustomersGlobals$outboundSchema;
+  /** @deprecated use `ListCustomersGlobals$Outbound` instead. */
+  export type Outbound = ListCustomersGlobals$Outbound;
+}
 
 /** @internal */
 export const ListCustomersRequest$inboundSchema: z.ZodType<

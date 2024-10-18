@@ -10,13 +10,14 @@ let value: ListCheckinsResponse = {
     data: [
       {
         details: {
+          id: "<id>",
           name: "<value>",
-          type: "EventCheckin",
-          eventType: "<value>",
+          type: "ClassCheckin",
+          classType: "<value>",
         },
-        checkinTime: 187131,
+        checkinTime: 681393,
         customer: "<value>",
-        company: "Little, Koch and Tillman",
+        company: "Champlin - Huel",
         name: "<value>",
       },
     ],

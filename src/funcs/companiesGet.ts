@@ -3,6 +3,7 @@
  */
 
 import { PushPressCore } from "../core.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -41,6 +42,10 @@ export async function companiesGet(
 
   const headers = new Headers({
     Accept: "application/json",
+    "companyId": encodeSimple("companyId", client._options.companyId, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);

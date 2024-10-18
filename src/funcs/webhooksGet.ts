@@ -63,6 +63,10 @@ export async function webhooksGet(
 
   const headers = new Headers({
     Accept: "application/json",
+    "companyId": encodeSimple("companyId", client._options.companyId, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);

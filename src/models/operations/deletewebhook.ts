@@ -5,6 +5,10 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type DeleteWebhookGlobals = {
+  companyId?: string | undefined;
+};
+
 export type DeleteWebhookRequest = {
   webhookId: string;
 };
@@ -19,6 +23,42 @@ export type DeleteWebhookResponseBody = {
    */
   deleted?: number | undefined;
 };
+
+/** @internal */
+export const DeleteWebhookGlobals$inboundSchema: z.ZodType<
+  DeleteWebhookGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type DeleteWebhookGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const DeleteWebhookGlobals$outboundSchema: z.ZodType<
+  DeleteWebhookGlobals$Outbound,
+  z.ZodTypeDef,
+  DeleteWebhookGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DeleteWebhookGlobals$ {
+  /** @deprecated use `DeleteWebhookGlobals$inboundSchema` instead. */
+  export const inboundSchema = DeleteWebhookGlobals$inboundSchema;
+  /** @deprecated use `DeleteWebhookGlobals$outboundSchema` instead. */
+  export const outboundSchema = DeleteWebhookGlobals$outboundSchema;
+  /** @deprecated use `DeleteWebhookGlobals$Outbound` instead. */
+  export type Outbound = DeleteWebhookGlobals$Outbound;
+}
 
 /** @internal */
 export const DeleteWebhookRequest$inboundSchema: z.ZodType<

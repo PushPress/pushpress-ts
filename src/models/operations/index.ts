@@ -11,6 +11,7 @@ export * from "./getapikey.js";
 export * from "./getapp.js";
 export * from "./getappinstall.js";
 export * from "./getcheckin.js";
+export * from "./getcompany.js";
 export * from "./getcustomer.js";
 export * from "./getwebhook.js";
 export * from "./installapp.js";

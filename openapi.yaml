@@ -23,6 +23,13 @@ x-speakeasy-retries:
   statusCodes:
     - 5XX
   retryConnectionErrors: true
+x-speakeasy-globals:
+  parameters:
+    - name: companyId
+      in: header
+      schema:
+        type: string
+      x-speakeasy-globals-hidden: true # hide this from individual sdk methods
 components:
   schemas:
     ApiKey:
@@ -350,7 +357,7 @@ components:
       name: api_key
       in: header
       description: >-
-        Pass the API key as a Bearer token in the `Authorization` header. Example: `Authorization: Bearer <API_KEY>`
+        Pass the API key as a Bearer token in the `api_key` header. Example: `api_key: <API_KEY>`
 security:
   - api_key: []
 tags:
@@ -414,6 +421,10 @@ paths:
           required: true
           schema:
             type: string
+        - name: companyId
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -457,6 +468,10 @@ paths:
             default: 10
             minimum: 1
             maximum: 100
+        - name: companyId
+          in: header
+          schema:
+            type: string
       responses:
         "200":
           description: A paginated list of app installs
@@ -501,6 +516,10 @@ paths:
           required: true
           schema:
             type: string
+        - name: companyId
+          in: header
+          schema:
+            type: string
       responses:
         "204":
           description: Successfully soft uninstalled the app
@@ -525,6 +544,10 @@ paths:
         - name: install_id
           in: path
           required: true
+          schema:
+            type: string
+        - name: companyId
+          in: header
           schema:
             type: string
       responses:
@@ -553,6 +576,10 @@ paths:
           required: true
           schema:
             type: string
+        - name: companyId
+          in: header
+          schema:
+            type: string
       responses:
         "200":
           description: Successfully retrieved app install details
@@ -569,6 +596,11 @@ paths:
       summary: Create a new API key for a  company
       description: Create a new API key for a company.
       operationId: createApiKey
+      parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -669,6 +701,11 @@ paths:
         - Messages
       summary: Send an email
       operationId: sendEmail
+      parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -713,6 +750,11 @@ paths:
         - Messages
       summary: Send a ping notification via Ably Realtime
       operationId: sendPing
+      parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -740,6 +782,11 @@ paths:
         - Messages
       summary: Send a push notification
       operationId: sendPush
+      parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -775,6 +822,11 @@ paths:
         - Companies
       summary: Get company details associated with the API key
       operationId: getCompany
+      parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
       responses:
         "200":
           description: Company details
@@ -790,6 +842,10 @@ paths:
       summary: Get a list of all customers in a
       operationId: listCustomers
       parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
         - name: page
           in: query
           required: false
@@ -843,6 +899,10 @@ paths:
           required: true
           schema:
             type: string
+        - name: companyId
+          in: header
+          schema:
+            type: string
       responses:
         "200":
           description: Customer details
@@ -858,9 +918,8 @@ paths:
       summary: Get a list of all check-ins
       operationId: listCheckins
       parameters:
-        - name: company
-          in: query
-          required: true
+        - name: companyId
+          in: header
           schema:
             type: string
         - name: page
@@ -910,6 +969,10 @@ paths:
       summary: Get a check-in by ID
       operationId: getCheckin
       parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
         - name: id
           in: path
           required: true
@@ -929,6 +992,11 @@ paths:
         - Webhooks
       summary: Create a new webhook to subscribe to one or more events
       operationId: createWebhook
+      parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -968,9 +1036,8 @@ paths:
       summary: List all registered webhooks
       operationId: listWebhooks
       parameters:
-        - name: company
-          in: query
-          required: true
+        - name: companyId
+          in: header
           schema:
             type: string
       responses:
@@ -988,6 +1055,10 @@ paths:
       summary: Get details of a specific webhook
       operationId: getWebhook
       parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
         - name: webhook_id
           in: path
           required: true
@@ -1007,6 +1078,10 @@ paths:
       summary: Update the URL or events for an existing webhook
       operationId: updateWebhook
       parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
         - name: webhook_id
           in: path
           required: true
@@ -1032,6 +1107,10 @@ paths:
       summary: Delete a specific webhook
       operationId: deleteWebhook
       parameters:
+        - name: companyId
+          in: header
+          schema:
+            type: string
         - name: webhook_id
           in: path
           required: true

@@ -31,6 +31,11 @@ export const ServerList = {
 export type SDKOptions = {
   apiKey?: string | (() => Promise<string>);
 
+  /**
+   * Allows setting the companyId parameter for all supported operations
+   */
+  companyId?: string | undefined;
+
   httpClient?: HTTPClient;
   /**
    * Allows overriding the default server used by the SDK
@@ -65,7 +70,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "3.0.0",
-  sdkVersion: "0.1.0",
-  genVersion: "2.438.3",
-  userAgent: "speakeasy-sdk/typescript 0.1.0 2.438.3 3.0.0 pushpress",
+  sdkVersion: "0.3.1",
+  genVersion: "2.438.15",
+  userAgent: "speakeasy-sdk/typescript 0.3.1 2.438.15 3.0.0 pushpress",
 } as const;

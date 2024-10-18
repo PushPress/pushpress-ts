@@ -5,10 +5,50 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type UninstallAppGlobals = {
+  companyId?: string | undefined;
+};
+
 export type UninstallAppRequest = {
   appId: string;
   installId: string;
 };
+
+/** @internal */
+export const UninstallAppGlobals$inboundSchema: z.ZodType<
+  UninstallAppGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type UninstallAppGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const UninstallAppGlobals$outboundSchema: z.ZodType<
+  UninstallAppGlobals$Outbound,
+  z.ZodTypeDef,
+  UninstallAppGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UninstallAppGlobals$ {
+  /** @deprecated use `UninstallAppGlobals$inboundSchema` instead. */
+  export const inboundSchema = UninstallAppGlobals$inboundSchema;
+  /** @deprecated use `UninstallAppGlobals$outboundSchema` instead. */
+  export const outboundSchema = UninstallAppGlobals$outboundSchema;
+  /** @deprecated use `UninstallAppGlobals$Outbound` instead. */
+  export type Outbound = UninstallAppGlobals$Outbound;
+}
 
 /** @internal */
 export const UninstallAppRequest$inboundSchema: z.ZodType<

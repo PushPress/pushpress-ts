@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 891bb2211082e6f2dcfd03cc7eac765f
+  docChecksum: 43fb05062c5953411977a569487aa31e
   docVersion: 3.0.0
-  speakeasyVersion: 1.418.4
-  generationVersion: 2.438.3
-  releaseVersion: 0.1.0
-  configChecksum: f07550ebc046d63f4fb8f40d1e3f8dae
+  speakeasyVersion: 1.419.2
+  generationVersion: 2.438.15
+  releaseVersion: 0.3.1
+  configChecksum: 22dc8f158b3e9bb74d818c955dabd962
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -20,7 +20,9 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
+    globals: 2.82.1
     groups: 2.81.2
+    hiddenGlobals: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.0
     operationTimeout: 0.2.0
@@ -57,35 +59,55 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/components/type.md
   - docs/models/components/webhook.md
+  - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequestbody.md
+  - docs/models/operations/createwebhookglobals.md
   - docs/models/operations/createwebhookrequestbody.md
   - docs/models/operations/deleteapikeyrequest.md
+  - docs/models/operations/deleteappinstallglobals.md
   - docs/models/operations/deleteappinstallrequest.md
+  - docs/models/operations/deletewebhookglobals.md
   - docs/models/operations/deletewebhookrequest.md
   - docs/models/operations/deletewebhookresponsebody.md
   - docs/models/operations/getapikeyrequest.md
+  - docs/models/operations/getappinstallglobals.md
   - docs/models/operations/getappinstallrequest.md
   - docs/models/operations/getapprequest.md
+  - docs/models/operations/getcheckinglobals.md
   - docs/models/operations/getcheckinrequest.md
+  - docs/models/operations/getcompanyglobals.md
+  - docs/models/operations/getcompanyrequest.md
+  - docs/models/operations/getcustomerglobals.md
   - docs/models/operations/getcustomerrequest.md
+  - docs/models/operations/getwebhookglobals.md
   - docs/models/operations/getwebhookrequest.md
+  - docs/models/operations/installappglobals.md
   - docs/models/operations/installapprequest.md
   - docs/models/operations/installapprequestbody.md
+  - docs/models/operations/listappinstallsglobals.md
   - docs/models/operations/listappinstallsrequest.md
   - docs/models/operations/listappinstallsresponse.md
   - docs/models/operations/listappinstallsresponsebody.md
+  - docs/models/operations/listcheckinsglobals.md
   - docs/models/operations/listcheckinsrequest.md
   - docs/models/operations/listcheckinsresponse.md
   - docs/models/operations/listcheckinsresponsebody.md
+  - docs/models/operations/listcustomersglobals.md
   - docs/models/operations/listcustomersrequest.md
   - docs/models/operations/listcustomersresponse.md
   - docs/models/operations/listcustomersresponsebody.md
+  - docs/models/operations/listwebhooksglobals.md
   - docs/models/operations/listwebhooksrequest.md
   - docs/models/operations/revokeapikeyrequest.md
+  - docs/models/operations/sendemailglobals.md
   - docs/models/operations/sendemailrequestbody.md
+  - docs/models/operations/sendpingglobals.md
   - docs/models/operations/sendpingrequestbody.md
+  - docs/models/operations/sendpushglobals.md
   - docs/models/operations/sendpushrequestbody.md
+  - docs/models/operations/uninstallappglobals.md
   - docs/models/operations/uninstallapprequest.md
+  - docs/models/operations/updatewebhookglobals.md
   - docs/models/operations/updatewebhookrequest.md
   - docs/models/webhooks/checkincreatedeventeventtype.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
@@ -172,6 +194,7 @@ generatedFiles:
   - src/models/operations/getapp.ts
   - src/models/operations/getappinstall.ts
   - src/models/operations/getcheckin.ts
+  - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/getwebhook.ts
   - src/models/operations/index.ts
@@ -235,6 +258,7 @@ examples:
       parameters:
         path:
           app_id: "<id>"
+        header: {}
       requestBody:
         application/json: {"company": "Hirthe and Sons"}
   uninstallApp:
@@ -243,6 +267,7 @@ examples:
         path:
           app_id: "<id>"
           install_id: "<id>"
+        header: {}
       responses:
         "204":
           application/json: {"id": "b7c49b88-93d0-4ded-bf32-cfb3d44b19db", "app": "5bbc12bf-c966-428f-ba9e-b6862103a23f", "company": "34e98ee2-10cd-4efc-ab73-b7dc20600fe3", "status": "<value>", "installed": "2022-03-27T13:04:09.138Z"}
@@ -252,6 +277,7 @@ examples:
         path:
           app_id: "<id>"
           install_id: "<id>"
+        header: {}
       responses:
         "204":
           application/json: {"id": "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e", "app": "7aa10743-a04f-44af-84fe-b54259caa1ba", "company": "7460ea4f-91d0-4d6c-80a7-ebf643773e38", "status": "<value>", "installed": "2024-11-02T21:25:46.641Z"}
@@ -261,6 +287,7 @@ examples:
         path:
           app_id: "<id>"
         query: {}
+        header: {}
       responses:
         "200":
           application/json: {"data": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "app": "1e276671-8d6d-4461-b2e0-aee1b9ddf121", "company": "c2a4c810-4fb4-451a-a70c-fc8fe07fbc60", "status": "<value>", "installed": "2024-01-25T21:46:28.752Z"}, {"id": "960d5611-ff65-473e-90a6-2331ad7c07cc", "app": "81991696-ebd8-434b-b7d8-c2236e085944", "company": "bceb27bd-4753-4d0a-917c-478e329a9ec9", "status": "<value>", "installed": "2023-09-29T09:08:13.966Z"}, {"id": "38e1a630-f5fe-4368-8082-fa02e0874e78", "app": "07648ec2-ed7f-4303-b9de-c6f45d97b2c5", "company": "7f7bcfa2-69af-4219-84d5-861b3fe5754c", "status": "<value>", "installed": "2024-05-10T21:17:41.688Z"}]}
@@ -270,6 +297,7 @@ examples:
         path:
           app_id: "<id>"
           install_id: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"id": "b888f774-3e7c-4135-a18c-6b985523c4bc", "app": "e50f7622-81da-484b-9c66-1c8a99c6b71b", "company": "ecd62b8f-7112-4aaf-90ab-4e43b4cca371", "status": "<value>", "installed": "2024-11-03T02:18:54.211Z"}
@@ -319,6 +347,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"id": "client_1234", "name": "Acme Corp", "subdomain": "acme", "defaultTimezone": "America/Los_Angeles", "phone": "+1-800-555-1234", "email": "info@acme.com", "url": "https://www.acme.com"}
@@ -327,6 +356,7 @@ examples:
       parameters:
         query:
           company: "Lockman, Pagac and Daugherty"
+        header: {}
       responses:
         "200":
           application/json: {"data": [{"id": "usr_1234", "name": "John Doe", "address": "123 Main St, Anytown, USA", "profileImage": "https://example.com/profile.jpg", "email": "john.doe@example.com", "phone": "+1-800-555-1234"}]}
@@ -335,6 +365,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"id": "usr_1234", "name": "John Doe", "address": "123 Main St, Anytown, USA", "profileImage": "https://example.com/profile.jpg", "email": "john.doe@example.com", "phone": "+1-800-555-1234"}
@@ -343,6 +374,7 @@ examples:
       parameters:
         query:
           company: "Lockman, Pagac and Daugherty"
+        header: {}
       responses:
         "200":
           application/json: {"data": []}
@@ -351,6 +383,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"details": {"name": "<value>", "type": "EventCheckin", "eventType": "<value>"}, "checkinTime": 558834, "customer": "<value>", "company": "Lebsack and Sons", "name": "<value>"}
@@ -366,6 +399,7 @@ examples:
       parameters:
         query:
           company: "Lockman, Pagac and Daugherty"
+        header: {}
       responses:
         "200":
           application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "2297.17", "updated": "1528.38", "company": "Nikolaus Group"}
@@ -374,6 +408,7 @@ examples:
       parameters:
         path:
           webhook_id: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "7003.46", "updated": "5588.34", "company": "Lebsack and Sons"}
@@ -382,6 +417,7 @@ examples:
       parameters:
         path:
           webhook_id: "<id>"
+        header: {}
       requestBody:
         application/json: "<value>"
       responses:
@@ -392,6 +428,7 @@ examples:
       parameters:
         path:
           webhook_id: "<id>"
+        header: {}
   getApiKey:
     speakeasy-default-get-api-key:
       parameters:

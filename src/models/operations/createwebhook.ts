@@ -4,6 +4,10 @@
 
 import * as z from "zod";
 
+export type CreateWebhookGlobals = {
+  companyId?: string | undefined;
+};
+
 export type CreateWebhookRequestBody = {
   /**
    * URL to send the event data to
@@ -18,6 +22,42 @@ export type CreateWebhookRequestBody = {
    */
   company?: string | undefined;
 };
+
+/** @internal */
+export const CreateWebhookGlobals$inboundSchema: z.ZodType<
+  CreateWebhookGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateWebhookGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const CreateWebhookGlobals$outboundSchema: z.ZodType<
+  CreateWebhookGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateWebhookGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateWebhookGlobals$ {
+  /** @deprecated use `CreateWebhookGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateWebhookGlobals$inboundSchema;
+  /** @deprecated use `CreateWebhookGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateWebhookGlobals$outboundSchema;
+  /** @deprecated use `CreateWebhookGlobals$Outbound` instead. */
+  export type Outbound = CreateWebhookGlobals$Outbound;
+}
 
 /** @internal */
 export const CreateWebhookRequestBody$inboundSchema: z.ZodType<
