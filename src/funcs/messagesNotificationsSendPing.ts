@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { PushPressCore } from "../core.js";
-import { encodeJSON } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -57,6 +57,10 @@ export async function messagesNotificationsSendPing(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "*/*",
+    "companyId": encodeSimple("companyId", client._options.companyId, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);

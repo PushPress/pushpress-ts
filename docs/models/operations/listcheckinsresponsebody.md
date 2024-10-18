@@ -11,14 +11,13 @@ let value: ListCheckinsResponseBody = {
   data: [
     {
       details: {
-        id: "<id>",
         name: "<value>",
-        type: "ClassCheckin",
-        classType: "<value>",
+        type: "EventCheckin",
+        eventType: "<value>",
       },
-      checkinTime: 536178,
+      checkinTime: 645570,
       customer: "<value>",
-      company: "Gottlieb, Champlin and Huel",
+      company: "Keeling - Langosh",
       name: "<value>",
     },
   ],

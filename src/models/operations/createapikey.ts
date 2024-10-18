@@ -4,12 +4,52 @@
 
 import * as z from "zod";
 
+export type CreateApiKeyGlobals = {
+  companyId?: string | undefined;
+};
+
 export type CreateApiKeyRequestBody = {
   /**
    * The ID of the company for which to create the API key
    */
   company: string;
 };
+
+/** @internal */
+export const CreateApiKeyGlobals$inboundSchema: z.ZodType<
+  CreateApiKeyGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateApiKeyGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const CreateApiKeyGlobals$outboundSchema: z.ZodType<
+  CreateApiKeyGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateApiKeyGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateApiKeyGlobals$ {
+  /** @deprecated use `CreateApiKeyGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateApiKeyGlobals$inboundSchema;
+  /** @deprecated use `CreateApiKeyGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateApiKeyGlobals$outboundSchema;
+  /** @deprecated use `CreateApiKeyGlobals$Outbound` instead. */
+  export type Outbound = CreateApiKeyGlobals$Outbound;
+}
 
 /** @internal */
 export const CreateApiKeyRequestBody$inboundSchema: z.ZodType<

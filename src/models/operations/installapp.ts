@@ -5,6 +5,10 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type InstallAppGlobals = {
+  companyId?: string | undefined;
+};
+
 export type InstallAppRequestBody = {
   /**
    * The ID of the company on which to install the app
@@ -16,6 +20,42 @@ export type InstallAppRequest = {
   appId: string;
   requestBody: InstallAppRequestBody;
 };
+
+/** @internal */
+export const InstallAppGlobals$inboundSchema: z.ZodType<
+  InstallAppGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type InstallAppGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const InstallAppGlobals$outboundSchema: z.ZodType<
+  InstallAppGlobals$Outbound,
+  z.ZodTypeDef,
+  InstallAppGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace InstallAppGlobals$ {
+  /** @deprecated use `InstallAppGlobals$inboundSchema` instead. */
+  export const inboundSchema = InstallAppGlobals$inboundSchema;
+  /** @deprecated use `InstallAppGlobals$outboundSchema` instead. */
+  export const outboundSchema = InstallAppGlobals$outboundSchema;
+  /** @deprecated use `InstallAppGlobals$Outbound` instead. */
+  export type Outbound = InstallAppGlobals$Outbound;
+}
 
 /** @internal */
 export const InstallAppRequestBody$inboundSchema: z.ZodType<

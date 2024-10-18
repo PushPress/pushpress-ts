@@ -6,8 +6,11 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListCheckinsGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListCheckinsRequest = {
-  company: string;
   page?: number | undefined;
   limit?: number | undefined;
 };
@@ -24,19 +27,53 @@ export type ListCheckinsResponse = {
 };
 
 /** @internal */
+export const ListCheckinsGlobals$inboundSchema: z.ZodType<
+  ListCheckinsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type ListCheckinsGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const ListCheckinsGlobals$outboundSchema: z.ZodType<
+  ListCheckinsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListCheckinsGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListCheckinsGlobals$ {
+  /** @deprecated use `ListCheckinsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListCheckinsGlobals$inboundSchema;
+  /** @deprecated use `ListCheckinsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListCheckinsGlobals$outboundSchema;
+  /** @deprecated use `ListCheckinsGlobals$Outbound` instead. */
+  export type Outbound = ListCheckinsGlobals$Outbound;
+}
+
+/** @internal */
 export const ListCheckinsRequest$inboundSchema: z.ZodType<
   ListCheckinsRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  company: z.string(),
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
 });
 
 /** @internal */
 export type ListCheckinsRequest$Outbound = {
-  company: string;
   page: number;
   limit: number;
 };
@@ -47,7 +84,6 @@ export const ListCheckinsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCheckinsRequest
 > = z.object({
-  company: z.string(),
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
 });

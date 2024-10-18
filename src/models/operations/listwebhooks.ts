@@ -4,32 +4,64 @@
 
 import * as z from "zod";
 
-export type ListWebhooksRequest = {
-  company: string;
+export type ListWebhooksGlobals = {
+  companyId?: string | undefined;
 };
+
+export type ListWebhooksRequest = {};
+
+/** @internal */
+export const ListWebhooksGlobals$inboundSchema: z.ZodType<
+  ListWebhooksGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type ListWebhooksGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const ListWebhooksGlobals$outboundSchema: z.ZodType<
+  ListWebhooksGlobals$Outbound,
+  z.ZodTypeDef,
+  ListWebhooksGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListWebhooksGlobals$ {
+  /** @deprecated use `ListWebhooksGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListWebhooksGlobals$inboundSchema;
+  /** @deprecated use `ListWebhooksGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListWebhooksGlobals$outboundSchema;
+  /** @deprecated use `ListWebhooksGlobals$Outbound` instead. */
+  export type Outbound = ListWebhooksGlobals$Outbound;
+}
 
 /** @internal */
 export const ListWebhooksRequest$inboundSchema: z.ZodType<
   ListWebhooksRequest,
   z.ZodTypeDef,
   unknown
-> = z.object({
-  company: z.string(),
-});
+> = z.object({});
 
 /** @internal */
-export type ListWebhooksRequest$Outbound = {
-  company: string;
-};
+export type ListWebhooksRequest$Outbound = {};
 
 /** @internal */
 export const ListWebhooksRequest$outboundSchema: z.ZodType<
   ListWebhooksRequest$Outbound,
   z.ZodTypeDef,
   ListWebhooksRequest
-> = z.object({
-  company: z.string(),
-});
+> = z.object({});
 
 /**
  * @internal

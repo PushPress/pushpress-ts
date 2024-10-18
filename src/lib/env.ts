@@ -5,15 +5,23 @@
 import { dlv } from "./dlv.js";
 
 import * as z from "zod";
+import { SDKOptions } from "./config.js";
 
 export interface Env {
   PUSHPRESS_API_KEY?: string | undefined;
+
+  /**
+   * Sets the companyId parameter for all supported operations
+   */
+  PUSHPRESS_COMPANY_ID?: string | undefined;
 
   PUSHPRESS_DEBUG?: boolean | undefined;
 }
 
 export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
   PUSHPRESS_API_KEY: z.string(),
+
+  PUSHPRESS_COMPANY_ID: z.string(),
 
   PUSHPRESS_DEBUG: z.coerce.boolean(),
 })
@@ -39,4 +47,19 @@ export function env(): Env {
  */
 export function resetEnv() {
   envMemo = undefined;
+}
+
+/**
+ * Populates global parameters with environment variables.
+ */
+export function fillGlobals(options: SDKOptions): SDKOptions {
+  const clone = { ...options };
+
+  const envVars = env();
+
+  if (typeof envVars.PUSHPRESS_COMPANY_ID !== "undefined") {
+    clone.companyId ??= envVars.PUSHPRESS_COMPANY_ID;
+  }
+
+  return clone;
 }

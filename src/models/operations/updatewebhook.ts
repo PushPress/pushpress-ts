@@ -5,10 +5,50 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type UpdateWebhookGlobals = {
+  companyId?: string | undefined;
+};
+
 export type UpdateWebhookRequest = {
   webhookId: string;
   requestBody?: any | undefined;
 };
+
+/** @internal */
+export const UpdateWebhookGlobals$inboundSchema: z.ZodType<
+  UpdateWebhookGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type UpdateWebhookGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const UpdateWebhookGlobals$outboundSchema: z.ZodType<
+  UpdateWebhookGlobals$Outbound,
+  z.ZodTypeDef,
+  UpdateWebhookGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateWebhookGlobals$ {
+  /** @deprecated use `UpdateWebhookGlobals$inboundSchema` instead. */
+  export const inboundSchema = UpdateWebhookGlobals$inboundSchema;
+  /** @deprecated use `UpdateWebhookGlobals$outboundSchema` instead. */
+  export const outboundSchema = UpdateWebhookGlobals$outboundSchema;
+  /** @deprecated use `UpdateWebhookGlobals$Outbound` instead. */
+  export type Outbound = UpdateWebhookGlobals$Outbound;
+}
 
 /** @internal */
 export const UpdateWebhookRequest$inboundSchema: z.ZodType<

@@ -62,6 +62,10 @@ export async function webhooksDelete(
 
   const headers = new Headers({
     Accept: "application/json",
+    "companyId": encodeSimple("companyId", client._options.companyId, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);

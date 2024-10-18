@@ -5,13 +5,10 @@
 ```typescript
 import { ListWebhooksRequest } from "pushpress/models/operations";
 
-let value: ListWebhooksRequest = {
-  company: "Reilly Inc",
-};
+let value: ListWebhooksRequest = {};
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `company`          | *string*           | :heavy_check_mark: | N/A                |
+| Field       | Type        | Required    | Description |
+| ----------- | ----------- | ----------- | ----------- |

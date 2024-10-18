@@ -64,6 +64,10 @@ export async function appsInstall(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "*/*",
+    "companyId": encodeSimple("companyId", client._options.companyId, {
+      explode: false,
+      charEncoding: "none",
+    }),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);

@@ -31,12 +31,10 @@ export class Webhooks extends ClientSDK {
    * List all registered webhooks
    */
   async list(
-    request: operations.ListWebhooksRequest,
     options?: RequestOptions,
   ): Promise<components.Webhook> {
     return unwrapAsync(webhooksList(
       this,
-      request,
       options,
     ));
   }

@@ -6,6 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListAppInstallsGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListAppInstallsRequest = {
   appId: string;
   page?: number | undefined;
@@ -22,6 +26,42 @@ export type ListAppInstallsResponseBody = {
 export type ListAppInstallsResponse = {
   result: ListAppInstallsResponseBody;
 };
+
+/** @internal */
+export const ListAppInstallsGlobals$inboundSchema: z.ZodType<
+  ListAppInstallsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type ListAppInstallsGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const ListAppInstallsGlobals$outboundSchema: z.ZodType<
+  ListAppInstallsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListAppInstallsGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListAppInstallsGlobals$ {
+  /** @deprecated use `ListAppInstallsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListAppInstallsGlobals$inboundSchema;
+  /** @deprecated use `ListAppInstallsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListAppInstallsGlobals$outboundSchema;
+  /** @deprecated use `ListAppInstallsGlobals$Outbound` instead. */
+  export type Outbound = ListAppInstallsGlobals$Outbound;
+}
 
 /** @internal */
 export const ListAppInstallsRequest$inboundSchema: z.ZodType<

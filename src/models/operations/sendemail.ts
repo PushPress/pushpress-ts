@@ -4,6 +4,10 @@
 
 import * as z from "zod";
 
+export type SendEmailGlobals = {
+  companyId?: string | undefined;
+};
+
 export type SendEmailRequestBody = {
   to: string;
   subject: string;
@@ -13,6 +17,42 @@ export type SendEmailRequestBody = {
   bcc?: string | undefined;
   replyTo?: string | undefined;
 };
+
+/** @internal */
+export const SendEmailGlobals$inboundSchema: z.ZodType<
+  SendEmailGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/** @internal */
+export type SendEmailGlobals$Outbound = {
+  companyId?: string | undefined;
+};
+
+/** @internal */
+export const SendEmailGlobals$outboundSchema: z.ZodType<
+  SendEmailGlobals$Outbound,
+  z.ZodTypeDef,
+  SendEmailGlobals
+> = z.object({
+  companyId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendEmailGlobals$ {
+  /** @deprecated use `SendEmailGlobals$inboundSchema` instead. */
+  export const inboundSchema = SendEmailGlobals$inboundSchema;
+  /** @deprecated use `SendEmailGlobals$outboundSchema` instead. */
+  export const outboundSchema = SendEmailGlobals$outboundSchema;
+  /** @deprecated use `SendEmailGlobals$Outbound` instead. */
+  export type Outbound = SendEmailGlobals$Outbound;
+}
 
 /** @internal */
 export const SendEmailRequestBody$inboundSchema: z.ZodType<
