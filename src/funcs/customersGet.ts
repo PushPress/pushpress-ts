@@ -23,7 +23,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a customer by ID
+ * Get individual customer information
+ *
+ * @remarks
+ * Get individual customer information, including profile image, primary image, and other profile information. Only returns active customer data
  */
 export async function customersGet(
   client: PushPressCore,
@@ -53,17 +56,17 @@ export async function customersGet(
   const body = null;
 
   const pathParams = {
-    id: encodeSimple("id", payload.id, {
+    uuid: encodeSimple("uuid", payload.uuid, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path = pathToFunc("/customers/{id}")(pathParams);
+  const path = pathToFunc("/customers/{uuid}")(pathParams);
 
   const headers = new Headers({
     Accept: "application/json",
-    "companyId": encodeSimple("companyId", client._options.companyId, {
+    "companyId": encodeSimple("companyId", payload.companyId, {
       explode: false,
       charEncoding: "none",
     }),
@@ -93,7 +96,7 @@ export async function customersGet(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -124,7 +127,7 @@ export async function customersGet(
     | ConnectionError
   >(
     M.json(200, components.Customer$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.fail([401, 404, "4XX", "5XX"]),
   )(response);
   if (!result.ok) {
     return result;

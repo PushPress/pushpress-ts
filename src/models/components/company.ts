@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 /**
- * Schema representing a company with a pushpress account, whether its a gym, martial arts studio or mermaid swim school
+ * Represents an entity with one ore more PushPress accounts, whether its a gym, martial arts studio or mermaid swim school
  */
 export type Company = {
   /**
@@ -27,7 +27,7 @@ export type Company = {
   /**
    * Phone number of the company
    */
-  phone: string;
+  phone?: string | null | undefined;
   /**
    * Email address of the company
    */
@@ -45,7 +45,7 @@ export const Company$inboundSchema: z.ZodType<Company, z.ZodTypeDef, unknown> =
     name: z.string(),
     subdomain: z.string(),
     defaultTimezone: z.string(),
-    phone: z.string(),
+    phone: z.nullable(z.string()).optional(),
     email: z.string(),
     url: z.string().optional(),
   });
@@ -56,7 +56,7 @@ export type Company$Outbound = {
   name: string;
   subdomain: string;
   defaultTimezone: string;
-  phone: string;
+  phone?: string | null | undefined;
   email: string;
   url?: string | undefined;
 };
@@ -71,7 +71,7 @@ export const Company$outboundSchema: z.ZodType<
   name: z.string(),
   subdomain: z.string(),
   defaultTimezone: z.string(),
-  phone: z.string(),
+  phone: z.nullable(z.string()).optional(),
   email: z.string(),
   url: z.string().optional(),
 });

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
 
 export type Security = {
   apiKey?: string | undefined;
@@ -15,16 +14,12 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  api_key: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "api_key": "apiKey",
-  });
+  apiKey: z.string().optional(),
 });
 
 /** @internal */
 export type Security$Outbound = {
-  api_key?: string | undefined;
+  apiKey?: string | undefined;
 };
 
 /** @internal */
@@ -34,10 +29,6 @@ export const Security$outboundSchema: z.ZodType<
   Security
 > = z.object({
   apiKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    apiKey: "api_key",
-  });
 });
 
 /**

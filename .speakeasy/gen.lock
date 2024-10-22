@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 6e058405e8cb89bbcd32077c51b409a7
+  docChecksum: 0d146f94b1d413a5c336d6584be47dd1
   docVersion: 3.0.0
-  speakeasyVersion: 1.419.2
+  speakeasyVersion: 1.420.0
   generationVersion: 2.438.15
-  releaseVersion: 0.3.3
-  configChecksum: a19657c2f6907ce8957c9b08f366f56d
+  releaseVersion: 0.4.0
+  configChecksum: db763fbe17a1302e99ecac048c53ea89
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -22,7 +22,7 @@ features:
     globalServerURLs: 2.82.4
     globals: 2.82.1
     groups: 2.81.2
-    hiddenGlobals: 0.1.0
+    methodSecurity: 2.82.4
     nameOverrides: 2.81.2
     nullables: 0.1.0
     operationTimeout: 0.2.0
@@ -30,8 +30,6 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
-    serverIDs: 2.81.2
-    unions: 2.85.7
     webhooks: 1.0.0
 generatedFiles:
   - .devcontainer/README.md
@@ -44,111 +42,86 @@ generatedFiles:
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
+  - docs/models/components/address.md
   - docs/models/components/apikey.md
-  - docs/models/components/app.md
-  - docs/models/components/appinstall.md
   - docs/models/components/appointmentcheckin.md
-  - docs/models/components/checkin.md
   - docs/models/components/classcheckin.md
-  - docs/models/components/classcheckintype.md
+  - docs/models/components/classcheckinrole.md
   - docs/models/components/company.md
   - docs/models/components/customer.md
-  - docs/models/components/details.md
   - docs/models/components/eventcheckin.md
-  - docs/models/components/eventcheckintype.md
+  - docs/models/components/name.md
+  - docs/models/components/role.md
   - docs/models/components/security.md
-  - docs/models/components/type.md
-  - docs/models/components/webhook.md
-  - docs/models/operations/createapikeyglobals.md
+  - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
-  - docs/models/operations/createwebhookglobals.md
-  - docs/models/operations/createwebhookrequestbody.md
-  - docs/models/operations/deleteapikeyrequest.md
-  - docs/models/operations/deleteappinstallglobals.md
-  - docs/models/operations/deleteappinstallrequest.md
-  - docs/models/operations/deletewebhookglobals.md
-  - docs/models/operations/deletewebhookrequest.md
-  - docs/models/operations/deletewebhookresponsebody.md
+  - docs/models/operations/createapikeysecurity.md
+  - docs/models/operations/data.md
   - docs/models/operations/getapikeyrequest.md
-  - docs/models/operations/getappinstallglobals.md
-  - docs/models/operations/getappinstallrequest.md
-  - docs/models/operations/getapprequest.md
-  - docs/models/operations/getcheckinglobals.md
-  - docs/models/operations/getcheckinrequest.md
-  - docs/models/operations/getcompanyglobals.md
+  - docs/models/operations/getapikeysecurity.md
+  - docs/models/operations/getappointmentcheckinrequest.md
+  - docs/models/operations/getclasscheckinrequest.md
   - docs/models/operations/getcompanyrequest.md
-  - docs/models/operations/getcustomerglobals.md
   - docs/models/operations/getcustomerrequest.md
-  - docs/models/operations/getwebhookglobals.md
-  - docs/models/operations/getwebhookrequest.md
-  - docs/models/operations/installappglobals.md
-  - docs/models/operations/installapprequest.md
-  - docs/models/operations/installapprequestbody.md
-  - docs/models/operations/listappinstallsglobals.md
-  - docs/models/operations/listappinstallsrequest.md
-  - docs/models/operations/listappinstallsresponse.md
-  - docs/models/operations/listappinstallsresponsebody.md
-  - docs/models/operations/listcheckinsglobals.md
-  - docs/models/operations/listcheckinsrequest.md
-  - docs/models/operations/listcheckinsresponse.md
-  - docs/models/operations/listcheckinsresponsebody.md
-  - docs/models/operations/listcustomersglobals.md
+  - docs/models/operations/geteventcheckinrequest.md
+  - docs/models/operations/listapikeysdata.md
+  - docs/models/operations/listapikeysrequest.md
+  - docs/models/operations/listapikeysresponsebody.md
+  - docs/models/operations/listapikeyssecurity.md
+  - docs/models/operations/listappointmentcheckinsdata.md
+  - docs/models/operations/listappointmentcheckinsqueryparamtime.md
+  - docs/models/operations/listappointmentcheckinsrequest.md
+  - docs/models/operations/listappointmentcheckinsresponse.md
+  - docs/models/operations/listappointmentcheckinsresponsebody.md
+  - docs/models/operations/listclasscheckinsdata.md
+  - docs/models/operations/listclasscheckinsrequest.md
+  - docs/models/operations/listclasscheckinsresponse.md
+  - docs/models/operations/listclasscheckinsresponsebody.md
+  - docs/models/operations/listcustomersdata.md
   - docs/models/operations/listcustomersrequest.md
   - docs/models/operations/listcustomersresponse.md
   - docs/models/operations/listcustomersresponsebody.md
-  - docs/models/operations/listwebhooksglobals.md
-  - docs/models/operations/listwebhooksrequest.md
+  - docs/models/operations/listeventcheckinsrequest.md
+  - docs/models/operations/listeventcheckinsresponse.md
+  - docs/models/operations/listeventcheckinsresponsebody.md
+  - docs/models/operations/queryparamtime.md
   - docs/models/operations/revokeapikeyrequest.md
-  - docs/models/operations/sendemailglobals.md
+  - docs/models/operations/revokeapikeysecurity.md
+  - docs/models/operations/sendemailrequest.md
   - docs/models/operations/sendemailrequestbody.md
-  - docs/models/operations/sendpingglobals.md
+  - docs/models/operations/sendpingrequest.md
   - docs/models/operations/sendpingrequestbody.md
-  - docs/models/operations/sendpushglobals.md
+  - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
-  - docs/models/operations/uninstallappglobals.md
-  - docs/models/operations/uninstallapprequest.md
-  - docs/models/operations/updatewebhookglobals.md
-  - docs/models/operations/updatewebhookrequest.md
-  - docs/models/webhooks/checkincreatedeventeventtype.md
-  - docs/models/webhooks/checkincreatedeventrequestbody.md
-  - docs/models/webhooks/checkindeletedeventeventtype.md
-  - docs/models/webhooks/checkindeletedeventrequestbody.md
-  - docs/models/webhooks/checkinupdatedeventeventtype.md
-  - docs/models/webhooks/checkinupdatedeventrequestbody.md
+  - docs/models/operations/time.md
+  - docs/models/webhooks/appinstalledeventrequestbody.md
+  - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
   - docs/models/webhooks/customerdeletedeventeventtype.md
   - docs/models/webhooks/customerdeletedeventrequestbody.md
   - docs/models/webhooks/customerupdatedeventeventtype.md
   - docs/models/webhooks/customerupdatedeventrequestbody.md
+  - docs/models/webhooks/data.md
   - docs/models/webhooks/eventtype.md
   - jsr.json
   - package.json
   - src/core.ts
   - src/funcs/apiKeysCreate.ts
-  - src/funcs/apiKeysDelete.ts
+  - src/funcs/apiKeysGet.ts
   - src/funcs/apiKeysList.ts
   - src/funcs/apiKeysRevoke.ts
-  - src/funcs/appsDelete.ts
-  - src/funcs/appsGet.ts
-  - src/funcs/appsInstall.ts
-  - src/funcs/appsInstallsGet.ts
-  - src/funcs/appsInstallsList.ts
-  - src/funcs/appsList.ts
-  - src/funcs/appsUninstall.ts
-  - src/funcs/checkinsGet.ts
-  - src/funcs/checkinsList.ts
-  - src/funcs/companiesGet.ts
+  - src/funcs/appointmentCheckinsGet.ts
+  - src/funcs/appointmentCheckinsList.ts
+  - src/funcs/classCheckinsGet.ts
+  - src/funcs/classCheckinsList.ts
+  - src/funcs/companyGet.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
-  - src/funcs/keysGet.ts
+  - src/funcs/eventCheckinsGet.ts
+  - src/funcs/eventCheckinsList.ts
   - src/funcs/messagesEmailSend.ts
   - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
-  - src/funcs/webhooksCreate.ts
-  - src/funcs/webhooksDelete.ts
-  - src/funcs/webhooksGet.ts
-  - src/funcs/webhooksList.ts
-  - src/funcs/webhooksUpdateWebhook.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -170,66 +143,51 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/models/components/apikey.ts
-  - src/models/components/app.ts
-  - src/models/components/appinstall.ts
   - src/models/components/appointmentcheckin.ts
-  - src/models/components/checkin.ts
   - src/models/components/classcheckin.ts
   - src/models/components/company.ts
   - src/models/components/customer.ts
   - src/models/components/eventcheckin.ts
   - src/models/components/index.ts
   - src/models/components/security.ts
-  - src/models/components/webhook.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/createapikey.ts
-  - src/models/operations/createwebhook.ts
-  - src/models/operations/deleteapikey.ts
-  - src/models/operations/deleteappinstall.ts
-  - src/models/operations/deletewebhook.ts
   - src/models/operations/getapikey.ts
-  - src/models/operations/getapp.ts
-  - src/models/operations/getappinstall.ts
-  - src/models/operations/getcheckin.ts
+  - src/models/operations/getappointmentcheckin.ts
+  - src/models/operations/getclasscheckin.ts
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
-  - src/models/operations/getwebhook.ts
+  - src/models/operations/geteventcheckin.ts
   - src/models/operations/index.ts
-  - src/models/operations/installapp.ts
-  - src/models/operations/listappinstalls.ts
-  - src/models/operations/listcheckins.ts
+  - src/models/operations/listapikeys.ts
+  - src/models/operations/listappointmentcheckins.ts
+  - src/models/operations/listclasscheckins.ts
   - src/models/operations/listcustomers.ts
-  - src/models/operations/listwebhooks.ts
+  - src/models/operations/listeventcheckins.ts
   - src/models/operations/revokeapikey.ts
   - src/models/operations/sendemail.ts
   - src/models/operations/sendping.ts
   - src/models/operations/sendpush.ts
-  - src/models/operations/uninstallapp.ts
-  - src/models/operations/updatewebhook.ts
-  - src/models/webhooks/checkincreatedevent.ts
-  - src/models/webhooks/checkindeletedevent.ts
-  - src/models/webhooks/checkinupdatedevent.ts
+  - src/models/webhooks/appinstalledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
   - src/models/webhooks/customerupdatedevent.ts
   - src/models/webhooks/index.ts
   - src/sdk/apikeys.ts
-  - src/sdk/apps.ts
-  - src/sdk/checkins.ts
-  - src/sdk/companies.ts
+  - src/sdk/appointmentcheckins.ts
+  - src/sdk/classcheckins.ts
+  - src/sdk/company.ts
   - src/sdk/customers.ts
   - src/sdk/email.ts
+  - src/sdk/eventcheckins.ts
   - src/sdk/index.ts
-  - src/sdk/installs.ts
-  - src/sdk/keys.ts
   - src/sdk/messages.ts
   - src/sdk/notifications.ts
   - src/sdk/push.ts
   - src/sdk/sdk.ts
-  - src/sdk/webhooks.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -304,17 +262,25 @@ examples:
   createApiKey:
     speakeasy-default-create-api-key:
       requestBody:
-        application/json: {"company": "Nienow Inc"}
+        application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
+      responses:
+        "201":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   listApiKeys:
     speakeasy-default-list-api-keys:
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
   revokeApiKey:
     speakeasy-default-revoke-api-key:
       parameters:
         path:
           key_id: "<id>"
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   deleteApiKey:
     speakeasy-default-delete-api-key:
       parameters:
@@ -350,7 +316,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "client_1234", "name": "Acme Corp", "subdomain": "acme", "defaultTimezone": "America/Los_Angeles", "phone": "+1-800-555-1234", "email": "info@acme.com", "url": "https://www.acme.com"}
+          application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
   listCustomers:
     speakeasy-default-list-customers:
       parameters:
@@ -359,16 +325,17 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": [{"id": "usr_1234", "name": "John Doe", "address": "123 Main St, Anytown, USA", "profileImage": "https://example.com/profile.jpg", "email": "john.doe@example.com", "phone": "+1-800-555-1234"}]}
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234"}]}}
   getCustomer:
     speakeasy-default-get-customer:
       parameters:
         path:
           id: "<id>"
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
         header: {}
       responses:
         "200":
-          application/json: {"id": "usr_1234", "name": "John Doe", "address": "123 Main St, Anytown, USA", "profileImage": "https://example.com/profile.jpg", "email": "john.doe@example.com", "phone": "+1-800-555-1234"}
+          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234"}
   listCheckins:
     speakeasy-default-list-checkins:
       parameters:
@@ -434,6 +401,50 @@ examples:
       parameters:
         path:
           key_id: "<id>"
+          id: "<id>"
+        header: {}
       responses:
         "200":
           application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+  getEventCheckin:
+    speakeasy-default-get-event-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "type": "EventCheckin", "timestamp": 1672531200000, "role": "staff"}
+  listEventCheckins:
+    speakeasy-default-list-event-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "type": "EventCheckin", "timestamp": 1672531200000, "role": "staff"}]}}
+  getClassCheckin:
+    speakeasy-default-get-class-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "type": "ClassCheckin", "timestamp": 1672531200000, "role": "attendee"}
+  listClassCheckins:
+    speakeasy-default-list-class-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "type": "ClassCheckin", "timestamp": 1672531200000, "role": "attendee"}]}}
+  getAppointmentCheckin:
+    speakeasy-default-get-appointment-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "type": "AppointmentCheckin"}
+  listAppointmentCheckins:
+    speakeasy-default-list-appointment-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "type": "AppointmentCheckin"}]}}

@@ -29,7 +29,10 @@ import {
 } from "../types/operations.js";
 
 /**
- * Get a list of all customers in a
+ * Get a list of customers
+ *
+ * @remarks
+ * Get a list of customers
  */
 export async function customersList(
   client: PushPressCore,
@@ -69,7 +72,7 @@ export async function customersList(
 
   const headers = new Headers({
     Accept: "application/json",
-    "companyId": encodeSimple("companyId", client._options.companyId, {
+    "companyId": encodeSimple("companyId", payload.companyId, {
       explode: false,
       charEncoding: "none",
     }),
@@ -100,7 +103,7 @@ export async function customersList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["401", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -137,7 +140,7 @@ export async function customersList(
     M.json(200, operations.ListCustomersResponse$inboundSchema, {
       key: "Result",
     }),
-    M.fail(["4XX", "5XX"]),
+    M.fail([401, "4XX", "5XX"]),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return haltIterator(result);

@@ -14,3 +14,4 @@ let value: ListCustomersRequest = {};
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `page`             | *number*           | :heavy_minus_sign: | N/A                |
 | `limit`            | *number*           | :heavy_minus_sign: | N/A                |
+| `companyId`        | *any*              | :heavy_minus_sign: | N/A                |

@@ -4,64 +4,32 @@
 
 import * as z from "zod";
 
-export type GetCompanyGlobals = {
-  companyId?: string | undefined;
+export type GetCompanyRequest = {
+  companyId?: any | undefined;
 };
-
-export type GetCompanyRequest = {};
-
-/** @internal */
-export const GetCompanyGlobals$inboundSchema: z.ZodType<
-  GetCompanyGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  companyId: z.string().optional(),
-});
-
-/** @internal */
-export type GetCompanyGlobals$Outbound = {
-  companyId?: string | undefined;
-};
-
-/** @internal */
-export const GetCompanyGlobals$outboundSchema: z.ZodType<
-  GetCompanyGlobals$Outbound,
-  z.ZodTypeDef,
-  GetCompanyGlobals
-> = z.object({
-  companyId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCompanyGlobals$ {
-  /** @deprecated use `GetCompanyGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetCompanyGlobals$inboundSchema;
-  /** @deprecated use `GetCompanyGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetCompanyGlobals$outboundSchema;
-  /** @deprecated use `GetCompanyGlobals$Outbound` instead. */
-  export type Outbound = GetCompanyGlobals$Outbound;
-}
 
 /** @internal */
 export const GetCompanyRequest$inboundSchema: z.ZodType<
   GetCompanyRequest,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.object({
+  companyId: z.any().optional(),
+});
 
 /** @internal */
-export type GetCompanyRequest$Outbound = {};
+export type GetCompanyRequest$Outbound = {
+  companyId?: any | undefined;
+};
 
 /** @internal */
 export const GetCompanyRequest$outboundSchema: z.ZodType<
   GetCompanyRequest$Outbound,
   z.ZodTypeDef,
   GetCompanyRequest
-> = z.object({});
+> = z.object({
+  companyId: z.any().optional(),
+});
 
 /**
  * @internal

@@ -5,46 +5,61 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
-export const ClassCheckinType = {
-  ClassCheckin: "ClassCheckin",
+export const ClassCheckinRole = {
+  Staff: "staff",
+  Coach: "coach",
+  Assistant: "assistant",
+  Attendee: "attendee",
 } as const;
-export type ClassCheckinType = ClosedEnum<typeof ClassCheckinType>;
+export type ClassCheckinRole = ClosedEnum<typeof ClassCheckinRole>;
 
+/**
+ * Checkin for a class
+ */
 export type ClassCheckin = {
   /**
    * Unique identifier for the checkin
    */
   id: string;
   /**
+   * UUID of the customer
+   */
+  customer: string;
+  /**
+   * UUID of the company
+   */
+  company: string;
+  /**
    * Name of the checked-in class
    */
   name: string;
-  type: ClassCheckinType;
+  type?: "ClassCheckin" | undefined;
   /**
-   * Type of the class
+   * Unix timestamp of the checkin
    */
-  classType: string;
+  timestamp: number;
+  role: ClassCheckinRole;
 };
 
 /** @internal */
-export const ClassCheckinType$inboundSchema: z.ZodNativeEnum<
-  typeof ClassCheckinType
-> = z.nativeEnum(ClassCheckinType);
+export const ClassCheckinRole$inboundSchema: z.ZodNativeEnum<
+  typeof ClassCheckinRole
+> = z.nativeEnum(ClassCheckinRole);
 
 /** @internal */
-export const ClassCheckinType$outboundSchema: z.ZodNativeEnum<
-  typeof ClassCheckinType
-> = ClassCheckinType$inboundSchema;
+export const ClassCheckinRole$outboundSchema: z.ZodNativeEnum<
+  typeof ClassCheckinRole
+> = ClassCheckinRole$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ClassCheckinType$ {
-  /** @deprecated use `ClassCheckinType$inboundSchema` instead. */
-  export const inboundSchema = ClassCheckinType$inboundSchema;
-  /** @deprecated use `ClassCheckinType$outboundSchema` instead. */
-  export const outboundSchema = ClassCheckinType$outboundSchema;
+export namespace ClassCheckinRole$ {
+  /** @deprecated use `ClassCheckinRole$inboundSchema` instead. */
+  export const inboundSchema = ClassCheckinRole$inboundSchema;
+  /** @deprecated use `ClassCheckinRole$outboundSchema` instead. */
+  export const outboundSchema = ClassCheckinRole$outboundSchema;
 }
 
 /** @internal */
@@ -54,17 +69,23 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  customer: z.string(),
+  company: z.string(),
   name: z.string(),
-  type: ClassCheckinType$inboundSchema,
-  classType: z.string(),
+  type: z.literal("ClassCheckin").optional(),
+  timestamp: z.number(),
+  role: ClassCheckinRole$inboundSchema,
 });
 
 /** @internal */
 export type ClassCheckin$Outbound = {
   id: string;
+  customer: string;
+  company: string;
   name: string;
-  type: string;
-  classType: string;
+  type: "ClassCheckin";
+  timestamp: number;
+  role: string;
 };
 
 /** @internal */
@@ -74,9 +95,12 @@ export const ClassCheckin$outboundSchema: z.ZodType<
   ClassCheckin
 > = z.object({
   id: z.string(),
+  customer: z.string(),
+  company: z.string(),
   name: z.string(),
-  type: ClassCheckinType$outboundSchema,
-  classType: z.string(),
+  type: z.literal("ClassCheckin").default("ClassCheckin" as const),
+  timestamp: z.number(),
+  role: ClassCheckinRole$outboundSchema,
 });
 
 /**

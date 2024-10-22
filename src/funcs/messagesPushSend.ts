@@ -27,7 +27,7 @@ import { Result } from "../types/fp.js";
  */
 export async function messagesPushSend(
   client: PushPressCore,
-  request: operations.SendPushRequestBody,
+  request: operations.SendPushRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -43,21 +43,21 @@ export async function messagesPushSend(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.SendPushRequestBody$outboundSchema.parse(value),
+    (value) => operations.SendPushRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const path = pathToFunc("/messages/push/send")();
 
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "*/*",
-    "companyId": encodeSimple("companyId", client._options.companyId, {
+    "companyId": encodeSimple("companyId", payload.companyId, {
       explode: false,
       charEncoding: "none",
     }),

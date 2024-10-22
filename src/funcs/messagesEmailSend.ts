@@ -27,7 +27,7 @@ import { Result } from "../types/fp.js";
  */
 export async function messagesEmailSend(
   client: PushPressCore,
-  request: operations.SendEmailRequestBody,
+  request: operations.SendEmailRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -43,21 +43,21 @@ export async function messagesEmailSend(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.SendEmailRequestBody$outboundSchema.parse(value),
+    (value) => operations.SendEmailRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const path = pathToFunc("/messages/email/send")();
 
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "*/*",
-    "companyId": encodeSimple("companyId", client._options.companyId, {
+    "companyId": encodeSimple("companyId", payload.companyId, {
       explode: false,
       charEncoding: "none",
     }),

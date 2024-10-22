@@ -12,7 +12,7 @@ export class Push extends ClientSDK {
    * Send a push notification
    */
   async send(
-    request: operations.SendPushRequestBody,
+    request: operations.SendPushRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(messagesPushSend(

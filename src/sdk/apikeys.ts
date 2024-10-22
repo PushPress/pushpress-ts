@@ -3,7 +3,7 @@
  */
 
 import { apiKeysCreate } from "../funcs/apiKeysCreate.js";
-import { apiKeysDelete } from "../funcs/apiKeysDelete.js";
+import { apiKeysGet } from "../funcs/apiKeysGet.js";
 import { apiKeysList } from "../funcs/apiKeysList.js";
 import { apiKeysRevoke } from "../funcs/apiKeysRevoke.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -11,68 +11,72 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
-export class ApiKeys extends ClientSDK {
+export class APIKeys extends ClientSDK {
   /**
-   * Create a new API key for a  company
+   * Create a new API Key
    *
    * @remarks
-   * Create a new API key for a company.
+   * Create a new api scoped to a specific company account
    */
   async create(
-    request: operations.CreateApiKeyRequestBody,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(apiKeysCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * List all active API keys for a client
-   *
-   * @remarks
-   * List all active API keys for a client.
-   */
-  async list(
+    security: operations.CreateApiKeySecurity,
+    request: operations.CreateApiKeyRequest,
     options?: RequestOptions,
   ): Promise<components.ApiKey> {
-    return unwrapAsync(apiKeysList(
+    return unwrapAsync(apiKeysCreate(
       this,
-      options,
-    ));
-  }
-
-  /**
-   * Revoke an API key
-   *
-   * @remarks
-   * Revoke (deactivate) an API key.
-   */
-  async revoke(
-    request: operations.RevokeApiKeyRequest,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(apiKeysRevoke(
-      this,
+      security,
       request,
       options,
     ));
   }
 
   /**
-   * Permanently delete an API key
+   * Get a list of active keys in a given company
+   */
+  async list(
+    security: operations.ListApiKeysSecurity,
+    request: operations.ListApiKeysRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListApiKeysResponseBody> {
+    return unwrapAsync(apiKeysList(
+      this,
+      security,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a key by its ID
+   */
+  async get(
+    security: operations.GetApiKeySecurity,
+    request: operations.GetApiKeyRequest,
+    options?: RequestOptions,
+  ): Promise<components.ApiKey> {
+    return unwrapAsync(apiKeysGet(
+      this,
+      security,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Revoke an API Key
    *
    * @remarks
-   * Permanently delete an API key from the system.
+   * Revoke an API Key. Only the company that created the key can revoke it.
    */
-  async delete(
-    request: operations.DeleteApiKeyRequest,
+  async revoke(
+    security: operations.RevokeApiKeySecurity,
+    request: operations.RevokeApiKeyRequest,
     options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(apiKeysDelete(
+  ): Promise<components.ApiKey> {
+    return unwrapAsync(apiKeysRevoke(
       this,
+      security,
       request,
       options,
     ));

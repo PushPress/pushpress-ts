@@ -17,12 +17,12 @@ export type CustomerDeletedEventRequestBody = {
   /**
    * Schema representing a customer, former customer or lead served by Company
    */
-  data?: components.Customer | undefined;
+  data: components.Customer;
   /**
    * Unix timestamp of the deletion event
    */
-  created?: number | undefined;
-  eventType?: CustomerDeletedEventEventType | undefined;
+  created: number;
+  eventType: CustomerDeletedEventEventType;
 };
 
 /** @internal */
@@ -52,16 +52,16 @@ export const CustomerDeletedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: components.Customer$inboundSchema.optional(),
-  created: z.number().int().optional(),
-  eventType: CustomerDeletedEventEventType$inboundSchema.optional(),
+  data: components.Customer$inboundSchema,
+  created: z.number().int(),
+  eventType: CustomerDeletedEventEventType$inboundSchema,
 });
 
 /** @internal */
 export type CustomerDeletedEventRequestBody$Outbound = {
-  data?: components.Customer$Outbound | undefined;
-  created?: number | undefined;
-  eventType?: string | undefined;
+  data: components.Customer$Outbound;
+  created: number;
+  eventType: string;
 };
 
 /** @internal */
@@ -70,9 +70,9 @@ export const CustomerDeletedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerDeletedEventRequestBody
 > = z.object({
-  data: components.Customer$outboundSchema.optional(),
-  created: z.number().int().optional(),
-  eventType: CustomerDeletedEventEventType$outboundSchema.optional(),
+  data: components.Customer$outboundSchema,
+  created: z.number().int(),
+  eventType: CustomerDeletedEventEventType$outboundSchema,
 });
 
 /**

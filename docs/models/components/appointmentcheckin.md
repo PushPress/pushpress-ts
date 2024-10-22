@@ -1,23 +1,28 @@
 # AppointmentCheckin
 
+Checkin for an appointment
+
 ## Example Usage
 
 ```typescript
 import { AppointmentCheckin } from "@pushpress/pushpress/models/components";
 
 let value: AppointmentCheckin = {
-  id: "<id>",
-  name: "<value>",
-  type: "AppointmentCheckin",
-  appointmentType: "<value>",
+  id: "apptschdl_12345",
+  name: "Personal Training",
+  customer: "usr_12345",
+  company: "cli_12345",
+  timestamp: 1672531200000,
 };
 ```
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `id`                                               | *string*                                           | :heavy_check_mark:                                 | Unique identifier for the checkin                  |
-| `name`                                             | *string*                                           | :heavy_check_mark:                                 | Name of the checked-in appointment                 |
-| `type`                                             | [components.Type](../../models/components/type.md) | :heavy_check_mark:                                 | N/A                                                |
-| `appointmentType`                                  | *string*                                           | :heavy_check_mark:                                 | Type of the appointment                            |
+| Field                                 | Type                                  | Required                              | Description                           |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| `id`                                  | *string*                              | :heavy_check_mark:                    | Unique identifier for the appointment |
+| `name`                                | *string*                              | :heavy_minus_sign:                    | Name of the appointment               |
+| `customer`                            | *string*                              | :heavy_check_mark:                    | UUID of the customer                  |
+| `company`                             | *string*                              | :heavy_check_mark:                    | UUID of the company                   |
+| `timestamp`                           | *number*                              | :heavy_check_mark:                    | Unix timestamp of the appointment     |
+| `type`                                | *string*                              | :heavy_check_mark:                    | N/A                                   |

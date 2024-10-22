@@ -12,13 +12,16 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Customers extends ClientSDK {
   /**
-   * Get a list of all customers in a
+   * Get individual customer information
+   *
+   * @remarks
+   * Get individual customer information, including profile image, primary image, and other profile information. Only returns active customer data
    */
-  async list(
-    request: operations.ListCustomersRequest,
+  async get(
+    request: operations.GetCustomerRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListCustomersResponse>> {
-    return unwrapResultIterator(customersList(
+  ): Promise<components.Customer> {
+    return unwrapAsync(customersGet(
       this,
       request,
       options,
@@ -26,13 +29,16 @@ export class Customers extends ClientSDK {
   }
 
   /**
-   * Get a customer by ID
+   * Get a list of customers
+   *
+   * @remarks
+   * Get a list of customers
    */
-  async get(
-    request: operations.GetCustomerRequest,
+  async list(
+    request: operations.ListCustomersRequest,
     options?: RequestOptions,
-  ): Promise<components.Customer> {
-    return unwrapAsync(customersGet(
+  ): Promise<PageIterator<operations.ListCustomersResponse>> {
+    return unwrapResultIterator(customersList(
       this,
       request,
       options,

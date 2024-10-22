@@ -1,24 +1,24 @@
-speakeasyVersion: 1.419.2
+speakeasyVersion: 1.420.0
 sources:
     PushPress-OAS:
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:979cf7742f9daca7cbd9a88d2ee0c227d8e8db761f483885311635a110b914a6
-        sourceBlobDigest: sha256:5ab5c663f3800a48921cf03fcb9e8ad9f071614725d1f5084c862e10b948af14
+        sourceRevisionDigest: sha256:99eac0f1ce2af6db1da8b294499f0d14d1eebb6b984fd1fe3e8c4ee643993d27
+        sourceBlobDigest: sha256:f9bde2f79e405b51528785b7883a9191b0f1761439259c6351ba36fc51fbf69b
         tags:
             - latest
 targets:
     push-press:
         source: PushPress-OAS
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:979cf7742f9daca7cbd9a88d2ee0c227d8e8db761f483885311635a110b914a6
-        sourceBlobDigest: sha256:5ab5c663f3800a48921cf03fcb9e8ad9f071614725d1f5084c862e10b948af14
+        sourceRevisionDigest: sha256:99eac0f1ce2af6db1da8b294499f0d14d1eebb6b984fd1fe3e8c4ee643993d27
+        sourceBlobDigest: sha256:f9bde2f79e405b51528785b7883a9191b0f1761439259c6351ba36fc51fbf69b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         PushPress-OAS:
             inputs:
-                - location: openapi.yaml
+                - location: /Users/iankaplan/projects/PushPress-Services/core-api-fastify/openapi.platform.gen.yaml
             overlays:
                 - location: .speakeasy/speakeasy-modifications-overlay.yaml
             registry:

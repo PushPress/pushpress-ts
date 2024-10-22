@@ -8,25 +8,26 @@ import { RetryConfig } from "./retries.js";
 import { Params, pathToFunc } from "./url.js";
 
 /**
- * production
- */
-export const ServerProd = "prod";
-/**
- * staging
- */
-export const ServerStage = "stage";
-/**
- * development
- */
-export const ServerDev = "dev";
-/**
  * Contains the list of servers available to the SDK
  */
-export const ServerList = {
-  [ServerProd]: "https://api.pushpress.com",
-  [ServerStage]: "https://api.pushpressstage.com",
-  [ServerDev]: "https://api.pushpressdev.com",
-} as const;
+export const ServerList = [
+  /**
+   * local
+   */
+  "http://localhost:3033",
+  /**
+   * development
+   */
+  "https://api.pushpressdev.com/v3",
+  /**
+   * staging
+   */
+  "https://api.pushpressstage.com/v3",
+  /**
+   * production
+   */
+  "https://api.pushpress.com/v3",
+] as const;
 
 export type SDKOptions = {
   apiKey?: string | (() => Promise<string>);
@@ -40,7 +41,7 @@ export type SDKOptions = {
   /**
    * Allows overriding the default server used by the SDK
    */
-  server?: keyof typeof ServerList;
+  serverIdx?: number;
   /**
    * Allows overriding the default server URL used by the SDK
    */
@@ -59,8 +60,11 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
   const params: Params = {};
 
   if (!serverURL) {
-    const server = options.server ?? ServerProd;
-    serverURL = ServerList[server] || "";
+    const serverIdx = options.serverIdx ?? 0;
+    if (serverIdx < 0 || serverIdx >= ServerList.length) {
+      throw new Error(`Invalid server index ${serverIdx}`);
+    }
+    serverURL = ServerList[serverIdx] || "";
   }
 
   const u = pathToFunc(serverURL)(params);
@@ -70,8 +74,8 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "3.0.0",
-  sdkVersion: "0.3.3",
+  sdkVersion: "0.4.0",
   genVersion: "2.438.15",
   userAgent:
-    "speakeasy-sdk/typescript 0.3.3 2.438.15 3.0.0 @pushpress/pushpress",
+    "speakeasy-sdk/typescript 0.4.0 2.438.15 3.0.0 @pushpress/pushpress",
 } as const;

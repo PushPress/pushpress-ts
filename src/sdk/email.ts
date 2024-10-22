@@ -12,7 +12,7 @@ export class Email extends ClientSDK {
    * Send an email
    */
   async send(
-    request: operations.SendEmailRequestBody,
+    request: operations.SendEmailRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(messagesEmailSend(

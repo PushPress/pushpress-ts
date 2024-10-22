@@ -12,7 +12,7 @@ export class Notifications extends ClientSDK {
    * Send a ping notification via Ably Realtime
    */
   async sendPing(
-    request: operations.SendPingRequestBody,
+    request: operations.SendPingRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(messagesNotificationsSendPing(

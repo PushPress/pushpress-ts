@@ -3,11 +3,51 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
+
+export type RevokeApiKeySecurity = {
+  bearer: string;
+};
 
 export type RevokeApiKeyRequest = {
-  keyId: string;
+  id: string;
+  companyId?: any | undefined;
 };
+
+/** @internal */
+export const RevokeApiKeySecurity$inboundSchema: z.ZodType<
+  RevokeApiKeySecurity,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  bearer: z.string(),
+});
+
+/** @internal */
+export type RevokeApiKeySecurity$Outbound = {
+  bearer: string;
+};
+
+/** @internal */
+export const RevokeApiKeySecurity$outboundSchema: z.ZodType<
+  RevokeApiKeySecurity$Outbound,
+  z.ZodTypeDef,
+  RevokeApiKeySecurity
+> = z.object({
+  bearer: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace RevokeApiKeySecurity$ {
+  /** @deprecated use `RevokeApiKeySecurity$inboundSchema` instead. */
+  export const inboundSchema = RevokeApiKeySecurity$inboundSchema;
+  /** @deprecated use `RevokeApiKeySecurity$outboundSchema` instead. */
+  export const outboundSchema = RevokeApiKeySecurity$outboundSchema;
+  /** @deprecated use `RevokeApiKeySecurity$Outbound` instead. */
+  export type Outbound = RevokeApiKeySecurity$Outbound;
+}
 
 /** @internal */
 export const RevokeApiKeyRequest$inboundSchema: z.ZodType<
@@ -15,16 +55,14 @@ export const RevokeApiKeyRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  key_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "key_id": "keyId",
-  });
+  id: z.string(),
+  companyId: z.any().optional(),
 });
 
 /** @internal */
 export type RevokeApiKeyRequest$Outbound = {
-  key_id: string;
+  id: string;
+  companyId?: any | undefined;
 };
 
 /** @internal */
@@ -33,11 +71,8 @@ export const RevokeApiKeyRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RevokeApiKeyRequest
 > = z.object({
-  keyId: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    keyId: "key_id",
-  });
+  id: z.string(),
+  companyId: z.any().optional(),
 });
 
 /**

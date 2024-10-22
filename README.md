@@ -10,7 +10,7 @@ PushPress Typescript SDK
 <!-- Start Summary [summary] -->
 ## Summary
 
-
+Platform API: PushPress Platform API
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -51,31 +51,22 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`apiKeysCreate`](docs/sdks/apikeys/README.md#create) - Create a new API key for a  company
-- [`apiKeysDelete`](docs/sdks/apikeys/README.md#delete) - Permanently delete an API key
-- [`apiKeysList`](docs/sdks/apikeys/README.md#list) - List all active API keys for a client
-- [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API key
-- [`appsDelete`](docs/sdks/apps/README.md#delete) - Hard delete an app (remove all data)
-- [`appsGet`](docs/sdks/apps/README.md#get) - Get details of a specific app
-- [`appsInstall`](docs/sdks/apps/README.md#install) - Install an app for a company
-- [`appsInstallsGet`](docs/sdks/installs/README.md#get) - Get details of a specific app install
-- [`appsInstallsList`](docs/sdks/installs/README.md#list) - List all installs of a specific app
-- [`appsList`](docs/sdks/apps/README.md#list) - List all available apps
-- [`appsUninstall`](docs/sdks/apps/README.md#uninstall) - Soft uninstall an app (mark it as uninstalled but retain data)
-- [`checkinsGet`](docs/sdks/checkins/README.md#get) - Get a check-in by ID
-- [`checkinsList`](docs/sdks/checkins/README.md#list) - Get a list of all check-ins
-- [`companiesGet`](docs/sdks/companies/README.md#get) - Get company details associated with the API key
-- [`customersGet`](docs/sdks/customers/README.md#get) - Get a customer by ID
-- [`customersList`](docs/sdks/customers/README.md#list) - Get a list of all customers in a
-- [`keysGet`](docs/sdks/keys/README.md#get) - Retrieve a single API key
+- [`apiKeysCreate`](docs/sdks/apikeys/README.md#create) - Create a new API Key
+- [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get a key by its ID
+- [`apiKeysList`](docs/sdks/apikeys/README.md#list) - Get a list of active keys in a given company
+- [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
+- [`appointmentCheckinsGet`](docs/sdks/appointmentcheckins/README.md#get) - Get an appointment checkin
+- [`appointmentCheckinsList`](docs/sdks/appointmentcheckins/README.md#list) - Get a list of appointment checkins
+- [`classCheckinsGet`](docs/sdks/classcheckins/README.md#get) - Get an event checkin
+- [`classCheckinsList`](docs/sdks/classcheckins/README.md#list) - Get a list of class checkins
+- [`companyGet`](docs/sdks/company/README.md#get) - Get company information
+- [`customersGet`](docs/sdks/customers/README.md#get) - Get individual customer information
+- [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
+- [`eventCheckinsGet`](docs/sdks/eventcheckins/README.md#get) - Get a class checkin
+- [`eventCheckinsList`](docs/sdks/eventcheckins/README.md#list) - Get a list of event checkins
 - [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an email
 - [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification
-- [`webhooksCreate`](docs/sdks/webhooks/README.md#create) - Create a new webhook to subscribe to one or more events
-- [`webhooksDelete`](docs/sdks/webhooks/README.md#delete) - Delete a specific webhook
-- [`webhooksGet`](docs/sdks/webhooks/README.md#get) - Get details of a specific webhook
-- [`webhooksList`](docs/sdks/webhooks/README.md#list) - List all registered webhooks
-- [`webhooksUpdateWebhook`](docs/sdks/webhooks/README.md#updatewebhook) - Update the URL or events for an existing webhook
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -100,9 +91,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.apps.installs.list({
-    appId: "<id>",
-  });
+  const result = await pushPress.eventCheckins.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -129,7 +118,12 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.apps.list({
+  await pushPress.messages.notifications.sendPing({
+    requestBody: {
+      channel: "<value>",
+      message: "<value>",
+    },
+  }, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -141,9 +135,6 @@ async function run() {
       retryConnectionErrors: false,
     },
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -169,10 +160,12 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.apps.list();
-
-  // Handle the result
-  console.log(result);
+  await pushPress.messages.notifications.sendPing({
+    requestBody: {
+      channel: "<value>",
+      message: "<value>",
+    },
+  });
 }
 
 run();
@@ -195,7 +188,7 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `list` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `sendPing` method may throw the following errors:
 
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
@@ -210,12 +203,13 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  let result;
   try {
-    result = await pushPress.apps.list();
-
-    // Handle the result
-    console.log(result);
+    await pushPress.messages.notifications.sendPing({
+      requestBody: {
+        channel: "<value>",
+        message: "<value>",
+      },
+    });
   } catch (err) {
     switch (true) {
       case (err instanceof SDKValidationError): {
@@ -242,29 +236,32 @@ Validation errors can also occur when either method arguments or data returned f
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Name
+### Select Server by Index
 
-You can override the default server globally by passing a server name to the `server` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| Name | Server | Variables |
-| ----- | ------ | --------- |
-| `prod` | `https://api.pushpress.com` | None |
-| `stage` | `https://api.pushpressstage.com` | None |
-| `dev` | `https://api.pushpressdev.com` | None |
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `http://localhost:3033` | None |
+| 1 | `https://api.pushpressdev.com/v3` | None |
+| 2 | `https://api.pushpressstage.com/v3` | None |
+| 3 | `https://api.pushpress.com/v3` | None |
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
-  server: "dev",
+  serverIdx: 3,
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushPress.apps.list();
-
-  // Handle the result
-  console.log(result);
+  await pushPress.messages.notifications.sendPing({
+    requestBody: {
+      channel: "<value>",
+      message: "<value>",
+    },
+  });
 }
 
 run();
@@ -280,15 +277,17 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
-  serverURL: "https://api.pushpress.com",
+  serverURL: "http://localhost:3033",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushPress.apps.list();
-
-  // Handle the result
-  console.log(result);
+  await pushPress.messages.notifications.sendPing({
+    requestBody: {
+      channel: "<value>",
+      message: "<value>",
+    },
+  });
 }
 
 run();
@@ -365,7 +364,36 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.apps.list();
+  await pushPress.messages.notifications.sendPing({
+    requestBody: {
+      channel: "<value>",
+      message: "<value>",
+    },
+  });
+}
+
+run();
+
+```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```typescript
+import { PushPress } from "@pushpress/pushpress";
+
+const pushPress = new PushPress();
+
+async function run() {
+  const result = await pushPress.apiKeys.create({
+    bearer: process.env["PUSHPRESS_BEARER"] ?? "",
+  }, {
+    requestBody: {
+      name: "my-key",
+      description: "my key",
+      expiresAt: 1672531200000,
+    },
+  });
 
   // Handle the result
   console.log(result);
