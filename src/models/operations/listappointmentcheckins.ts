@@ -6,7 +6,12 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
-export type ListAppointmentCheckinsQueryParamTime = {
+export type ListAppointmentCheckinsRequest = {
+  /**
+   * Next cursor
+   */
+  next?: string | undefined;
+  customer?: string | undefined;
   /**
    * Get all checkins before this unix timestamp (seconds)
    */
@@ -15,15 +20,6 @@ export type ListAppointmentCheckinsQueryParamTime = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
-};
-
-export type ListAppointmentCheckinsRequest = {
-  /**
-   * Next cursor
-   */
-  next?: string | undefined;
-  customer?: string | undefined;
-  time?: ListAppointmentCheckinsQueryParamTime | undefined;
   companyId?: any | undefined;
 };
 
@@ -44,47 +40,6 @@ export type ListAppointmentCheckinsResponse = {
 };
 
 /** @internal */
-export const ListAppointmentCheckinsQueryParamTime$inboundSchema: z.ZodType<
-  ListAppointmentCheckinsQueryParamTime,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  before: z.number().optional(),
-  after: z.number().optional(),
-});
-
-/** @internal */
-export type ListAppointmentCheckinsQueryParamTime$Outbound = {
-  before?: number | undefined;
-  after?: number | undefined;
-};
-
-/** @internal */
-export const ListAppointmentCheckinsQueryParamTime$outboundSchema: z.ZodType<
-  ListAppointmentCheckinsQueryParamTime$Outbound,
-  z.ZodTypeDef,
-  ListAppointmentCheckinsQueryParamTime
-> = z.object({
-  before: z.number().optional(),
-  after: z.number().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAppointmentCheckinsQueryParamTime$ {
-  /** @deprecated use `ListAppointmentCheckinsQueryParamTime$inboundSchema` instead. */
-  export const inboundSchema =
-    ListAppointmentCheckinsQueryParamTime$inboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsQueryParamTime$outboundSchema` instead. */
-  export const outboundSchema =
-    ListAppointmentCheckinsQueryParamTime$outboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsQueryParamTime$Outbound` instead. */
-  export type Outbound = ListAppointmentCheckinsQueryParamTime$Outbound;
-}
-
-/** @internal */
 export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
   ListAppointmentCheckinsRequest,
   z.ZodTypeDef,
@@ -92,8 +47,8 @@ export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
 > = z.object({
   next: z.string().optional(),
   customer: z.string().optional(),
-  time: z.lazy(() => ListAppointmentCheckinsQueryParamTime$inboundSchema)
-    .optional(),
+  before: z.number().optional(),
+  after: z.number().optional(),
   companyId: z.any().optional(),
 });
 
@@ -101,7 +56,8 @@ export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
 export type ListAppointmentCheckinsRequest$Outbound = {
   next?: string | undefined;
   customer?: string | undefined;
-  time?: ListAppointmentCheckinsQueryParamTime$Outbound | undefined;
+  before?: number | undefined;
+  after?: number | undefined;
   companyId?: any | undefined;
 };
 
@@ -113,8 +69,8 @@ export const ListAppointmentCheckinsRequest$outboundSchema: z.ZodType<
 > = z.object({
   next: z.string().optional(),
   customer: z.string().optional(),
-  time: z.lazy(() => ListAppointmentCheckinsQueryParamTime$outboundSchema)
-    .optional(),
+  before: z.number().optional(),
+  after: z.number().optional(),
   companyId: z.any().optional(),
 });
 

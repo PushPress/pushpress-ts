@@ -67,9 +67,10 @@ export async function appointmentCheckinsList(
   const path = pathToFunc("/checkins/appointment")();
 
   const query = encodeFormQuery({
+    "after": payload.after,
+    "before": payload.before,
     "customer": payload.customer,
     "next": payload.next,
-    "time": payload.time,
   });
 
   const headers = new Headers({
@@ -105,7 +106,7 @@ export async function appointmentCheckinsList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["401", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -142,7 +143,7 @@ export async function appointmentCheckinsList(
     M.json(200, operations.ListAppointmentCheckinsResponse$inboundSchema, {
       key: "Result",
     }),
-    M.fail(["4XX", "5XX"]),
+    M.fail([401, "4XX", "5XX"]),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return haltIterator(result);

@@ -24,14 +24,17 @@ import { Result } from "../types/fp.js";
 
 /**
  * Send an email
+ *
+ * @remarks
+ * Get company information associated with the current user
  */
-export async function messagesEmailSend(
+export async function messagesGet(
   client: PushPressCore,
   request: operations.SendEmailRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    void,
+    any,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -56,7 +59,7 @@ export async function messagesEmailSend(
 
   const headers = new Headers({
     "Content-Type": "application/json",
-    Accept: "*/*",
+    Accept: "application/json",
     "companyId": encodeSimple("companyId", payload.companyId, {
       explode: false,
       charEncoding: "none",
@@ -87,7 +90,7 @@ export async function messagesEmailSend(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "4XX", "5XX"],
+    errorCodes: ["401", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -108,7 +111,7 @@ export async function messagesEmailSend(
   const response = doResult.value;
 
   const [result] = await M.match<
-    void,
+    any,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -117,8 +120,8 @@ export async function messagesEmailSend(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.nil(200, z.void()),
-    M.fail([400, "4XX", "5XX"]),
+    M.json(200, z.any()),
+    M.fail([401, "4XX", "5XX"]),
   )(response);
   if (!result.ok) {
     return result;

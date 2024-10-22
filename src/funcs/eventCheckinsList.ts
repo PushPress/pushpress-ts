@@ -66,10 +66,11 @@ export async function eventCheckinsList(
   const path = pathToFunc("/checkins/event")();
 
   const query = encodeFormQuery({
+    "after": payload.after,
+    "before": payload.before,
     "customer": payload.customer,
     "limit": payload.limit,
     "page": payload.page,
-    "time": payload.time,
   });
 
   const headers = new Headers({
@@ -105,7 +106,7 @@ export async function eventCheckinsList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["404", "4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -142,7 +143,7 @@ export async function eventCheckinsList(
     M.json(200, operations.ListEventCheckinsResponse$inboundSchema, {
       key: "Result",
     }),
-    M.fail([404, "4XX", "5XX"]),
+    M.fail([401, 404, "4XX", "5XX"]),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return haltIterator(result);

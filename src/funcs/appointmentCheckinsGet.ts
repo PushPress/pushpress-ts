@@ -97,7 +97,7 @@ export async function appointmentCheckinsGet(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["404", "4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -128,7 +128,7 @@ export async function appointmentCheckinsGet(
     | ConnectionError
   >(
     M.json(200, components.AppointmentCheckin$inboundSchema),
-    M.fail([404, "4XX", "5XX"]),
+    M.fail([401, 404, "4XX", "5XX"]),
   )(response);
   if (!result.ok) {
     return result;
