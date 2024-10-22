@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { messagesNotificationsSendPing } from "@pushpress/pushpress/funcs/messagesNotificationsSendPing.js";
+import { messagesGet } from "@pushpress/pushpress/funcs/messagesGet.js";
 import { SDKValidationError } from "@pushpress/pushpress/models/errors/sdkvalidationerror.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
@@ -30,10 +30,13 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await messagesNotificationsSendPing(pushPress, {
+  const res = await messagesGet(pushPress, {
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   });
 
@@ -56,7 +59,8 @@ async function run() {
 
   const { value: result } = res;
 
-  
+  // Handle the result
+  console.log(result);
 }
 
 run();

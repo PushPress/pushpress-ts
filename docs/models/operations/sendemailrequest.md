@@ -7,10 +7,13 @@ import { SendEmailRequest } from "@pushpress/pushpress/models/operations";
 
 let value: SendEmailRequest = {
   requestBody: {
-    to: "Ashlee87@gmail.com",
+    to: [
+      "Tyra.Hessel69@yahoo.com",
+    ],
     subject: "<value>",
-    body: "<value>",
-    from: "Jakayla14@hotmail.com",
+    text: "<value>",
+    html: "<value>",
+    from: "<value>",
   },
 };
 ```
@@ -19,5 +22,5 @@ let value: SendEmailRequest = {
 
 | Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `companyId`                                                                        | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `companyId`                                                                        | *any*                                                                              | :heavy_minus_sign:                                                                 | N/A                                                                                |
 | `requestBody`                                                                      | [operations.SendEmailRequestBody](../../models/operations/sendemailrequestbody.md) | :heavy_check_mark:                                                                 | N/A                                                                                |

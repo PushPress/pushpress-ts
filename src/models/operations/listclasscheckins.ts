@@ -6,17 +6,6 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
-export type QueryParamTime = {
-  /**
-   * Get all checkins before this unix timestamp (seconds)
-   */
-  before?: number | undefined;
-  /**
-   * Get all checkins after this unix timestamp (seconds)
-   */
-  after?: number | undefined;
-};
-
 export type ListClassCheckinsRequest = {
   /**
    * Page number
@@ -27,7 +16,14 @@ export type ListClassCheckinsRequest = {
    */
   limit?: number | undefined;
   customer?: string | undefined;
-  time?: QueryParamTime | undefined;
+  /**
+   * Get all checkins before this unix timestamp (seconds)
+   */
+  before?: number | undefined;
+  /**
+   * Get all checkins after this unix timestamp (seconds)
+   */
+  after?: number | undefined;
   companyId?: any | undefined;
 };
 
@@ -47,45 +43,6 @@ export type ListClassCheckinsResponse = {
 };
 
 /** @internal */
-export const QueryParamTime$inboundSchema: z.ZodType<
-  QueryParamTime,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  before: z.number().optional(),
-  after: z.number().optional(),
-});
-
-/** @internal */
-export type QueryParamTime$Outbound = {
-  before?: number | undefined;
-  after?: number | undefined;
-};
-
-/** @internal */
-export const QueryParamTime$outboundSchema: z.ZodType<
-  QueryParamTime$Outbound,
-  z.ZodTypeDef,
-  QueryParamTime
-> = z.object({
-  before: z.number().optional(),
-  after: z.number().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParamTime$ {
-  /** @deprecated use `QueryParamTime$inboundSchema` instead. */
-  export const inboundSchema = QueryParamTime$inboundSchema;
-  /** @deprecated use `QueryParamTime$outboundSchema` instead. */
-  export const outboundSchema = QueryParamTime$outboundSchema;
-  /** @deprecated use `QueryParamTime$Outbound` instead. */
-  export type Outbound = QueryParamTime$Outbound;
-}
-
-/** @internal */
 export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   ListClassCheckinsRequest,
   z.ZodTypeDef,
@@ -94,7 +51,8 @@ export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   page: z.number().int().optional(),
   limit: z.number().int().optional(),
   customer: z.string().optional(),
-  time: z.lazy(() => QueryParamTime$inboundSchema).optional(),
+  before: z.number().optional(),
+  after: z.number().optional(),
   companyId: z.any().optional(),
 });
 
@@ -103,7 +61,8 @@ export type ListClassCheckinsRequest$Outbound = {
   page?: number | undefined;
   limit?: number | undefined;
   customer?: string | undefined;
-  time?: QueryParamTime$Outbound | undefined;
+  before?: number | undefined;
+  after?: number | undefined;
   companyId?: any | undefined;
 };
 
@@ -116,7 +75,8 @@ export const ListClassCheckinsRequest$outboundSchema: z.ZodType<
   page: z.number().int().optional(),
   limit: z.number().int().optional(),
   customer: z.string().optional(),
-  time: z.lazy(() => QueryParamTime$outboundSchema).optional(),
+  before: z.number().optional(),
+  after: z.number().optional(),
   companyId: z.any().optional(),
 });
 

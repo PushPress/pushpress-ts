@@ -8,26 +8,30 @@ import { RetryConfig } from "./retries.js";
 import { Params, pathToFunc } from "./url.js";
 
 /**
+ * local
+ */
+export const ServerLocal = "local";
+/**
+ * development
+ */
+export const ServerDevelopment = "development";
+/**
+ * staging
+ */
+export const ServerStaging = "staging";
+/**
+ * production
+ */
+export const ServerProduction = "production";
+/**
  * Contains the list of servers available to the SDK
  */
-export const ServerList = [
-  /**
-   * local
-   */
-  "http://localhost:3033",
-  /**
-   * development
-   */
-  "https://api.pushpressdev.com/v3",
-  /**
-   * staging
-   */
-  "https://api.pushpressstage.com/v3",
-  /**
-   * production
-   */
-  "https://api.pushpress.com/v3",
-] as const;
+export const ServerList = {
+  [ServerLocal]: "http://localhost:3033",
+  [ServerDevelopment]: "https://api.pushpressdev.com/v3",
+  [ServerStaging]: "https://api.pushpressstage.com/v3",
+  [ServerProduction]: "https://api.pushpress.com/v3",
+} as const;
 
 export type SDKOptions = {
   apiKey?: string | (() => Promise<string>);
@@ -41,7 +45,7 @@ export type SDKOptions = {
   /**
    * Allows overriding the default server used by the SDK
    */
-  serverIdx?: number;
+  server?: keyof typeof ServerList;
   /**
    * Allows overriding the default server URL used by the SDK
    */
@@ -60,11 +64,8 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
   const params: Params = {};
 
   if (!serverURL) {
-    const serverIdx = options.serverIdx ?? 0;
-    if (serverIdx < 0 || serverIdx >= ServerList.length) {
-      throw new Error(`Invalid server index ${serverIdx}`);
-    }
-    serverURL = ServerList[serverIdx] || "";
+    const server = options.server ?? ServerLocal;
+    serverURL = ServerList[server] || "";
   }
 
   const u = pathToFunc(serverURL)(params);
@@ -74,8 +75,8 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "3.0.0",
-  sdkVersion: "0.4.0",
+  sdkVersion: "0.5.0",
   genVersion: "2.438.15",
   userAgent:
-    "speakeasy-sdk/typescript 0.4.0 2.438.15 3.0.0 @pushpress/pushpress",
+    "speakeasy-sdk/typescript 0.5.0 2.438.15 3.0.0 @pushpress/pushpress",
 } as const;

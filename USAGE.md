@@ -7,12 +7,18 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  await pushPress.messages.notifications.sendPing({
+  const result = await pushPress.messages.get({
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   });
+
+  // Handle the result
+  console.log(result);
 }
 
 run();

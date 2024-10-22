@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 0d146f94b1d413a5c336d6584be47dd1
+  docChecksum: 7df14e56337abe6faa9748c7267440ec
   docVersion: 3.0.0
   speakeasyVersion: 1.420.0
   generationVersion: 2.438.15
-  releaseVersion: 0.4.0
-  configChecksum: db763fbe17a1302e99ecac048c53ea89
+  releaseVersion: 0.5.0
+  configChecksum: f99f3f4628a946549ba03c61c4e23dfa
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -30,6 +30,8 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
+    serverIDs: 2.81.2
+    unions: 2.85.7
     webhooks: 1.0.0
 generatedFiles:
   - .devcontainer/README.md
@@ -69,7 +71,6 @@ generatedFiles:
   - docs/models/operations/listapikeysresponsebody.md
   - docs/models/operations/listapikeyssecurity.md
   - docs/models/operations/listappointmentcheckinsdata.md
-  - docs/models/operations/listappointmentcheckinsqueryparamtime.md
   - docs/models/operations/listappointmentcheckinsrequest.md
   - docs/models/operations/listappointmentcheckinsresponse.md
   - docs/models/operations/listappointmentcheckinsresponsebody.md
@@ -84,7 +85,7 @@ generatedFiles:
   - docs/models/operations/listeventcheckinsrequest.md
   - docs/models/operations/listeventcheckinsresponse.md
   - docs/models/operations/listeventcheckinsresponsebody.md
-  - docs/models/operations/queryparamtime.md
+  - docs/models/operations/replyto.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
   - docs/models/operations/sendemailrequest.md
@@ -93,7 +94,7 @@ generatedFiles:
   - docs/models/operations/sendpingrequestbody.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
-  - docs/models/operations/time.md
+  - docs/models/operations/to.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
@@ -119,7 +120,7 @@ generatedFiles:
   - src/funcs/customersList.ts
   - src/funcs/eventCheckinsGet.ts
   - src/funcs/eventCheckinsList.ts
-  - src/funcs/messagesEmailSend.ts
+  - src/funcs/messagesGet.ts
   - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
   - src/hooks/hooks.ts
@@ -181,7 +182,6 @@ generatedFiles:
   - src/sdk/classcheckins.ts
   - src/sdk/company.ts
   - src/sdk/customers.ts
-  - src/sdk/email.ts
   - src/sdk/eventcheckins.ts
   - src/sdk/index.ts
   - src/sdk/messages.ts
@@ -294,7 +294,10 @@ examples:
   sendEmail:
     speakeasy-default-send-email:
       requestBody:
-        application/json: {"to": "Isobel_Brakus@yahoo.com", "subject": "<value>", "body": "<value>", "from": "Fern47@yahoo.com"}
+        application/json: {"to": "Isobel_Brakus@yahoo.com", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "Fern47@yahoo.com"}
+      responses:
+        "200":
+          application/json: "<value>"
   sendPing:
     speakeasy-default-send-ping:
       requestBody:

@@ -6,7 +6,7 @@
 import { GetClassCheckinRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetClassCheckinRequest = {
-  uuid: "321a235d-1d1f-47f9-bb04-141561b94819",
+  uuid: "04141561-b948-419e-a5a2-b4290d0a4bf3",
 };
 ```
 

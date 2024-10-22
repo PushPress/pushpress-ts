@@ -7,7 +7,7 @@ import { AppInstalledEventRequestBody } from "@pushpress/pushpress/models/webhoo
 
 let value: AppInstalledEventRequestBody = {
   data: {},
-  created: 123820,
+  created: 521037,
   eventType: "created",
 };
 ```

@@ -64,7 +64,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
 - [`eventCheckinsGet`](docs/sdks/eventcheckins/README.md#get) - Get a class checkin
 - [`eventCheckinsList`](docs/sdks/eventcheckins/README.md#list) - Get a list of event checkins
-- [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an email
+- [`messagesGet`](docs/sdks/messages/README.md#get) - Send an email
 - [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification
 
@@ -118,10 +118,13 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  await pushPress.messages.notifications.sendPing({
+  const result = await pushPress.messages.get({
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   }, {
     retries: {
@@ -135,6 +138,9 @@ async function run() {
       retryConnectionErrors: false,
     },
   });
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -160,12 +166,18 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  await pushPress.messages.notifications.sendPing({
+  const result = await pushPress.messages.get({
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   });
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -188,7 +200,7 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `sendPing` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `get` method may throw the following errors:
 
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
@@ -203,13 +215,20 @@ const pushPress = new PushPress({
 });
 
 async function run() {
+  let result;
   try {
-    await pushPress.messages.notifications.sendPing({
+    result = await pushPress.messages.get({
       requestBody: {
-        channel: "<value>",
-        message: "<value>",
+        to: "Isobel_Brakus@yahoo.com",
+        subject: "<value>",
+        text: "<value>",
+        html: "<value>",
+        from: "Fern47@yahoo.com",
       },
     });
+
+    // Handle the result
+    console.log(result);
   } catch (err) {
     switch (true) {
       case (err instanceof SDKValidationError): {
@@ -236,32 +255,38 @@ Validation errors can also occur when either method arguments or data returned f
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
+### Select Server by Name
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server name to the `server` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `http://localhost:3033` | None |
-| 1 | `https://api.pushpressdev.com/v3` | None |
-| 2 | `https://api.pushpressstage.com/v3` | None |
-| 3 | `https://api.pushpress.com/v3` | None |
+| Name | Server | Variables |
+| ----- | ------ | --------- |
+| `local` | `http://localhost:3033` | None |
+| `development` | `https://api.pushpressdev.com/v3` | None |
+| `staging` | `https://api.pushpressstage.com/v3` | None |
+| `production` | `https://api.pushpress.com/v3` | None |
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
-  serverIdx: 3,
+  server: "production",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushPress.messages.notifications.sendPing({
+  const result = await pushPress.messages.get({
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   });
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -282,12 +307,18 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  await pushPress.messages.notifications.sendPing({
+  const result = await pushPress.messages.get({
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   });
+
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -364,12 +395,18 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  await pushPress.messages.notifications.sendPing({
+  const result = await pushPress.messages.get({
     requestBody: {
-      channel: "<value>",
-      message: "<value>",
+      to: "Isobel_Brakus@yahoo.com",
+      subject: "<value>",
+      text: "<value>",
+      html: "<value>",
+      from: "Fern47@yahoo.com",
     },
   });
+
+  // Handle the result
+  console.log(result);
 }
 
 run();

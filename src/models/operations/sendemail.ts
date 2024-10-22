@@ -5,20 +5,101 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+/**
+ * Specify one or more recipients
+ */
+export type To = string | Array<string>;
+
+/**
+ * One or more reply-to addresses
+ */
+export type ReplyTo = string | Array<string>;
+
 export type SendEmailRequestBody = {
-  to: string;
+  /**
+   * Specify one or more recipients
+   */
+  to: string | Array<string>;
   subject: string;
-  body: string;
+  /**
+   * The text email body
+   */
+  text: string;
+  /**
+   * The HTML email body
+   */
+  html: string;
+  /**
+   * The email sender name
+   */
   from: string;
-  cc?: string | undefined;
-  bcc?: string | undefined;
-  replyTo?: string | undefined;
+  /**
+   * One or more reply-to addresses
+   */
+  replyTo?: string | Array<string> | undefined;
+  /**
+   * Optional email type
+   */
+  type?: string | undefined;
 };
 
 export type SendEmailRequest = {
-  companyId?: string | undefined;
+  companyId?: any | undefined;
   requestBody: SendEmailRequestBody;
 };
+
+/** @internal */
+export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.union([
+  z.string(),
+  z.array(z.string()),
+]);
+
+/** @internal */
+export type To$Outbound = string | Array<string>;
+
+/** @internal */
+export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
+  .union([z.string(), z.array(z.string())]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace To$ {
+  /** @deprecated use `To$inboundSchema` instead. */
+  export const inboundSchema = To$inboundSchema;
+  /** @deprecated use `To$outboundSchema` instead. */
+  export const outboundSchema = To$outboundSchema;
+  /** @deprecated use `To$Outbound` instead. */
+  export type Outbound = To$Outbound;
+}
+
+/** @internal */
+export const ReplyTo$inboundSchema: z.ZodType<ReplyTo, z.ZodTypeDef, unknown> =
+  z.union([z.string(), z.array(z.string())]);
+
+/** @internal */
+export type ReplyTo$Outbound = string | Array<string>;
+
+/** @internal */
+export const ReplyTo$outboundSchema: z.ZodType<
+  ReplyTo$Outbound,
+  z.ZodTypeDef,
+  ReplyTo
+> = z.union([z.string(), z.array(z.string())]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ReplyTo$ {
+  /** @deprecated use `ReplyTo$inboundSchema` instead. */
+  export const inboundSchema = ReplyTo$inboundSchema;
+  /** @deprecated use `ReplyTo$outboundSchema` instead. */
+  export const outboundSchema = ReplyTo$outboundSchema;
+  /** @deprecated use `ReplyTo$Outbound` instead. */
+  export type Outbound = ReplyTo$Outbound;
+}
 
 /** @internal */
 export const SendEmailRequestBody$inboundSchema: z.ZodType<
@@ -26,24 +107,24 @@ export const SendEmailRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  to: z.string(),
+  to: z.union([z.string(), z.array(z.string())]),
   subject: z.string(),
-  body: z.string(),
+  text: z.string(),
+  html: z.string(),
   from: z.string(),
-  cc: z.string().optional(),
-  bcc: z.string().optional(),
-  replyTo: z.string().optional(),
+  replyTo: z.union([z.string(), z.array(z.string())]).optional(),
+  type: z.string().optional(),
 });
 
 /** @internal */
 export type SendEmailRequestBody$Outbound = {
-  to: string;
+  to: string | Array<string>;
   subject: string;
-  body: string;
+  text: string;
+  html: string;
   from: string;
-  cc?: string | undefined;
-  bcc?: string | undefined;
-  replyTo?: string | undefined;
+  replyTo?: string | Array<string> | undefined;
+  type?: string | undefined;
 };
 
 /** @internal */
@@ -52,13 +133,13 @@ export const SendEmailRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendEmailRequestBody
 > = z.object({
-  to: z.string(),
+  to: z.union([z.string(), z.array(z.string())]),
   subject: z.string(),
-  body: z.string(),
+  text: z.string(),
+  html: z.string(),
   from: z.string(),
-  cc: z.string().optional(),
-  bcc: z.string().optional(),
-  replyTo: z.string().optional(),
+  replyTo: z.union([z.string(), z.array(z.string())]).optional(),
+  type: z.string().optional(),
 });
 
 /**
@@ -80,7 +161,7 @@ export const SendEmailRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  companyId: z.string().optional(),
+  companyId: z.any().optional(),
   RequestBody: z.lazy(() => SendEmailRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
@@ -90,7 +171,7 @@ export const SendEmailRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SendEmailRequest$Outbound = {
-  companyId?: string | undefined;
+  companyId?: any | undefined;
   RequestBody: SendEmailRequestBody$Outbound;
 };
 
@@ -100,7 +181,7 @@ export const SendEmailRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendEmailRequest
 > = z.object({
-  companyId: z.string().optional(),
+  companyId: z.any().optional(),
   requestBody: z.lazy(() => SendEmailRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
