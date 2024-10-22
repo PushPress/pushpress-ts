@@ -1,17 +1,23 @@
 # CreateApiKeyRequestBody
 
+Create a new key
+
 ## Example Usage
 
 ```typescript
 import { CreateApiKeyRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateApiKeyRequestBody = {
-  company: "Predovic - Satterfield",
+  name: "my-key",
+  description: "my key",
+  expiresAt: 1672531200000,
 };
 ```
 
 ## Fields
 
-| Field                                                 | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `company`                                             | *string*                                              | :heavy_check_mark:                                    | The ID of the company for which to create the API key |
+| Field                          | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `name`                         | *string*                       | :heavy_check_mark:             | N/A                            |
+| `description`                  | *string*                       | :heavy_minus_sign:             | N/A                            |
+| `expiresAt`                    | *number*                       | :heavy_minus_sign:             | unix timestamp in milliseconds |

@@ -3,48 +3,33 @@
  */
 
 import * as z from "zod";
-import { ClosedEnum } from "../../types/enums.js";
 
-export const Type = {
-  AppointmentCheckin: "AppointmentCheckin",
-} as const;
-export type Type = ClosedEnum<typeof Type>;
-
+/**
+ * Checkin for an appointment
+ */
 export type AppointmentCheckin = {
   /**
-   * Unique identifier for the checkin
+   * Unique identifier for the appointment
    */
   id: string;
   /**
-   * Name of the checked-in appointment
+   * Name of the appointment
    */
-  name: string;
-  type: Type;
+  name?: string | undefined;
   /**
-   * Type of the appointment
+   * UUID of the customer
    */
-  appointmentType: string;
+  customer: string;
+  /**
+   * UUID of the company
+   */
+  company: string;
+  /**
+   * Unix timestamp of the appointment
+   */
+  timestamp: number;
+  type?: "AppointmentCheckin" | undefined;
 };
-
-/** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
-
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
 
 /** @internal */
 export const AppointmentCheckin$inboundSchema: z.ZodType<
@@ -53,17 +38,21 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  name: z.string(),
-  type: Type$inboundSchema,
-  appointmentType: z.string(),
+  name: z.string().optional(),
+  customer: z.string(),
+  company: z.string(),
+  timestamp: z.number(),
+  type: z.literal("AppointmentCheckin").optional(),
 });
 
 /** @internal */
 export type AppointmentCheckin$Outbound = {
   id: string;
-  name: string;
-  type: string;
-  appointmentType: string;
+  name?: string | undefined;
+  customer: string;
+  company: string;
+  timestamp: number;
+  type: "AppointmentCheckin";
 };
 
 /** @internal */
@@ -73,9 +62,11 @@ export const AppointmentCheckin$outboundSchema: z.ZodType<
   AppointmentCheckin
 > = z.object({
   id: z.string(),
-  name: z.string(),
-  type: Type$outboundSchema,
-  appointmentType: z.string(),
+  name: z.string().optional(),
+  customer: z.string(),
+  company: z.string(),
+  timestamp: z.number(),
+  type: z.literal("AppointmentCheckin").default("AppointmentCheckin" as const),
 });
 
 /**

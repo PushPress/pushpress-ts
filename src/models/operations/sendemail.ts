@@ -3,10 +3,7 @@
  */
 
 import * as z from "zod";
-
-export type SendEmailGlobals = {
-  companyId?: string | undefined;
-};
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type SendEmailRequestBody = {
   to: string;
@@ -18,41 +15,10 @@ export type SendEmailRequestBody = {
   replyTo?: string | undefined;
 };
 
-/** @internal */
-export const SendEmailGlobals$inboundSchema: z.ZodType<
-  SendEmailGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  companyId: z.string().optional(),
-});
-
-/** @internal */
-export type SendEmailGlobals$Outbound = {
+export type SendEmailRequest = {
   companyId?: string | undefined;
+  requestBody: SendEmailRequestBody;
 };
-
-/** @internal */
-export const SendEmailGlobals$outboundSchema: z.ZodType<
-  SendEmailGlobals$Outbound,
-  z.ZodTypeDef,
-  SendEmailGlobals
-> = z.object({
-  companyId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEmailGlobals$ {
-  /** @deprecated use `SendEmailGlobals$inboundSchema` instead. */
-  export const inboundSchema = SendEmailGlobals$inboundSchema;
-  /** @deprecated use `SendEmailGlobals$outboundSchema` instead. */
-  export const outboundSchema = SendEmailGlobals$outboundSchema;
-  /** @deprecated use `SendEmailGlobals$Outbound` instead. */
-  export type Outbound = SendEmailGlobals$Outbound;
-}
 
 /** @internal */
 export const SendEmailRequestBody$inboundSchema: z.ZodType<
@@ -106,4 +72,51 @@ export namespace SendEmailRequestBody$ {
   export const outboundSchema = SendEmailRequestBody$outboundSchema;
   /** @deprecated use `SendEmailRequestBody$Outbound` instead. */
   export type Outbound = SendEmailRequestBody$Outbound;
+}
+
+/** @internal */
+export const SendEmailRequest$inboundSchema: z.ZodType<
+  SendEmailRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  companyId: z.string().optional(),
+  RequestBody: z.lazy(() => SendEmailRequestBody$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "RequestBody": "requestBody",
+  });
+});
+
+/** @internal */
+export type SendEmailRequest$Outbound = {
+  companyId?: string | undefined;
+  RequestBody: SendEmailRequestBody$Outbound;
+};
+
+/** @internal */
+export const SendEmailRequest$outboundSchema: z.ZodType<
+  SendEmailRequest$Outbound,
+  z.ZodTypeDef,
+  SendEmailRequest
+> = z.object({
+  companyId: z.string().optional(),
+  requestBody: z.lazy(() => SendEmailRequestBody$outboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    requestBody: "RequestBody",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendEmailRequest$ {
+  /** @deprecated use `SendEmailRequest$inboundSchema` instead. */
+  export const inboundSchema = SendEmailRequest$inboundSchema;
+  /** @deprecated use `SendEmailRequest$outboundSchema` instead. */
+  export const outboundSchema = SendEmailRequest$outboundSchema;
+  /** @deprecated use `SendEmailRequest$Outbound` instead. */
+  export type Outbound = SendEmailRequest$Outbound;
 }

@@ -3,39 +3,40 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { ApiKeys } from "./apikeys.js";
-import { Apps } from "./apps.js";
-import { Checkins } from "./checkins.js";
-import { Companies } from "./companies.js";
+import { APIKeys } from "./apikeys.js";
+import { AppointmentCheckins } from "./appointmentcheckins.js";
+import { ClassCheckins } from "./classcheckins.js";
+import { Company } from "./company.js";
 import { Customers } from "./customers.js";
-import { Keys } from "./keys.js";
+import { EventCheckins } from "./eventcheckins.js";
 import { Messages } from "./messages.js";
-import { Webhooks } from "./webhooks.js";
 
 export class PushPress extends ClientSDK {
-  private _apps?: Apps;
-  get apps(): Apps {
-    return (this._apps ??= new Apps(this._options));
-  }
-
-  private _apiKeys?: ApiKeys;
-  get apiKeys(): ApiKeys {
-    return (this._apiKeys ??= new ApiKeys(this._options));
-  }
-
-  private _keys?: Keys;
-  get keys(): Keys {
-    return (this._keys ??= new Keys(this._options));
-  }
-
   private _messages?: Messages;
   get messages(): Messages {
     return (this._messages ??= new Messages(this._options));
   }
 
-  private _companies?: Companies;
-  get companies(): Companies {
-    return (this._companies ??= new Companies(this._options));
+  private _eventCheckins?: EventCheckins;
+  get eventCheckins(): EventCheckins {
+    return (this._eventCheckins ??= new EventCheckins(this._options));
+  }
+
+  private _classCheckins?: ClassCheckins;
+  get classCheckins(): ClassCheckins {
+    return (this._classCheckins ??= new ClassCheckins(this._options));
+  }
+
+  private _appointmentCheckins?: AppointmentCheckins;
+  get appointmentCheckins(): AppointmentCheckins {
+    return (this._appointmentCheckins ??= new AppointmentCheckins(
+      this._options,
+    ));
+  }
+
+  private _company?: Company;
+  get company(): Company {
+    return (this._company ??= new Company(this._options));
   }
 
   private _customers?: Customers;
@@ -43,13 +44,8 @@ export class PushPress extends ClientSDK {
     return (this._customers ??= new Customers(this._options));
   }
 
-  private _checkins?: Checkins;
-  get checkins(): Checkins {
-    return (this._checkins ??= new Checkins(this._options));
-  }
-
-  private _webhooks?: Webhooks;
-  get webhooks(): Webhooks {
-    return (this._webhooks ??= new Webhooks(this._options));
+  private _apiKeys?: APIKeys;
+  get apiKeys(): APIKeys {
+    return (this._apiKeys ??= new APIKeys(this._options));
   }
 }

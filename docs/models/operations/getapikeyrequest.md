@@ -6,12 +6,13 @@
 import { GetApiKeyRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetApiKeyRequest = {
-  keyId: "<id>",
+  id: "<id>",
 };
 ```
 
 ## Fields
 
-| Field                             | Type                              | Required                          | Description                       |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| `keyId`                           | *string*                          | :heavy_check_mark:                | The ID of the API key to retrieve |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `id`               | *string*           | :heavy_check_mark: | N/A                |
+| `companyId`        | *any*              | :heavy_minus_sign: | N/A                |

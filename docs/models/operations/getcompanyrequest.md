@@ -10,5 +10,6 @@ let value: GetCompanyRequest = {};
 
 ## Fields
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `companyId`        | *any*              | :heavy_minus_sign: | N/A                |

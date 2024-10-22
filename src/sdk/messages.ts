@@ -8,11 +8,6 @@ import { Notifications } from "./notifications.js";
 import { Push } from "./push.js";
 
 export class Messages extends ClientSDK {
-  private _email?: Email;
-  get email(): Email {
-    return (this._email ??= new Email(this._options));
-  }
-
   private _notifications?: Notifications;
   get notifications(): Notifications {
     return (this._notifications ??= new Notifications(this._options));
@@ -21,5 +16,10 @@ export class Messages extends ClientSDK {
   private _push?: Push;
   get push(): Push {
     return (this._push ??= new Push(this._options));
+  }
+
+  private _email?: Email;
+  get email(): Email {
+    return (this._email ??= new Email(this._options));
   }
 }

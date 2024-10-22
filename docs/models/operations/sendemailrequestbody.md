@@ -6,10 +6,10 @@
 import { SendEmailRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: SendEmailRequestBody = {
-  to: "Destini.McGlynn37@hotmail.com",
+  to: "Micheal.Little@yahoo.com",
   subject: "<value>",
   body: "<value>",
-  from: "Alvena_Blick@yahoo.com",
+  from: "Vincenzo56@hotmail.com",
 };
 ```
 

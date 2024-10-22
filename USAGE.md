@@ -7,10 +7,12 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.apps.list();
-
-  // Handle the result
-  console.log(result);
+  await pushPress.messages.notifications.sendPing({
+    requestBody: {
+      channel: "<value>",
+      message: "<value>",
+    },
+  });
 }
 
 run();

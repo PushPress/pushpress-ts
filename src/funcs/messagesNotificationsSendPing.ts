@@ -27,7 +27,7 @@ import { Result } from "../types/fp.js";
  */
 export async function messagesNotificationsSendPing(
   client: PushPressCore,
-  request: operations.SendPingRequestBody,
+  request: operations.SendPingRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -43,21 +43,21 @@ export async function messagesNotificationsSendPing(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.SendPingRequestBody$outboundSchema.parse(value),
+    (value) => operations.SendPingRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload, { explode: true });
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const path = pathToFunc("/messages/notifications/ping")();
 
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "*/*",
-    "companyId": encodeSimple("companyId", client._options.companyId, {
+    "companyId": encodeSimple("companyId", payload.companyId, {
       explode: false,
       charEncoding: "none",
     }),

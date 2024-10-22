@@ -6,7 +6,7 @@
 import { RevokeApiKeyRequest } from "@pushpress/pushpress/models/operations";
 
 let value: RevokeApiKeyRequest = {
-  keyId: "<id>",
+  id: "<id>",
 };
 ```
 
@@ -14,4 +14,5 @@ let value: RevokeApiKeyRequest = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `keyId`            | *string*           | :heavy_check_mark: | N/A                |
+| `id`               | *string*           | :heavy_check_mark: | N/A                |
+| `companyId`        | *any*              | :heavy_minus_sign: | N/A                |
