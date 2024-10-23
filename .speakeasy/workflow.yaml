@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     PushPress-OAS:
         inputs:
-            - location: /Users/iankaplan/projects/PushPress-Services/core-api-fastify/openapi.platform.gen.yaml
+            - location: https://api.pushpressdev.com/platform/docs/json
         overlays:
             - location: .speakeasy/speakeasy-modifications-overlay.yaml
         registry:
