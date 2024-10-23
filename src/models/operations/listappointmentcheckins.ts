@@ -6,6 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListAppointmentCheckinsGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListAppointmentCheckinsRequest = {
   /**
    * Next cursor
@@ -20,7 +24,7 @@ export type ListAppointmentCheckinsRequest = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
 
 export type ListAppointmentCheckinsData = {
@@ -40,6 +44,50 @@ export type ListAppointmentCheckinsResponse = {
 };
 
 /** @internal */
+export const ListAppointmentCheckinsGlobals$inboundSchema: z.ZodType<
+  ListAppointmentCheckinsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type ListAppointmentCheckinsGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const ListAppointmentCheckinsGlobals$outboundSchema: z.ZodType<
+  ListAppointmentCheckinsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListAppointmentCheckinsGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListAppointmentCheckinsGlobals$ {
+  /** @deprecated use `ListAppointmentCheckinsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListAppointmentCheckinsGlobals$inboundSchema;
+  /** @deprecated use `ListAppointmentCheckinsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListAppointmentCheckinsGlobals$outboundSchema;
+  /** @deprecated use `ListAppointmentCheckinsGlobals$Outbound` instead. */
+  export type Outbound = ListAppointmentCheckinsGlobals$Outbound;
+}
+
+/** @internal */
 export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
   ListAppointmentCheckinsRequest,
   z.ZodTypeDef,
@@ -49,7 +97,7 @@ export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -62,7 +110,7 @@ export type ListAppointmentCheckinsRequest$Outbound = {
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -75,7 +123,7 @@ export const ListAppointmentCheckinsRequest$outboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

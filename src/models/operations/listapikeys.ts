@@ -6,13 +6,17 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListApiKeysGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListApiKeysSecurity = {
   bearer: string;
 };
 
 export type ListApiKeysRequest = {
   limit?: number | undefined;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
 
 export type ListApiKeysData = {
@@ -25,6 +29,50 @@ export type ListApiKeysData = {
 export type ListApiKeysResponseBody = {
   data: ListApiKeysData;
 };
+
+/** @internal */
+export const ListApiKeysGlobals$inboundSchema: z.ZodType<
+  ListApiKeysGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type ListApiKeysGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const ListApiKeysGlobals$outboundSchema: z.ZodType<
+  ListApiKeysGlobals$Outbound,
+  z.ZodTypeDef,
+  ListApiKeysGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListApiKeysGlobals$ {
+  /** @deprecated use `ListApiKeysGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListApiKeysGlobals$inboundSchema;
+  /** @deprecated use `ListApiKeysGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListApiKeysGlobals$outboundSchema;
+  /** @deprecated use `ListApiKeysGlobals$Outbound` instead. */
+  export type Outbound = ListApiKeysGlobals$Outbound;
+}
 
 /** @internal */
 export const ListApiKeysSecurity$inboundSchema: z.ZodType<
@@ -69,7 +117,7 @@ export const ListApiKeysRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   limit: z.number().default(100),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -79,7 +127,7 @@ export const ListApiKeysRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ListApiKeysRequest$Outbound = {
   limit: number;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -89,7 +137,7 @@ export const ListApiKeysRequest$outboundSchema: z.ZodType<
   ListApiKeysRequest
 > = z.object({
   limit: z.number().default(100),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

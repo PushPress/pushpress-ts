@@ -6,6 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListClassCheckinsGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListClassCheckinsRequest = {
   /**
    * Page number
@@ -24,7 +28,7 @@ export type ListClassCheckinsRequest = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
 
 export type ListClassCheckinsData = {
@@ -43,6 +47,50 @@ export type ListClassCheckinsResponse = {
 };
 
 /** @internal */
+export const ListClassCheckinsGlobals$inboundSchema: z.ZodType<
+  ListClassCheckinsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type ListClassCheckinsGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const ListClassCheckinsGlobals$outboundSchema: z.ZodType<
+  ListClassCheckinsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListClassCheckinsGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListClassCheckinsGlobals$ {
+  /** @deprecated use `ListClassCheckinsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListClassCheckinsGlobals$inboundSchema;
+  /** @deprecated use `ListClassCheckinsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListClassCheckinsGlobals$outboundSchema;
+  /** @deprecated use `ListClassCheckinsGlobals$Outbound` instead. */
+  export type Outbound = ListClassCheckinsGlobals$Outbound;
+}
+
+/** @internal */
 export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   ListClassCheckinsRequest,
   z.ZodTypeDef,
@@ -53,7 +101,7 @@ export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -67,7 +115,7 @@ export type ListClassCheckinsRequest$Outbound = {
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -81,7 +129,7 @@ export const ListClassCheckinsRequest$outboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

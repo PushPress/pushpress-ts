@@ -5,10 +5,58 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type GetCustomerGlobals = {
+  companyId?: string | undefined;
+};
+
 export type GetCustomerRequest = {
   uuid: string;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
+
+/** @internal */
+export const GetCustomerGlobals$inboundSchema: z.ZodType<
+  GetCustomerGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type GetCustomerGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const GetCustomerGlobals$outboundSchema: z.ZodType<
+  GetCustomerGlobals$Outbound,
+  z.ZodTypeDef,
+  GetCustomerGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetCustomerGlobals$ {
+  /** @deprecated use `GetCustomerGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetCustomerGlobals$inboundSchema;
+  /** @deprecated use `GetCustomerGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetCustomerGlobals$outboundSchema;
+  /** @deprecated use `GetCustomerGlobals$Outbound` instead. */
+  export type Outbound = GetCustomerGlobals$Outbound;
+}
 
 /** @internal */
 export const GetCustomerRequest$inboundSchema: z.ZodType<
@@ -17,7 +65,7 @@ export const GetCustomerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   uuid: z.string(),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -27,7 +75,7 @@ export const GetCustomerRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetCustomerRequest$Outbound = {
   uuid: string;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -37,7 +85,7 @@ export const GetCustomerRequest$outboundSchema: z.ZodType<
   GetCustomerRequest
 > = z.object({
   uuid: z.string(),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

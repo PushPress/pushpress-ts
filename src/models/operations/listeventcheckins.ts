@@ -6,6 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListEventCheckinsGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListEventCheckinsRequest = {
   /**
    * Page number
@@ -24,7 +28,7 @@ export type ListEventCheckinsRequest = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
 
 export type Data = {
@@ -43,6 +47,50 @@ export type ListEventCheckinsResponse = {
 };
 
 /** @internal */
+export const ListEventCheckinsGlobals$inboundSchema: z.ZodType<
+  ListEventCheckinsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type ListEventCheckinsGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const ListEventCheckinsGlobals$outboundSchema: z.ZodType<
+  ListEventCheckinsGlobals$Outbound,
+  z.ZodTypeDef,
+  ListEventCheckinsGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListEventCheckinsGlobals$ {
+  /** @deprecated use `ListEventCheckinsGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListEventCheckinsGlobals$inboundSchema;
+  /** @deprecated use `ListEventCheckinsGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListEventCheckinsGlobals$outboundSchema;
+  /** @deprecated use `ListEventCheckinsGlobals$Outbound` instead. */
+  export type Outbound = ListEventCheckinsGlobals$Outbound;
+}
+
+/** @internal */
 export const ListEventCheckinsRequest$inboundSchema: z.ZodType<
   ListEventCheckinsRequest,
   z.ZodTypeDef,
@@ -53,7 +101,7 @@ export const ListEventCheckinsRequest$inboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -67,7 +115,7 @@ export type ListEventCheckinsRequest$Outbound = {
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -81,7 +129,7 @@ export const ListEventCheckinsRequest$outboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

@@ -6,10 +6,14 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
+export type ListCustomersGlobals = {
+  companyId?: string | undefined;
+};
+
 export type ListCustomersRequest = {
   page?: number | undefined;
   limit?: number | undefined;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
 
 export type ListCustomersData = {
@@ -28,6 +32,50 @@ export type ListCustomersResponse = {
 };
 
 /** @internal */
+export const ListCustomersGlobals$inboundSchema: z.ZodType<
+  ListCustomersGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type ListCustomersGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const ListCustomersGlobals$outboundSchema: z.ZodType<
+  ListCustomersGlobals$Outbound,
+  z.ZodTypeDef,
+  ListCustomersGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ListCustomersGlobals$ {
+  /** @deprecated use `ListCustomersGlobals$inboundSchema` instead. */
+  export const inboundSchema = ListCustomersGlobals$inboundSchema;
+  /** @deprecated use `ListCustomersGlobals$outboundSchema` instead. */
+  export const outboundSchema = ListCustomersGlobals$outboundSchema;
+  /** @deprecated use `ListCustomersGlobals$Outbound` instead. */
+  export type Outbound = ListCustomersGlobals$Outbound;
+}
+
+/** @internal */
 export const ListCustomersRequest$inboundSchema: z.ZodType<
   ListCustomersRequest,
   z.ZodTypeDef,
@@ -35,7 +83,7 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
 > = z.object({
   page: z.number().default(1),
   limit: z.number().default(10),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -46,7 +94,7 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
 export type ListCustomersRequest$Outbound = {
   page: number;
   limit: number;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -57,7 +105,7 @@ export const ListCustomersRequest$outboundSchema: z.ZodType<
 > = z.object({
   page: z.number().default(1),
   limit: z.number().default(10),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

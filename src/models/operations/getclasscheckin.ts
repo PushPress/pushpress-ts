@@ -5,10 +5,58 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type GetClassCheckinGlobals = {
+  companyId?: string | undefined;
+};
+
 export type GetClassCheckinRequest = {
   uuid: string;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
+
+/** @internal */
+export const GetClassCheckinGlobals$inboundSchema: z.ZodType<
+  GetClassCheckinGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type GetClassCheckinGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const GetClassCheckinGlobals$outboundSchema: z.ZodType<
+  GetClassCheckinGlobals$Outbound,
+  z.ZodTypeDef,
+  GetClassCheckinGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetClassCheckinGlobals$ {
+  /** @deprecated use `GetClassCheckinGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetClassCheckinGlobals$inboundSchema;
+  /** @deprecated use `GetClassCheckinGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetClassCheckinGlobals$outboundSchema;
+  /** @deprecated use `GetClassCheckinGlobals$Outbound` instead. */
+  export type Outbound = GetClassCheckinGlobals$Outbound;
+}
 
 /** @internal */
 export const GetClassCheckinRequest$inboundSchema: z.ZodType<
@@ -17,7 +65,7 @@ export const GetClassCheckinRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   uuid: z.string(),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -27,7 +75,7 @@ export const GetClassCheckinRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetClassCheckinRequest$Outbound = {
   uuid: string;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -37,7 +85,7 @@ export const GetClassCheckinRequest$outboundSchema: z.ZodType<
   GetClassCheckinRequest
 > = z.object({
   uuid: z.string(),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

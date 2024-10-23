@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: d6a38afa54e6ac7120cae6388922a162
+  docChecksum: edb446976522d21fb7169c259b9442fb
   docVersion: 3.0.0
   speakeasyVersion: 1.421.0
   generationVersion: 2.438.15
-  releaseVersion: 0.5.1
-  configChecksum: 3132554241fb1a692b4fe95727e0b947
+  releaseVersion: 0.5.5
+  configChecksum: bc9b46525ce7cef6ce0230e8b07924dd
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -55,45 +55,60 @@ generatedFiles:
   - docs/models/components/name.md
   - docs/models/components/role.md
   - docs/models/components/security.md
+  - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
   - docs/models/operations/createapikeysecurity.md
   - docs/models/operations/data.md
+  - docs/models/operations/getapikeyglobals.md
   - docs/models/operations/getapikeyrequest.md
   - docs/models/operations/getapikeysecurity.md
+  - docs/models/operations/getappointmentcheckinglobals.md
   - docs/models/operations/getappointmentcheckinrequest.md
+  - docs/models/operations/getclasscheckinglobals.md
   - docs/models/operations/getclasscheckinrequest.md
+  - docs/models/operations/getcompanyglobals.md
   - docs/models/operations/getcompanyrequest.md
+  - docs/models/operations/getcustomerglobals.md
   - docs/models/operations/getcustomerrequest.md
+  - docs/models/operations/geteventcheckinglobals.md
   - docs/models/operations/geteventcheckinrequest.md
   - docs/models/operations/listapikeysdata.md
+  - docs/models/operations/listapikeysglobals.md
   - docs/models/operations/listapikeysrequest.md
   - docs/models/operations/listapikeysresponsebody.md
   - docs/models/operations/listapikeyssecurity.md
   - docs/models/operations/listappointmentcheckinsdata.md
+  - docs/models/operations/listappointmentcheckinsglobals.md
   - docs/models/operations/listappointmentcheckinsrequest.md
   - docs/models/operations/listappointmentcheckinsresponse.md
   - docs/models/operations/listappointmentcheckinsresponsebody.md
   - docs/models/operations/listclasscheckinsdata.md
+  - docs/models/operations/listclasscheckinsglobals.md
   - docs/models/operations/listclasscheckinsrequest.md
   - docs/models/operations/listclasscheckinsresponse.md
   - docs/models/operations/listclasscheckinsresponsebody.md
   - docs/models/operations/listcustomersdata.md
+  - docs/models/operations/listcustomersglobals.md
   - docs/models/operations/listcustomersrequest.md
   - docs/models/operations/listcustomersresponse.md
   - docs/models/operations/listcustomersresponsebody.md
+  - docs/models/operations/listeventcheckinsglobals.md
   - docs/models/operations/listeventcheckinsrequest.md
   - docs/models/operations/listeventcheckinsresponse.md
   - docs/models/operations/listeventcheckinsresponsebody.md
   - docs/models/operations/replyto.md
+  - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
+  - docs/models/operations/sendemailglobals.md
   - docs/models/operations/sendemailrequest.md
   - docs/models/operations/sendemailrequestbody.md
   - docs/models/operations/sendpingrequest.md
   - docs/models/operations/sendpingrequestbody.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
+  - docs/models/operations/sendsmsglobals.md
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
   - docs/models/webhooks/appinstalledeventrequestbody.md

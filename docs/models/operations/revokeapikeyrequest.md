@@ -15,4 +15,4 @@ let value: RevokeApiKeyRequest = {
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `id`               | *string*           | :heavy_check_mark: | N/A                |
-| `companyId`        | *any*              | :heavy_minus_sign: | N/A                |
+| `companyId`        | *string*           | :heavy_minus_sign: | N/A                |

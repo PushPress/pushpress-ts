@@ -17,4 +17,4 @@ let value: ListEventCheckinsRequest = {};
 | `customer`                                            | *string*                                              | :heavy_minus_sign:                                    | N/A                                                   |
 | `before`                                              | *number*                                              | :heavy_minus_sign:                                    | Get all checkins before this unix timestamp (seconds) |
 | `after`                                               | *number*                                              | :heavy_minus_sign:                                    | Get all checkins after this unix timestamp (seconds)  |
-| `companyId`                                           | *any*                                                 | :heavy_minus_sign:                                    | N/A                                                   |
+| `companyId`                                           | *string*                                              | :heavy_minus_sign:                                    | N/A                                                   |
