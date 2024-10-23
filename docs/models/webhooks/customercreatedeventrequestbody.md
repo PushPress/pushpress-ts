@@ -23,7 +23,7 @@ let value: CustomerCreatedEventRequestBody = {
     email: "john@doe.com",
     phone: "+1-800-555-1234",
   },
-  created: 54338,
+  created: 367562,
   eventType: "created",
 };
 ```

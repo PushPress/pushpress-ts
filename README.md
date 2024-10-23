@@ -67,6 +67,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesGet`](docs/sdks/messages/README.md#get) - Send an email
 - [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification
+- [`messagesSmsSend`](docs/sdks/messages/README.md#smssend) - Send an SMS
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -120,7 +121,7 @@ const pushPress = new PushPress({
 async function run() {
   const result = await pushPress.messages.get({
     requestBody: {
-      to: "Isobel_Brakus@yahoo.com",
+      customer: "<value>",
       subject: "<value>",
       text: "<value>",
       html: "<value>",
@@ -168,7 +169,7 @@ const pushPress = new PushPress({
 async function run() {
   const result = await pushPress.messages.get({
     requestBody: {
-      to: "Isobel_Brakus@yahoo.com",
+      customer: "<value>",
       subject: "<value>",
       text: "<value>",
       html: "<value>",
@@ -219,7 +220,7 @@ async function run() {
   try {
     result = await pushPress.messages.get({
       requestBody: {
-        to: "Isobel_Brakus@yahoo.com",
+        customer: "<value>",
         subject: "<value>",
         text: "<value>",
         html: "<value>",
@@ -277,7 +278,7 @@ const pushPress = new PushPress({
 async function run() {
   const result = await pushPress.messages.get({
     requestBody: {
-      to: "Isobel_Brakus@yahoo.com",
+      customer: "<value>",
       subject: "<value>",
       text: "<value>",
       html: "<value>",
@@ -309,7 +310,7 @@ const pushPress = new PushPress({
 async function run() {
   const result = await pushPress.messages.get({
     requestBody: {
-      to: "Isobel_Brakus@yahoo.com",
+      customer: "<value>",
       subject: "<value>",
       text: "<value>",
       html: "<value>",
@@ -397,7 +398,7 @@ const pushPress = new PushPress({
 async function run() {
   const result = await pushPress.messages.get({
     requestBody: {
-      to: "Isobel_Brakus@yahoo.com",
+      customer: "<value>",
       subject: "<value>",
       text: "<value>",
       html: "<value>",

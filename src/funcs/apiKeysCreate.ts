@@ -61,7 +61,7 @@ export async function apiKeysCreate(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "companyId": encodeSimple("companyId", payload.companyId, {
+    "company-id": encodeSimple("company-id", payload["company-id"], {
       explode: false,
       charEncoding: "none",
     }),

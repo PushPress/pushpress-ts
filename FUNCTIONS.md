@@ -32,7 +32,7 @@ const pushPress = new PushPressCore({
 async function run() {
   const res = await messagesGet(pushPress, {
     requestBody: {
-      to: "Isobel_Brakus@yahoo.com",
+      customer: "<value>",
       subject: "<value>",
       text: "<value>",
       html: "<value>",

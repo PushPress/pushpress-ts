@@ -49,7 +49,11 @@ export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
 });
 
 /** @internal */
@@ -58,7 +62,7 @@ export type ListAppointmentCheckinsRequest$Outbound = {
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
 };
 
 /** @internal */
@@ -72,6 +76,10 @@ export const ListAppointmentCheckinsRequest$outboundSchema: z.ZodType<
   before: z.number().optional(),
   after: z.number().optional(),
   companyId: z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
 });
 
 /**

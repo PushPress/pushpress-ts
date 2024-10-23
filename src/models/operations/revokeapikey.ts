@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type RevokeApiKeySecurity = {
   bearer: string;
@@ -56,13 +57,17 @@ export const RevokeApiKeyRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
 });
 
 /** @internal */
 export type RevokeApiKeyRequest$Outbound = {
   id: string;
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
 };
 
 /** @internal */
@@ -73,6 +78,10 @@ export const RevokeApiKeyRequest$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   companyId: z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
 });
 
 /**

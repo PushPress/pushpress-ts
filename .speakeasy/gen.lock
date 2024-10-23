@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 7df14e56337abe6faa9748c7267440ec
+  docChecksum: d6a38afa54e6ac7120cae6388922a162
   docVersion: 3.0.0
-  speakeasyVersion: 1.420.0
+  speakeasyVersion: 1.421.0
   generationVersion: 2.438.15
-  releaseVersion: 0.5.0
-  configChecksum: f99f3f4628a946549ba03c61c4e23dfa
+  releaseVersion: 0.5.1
+  configChecksum: 3132554241fb1a692b4fe95727e0b947
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -94,7 +94,8 @@ generatedFiles:
   - docs/models/operations/sendpingrequestbody.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
-  - docs/models/operations/to.md
+  - docs/models/operations/sendsmsrequest.md
+  - docs/models/operations/sendsmsrequestbody.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
@@ -123,6 +124,7 @@ generatedFiles:
   - src/funcs/messagesGet.ts
   - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
+  - src/funcs/messagesSmsSend.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -172,6 +174,7 @@ generatedFiles:
   - src/models/operations/sendemail.ts
   - src/models/operations/sendping.ts
   - src/models/operations/sendpush.ts
+  - src/models/operations/sendsms.ts
   - src/models/webhooks/appinstalledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
@@ -294,7 +297,7 @@ examples:
   sendEmail:
     speakeasy-default-send-email:
       requestBody:
-        application/json: {"to": "Isobel_Brakus@yahoo.com", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "Fern47@yahoo.com"}
+        application/json: {"customer": "<value>", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "Fern47@yahoo.com"}
       responses:
         "200":
           application/json: "<value>"
@@ -451,3 +454,10 @@ examples:
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "type": "AppointmentCheckin"}]}}
+  sendSms:
+    speakeasy-default-send-sms:
+      requestBody:
+        application/json: {"message": "<value>", "to": "<value>"}
+      responses:
+        "200":
+          application/json: "<value>"

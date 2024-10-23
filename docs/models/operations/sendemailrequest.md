@@ -7,9 +7,7 @@ import { SendEmailRequest } from "@pushpress/pushpress/models/operations";
 
 let value: SendEmailRequest = {
   requestBody: {
-    to: [
-      "Tyra.Hessel69@yahoo.com",
-    ],
+    customer: "<value>",
     subject: "<value>",
     text: "<value>",
     html: "<value>",

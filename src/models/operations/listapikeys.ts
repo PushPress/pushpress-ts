@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
 export type ListApiKeysSecurity = {
@@ -68,13 +69,17 @@ export const ListApiKeysRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   limit: z.number().default(100),
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
 });
 
 /** @internal */
 export type ListApiKeysRequest$Outbound = {
   limit: number;
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
 };
 
 /** @internal */
@@ -85,6 +90,10 @@ export const ListApiKeysRequest$outboundSchema: z.ZodType<
 > = z.object({
   limit: z.number().default(100),
   companyId: z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
 });
 
 /**

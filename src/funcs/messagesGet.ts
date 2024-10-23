@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Send an email
  *
  * @remarks
- * Get company information associated with the current user
+ * Send an email from the PushPress platform
  */
 export async function messagesGet(
   client: PushPressCore,
@@ -60,7 +60,7 @@ export async function messagesGet(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "companyId": encodeSimple("companyId", payload.companyId, {
+    "company-id": encodeSimple("company-id", payload["company-id"], {
       explode: false,
       charEncoding: "none",
     }),

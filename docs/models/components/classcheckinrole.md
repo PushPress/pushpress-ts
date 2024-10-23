@@ -5,7 +5,7 @@
 ```typescript
 import { ClassCheckinRole } from "@pushpress/pushpress/models/components";
 
-let value: ClassCheckinRole = "staff";
+let value: ClassCheckinRole = "coach";
 ```
 
 ## Values
