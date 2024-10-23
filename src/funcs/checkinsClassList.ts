@@ -34,7 +34,7 @@ import {
  * @remarks
  * list event checkins
  */
-export async function classCheckinsList(
+export async function checkinsClassList(
   client: PushPressCore,
   request: operations.ListClassCheckinsRequest,
   options?: RequestOptions,
@@ -180,7 +180,7 @@ export async function classCheckinsList(
     }
 
     return () =>
-      classCheckinsList(
+      checkinsClassList(
         client,
         {
           ...request,

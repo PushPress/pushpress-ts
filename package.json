@@ -1,9 +1,13 @@
 {
   "name": "@pushpress/pushpress",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PushPress/pushpress-ts.git"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",

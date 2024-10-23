@@ -34,7 +34,7 @@ import {
  * @remarks
  * list appointment checkins
  */
-export async function appointmentCheckinsList(
+export async function checkinsAppointmentList(
   client: PushPressCore,
   request: operations.ListAppointmentCheckinsRequest,
   options?: RequestOptions,
@@ -170,7 +170,7 @@ export async function appointmentCheckinsList(
     }
 
     return () =>
-      appointmentCheckinsList(
+      checkinsAppointmentList(
         client,
         {
           ...request,
