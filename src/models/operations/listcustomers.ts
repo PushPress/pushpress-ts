@@ -35,14 +35,18 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
 > = z.object({
   page: z.number().default(1),
   limit: z.number().default(10),
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
 });
 
 /** @internal */
 export type ListCustomersRequest$Outbound = {
   page: number;
   limit: number;
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
 };
 
 /** @internal */
@@ -54,6 +58,10 @@ export const ListCustomersRequest$outboundSchema: z.ZodType<
   page: z.number().default(1),
   limit: z.number().default(10),
   companyId: z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
 });
 
 /**

@@ -6,20 +6,15 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
 /**
- * Specify one or more recipients
- */
-export type To = string | Array<string>;
-
-/**
  * One or more reply-to addresses
  */
 export type ReplyTo = string | Array<string>;
 
 export type SendEmailRequestBody = {
   /**
-   * Specify one or more recipients
+   * Uuid of the customer recipient
    */
-  to: string | Array<string>;
+  customer: string;
   subject: string;
   /**
    * The text email body
@@ -47,32 +42,6 @@ export type SendEmailRequest = {
   companyId?: any | undefined;
   requestBody: SendEmailRequestBody;
 };
-
-/** @internal */
-export const To$inboundSchema: z.ZodType<To, z.ZodTypeDef, unknown> = z.union([
-  z.string(),
-  z.array(z.string()),
-]);
-
-/** @internal */
-export type To$Outbound = string | Array<string>;
-
-/** @internal */
-export const To$outboundSchema: z.ZodType<To$Outbound, z.ZodTypeDef, To> = z
-  .union([z.string(), z.array(z.string())]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace To$ {
-  /** @deprecated use `To$inboundSchema` instead. */
-  export const inboundSchema = To$inboundSchema;
-  /** @deprecated use `To$outboundSchema` instead. */
-  export const outboundSchema = To$outboundSchema;
-  /** @deprecated use `To$Outbound` instead. */
-  export type Outbound = To$Outbound;
-}
 
 /** @internal */
 export const ReplyTo$inboundSchema: z.ZodType<ReplyTo, z.ZodTypeDef, unknown> =
@@ -107,7 +76,7 @@ export const SendEmailRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  to: z.union([z.string(), z.array(z.string())]),
+  customer: z.string(),
   subject: z.string(),
   text: z.string(),
   html: z.string(),
@@ -118,7 +87,7 @@ export const SendEmailRequestBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SendEmailRequestBody$Outbound = {
-  to: string | Array<string>;
+  customer: string;
   subject: string;
   text: string;
   html: string;
@@ -133,7 +102,7 @@ export const SendEmailRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendEmailRequestBody
 > = z.object({
-  to: z.union([z.string(), z.array(z.string())]),
+  customer: z.string(),
   subject: z.string(),
   text: z.string(),
   html: z.string(),
@@ -161,17 +130,18 @@ export const SendEmailRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
   RequestBody: z.lazy(() => SendEmailRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
+    "company-id": "companyId",
     "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type SendEmailRequest$Outbound = {
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
   RequestBody: SendEmailRequestBody$Outbound;
 };
 
@@ -185,6 +155,7 @@ export const SendEmailRequest$outboundSchema: z.ZodType<
   requestBody: z.lazy(() => SendEmailRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
+    companyId: "company-id",
     requestBody: "RequestBody",
   });
 });

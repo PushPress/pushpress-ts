@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 
 export type GetAppointmentCheckinRequest = {
   uuid: string;
@@ -16,13 +17,17 @@ export const GetAppointmentCheckinRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   uuid: z.string(),
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
 });
 
 /** @internal */
 export type GetAppointmentCheckinRequest$Outbound = {
   uuid: string;
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
 };
 
 /** @internal */
@@ -33,6 +38,10 @@ export const GetAppointmentCheckinRequest$outboundSchema: z.ZodType<
 > = z.object({
   uuid: z.string(),
   companyId: z.any().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
 });
 
 /**

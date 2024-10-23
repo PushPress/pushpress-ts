@@ -113,17 +113,18 @@ export const CreateApiKeyRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  companyId: z.any().optional(),
+  "company-id": z.any().optional(),
   RequestBody: z.lazy(() => CreateApiKeyRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
+    "company-id": "companyId",
     "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type CreateApiKeyRequest$Outbound = {
-  companyId?: any | undefined;
+  "company-id"?: any | undefined;
   RequestBody: CreateApiKeyRequestBody$Outbound;
 };
 
@@ -137,6 +138,7 @@ export const CreateApiKeyRequest$outboundSchema: z.ZodType<
   requestBody: z.lazy(() => CreateApiKeyRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
+    companyId: "company-id",
     requestBody: "RequestBody",
   });
 });

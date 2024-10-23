@@ -18,3 +18,4 @@ export * from "./revokeapikey.js";
 export * from "./sendemail.js";
 export * from "./sendping.js";
 export * from "./sendpush.js";
+export * from "./sendsms.js";

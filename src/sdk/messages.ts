@@ -3,6 +3,7 @@
  */
 
 import { messagesGet } from "../funcs/messagesGet.js";
+import { messagesSmsSend } from "../funcs/messagesSmsSend.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -24,13 +25,30 @@ export class Messages extends ClientSDK {
    * Send an email
    *
    * @remarks
-   * Get company information associated with the current user
+   * Send an email from the PushPress platform
    */
   async get(
     request: operations.SendEmailRequest,
     options?: RequestOptions,
   ): Promise<any> {
     return unwrapAsync(messagesGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Send an SMS
+   *
+   * @remarks
+   * Send an SMS message from the PushPress platform
+   */
+  async smsSend(
+    request: operations.SendSmsRequest,
+    options?: RequestOptions,
+  ): Promise<any> {
+    return unwrapAsync(messagesSmsSend(
       this,
       request,
       options,

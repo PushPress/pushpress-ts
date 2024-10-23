@@ -6,9 +6,7 @@
 import { SendEmailRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: SendEmailRequestBody = {
-  to: [
-    "Diego_Klocko@yahoo.com",
-  ],
+  customer: "<value>",
   subject: "<value>",
   text: "<value>",
   html: "<value>",
@@ -20,7 +18,7 @@ let value: SendEmailRequestBody = {
 
 | Field                          | Type                           | Required                       | Description                    |
 | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `to`                           | *operations.To*                | :heavy_check_mark:             | Specify one or more recipients |
+| `customer`                     | *string*                       | :heavy_check_mark:             | Uuid of the customer recipient |
 | `subject`                      | *string*                       | :heavy_check_mark:             | N/A                            |
 | `text`                         | *string*                       | :heavy_check_mark:             | The text email body            |
 | `html`                         | *string*                       | :heavy_check_mark:             | The HTML email body            |
