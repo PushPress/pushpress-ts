@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * get an event checkin
  */
-export async function eventCheckinsGet(
+export async function checkinsEventGet(
   client: PushPressCore,
   request: operations.GetEventCheckinRequest,
   options?: RequestOptions,

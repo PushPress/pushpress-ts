@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Get an appointment checkin
  */
-export async function appointmentCheckinsGet(
+export async function checkinsAppointmentGet(
   client: PushPressCore,
   request: operations.GetAppointmentCheckinRequest,
   options?: RequestOptions,

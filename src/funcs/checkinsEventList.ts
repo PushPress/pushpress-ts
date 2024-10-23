@@ -3,13 +3,13 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { dlv } from "../lib/dlv.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -21,45 +21,57 @@ import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
- * Get an event checkin
+ * Get a list of event checkins
+ *
+ * @remarks
+ * list event checkins
  */
-export async function classCheckinsGet(
+export async function checkinsEventList(
   client: PushPressCore,
-  request: operations.GetClassCheckinRequest,
+  request: operations.ListEventCheckinsRequest,
   options?: RequestOptions,
 ): Promise<
-  Result<
-    components.ClassCheckin,
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
+  PageIterator<
+    Result<
+      operations.ListEventCheckinsResponse,
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >
   >
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.GetClassCheckinRequest$outboundSchema.parse(value),
+    (value) => operations.ListEventCheckinsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return haltIterator(parsed);
   }
   const payload = parsed.value;
   const body = null;
 
-  const pathParams = {
-    uuid: encodeSimple("uuid", payload.uuid, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
+  const path = pathToFunc("/checkins/event")();
 
-  const path = pathToFunc("/checkins/class/{uuid}")(pathParams);
+  const query = encodeFormQuery({
+    "after": payload.after,
+    "before": payload.before,
+    "customer": payload.customer,
+    "limit": payload.limit,
+    "page": payload.page,
+  });
 
   const headers = new Headers({
     Accept: "application/json",
@@ -73,7 +85,7 @@ export async function classCheckinsGet(
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
-    operationID: "getClassCheckin",
+    operationID: "listEventCheckins",
     oAuth2Scopes: [],
     securitySource: client._options.apiKey,
   };
@@ -84,11 +96,12 @@ export async function classCheckinsGet(
     method: "GET",
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return haltIterator(requestRes);
   }
   const req = requestRes.value;
 
@@ -110,12 +123,16 @@ export async function classCheckinsGet(
     retryCodes: options?.retryCodes || ["5XX"],
   });
   if (!doResult.ok) {
-    return doResult;
+    return haltIterator(doResult);
   }
   const response = doResult.value;
 
-  const [result] = await M.match<
-    components.ClassCheckin,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result, raw] = await M.match<
+    operations.ListEventCheckinsResponse,
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -124,12 +141,55 @@ export async function classCheckinsGet(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.ClassCheckin$inboundSchema),
+    M.json(200, operations.ListEventCheckinsResponse$inboundSchema, {
+      key: "Result",
+    }),
     M.fail([401, 404, "4XX", "5XX"]),
-  )(response);
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return haltIterator(result);
   }
 
-  return result;
+  const nextFunc = (
+    responseData: unknown,
+  ): Paginator<
+    Result<
+      operations.ListEventCheckinsResponse,
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >
+  > => {
+    const page = request?.page || 0;
+    const nextPage = page + 1;
+
+    if (!responseData) {
+      return () => null;
+    }
+    const results = dlv(responseData, "data.resultArray");
+    if (!Array.isArray(results) || !results.length) {
+      return () => null;
+    }
+    const limit = request?.limit || 0;
+    if (results.length < limit) {
+      return () => null;
+    }
+
+    return () =>
+      checkinsEventList(
+        client,
+        {
+          ...request,
+          page: nextPage,
+        },
+        options,
+      );
+  };
+
+  const page = { ...result, next: nextFunc(raw) };
+  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

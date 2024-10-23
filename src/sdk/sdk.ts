@@ -4,11 +4,9 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { APIKeys } from "./apikeys.js";
-import { AppointmentCheckins } from "./appointmentcheckins.js";
-import { ClassCheckins } from "./classcheckins.js";
+import { Checkins } from "./checkins.js";
 import { Company } from "./company.js";
 import { Customers } from "./customers.js";
-import { EventCheckins } from "./eventcheckins.js";
 import { Messages } from "./messages.js";
 
 export class PushPress extends ClientSDK {
@@ -17,21 +15,9 @@ export class PushPress extends ClientSDK {
     return (this._messages ??= new Messages(this._options));
   }
 
-  private _eventCheckins?: EventCheckins;
-  get eventCheckins(): EventCheckins {
-    return (this._eventCheckins ??= new EventCheckins(this._options));
-  }
-
-  private _classCheckins?: ClassCheckins;
-  get classCheckins(): ClassCheckins {
-    return (this._classCheckins ??= new ClassCheckins(this._options));
-  }
-
-  private _appointmentCheckins?: AppointmentCheckins;
-  get appointmentCheckins(): AppointmentCheckins {
-    return (this._appointmentCheckins ??= new AppointmentCheckins(
-      this._options,
-    ));
+  private _checkins?: Checkins;
+  get checkins(): Checkins {
+    return (this._checkins ??= new Checkins(this._options));
   }
 
   private _company?: Company;

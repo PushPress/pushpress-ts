@@ -1,12 +1,15 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: edb446976522d21fb7169c259b9442fb
+  docChecksum: b3f847905378a873e219e4a65a6f8747
   docVersion: 3.0.0
   speakeasyVersion: 1.421.0
   generationVersion: 2.438.15
-  releaseVersion: 0.5.5
-  configChecksum: bc9b46525ce7cef6ce0230e8b07924dd
+  releaseVersion: 0.5.6
+  configChecksum: 001dbd777e38b68ff4b69c2b99a88fe0
+  repoURL: https://github.com/PushPress/pushpress-ts.git
+  installationURL: https://github.com/PushPress/pushpress-ts
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -108,9 +111,6 @@ generatedFiles:
   - docs/models/operations/sendpingrequestbody.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
-  - docs/models/operations/sendsmsglobals.md
-  - docs/models/operations/sendsmsrequest.md
-  - docs/models/operations/sendsmsrequestbody.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
@@ -127,19 +127,18 @@ generatedFiles:
   - src/funcs/apiKeysGet.ts
   - src/funcs/apiKeysList.ts
   - src/funcs/apiKeysRevoke.ts
-  - src/funcs/appointmentCheckinsGet.ts
-  - src/funcs/appointmentCheckinsList.ts
-  - src/funcs/classCheckinsGet.ts
-  - src/funcs/classCheckinsList.ts
+  - src/funcs/checkinsAppointmentGet.ts
+  - src/funcs/checkinsAppointmentList.ts
+  - src/funcs/checkinsClassGet.ts
+  - src/funcs/checkinsClassList.ts
+  - src/funcs/checkinsEventGet.ts
+  - src/funcs/checkinsEventList.ts
   - src/funcs/companyGet.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
-  - src/funcs/eventCheckinsGet.ts
-  - src/funcs/eventCheckinsList.ts
   - src/funcs/messagesGet.ts
   - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
-  - src/funcs/messagesSmsSend.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -189,18 +188,18 @@ generatedFiles:
   - src/models/operations/sendemail.ts
   - src/models/operations/sendping.ts
   - src/models/operations/sendpush.ts
-  - src/models/operations/sendsms.ts
   - src/models/webhooks/appinstalledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
   - src/models/webhooks/customerupdatedevent.ts
   - src/models/webhooks/index.ts
   - src/sdk/apikeys.ts
-  - src/sdk/appointmentcheckins.ts
-  - src/sdk/classcheckins.ts
+  - src/sdk/appointment.ts
+  - src/sdk/checkins.ts
+  - src/sdk/class.ts
   - src/sdk/company.ts
   - src/sdk/customers.ts
-  - src/sdk/eventcheckins.ts
+  - src/sdk/event.ts
   - src/sdk/index.ts
   - src/sdk/messages.ts
   - src/sdk/notifications.ts

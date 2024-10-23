@@ -55,19 +55,18 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get a key by its ID
 - [`apiKeysList`](docs/sdks/apikeys/README.md#list) - Get a list of active keys in a given company
 - [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
-- [`appointmentCheckinsGet`](docs/sdks/appointmentcheckins/README.md#get) - Get an appointment checkin
-- [`appointmentCheckinsList`](docs/sdks/appointmentcheckins/README.md#list) - Get a list of appointment checkins
-- [`classCheckinsGet`](docs/sdks/classcheckins/README.md#get) - Get an event checkin
-- [`classCheckinsList`](docs/sdks/classcheckins/README.md#list) - Get a list of class checkins
+- [`checkinsAppointmentGet`](docs/sdks/appointment/README.md#get) - Get an appointment checkin
+- [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - Get a list of appointment checkins
+- [`checkinsClassGet`](docs/sdks/class/README.md#get) - Get an event checkin
+- [`checkinsClassList`](docs/sdks/class/README.md#list) - Get a list of class checkins
+- [`checkinsEventGet`](docs/sdks/event/README.md#get) - Get a class checkin
+- [`checkinsEventList`](docs/sdks/event/README.md#list) - Get a list of event checkins
 - [`companyGet`](docs/sdks/company/README.md#get) - Get company information
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get individual customer information
 - [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
-- [`eventCheckinsGet`](docs/sdks/eventcheckins/README.md#get) - Get a class checkin
-- [`eventCheckinsList`](docs/sdks/eventcheckins/README.md#list) - Get a list of event checkins
 - [`messagesGet`](docs/sdks/messages/README.md#get) - Send an email
 - [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification
-- [`messagesSmsSend`](docs/sdks/messages/README.md#smssend) - Send an SMS
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -92,7 +91,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.eventCheckins.list({});
+  const result = await pushPress.checkins.event.list({});
 
   for await (const page of result) {
     // Handle the page
