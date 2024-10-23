@@ -61,10 +61,11 @@ export async function apiKeysCreate(
   const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "company-id": encodeSimple("company-id", payload["company-id"], {
-      explode: false,
-      charEncoding: "none",
-    }),
+    "company-id": encodeSimple(
+      "company-id",
+      payload["company-id"] ?? client._options.companyId,
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const requestSecurity = resolveSecurity(

@@ -1,16 +1,15 @@
-# ListApiKeysRequest
+# CreateApiKeyGlobals
 
 ## Example Usage
 
 ```typescript
-import { ListApiKeysRequest } from "@pushpress/pushpress/models/operations";
+import { CreateApiKeyGlobals } from "@pushpress/pushpress/models/operations";
 
-let value: ListApiKeysRequest = {};
+let value: CreateApiKeyGlobals = {};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `limit`            | *number*           | :heavy_minus_sign: | N/A                |
 | `companyId`        | *string*           | :heavy_minus_sign: | N/A                |

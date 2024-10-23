@@ -5,14 +5,62 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type GetApiKeyGlobals = {
+  companyId?: string | undefined;
+};
+
 export type GetApiKeySecurity = {
   bearer: string;
 };
 
 export type GetApiKeyRequest = {
   id: string;
-  companyId?: any | undefined;
+  companyId?: string | undefined;
 };
+
+/** @internal */
+export const GetApiKeyGlobals$inboundSchema: z.ZodType<
+  GetApiKeyGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type GetApiKeyGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const GetApiKeyGlobals$outboundSchema: z.ZodType<
+  GetApiKeyGlobals$Outbound,
+  z.ZodTypeDef,
+  GetApiKeyGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetApiKeyGlobals$ {
+  /** @deprecated use `GetApiKeyGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetApiKeyGlobals$inboundSchema;
+  /** @deprecated use `GetApiKeyGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetApiKeyGlobals$outboundSchema;
+  /** @deprecated use `GetApiKeyGlobals$Outbound` instead. */
+  export type Outbound = GetApiKeyGlobals$Outbound;
+}
 
 /** @internal */
 export const GetApiKeySecurity$inboundSchema: z.ZodType<
@@ -57,7 +105,7 @@ export const GetApiKeyRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "company-id": "companyId",
@@ -67,7 +115,7 @@ export const GetApiKeyRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type GetApiKeyRequest$Outbound = {
   id: string;
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
 };
 
 /** @internal */
@@ -77,7 +125,7 @@ export const GetApiKeyRequest$outboundSchema: z.ZodType<
   GetApiKeyRequest
 > = z.object({
   id: z.string(),
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     companyId: "company-id",

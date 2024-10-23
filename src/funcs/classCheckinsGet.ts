@@ -63,10 +63,11 @@ export async function classCheckinsGet(
 
   const headers = new Headers({
     Accept: "application/json",
-    "company-id": encodeSimple("company-id", payload["company-id"], {
-      explode: false,
-      charEncoding: "none",
-    }),
+    "company-id": encodeSimple(
+      "company-id",
+      payload["company-id"] ?? client._options.companyId,
+      { explode: false, charEncoding: "none" },
+    ),
   });
 
   const secConfig = await extractSecurity(client._options.apiKey);

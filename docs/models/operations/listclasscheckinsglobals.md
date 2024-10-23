@@ -1,16 +1,15 @@
-# ListApiKeysRequest
+# ListClassCheckinsGlobals
 
 ## Example Usage
 
 ```typescript
-import { ListApiKeysRequest } from "@pushpress/pushpress/models/operations";
+import { ListClassCheckinsGlobals } from "@pushpress/pushpress/models/operations";
 
-let value: ListApiKeysRequest = {};
+let value: ListClassCheckinsGlobals = {};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `limit`            | *number*           | :heavy_minus_sign: | N/A                |
 | `companyId`        | *string*           | :heavy_minus_sign: | N/A                |

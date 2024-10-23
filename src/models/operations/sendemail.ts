@@ -5,6 +5,10 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type SendEmailGlobals = {
+  companyId?: string | undefined;
+};
+
 /**
  * One or more reply-to addresses
  */
@@ -39,9 +43,53 @@ export type SendEmailRequestBody = {
 };
 
 export type SendEmailRequest = {
-  companyId?: any | undefined;
+  companyId?: string | undefined;
   requestBody: SendEmailRequestBody;
 };
+
+/** @internal */
+export const SendEmailGlobals$inboundSchema: z.ZodType<
+  SendEmailGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type SendEmailGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const SendEmailGlobals$outboundSchema: z.ZodType<
+  SendEmailGlobals$Outbound,
+  z.ZodTypeDef,
+  SendEmailGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendEmailGlobals$ {
+  /** @deprecated use `SendEmailGlobals$inboundSchema` instead. */
+  export const inboundSchema = SendEmailGlobals$inboundSchema;
+  /** @deprecated use `SendEmailGlobals$outboundSchema` instead. */
+  export const outboundSchema = SendEmailGlobals$outboundSchema;
+  /** @deprecated use `SendEmailGlobals$Outbound` instead. */
+  export type Outbound = SendEmailGlobals$Outbound;
+}
 
 /** @internal */
 export const ReplyTo$inboundSchema: z.ZodType<ReplyTo, z.ZodTypeDef, unknown> =
@@ -130,7 +178,7 @@ export const SendEmailRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  "company-id": z.any().optional(),
+  "company-id": z.string().optional(),
   RequestBody: z.lazy(() => SendEmailRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
@@ -141,7 +189,7 @@ export const SendEmailRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SendEmailRequest$Outbound = {
-  "company-id"?: any | undefined;
+  "company-id"?: string | undefined;
   RequestBody: SendEmailRequestBody$Outbound;
 };
 
@@ -151,7 +199,7 @@ export const SendEmailRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendEmailRequest
 > = z.object({
-  companyId: z.any().optional(),
+  companyId: z.string().optional(),
   requestBody: z.lazy(() => SendEmailRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {

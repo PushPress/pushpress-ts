@@ -1,16 +1,15 @@
-# ListApiKeysRequest
+# SendEmailGlobals
 
 ## Example Usage
 
 ```typescript
-import { ListApiKeysRequest } from "@pushpress/pushpress/models/operations";
+import { SendEmailGlobals } from "@pushpress/pushpress/models/operations";
 
-let value: ListApiKeysRequest = {};
+let value: SendEmailGlobals = {};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `limit`            | *number*           | :heavy_minus_sign: | N/A                |
 | `companyId`        | *string*           | :heavy_minus_sign: | N/A                |
