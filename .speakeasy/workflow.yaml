@@ -12,3 +12,6 @@ targets:
     push-press:
         target: typescript
         source: PushPress-OAS
+        publish:
+            npm:
+                token: $npm_token
