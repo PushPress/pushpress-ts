@@ -1,9 +1,9 @@
-speakeasyVersion: 1.421.0
+speakeasyVersion: 1.421.1
 sources:
     PushPress-OAS:
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:e629b39e720241de9a0890c023c20323056218bde8280b013d5a9bb53e870e7d
-        sourceBlobDigest: sha256:10994a1a3e5444eca90d32b4f0d36d2c97728940372155c07d7f1bb7ff698e25
+        sourceRevisionDigest: sha256:2ea8d9556702b2717a1a3890228990d96286da13ebb64e6ff1b210dc0e28084f
+        sourceBlobDigest: sha256:e6deb424845f7334470b032e420a005fdbb9bdc55d15ad9403ba48de82f863d1
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     push-press:
         source: PushPress-OAS
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:e629b39e720241de9a0890c023c20323056218bde8280b013d5a9bb53e870e7d
-        sourceBlobDigest: sha256:10994a1a3e5444eca90d32b4f0d36d2c97728940372155c07d7f1bb7ff698e25
+        sourceRevisionDigest: sha256:2ea8d9556702b2717a1a3890228990d96286da13ebb64e6ff1b210dc0e28084f
+        sourceBlobDigest: sha256:e6deb424845f7334470b032e420a005fdbb9bdc55d15ad9403ba48de82f863d1
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

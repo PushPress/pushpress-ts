@@ -23,14 +23,14 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Send an email
+ * Send an SMS
  *
  * @remarks
- * Send an email from the PushPress platform
+ * Send an SMS message from the PushPress platform
  */
-export async function messagesGet(
+export async function messagesSmsSend(
   client: PushPressCore,
-  request: operations.SendEmailRequest,
+  request: operations.SendSmsRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -46,7 +46,7 @@ export async function messagesGet(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.SendEmailRequest$outboundSchema.parse(value),
+    (value) => operations.SendSmsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -55,7 +55,7 @@ export async function messagesGet(
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
-  const path = pathToFunc("/messages/email/send")();
+  const path = pathToFunc("/messages/sms/send")();
 
   const headers = new Headers({
     "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export async function messagesGet(
   const secConfig = await extractSecurity(client._options.apiKey);
   const securityInput = secConfig == null ? {} : { apiKey: secConfig };
   const context = {
-    operationID: "sendEmail",
+    operationID: "sendSms",
     oAuth2Scopes: [],
     securitySource: client._options.apiKey,
   };

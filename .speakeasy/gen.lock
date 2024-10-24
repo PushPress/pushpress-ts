@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: b3f847905378a873e219e4a65a6f8747
+  docChecksum: fa396108389c1d207848a026e9bf34b0
   docVersion: 3.0.0
-  speakeasyVersion: 1.421.0
+  speakeasyVersion: 1.421.1
   generationVersion: 2.438.15
-  releaseVersion: 0.5.6
-  configChecksum: 001dbd777e38b68ff4b69c2b99a88fe0
+  releaseVersion: 0.5.7
+  configChecksum: c9fe8dadc4f71e589b3e737bf0ace5f2
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -111,6 +111,9 @@ generatedFiles:
   - docs/models/operations/sendpingrequestbody.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
+  - docs/models/operations/sendsmsglobals.md
+  - docs/models/operations/sendsmsrequest.md
+  - docs/models/operations/sendsmsrequestbody.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
@@ -136,9 +139,10 @@ generatedFiles:
   - src/funcs/companyGet.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
-  - src/funcs/messagesGet.ts
+  - src/funcs/messagesEmailSend.ts
   - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
+  - src/funcs/messagesSmsSend.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -188,6 +192,7 @@ generatedFiles:
   - src/models/operations/sendemail.ts
   - src/models/operations/sendping.ts
   - src/models/operations/sendpush.ts
+  - src/models/operations/sendsms.ts
   - src/models/webhooks/appinstalledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
