@@ -7,7 +7,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.get({
+  const result = await pushPress.messages.emailSend({
     requestBody: {
       customer: "<value>",
       subject: "<value>",

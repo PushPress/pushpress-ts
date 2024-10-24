@@ -64,9 +64,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`companyGet`](docs/sdks/company/README.md#get) - Get company information
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get individual customer information
 - [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
-- [`messagesGet`](docs/sdks/messages/README.md#get) - Send an email
+- [`messagesEmailSend`](docs/sdks/messages/README.md#emailsend) - Send an email
 - [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification
+- [`messagesSmsSend`](docs/sdks/messages/README.md#smssend) - Send an SMS
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -118,7 +119,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.get({
+  const result = await pushPress.messages.emailSend({
     requestBody: {
       customer: "<value>",
       subject: "<value>",
@@ -166,7 +167,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.get({
+  const result = await pushPress.messages.emailSend({
     requestBody: {
       customer: "<value>",
       subject: "<value>",
@@ -200,7 +201,7 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `get` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `emailSend` method may throw the following errors:
 
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
@@ -217,7 +218,7 @@ const pushPress = new PushPress({
 async function run() {
   let result;
   try {
-    result = await pushPress.messages.get({
+    result = await pushPress.messages.emailSend({
       requestBody: {
         customer: "<value>",
         subject: "<value>",
@@ -275,7 +276,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.get({
+  const result = await pushPress.messages.emailSend({
     requestBody: {
       customer: "<value>",
       subject: "<value>",
@@ -307,7 +308,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.get({
+  const result = await pushPress.messages.emailSend({
     requestBody: {
       customer: "<value>",
       subject: "<value>",
@@ -395,7 +396,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.get({
+  const result = await pushPress.messages.emailSend({
     requestBody: {
       customer: "<value>",
       subject: "<value>",
