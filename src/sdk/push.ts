@@ -9,12 +9,15 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Push extends ClientSDK {
   /**
-   * Send a push notification
+   * Send an PushNotification
+   *
+   * @remarks
+   * Send a push notification message from the PushPress platform
    */
   async send(
     request: operations.SendPushRequest,
     options?: RequestOptions,
-  ): Promise<void> {
+  ): Promise<operations.SendPushResponseBody> {
     return unwrapAsync(messagesPushSend(
       this,
       request,

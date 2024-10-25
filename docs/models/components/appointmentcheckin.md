@@ -13,6 +13,7 @@ let value: AppointmentCheckin = {
   customer: "usr_12345",
   company: "cli_12345",
   timestamp: 1672531200000,
+  typeId: "appttype_12345",
 };
 ```
 
@@ -25,4 +26,5 @@ let value: AppointmentCheckin = {
 | `customer`                            | *string*                              | :heavy_check_mark:                    | UUID of the customer                  |
 | `company`                             | *string*                              | :heavy_check_mark:                    | UUID of the company                   |
 | `timestamp`                           | *number*                              | :heavy_check_mark:                    | Unix timestamp of the appointment     |
-| `type`                                | *string*                              | :heavy_check_mark:                    | N/A                                   |
+| `kind`                                | *string*                              | :heavy_check_mark:                    | N/A                                   |
+| `typeId`                              | *string*                              | :heavy_check_mark:                    | UUID of the appointment type          |

@@ -15,3 +15,7 @@ targets:
         publish:
             npm:
                 token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas-code-samples
+            blocking: false

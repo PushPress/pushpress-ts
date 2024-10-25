@@ -14,6 +14,11 @@ let value: EventCheckin = {
   company: "cli_12345",
   timestamp: 1672531200000,
   role: "staff",
+  typeId: "cit_12345",
+  type: {
+    id: "cit_12345",
+    name: "Weightlifting Seminar",
+  },
 };
 ```
 
@@ -25,6 +30,8 @@ let value: EventCheckin = {
 | `name`                                             | *string*                                           | :heavy_check_mark:                                 | Name of the event                                  |
 | `customer`                                         | *string*                                           | :heavy_check_mark:                                 | UUID of the customer                               |
 | `company`                                          | *string*                                           | :heavy_check_mark:                                 | UUID of the company                                |
-| `type`                                             | *string*                                           | :heavy_check_mark:                                 | N/A                                                |
+| `kind`                                             | *string*                                           | :heavy_check_mark:                                 | N/A                                                |
 | `timestamp`                                        | *number*                                           | :heavy_check_mark:                                 | Unix timestamp of the event                        |
 | `role`                                             | [components.Role](../../models/components/role.md) | :heavy_check_mark:                                 | N/A                                                |
+| `typeId`                                           | *string*                                           | :heavy_check_mark:                                 | UUID of the event type                             |
+| `type`                                             | [components.Type](../../models/components/type.md) | :heavy_check_mark:                                 | information about the type of the event            |

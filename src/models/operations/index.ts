@@ -16,6 +16,6 @@ export * from "./listcustomers.js";
 export * from "./listeventcheckins.js";
 export * from "./revokeapikey.js";
 export * from "./sendemail.js";
-export * from "./sendping.js";
+export * from "./sendevent.js";
 export * from "./sendpush.js";
 export * from "./sendsms.js";

@@ -23,6 +23,7 @@ let value: ListCustomersData = {
       profileImage: "https://example.com/profile.jpg",
       email: "john@doe.com",
       phone: "+1-800-555-1234",
+      role: "member",
     },
   ],
 };

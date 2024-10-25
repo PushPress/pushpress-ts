@@ -14,6 +14,11 @@ let value: ListClassCheckinsResponse = {
           customer: "usr_12345",
           company: "cli_12345",
           name: "My Class",
+          typeId: "cit_12345",
+          type: {
+            id: "cit_12345",
+            name: "Group HIIT Training",
+          },
           timestamp: 1672531200000,
           role: "attendee",
         },

@@ -14,6 +14,20 @@ export const Role = {
 export type Role = ClosedEnum<typeof Role>;
 
 /**
+ * information about the type of the event
+ */
+export type Type = {
+  /**
+   * UUID of the event type
+   */
+  id: string;
+  /**
+   * Name of the event type
+   */
+  name: string;
+};
+
+/**
  * Checkin for an event
  */
 export type EventCheckin = {
@@ -33,12 +47,20 @@ export type EventCheckin = {
    * UUID of the company
    */
   company: string;
-  type?: "EventCheckin" | undefined;
+  kind?: "event" | undefined;
   /**
    * Unix timestamp of the event
    */
   timestamp: number;
   role: Role;
+  /**
+   * UUID of the event type
+   */
+  typeId: string;
+  /**
+   * information about the type of the event
+   */
+  type: Type;
 };
 
 /** @internal */
@@ -62,6 +84,39 @@ export namespace Role$ {
 }
 
 /** @internal */
+export const Type$inboundSchema: z.ZodType<Type, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+  });
+
+/** @internal */
+export type Type$Outbound = {
+  id: string;
+  name: string;
+};
+
+/** @internal */
+export const Type$outboundSchema: z.ZodType<Type$Outbound, z.ZodTypeDef, Type> =
+  z.object({
+    id: z.string(),
+    name: z.string(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
+  /** @deprecated use `Type$Outbound` instead. */
+  export type Outbound = Type$Outbound;
+}
+
+/** @internal */
 export const EventCheckin$inboundSchema: z.ZodType<
   EventCheckin,
   z.ZodTypeDef,
@@ -71,9 +126,11 @@ export const EventCheckin$inboundSchema: z.ZodType<
   name: z.string(),
   customer: z.string(),
   company: z.string(),
-  type: z.literal("EventCheckin").optional(),
+  kind: z.literal("event").optional(),
   timestamp: z.number(),
   role: Role$inboundSchema,
+  typeId: z.string(),
+  type: z.lazy(() => Type$inboundSchema),
 });
 
 /** @internal */
@@ -82,9 +139,11 @@ export type EventCheckin$Outbound = {
   name: string;
   customer: string;
   company: string;
-  type: "EventCheckin";
+  kind: "event";
   timestamp: number;
   role: string;
+  typeId: string;
+  type: Type$Outbound;
 };
 
 /** @internal */
@@ -97,9 +156,11 @@ export const EventCheckin$outboundSchema: z.ZodType<
   name: z.string(),
   customer: z.string(),
   company: z.string(),
-  type: z.literal("EventCheckin").default("EventCheckin" as const),
+  kind: z.literal("event").default("event" as const),
   timestamp: z.number(),
   role: Role$outboundSchema,
+  typeId: z.string(),
+  type: z.lazy(() => Type$outboundSchema),
 });
 
 /**
