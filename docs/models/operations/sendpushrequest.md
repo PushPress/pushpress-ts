@@ -7,11 +7,10 @@ import { SendPushRequest } from "@pushpress/pushpress/models/operations";
 
 let value: SendPushRequest = {
   requestBody: {
-    deviceTokens: [
+    customers: [
       "<value>",
     ],
-    title: "<value>",
-    body: "<value>",
+    message: "<value>",
   },
 };
 ```

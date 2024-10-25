@@ -6,19 +6,18 @@
 import { SendPushRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: SendPushRequestBody = {
-  deviceTokens: [
+  customers: [
     "<value>",
   ],
-  title: "<value>",
-  body: "<value>",
+  message: "<value>",
 };
 ```
 
 ## Fields
 
-| Field                 | Type                  | Required              | Description           |
-| --------------------- | --------------------- | --------------------- | --------------------- |
-| `deviceTokens`        | *string*[]            | :heavy_check_mark:    | N/A                   |
-| `title`               | *string*              | :heavy_check_mark:    | N/A                   |
-| `body`                | *string*              | :heavy_check_mark:    | N/A                   |
-| `metadata`            | Record<string, *any*> | :heavy_minus_sign:    | N/A                   |
+| Field                                      | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `customers`                                | *string*[]                                 | :heavy_check_mark:                         | customer ids to notify                     |
+| `message`                                  | *string*                                   | :heavy_check_mark:                         | message to send                            |
+| `type`                                     | *string*                                   | :heavy_minus_sign:                         | type of message                            |
+| `data`                                     | *any*                                      | :heavy_minus_sign:                         | Optional metadata to attach to the message |

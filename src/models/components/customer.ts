@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { ClosedEnum } from "../../types/enums.js";
 
 export type Name = {
   /**
@@ -43,6 +44,21 @@ export type Address = {
 };
 
 /**
+ * Customer role in the company (.e.g. admin, coach, member)
+ */
+export const CustomerRole = {
+  Superuser: "superuser",
+  Admin: "admin",
+  Frontdesk: "frontdesk",
+  Coach: "coach",
+  Member: "member",
+} as const;
+/**
+ * Customer role in the company (.e.g. admin, coach, member)
+ */
+export type CustomerRole = ClosedEnum<typeof CustomerRole>;
+
+/**
  * Schema representing a customer, former customer or lead served by Company
  */
 export type Customer = {
@@ -64,6 +80,10 @@ export type Customer = {
    * Phone number of the customer
    */
   phone?: string | undefined;
+  /**
+   * Customer role in the company (.e.g. admin, coach, member)
+   */
+  role: CustomerRole;
 };
 
 /** @internal */
@@ -148,6 +168,25 @@ export namespace Address$ {
 }
 
 /** @internal */
+export const CustomerRole$inboundSchema: z.ZodNativeEnum<typeof CustomerRole> =
+  z.nativeEnum(CustomerRole);
+
+/** @internal */
+export const CustomerRole$outboundSchema: z.ZodNativeEnum<typeof CustomerRole> =
+  CustomerRole$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CustomerRole$ {
+  /** @deprecated use `CustomerRole$inboundSchema` instead. */
+  export const inboundSchema = CustomerRole$inboundSchema;
+  /** @deprecated use `CustomerRole$outboundSchema` instead. */
+  export const outboundSchema = CustomerRole$outboundSchema;
+}
+
+/** @internal */
 export const Customer$inboundSchema: z.ZodType<
   Customer,
   z.ZodTypeDef,
@@ -159,6 +198,7 @@ export const Customer$inboundSchema: z.ZodType<
   profileImage: z.string().optional(),
   email: z.string(),
   phone: z.string().optional(),
+  role: CustomerRole$inboundSchema,
 });
 
 /** @internal */
@@ -169,6 +209,7 @@ export type Customer$Outbound = {
   profileImage?: string | undefined;
   email: string;
   phone?: string | undefined;
+  role: string;
 };
 
 /** @internal */
@@ -183,6 +224,7 @@ export const Customer$outboundSchema: z.ZodType<
   profileImage: z.string().optional(),
   email: z.string(),
   phone: z.string().optional(),
+  role: CustomerRole$outboundSchema,
 });
 
 /**

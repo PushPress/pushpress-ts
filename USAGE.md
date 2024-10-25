@@ -7,14 +7,8 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.emailSend({
-    requestBody: {
-      customer: "<value>",
-      subject: "<value>",
-      text: "<value>",
-      html: "<value>",
-      from: "Fern47@yahoo.com",
-    },
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
   // Handle the result

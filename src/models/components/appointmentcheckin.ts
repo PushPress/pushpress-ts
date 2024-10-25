@@ -28,7 +28,11 @@ export type AppointmentCheckin = {
    * Unix timestamp of the appointment
    */
   timestamp: number;
-  type?: "AppointmentCheckin" | undefined;
+  kind?: "appointment" | undefined;
+  /**
+   * UUID of the appointment type
+   */
+  typeId: string;
 };
 
 /** @internal */
@@ -42,7 +46,8 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   customer: z.string(),
   company: z.string(),
   timestamp: z.number(),
-  type: z.literal("AppointmentCheckin").optional(),
+  kind: z.literal("appointment").optional(),
+  typeId: z.string(),
 });
 
 /** @internal */
@@ -52,7 +57,8 @@ export type AppointmentCheckin$Outbound = {
   customer: string;
   company: string;
   timestamp: number;
-  type: "AppointmentCheckin";
+  kind: "appointment";
+  typeId: string;
 };
 
 /** @internal */
@@ -66,7 +72,8 @@ export const AppointmentCheckin$outboundSchema: z.ZodType<
   customer: z.string(),
   company: z.string(),
   timestamp: z.number(),
-  type: z.literal("AppointmentCheckin").default("AppointmentCheckin" as const),
+  kind: z.literal("appointment").default("appointment" as const),
+  typeId: z.string(),
 });
 
 /**

@@ -6,7 +6,7 @@
 import { GetEventCheckinRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetEventCheckinRequest = {
-  uuid: "110dcdfc-7c1a-42f8-a64c-790999fa56b0",
+  uuid: "86a7ef6c-89e1-410d-acdf-c7c1a2f864c7",
 };
 ```
 

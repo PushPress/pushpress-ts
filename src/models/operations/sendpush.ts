@@ -5,11 +5,27 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 
+export type SendPushGlobals = {
+  companyId?: string | undefined;
+};
+
 export type SendPushRequestBody = {
-  deviceTokens: Array<string>;
-  title: string;
-  body: string;
-  metadata?: { [k: string]: any } | undefined;
+  /**
+   * customer ids to notify
+   */
+  customers: Array<string>;
+  /**
+   * message to send
+   */
+  message: string;
+  /**
+   * type of message
+   */
+  type?: string | undefined;
+  /**
+   * Optional metadata to attach to the message
+   */
+  data?: any | undefined;
 };
 
 export type SendPushRequest = {
@@ -17,28 +33,85 @@ export type SendPushRequest = {
   requestBody: SendPushRequestBody;
 };
 
+export type SendPushInvalidAliases = {
+  externalId: Array<string>;
+};
+
+export type SendPushErrors = {
+  invalidAliases: SendPushInvalidAliases;
+};
+
+/**
+ * Default Response
+ */
+export type SendPushResponseBody = {
+  id?: string | undefined;
+  externalId?: string | null | undefined;
+  errors?: SendPushErrors | undefined;
+};
+
+/** @internal */
+export const SendPushGlobals$inboundSchema: z.ZodType<
+  SendPushGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "company-id": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "company-id": "companyId",
+  });
+});
+
+/** @internal */
+export type SendPushGlobals$Outbound = {
+  "company-id"?: string | undefined;
+};
+
+/** @internal */
+export const SendPushGlobals$outboundSchema: z.ZodType<
+  SendPushGlobals$Outbound,
+  z.ZodTypeDef,
+  SendPushGlobals
+> = z.object({
+  companyId: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    companyId: "company-id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendPushGlobals$ {
+  /** @deprecated use `SendPushGlobals$inboundSchema` instead. */
+  export const inboundSchema = SendPushGlobals$inboundSchema;
+  /** @deprecated use `SendPushGlobals$outboundSchema` instead. */
+  export const outboundSchema = SendPushGlobals$outboundSchema;
+  /** @deprecated use `SendPushGlobals$Outbound` instead. */
+  export type Outbound = SendPushGlobals$Outbound;
+}
+
 /** @internal */
 export const SendPushRequestBody$inboundSchema: z.ZodType<
   SendPushRequestBody,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  device_tokens: z.array(z.string()),
-  title: z.string(),
-  body: z.string(),
-  metadata: z.record(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "device_tokens": "deviceTokens",
-  });
+  customers: z.array(z.string()),
+  message: z.string(),
+  type: z.string().optional(),
+  data: z.any().optional(),
 });
 
 /** @internal */
 export type SendPushRequestBody$Outbound = {
-  device_tokens: Array<string>;
-  title: string;
-  body: string;
-  metadata?: { [k: string]: any } | undefined;
+  customers: Array<string>;
+  message: string;
+  type?: string | undefined;
+  data?: any | undefined;
 };
 
 /** @internal */
@@ -47,14 +120,10 @@ export const SendPushRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendPushRequestBody
 > = z.object({
-  deviceTokens: z.array(z.string()),
-  title: z.string(),
-  body: z.string(),
-  metadata: z.record(z.any()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    deviceTokens: "device_tokens",
-  });
+  customers: z.array(z.string()),
+  message: z.string(),
+  type: z.string().optional(),
+  data: z.any().optional(),
 });
 
 /**
@@ -76,17 +145,18 @@ export const SendPushRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  companyId: z.string().optional(),
+  "company-id": z.string().optional(),
   RequestBody: z.lazy(() => SendPushRequestBody$inboundSchema),
 }).transform((v) => {
   return remap$(v, {
+    "company-id": "companyId",
     "RequestBody": "requestBody",
   });
 });
 
 /** @internal */
 export type SendPushRequest$Outbound = {
-  companyId?: string | undefined;
+  "company-id"?: string | undefined;
   RequestBody: SendPushRequestBody$Outbound;
 };
 
@@ -100,6 +170,7 @@ export const SendPushRequest$outboundSchema: z.ZodType<
   requestBody: z.lazy(() => SendPushRequestBody$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
+    companyId: "company-id",
     requestBody: "RequestBody",
   });
 });
@@ -115,4 +186,142 @@ export namespace SendPushRequest$ {
   export const outboundSchema = SendPushRequest$outboundSchema;
   /** @deprecated use `SendPushRequest$Outbound` instead. */
   export type Outbound = SendPushRequest$Outbound;
+}
+
+/** @internal */
+export const SendPushInvalidAliases$inboundSchema: z.ZodType<
+  SendPushInvalidAliases,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  external_id: z.array(z.string()),
+}).transform((v) => {
+  return remap$(v, {
+    "external_id": "externalId",
+  });
+});
+
+/** @internal */
+export type SendPushInvalidAliases$Outbound = {
+  external_id: Array<string>;
+};
+
+/** @internal */
+export const SendPushInvalidAliases$outboundSchema: z.ZodType<
+  SendPushInvalidAliases$Outbound,
+  z.ZodTypeDef,
+  SendPushInvalidAliases
+> = z.object({
+  externalId: z.array(z.string()),
+}).transform((v) => {
+  return remap$(v, {
+    externalId: "external_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendPushInvalidAliases$ {
+  /** @deprecated use `SendPushInvalidAliases$inboundSchema` instead. */
+  export const inboundSchema = SendPushInvalidAliases$inboundSchema;
+  /** @deprecated use `SendPushInvalidAliases$outboundSchema` instead. */
+  export const outboundSchema = SendPushInvalidAliases$outboundSchema;
+  /** @deprecated use `SendPushInvalidAliases$Outbound` instead. */
+  export type Outbound = SendPushInvalidAliases$Outbound;
+}
+
+/** @internal */
+export const SendPushErrors$inboundSchema: z.ZodType<
+  SendPushErrors,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  invalid_aliases: z.lazy(() => SendPushInvalidAliases$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "invalid_aliases": "invalidAliases",
+  });
+});
+
+/** @internal */
+export type SendPushErrors$Outbound = {
+  invalid_aliases: SendPushInvalidAliases$Outbound;
+};
+
+/** @internal */
+export const SendPushErrors$outboundSchema: z.ZodType<
+  SendPushErrors$Outbound,
+  z.ZodTypeDef,
+  SendPushErrors
+> = z.object({
+  invalidAliases: z.lazy(() => SendPushInvalidAliases$outboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    invalidAliases: "invalid_aliases",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendPushErrors$ {
+  /** @deprecated use `SendPushErrors$inboundSchema` instead. */
+  export const inboundSchema = SendPushErrors$inboundSchema;
+  /** @deprecated use `SendPushErrors$outboundSchema` instead. */
+  export const outboundSchema = SendPushErrors$outboundSchema;
+  /** @deprecated use `SendPushErrors$Outbound` instead. */
+  export type Outbound = SendPushErrors$Outbound;
+}
+
+/** @internal */
+export const SendPushResponseBody$inboundSchema: z.ZodType<
+  SendPushResponseBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+  external_id: z.nullable(z.string()).optional(),
+  errors: z.lazy(() => SendPushErrors$inboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "external_id": "externalId",
+  });
+});
+
+/** @internal */
+export type SendPushResponseBody$Outbound = {
+  id?: string | undefined;
+  external_id?: string | null | undefined;
+  errors?: SendPushErrors$Outbound | undefined;
+};
+
+/** @internal */
+export const SendPushResponseBody$outboundSchema: z.ZodType<
+  SendPushResponseBody$Outbound,
+  z.ZodTypeDef,
+  SendPushResponseBody
+> = z.object({
+  id: z.string().optional(),
+  externalId: z.nullable(z.string()).optional(),
+  errors: z.lazy(() => SendPushErrors$outboundSchema).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    externalId: "external_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendPushResponseBody$ {
+  /** @deprecated use `SendPushResponseBody$inboundSchema` instead. */
+  export const inboundSchema = SendPushResponseBody$inboundSchema;
+  /** @deprecated use `SendPushResponseBody$outboundSchema` instead. */
+  export const outboundSchema = SendPushResponseBody$outboundSchema;
+  /** @deprecated use `SendPushResponseBody$Outbound` instead. */
+  export type Outbound = SendPushResponseBody$Outbound;
 }

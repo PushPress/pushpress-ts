@@ -64,10 +64,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`companyGet`](docs/sdks/company/README.md#get) - Get company information
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get individual customer information
 - [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
-- [`messagesEmailSend`](docs/sdks/messages/README.md#emailsend) - Send an email
-- [`messagesNotificationsSendPing`](docs/sdks/notifications/README.md#sendping) - Send a ping notification via Ably Realtime
-- [`messagesPushSend`](docs/sdks/push/README.md#send) - Send a push notification
-- [`messagesSmsSend`](docs/sdks/messages/README.md#smssend) - Send an SMS
+- [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an email
+- [`messagesPushSend`](docs/sdks/push/README.md#send) - Send an PushNotification
+- [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send an event via Ably Realtime
+- [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -119,14 +119,8 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.emailSend({
-    requestBody: {
-      customer: "<value>",
-      subject: "<value>",
-      text: "<value>",
-      html: "<value>",
-      from: "Fern47@yahoo.com",
-    },
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   }, {
     retries: {
       strategy: "backoff",
@@ -167,14 +161,8 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.emailSend({
-    requestBody: {
-      customer: "<value>",
-      subject: "<value>",
-      text: "<value>",
-      html: "<value>",
-      from: "Fern47@yahoo.com",
-    },
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
   // Handle the result
@@ -201,7 +189,7 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `emailSend` method may throw the following errors:
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `get` method may throw the following errors:
 
 | Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
@@ -218,14 +206,8 @@ const pushPress = new PushPress({
 async function run() {
   let result;
   try {
-    result = await pushPress.messages.emailSend({
-      requestBody: {
-        customer: "<value>",
-        subject: "<value>",
-        text: "<value>",
-        html: "<value>",
-        from: "Fern47@yahoo.com",
-      },
+    result = await pushPress.checkins.event.get({
+      uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
     });
 
     // Handle the result
@@ -276,14 +258,8 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.emailSend({
-    requestBody: {
-      customer: "<value>",
-      subject: "<value>",
-      text: "<value>",
-      html: "<value>",
-      from: "Fern47@yahoo.com",
-    },
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
   // Handle the result
@@ -308,14 +284,8 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.emailSend({
-    requestBody: {
-      customer: "<value>",
-      subject: "<value>",
-      text: "<value>",
-      html: "<value>",
-      from: "Fern47@yahoo.com",
-    },
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
   // Handle the result
@@ -396,14 +366,8 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.messages.emailSend({
-    requestBody: {
-      customer: "<value>",
-      subject: "<value>",
-      text: "<value>",
-      html: "<value>",
-      from: "Fern47@yahoo.com",
-    },
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
   // Handle the result

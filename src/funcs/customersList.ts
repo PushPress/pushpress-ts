@@ -68,6 +68,7 @@ export async function customersList(
   const query = encodeFormQuery({
     "limit": payload.limit,
     "page": payload.page,
+    "role": payload.role,
   });
 
   const headers = new Headers({

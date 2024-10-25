@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: fa396108389c1d207848a026e9bf34b0
+  docChecksum: 7e4e8d37eeacaece849e380e657a16f6
   docVersion: 3.0.0
-  speakeasyVersion: 1.421.1
+  speakeasyVersion: 1.421.3
   generationVersion: 2.438.15
-  releaseVersion: 0.5.7
-  configChecksum: c9fe8dadc4f71e589b3e737bf0ace5f2
+  releaseVersion: 0.5.8
+  configChecksum: a2c7ec3aceac8b00147eb3371c1c0467
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -52,17 +52,21 @@ generatedFiles:
   - docs/models/components/appointmentcheckin.md
   - docs/models/components/classcheckin.md
   - docs/models/components/classcheckinrole.md
+  - docs/models/components/classcheckintype.md
   - docs/models/components/company.md
   - docs/models/components/customer.md
+  - docs/models/components/customerrole.md
   - docs/models/components/eventcheckin.md
   - docs/models/components/name.md
   - docs/models/components/role.md
   - docs/models/components/security.md
+  - docs/models/components/type.md
   - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
   - docs/models/operations/createapikeysecurity.md
   - docs/models/operations/data.md
+  - docs/models/operations/errors.md
   - docs/models/operations/getapikeyglobals.md
   - docs/models/operations/getapikeyrequest.md
   - docs/models/operations/getapikeysecurity.md
@@ -76,6 +80,7 @@ generatedFiles:
   - docs/models/operations/getcustomerrequest.md
   - docs/models/operations/geteventcheckinglobals.md
   - docs/models/operations/geteventcheckinrequest.md
+  - docs/models/operations/invalidaliases.md
   - docs/models/operations/listapikeysdata.md
   - docs/models/operations/listapikeysglobals.md
   - docs/models/operations/listapikeysrequest.md
@@ -100,20 +105,29 @@ generatedFiles:
   - docs/models/operations/listeventcheckinsrequest.md
   - docs/models/operations/listeventcheckinsresponse.md
   - docs/models/operations/listeventcheckinsresponsebody.md
+  - docs/models/operations/one.md
   - docs/models/operations/replyto.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
+  - docs/models/operations/role.md
   - docs/models/operations/sendemailglobals.md
   - docs/models/operations/sendemailrequest.md
   - docs/models/operations/sendemailrequestbody.md
-  - docs/models/operations/sendpingrequest.md
-  - docs/models/operations/sendpingrequestbody.md
+  - docs/models/operations/sendeventglobals.md
+  - docs/models/operations/sendeventrequest.md
+  - docs/models/operations/sendeventrequestbody.md
+  - docs/models/operations/sendeventresponsebody.md
+  - docs/models/operations/sendpusherrors.md
+  - docs/models/operations/sendpushglobals.md
+  - docs/models/operations/sendpushinvalidaliases.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
+  - docs/models/operations/sendpushresponsebody.md
   - docs/models/operations/sendsmsglobals.md
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
+  - docs/models/operations/two.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
@@ -140,8 +154,8 @@ generatedFiles:
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
   - src/funcs/messagesEmailSend.ts
-  - src/funcs/messagesNotificationsSendPing.ts
   - src/funcs/messagesPushSend.ts
+  - src/funcs/messagesRealtimeSend.ts
   - src/funcs/messagesSmsSend.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -190,7 +204,7 @@ generatedFiles:
   - src/models/operations/listeventcheckins.ts
   - src/models/operations/revokeapikey.ts
   - src/models/operations/sendemail.ts
-  - src/models/operations/sendping.ts
+  - src/models/operations/sendevent.ts
   - src/models/operations/sendpush.ts
   - src/models/operations/sendsms.ts
   - src/models/webhooks/appinstalledevent.ts
@@ -204,12 +218,14 @@ generatedFiles:
   - src/sdk/class.ts
   - src/sdk/company.ts
   - src/sdk/customers.ts
+  - src/sdk/email.ts
   - src/sdk/event.ts
   - src/sdk/index.ts
   - src/sdk/messages.ts
-  - src/sdk/notifications.ts
   - src/sdk/push.ts
+  - src/sdk/realtime.ts
   - src/sdk/sdk.ts
+  - src/sdk/sms.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -327,7 +343,7 @@ examples:
   sendPush:
     speakeasy-default-send-push:
       requestBody:
-        application/json: {"device_tokens": ["<value>", "<value>"], "title": "<value>", "body": "<value>"}
+        application/json: {"customers": ["<value>", "<value>"], "message": "<value>"}
   listCompanies:
     speakeasy-default-list-companies:
       responses:
@@ -350,7 +366,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234"}]}}
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
   getCustomer:
     speakeasy-default-get-customer:
       parameters:
@@ -360,7 +376,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234"}
+          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
   listCheckins:
     speakeasy-default-list-checkins:
       parameters:
@@ -439,12 +455,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "type": "EventCheckin", "timestamp": 1672531200000, "role": "staff"}
+          application/json: {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
   listEventCheckins:
     speakeasy-default-list-event-checkins:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "type": "EventCheckin", "timestamp": 1672531200000, "role": "staff"}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
   getClassCheckin:
     speakeasy-default-get-class-checkin:
       parameters:
@@ -453,12 +469,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "type": "ClassCheckin", "timestamp": 1672531200000, "role": "attendee"}
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}
   listClassCheckins:
     speakeasy-default-list-class-checkins:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "type": "ClassCheckin", "timestamp": 1672531200000, "role": "attendee"}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}]}}
   getAppointmentCheckin:
     speakeasy-default-get-appointment-checkin:
       parameters:
@@ -467,12 +483,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "type": "AppointmentCheckin"}
+          application/json: {"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}
   listAppointmentCheckins:
     speakeasy-default-list-appointment-checkins:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "type": "AppointmentCheckin"}]}}
+          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}]}}
   sendSms:
     speakeasy-default-send-sms:
       requestBody:
@@ -480,3 +496,7 @@ examples:
       responses:
         "200":
           application/json: "<value>"
+  sendEvent:
+    speakeasy-default-send-event:
+      requestBody:
+        application/json: {"channel": "<value>", "event": "<value>"}

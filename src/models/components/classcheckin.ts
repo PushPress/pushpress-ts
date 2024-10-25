@@ -5,6 +5,20 @@
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * information about the type of the class
+ */
+export type ClassCheckinType = {
+  /**
+   * UUID of the class type
+   */
+  id: string;
+  /**
+   * Name of the class type
+   */
+  name: string;
+};
+
 export const ClassCheckinRole = {
   Staff: "staff",
   Coach: "coach",
@@ -33,13 +47,60 @@ export type ClassCheckin = {
    * Name of the checked-in class
    */
   name: string;
-  type?: "ClassCheckin" | undefined;
+  /**
+   * UUID of the class type
+   */
+  typeId: string;
+  /**
+   * information about the type of the class
+   */
+  type: ClassCheckinType;
+  kind?: "class" | undefined;
   /**
    * Unix timestamp of the checkin
    */
   timestamp: number;
   role: ClassCheckinRole;
 };
+
+/** @internal */
+export const ClassCheckinType$inboundSchema: z.ZodType<
+  ClassCheckinType,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
+/** @internal */
+export type ClassCheckinType$Outbound = {
+  id: string;
+  name: string;
+};
+
+/** @internal */
+export const ClassCheckinType$outboundSchema: z.ZodType<
+  ClassCheckinType$Outbound,
+  z.ZodTypeDef,
+  ClassCheckinType
+> = z.object({
+  id: z.string(),
+  name: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ClassCheckinType$ {
+  /** @deprecated use `ClassCheckinType$inboundSchema` instead. */
+  export const inboundSchema = ClassCheckinType$inboundSchema;
+  /** @deprecated use `ClassCheckinType$outboundSchema` instead. */
+  export const outboundSchema = ClassCheckinType$outboundSchema;
+  /** @deprecated use `ClassCheckinType$Outbound` instead. */
+  export type Outbound = ClassCheckinType$Outbound;
+}
 
 /** @internal */
 export const ClassCheckinRole$inboundSchema: z.ZodNativeEnum<
@@ -72,7 +133,9 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   customer: z.string(),
   company: z.string(),
   name: z.string(),
-  type: z.literal("ClassCheckin").optional(),
+  typeId: z.string(),
+  type: z.lazy(() => ClassCheckinType$inboundSchema),
+  kind: z.literal("class").optional(),
   timestamp: z.number(),
   role: ClassCheckinRole$inboundSchema,
 });
@@ -83,7 +146,9 @@ export type ClassCheckin$Outbound = {
   customer: string;
   company: string;
   name: string;
-  type: "ClassCheckin";
+  typeId: string;
+  type: ClassCheckinType$Outbound;
+  kind: "class";
   timestamp: number;
   role: string;
 };
@@ -98,7 +163,9 @@ export const ClassCheckin$outboundSchema: z.ZodType<
   customer: z.string(),
   company: z.string(),
   name: z.string(),
-  type: z.literal("ClassCheckin").default("ClassCheckin" as const),
+  typeId: z.string(),
+  type: z.lazy(() => ClassCheckinType$outboundSchema),
+  kind: z.literal("class").default("class" as const),
   timestamp: z.number(),
   role: ClassCheckinRole$outboundSchema,
 });

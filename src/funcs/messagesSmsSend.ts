@@ -91,7 +91,7 @@ export async function messagesSmsSend(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "4XX", "5XX"],
+    errorCodes: ["401", "403", "4XX", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig
       || {
@@ -122,7 +122,7 @@ export async function messagesSmsSend(
     | ConnectionError
   >(
     M.json(200, z.any()),
-    M.fail([401, "4XX", "5XX"]),
+    M.fail([401, 403, "4XX", "5XX"]),
   )(response);
   if (!result.ok) {
     return result;

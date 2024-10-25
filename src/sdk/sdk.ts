@@ -10,11 +10,6 @@ import { Customers } from "./customers.js";
 import { Messages } from "./messages.js";
 
 export class PushPress extends ClientSDK {
-  private _messages?: Messages;
-  get messages(): Messages {
-    return (this._messages ??= new Messages(this._options));
-  }
-
   private _checkins?: Checkins;
   get checkins(): Checkins {
     return (this._checkins ??= new Checkins(this._options));
@@ -33,5 +28,10 @@ export class PushPress extends ClientSDK {
   private _apiKeys?: APIKeys;
   get apiKeys(): APIKeys {
     return (this._apiKeys ??= new APIKeys(this._options));
+  }
+
+  private _messages?: Messages;
+  get messages(): Messages {
+    return (this._messages ??= new Messages(this._options));
   }
 }

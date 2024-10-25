@@ -14,6 +14,11 @@ let value: Data = {
       company: "cli_12345",
       timestamp: 1672531200000,
       role: "staff",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Weightlifting Seminar",
+      },
     },
   ],
 };

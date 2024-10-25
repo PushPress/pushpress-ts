@@ -8,14 +8,14 @@ One or more reply-to addresses
 ### `string`
 
 ```typescript
-const value: string = "Micheal.Little@yahoo.com";
+const value: string = "Brice_Marks@yahoo.com";
 ```
 
 ### `string[]`
 
 ```typescript
 const value: string[] = [
-  "Vincenzo56@hotmail.com",
+  "Holden89@yahoo.com",
 ];
 ```
 
