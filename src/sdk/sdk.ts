@@ -8,6 +8,7 @@ import { Checkins } from "./checkins.js";
 import { Company } from "./company.js";
 import { Customers } from "./customers.js";
 import { Messages } from "./messages.js";
+import { Webhooks } from "./webhooks.js";
 
 export class PushPress extends ClientSDK {
   private _checkins?: Checkins;
@@ -33,5 +34,10 @@ export class PushPress extends ClientSDK {
   private _messages?: Messages;
   get messages(): Messages {
     return (this._messages ??= new Messages(this._options));
+  }
+
+  private _webhooks?: Webhooks;
+  get webhooks(): Webhooks {
+    return (this._webhooks ??= new Webhooks(this._options));
   }
 }
