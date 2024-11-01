@@ -68,6 +68,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send an PushNotification
 - [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send an event via Ably Realtime
 - [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
+- [`webhooksActivate`](docs/sdks/webhooks/README.md#activate) - Activate a Platform Webhook
+- [`webhooksCreate`](docs/sdks/webhooks/README.md#create) - Create a Platform Webhook
+- [`webhooksDelete`](docs/sdks/webhooks/README.md#delete) - Delete a Platform Webhook
+- [`webhooksGet`](docs/sdks/webhooks/README.md#get) - Get a Platform Webhook
+- [`webhooksList`](docs/sdks/webhooks/README.md#list) - List Platform Webhooks
+- [`webhooksRotateSecret`](docs/sdks/webhooks/README.md#rotatesecret) - Rotate a Platform Webhook Signing Secret
+- [`webhooksUpdate`](docs/sdks/webhooks/README.md#update) - Update a Platform Webhook
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

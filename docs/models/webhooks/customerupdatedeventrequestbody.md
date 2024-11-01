@@ -24,7 +24,7 @@ let value: CustomerUpdatedEventRequestBody = {
     phone: "+1-800-555-1234",
     role: "member",
   },
-  created: 919483,
+  created: 76956,
   eventType: "updated",
 };
 ```

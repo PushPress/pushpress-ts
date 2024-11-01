@@ -24,7 +24,7 @@ let value: CustomerDeletedEventRequestBody = {
     phone: "+1-800-555-1234",
     role: "member",
   },
-  created: 714242,
+  created: 518835,
   eventType: "deleted",
 };
 ```

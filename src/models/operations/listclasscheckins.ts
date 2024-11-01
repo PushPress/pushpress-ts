@@ -96,8 +96,8 @@ export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  page: z.number().int().optional(),
-  limit: z.number().int().optional(),
+  page: z.number().int().default(1),
+  limit: z.number().int().default(10),
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
@@ -110,8 +110,8 @@ export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ListClassCheckinsRequest$Outbound = {
-  page?: number | undefined;
-  limit?: number | undefined;
+  page: number;
+  limit: number;
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
@@ -124,8 +124,8 @@ export const ListClassCheckinsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListClassCheckinsRequest
 > = z.object({
-  page: z.number().int().optional(),
-  limit: z.number().int().optional(),
+  page: z.number().int().default(1),
+  limit: z.number().int().default(10),
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),

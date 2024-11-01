@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 7e4e8d37eeacaece849e380e657a16f6
+  docChecksum: ef39b52ea26d3da00befe705c5062cc8
   docVersion: 3.0.0
-  speakeasyVersion: 1.421.3
-  generationVersion: 2.438.15
-  releaseVersion: 0.5.8
-  configChecksum: a2c7ec3aceac8b00147eb3371c1c0467
+  speakeasyVersion: 1.423.5
+  generationVersion: 2.445.1
+  releaseVersion: 0.5.9
+  configChecksum: e190e223a21f9f0d315dc8b0cc92579d
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -61,12 +61,24 @@ generatedFiles:
   - docs/models/components/role.md
   - docs/models/components/security.md
   - docs/models/components/type.md
+  - docs/models/operations/activatewebhookglobals.md
+  - docs/models/operations/activatewebhookrequest.md
+  - docs/models/operations/activatewebhookresponsebody.md
   - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
   - docs/models/operations/createapikeysecurity.md
+  - docs/models/operations/createwebhookeventtypes.md
+  - docs/models/operations/createwebhookglobals.md
+  - docs/models/operations/createwebhookrequest.md
+  - docs/models/operations/createwebhookrequestbody.md
+  - docs/models/operations/createwebhookresponsebody.md
   - docs/models/operations/data.md
+  - docs/models/operations/deletewebhookglobals.md
+  - docs/models/operations/deletewebhookrequest.md
+  - docs/models/operations/deletewebhookresponsebody.md
   - docs/models/operations/errors.md
+  - docs/models/operations/eventtypes.md
   - docs/models/operations/getapikeyglobals.md
   - docs/models/operations/getapikeyrequest.md
   - docs/models/operations/getapikeysecurity.md
@@ -80,6 +92,10 @@ generatedFiles:
   - docs/models/operations/getcustomerrequest.md
   - docs/models/operations/geteventcheckinglobals.md
   - docs/models/operations/geteventcheckinrequest.md
+  - docs/models/operations/getwebhookeventtypes.md
+  - docs/models/operations/getwebhookglobals.md
+  - docs/models/operations/getwebhookrequest.md
+  - docs/models/operations/getwebhookresponsebody.md
   - docs/models/operations/invalidaliases.md
   - docs/models/operations/listapikeysdata.md
   - docs/models/operations/listapikeysglobals.md
@@ -105,12 +121,20 @@ generatedFiles:
   - docs/models/operations/listeventcheckinsrequest.md
   - docs/models/operations/listeventcheckinsresponse.md
   - docs/models/operations/listeventcheckinsresponsebody.md
+  - docs/models/operations/listwebhooksdata.md
+  - docs/models/operations/listwebhookseventtypes.md
+  - docs/models/operations/listwebhooksglobals.md
+  - docs/models/operations/listwebhooksrequest.md
+  - docs/models/operations/listwebhooksresponsebody.md
   - docs/models/operations/one.md
   - docs/models/operations/replyto.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
   - docs/models/operations/role.md
+  - docs/models/operations/rotatewebhooksigningsecretglobals.md
+  - docs/models/operations/rotatewebhooksigningsecretrequest.md
+  - docs/models/operations/rotatewebhooksigningsecretresponsebody.md
   - docs/models/operations/sendemailglobals.md
   - docs/models/operations/sendemailrequest.md
   - docs/models/operations/sendemailrequestbody.md
@@ -128,6 +152,12 @@ generatedFiles:
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
   - docs/models/operations/two.md
+  - docs/models/operations/updatewebhookeventtypes.md
+  - docs/models/operations/updatewebhookglobals.md
+  - docs/models/operations/updatewebhookrequest.md
+  - docs/models/operations/updatewebhookrequestbody.md
+  - docs/models/operations/updatewebhookresponsebody.md
+  - docs/models/operations/updatewebhookwebhookseventtypes.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventeventtype.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
@@ -157,6 +187,13 @@ generatedFiles:
   - src/funcs/messagesPushSend.ts
   - src/funcs/messagesRealtimeSend.ts
   - src/funcs/messagesSmsSend.ts
+  - src/funcs/webhooksActivate.ts
+  - src/funcs/webhooksCreate.ts
+  - src/funcs/webhooksDelete.ts
+  - src/funcs/webhooksGet.ts
+  - src/funcs/webhooksList.ts
+  - src/funcs/webhooksRotateSecret.ts
+  - src/funcs/webhooksUpdate.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -189,24 +226,31 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/activatewebhook.ts
   - src/models/operations/createapikey.ts
+  - src/models/operations/createwebhook.ts
+  - src/models/operations/deletewebhook.ts
   - src/models/operations/getapikey.ts
   - src/models/operations/getappointmentcheckin.ts
   - src/models/operations/getclasscheckin.ts
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/geteventcheckin.ts
+  - src/models/operations/getwebhook.ts
   - src/models/operations/index.ts
   - src/models/operations/listapikeys.ts
   - src/models/operations/listappointmentcheckins.ts
   - src/models/operations/listclasscheckins.ts
   - src/models/operations/listcustomers.ts
   - src/models/operations/listeventcheckins.ts
+  - src/models/operations/listwebhooks.ts
   - src/models/operations/revokeapikey.ts
+  - src/models/operations/rotatewebhooksigningsecret.ts
   - src/models/operations/sendemail.ts
   - src/models/operations/sendevent.ts
   - src/models/operations/sendpush.ts
   - src/models/operations/sendsms.ts
+  - src/models/operations/updatewebhook.ts
   - src/models/webhooks/appinstalledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
@@ -226,6 +270,7 @@ generatedFiles:
   - src/sdk/realtime.ts
   - src/sdk/sdk.ts
   - src/sdk/sms.ts
+  - src/sdk/webhooks.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -398,10 +443,12 @@ examples:
   createWebhook:
     speakeasy-default-create-webhook:
       requestBody:
-        application/json: {"url": "https://your-webhook-url.com", "events": ["event_1", "event_2"]}
+        application/json: {"url": "https://your-webhook-url.com", "eventTypes": ["customer.deleted"]}
       responses:
         "200":
           application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "4865.89", "updated": "6384.24", "company": "Collier Group"}
+        "201":
+          application/json: {"id": "<id>", "url": "https://concerned-battle.net/", "eventTypes": ["checkin.created", "checkin.updated", "checkin.created"], "signingSecret": "<value>"}
   listWebhooks:
     speakeasy-default-list-webhooks:
       parameters:
@@ -410,33 +457,39 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "2297.17", "updated": "1528.38", "company": "Nikolaus Group"}
+          application/json: {"data": [{"id": "<id>", "url": "https://remorseful-concentration.biz", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://productive-affect.net", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://roasted-language.name/", "eventTypes": [], "signingSecret": "<value>"}]}
   getWebhook:
     speakeasy-default-get-webhook:
       parameters:
         path:
           webhook_id: "<id>"
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
         header: {}
       responses:
         "200":
-          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "7003.46", "updated": "5588.34", "company": "Lebsack and Sons"}
+          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "eventTypes": ["checkin.deleted", "checkin.created", "app.uninstalled"], "signingSecret": "<value>"}
   updateWebhook:
     speakeasy-default-update-webhook:
       parameters:
         path:
           webhook_id: "<id>"
+          uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85"
         header: {}
       requestBody:
-        application/json: "<value>"
+        application/json: {"eventTypes": ["customer.updated", "checkin.deleted", "app.uninstalled"]}
       responses:
         "200":
-          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "5204.28", "updated": "7657.65", "company": "Crist Inc"}
+          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "eventTypes": ["customer.updated", "app.installed"], "signingSecret": "<value>"}
   deleteWebhook:
     speakeasy-default-delete-webhook:
       parameters:
         path:
           webhook_id: "<id>"
+          uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e"
         header: {}
+      responses:
+        "204":
+          application/json: "No Content"
   getApiKey:
     speakeasy-default-get-api-key:
       parameters:
@@ -500,3 +553,21 @@ examples:
     speakeasy-default-send-event:
       requestBody:
         application/json: {"channel": "<value>", "event": "<value>"}
+  activateWebhook:
+    speakeasy-default-activate-webhook:
+      parameters:
+        path:
+          uuid: "83e8dc47-a7ee-4254-a515-a8964d09a8f7"
+        header: {}
+      responses:
+        "204":
+          application/json: "No Content"
+  rotateWebhookSigningSecret:
+    speakeasy-default-rotate-webhook-signing-secret:
+      parameters:
+        path:
+          uuid: "c38e2dba-6b03-41e1-9888-dda2ad31b95e"
+        header: {}
+      responses:
+        "200":
+          application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
