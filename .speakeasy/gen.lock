@@ -5,8 +5,8 @@ management:
   docVersion: 3.0.0
   speakeasyVersion: 1.423.5
   generationVersion: 2.445.1
-  releaseVersion: 0.5.9
-  configChecksum: e190e223a21f9f0d315dc8b0cc92579d
+  releaseVersion: 0.6.0
+  configChecksum: 61eb267e25ab215eaebef5a6dca1a19c
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
