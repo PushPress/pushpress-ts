@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: ef39b52ea26d3da00befe705c5062cc8
+  docChecksum: 968018a54b065c061bc193c1aa419cb9
   docVersion: 3.0.0
-  speakeasyVersion: 1.423.5
+  speakeasyVersion: 1.424.0
   generationVersion: 2.445.1
-  releaseVersion: 0.6.0
-  configChecksum: 61eb267e25ab215eaebef5a6dca1a19c
+  releaseVersion: 0.7.0
+  configChecksum: 07ac8e0d6554e69d6c141e7ce9856ecf
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -49,7 +49,11 @@ generatedFiles:
   - USAGE.md
   - docs/models/components/address.md
   - docs/models/components/apikey.md
+  - docs/models/components/app.md
+  - docs/models/components/appinstall.md
+  - docs/models/components/appinstallcompany.md
   - docs/models/components/appointmentcheckin.md
+  - docs/models/components/checkin.md
   - docs/models/components/classcheckin.md
   - docs/models/components/classcheckinrole.md
   - docs/models/components/classcheckintype.md
@@ -57,6 +61,7 @@ generatedFiles:
   - docs/models/components/customer.md
   - docs/models/components/customerrole.md
   - docs/models/components/eventcheckin.md
+  - docs/models/components/installation.md
   - docs/models/components/name.md
   - docs/models/components/role.md
   - docs/models/components/security.md
@@ -159,14 +164,11 @@ generatedFiles:
   - docs/models/operations/updatewebhookresponsebody.md
   - docs/models/operations/updatewebhookwebhookseventtypes.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
-  - docs/models/webhooks/customercreatedeventeventtype.md
-  - docs/models/webhooks/customercreatedeventrequestbody.md
-  - docs/models/webhooks/customerdeletedeventeventtype.md
-  - docs/models/webhooks/customerdeletedeventrequestbody.md
-  - docs/models/webhooks/customerupdatedeventeventtype.md
-  - docs/models/webhooks/customerupdatedeventrequestbody.md
-  - docs/models/webhooks/data.md
-  - docs/models/webhooks/eventtype.md
+  - docs/models/webhooks/appuninstalledeventevent.md
+  - docs/models/webhooks/appuninstalledeventrequestbody.md
+  - docs/models/webhooks/checkincreatedeventevent.md
+  - docs/models/webhooks/checkincreatedeventrequestbody.md
+  - docs/models/webhooks/event.md
   - jsr.json
   - package.json
   - src/core.ts
@@ -215,7 +217,9 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/models/components/apikey.ts
+  - src/models/components/appinstall.ts
   - src/models/components/appointmentcheckin.ts
+  - src/models/components/checkin.ts
   - src/models/components/classcheckin.ts
   - src/models/components/company.ts
   - src/models/components/customer.ts
@@ -252,9 +256,8 @@ generatedFiles:
   - src/models/operations/sendsms.ts
   - src/models/operations/updatewebhook.ts
   - src/models/webhooks/appinstalledevent.ts
-  - src/models/webhooks/customercreatedevent.ts
-  - src/models/webhooks/customerdeletedevent.ts
-  - src/models/webhooks/customerupdatedevent.ts
+  - src/models/webhooks/appuninstalledevent.ts
+  - src/models/webhooks/checkincreatedevent.ts
   - src/models/webhooks/index.ts
   - src/sdk/apikeys.ts
   - src/sdk/appointment.ts

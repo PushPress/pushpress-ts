@@ -12,7 +12,7 @@ export class Sms extends ClientSDK {
    * Send an SMS
    *
    * @remarks
-   * Send an SMS message from the PushPress platform
+   * Send an SMS message from the PushPress platform. Note that only first party apps can send SMS messages
    */
   async send(
     request: operations.SendSmsRequest,

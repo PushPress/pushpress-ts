@@ -12,7 +12,7 @@ export class Push extends ClientSDK {
    * Send an PushNotification
    *
    * @remarks
-   * Send a push notification message from the PushPress platform
+   * Send a push notification message from the PushPress platform. Note that only first party apps can send push notifications
    */
   async send(
     request: operations.SendPushRequest,

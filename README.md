@@ -10,7 +10,10 @@ PushPress Typescript SDK
 <!-- Start Summary [summary] -->
 ## Summary
 
-Platform API: PushPress Platform API
+PushPress Platform API: The PushPress Platform API provides a comprehensive suite of endpoints designed 
+to facilitate seamless integration with the PushPress ecosystem. 
+This API allows developers to interact programmatically with the PushPress platform, 
+enabling the automation of various tasks and the extension of platform capabilities.
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -251,16 +254,15 @@ You can override the default server globally by passing a server name to the `se
 
 | Name | Server | Variables |
 | ----- | ------ | --------- |
-| `local` | `http://localhost:3033` | None |
-| `development` | `https://api.pushpressdev.com/v3` | None |
-| `staging` | `https://api.pushpressstage.com/v3` | None |
 | `production` | `https://api.pushpress.com/v3` | None |
+| `staging` | `https://api.pushpressstage.com/v3` | None |
+| `development` | `https://api.pushpressdev.com/v3` | None |
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
-  server: "production",
+  server: "development",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -286,7 +288,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
-  serverURL: "http://localhost:3033",
+  serverURL: "https://api.pushpress.com/v3",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 

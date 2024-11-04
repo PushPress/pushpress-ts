@@ -12,7 +12,7 @@ export class Realtime extends ClientSDK {
    * Send an event via Ably Realtime
    *
    * @remarks
-   * Send an event to a channel via Ably Realtime. This is used to notify users notify clients of server side events.
+   * Send an event to a websocket channel via Ably Realtime. Note that only first party apps can send realtime notifications
    */
   async send(
     request: operations.SendEventRequest,

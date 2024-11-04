@@ -3,6 +3,5 @@
  */
 
 export * from "./appinstalledevent.js";
-export * from "./customercreatedevent.js";
-export * from "./customerdeletedevent.js";
-export * from "./customerupdatedevent.js";
+export * from "./appuninstalledevent.js";
+export * from "./checkincreatedevent.js";

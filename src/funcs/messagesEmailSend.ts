@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Send an email
  *
  * @remarks
- * Send an email from the PushPress platform
+ * Send an email from the PushPress platform. Note that only first party apps can send emails
  */
 export async function messagesEmailSend(
   client: PushPressCore,

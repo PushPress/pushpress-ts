@@ -24,6 +24,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Get an event checkin
+ *
+ * @remarks
+ * Get the details for an class checkin by its id, returns the class checkin object
  */
 export async function checkinsClassGet(
   client: PushPressCore,

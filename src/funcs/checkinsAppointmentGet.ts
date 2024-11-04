@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Get an appointment checkin
  *
  * @remarks
- * Get an appointment checkin
+ * Get the details for an appointment checkin by its id, returns the appointment checkin object
  */
 export async function checkinsAppointmentGet(
   client: PushPressCore,

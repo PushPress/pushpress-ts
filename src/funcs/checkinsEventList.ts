@@ -32,7 +32,7 @@ import {
  * Get a list of event checkins
  *
  * @remarks
- * list event checkins
+ * List event checkins. Includes details about the event
  */
 export async function checkinsEventList(
   client: PushPressCore,
