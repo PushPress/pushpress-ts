@@ -25,7 +25,7 @@ import { Result } from "../types/fp.js";
  * Send an PushNotification
  *
  * @remarks
- * Send a push notification message from the PushPress platform
+ * Send a push notification message from the PushPress platform. Note that only first party apps can send push notifications
  */
 export async function messagesPushSend(
   client: PushPressCore,

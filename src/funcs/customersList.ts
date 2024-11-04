@@ -32,7 +32,7 @@ import {
  * Get a list of customers
  *
  * @remarks
- * Get a list of customers
+ * Get a list of customers in the current company
  */
 export async function customersList(
   client: PushPressCore,

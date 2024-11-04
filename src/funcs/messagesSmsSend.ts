@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Send an SMS
  *
  * @remarks
- * Send an SMS message from the PushPress platform
+ * Send an SMS message from the PushPress platform. Note that only first party apps can send SMS messages
  */
 export async function messagesSmsSend(
   client: PushPressCore,

@@ -15,7 +15,7 @@ export class Appointment extends ClientSDK {
    * Get an appointment checkin
    *
    * @remarks
-   * Get an appointment checkin
+   * Get the details for an appointment checkin by its id, returns the appointment checkin object
    */
   async get(
     request: operations.GetAppointmentCheckinRequest,
@@ -32,7 +32,7 @@ export class Appointment extends ClientSDK {
    * Get a list of appointment checkins
    *
    * @remarks
-   * list appointment checkins
+   * list appointment checkins. Includes details about the appointment, customer and staff
    */
   async list(
     request: operations.ListAppointmentCheckinsRequest,

@@ -13,6 +13,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 export class Class extends ClientSDK {
   /**
    * Get an event checkin
+   *
+   * @remarks
+   * Get the details for an class checkin by its id, returns the class checkin object
    */
   async get(
     request: operations.GetClassCheckinRequest,

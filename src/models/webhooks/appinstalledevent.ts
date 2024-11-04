@@ -4,76 +4,43 @@
 
 import * as z from "zod";
 import { ClosedEnum } from "../../types/enums.js";
+import * as components from "../components/index.js";
 
-export type Data = {
-  company?: string | undefined;
-  app?: string | undefined;
-};
-
-export const EventType = {
-  Created: "created",
+export const Event = {
+  AppInstalled: "app.installed",
 } as const;
-export type EventType = ClosedEnum<typeof EventType>;
+export type Event = ClosedEnum<typeof Event>;
 
 export type AppInstalledEventRequestBody = {
-  data: Data;
+  /**
+   * Information about the app
+   */
+  data: components.AppInstall;
   /**
    * Unix timestamp of the creation event
    */
   created: number;
-  eventType: EventType;
+  event: Event;
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    company: z.string().optional(),
-    app: z.string().optional(),
-  });
+export const Event$inboundSchema: z.ZodNativeEnum<typeof Event> = z.nativeEnum(
+  Event,
+);
 
 /** @internal */
-export type Data$Outbound = {
-  company?: string | undefined;
-  app?: string | undefined;
-};
-
-/** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    company: z.string().optional(),
-    app: z.string().optional(),
-  });
+export const Event$outboundSchema: z.ZodNativeEnum<typeof Event> =
+  Event$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
-}
-
-/** @internal */
-export const EventType$inboundSchema: z.ZodNativeEnum<typeof EventType> = z
-  .nativeEnum(EventType);
-
-/** @internal */
-export const EventType$outboundSchema: z.ZodNativeEnum<typeof EventType> =
-  EventType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventType$ {
-  /** @deprecated use `EventType$inboundSchema` instead. */
-  export const inboundSchema = EventType$inboundSchema;
-  /** @deprecated use `EventType$outboundSchema` instead. */
-  export const outboundSchema = EventType$outboundSchema;
+export namespace Event$ {
+  /** @deprecated use `Event$inboundSchema` instead. */
+  export const inboundSchema = Event$inboundSchema;
+  /** @deprecated use `Event$outboundSchema` instead. */
+  export const outboundSchema = Event$outboundSchema;
 }
 
 /** @internal */
@@ -82,16 +49,16 @@ export const AppInstalledEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => Data$inboundSchema),
+  data: components.AppInstall$inboundSchema,
   created: z.number().int(),
-  eventType: EventType$inboundSchema,
+  event: Event$inboundSchema,
 });
 
 /** @internal */
 export type AppInstalledEventRequestBody$Outbound = {
-  data: Data$Outbound;
+  data: components.AppInstall$Outbound;
   created: number;
-  eventType: string;
+  event: string;
 };
 
 /** @internal */
@@ -100,9 +67,9 @@ export const AppInstalledEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AppInstalledEventRequestBody
 > = z.object({
-  data: z.lazy(() => Data$outboundSchema),
+  data: components.AppInstall$outboundSchema,
   created: z.number().int(),
-  eventType: EventType$outboundSchema,
+  event: Event$outboundSchema,
 });
 
 /**

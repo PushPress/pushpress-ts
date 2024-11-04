@@ -8,29 +8,24 @@ import { RetryConfig } from "./retries.js";
 import { Params, pathToFunc } from "./url.js";
 
 /**
- * local
+ * production
  */
-export const ServerLocal = "local";
-/**
- * development
- */
-export const ServerDevelopment = "development";
+export const ServerProduction = "production";
 /**
  * staging
  */
 export const ServerStaging = "staging";
 /**
- * production
+ * development
  */
-export const ServerProduction = "production";
+export const ServerDevelopment = "development";
 /**
  * Contains the list of servers available to the SDK
  */
 export const ServerList = {
-  [ServerLocal]: "http://localhost:3033",
-  [ServerDevelopment]: "https://api.pushpressdev.com/v3",
-  [ServerStaging]: "https://api.pushpressstage.com/v3",
   [ServerProduction]: "https://api.pushpress.com/v3",
+  [ServerStaging]: "https://api.pushpressstage.com/v3",
+  [ServerDevelopment]: "https://api.pushpressdev.com/v3",
 } as const;
 
 export type SDKOptions = {
@@ -64,7 +59,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
   const params: Params = {};
 
   if (!serverURL) {
-    const server = options.server ?? ServerLocal;
+    const server = options.server ?? ServerProduction;
     serverURL = ServerList[server] || "";
   }
 
@@ -75,8 +70,8 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "3.0.0",
-  sdkVersion: "0.6.0",
+  sdkVersion: "0.7.0",
   genVersion: "2.445.1",
   userAgent:
-    "speakeasy-sdk/typescript 0.6.0 2.445.1 3.0.0 @pushpress/pushpress",
+    "speakeasy-sdk/typescript 0.7.0 2.445.1 3.0.0 @pushpress/pushpress",
 } as const;

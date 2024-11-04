@@ -32,7 +32,7 @@ import {
  * Get a list of appointment checkins
  *
  * @remarks
- * list appointment checkins
+ * list appointment checkins. Includes details about the appointment, customer and staff
  */
 export async function checkinsAppointmentList(
   client: PushPressCore,

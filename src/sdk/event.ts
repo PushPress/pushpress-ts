@@ -15,7 +15,7 @@ export class Event extends ClientSDK {
    * Get a class checkin
    *
    * @remarks
-   * get an event checkin
+   * Get the details for an event checkin by its id, returns the event checkin object
    */
   async get(
     request: operations.GetEventCheckinRequest,
@@ -32,7 +32,7 @@ export class Event extends ClientSDK {
    * Get a list of event checkins
    *
    * @remarks
-   * list event checkins
+   * List event checkins. Includes details about the event
    */
   async list(
     request: operations.ListEventCheckinsRequest,
