@@ -201,9 +201,9 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 
 In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `get` method may throw the following errors:
 
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4XX, 5XX        | \*/\*           |
+| Error Type      | Status Code | Content Type |
+| --------------- | ----------- | ------------ |
+| errors.SDKError | 4XX, 5XX    | \*/\*        |
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
@@ -250,13 +250,15 @@ Validation errors can also occur when either method arguments or data returned f
 
 ### Select Server by Name
 
-You can override the default server globally by passing a server name to the `server` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally by passing a server name to the `server: keyof typeof ServerList` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name | Server | Variables |
-| ----- | ------ | --------- |
-| `production` | `https://api.pushpress.com/v3` | None |
-| `staging` | `https://api.pushpressstage.com/v3` | None |
-| `development` | `https://api.pushpressdev.com/v3` | None |
+| Name          | Server                              |
+| ------------- | ----------------------------------- |
+| `production`  | `https://api.pushpress.com/v3`      |
+| `staging`     | `https://api.pushpressstage.com/v3` |
+| `development` | `https://api.pushpressdev.com/v3`   |
+
+#### Example
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
@@ -279,11 +281,9 @@ run();
 
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -362,9 +362,9 @@ const sdk = new PushPress({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                 | Type                 | Scheme               | Environment Variable |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| `apiKey`             | apiKey               | API key              | `PUSHPRESS_API_KEY`  |
+| Name     | Type   | Scheme  | Environment Variable |
+| -------- | ------ | ------- | -------------------- |
+| `apiKey` | apiKey | API key | `PUSHPRESS_API_KEY`  |
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript

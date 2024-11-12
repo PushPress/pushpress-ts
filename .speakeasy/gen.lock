@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e45a2eeb-6880-43cc-81d9-11cca423adc1
 management:
-  docChecksum: 968018a54b065c061bc193c1aa419cb9
+  docChecksum: f9ecf1e5899f91e3d3fb0d398c99625f
   docVersion: 3.0.0
-  speakeasyVersion: 1.424.0
-  generationVersion: 2.445.1
-  releaseVersion: 0.7.0
-  configChecksum: 07ac8e0d6554e69d6c141e7ce9856ecf
+  speakeasyVersion: 1.438.1
+  generationVersion: 2.457.2
+  releaseVersion: 0.8.0
+  configChecksum: 2a620c0cb0b52334eff985f44d4c40b8
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -14,11 +14,11 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.2
+    core: 3.18.3
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
-    envVarSecurityUsage: 0.1.1
+    envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -32,9 +32,9 @@ features:
     pagination: 2.82.7
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.1.0
+    sdkHooks: 0.2.0
     serverIDs: 2.81.2
-    unions: 2.85.7
+    unions: 2.85.8
     webhooks: 1.0.0
 generatedFiles:
   - .devcontainer/README.md
@@ -81,7 +81,6 @@ generatedFiles:
   - docs/models/operations/data.md
   - docs/models/operations/deletewebhookglobals.md
   - docs/models/operations/deletewebhookrequest.md
-  - docs/models/operations/deletewebhookresponsebody.md
   - docs/models/operations/errors.md
   - docs/models/operations/eventtypes.md
   - docs/models/operations/getapikeyglobals.md
@@ -146,10 +145,7 @@ generatedFiles:
   - docs/models/operations/sendeventglobals.md
   - docs/models/operations/sendeventrequest.md
   - docs/models/operations/sendeventrequestbody.md
-  - docs/models/operations/sendeventresponsebody.md
-  - docs/models/operations/sendpusherrors.md
   - docs/models/operations/sendpushglobals.md
-  - docs/models/operations/sendpushinvalidaliases.md
   - docs/models/operations/sendpushrequest.md
   - docs/models/operations/sendpushrequestbody.md
   - docs/models/operations/sendpushresponsebody.md

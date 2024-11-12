@@ -19,13 +19,12 @@ export interface Env {
 }
 
 export const envSchema: z.ZodType<Env, z.ZodTypeDef, unknown> = z.object({
-  PUSHPRESS_API_KEY: z.string(),
+  PUSHPRESS_API_KEY: z.string().optional(),
 
-  PUSHPRESS_COMPANY_ID: z.string(),
+  PUSHPRESS_COMPANY_ID: z.string().optional(),
 
-  PUSHPRESS_DEBUG: z.coerce.boolean(),
-})
-  .partial();
+  PUSHPRESS_DEBUG: z.coerce.boolean().optional(),
+});
 
 let envMemo: Env | undefined = undefined;
 /**

@@ -33,12 +33,12 @@ export type SendPushRequest = {
   requestBody: SendPushRequestBody;
 };
 
-export type SendPushInvalidAliases = {
+export type InvalidAliases = {
   externalId: Array<string>;
 };
 
-export type SendPushErrors = {
-  invalidAliases: SendPushInvalidAliases;
+export type Errors = {
+  invalidAliases: InvalidAliases;
 };
 
 /**
@@ -47,7 +47,7 @@ export type SendPushErrors = {
 export type SendPushResponseBody = {
   id?: string | undefined;
   externalId?: string | null | undefined;
-  errors?: SendPushErrors | undefined;
+  errors?: Errors | undefined;
 };
 
 /** @internal */
@@ -189,8 +189,8 @@ export namespace SendPushRequest$ {
 }
 
 /** @internal */
-export const SendPushInvalidAliases$inboundSchema: z.ZodType<
-  SendPushInvalidAliases,
+export const InvalidAliases$inboundSchema: z.ZodType<
+  InvalidAliases,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -202,15 +202,15 @@ export const SendPushInvalidAliases$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type SendPushInvalidAliases$Outbound = {
+export type InvalidAliases$Outbound = {
   external_id: Array<string>;
 };
 
 /** @internal */
-export const SendPushInvalidAliases$outboundSchema: z.ZodType<
-  SendPushInvalidAliases$Outbound,
+export const InvalidAliases$outboundSchema: z.ZodType<
+  InvalidAliases$Outbound,
   z.ZodTypeDef,
-  SendPushInvalidAliases
+  InvalidAliases
 > = z.object({
   externalId: z.array(z.string()),
 }).transform((v) => {
@@ -223,40 +223,37 @@ export const SendPushInvalidAliases$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SendPushInvalidAliases$ {
-  /** @deprecated use `SendPushInvalidAliases$inboundSchema` instead. */
-  export const inboundSchema = SendPushInvalidAliases$inboundSchema;
-  /** @deprecated use `SendPushInvalidAliases$outboundSchema` instead. */
-  export const outboundSchema = SendPushInvalidAliases$outboundSchema;
-  /** @deprecated use `SendPushInvalidAliases$Outbound` instead. */
-  export type Outbound = SendPushInvalidAliases$Outbound;
+export namespace InvalidAliases$ {
+  /** @deprecated use `InvalidAliases$inboundSchema` instead. */
+  export const inboundSchema = InvalidAliases$inboundSchema;
+  /** @deprecated use `InvalidAliases$outboundSchema` instead. */
+  export const outboundSchema = InvalidAliases$outboundSchema;
+  /** @deprecated use `InvalidAliases$Outbound` instead. */
+  export type Outbound = InvalidAliases$Outbound;
 }
 
 /** @internal */
-export const SendPushErrors$inboundSchema: z.ZodType<
-  SendPushErrors,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  invalid_aliases: z.lazy(() => SendPushInvalidAliases$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "invalid_aliases": "invalidAliases",
+export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
+  .object({
+    invalid_aliases: z.lazy(() => InvalidAliases$inboundSchema),
+  }).transform((v) => {
+    return remap$(v, {
+      "invalid_aliases": "invalidAliases",
+    });
   });
-});
 
 /** @internal */
-export type SendPushErrors$Outbound = {
-  invalid_aliases: SendPushInvalidAliases$Outbound;
+export type Errors$Outbound = {
+  invalid_aliases: InvalidAliases$Outbound;
 };
 
 /** @internal */
-export const SendPushErrors$outboundSchema: z.ZodType<
-  SendPushErrors$Outbound,
+export const Errors$outboundSchema: z.ZodType<
+  Errors$Outbound,
   z.ZodTypeDef,
-  SendPushErrors
+  Errors
 > = z.object({
-  invalidAliases: z.lazy(() => SendPushInvalidAliases$outboundSchema),
+  invalidAliases: z.lazy(() => InvalidAliases$outboundSchema),
 }).transform((v) => {
   return remap$(v, {
     invalidAliases: "invalid_aliases",
@@ -267,13 +264,13 @@ export const SendPushErrors$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SendPushErrors$ {
-  /** @deprecated use `SendPushErrors$inboundSchema` instead. */
-  export const inboundSchema = SendPushErrors$inboundSchema;
-  /** @deprecated use `SendPushErrors$outboundSchema` instead. */
-  export const outboundSchema = SendPushErrors$outboundSchema;
-  /** @deprecated use `SendPushErrors$Outbound` instead. */
-  export type Outbound = SendPushErrors$Outbound;
+export namespace Errors$ {
+  /** @deprecated use `Errors$inboundSchema` instead. */
+  export const inboundSchema = Errors$inboundSchema;
+  /** @deprecated use `Errors$outboundSchema` instead. */
+  export const outboundSchema = Errors$outboundSchema;
+  /** @deprecated use `Errors$Outbound` instead. */
+  export type Outbound = Errors$Outbound;
 }
 
 /** @internal */
@@ -284,7 +281,7 @@ export const SendPushResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   external_id: z.nullable(z.string()).optional(),
-  errors: z.lazy(() => SendPushErrors$inboundSchema).optional(),
+  errors: z.lazy(() => Errors$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "external_id": "externalId",
@@ -295,7 +292,7 @@ export const SendPushResponseBody$inboundSchema: z.ZodType<
 export type SendPushResponseBody$Outbound = {
   id?: string | undefined;
   external_id?: string | null | undefined;
-  errors?: SendPushErrors$Outbound | undefined;
+  errors?: Errors$Outbound | undefined;
 };
 
 /** @internal */
@@ -306,7 +303,7 @@ export const SendPushResponseBody$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string().optional(),
   externalId: z.nullable(z.string()).optional(),
-  errors: z.lazy(() => SendPushErrors$outboundSchema).optional(),
+  errors: z.lazy(() => Errors$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     externalId: "external_id",
