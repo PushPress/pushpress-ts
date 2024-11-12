@@ -14,8 +14,9 @@ generation:
     requestResponseComponentNamesFeb2024: true
   auth:
     oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
 typescript:
-  version: 0.7.0
+  version: 0.8.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -23,6 +24,7 @@ typescript:
   additionalPackageJSON: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
   enumFormat: union
   envVarPrefix: PUSHPRESS
   flattenGlobalSecurity: true

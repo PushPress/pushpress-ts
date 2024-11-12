@@ -17,7 +17,7 @@ export class Realtime extends ClientSDK {
   async send(
     request: operations.SendEventRequest,
     options?: RequestOptions,
-  ): Promise<operations.SendEventResponseBody> {
+  ): Promise<void> {
     return unwrapAsync(messagesRealtimeSend(
       this,
       request,

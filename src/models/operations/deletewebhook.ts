@@ -4,7 +4,6 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { ClosedEnum } from "../../types/enums.js";
 
 export type DeleteWebhookGlobals = {
   companyId?: string | undefined;
@@ -14,19 +13,6 @@ export type DeleteWebhookRequest = {
   uuid: string;
   companyId?: string | undefined;
 };
-
-/**
- * Default Response
- */
-export const DeleteWebhookResponseBody = {
-  NoContent: "No Content",
-} as const;
-/**
- * Default Response
- */
-export type DeleteWebhookResponseBody = ClosedEnum<
-  typeof DeleteWebhookResponseBody
->;
 
 /** @internal */
 export const DeleteWebhookGlobals$inboundSchema: z.ZodType<
@@ -117,25 +103,4 @@ export namespace DeleteWebhookRequest$ {
   export const outboundSchema = DeleteWebhookRequest$outboundSchema;
   /** @deprecated use `DeleteWebhookRequest$Outbound` instead. */
   export type Outbound = DeleteWebhookRequest$Outbound;
-}
-
-/** @internal */
-export const DeleteWebhookResponseBody$inboundSchema: z.ZodNativeEnum<
-  typeof DeleteWebhookResponseBody
-> = z.nativeEnum(DeleteWebhookResponseBody);
-
-/** @internal */
-export const DeleteWebhookResponseBody$outboundSchema: z.ZodNativeEnum<
-  typeof DeleteWebhookResponseBody
-> = DeleteWebhookResponseBody$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteWebhookResponseBody$ {
-  /** @deprecated use `DeleteWebhookResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteWebhookResponseBody$inboundSchema;
-  /** @deprecated use `DeleteWebhookResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteWebhookResponseBody$outboundSchema;
 }

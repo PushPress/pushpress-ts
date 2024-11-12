@@ -77,10 +77,28 @@ export async function apiKeysCreate(
       },
     ],
   );
+
   const context = {
     operationID: "createApiKey",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: security,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 500,
+          maxInterval: 60000,
+          exponent: 1.5,
+          maxElapsedTime: 3600000,
+        },
+        retryConnectionErrors: true,
+      }
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["5XX"],
   };
 
   const requestRes = client._createRequest(context, {
@@ -99,19 +117,8 @@ export async function apiKeysCreate(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["403", "4XX", "5XX"],
-    retryConfig: options?.retries
-      || client._options.retryConfig
-      || {
-        strategy: "backoff",
-        backoff: {
-          initialInterval: 500,
-          maxInterval: 60000,
-          exponent: 1.5,
-          maxElapsedTime: 3600000,
-        },
-        retryConnectionErrors: true,
-      },
-    retryCodes: options?.retryCodes || ["5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;
