@@ -48,25 +48,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add @pushpress/pushpress
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add @pushpress/pushpress
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add @pushpress/pushpress
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add @pushpress/pushpress zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
