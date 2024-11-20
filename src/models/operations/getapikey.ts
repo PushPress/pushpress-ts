@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetApiKeyGlobals = {
   companyId?: string | undefined;
@@ -62,6 +65,24 @@ export namespace GetApiKeyGlobals$ {
   export type Outbound = GetApiKeyGlobals$Outbound;
 }
 
+export function getApiKeyGlobalsToJSON(
+  getApiKeyGlobals: GetApiKeyGlobals,
+): string {
+  return JSON.stringify(
+    GetApiKeyGlobals$outboundSchema.parse(getApiKeyGlobals),
+  );
+}
+
+export function getApiKeyGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiKeyGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiKeyGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiKeyGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetApiKeySecurity$inboundSchema: z.ZodType<
   GetApiKeySecurity,
@@ -96,6 +117,24 @@ export namespace GetApiKeySecurity$ {
   export const outboundSchema = GetApiKeySecurity$outboundSchema;
   /** @deprecated use `GetApiKeySecurity$Outbound` instead. */
   export type Outbound = GetApiKeySecurity$Outbound;
+}
+
+export function getApiKeySecurityToJSON(
+  getApiKeySecurity: GetApiKeySecurity,
+): string {
+  return JSON.stringify(
+    GetApiKeySecurity$outboundSchema.parse(getApiKeySecurity),
+  );
+}
+
+export function getApiKeySecurityFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiKeySecurity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiKeySecurity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiKeySecurity' from JSON`,
+  );
 }
 
 /** @internal */
@@ -143,4 +182,22 @@ export namespace GetApiKeyRequest$ {
   export const outboundSchema = GetApiKeyRequest$outboundSchema;
   /** @deprecated use `GetApiKeyRequest$Outbound` instead. */
   export type Outbound = GetApiKeyRequest$Outbound;
+}
+
+export function getApiKeyRequestToJSON(
+  getApiKeyRequest: GetApiKeyRequest,
+): string {
+  return JSON.stringify(
+    GetApiKeyRequest$outboundSchema.parse(getApiKeyRequest),
+  );
+}
+
+export function getApiKeyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiKeyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiKeyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiKeyRequest' from JSON`,
+  );
 }

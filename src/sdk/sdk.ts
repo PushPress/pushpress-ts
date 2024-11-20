@@ -7,6 +7,7 @@ import { APIKeys } from "./apikeys.js";
 import { Checkins } from "./checkins.js";
 import { Company } from "./company.js";
 import { Customers } from "./customers.js";
+import { Keys } from "./keys.js";
 import { Messages } from "./messages.js";
 import { Webhooks } from "./webhooks.js";
 
@@ -24,6 +25,11 @@ export class PushPress extends ClientSDK {
   private _customers?: Customers;
   get customers(): Customers {
     return (this._customers ??= new Customers(this._options));
+  }
+
+  private _keys?: Keys;
+  get keys(): Keys {
+    return (this._keys ??= new Keys(this._options));
   }
 
   private _apiKeys?: APIKeys;

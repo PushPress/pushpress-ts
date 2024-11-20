@@ -3,8 +3,11 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const Event = {
   AppInstalled: "app.installed",
@@ -83,4 +86,24 @@ export namespace AppInstalledEventRequestBody$ {
   export const outboundSchema = AppInstalledEventRequestBody$outboundSchema;
   /** @deprecated use `AppInstalledEventRequestBody$Outbound` instead. */
   export type Outbound = AppInstalledEventRequestBody$Outbound;
+}
+
+export function appInstalledEventRequestBodyToJSON(
+  appInstalledEventRequestBody: AppInstalledEventRequestBody,
+): string {
+  return JSON.stringify(
+    AppInstalledEventRequestBody$outboundSchema.parse(
+      appInstalledEventRequestBody,
+    ),
+  );
+}
+
+export function appInstalledEventRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<AppInstalledEventRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AppInstalledEventRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AppInstalledEventRequestBody' from JSON`,
+  );
 }

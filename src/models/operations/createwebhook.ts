@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateWebhookGlobals = {
   companyId?: string | undefined;
@@ -116,6 +119,24 @@ export namespace CreateWebhookGlobals$ {
   export type Outbound = CreateWebhookGlobals$Outbound;
 }
 
+export function createWebhookGlobalsToJSON(
+  createWebhookGlobals: CreateWebhookGlobals,
+): string {
+  return JSON.stringify(
+    CreateWebhookGlobals$outboundSchema.parse(createWebhookGlobals),
+  );
+}
+
+export function createWebhookGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateWebhookGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateWebhookGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateWebhookGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const EventTypes$inboundSchema: z.ZodNativeEnum<typeof EventTypes> = z
   .nativeEnum(EventTypes);
@@ -174,6 +195,24 @@ export namespace CreateWebhookRequestBody$ {
   export type Outbound = CreateWebhookRequestBody$Outbound;
 }
 
+export function createWebhookRequestBodyToJSON(
+  createWebhookRequestBody: CreateWebhookRequestBody,
+): string {
+  return JSON.stringify(
+    CreateWebhookRequestBody$outboundSchema.parse(createWebhookRequestBody),
+  );
+}
+
+export function createWebhookRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateWebhookRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateWebhookRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateWebhookRequestBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateWebhookRequest$inboundSchema: z.ZodType<
   CreateWebhookRequest,
@@ -221,6 +260,24 @@ export namespace CreateWebhookRequest$ {
   export const outboundSchema = CreateWebhookRequest$outboundSchema;
   /** @deprecated use `CreateWebhookRequest$Outbound` instead. */
   export type Outbound = CreateWebhookRequest$Outbound;
+}
+
+export function createWebhookRequestToJSON(
+  createWebhookRequest: CreateWebhookRequest,
+): string {
+  return JSON.stringify(
+    CreateWebhookRequest$outboundSchema.parse(createWebhookRequest),
+  );
+}
+
+export function createWebhookRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateWebhookRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateWebhookRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateWebhookRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -290,4 +347,22 @@ export namespace CreateWebhookResponseBody$ {
   export const outboundSchema = CreateWebhookResponseBody$outboundSchema;
   /** @deprecated use `CreateWebhookResponseBody$Outbound` instead. */
   export type Outbound = CreateWebhookResponseBody$Outbound;
+}
+
+export function createWebhookResponseBodyToJSON(
+  createWebhookResponseBody: CreateWebhookResponseBody,
+): string {
+  return JSON.stringify(
+    CreateWebhookResponseBody$outboundSchema.parse(createWebhookResponseBody),
+  );
+}
+
+export function createWebhookResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateWebhookResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateWebhookResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateWebhookResponseBody' from JSON`,
+  );
 }

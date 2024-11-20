@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SendSmsGlobals = {
   companyId?: string | undefined;
@@ -69,6 +72,20 @@ export namespace SendSmsGlobals$ {
   export type Outbound = SendSmsGlobals$Outbound;
 }
 
+export function sendSmsGlobalsToJSON(sendSmsGlobals: SendSmsGlobals): string {
+  return JSON.stringify(SendSmsGlobals$outboundSchema.parse(sendSmsGlobals));
+}
+
+export function sendSmsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SendSmsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendSmsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendSmsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const SendSmsRequestBody$inboundSchema: z.ZodType<
   SendSmsRequestBody,
@@ -106,6 +123,24 @@ export namespace SendSmsRequestBody$ {
   export const outboundSchema = SendSmsRequestBody$outboundSchema;
   /** @deprecated use `SendSmsRequestBody$Outbound` instead. */
   export type Outbound = SendSmsRequestBody$Outbound;
+}
+
+export function sendSmsRequestBodyToJSON(
+  sendSmsRequestBody: SendSmsRequestBody,
+): string {
+  return JSON.stringify(
+    SendSmsRequestBody$outboundSchema.parse(sendSmsRequestBody),
+  );
+}
+
+export function sendSmsRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendSmsRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendSmsRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendSmsRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +190,18 @@ export namespace SendSmsRequest$ {
   export const outboundSchema = SendSmsRequest$outboundSchema;
   /** @deprecated use `SendSmsRequest$Outbound` instead. */
   export type Outbound = SendSmsRequest$Outbound;
+}
+
+export function sendSmsRequestToJSON(sendSmsRequest: SendSmsRequest): string {
+  return JSON.stringify(SendSmsRequest$outboundSchema.parse(sendSmsRequest));
+}
+
+export function sendSmsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<SendSmsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendSmsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendSmsRequest' from JSON`,
+  );
 }

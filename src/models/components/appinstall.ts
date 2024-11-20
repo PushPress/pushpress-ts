@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AppInstallCompany = {
   /**
@@ -70,6 +73,24 @@ export namespace AppInstallCompany$ {
   export type Outbound = AppInstallCompany$Outbound;
 }
 
+export function appInstallCompanyToJSON(
+  appInstallCompany: AppInstallCompany,
+): string {
+  return JSON.stringify(
+    AppInstallCompany$outboundSchema.parse(appInstallCompany),
+  );
+}
+
+export function appInstallCompanyFromJSON(
+  jsonString: string,
+): SafeParseResult<AppInstallCompany, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AppInstallCompany$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AppInstallCompany' from JSON`,
+  );
+}
+
 /** @internal */
 export const App$inboundSchema: z.ZodType<App, z.ZodTypeDef, unknown> = z
   .object({
@@ -98,6 +119,20 @@ export namespace App$ {
   export const outboundSchema = App$outboundSchema;
   /** @deprecated use `App$Outbound` instead. */
   export type Outbound = App$Outbound;
+}
+
+export function appToJSON(app: App): string {
+  return JSON.stringify(App$outboundSchema.parse(app));
+}
+
+export function appFromJSON(
+  jsonString: string,
+): SafeParseResult<App, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => App$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'App' from JSON`,
+  );
 }
 
 /** @internal */
@@ -134,6 +169,20 @@ export namespace Installation$ {
   export const outboundSchema = Installation$outboundSchema;
   /** @deprecated use `Installation$Outbound` instead. */
   export type Outbound = Installation$Outbound;
+}
+
+export function installationToJSON(installation: Installation): string {
+  return JSON.stringify(Installation$outboundSchema.parse(installation));
+}
+
+export function installationFromJSON(
+  jsonString: string,
+): SafeParseResult<Installation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Installation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Installation' from JSON`,
+  );
 }
 
 /** @internal */
@@ -176,4 +225,18 @@ export namespace AppInstall$ {
   export const outboundSchema = AppInstall$outboundSchema;
   /** @deprecated use `AppInstall$Outbound` instead. */
   export type Outbound = AppInstall$Outbound;
+}
+
+export function appInstallToJSON(appInstall: AppInstall): string {
+  return JSON.stringify(AppInstall$outboundSchema.parse(appInstall));
+}
+
+export function appInstallFromJSON(
+  jsonString: string,
+): SafeParseResult<AppInstall, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AppInstall$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AppInstall' from JSON`,
+  );
 }

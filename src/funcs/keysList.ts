@@ -9,6 +9,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { resolveSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -16,7 +17,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
@@ -24,7 +25,7 @@ import { Result } from "../types/fp.js";
 /**
  * Get a list of active keys in a given company
  */
-export async function apiKeysList(
+export async function keysList(
   client: PushPressCore,
   security: operations.ListApiKeysSecurity,
   request: operations.ListApiKeysRequest,
@@ -32,7 +33,13 @@ export async function apiKeysList(
 ): Promise<
   Result<
     operations.ListApiKeysResponseBody,
-    | SDKError
+    | errors.Unauthorized
+    | errors.NotFound
+    | errors.Timeout
+    | errors.BadRequest
+    | errors.RateLimited
+    | errors.InternalServerError
+    | APIError
     | SDKValidationError
     | UnexpectedClientError
     | InvalidRequestError
@@ -116,7 +123,32 @@ export async function apiKeysList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["403", "4XX", "5XX"],
+    errorCodes: [
+      "401",
+      "403",
+      "404",
+      "407",
+      "408",
+      "413",
+      "414",
+      "415",
+      "422",
+      "429",
+      "431",
+      "4XX",
+      "500",
+      "501",
+      "502",
+      "503",
+      "504",
+      "505",
+      "506",
+      "507",
+      "508",
+      "510",
+      "511",
+      "5XX",
+    ],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -125,9 +157,19 @@ export async function apiKeysList(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     operations.ListApiKeysResponseBody,
-    | SDKError
+    | errors.Unauthorized
+    | errors.NotFound
+    | errors.Timeout
+    | errors.BadRequest
+    | errors.RateLimited
+    | errors.InternalServerError
+    | APIError
     | SDKValidationError
     | UnexpectedClientError
     | InvalidRequestError
@@ -136,8 +178,17 @@ export async function apiKeysList(
     | ConnectionError
   >(
     M.json(200, operations.ListApiKeysResponseBody$inboundSchema),
-    M.fail([403, "4XX", "5XX"]),
-  )(response);
+    M.jsonErr([401, 403, 407, 511], errors.Unauthorized$inboundSchema),
+    M.jsonErr([404, 501, 505], errors.NotFound$inboundSchema),
+    M.jsonErr([408, 504], errors.Timeout$inboundSchema),
+    M.jsonErr([413, 414, 415, 422, 431, 510], errors.BadRequest$inboundSchema),
+    M.jsonErr(429, errors.RateLimited$inboundSchema),
+    M.jsonErr(
+      [500, 502, 503, 506, 507, 508],
+      errors.InternalServerError$inboundSchema,
+    ),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;
   }

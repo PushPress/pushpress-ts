@@ -5,7 +5,8 @@ sources:
         inputs:
             - location: https://api.pushpressdev.com/platform/docs/json
         overlays:
-            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-modifications-overlay.yaml
+            - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-suggest-error-types.yaml
         registry:
             location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas
 targets:

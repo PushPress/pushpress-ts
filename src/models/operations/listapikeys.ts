@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListApiKeysGlobals = {
   companyId?: string | undefined;
@@ -74,6 +77,24 @@ export namespace ListApiKeysGlobals$ {
   export type Outbound = ListApiKeysGlobals$Outbound;
 }
 
+export function listApiKeysGlobalsToJSON(
+  listApiKeysGlobals: ListApiKeysGlobals,
+): string {
+  return JSON.stringify(
+    ListApiKeysGlobals$outboundSchema.parse(listApiKeysGlobals),
+  );
+}
+
+export function listApiKeysGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListApiKeysGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListApiKeysGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListApiKeysGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListApiKeysSecurity$inboundSchema: z.ZodType<
   ListApiKeysSecurity,
@@ -108,6 +129,24 @@ export namespace ListApiKeysSecurity$ {
   export const outboundSchema = ListApiKeysSecurity$outboundSchema;
   /** @deprecated use `ListApiKeysSecurity$Outbound` instead. */
   export type Outbound = ListApiKeysSecurity$Outbound;
+}
+
+export function listApiKeysSecurityToJSON(
+  listApiKeysSecurity: ListApiKeysSecurity,
+): string {
+  return JSON.stringify(
+    ListApiKeysSecurity$outboundSchema.parse(listApiKeysSecurity),
+  );
+}
+
+export function listApiKeysSecurityFromJSON(
+  jsonString: string,
+): SafeParseResult<ListApiKeysSecurity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListApiKeysSecurity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListApiKeysSecurity' from JSON`,
+  );
 }
 
 /** @internal */
@@ -157,6 +196,24 @@ export namespace ListApiKeysRequest$ {
   export type Outbound = ListApiKeysRequest$Outbound;
 }
 
+export function listApiKeysRequestToJSON(
+  listApiKeysRequest: ListApiKeysRequest,
+): string {
+  return JSON.stringify(
+    ListApiKeysRequest$outboundSchema.parse(listApiKeysRequest),
+  );
+}
+
+export function listApiKeysRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListApiKeysRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListApiKeysRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListApiKeysRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListApiKeysData$inboundSchema: z.ZodType<
   ListApiKeysData,
@@ -193,6 +250,22 @@ export namespace ListApiKeysData$ {
   export type Outbound = ListApiKeysData$Outbound;
 }
 
+export function listApiKeysDataToJSON(
+  listApiKeysData: ListApiKeysData,
+): string {
+  return JSON.stringify(ListApiKeysData$outboundSchema.parse(listApiKeysData));
+}
+
+export function listApiKeysDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ListApiKeysData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListApiKeysData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListApiKeysData' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListApiKeysResponseBody$inboundSchema: z.ZodType<
   ListApiKeysResponseBody,
@@ -227,4 +300,22 @@ export namespace ListApiKeysResponseBody$ {
   export const outboundSchema = ListApiKeysResponseBody$outboundSchema;
   /** @deprecated use `ListApiKeysResponseBody$Outbound` instead. */
   export type Outbound = ListApiKeysResponseBody$Outbound;
+}
+
+export function listApiKeysResponseBodyToJSON(
+  listApiKeysResponseBody: ListApiKeysResponseBody,
+): string {
+  return JSON.stringify(
+    ListApiKeysResponseBody$outboundSchema.parse(listApiKeysResponseBody),
+  );
+}
+
+export function listApiKeysResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ListApiKeysResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListApiKeysResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListApiKeysResponseBody' from JSON`,
+  );
 }

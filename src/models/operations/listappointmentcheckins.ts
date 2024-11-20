@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListAppointmentCheckinsGlobals = {
   companyId?: string | undefined;
@@ -87,6 +90,26 @@ export namespace ListAppointmentCheckinsGlobals$ {
   export type Outbound = ListAppointmentCheckinsGlobals$Outbound;
 }
 
+export function listAppointmentCheckinsGlobalsToJSON(
+  listAppointmentCheckinsGlobals: ListAppointmentCheckinsGlobals,
+): string {
+  return JSON.stringify(
+    ListAppointmentCheckinsGlobals$outboundSchema.parse(
+      listAppointmentCheckinsGlobals,
+    ),
+  );
+}
+
+export function listAppointmentCheckinsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListAppointmentCheckinsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListAppointmentCheckinsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListAppointmentCheckinsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
   ListAppointmentCheckinsRequest,
@@ -143,6 +166,26 @@ export namespace ListAppointmentCheckinsRequest$ {
   export type Outbound = ListAppointmentCheckinsRequest$Outbound;
 }
 
+export function listAppointmentCheckinsRequestToJSON(
+  listAppointmentCheckinsRequest: ListAppointmentCheckinsRequest,
+): string {
+  return JSON.stringify(
+    ListAppointmentCheckinsRequest$outboundSchema.parse(
+      listAppointmentCheckinsRequest,
+    ),
+  );
+}
+
+export function listAppointmentCheckinsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListAppointmentCheckinsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListAppointmentCheckinsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListAppointmentCheckinsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListAppointmentCheckinsData$inboundSchema: z.ZodType<
   ListAppointmentCheckinsData,
@@ -177,6 +220,26 @@ export namespace ListAppointmentCheckinsData$ {
   export const outboundSchema = ListAppointmentCheckinsData$outboundSchema;
   /** @deprecated use `ListAppointmentCheckinsData$Outbound` instead. */
   export type Outbound = ListAppointmentCheckinsData$Outbound;
+}
+
+export function listAppointmentCheckinsDataToJSON(
+  listAppointmentCheckinsData: ListAppointmentCheckinsData,
+): string {
+  return JSON.stringify(
+    ListAppointmentCheckinsData$outboundSchema.parse(
+      listAppointmentCheckinsData,
+    ),
+  );
+}
+
+export function listAppointmentCheckinsDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ListAppointmentCheckinsData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListAppointmentCheckinsData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListAppointmentCheckinsData' from JSON`,
+  );
 }
 
 /** @internal */
@@ -218,6 +281,27 @@ export namespace ListAppointmentCheckinsResponseBody$ {
     ListAppointmentCheckinsResponseBody$outboundSchema;
   /** @deprecated use `ListAppointmentCheckinsResponseBody$Outbound` instead. */
   export type Outbound = ListAppointmentCheckinsResponseBody$Outbound;
+}
+
+export function listAppointmentCheckinsResponseBodyToJSON(
+  listAppointmentCheckinsResponseBody: ListAppointmentCheckinsResponseBody,
+): string {
+  return JSON.stringify(
+    ListAppointmentCheckinsResponseBody$outboundSchema.parse(
+      listAppointmentCheckinsResponseBody,
+    ),
+  );
+}
+
+export function listAppointmentCheckinsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ListAppointmentCheckinsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListAppointmentCheckinsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListAppointmentCheckinsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -262,4 +346,24 @@ export namespace ListAppointmentCheckinsResponse$ {
   export const outboundSchema = ListAppointmentCheckinsResponse$outboundSchema;
   /** @deprecated use `ListAppointmentCheckinsResponse$Outbound` instead. */
   export type Outbound = ListAppointmentCheckinsResponse$Outbound;
+}
+
+export function listAppointmentCheckinsResponseToJSON(
+  listAppointmentCheckinsResponse: ListAppointmentCheckinsResponse,
+): string {
+  return JSON.stringify(
+    ListAppointmentCheckinsResponse$outboundSchema.parse(
+      listAppointmentCheckinsResponse,
+    ),
+  );
+}
+
+export function listAppointmentCheckinsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListAppointmentCheckinsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListAppointmentCheckinsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListAppointmentCheckinsResponse' from JSON`,
+  );
 }

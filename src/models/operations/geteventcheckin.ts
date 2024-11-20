@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetEventCheckinGlobals = {
   companyId?: string | undefined;
@@ -58,6 +61,24 @@ export namespace GetEventCheckinGlobals$ {
   export type Outbound = GetEventCheckinGlobals$Outbound;
 }
 
+export function getEventCheckinGlobalsToJSON(
+  getEventCheckinGlobals: GetEventCheckinGlobals,
+): string {
+  return JSON.stringify(
+    GetEventCheckinGlobals$outboundSchema.parse(getEventCheckinGlobals),
+  );
+}
+
+export function getEventCheckinGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetEventCheckinGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetEventCheckinGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetEventCheckinGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetEventCheckinRequest$inboundSchema: z.ZodType<
   GetEventCheckinRequest,
@@ -103,4 +124,22 @@ export namespace GetEventCheckinRequest$ {
   export const outboundSchema = GetEventCheckinRequest$outboundSchema;
   /** @deprecated use `GetEventCheckinRequest$Outbound` instead. */
   export type Outbound = GetEventCheckinRequest$Outbound;
+}
+
+export function getEventCheckinRequestToJSON(
+  getEventCheckinRequest: GetEventCheckinRequest,
+): string {
+  return JSON.stringify(
+    GetEventCheckinRequest$outboundSchema.parse(getEventCheckinRequest),
+  );
+}
+
+export function getEventCheckinRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetEventCheckinRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetEventCheckinRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetEventCheckinRequest' from JSON`,
+  );
 }

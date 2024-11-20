@@ -10,6 +10,7 @@ import { RequestOptions } from "../lib/sdks.js";
 import { resolveSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import * as components from "../models/components/index.js";
+import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -17,7 +18,6 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
@@ -36,7 +36,7 @@ export async function apiKeysRevoke(
 ): Promise<
   Result<
     components.ApiKey,
-    | SDKError
+    | APIError
     | SDKValidationError
     | UnexpectedClientError
     | InvalidRequestError
@@ -133,7 +133,7 @@ export async function apiKeysRevoke(
 
   const [result] = await M.match<
     components.ApiKey,
-    | SDKError
+    | APIError
     | SDKValidationError
     | UnexpectedClientError
     | InvalidRequestError

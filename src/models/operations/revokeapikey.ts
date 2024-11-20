@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RevokeApiKeyGlobals = {
   companyId?: string | undefined;
@@ -62,6 +65,24 @@ export namespace RevokeApiKeyGlobals$ {
   export type Outbound = RevokeApiKeyGlobals$Outbound;
 }
 
+export function revokeApiKeyGlobalsToJSON(
+  revokeApiKeyGlobals: RevokeApiKeyGlobals,
+): string {
+  return JSON.stringify(
+    RevokeApiKeyGlobals$outboundSchema.parse(revokeApiKeyGlobals),
+  );
+}
+
+export function revokeApiKeyGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<RevokeApiKeyGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RevokeApiKeyGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RevokeApiKeyGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const RevokeApiKeySecurity$inboundSchema: z.ZodType<
   RevokeApiKeySecurity,
@@ -96,6 +117,24 @@ export namespace RevokeApiKeySecurity$ {
   export const outboundSchema = RevokeApiKeySecurity$outboundSchema;
   /** @deprecated use `RevokeApiKeySecurity$Outbound` instead. */
   export type Outbound = RevokeApiKeySecurity$Outbound;
+}
+
+export function revokeApiKeySecurityToJSON(
+  revokeApiKeySecurity: RevokeApiKeySecurity,
+): string {
+  return JSON.stringify(
+    RevokeApiKeySecurity$outboundSchema.parse(revokeApiKeySecurity),
+  );
+}
+
+export function revokeApiKeySecurityFromJSON(
+  jsonString: string,
+): SafeParseResult<RevokeApiKeySecurity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RevokeApiKeySecurity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RevokeApiKeySecurity' from JSON`,
+  );
 }
 
 /** @internal */
@@ -143,4 +182,22 @@ export namespace RevokeApiKeyRequest$ {
   export const outboundSchema = RevokeApiKeyRequest$outboundSchema;
   /** @deprecated use `RevokeApiKeyRequest$Outbound` instead. */
   export type Outbound = RevokeApiKeyRequest$Outbound;
+}
+
+export function revokeApiKeyRequestToJSON(
+  revokeApiKeyRequest: RevokeApiKeyRequest,
+): string {
+  return JSON.stringify(
+    RevokeApiKeyRequest$outboundSchema.parse(revokeApiKeyRequest),
+  );
+}
+
+export function revokeApiKeyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RevokeApiKeyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RevokeApiKeyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RevokeApiKeyRequest' from JSON`,
+  );
 }

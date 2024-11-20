@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const Role = {
   Staff: "staff",
@@ -116,6 +119,20 @@ export namespace Type$ {
   export type Outbound = Type$Outbound;
 }
 
+export function typeToJSON(type: Type): string {
+  return JSON.stringify(Type$outboundSchema.parse(type));
+}
+
+export function typeFromJSON(
+  jsonString: string,
+): SafeParseResult<Type, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Type$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Type' from JSON`,
+  );
+}
+
 /** @internal */
 export const EventCheckin$inboundSchema: z.ZodType<
   EventCheckin,
@@ -174,4 +191,18 @@ export namespace EventCheckin$ {
   export const outboundSchema = EventCheckin$outboundSchema;
   /** @deprecated use `EventCheckin$Outbound` instead. */
   export type Outbound = EventCheckin$Outbound;
+}
+
+export function eventCheckinToJSON(eventCheckin: EventCheckin): string {
+  return JSON.stringify(EventCheckin$outboundSchema.parse(eventCheckin));
+}
+
+export function eventCheckinFromJSON(
+  jsonString: string,
+): SafeParseResult<EventCheckin, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventCheckin$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventCheckin' from JSON`,
+  );
 }

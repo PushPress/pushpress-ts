@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Name = {
   /**
@@ -119,6 +122,20 @@ export namespace Name$ {
   export type Outbound = Name$Outbound;
 }
 
+export function nameToJSON(name: Name): string {
+  return JSON.stringify(Name$outboundSchema.parse(name));
+}
+
+export function nameFromJSON(
+  jsonString: string,
+): SafeParseResult<Name, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Name$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Name' from JSON`,
+  );
+}
+
 /** @internal */
 export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
   z.object({
@@ -165,6 +182,20 @@ export namespace Address$ {
   export const outboundSchema = Address$outboundSchema;
   /** @deprecated use `Address$Outbound` instead. */
   export type Outbound = Address$Outbound;
+}
+
+export function addressToJSON(address: Address): string {
+  return JSON.stringify(Address$outboundSchema.parse(address));
+}
+
+export function addressFromJSON(
+  jsonString: string,
+): SafeParseResult<Address, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Address$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Address' from JSON`,
+  );
 }
 
 /** @internal */
@@ -238,4 +269,18 @@ export namespace Customer$ {
   export const outboundSchema = Customer$outboundSchema;
   /** @deprecated use `Customer$Outbound` instead. */
   export type Outbound = Customer$Outbound;
+}
+
+export function customerToJSON(customer: Customer): string {
+  return JSON.stringify(Customer$outboundSchema.parse(customer));
+}
+
+export function customerFromJSON(
+  jsonString: string,
+): SafeParseResult<Customer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Customer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Customer' from JSON`,
+  );
 }

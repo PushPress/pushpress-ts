@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivateWebhookGlobals = {
   companyId?: string | undefined;
@@ -72,6 +75,24 @@ export namespace ActivateWebhookGlobals$ {
   export type Outbound = ActivateWebhookGlobals$Outbound;
 }
 
+export function activateWebhookGlobalsToJSON(
+  activateWebhookGlobals: ActivateWebhookGlobals,
+): string {
+  return JSON.stringify(
+    ActivateWebhookGlobals$outboundSchema.parse(activateWebhookGlobals),
+  );
+}
+
+export function activateWebhookGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivateWebhookGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivateWebhookGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivateWebhookGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ActivateWebhookRequest$inboundSchema: z.ZodType<
   ActivateWebhookRequest,
@@ -117,6 +138,24 @@ export namespace ActivateWebhookRequest$ {
   export const outboundSchema = ActivateWebhookRequest$outboundSchema;
   /** @deprecated use `ActivateWebhookRequest$Outbound` instead. */
   export type Outbound = ActivateWebhookRequest$Outbound;
+}
+
+export function activateWebhookRequestToJSON(
+  activateWebhookRequest: ActivateWebhookRequest,
+): string {
+  return JSON.stringify(
+    ActivateWebhookRequest$outboundSchema.parse(activateWebhookRequest),
+  );
+}
+
+export function activateWebhookRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivateWebhookRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivateWebhookRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivateWebhookRequest' from JSON`,
+  );
 }
 
 /** @internal */

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AppointmentCheckin,
   AppointmentCheckin$inboundSchema,
@@ -63,4 +66,18 @@ export namespace Checkin$ {
   export const outboundSchema = Checkin$outboundSchema;
   /** @deprecated use `Checkin$Outbound` instead. */
   export type Outbound = Checkin$Outbound;
+}
+
+export function checkinToJSON(checkin: Checkin): string {
+  return JSON.stringify(Checkin$outboundSchema.parse(checkin));
+}
+
+export function checkinFromJSON(
+  jsonString: string,
+): SafeParseResult<Checkin, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Checkin$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Checkin' from JSON`,
+  );
 }

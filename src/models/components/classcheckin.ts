@@ -3,7 +3,10 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * information about the type of the class
@@ -102,6 +105,24 @@ export namespace ClassCheckinType$ {
   export type Outbound = ClassCheckinType$Outbound;
 }
 
+export function classCheckinTypeToJSON(
+  classCheckinType: ClassCheckinType,
+): string {
+  return JSON.stringify(
+    ClassCheckinType$outboundSchema.parse(classCheckinType),
+  );
+}
+
+export function classCheckinTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<ClassCheckinType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ClassCheckinType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ClassCheckinType' from JSON`,
+  );
+}
+
 /** @internal */
 export const ClassCheckinRole$inboundSchema: z.ZodNativeEnum<
   typeof ClassCheckinRole
@@ -181,4 +202,18 @@ export namespace ClassCheckin$ {
   export const outboundSchema = ClassCheckin$outboundSchema;
   /** @deprecated use `ClassCheckin$Outbound` instead. */
   export type Outbound = ClassCheckin$Outbound;
+}
+
+export function classCheckinToJSON(classCheckin: ClassCheckin): string {
+  return JSON.stringify(ClassCheckin$outboundSchema.parse(classCheckin));
+}
+
+export function classCheckinFromJSON(
+  jsonString: string,
+): SafeParseResult<ClassCheckin, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ClassCheckin$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ClassCheckin' from JSON`,
+  );
 }

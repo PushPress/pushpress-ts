@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SendPushGlobals = {
   companyId?: string | undefined;
@@ -94,6 +97,22 @@ export namespace SendPushGlobals$ {
   export type Outbound = SendPushGlobals$Outbound;
 }
 
+export function sendPushGlobalsToJSON(
+  sendPushGlobals: SendPushGlobals,
+): string {
+  return JSON.stringify(SendPushGlobals$outboundSchema.parse(sendPushGlobals));
+}
+
+export function sendPushGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SendPushGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendPushGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendPushGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const SendPushRequestBody$inboundSchema: z.ZodType<
   SendPushRequestBody,
@@ -137,6 +156,24 @@ export namespace SendPushRequestBody$ {
   export const outboundSchema = SendPushRequestBody$outboundSchema;
   /** @deprecated use `SendPushRequestBody$Outbound` instead. */
   export type Outbound = SendPushRequestBody$Outbound;
+}
+
+export function sendPushRequestBodyToJSON(
+  sendPushRequestBody: SendPushRequestBody,
+): string {
+  return JSON.stringify(
+    SendPushRequestBody$outboundSchema.parse(sendPushRequestBody),
+  );
+}
+
+export function sendPushRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendPushRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendPushRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendPushRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -188,6 +225,22 @@ export namespace SendPushRequest$ {
   export type Outbound = SendPushRequest$Outbound;
 }
 
+export function sendPushRequestToJSON(
+  sendPushRequest: SendPushRequest,
+): string {
+  return JSON.stringify(SendPushRequest$outboundSchema.parse(sendPushRequest));
+}
+
+export function sendPushRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<SendPushRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendPushRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendPushRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const InvalidAliases$inboundSchema: z.ZodType<
   InvalidAliases,
@@ -232,6 +285,20 @@ export namespace InvalidAliases$ {
   export type Outbound = InvalidAliases$Outbound;
 }
 
+export function invalidAliasesToJSON(invalidAliases: InvalidAliases): string {
+  return JSON.stringify(InvalidAliases$outboundSchema.parse(invalidAliases));
+}
+
+export function invalidAliasesFromJSON(
+  jsonString: string,
+): SafeParseResult<InvalidAliases, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InvalidAliases$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InvalidAliases' from JSON`,
+  );
+}
+
 /** @internal */
 export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
   .object({
@@ -271,6 +338,20 @@ export namespace Errors$ {
   export const outboundSchema = Errors$outboundSchema;
   /** @deprecated use `Errors$Outbound` instead. */
   export type Outbound = Errors$Outbound;
+}
+
+export function errorsToJSON(errors: Errors): string {
+  return JSON.stringify(Errors$outboundSchema.parse(errors));
+}
+
+export function errorsFromJSON(
+  jsonString: string,
+): SafeParseResult<Errors, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Errors$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Errors' from JSON`,
+  );
 }
 
 /** @internal */
@@ -321,4 +402,22 @@ export namespace SendPushResponseBody$ {
   export const outboundSchema = SendPushResponseBody$outboundSchema;
   /** @deprecated use `SendPushResponseBody$Outbound` instead. */
   export type Outbound = SendPushResponseBody$Outbound;
+}
+
+export function sendPushResponseBodyToJSON(
+  sendPushResponseBody: SendPushResponseBody,
+): string {
+  return JSON.stringify(
+    SendPushResponseBody$outboundSchema.parse(sendPushResponseBody),
+  );
+}
+
+export function sendPushResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendPushResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendPushResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendPushResponseBody' from JSON`,
+  );
 }
