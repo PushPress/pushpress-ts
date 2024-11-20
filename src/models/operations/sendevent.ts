@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SendEventGlobals = {
   companyId?: string | undefined;
@@ -73,6 +76,24 @@ export namespace SendEventGlobals$ {
   export type Outbound = SendEventGlobals$Outbound;
 }
 
+export function sendEventGlobalsToJSON(
+  sendEventGlobals: SendEventGlobals,
+): string {
+  return JSON.stringify(
+    SendEventGlobals$outboundSchema.parse(sendEventGlobals),
+  );
+}
+
+export function sendEventGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEventGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEventGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEventGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const SendEventRequestBody$inboundSchema: z.ZodType<
   SendEventRequestBody,
@@ -113,6 +134,24 @@ export namespace SendEventRequestBody$ {
   export const outboundSchema = SendEventRequestBody$outboundSchema;
   /** @deprecated use `SendEventRequestBody$Outbound` instead. */
   export type Outbound = SendEventRequestBody$Outbound;
+}
+
+export function sendEventRequestBodyToJSON(
+  sendEventRequestBody: SendEventRequestBody,
+): string {
+  return JSON.stringify(
+    SendEventRequestBody$outboundSchema.parse(sendEventRequestBody),
+  );
+}
+
+export function sendEventRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEventRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEventRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEventRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -162,4 +201,22 @@ export namespace SendEventRequest$ {
   export const outboundSchema = SendEventRequest$outboundSchema;
   /** @deprecated use `SendEventRequest$Outbound` instead. */
   export type Outbound = SendEventRequest$Outbound;
+}
+
+export function sendEventRequestToJSON(
+  sendEventRequest: SendEventRequest,
+): string {
+  return JSON.stringify(
+    SendEventRequest$outboundSchema.parse(sendEventRequest),
+  );
+}
+
+export function sendEventRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEventRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEventRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEventRequest' from JSON`,
+  );
 }

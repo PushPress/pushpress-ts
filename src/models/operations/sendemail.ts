@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SendEmailGlobals = {
   companyId?: string | undefined;
@@ -91,6 +94,24 @@ export namespace SendEmailGlobals$ {
   export type Outbound = SendEmailGlobals$Outbound;
 }
 
+export function sendEmailGlobalsToJSON(
+  sendEmailGlobals: SendEmailGlobals,
+): string {
+  return JSON.stringify(
+    SendEmailGlobals$outboundSchema.parse(sendEmailGlobals),
+  );
+}
+
+export function sendEmailGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEmailGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEmailGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEmailGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReplyTo$inboundSchema: z.ZodType<ReplyTo, z.ZodTypeDef, unknown> =
   z.union([z.string(), z.array(z.string())]);
@@ -116,6 +137,20 @@ export namespace ReplyTo$ {
   export const outboundSchema = ReplyTo$outboundSchema;
   /** @deprecated use `ReplyTo$Outbound` instead. */
   export type Outbound = ReplyTo$Outbound;
+}
+
+export function replyToToJSON(replyTo: ReplyTo): string {
+  return JSON.stringify(ReplyTo$outboundSchema.parse(replyTo));
+}
+
+export function replyToFromJSON(
+  jsonString: string,
+): SafeParseResult<ReplyTo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReplyTo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReplyTo' from JSON`,
+  );
 }
 
 /** @internal */
@@ -172,6 +207,24 @@ export namespace SendEmailRequestBody$ {
   export type Outbound = SendEmailRequestBody$Outbound;
 }
 
+export function sendEmailRequestBodyToJSON(
+  sendEmailRequestBody: SendEmailRequestBody,
+): string {
+  return JSON.stringify(
+    SendEmailRequestBody$outboundSchema.parse(sendEmailRequestBody),
+  );
+}
+
+export function sendEmailRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEmailRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEmailRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEmailRequestBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const SendEmailRequest$inboundSchema: z.ZodType<
   SendEmailRequest,
@@ -219,4 +272,22 @@ export namespace SendEmailRequest$ {
   export const outboundSchema = SendEmailRequest$outboundSchema;
   /** @deprecated use `SendEmailRequest$Outbound` instead. */
   export type Outbound = SendEmailRequest$Outbound;
+}
+
+export function sendEmailRequestToJSON(
+  sendEmailRequest: SendEmailRequest,
+): string {
+  return JSON.stringify(
+    SendEmailRequest$outboundSchema.parse(sendEmailRequest),
+  );
+}
+
+export function sendEmailRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEmailRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEmailRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEmailRequest' from JSON`,
+  );
 }

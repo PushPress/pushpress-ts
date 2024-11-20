@@ -10,6 +10,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -17,7 +18,6 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
@@ -42,7 +42,7 @@ export async function checkinsAppointmentList(
   PageIterator<
     Result<
       operations.ListAppointmentCheckinsResponse,
-      | SDKError
+      | APIError
       | SDKValidationError
       | UnexpectedClientError
       | InvalidRequestError
@@ -140,7 +140,7 @@ export async function checkinsAppointmentList(
 
   const [result, raw] = await M.match<
     operations.ListAppointmentCheckinsResponse,
-    | SDKError
+    | APIError
     | SDKValidationError
     | UnexpectedClientError
     | InvalidRequestError
@@ -162,7 +162,7 @@ export async function checkinsAppointmentList(
   ): Paginator<
     Result<
       operations.ListAppointmentCheckinsResponse,
-      | SDKError
+      | APIError
       | SDKValidationError
       | UnexpectedClientError
       | InvalidRequestError

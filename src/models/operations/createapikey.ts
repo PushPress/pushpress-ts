@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateApiKeyGlobals = {
   companyId?: string | undefined;
@@ -77,6 +80,24 @@ export namespace CreateApiKeyGlobals$ {
   export type Outbound = CreateApiKeyGlobals$Outbound;
 }
 
+export function createApiKeyGlobalsToJSON(
+  createApiKeyGlobals: CreateApiKeyGlobals,
+): string {
+  return JSON.stringify(
+    CreateApiKeyGlobals$outboundSchema.parse(createApiKeyGlobals),
+  );
+}
+
+export function createApiKeyGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateApiKeyGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateApiKeyGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateApiKeyGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateApiKeySecurity$inboundSchema: z.ZodType<
   CreateApiKeySecurity,
@@ -111,6 +132,24 @@ export namespace CreateApiKeySecurity$ {
   export const outboundSchema = CreateApiKeySecurity$outboundSchema;
   /** @deprecated use `CreateApiKeySecurity$Outbound` instead. */
   export type Outbound = CreateApiKeySecurity$Outbound;
+}
+
+export function createApiKeySecurityToJSON(
+  createApiKeySecurity: CreateApiKeySecurity,
+): string {
+  return JSON.stringify(
+    CreateApiKeySecurity$outboundSchema.parse(createApiKeySecurity),
+  );
+}
+
+export function createApiKeySecurityFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateApiKeySecurity, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateApiKeySecurity$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateApiKeySecurity' from JSON`,
+  );
 }
 
 /** @internal */
@@ -153,6 +192,24 @@ export namespace CreateApiKeyRequestBody$ {
   export const outboundSchema = CreateApiKeyRequestBody$outboundSchema;
   /** @deprecated use `CreateApiKeyRequestBody$Outbound` instead. */
   export type Outbound = CreateApiKeyRequestBody$Outbound;
+}
+
+export function createApiKeyRequestBodyToJSON(
+  createApiKeyRequestBody: CreateApiKeyRequestBody,
+): string {
+  return JSON.stringify(
+    CreateApiKeyRequestBody$outboundSchema.parse(createApiKeyRequestBody),
+  );
+}
+
+export function createApiKeyRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateApiKeyRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateApiKeyRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateApiKeyRequestBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -202,4 +259,22 @@ export namespace CreateApiKeyRequest$ {
   export const outboundSchema = CreateApiKeyRequest$outboundSchema;
   /** @deprecated use `CreateApiKeyRequest$Outbound` instead. */
   export type Outbound = CreateApiKeyRequest$Outbound;
+}
+
+export function createApiKeyRequestToJSON(
+  createApiKeyRequest: CreateApiKeyRequest,
+): string {
+  return JSON.stringify(
+    CreateApiKeyRequest$outboundSchema.parse(createApiKeyRequest),
+  );
+}
+
+export function createApiKeyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateApiKeyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateApiKeyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateApiKeyRequest' from JSON`,
+  );
 }

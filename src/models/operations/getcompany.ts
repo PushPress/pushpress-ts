@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCompanyGlobals = {
   companyId?: string | undefined;
@@ -57,6 +60,24 @@ export namespace GetCompanyGlobals$ {
   export type Outbound = GetCompanyGlobals$Outbound;
 }
 
+export function getCompanyGlobalsToJSON(
+  getCompanyGlobals: GetCompanyGlobals,
+): string {
+  return JSON.stringify(
+    GetCompanyGlobals$outboundSchema.parse(getCompanyGlobals),
+  );
+}
+
+export function getCompanyGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCompanyGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCompanyGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCompanyGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCompanyRequest$inboundSchema: z.ZodType<
   GetCompanyRequest,
@@ -99,4 +120,22 @@ export namespace GetCompanyRequest$ {
   export const outboundSchema = GetCompanyRequest$outboundSchema;
   /** @deprecated use `GetCompanyRequest$Outbound` instead. */
   export type Outbound = GetCompanyRequest$Outbound;
+}
+
+export function getCompanyRequestToJSON(
+  getCompanyRequest: GetCompanyRequest,
+): string {
+  return JSON.stringify(
+    GetCompanyRequest$outboundSchema.parse(getCompanyRequest),
+  );
+}
+
+export function getCompanyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCompanyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCompanyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCompanyRequest' from JSON`,
+  );
 }

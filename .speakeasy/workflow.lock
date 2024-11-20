@@ -1,20 +1,19 @@
-speakeasyVersion: 1.438.1
+speakeasyVersion: 1.441.1
 sources:
     PushPress-OAS:
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:8f368e156a6f9ef4cad519ad8db1dee80023a6959a2ef54ad07d13aa583ad960
-        sourceBlobDigest: sha256:36db936ca5a1407395b5633c59d29f314e69372179d210a13e8d11ef7b423022
+        sourceRevisionDigest: sha256:826a6bda343af75956727356eac2e891c23616afd69e4894acdb87b76b508f51
+        sourceBlobDigest: sha256:3e405705c149454d4fd7bf5d7441c7808feaa50bb06781cb4603d39525bced90
         tags:
             - latest
-            - main
 targets:
     push-press:
         source: PushPress-OAS
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:8f368e156a6f9ef4cad519ad8db1dee80023a6959a2ef54ad07d13aa583ad960
-        sourceBlobDigest: sha256:36db936ca5a1407395b5633c59d29f314e69372179d210a13e8d11ef7b423022
+        sourceRevisionDigest: sha256:826a6bda343af75956727356eac2e891c23616afd69e4894acdb87b76b508f51
+        sourceBlobDigest: sha256:3e405705c149454d4fd7bf5d7441c7808feaa50bb06781cb4603d39525bced90
         codeSamplesNamespace: push-press-oas-code-samples
-        codeSamplesRevisionDigest: sha256:b93266e42e7a5984d68ecaad3d13ab183c8902113e3c499a90f0e203cacc858b
+        codeSamplesRevisionDigest: sha256:9d37364676db2628faa64a38f86b65784f7b5772db28d7b37c794c95900612f6
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -23,16 +22,14 @@ workflow:
             inputs:
                 - location: https://api.pushpressdev.com/platform/docs/json
             overlays:
-                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+                - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-modifications-overlay.yaml
+                - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-suggest-error-types.yaml
             registry:
                 location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas
     targets:
         push-press:
             target: typescript
             source: PushPress-OAS
-            publish:
-                npm:
-                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas-code-samples

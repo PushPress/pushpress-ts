@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetAppointmentCheckinGlobals = {
   companyId?: string | undefined;
@@ -58,6 +61,26 @@ export namespace GetAppointmentCheckinGlobals$ {
   export type Outbound = GetAppointmentCheckinGlobals$Outbound;
 }
 
+export function getAppointmentCheckinGlobalsToJSON(
+  getAppointmentCheckinGlobals: GetAppointmentCheckinGlobals,
+): string {
+  return JSON.stringify(
+    GetAppointmentCheckinGlobals$outboundSchema.parse(
+      getAppointmentCheckinGlobals,
+    ),
+  );
+}
+
+export function getAppointmentCheckinGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAppointmentCheckinGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAppointmentCheckinGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAppointmentCheckinGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAppointmentCheckinRequest$inboundSchema: z.ZodType<
   GetAppointmentCheckinRequest,
@@ -103,4 +126,24 @@ export namespace GetAppointmentCheckinRequest$ {
   export const outboundSchema = GetAppointmentCheckinRequest$outboundSchema;
   /** @deprecated use `GetAppointmentCheckinRequest$Outbound` instead. */
   export type Outbound = GetAppointmentCheckinRequest$Outbound;
+}
+
+export function getAppointmentCheckinRequestToJSON(
+  getAppointmentCheckinRequest: GetAppointmentCheckinRequest,
+): string {
+  return JSON.stringify(
+    GetAppointmentCheckinRequest$outboundSchema.parse(
+      getAppointmentCheckinRequest,
+    ),
+  );
+}
+
+export function getAppointmentCheckinRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAppointmentCheckinRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAppointmentCheckinRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAppointmentCheckinRequest' from JSON`,
+  );
 }

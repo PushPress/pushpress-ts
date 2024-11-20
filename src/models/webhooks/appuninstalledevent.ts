@@ -3,8 +3,11 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const AppUninstalledEventEvent = {
   AppUninstalled: "app.uninstalled",
@@ -86,4 +89,24 @@ export namespace AppUninstalledEventRequestBody$ {
   export const outboundSchema = AppUninstalledEventRequestBody$outboundSchema;
   /** @deprecated use `AppUninstalledEventRequestBody$Outbound` instead. */
   export type Outbound = AppUninstalledEventRequestBody$Outbound;
+}
+
+export function appUninstalledEventRequestBodyToJSON(
+  appUninstalledEventRequestBody: AppUninstalledEventRequestBody,
+): string {
+  return JSON.stringify(
+    AppUninstalledEventRequestBody$outboundSchema.parse(
+      appUninstalledEventRequestBody,
+    ),
+  );
+}
+
+export function appUninstalledEventRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<AppUninstalledEventRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AppUninstalledEventRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AppUninstalledEventRequestBody' from JSON`,
+  );
 }

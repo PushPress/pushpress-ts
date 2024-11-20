@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RotateWebhookSigningSecretGlobals = {
   companyId?: string | undefined;
@@ -67,6 +70,26 @@ export namespace RotateWebhookSigningSecretGlobals$ {
   export type Outbound = RotateWebhookSigningSecretGlobals$Outbound;
 }
 
+export function rotateWebhookSigningSecretGlobalsToJSON(
+  rotateWebhookSigningSecretGlobals: RotateWebhookSigningSecretGlobals,
+): string {
+  return JSON.stringify(
+    RotateWebhookSigningSecretGlobals$outboundSchema.parse(
+      rotateWebhookSigningSecretGlobals,
+    ),
+  );
+}
+
+export function rotateWebhookSigningSecretGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<RotateWebhookSigningSecretGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RotateWebhookSigningSecretGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RotateWebhookSigningSecretGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const RotateWebhookSigningSecretRequest$inboundSchema: z.ZodType<
   RotateWebhookSigningSecretRequest,
@@ -115,6 +138,26 @@ export namespace RotateWebhookSigningSecretRequest$ {
   export type Outbound = RotateWebhookSigningSecretRequest$Outbound;
 }
 
+export function rotateWebhookSigningSecretRequestToJSON(
+  rotateWebhookSigningSecretRequest: RotateWebhookSigningSecretRequest,
+): string {
+  return JSON.stringify(
+    RotateWebhookSigningSecretRequest$outboundSchema.parse(
+      rotateWebhookSigningSecretRequest,
+    ),
+  );
+}
+
+export function rotateWebhookSigningSecretRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RotateWebhookSigningSecretRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RotateWebhookSigningSecretRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RotateWebhookSigningSecretRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const RotateWebhookSigningSecretResponseBody$inboundSchema: z.ZodType<
   RotateWebhookSigningSecretResponseBody,
@@ -154,4 +197,26 @@ export namespace RotateWebhookSigningSecretResponseBody$ {
     RotateWebhookSigningSecretResponseBody$outboundSchema;
   /** @deprecated use `RotateWebhookSigningSecretResponseBody$Outbound` instead. */
   export type Outbound = RotateWebhookSigningSecretResponseBody$Outbound;
+}
+
+export function rotateWebhookSigningSecretResponseBodyToJSON(
+  rotateWebhookSigningSecretResponseBody:
+    RotateWebhookSigningSecretResponseBody,
+): string {
+  return JSON.stringify(
+    RotateWebhookSigningSecretResponseBody$outboundSchema.parse(
+      rotateWebhookSigningSecretResponseBody,
+    ),
+  );
+}
+
+export function rotateWebhookSigningSecretResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<RotateWebhookSigningSecretResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      RotateWebhookSigningSecretResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RotateWebhookSigningSecretResponseBody' from JSON`,
+  );
 }

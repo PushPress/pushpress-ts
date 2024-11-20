@@ -4,8 +4,11 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomersGlobals = {
   companyId?: string | undefined;
@@ -101,6 +104,24 @@ export namespace ListCustomersGlobals$ {
   export type Outbound = ListCustomersGlobals$Outbound;
 }
 
+export function listCustomersGlobalsToJSON(
+  listCustomersGlobals: ListCustomersGlobals,
+): string {
+  return JSON.stringify(
+    ListCustomersGlobals$outboundSchema.parse(listCustomersGlobals),
+  );
+}
+
+export function listCustomersGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomersGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomersGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomersGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const Two$inboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(Two);
 
@@ -161,6 +182,20 @@ export namespace Role$ {
   export type Outbound = Role$Outbound;
 }
 
+export function roleToJSON(role: Role): string {
+  return JSON.stringify(Role$outboundSchema.parse(role));
+}
+
+export function roleFromJSON(
+  jsonString: string,
+): SafeParseResult<Role, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Role$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Role' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListCustomersRequest$inboundSchema: z.ZodType<
   ListCustomersRequest,
@@ -214,6 +249,24 @@ export namespace ListCustomersRequest$ {
   export type Outbound = ListCustomersRequest$Outbound;
 }
 
+export function listCustomersRequestToJSON(
+  listCustomersRequest: ListCustomersRequest,
+): string {
+  return JSON.stringify(
+    ListCustomersRequest$outboundSchema.parse(listCustomersRequest),
+  );
+}
+
+export function listCustomersRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomersRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomersRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomersRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListCustomersData$inboundSchema: z.ZodType<
   ListCustomersData,
@@ -250,6 +303,24 @@ export namespace ListCustomersData$ {
   export type Outbound = ListCustomersData$Outbound;
 }
 
+export function listCustomersDataToJSON(
+  listCustomersData: ListCustomersData,
+): string {
+  return JSON.stringify(
+    ListCustomersData$outboundSchema.parse(listCustomersData),
+  );
+}
+
+export function listCustomersDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomersData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomersData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomersData' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListCustomersResponseBody$inboundSchema: z.ZodType<
   ListCustomersResponseBody,
@@ -284,6 +355,24 @@ export namespace ListCustomersResponseBody$ {
   export const outboundSchema = ListCustomersResponseBody$outboundSchema;
   /** @deprecated use `ListCustomersResponseBody$Outbound` instead. */
   export type Outbound = ListCustomersResponseBody$Outbound;
+}
+
+export function listCustomersResponseBodyToJSON(
+  listCustomersResponseBody: ListCustomersResponseBody,
+): string {
+  return JSON.stringify(
+    ListCustomersResponseBody$outboundSchema.parse(listCustomersResponseBody),
+  );
+}
+
+export function listCustomersResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomersResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomersResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomersResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -328,4 +417,22 @@ export namespace ListCustomersResponse$ {
   export const outboundSchema = ListCustomersResponse$outboundSchema;
   /** @deprecated use `ListCustomersResponse$Outbound` instead. */
   export type Outbound = ListCustomersResponse$Outbound;
+}
+
+export function listCustomersResponseToJSON(
+  listCustomersResponse: ListCustomersResponse,
+): string {
+  return JSON.stringify(
+    ListCustomersResponse$outboundSchema.parse(listCustomersResponse),
+  );
+}
+
+export function listCustomersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListCustomersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListCustomersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListCustomersResponse' from JSON`,
+  );
 }

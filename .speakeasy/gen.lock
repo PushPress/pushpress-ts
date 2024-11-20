@@ -1,20 +1,18 @@
 lockVersion: 2.0.0
-id: e45a2eeb-6880-43cc-81d9-11cca423adc1
+id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: f9ecf1e5899f91e3d3fb0d398c99625f
+  docChecksum: 0e952b2925ffb507e8e93fae7b8ada2b
   docVersion: 3.0.0
-  speakeasyVersion: 1.438.1
-  generationVersion: 2.457.2
-  releaseVersion: 0.8.0
-  configChecksum: 2a620c0cb0b52334eff985f44d4c40b8
-  repoURL: https://github.com/PushPress/pushpress-ts.git
-  installationURL: https://github.com/PushPress/pushpress-ts
-  published: true
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 0.1.0
+  configChecksum: 1b8da583d0d204e378348228b5d1a6ea
 features:
   typescript:
     additionalDependencies: 0.1.0
+    additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.3
+    core: 3.18.6
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -34,6 +32,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.2.0
     serverIDs: 2.81.2
+    tests: 0.7.0
     unions: 2.85.8
     webhooks: 1.0.0
 generatedFiles:
@@ -43,10 +42,10 @@ generatedFiles:
   - .eslintrc.cjs
   - .gitattributes
   - .npmignore
-  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
+  - docs/lib/utils/retryconfig.md
   - docs/models/components/address.md
   - docs/models/components/apikey.md
   - docs/models/components/app.md
@@ -66,6 +65,12 @@ generatedFiles:
   - docs/models/components/role.md
   - docs/models/components/security.md
   - docs/models/components/type.md
+  - docs/models/errors/badrequest.md
+  - docs/models/errors/internalservererror.md
+  - docs/models/errors/notfound.md
+  - docs/models/errors/ratelimited.md
+  - docs/models/errors/timeout.md
+  - docs/models/errors/unauthorized.md
   - docs/models/operations/activatewebhookglobals.md
   - docs/models/operations/activatewebhookrequest.md
   - docs/models/operations/activatewebhookresponsebody.md
@@ -165,12 +170,25 @@ generatedFiles:
   - docs/models/webhooks/checkincreatedeventevent.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
   - docs/models/webhooks/event.md
+  - docs/sdks/apikeys/README.md
+  - docs/sdks/appointment/README.md
+  - docs/sdks/checkins/README.md
+  - docs/sdks/class/README.md
+  - docs/sdks/company/README.md
+  - docs/sdks/customers/README.md
+  - docs/sdks/email/README.md
+  - docs/sdks/event/README.md
+  - docs/sdks/keys/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/push/README.md
+  - docs/sdks/pushpress/README.md
+  - docs/sdks/realtime/README.md
+  - docs/sdks/sms/README.md
+  - docs/sdks/webhooks/README.md
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/apiKeysCreate.ts
   - src/funcs/apiKeysGet.ts
-  - src/funcs/apiKeysList.ts
   - src/funcs/apiKeysRevoke.ts
   - src/funcs/checkinsAppointmentGet.ts
   - src/funcs/checkinsAppointmentList.ts
@@ -181,6 +199,8 @@ generatedFiles:
   - src/funcs/companyGet.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
+  - src/funcs/keysCreate.ts
+  - src/funcs/keysList.ts
   - src/funcs/messagesEmailSend.ts
   - src/funcs/messagesPushSend.ts
   - src/funcs/messagesRealtimeSend.ts
@@ -222,10 +242,16 @@ generatedFiles:
   - src/models/components/eventcheckin.ts
   - src/models/components/index.ts
   - src/models/components/security.ts
+  - src/models/errors/apierror.ts
+  - src/models/errors/badrequest.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
-  - src/models/errors/sdkerror.ts
+  - src/models/errors/internalservererror.ts
+  - src/models/errors/notfound.ts
+  - src/models/errors/ratelimited.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/errors/timeout.ts
+  - src/models/errors/unauthorized.ts
   - src/models/operations/activatewebhook.ts
   - src/models/operations/createapikey.ts
   - src/models/operations/createwebhook.ts
@@ -264,6 +290,7 @@ generatedFiles:
   - src/sdk/email.ts
   - src/sdk/event.ts
   - src/sdk/index.ts
+  - src/sdk/keys.ts
   - src/sdk/messages.ts
   - src/sdk/push.ts
   - src/sdk/realtime.ts
@@ -280,225 +307,6 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examples:
-  listApps:
-    speakeasy-default-list-apps:
-      responses:
-        "200":
-          application/json: [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "name": "<value>", "created": "2022-03-24T06:20:14.879Z", "updated": "2024-09-10T04:30:13.188Z"}, {"id": "2766718d-6d46-412e-80ae-e1b9ddf121dc", "name": "<value>", "created": "2023-12-29T19:56:44.465Z", "updated": "2022-11-08T21:35:05.868Z"}, {"id": "c8104fb4-51a7-40cf-8c8f-e07fbc60ab96", "name": "<value>", "created": "2024-06-28T00:46:13.804Z", "updated": "2022-12-27T23:30:11.053Z"}]
-  getApp:
-    speakeasy-default-get-app:
-      parameters:
-        path:
-          app_id: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "b888f774-3e7c-4135-a18c-6b985523c4bc", "name": "<value>", "created": "2024-09-23T09:26:26.647Z", "updated": "2022-12-22T20:41:29.028Z"}
-  installApp:
-    speakeasy-default-install-app:
-      parameters:
-        path:
-          app_id: "<id>"
-        header: {}
-      requestBody:
-        application/json: {"company": "Hirthe and Sons"}
-  uninstallApp:
-    speakeasy-default-uninstall-app:
-      parameters:
-        path:
-          app_id: "<id>"
-          install_id: "<id>"
-        header: {}
-      responses:
-        "204":
-          application/json: {"id": "b7c49b88-93d0-4ded-bf32-cfb3d44b19db", "app": "5bbc12bf-c966-428f-ba9e-b6862103a23f", "company": "34e98ee2-10cd-4efc-ab73-b7dc20600fe3", "status": "<value>", "installed": "2022-03-27T13:04:09.138Z"}
-  deleteAppInstall:
-    speakeasy-default-delete-app-install:
-      parameters:
-        path:
-          app_id: "<id>"
-          install_id: "<id>"
-        header: {}
-      responses:
-        "204":
-          application/json: {"id": "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e", "app": "7aa10743-a04f-44af-84fe-b54259caa1ba", "company": "7460ea4f-91d0-4d6c-80a7-ebf643773e38", "status": "<value>", "installed": "2024-11-02T21:25:46.641Z"}
-  listAppInstalls:
-    speakeasy-default-list-app-installs:
-      parameters:
-        path:
-          app_id: "<id>"
-        query: {}
-        header: {}
-      responses:
-        "200":
-          application/json: {"data": [{"id": "8a232aa0-b11b-48a0-8057-1e9e705d0e6e", "app": "1e276671-8d6d-4461-b2e0-aee1b9ddf121", "company": "c2a4c810-4fb4-451a-a70c-fc8fe07fbc60", "status": "<value>", "installed": "2024-01-25T21:46:28.752Z"}, {"id": "960d5611-ff65-473e-90a6-2331ad7c07cc", "app": "81991696-ebd8-434b-b7d8-c2236e085944", "company": "bceb27bd-4753-4d0a-917c-478e329a9ec9", "status": "<value>", "installed": "2023-09-29T09:08:13.966Z"}, {"id": "38e1a630-f5fe-4368-8082-fa02e0874e78", "app": "07648ec2-ed7f-4303-b9de-c6f45d97b2c5", "company": "7f7bcfa2-69af-4219-84d5-861b3fe5754c", "status": "<value>", "installed": "2024-05-10T21:17:41.688Z"}]}
-  getAppInstall:
-    speakeasy-default-get-app-install:
-      parameters:
-        path:
-          app_id: "<id>"
-          install_id: "<id>"
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "b888f774-3e7c-4135-a18c-6b985523c4bc", "app": "e50f7622-81da-484b-9c66-1c8a99c6b71b", "company": "ecd62b8f-7112-4aaf-90ab-4e43b4cca371", "status": "<value>", "installed": "2024-11-03T02:18:54.211Z"}
-  createApiKey:
-    speakeasy-default-create-api-key:
-      requestBody:
-        application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
-      responses:
-        "201":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
-  listApiKeys:
-    speakeasy-default-list-api-keys:
-      responses:
-        "200":
-          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
-  revokeApiKey:
-    speakeasy-default-revoke-api-key:
-      parameters:
-        path:
-          key_id: "<id>"
-          id: "<id>"
-        header: {}
-      responses:
-        "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
-  deleteApiKey:
-    speakeasy-default-delete-api-key:
-      parameters:
-        path:
-          key_id: "<id>"
-  extendApiKey:
-    speakeasy-default-extend-api-key:
-      parameters:
-        path:
-          key_id: "<id>"
-  sendEmail:
-    speakeasy-default-send-email:
-      requestBody:
-        application/json: {"customer": "<value>", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "Fern47@yahoo.com"}
-      responses:
-        "200":
-          application/json: "<value>"
-  sendPing:
-    speakeasy-default-send-ping:
-      requestBody:
-        application/json: {"channel": "<value>", "message": "<value>"}
-  sendPush:
-    speakeasy-default-send-push:
-      requestBody:
-        application/json: {"customers": ["<value>", "<value>"], "message": "<value>"}
-  listCompanies:
-    speakeasy-default-list-companies:
-      responses:
-        "200":
-          application/json: {"data": [{"id": "client_1234", "name": "Acme Corp", "subdomain": "acme", "defaultTimezone": "America/Los_Angeles", "phone": "+1-800-555-1234", "email": "info@acme.com", "url": "https://www.acme.com"}]}
-  getCompany:
-    speakeasy-default-get-company:
-      parameters:
-        path:
-          id: "<id>"
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
-  listCustomers:
-    speakeasy-default-list-customers:
-      parameters:
-        query:
-          company: "Lockman, Pagac and Daugherty"
-        header: {}
-      responses:
-        "200":
-          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
-  getCustomer:
-    speakeasy-default-get-customer:
-      parameters:
-        path:
-          id: "<id>"
-          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
-  listCheckins:
-    speakeasy-default-list-checkins:
-      parameters:
-        query:
-          company: "Lockman, Pagac and Daugherty"
-        header: {}
-      responses:
-        "200":
-          application/json: {"data": []}
-  getCheckin:
-    speakeasy-default-get-checkin:
-      parameters:
-        path:
-          id: "<id>"
-        header: {}
-      responses:
-        "200":
-          application/json: {"details": {"name": "<value>", "type": "EventCheckin", "eventType": "<value>"}, "checkinTime": 558834, "customer": "<value>", "company": "Lebsack and Sons", "name": "<value>"}
-  createWebhook:
-    speakeasy-default-create-webhook:
-      requestBody:
-        application/json: {"url": "https://your-webhook-url.com", "eventTypes": ["customer.deleted"]}
-      responses:
-        "200":
-          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "events": ["event_3", "event_4"], "created": "4865.89", "updated": "6384.24", "company": "Collier Group"}
-        "201":
-          application/json: {"id": "<id>", "url": "https://concerned-battle.net/", "eventTypes": ["checkin.created", "checkin.updated", "checkin.created"], "signingSecret": "<value>"}
-  listWebhooks:
-    speakeasy-default-list-webhooks:
-      parameters:
-        query:
-          company: "Lockman, Pagac and Daugherty"
-        header: {}
-      responses:
-        "200":
-          application/json: {"data": [{"id": "<id>", "url": "https://remorseful-concentration.biz", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://productive-affect.net", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://roasted-language.name/", "eventTypes": [], "signingSecret": "<value>"}]}
-  getWebhook:
-    speakeasy-default-get-webhook:
-      parameters:
-        path:
-          webhook_id: "<id>"
-          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "eventTypes": ["checkin.deleted", "checkin.created", "app.uninstalled"], "signingSecret": "<value>"}
-  updateWebhook:
-    speakeasy-default-update-webhook:
-      parameters:
-        path:
-          webhook_id: "<id>"
-          uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85"
-        header: {}
-      requestBody:
-        application/json: {"eventTypes": ["customer.updated", "checkin.deleted", "app.uninstalled"]}
-      responses:
-        "200":
-          application/json: {"id": "UUID", "url": "https://new-webhook-url.com", "eventTypes": ["customer.updated", "app.installed"], "signingSecret": "<value>"}
-  deleteWebhook:
-    speakeasy-default-delete-webhook:
-      parameters:
-        path:
-          webhook_id: "<id>"
-          uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e"
-        header: {}
-      responses:
-        "204":
-          application/json: "No Content"
-  getApiKey:
-    speakeasy-default-get-api-key:
-      parameters:
-        path:
-          key_id: "<id>"
-          id: "<id>"
-        header: {}
-      responses:
-        "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   getEventCheckin:
     speakeasy-default-get-event-checkin:
       parameters:
@@ -541,6 +349,133 @@ examples:
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}]}}
+  getCompany:
+    speakeasy-default-get-company:
+      responses:
+        "200":
+          application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
+        "400":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "500":
+          application/json: {"key": "<value>"}
+  getCustomer:
+    speakeasy-default-get-customer:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
+  listCustomers:
+    speakeasy-default-list-customers:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
+        "400":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408": {}
+        "429": {}
+        "500": {}
+  createApiKey:
+    speakeasy-default-create-api-key:
+      requestBody:
+        application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
+      responses:
+        "201":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+        "401":
+          application/json: {"key": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>"}
+        "413": {}
+        "429": {}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+  listApiKeys:
+    speakeasy-default-list-api-keys:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "413": {}
+        "429": {}
+        "500": {}
+  getApiKey:
+    speakeasy-default-get-api-key:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+  revokeApiKey:
+    speakeasy-default-revoke-api-key:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+  sendEmail:
+    speakeasy-default-send-email:
+      requestBody:
+        application/json: {"customer": "<value>", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "<value>"}
+      responses:
+        "200":
+          application/json: "<value>"
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "413": {}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>"}
+  sendEvent:
+    speakeasy-default-send-event:
+      requestBody:
+        application/json: {"channel": "<value>", "event": "<value>"}
+  sendPush:
+    speakeasy-default-send-push:
+      requestBody:
+        application/json: {"customers": ["<value>", "<value>"], "message": "<value>"}
+      responses:
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "413": {}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>"}
   sendSms:
     speakeasy-default-send-sms:
       requestBody:
@@ -548,10 +483,63 @@ examples:
       responses:
         "200":
           application/json: "<value>"
-  sendEvent:
-    speakeasy-default-send-event:
+  createWebhook:
+    speakeasy-default-create-webhook:
       requestBody:
-        application/json: {"channel": "<value>", "event": "<value>"}
+        application/json: {"url": "https://probable-heating.com/", "eventTypes": []}
+      responses:
+        "201":
+          application/json: {"id": "<id>", "url": "https://well-documented-cd.biz", "eventTypes": [], "signingSecret": "<value>"}
+        "400":
+          application/json: {"key": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>"}
+        "408": {}
+        "429": {}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+  listWebhooks:
+    speakeasy-default-list-webhooks:
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "url": "https://remorseful-concentration.biz", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://productive-affect.net", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://roasted-language.name/", "eventTypes": [], "signingSecret": "<value>"}]}
+        "400":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408": {}
+        "429": {}
+        "500": {}
+  getWebhook:
+    speakeasy-default-get-webhook:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "url": "https://glum-allocation.org", "eventTypes": ["customer.created"], "signingSecret": "<value>"}
+  updateWebhook:
+    speakeasy-default-update-webhook:
+      parameters:
+        path:
+          uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85"
+        header: {}
+      requestBody:
+        application/json: {"eventTypes": ["customer.updated", "checkin.deleted", "app.uninstalled"]}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "url": "https://mild-self-confidence.com", "eventTypes": [], "signingSecret": "<value>"}
+  deleteWebhook:
+    speakeasy-default-delete-webhook:
+      parameters:
+        path:
+          uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e"
+        header: {}
   activateWebhook:
     speakeasy-default-activate-webhook:
       parameters:

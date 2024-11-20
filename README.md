@@ -1,12 +1,19 @@
-# pushpress-ts
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/fab0b863-5d21-41c5-83ac-ee6857766f8d" width="600">
+    <h1>Typescript SDK</h1>
+    <p><strong>Complete Gym Management Platform.</strong></p>
+    <p>Developer-friendly & type-safe Typescript SDK specifically catered to leverage the <strong>PushPress</strong> API.</p>
+    <a href="https://ppe.apidocumentation.com/reference"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=4c2cec&style=for-the-badge" /></a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+    </a>
+</div>
 
-PushPress Typescript SDK
+<br /><br />
 
-🚧 Under Construction 🚧
+> [!IMPORTANT]
+> This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/katrina/katrina). Delete this section before > publishing to a package manager.
 
-<!-- No SDK Installation -->
-<!-- No SDK Example Usage -->
-<!-- No SDK Available Operations -->
 <!-- Start Summary [summary] -->
 ## Summary
 
@@ -33,11 +40,146 @@ enabling the automation of various tasks and the extension of platform capabilit
 * [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
+
+### NPM
+
+```bash
+npm add <UNSET>
+```
+
+### PNPM
+
+```bash
+pnpm add <UNSET>
+```
+
+### Bun
+
+```bash
+bun add <UNSET>
+```
+
+### Yarn
+
+```bash
+yarn add <UNSET> zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
+```
+<!-- End SDK Installation [installation] -->
+
 <!-- Start Requirements [requirements] -->
 ## Requirements
 
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- End Requirements [requirements] -->
+
+<!-- Start SDK Example Usage [usage] -->
+## SDK Example Usage
+
+### Example
+
+```typescript
+import { PushPress } from "@pushpress/pushpress";
+
+const pushPress = new PushPress({
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
+
+async function run() {
+  const result = await pushPress.checkins.event.get({
+    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End SDK Example Usage [usage] -->
+
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
+
+### [apiKeys](docs/sdks/apikeys/README.md)
+
+* [get](docs/sdks/apikeys/README.md#get) - Get a key by its ID
+* [revoke](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
+
+### [checkins](docs/sdks/checkins/README.md)
+
+
+#### [checkins.appointment](docs/sdks/appointment/README.md)
+
+* [get](docs/sdks/appointment/README.md#get) - Get an appointment checkin
+* [list](docs/sdks/appointment/README.md#list) - Get a list of appointment checkins
+
+#### [checkins.class](docs/sdks/class/README.md)
+
+* [get](docs/sdks/class/README.md#get) - Get an event checkin
+* [list](docs/sdks/class/README.md#list) - Get a list of class checkins
+
+#### [checkins.event](docs/sdks/event/README.md)
+
+* [get](docs/sdks/event/README.md#get) - Get a class checkin
+* [list](docs/sdks/event/README.md#list) - Get a list of event checkins
+
+### [company](docs/sdks/company/README.md)
+
+* [get](docs/sdks/company/README.md#get) - Get company information
+
+### [customers](docs/sdks/customers/README.md)
+
+* [get](docs/sdks/customers/README.md#get) - Get individual customer information
+* [list](docs/sdks/customers/README.md#list) - Get a list of customers
+
+### [keys](docs/sdks/keys/README.md)
+
+* [create](docs/sdks/keys/README.md#create) - Create a new API Key
+* [list](docs/sdks/keys/README.md#list) - Get a list of active keys in a given company
+
+### [messages](docs/sdks/messages/README.md)
+
+
+#### [messages.email](docs/sdks/email/README.md)
+
+* [send](docs/sdks/email/README.md#send) - Send an email
+
+#### [messages.push](docs/sdks/push/README.md)
+
+* [send](docs/sdks/push/README.md#send) - Send an PushNotification
+
+#### [messages.realtime](docs/sdks/realtime/README.md)
+
+* [send](docs/sdks/realtime/README.md#send) - Send an event via Ably Realtime
+
+#### [messages.sms](docs/sdks/sms/README.md)
+
+* [send](docs/sdks/sms/README.md#send) - Send an SMS
+
+
+### [webhooks](docs/sdks/webhooks/README.md)
+
+* [create](docs/sdks/webhooks/README.md#create) - Create a Platform Webhook
+* [list](docs/sdks/webhooks/README.md#list) - List Platform Webhooks
+* [get](docs/sdks/webhooks/README.md#get) - Get a Platform Webhook
+* [update](docs/sdks/webhooks/README.md#update) - Update a Platform Webhook
+* [delete](docs/sdks/webhooks/README.md#delete) - Delete a Platform Webhook
+* [activate](docs/sdks/webhooks/README.md#activate) - Activate a Platform Webhook
+* [rotateSecret](docs/sdks/webhooks/README.md#rotatesecret) - Rotate a Platform Webhook Signing Secret
+
+</details>
+<!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Standalone functions [standalone-funcs] -->
 ## Standalone functions
@@ -54,9 +196,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`apiKeysCreate`](docs/sdks/apikeys/README.md#create) - Create a new API Key
 - [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get a key by its ID
-- [`apiKeysList`](docs/sdks/apikeys/README.md#list) - Get a list of active keys in a given company
 - [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
 - [`checkinsAppointmentGet`](docs/sdks/appointment/README.md#get) - Get an appointment checkin
 - [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - Get a list of appointment checkins
@@ -67,6 +207,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`companyGet`](docs/sdks/company/README.md#get) - Get company information
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get individual customer information
 - [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
+- [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API Key
+- [`keysList`](docs/sdks/keys/README.md#list) - Get a list of active keys in a given company
 - [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an email
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send an PushNotification
 - [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send an event via Ably Realtime
@@ -187,7 +329,7 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.APIError`.
 
 If a HTTP request fails, an operation my also throw an error from the `models/errors/httpclienterrors.ts` module:
 
@@ -201,13 +343,27 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 
 In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `get` method may throw the following errors:
 
-| Error Type      | Status Code | Content Type |
-| --------------- | ----------- | ------------ |
-| errors.SDKError | 4XX, 5XX    | \*/\*        |
+| Error Type                 | Status Code                       | Content Type     |
+| -------------------------- | --------------------------------- | ---------------- |
+| errors.BadRequest          | 400, 413, 414, 415, 422, 431, 510 | application/json |
+| errors.Unauthorized        | 401, 403, 407, 511                | application/json |
+| errors.NotFound            | 404, 501, 505                     | application/json |
+| errors.Timeout             | 408, 504                          | application/json |
+| errors.RateLimited         | 429                               | application/json |
+| errors.InternalServerError | 500, 502, 503, 506, 507, 508      | application/json |
+| errors.APIError            | 4XX, 5XX                          | \*/\*            |
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
-import { SDKValidationError } from "@pushpress/pushpress/models/errors";
+import {
+  BadRequest,
+  InternalServerError,
+  NotFound,
+  RateLimited,
+  SDKValidationError,
+  Timeout,
+  Unauthorized,
+} from "@pushpress/pushpress/models/errors";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
@@ -216,9 +372,7 @@ const pushPress = new PushPress({
 async function run() {
   let result;
   try {
-    result = await pushPress.checkins.event.get({
-      uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
-    });
+    result = await pushPress.company.get({});
 
     // Handle the result
     console.log(result);
@@ -229,6 +383,36 @@ async function run() {
         console.error(err.pretty());
         // Raw value may also be inspected
         console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof BadRequest): {
+        // Handle err.data$: BadRequestData
+        console.error(err);
+        return;
+      }
+      case (err instanceof Unauthorized): {
+        // Handle err.data$: UnauthorizedData
+        console.error(err);
+        return;
+      }
+      case (err instanceof NotFound): {
+        // Handle err.data$: NotFoundData
+        console.error(err);
+        return;
+      }
+      case (err instanceof Timeout): {
+        // Handle err.data$: TimeoutData
+        console.error(err);
+        return;
+      }
+      case (err instanceof RateLimited): {
+        // Handle err.data$: RateLimitedData
+        console.error(err);
+        return;
+      }
+      case (err instanceof InternalServerError): {
+        // Handle err.data$: InternalServerErrorData
+        console.error(err);
         return;
       }
       default: {
@@ -396,7 +580,7 @@ import { PushPress } from "@pushpress/pushpress";
 const pushPress = new PushPress();
 
 async function run() {
-  const result = await pushPress.apiKeys.create({
+  const result = await pushPress.keys.create({
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
   }, {
     requestBody: {
@@ -435,5 +619,3 @@ You can also enable a default debug logger by setting an environment variable `P
 <!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
-
-

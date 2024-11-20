@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetCustomerGlobals = {
   companyId?: string | undefined;
@@ -58,6 +61,24 @@ export namespace GetCustomerGlobals$ {
   export type Outbound = GetCustomerGlobals$Outbound;
 }
 
+export function getCustomerGlobalsToJSON(
+  getCustomerGlobals: GetCustomerGlobals,
+): string {
+  return JSON.stringify(
+    GetCustomerGlobals$outboundSchema.parse(getCustomerGlobals),
+  );
+}
+
+export function getCustomerGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomerGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomerGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomerGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetCustomerRequest$inboundSchema: z.ZodType<
   GetCustomerRequest,
@@ -103,4 +124,22 @@ export namespace GetCustomerRequest$ {
   export const outboundSchema = GetCustomerRequest$outboundSchema;
   /** @deprecated use `GetCustomerRequest$Outbound` instead. */
   export type Outbound = GetCustomerRequest$Outbound;
+}
+
+export function getCustomerRequestToJSON(
+  getCustomerRequest: GetCustomerRequest,
+): string {
+  return JSON.stringify(
+    GetCustomerRequest$outboundSchema.parse(getCustomerRequest),
+  );
+}
+
+export function getCustomerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetCustomerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetCustomerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetCustomerRequest' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Platform API key
@@ -66,4 +69,18 @@ export namespace ApiKey$ {
   export const outboundSchema = ApiKey$outboundSchema;
   /** @deprecated use `ApiKey$Outbound` instead. */
   export type Outbound = ApiKey$Outbound;
+}
+
+export function apiKeyToJSON(apiKey: ApiKey): string {
+  return JSON.stringify(ApiKey$outboundSchema.parse(apiKey));
+}
+
+export function apiKeyFromJSON(
+  jsonString: string,
+): SafeParseResult<ApiKey, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ApiKey$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ApiKey' from JSON`,
+  );
 }

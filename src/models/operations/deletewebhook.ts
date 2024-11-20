@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteWebhookGlobals = {
   companyId?: string | undefined;
@@ -58,6 +61,24 @@ export namespace DeleteWebhookGlobals$ {
   export type Outbound = DeleteWebhookGlobals$Outbound;
 }
 
+export function deleteWebhookGlobalsToJSON(
+  deleteWebhookGlobals: DeleteWebhookGlobals,
+): string {
+  return JSON.stringify(
+    DeleteWebhookGlobals$outboundSchema.parse(deleteWebhookGlobals),
+  );
+}
+
+export function deleteWebhookGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteWebhookGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteWebhookGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteWebhookGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteWebhookRequest$inboundSchema: z.ZodType<
   DeleteWebhookRequest,
@@ -103,4 +124,22 @@ export namespace DeleteWebhookRequest$ {
   export const outboundSchema = DeleteWebhookRequest$outboundSchema;
   /** @deprecated use `DeleteWebhookRequest$Outbound` instead. */
   export type Outbound = DeleteWebhookRequest$Outbound;
+}
+
+export function deleteWebhookRequestToJSON(
+  deleteWebhookRequest: DeleteWebhookRequest,
+): string {
+  return JSON.stringify(
+    DeleteWebhookRequest$outboundSchema.parse(deleteWebhookRequest),
+  );
+}
+
+export function deleteWebhookRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteWebhookRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteWebhookRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteWebhookRequest' from JSON`,
+  );
 }

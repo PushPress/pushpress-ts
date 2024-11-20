@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListWebhooksGlobals = {
   companyId?: string | undefined;
@@ -94,6 +97,24 @@ export namespace ListWebhooksGlobals$ {
   export type Outbound = ListWebhooksGlobals$Outbound;
 }
 
+export function listWebhooksGlobalsToJSON(
+  listWebhooksGlobals: ListWebhooksGlobals,
+): string {
+  return JSON.stringify(
+    ListWebhooksGlobals$outboundSchema.parse(listWebhooksGlobals),
+  );
+}
+
+export function listWebhooksGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWebhooksGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWebhooksGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWebhooksGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListWebhooksRequest$inboundSchema: z.ZodType<
   ListWebhooksRequest,
@@ -136,6 +157,24 @@ export namespace ListWebhooksRequest$ {
   export const outboundSchema = ListWebhooksRequest$outboundSchema;
   /** @deprecated use `ListWebhooksRequest$Outbound` instead. */
   export type Outbound = ListWebhooksRequest$Outbound;
+}
+
+export function listWebhooksRequestToJSON(
+  listWebhooksRequest: ListWebhooksRequest,
+): string {
+  return JSON.stringify(
+    ListWebhooksRequest$outboundSchema.parse(listWebhooksRequest),
+  );
+}
+
+export function listWebhooksRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWebhooksRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWebhooksRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWebhooksRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -207,6 +246,24 @@ export namespace ListWebhooksData$ {
   export type Outbound = ListWebhooksData$Outbound;
 }
 
+export function listWebhooksDataToJSON(
+  listWebhooksData: ListWebhooksData,
+): string {
+  return JSON.stringify(
+    ListWebhooksData$outboundSchema.parse(listWebhooksData),
+  );
+}
+
+export function listWebhooksDataFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWebhooksData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWebhooksData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWebhooksData' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListWebhooksResponseBody$inboundSchema: z.ZodType<
   ListWebhooksResponseBody,
@@ -241,4 +298,22 @@ export namespace ListWebhooksResponseBody$ {
   export const outboundSchema = ListWebhooksResponseBody$outboundSchema;
   /** @deprecated use `ListWebhooksResponseBody$Outbound` instead. */
   export type Outbound = ListWebhooksResponseBody$Outbound;
+}
+
+export function listWebhooksResponseBodyToJSON(
+  listWebhooksResponseBody: ListWebhooksResponseBody,
+): string {
+  return JSON.stringify(
+    ListWebhooksResponseBody$outboundSchema.parse(listWebhooksResponseBody),
+  );
+}
+
+export function listWebhooksResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWebhooksResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWebhooksResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWebhooksResponseBody' from JSON`,
+  );
 }

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListEventCheckinsGlobals = {
   companyId?: string | undefined;
@@ -90,6 +93,24 @@ export namespace ListEventCheckinsGlobals$ {
   export type Outbound = ListEventCheckinsGlobals$Outbound;
 }
 
+export function listEventCheckinsGlobalsToJSON(
+  listEventCheckinsGlobals: ListEventCheckinsGlobals,
+): string {
+  return JSON.stringify(
+    ListEventCheckinsGlobals$outboundSchema.parse(listEventCheckinsGlobals),
+  );
+}
+
+export function listEventCheckinsGlobalsFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEventCheckinsGlobals, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEventCheckinsGlobals$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEventCheckinsGlobals' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListEventCheckinsRequest$inboundSchema: z.ZodType<
   ListEventCheckinsRequest,
@@ -149,6 +170,24 @@ export namespace ListEventCheckinsRequest$ {
   export type Outbound = ListEventCheckinsRequest$Outbound;
 }
 
+export function listEventCheckinsRequestToJSON(
+  listEventCheckinsRequest: ListEventCheckinsRequest,
+): string {
+  return JSON.stringify(
+    ListEventCheckinsRequest$outboundSchema.parse(listEventCheckinsRequest),
+  );
+}
+
+export function listEventCheckinsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEventCheckinsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEventCheckinsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEventCheckinsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .object({
@@ -177,6 +216,20 @@ export namespace Data$ {
   export const outboundSchema = Data$outboundSchema;
   /** @deprecated use `Data$Outbound` instead. */
   export type Outbound = Data$Outbound;
+}
+
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
+}
+
+export function dataFromJSON(
+  jsonString: string,
+): SafeParseResult<Data, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
+  );
 }
 
 /** @internal */
@@ -213,6 +266,26 @@ export namespace ListEventCheckinsResponseBody$ {
   export const outboundSchema = ListEventCheckinsResponseBody$outboundSchema;
   /** @deprecated use `ListEventCheckinsResponseBody$Outbound` instead. */
   export type Outbound = ListEventCheckinsResponseBody$Outbound;
+}
+
+export function listEventCheckinsResponseBodyToJSON(
+  listEventCheckinsResponseBody: ListEventCheckinsResponseBody,
+): string {
+  return JSON.stringify(
+    ListEventCheckinsResponseBody$outboundSchema.parse(
+      listEventCheckinsResponseBody,
+    ),
+  );
+}
+
+export function listEventCheckinsResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEventCheckinsResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEventCheckinsResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEventCheckinsResponseBody' from JSON`,
+  );
 }
 
 /** @internal */
@@ -257,4 +330,22 @@ export namespace ListEventCheckinsResponse$ {
   export const outboundSchema = ListEventCheckinsResponse$outboundSchema;
   /** @deprecated use `ListEventCheckinsResponse$Outbound` instead. */
   export type Outbound = ListEventCheckinsResponse$Outbound;
+}
+
+export function listEventCheckinsResponseToJSON(
+  listEventCheckinsResponse: ListEventCheckinsResponse,
+): string {
+  return JSON.stringify(
+    ListEventCheckinsResponse$outboundSchema.parse(listEventCheckinsResponse),
+  );
+}
+
+export function listEventCheckinsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListEventCheckinsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListEventCheckinsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEventCheckinsResponse' from JSON`,
+  );
 }

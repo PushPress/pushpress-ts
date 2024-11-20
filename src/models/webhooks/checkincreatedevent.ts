@@ -3,8 +3,11 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const CheckinCreatedEventEvent = {
   CheckinCreated: "checkin.created",
@@ -86,4 +89,24 @@ export namespace CheckinCreatedEventRequestBody$ {
   export const outboundSchema = CheckinCreatedEventRequestBody$outboundSchema;
   /** @deprecated use `CheckinCreatedEventRequestBody$Outbound` instead. */
   export type Outbound = CheckinCreatedEventRequestBody$Outbound;
+}
+
+export function checkinCreatedEventRequestBodyToJSON(
+  checkinCreatedEventRequestBody: CheckinCreatedEventRequestBody,
+): string {
+  return JSON.stringify(
+    CheckinCreatedEventRequestBody$outboundSchema.parse(
+      checkinCreatedEventRequestBody,
+    ),
+  );
+}
+
+export function checkinCreatedEventRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CheckinCreatedEventRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CheckinCreatedEventRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckinCreatedEventRequestBody' from JSON`,
+  );
 }
