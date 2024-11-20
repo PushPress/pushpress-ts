@@ -5,8 +5,11 @@ management:
   docVersion: 3.0.0
   speakeasyVersion: 1.441.1
   generationVersion: 2.461.2
-  releaseVersion: 0.1.0
-  configChecksum: 1b8da583d0d204e378348228b5d1a6ea
+  releaseVersion: 0.9.0
+  configChecksum: 9f5398a24877b36bfa05d0b29744f456
+  repoURL: https://github.com/PushPress/pushpress-ts.git
+  installationURL: https://github.com/PushPress/pushpress-ts
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -386,9 +389,12 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
           application/json: {"key": "<value>", "key1": "<value>"}
-        "408": {}
-        "429": {}
-        "500": {}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>"}
   createApiKey:
     speakeasy-default-create-api-key:
       requestBody:
@@ -402,8 +408,10 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "408":
           application/json: {"key": "<value>"}
-        "413": {}
-        "429": {}
+        "413":
+          application/json: {"key": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
   listApiKeys:
@@ -417,9 +425,12 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "408":
           application/json: {"key": "<value>", "key1": "<value>"}
-        "413": {}
-        "429": {}
-        "500": {}
+        "413":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>"}
   getApiKey:
     speakeasy-default-get-api-key:
       parameters:
@@ -451,7 +462,8 @@ examples:
           application/json: {"key": "<value>"}
         "408":
           application/json: {"key": "<value>", "key1": "<value>"}
-        "413": {}
+        "413":
+          application/json: {"key": "<value>", "key1": "<value>"}
         "429":
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
@@ -471,11 +483,13 @@ examples:
           application/json: {"key": "<value>"}
         "408":
           application/json: {"key": "<value>", "key1": "<value>"}
-        "413": {}
+        "413":
+          application/json: {"key": "<value>", "key1": "<value>"}
         "429":
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>"}
+        "200": {}
   sendSms:
     speakeasy-default-send-sms:
       requestBody:
@@ -496,8 +510,10 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
           application/json: {"key": "<value>"}
-        "408": {}
-        "429": {}
+        "408":
+          application/json: {"key": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
   listWebhooks:
@@ -511,9 +527,12 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
           application/json: {"key": "<value>", "key1": "<value>"}
-        "408": {}
-        "429": {}
-        "500": {}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>"}
   getWebhook:
     speakeasy-default-get-webhook:
       parameters:
