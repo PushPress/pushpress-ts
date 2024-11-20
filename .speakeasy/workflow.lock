@@ -1,0 +1,36 @@
+speakeasyVersion: 1.441.1
+sources:
+    PushPress-OAS:
+        sourceNamespace: push-press-oas
+        sourceRevisionDigest: sha256:5bb10050d2701dfc27f0141c277a6507ef545fdd27e3f967b25e8e7d2c6d5552
+        sourceBlobDigest: sha256:d2de09fd25740042715bd646fbb9e52b3486b72e04eaa9913e2508ec130950ca
+        tags:
+            - latest
+targets:
+    push-press:
+        source: PushPress-OAS
+        sourceNamespace: push-press-oas
+        sourceRevisionDigest: sha256:5bb10050d2701dfc27f0141c277a6507ef545fdd27e3f967b25e8e7d2c6d5552
+        sourceBlobDigest: sha256:d2de09fd25740042715bd646fbb9e52b3486b72e04eaa9913e2508ec130950ca
+        codeSamplesNamespace: push-press-oas-code-samples
+        codeSamplesRevisionDigest: sha256:40cf4d38b87f0591c51139367bc74ed916299fbc806da2a94b820d60443ddf6b
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        PushPress-OAS:
+            inputs:
+                - location: https://api.pushpressdev.com/platform/docs/json
+            overlays:
+                - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-modifications-overlay.yaml
+                - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-suggest-error-types.yaml
+            registry:
+                location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas
+    targets:
+        push-press:
+            target: typescript
+            source: PushPress-OAS
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas-code-samples
+                blocking: false

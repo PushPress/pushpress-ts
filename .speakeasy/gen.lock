@@ -1,0 +1,561 @@
+lockVersion: 2.0.0
+id: 3019fe4d-631b-4618-8013-188ac971bd4a
+management:
+  docChecksum: 0e952b2925ffb507e8e93fae7b8ada2b
+  docVersion: 3.0.0
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 0.1.0
+  configChecksum: 1b8da583d0d204e378348228b5d1a6ea
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    additionalProperties: 0.1.1
+    constsAndDefaults: 0.1.11
+    core: 3.18.6
+    defaultEnabledRetries: 0.1.0
+    devContainers: 2.90.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    globalSecurity: 2.82.11
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.4
+    globals: 2.82.1
+    groups: 2.81.2
+    methodSecurity: 2.82.4
+    nameOverrides: 2.81.2
+    nullables: 0.1.0
+    operationTimeout: 0.2.0
+    pagination: 2.82.7
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.2.0
+    serverIDs: 2.81.2
+    tests: 0.7.0
+    unions: 2.85.8
+    webhooks: 1.0.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .eslintrc.cjs
+  - .gitattributes
+  - .npmignore
+  - CONTRIBUTING.md
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/components/address.md
+  - docs/models/components/apikey.md
+  - docs/models/components/app.md
+  - docs/models/components/appinstall.md
+  - docs/models/components/appinstallcompany.md
+  - docs/models/components/appointmentcheckin.md
+  - docs/models/components/checkin.md
+  - docs/models/components/classcheckin.md
+  - docs/models/components/classcheckinrole.md
+  - docs/models/components/classcheckintype.md
+  - docs/models/components/company.md
+  - docs/models/components/customer.md
+  - docs/models/components/customerrole.md
+  - docs/models/components/eventcheckin.md
+  - docs/models/components/installation.md
+  - docs/models/components/name.md
+  - docs/models/components/role.md
+  - docs/models/components/security.md
+  - docs/models/components/type.md
+  - docs/models/errors/badrequest.md
+  - docs/models/errors/internalservererror.md
+  - docs/models/errors/notfound.md
+  - docs/models/errors/ratelimited.md
+  - docs/models/errors/timeout.md
+  - docs/models/errors/unauthorized.md
+  - docs/models/operations/activatewebhookglobals.md
+  - docs/models/operations/activatewebhookrequest.md
+  - docs/models/operations/activatewebhookresponsebody.md
+  - docs/models/operations/createapikeyglobals.md
+  - docs/models/operations/createapikeyrequest.md
+  - docs/models/operations/createapikeyrequestbody.md
+  - docs/models/operations/createapikeysecurity.md
+  - docs/models/operations/createwebhookeventtypes.md
+  - docs/models/operations/createwebhookglobals.md
+  - docs/models/operations/createwebhookrequest.md
+  - docs/models/operations/createwebhookrequestbody.md
+  - docs/models/operations/createwebhookresponsebody.md
+  - docs/models/operations/data.md
+  - docs/models/operations/deletewebhookglobals.md
+  - docs/models/operations/deletewebhookrequest.md
+  - docs/models/operations/errors.md
+  - docs/models/operations/eventtypes.md
+  - docs/models/operations/getapikeyglobals.md
+  - docs/models/operations/getapikeyrequest.md
+  - docs/models/operations/getapikeysecurity.md
+  - docs/models/operations/getappointmentcheckinglobals.md
+  - docs/models/operations/getappointmentcheckinrequest.md
+  - docs/models/operations/getclasscheckinglobals.md
+  - docs/models/operations/getclasscheckinrequest.md
+  - docs/models/operations/getcompanyglobals.md
+  - docs/models/operations/getcompanyrequest.md
+  - docs/models/operations/getcustomerglobals.md
+  - docs/models/operations/getcustomerrequest.md
+  - docs/models/operations/geteventcheckinglobals.md
+  - docs/models/operations/geteventcheckinrequest.md
+  - docs/models/operations/getwebhookeventtypes.md
+  - docs/models/operations/getwebhookglobals.md
+  - docs/models/operations/getwebhookrequest.md
+  - docs/models/operations/getwebhookresponsebody.md
+  - docs/models/operations/invalidaliases.md
+  - docs/models/operations/listapikeysdata.md
+  - docs/models/operations/listapikeysglobals.md
+  - docs/models/operations/listapikeysrequest.md
+  - docs/models/operations/listapikeysresponsebody.md
+  - docs/models/operations/listapikeyssecurity.md
+  - docs/models/operations/listappointmentcheckinsdata.md
+  - docs/models/operations/listappointmentcheckinsglobals.md
+  - docs/models/operations/listappointmentcheckinsrequest.md
+  - docs/models/operations/listappointmentcheckinsresponse.md
+  - docs/models/operations/listappointmentcheckinsresponsebody.md
+  - docs/models/operations/listclasscheckinsdata.md
+  - docs/models/operations/listclasscheckinsglobals.md
+  - docs/models/operations/listclasscheckinsrequest.md
+  - docs/models/operations/listclasscheckinsresponse.md
+  - docs/models/operations/listclasscheckinsresponsebody.md
+  - docs/models/operations/listcustomersdata.md
+  - docs/models/operations/listcustomersglobals.md
+  - docs/models/operations/listcustomersrequest.md
+  - docs/models/operations/listcustomersresponse.md
+  - docs/models/operations/listcustomersresponsebody.md
+  - docs/models/operations/listeventcheckinsglobals.md
+  - docs/models/operations/listeventcheckinsrequest.md
+  - docs/models/operations/listeventcheckinsresponse.md
+  - docs/models/operations/listeventcheckinsresponsebody.md
+  - docs/models/operations/listwebhooksdata.md
+  - docs/models/operations/listwebhookseventtypes.md
+  - docs/models/operations/listwebhooksglobals.md
+  - docs/models/operations/listwebhooksrequest.md
+  - docs/models/operations/listwebhooksresponsebody.md
+  - docs/models/operations/one.md
+  - docs/models/operations/replyto.md
+  - docs/models/operations/revokeapikeyglobals.md
+  - docs/models/operations/revokeapikeyrequest.md
+  - docs/models/operations/revokeapikeysecurity.md
+  - docs/models/operations/role.md
+  - docs/models/operations/rotatewebhooksigningsecretglobals.md
+  - docs/models/operations/rotatewebhooksigningsecretrequest.md
+  - docs/models/operations/rotatewebhooksigningsecretresponsebody.md
+  - docs/models/operations/sendemailglobals.md
+  - docs/models/operations/sendemailrequest.md
+  - docs/models/operations/sendemailrequestbody.md
+  - docs/models/operations/sendeventglobals.md
+  - docs/models/operations/sendeventrequest.md
+  - docs/models/operations/sendeventrequestbody.md
+  - docs/models/operations/sendpushglobals.md
+  - docs/models/operations/sendpushrequest.md
+  - docs/models/operations/sendpushrequestbody.md
+  - docs/models/operations/sendpushresponsebody.md
+  - docs/models/operations/sendsmsglobals.md
+  - docs/models/operations/sendsmsrequest.md
+  - docs/models/operations/sendsmsrequestbody.md
+  - docs/models/operations/two.md
+  - docs/models/operations/updatewebhookeventtypes.md
+  - docs/models/operations/updatewebhookglobals.md
+  - docs/models/operations/updatewebhookrequest.md
+  - docs/models/operations/updatewebhookrequestbody.md
+  - docs/models/operations/updatewebhookresponsebody.md
+  - docs/models/operations/updatewebhookwebhookseventtypes.md
+  - docs/models/webhooks/appinstalledeventrequestbody.md
+  - docs/models/webhooks/appuninstalledeventevent.md
+  - docs/models/webhooks/appuninstalledeventrequestbody.md
+  - docs/models/webhooks/checkincreatedeventevent.md
+  - docs/models/webhooks/checkincreatedeventrequestbody.md
+  - docs/models/webhooks/event.md
+  - docs/sdks/apikeys/README.md
+  - docs/sdks/appointment/README.md
+  - docs/sdks/checkins/README.md
+  - docs/sdks/class/README.md
+  - docs/sdks/company/README.md
+  - docs/sdks/customers/README.md
+  - docs/sdks/email/README.md
+  - docs/sdks/event/README.md
+  - docs/sdks/keys/README.md
+  - docs/sdks/messages/README.md
+  - docs/sdks/push/README.md
+  - docs/sdks/pushpress/README.md
+  - docs/sdks/realtime/README.md
+  - docs/sdks/sms/README.md
+  - docs/sdks/webhooks/README.md
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/apiKeysGet.ts
+  - src/funcs/apiKeysRevoke.ts
+  - src/funcs/checkinsAppointmentGet.ts
+  - src/funcs/checkinsAppointmentList.ts
+  - src/funcs/checkinsClassGet.ts
+  - src/funcs/checkinsClassList.ts
+  - src/funcs/checkinsEventGet.ts
+  - src/funcs/checkinsEventList.ts
+  - src/funcs/companyGet.ts
+  - src/funcs/customersGet.ts
+  - src/funcs/customersList.ts
+  - src/funcs/keysCreate.ts
+  - src/funcs/keysList.ts
+  - src/funcs/messagesEmailSend.ts
+  - src/funcs/messagesPushSend.ts
+  - src/funcs/messagesRealtimeSend.ts
+  - src/funcs/messagesSmsSend.ts
+  - src/funcs/webhooksActivate.ts
+  - src/funcs/webhooksCreate.ts
+  - src/funcs/webhooksDelete.ts
+  - src/funcs/webhooksGet.ts
+  - src/funcs/webhooksList.ts
+  - src/funcs/webhooksRotateSecret.ts
+  - src/funcs/webhooksUpdate.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/env.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/components/apikey.ts
+  - src/models/components/appinstall.ts
+  - src/models/components/appointmentcheckin.ts
+  - src/models/components/checkin.ts
+  - src/models/components/classcheckin.ts
+  - src/models/components/company.ts
+  - src/models/components/customer.ts
+  - src/models/components/eventcheckin.ts
+  - src/models/components/index.ts
+  - src/models/components/security.ts
+  - src/models/errors/apierror.ts
+  - src/models/errors/badrequest.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/internalservererror.ts
+  - src/models/errors/notfound.ts
+  - src/models/errors/ratelimited.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/errors/timeout.ts
+  - src/models/errors/unauthorized.ts
+  - src/models/operations/activatewebhook.ts
+  - src/models/operations/createapikey.ts
+  - src/models/operations/createwebhook.ts
+  - src/models/operations/deletewebhook.ts
+  - src/models/operations/getapikey.ts
+  - src/models/operations/getappointmentcheckin.ts
+  - src/models/operations/getclasscheckin.ts
+  - src/models/operations/getcompany.ts
+  - src/models/operations/getcustomer.ts
+  - src/models/operations/geteventcheckin.ts
+  - src/models/operations/getwebhook.ts
+  - src/models/operations/index.ts
+  - src/models/operations/listapikeys.ts
+  - src/models/operations/listappointmentcheckins.ts
+  - src/models/operations/listclasscheckins.ts
+  - src/models/operations/listcustomers.ts
+  - src/models/operations/listeventcheckins.ts
+  - src/models/operations/listwebhooks.ts
+  - src/models/operations/revokeapikey.ts
+  - src/models/operations/rotatewebhooksigningsecret.ts
+  - src/models/operations/sendemail.ts
+  - src/models/operations/sendevent.ts
+  - src/models/operations/sendpush.ts
+  - src/models/operations/sendsms.ts
+  - src/models/operations/updatewebhook.ts
+  - src/models/webhooks/appinstalledevent.ts
+  - src/models/webhooks/appuninstalledevent.ts
+  - src/models/webhooks/checkincreatedevent.ts
+  - src/models/webhooks/index.ts
+  - src/sdk/apikeys.ts
+  - src/sdk/appointment.ts
+  - src/sdk/checkins.ts
+  - src/sdk/class.ts
+  - src/sdk/company.ts
+  - src/sdk/customers.ts
+  - src/sdk/email.ts
+  - src/sdk/event.ts
+  - src/sdk/index.ts
+  - src/sdk/keys.ts
+  - src/sdk/messages.ts
+  - src/sdk/push.ts
+  - src/sdk/realtime.ts
+  - src/sdk/sdk.ts
+  - src/sdk/sms.ts
+  - src/sdk/webhooks.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  getEventCheckin:
+    speakeasy-default-get-event-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
+  listEventCheckins:
+    speakeasy-default-list-event-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
+  getClassCheckin:
+    speakeasy-default-get-class-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}
+  listClassCheckins:
+    speakeasy-default-list-class-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}]}}
+  getAppointmentCheckin:
+    speakeasy-default-get-appointment-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}
+  listAppointmentCheckins:
+    speakeasy-default-list-appointment-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}]}}
+  getCompany:
+    speakeasy-default-get-company:
+      responses:
+        "200":
+          application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
+        "400":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "500":
+          application/json: {"key": "<value>"}
+  getCustomer:
+    speakeasy-default-get-customer:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
+  listCustomers:
+    speakeasy-default-list-customers:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
+        "400":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408": {}
+        "429": {}
+        "500": {}
+  createApiKey:
+    speakeasy-default-create-api-key:
+      requestBody:
+        application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
+      responses:
+        "201":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+        "401":
+          application/json: {"key": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>"}
+        "413": {}
+        "429": {}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+  listApiKeys:
+    speakeasy-default-list-api-keys:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "413": {}
+        "429": {}
+        "500": {}
+  getApiKey:
+    speakeasy-default-get-api-key:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+  revokeApiKey:
+    speakeasy-default-revoke-api-key:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+  sendEmail:
+    speakeasy-default-send-email:
+      requestBody:
+        application/json: {"customer": "<value>", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "<value>"}
+      responses:
+        "200":
+          application/json: "<value>"
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "413": {}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>"}
+  sendEvent:
+    speakeasy-default-send-event:
+      requestBody:
+        application/json: {"channel": "<value>", "event": "<value>"}
+  sendPush:
+    speakeasy-default-send-push:
+      requestBody:
+        application/json: {"customers": ["<value>", "<value>"], "message": "<value>"}
+      responses:
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "413": {}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "500":
+          application/json: {"key": "<value>"}
+  sendSms:
+    speakeasy-default-send-sms:
+      requestBody:
+        application/json: {"message": "<value>", "to": "<value>"}
+      responses:
+        "200":
+          application/json: "<value>"
+  createWebhook:
+    speakeasy-default-create-webhook:
+      requestBody:
+        application/json: {"url": "https://probable-heating.com/", "eventTypes": []}
+      responses:
+        "201":
+          application/json: {"id": "<id>", "url": "https://well-documented-cd.biz", "eventTypes": [], "signingSecret": "<value>"}
+        "400":
+          application/json: {"key": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>"}
+        "408": {}
+        "429": {}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+  listWebhooks:
+    speakeasy-default-list-webhooks:
+      responses:
+        "200":
+          application/json: {"data": [{"id": "<id>", "url": "https://remorseful-concentration.biz", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://productive-affect.net", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://roasted-language.name/", "eventTypes": [], "signingSecret": "<value>"}]}
+        "400":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408": {}
+        "429": {}
+        "500": {}
+  getWebhook:
+    speakeasy-default-get-webhook:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "url": "https://glum-allocation.org", "eventTypes": ["customer.created"], "signingSecret": "<value>"}
+  updateWebhook:
+    speakeasy-default-update-webhook:
+      parameters:
+        path:
+          uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85"
+        header: {}
+      requestBody:
+        application/json: {"eventTypes": ["customer.updated", "checkin.deleted", "app.uninstalled"]}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "url": "https://mild-self-confidence.com", "eventTypes": [], "signingSecret": "<value>"}
+  deleteWebhook:
+    speakeasy-default-delete-webhook:
+      parameters:
+        path:
+          uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e"
+        header: {}
+  activateWebhook:
+    speakeasy-default-activate-webhook:
+      parameters:
+        path:
+          uuid: "83e8dc47-a7ee-4254-a515-a8964d09a8f7"
+        header: {}
+      responses:
+        "204":
+          application/json: "No Content"
+  rotateWebhookSigningSecret:
+    speakeasy-default-rotate-webhook-signing-secret:
+      parameters:
+        path:
+          uuid: "c38e2dba-6b03-41e1-9888-dda2ad31b95e"
+        header: {}
+      responses:
+        "200":
+          application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
