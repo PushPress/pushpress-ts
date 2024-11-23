@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/webhooks/{webhook_id}"]["patch"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.Webhooks.updateWebhook()
+      after: sdk.webhooks.update()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
+  - target: $["paths"]["/keys"]["post"]
+    update:
+      x-speakeasy-group: keys
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.ApiKeys.create()
+      after: sdk.keys.create()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
+  - target: $["paths"]["/keys"]["get"]
+    update:
+      x-speakeasy-group: keys
+    x-speakeasy-metadata:
+      type: method-name
+      before: sdk.ApiKeys.list()
+      after: sdk.keys.list()
+      reviewed_at: 1732044781186
+      created_at: 1732044778996
