@@ -5,7 +5,7 @@
 ```typescript
 import { EventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: EventTypes = "customer.deleted";
+let value: EventTypes = "app.uninstalled";
 ```
 
 ## Values

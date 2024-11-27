@@ -12,8 +12,8 @@ let value: ListAppointmentCheckinsRequest = {};
 
 | Field                                                 | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `next`                                                | *string*                                              | :heavy_minus_sign:                                    | Next cursor                                           |
+| `next`                                                | *string*                                              | :heavy_minus_sign:                                    | next cursor                                           |
 | `customer`                                            | *string*                                              | :heavy_minus_sign:                                    | N/A                                                   |
 | `before`                                              | *number*                                              | :heavy_minus_sign:                                    | Get all checkins before this unix timestamp (seconds) |
 | `after`                                               | *number*                                              | :heavy_minus_sign:                                    | Get all checkins after this unix timestamp (seconds)  |
-| `companyId`                                           | *string*                                              | :heavy_minus_sign:                                    | N/A                                                   |
+| `companyId`                                           | *string*                                              | :heavy_minus_sign:                                    | When using multitenant API keys, specify the company  |

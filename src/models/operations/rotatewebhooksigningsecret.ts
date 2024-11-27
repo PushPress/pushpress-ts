@@ -14,6 +14,9 @@ export type RotateWebhookSigningSecretGlobals = {
 
 export type RotateWebhookSigningSecretRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

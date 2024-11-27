@@ -19,6 +19,9 @@ export type ListApiKeysSecurity = {
 
 export type ListApiKeysRequest = {
   limit?: number | undefined;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

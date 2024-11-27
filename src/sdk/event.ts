@@ -12,10 +12,10 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Event extends ClientSDK {
   /**
-   * Get a class checkin
+   * Get Event Checkin Details
    *
    * @remarks
-   * Get the details for an event checkin by its id, returns the event checkin object
+   * Get the checkin details for event including event details and checkin time
    */
   async get(
     request: operations.GetEventCheckinRequest,
@@ -29,7 +29,7 @@ export class Event extends ClientSDK {
   }
 
   /**
-   * Get a list of event checkins
+   * List Event Checkins
    *
    * @remarks
    * List event checkins. Includes details about the event
@@ -37,7 +37,9 @@ export class Event extends ClientSDK {
   async list(
     request: operations.ListEventCheckinsRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListEventCheckinsResponse>> {
+  ): Promise<
+    PageIterator<operations.ListEventCheckinsResponse, { page: number }>
+  > {
     return unwrapResultIterator(checkinsEventList(
       this,
       request,

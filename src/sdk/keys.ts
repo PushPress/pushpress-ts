@@ -14,7 +14,7 @@ export class Keys extends ClientSDK {
    * Create a new API Key
    *
    * @remarks
-   * Create a new api scoped to a specific company account
+   * Creates a new API key for authenticating requests. Admins in your account can create and view API keys.Consider implementing key rotation policies for enhanced security.
    */
   async create(
     security: operations.CreateApiKeySecurity,
@@ -30,7 +30,10 @@ export class Keys extends ClientSDK {
   }
 
   /**
-   * Get a list of active keys in a given company
+   * List API Keys
+   *
+   * @remarks
+   * Retrieves a list of all active API keys associated with your account. The response includes metadata such as creation date, last used timestamp, and current status, helping you monitor key usage and manage access.
    */
   async list(
     security: operations.ListApiKeysSecurity,

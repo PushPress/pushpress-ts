@@ -9,44 +9,41 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const CheckinCreatedEventEvent = {
+export const Event = {
   CheckinCreated: "checkin.created",
 } as const;
-export type CheckinCreatedEventEvent = ClosedEnum<
-  typeof CheckinCreatedEventEvent
->;
+export type Event = ClosedEnum<typeof Event>;
 
 export type CheckinCreatedEventRequestBody = {
   /**
-   * Checkin for a class, event, or appointment
+   * Checkin for a class, event, appointment or an open facility
    */
   data: components.Checkin;
   /**
-   * Unix timestamp of the creation event
+   * Unix timestamp representing when the event was created
    */
   created: number;
-  event: CheckinCreatedEventEvent;
+  event: Event;
 };
 
 /** @internal */
-export const CheckinCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
-  typeof CheckinCreatedEventEvent
-> = z.nativeEnum(CheckinCreatedEventEvent);
+export const Event$inboundSchema: z.ZodNativeEnum<typeof Event> = z.nativeEnum(
+  Event,
+);
 
 /** @internal */
-export const CheckinCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
-  typeof CheckinCreatedEventEvent
-> = CheckinCreatedEventEvent$inboundSchema;
+export const Event$outboundSchema: z.ZodNativeEnum<typeof Event> =
+  Event$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CheckinCreatedEventEvent$ {
-  /** @deprecated use `CheckinCreatedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = CheckinCreatedEventEvent$inboundSchema;
-  /** @deprecated use `CheckinCreatedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = CheckinCreatedEventEvent$outboundSchema;
+export namespace Event$ {
+  /** @deprecated use `Event$inboundSchema` instead. */
+  export const inboundSchema = Event$inboundSchema;
+  /** @deprecated use `Event$outboundSchema` instead. */
+  export const outboundSchema = Event$outboundSchema;
 }
 
 /** @internal */
@@ -57,7 +54,7 @@ export const CheckinCreatedEventRequestBody$inboundSchema: z.ZodType<
 > = z.object({
   data: components.Checkin$inboundSchema,
   created: z.number().int(),
-  event: CheckinCreatedEventEvent$inboundSchema,
+  event: Event$inboundSchema,
 });
 
 /** @internal */
@@ -75,7 +72,7 @@ export const CheckinCreatedEventRequestBody$outboundSchema: z.ZodType<
 > = z.object({
   data: components.Checkin$outboundSchema,
   created: z.number().int(),
-  event: CheckinCreatedEventEvent$outboundSchema,
+  event: Event$outboundSchema,
 });
 
 /**

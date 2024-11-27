@@ -5,7 +5,7 @@
 
 ### Available Operations
 
-* [send](#send) - Send an PushNotification
+* [send](#send) - Send Push Notification
 
 ## send
 

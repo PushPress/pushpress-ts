@@ -46,6 +46,9 @@ export type SendEmailRequestBody = {
 };
 
 export type SendEmailRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
   requestBody: SendEmailRequestBody;
 };

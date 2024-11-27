@@ -12,10 +12,10 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Customers extends ClientSDK {
   /**
-   * Get individual customer information
+   * Get Customer Details
    *
    * @remarks
-   * Get individual customer information, including profile image, primary image, and other profile information. Only returns active customer data
+   * Get individual customer information, including profile image, primary image, and other profile information.
    */
   async get(
     request: operations.GetCustomerRequest,
@@ -29,7 +29,7 @@ export class Customers extends ClientSDK {
   }
 
   /**
-   * Get a list of customers
+   * List Customers
    *
    * @remarks
    * Get a list of customers in the current company
@@ -37,7 +37,7 @@ export class Customers extends ClientSDK {
   async list(
     request: operations.ListCustomersRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListCustomersResponse>> {
+  ): Promise<PageIterator<operations.ListCustomersResponse, { page: number }>> {
     return unwrapResultIterator(customersList(
       this,
       request,

@@ -11,7 +11,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class APIKeys extends ClientSDK {
   /**
-   * Get a key by its ID
+   * Get API Key
+   *
+   * @remarks
+   * Fetches detailed information about a specific API key and associated metadata
    */
   async get(
     security: operations.GetApiKeySecurity,
@@ -30,7 +33,7 @@ export class APIKeys extends ClientSDK {
    * Revoke an API Key
    *
    * @remarks
-   * Revoke an API Key. Only the company that created the key can revoke it.
+   * Immediately invalidates an active API key, preventing any further authentication attempts using this key. This is useful when a key may have been compromised or is no longer needed. This action cannot be undone - a new key must be generated if access is needed again.
    */
   async revoke(
     security: operations.RevokeApiKeySecurity,

@@ -15,7 +15,7 @@ export type ListAppointmentCheckinsGlobals = {
 
 export type ListAppointmentCheckinsRequest = {
   /**
-   * Next cursor
+   * next cursor
    */
   next?: string | undefined;
   customer?: string | undefined;
@@ -27,6 +27,9 @@ export type ListAppointmentCheckinsRequest = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

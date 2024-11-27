@@ -1,6 +1,6 @@
 # Company
 
-Represents an entity with one ore more PushPress accounts, whether its a gym, martial arts studio or mermaid swim school
+Represents an entity with one or more PushPress accounts, such as a gym, martial arts studio, or mermaid swim school
 
 ## Example Usage
 
@@ -20,12 +20,12 @@ let value: Company = {
 
 ## Fields
 
-| Field                             | Type                              | Required                          | Description                       |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| `id`                              | *string*                          | :heavy_check_mark:                | Unique identifier for the company |
-| `name`                            | *string*                          | :heavy_check_mark:                | Name of the company               |
-| `subdomain`                       | *string*                          | :heavy_check_mark:                | Subdomain of the company          |
-| `defaultTimezone`                 | *string*                          | :heavy_check_mark:                | Default timezone of the company   |
-| `phone`                           | *string*                          | :heavy_minus_sign:                | Phone number of the company       |
-| `email`                           | *string*                          | :heavy_check_mark:                | Email address of the company      |
-| `url`                             | *string*                          | :heavy_minus_sign:                | URL of the company                |
+| Field                                     | Type                                      | Required                                  | Description                               |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| `id`                                      | *string*                                  | :heavy_check_mark:                        | A unique identifier for the company       |
+| `name`                                    | *string*                                  | :heavy_check_mark:                        | The name of the company                   |
+| `subdomain`                               | *string*                                  | :heavy_check_mark:                        | The subdomain associated with the company |
+| `defaultTimezone`                         | *string*                                  | :heavy_check_mark:                        | The default timezone of the company       |
+| `phone`                                   | *string*                                  | :heavy_minus_sign:                        | The contact phone number of the company   |
+| `email`                                   | *string*                                  | :heavy_check_mark:                        | The contact email address of the company  |
+| `url`                                     | *string*                                  | :heavy_minus_sign:                        | The website URL of the company            |

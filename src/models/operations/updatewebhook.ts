@@ -40,11 +40,14 @@ export type UpdateWebhookRequestBody = {
 
 export type UpdateWebhookRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
   requestBody: UpdateWebhookRequestBody;
 };
 
-export const UpdateWebhookWebhooksEventTypes = {
+export const UpdateWebhookManageWebhooksEventTypes = {
   CheckinCreated: "checkin.created",
   CheckinUpdated: "checkin.updated",
   CheckinDeleted: "checkin.deleted",
@@ -54,8 +57,8 @@ export const UpdateWebhookWebhooksEventTypes = {
   AppInstalled: "app.installed",
   AppUninstalled: "app.uninstalled",
 } as const;
-export type UpdateWebhookWebhooksEventTypes = ClosedEnum<
-  typeof UpdateWebhookWebhooksEventTypes
+export type UpdateWebhookManageWebhooksEventTypes = ClosedEnum<
+  typeof UpdateWebhookManageWebhooksEventTypes
 >;
 
 /**
@@ -63,18 +66,24 @@ export type UpdateWebhookWebhooksEventTypes = ClosedEnum<
  */
 export type UpdateWebhookResponseBody = {
   /**
-   * The unique identifier for the webhook
+   * A unique identifier for the webhook
    */
   id: string;
   /**
-   * The URL that receives the webhook
+   * The endpoint URL that will receive the webhook payloads
    */
   url: string;
-  eventTypes: Array<UpdateWebhookWebhooksEventTypes>;
   /**
-   * Whether the webhook is actively receiving events or is disabled
+   * A list of event types that the webhook is subscribed to
+   */
+  eventTypes: Array<UpdateWebhookManageWebhooksEventTypes>;
+  /**
+   * Indicates whether the webhook is currently active and receiving events
    */
   active?: boolean | undefined;
+  /**
+   * A secret key used to sign the webhook payloads for security purposes
+   */
   signingSecret: string;
 };
 
@@ -289,24 +298,27 @@ export function updateWebhookRequestFromJSON(
 }
 
 /** @internal */
-export const UpdateWebhookWebhooksEventTypes$inboundSchema: z.ZodNativeEnum<
-  typeof UpdateWebhookWebhooksEventTypes
-> = z.nativeEnum(UpdateWebhookWebhooksEventTypes);
+export const UpdateWebhookManageWebhooksEventTypes$inboundSchema:
+  z.ZodNativeEnum<typeof UpdateWebhookManageWebhooksEventTypes> = z.nativeEnum(
+    UpdateWebhookManageWebhooksEventTypes,
+  );
 
 /** @internal */
-export const UpdateWebhookWebhooksEventTypes$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateWebhookWebhooksEventTypes
-> = UpdateWebhookWebhooksEventTypes$inboundSchema;
+export const UpdateWebhookManageWebhooksEventTypes$outboundSchema:
+  z.ZodNativeEnum<typeof UpdateWebhookManageWebhooksEventTypes> =
+    UpdateWebhookManageWebhooksEventTypes$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace UpdateWebhookWebhooksEventTypes$ {
-  /** @deprecated use `UpdateWebhookWebhooksEventTypes$inboundSchema` instead. */
-  export const inboundSchema = UpdateWebhookWebhooksEventTypes$inboundSchema;
-  /** @deprecated use `UpdateWebhookWebhooksEventTypes$outboundSchema` instead. */
-  export const outboundSchema = UpdateWebhookWebhooksEventTypes$outboundSchema;
+export namespace UpdateWebhookManageWebhooksEventTypes$ {
+  /** @deprecated use `UpdateWebhookManageWebhooksEventTypes$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateWebhookManageWebhooksEventTypes$inboundSchema;
+  /** @deprecated use `UpdateWebhookManageWebhooksEventTypes$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateWebhookManageWebhooksEventTypes$outboundSchema;
 }
 
 /** @internal */
@@ -317,7 +329,7 @@ export const UpdateWebhookResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
-  eventTypes: z.array(UpdateWebhookWebhooksEventTypes$inboundSchema),
+  eventTypes: z.array(UpdateWebhookManageWebhooksEventTypes$inboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
 });
@@ -339,7 +351,7 @@ export const UpdateWebhookResponseBody$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
-  eventTypes: z.array(UpdateWebhookWebhooksEventTypes$outboundSchema),
+  eventTypes: z.array(UpdateWebhookManageWebhooksEventTypes$outboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
 });

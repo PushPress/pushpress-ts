@@ -24,6 +24,9 @@ export type SendSmsRequestBody = {
 };
 
 export type SendSmsRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
   requestBody: SendSmsRequestBody;
 };

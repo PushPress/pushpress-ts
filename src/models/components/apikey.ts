@@ -13,7 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type ApiKey = {
   keyUuid: string;
   apiKey: string;
-  clientUuid: string;
+  companyId: string;
   name: string;
   description: string;
   createdAt: number;
@@ -25,7 +25,7 @@ export const ApiKey$inboundSchema: z.ZodType<ApiKey, z.ZodTypeDef, unknown> = z
   .object({
     keyUuid: z.string(),
     apiKey: z.string(),
-    clientUuid: z.string(),
+    companyId: z.string(),
     name: z.string(),
     description: z.string(),
     createdAt: z.number(),
@@ -36,7 +36,7 @@ export const ApiKey$inboundSchema: z.ZodType<ApiKey, z.ZodTypeDef, unknown> = z
 export type ApiKey$Outbound = {
   keyUuid: string;
   apiKey: string;
-  clientUuid: string;
+  companyId: string;
   name: string;
   description: string;
   createdAt: number;
@@ -51,7 +51,7 @@ export const ApiKey$outboundSchema: z.ZodType<
 > = z.object({
   keyUuid: z.string(),
   apiKey: z.string(),
-  clientUuid: z.string(),
+  companyId: z.string(),
   name: z.string(),
   description: z.string(),
   createdAt: z.number(),

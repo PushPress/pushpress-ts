@@ -24,15 +24,26 @@ import {
   EventCheckin$Outbound,
   EventCheckin$outboundSchema,
 } from "./eventcheckin.js";
+import {
+  OpenCheckin,
+  OpenCheckin$inboundSchema,
+  OpenCheckin$Outbound,
+  OpenCheckin$outboundSchema,
+} from "./opencheckin.js";
 
 /**
- * Checkin for a class, event, or appointment
+ * Checkin for a class, event, appointment or an open facility
  */
-export type Checkin = AppointmentCheckin | ClassCheckin | EventCheckin;
+export type Checkin =
+  | OpenCheckin
+  | AppointmentCheckin
+  | ClassCheckin
+  | EventCheckin;
 
 /** @internal */
 export const Checkin$inboundSchema: z.ZodType<Checkin, z.ZodTypeDef, unknown> =
   z.union([
+    OpenCheckin$inboundSchema,
     AppointmentCheckin$inboundSchema,
     ClassCheckin$inboundSchema,
     EventCheckin$inboundSchema,
@@ -40,6 +51,7 @@ export const Checkin$inboundSchema: z.ZodType<Checkin, z.ZodTypeDef, unknown> =
 
 /** @internal */
 export type Checkin$Outbound =
+  | OpenCheckin$Outbound
   | AppointmentCheckin$Outbound
   | ClassCheckin$Outbound
   | EventCheckin$Outbound;
@@ -50,6 +62,7 @@ export const Checkin$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Checkin
 > = z.union([
+  OpenCheckin$outboundSchema,
   AppointmentCheckin$outboundSchema,
   ClassCheckin$outboundSchema,
   EventCheckin$outboundSchema,

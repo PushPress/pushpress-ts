@@ -6,6 +6,7 @@ import { ClientSDK } from "../lib/sdks.js";
 import { Appointment } from "./appointment.js";
 import { Class } from "./class.js";
 import { Event } from "./event.js";
+import { Open } from "./open.js";
 
 export class Checkins extends ClientSDK {
   private _event?: Event;
@@ -16,6 +17,11 @@ export class Checkins extends ClientSDK {
   private _class?: Class;
   get class(): Class {
     return (this._class ??= new Class(this._options));
+  }
+
+  private _open?: Open;
+  get open(): Open {
+    return (this._open ??= new Open(this._options));
   }
 
   private _appointment?: Appointment;

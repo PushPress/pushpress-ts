@@ -6,13 +6,13 @@
 import { GetWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetWebhookRequest = {
-  uuid: "0c35eb02-993e-4989-8b46-32fb734064b6",
+  uuid: "1a78ef3a-40c5-469d-9ad4-c2fa3fb43803",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `uuid`             | *string*           | :heavy_check_mark: | N/A                |
-| `companyId`        | *string*           | :heavy_minus_sign: | N/A                |
+| Field                                                | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `uuid`                                               | *string*                                             | :heavy_check_mark:                                   | N/A                                                  |
+| `companyId`                                          | *string*                                             | :heavy_minus_sign:                                   | When using multitenant API keys, specify the company |

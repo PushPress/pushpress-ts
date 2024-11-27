@@ -6,11 +6,11 @@
 ### Available Operations
 
 * [create](#create) - Create a new API Key
-* [list](#list) - Get a list of active keys in a given company
+* [list](#list) - List API Keys
 
 ## create
 
-Create a new api scoped to a specific company account
+Creates a new API key for authenticating requests. Admins in your account can create and view API keys.Consider implementing key rotation policies for enhanced security.
 
 ### Example Usage
 
@@ -101,7 +101,7 @@ run();
 
 ## list
 
-Get a list of active keys in a given company
+Retrieves a list of all active API keys associated with your account. The response includes metadata such as creation date, last used timestamp, and current status, helping you monitor key usage and manage access.
 
 ### Example Usage
 

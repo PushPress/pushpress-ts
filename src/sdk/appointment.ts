@@ -12,10 +12,10 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Appointment extends ClientSDK {
   /**
-   * Get an appointment checkin
+   * Get Appointment Checkin Details
    *
    * @remarks
-   * Get the details for an appointment checkin by its id, returns the appointment checkin object
+   * Get the checkin details for appointment including appointment details and checkin time
    */
   async get(
     request: operations.GetAppointmentCheckinRequest,
@@ -29,7 +29,7 @@ export class Appointment extends ClientSDK {
   }
 
   /**
-   * Get a list of appointment checkins
+   * List Appointment Checkins
    *
    * @remarks
    * list appointment checkins. Includes details about the appointment, customer and staff
@@ -37,7 +37,9 @@ export class Appointment extends ClientSDK {
   async list(
     request: operations.ListAppointmentCheckinsRequest,
     options?: RequestOptions,
-  ): Promise<PageIterator<operations.ListAppointmentCheckinsResponse>> {
+  ): Promise<
+    PageIterator<operations.ListAppointmentCheckinsResponse, { cursor: string }>
+  > {
     return unwrapResultIterator(checkinsAppointmentList(
       this,
       request,

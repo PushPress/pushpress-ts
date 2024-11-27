@@ -1,5 +1,7 @@
 # Role
 
+Role of the customer at the event
+
 ## Example Usage
 
 ```typescript

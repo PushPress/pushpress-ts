@@ -10,44 +10,44 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Name = {
   /**
-   * First name of the customer
+   * The first name of the customer
    */
   first: string;
   /**
-   * Last name of the customer
+   * The last name of the customer
    */
   last: string;
 };
 
 export type Address = {
   /**
-   * Street address of the customer
+   * The primary street address of the customer
    */
   line1?: string | undefined;
   /**
-   * Street address of the customer
+   * An additional street address line for the customer
    */
   line2?: string | undefined;
   /**
-   * City of the customer
+   * The city where the customer resides
    */
   city?: string | undefined;
   /**
-   * Country of the customer
+   * The country where the customer resides
    */
   country?: string | undefined;
   /**
-   * State of the customer
+   * The state or province where the customer resides
    */
   state?: string | undefined;
   /**
-   * Zip code of the customer
+   * The postal code of the customer's address
    */
   zip?: string | undefined;
 };
 
 /**
- * Customer role in the company (.e.g. admin, coach, member)
+ * The role of the customer within the company (e.g., admin, coach, member)
  */
 export const CustomerRole = {
   Superuser: "superuser",
@@ -57,34 +57,34 @@ export const CustomerRole = {
   Member: "member",
 } as const;
 /**
- * Customer role in the company (.e.g. admin, coach, member)
+ * The role of the customer within the company (e.g., admin, coach, member)
  */
 export type CustomerRole = ClosedEnum<typeof CustomerRole>;
 
 /**
- * Schema representing a customer, former customer or lead served by Company
+ * Schema representing a customer, former customer, or lead served by the company
  */
 export type Customer = {
   /**
-   * Unique identifier for the customer
+   * A unique identifier assigned to each customer
    */
   id: string;
   name: Name;
   address: Address;
   /**
-   * URL to the profile image of the customer
+   * A URL pointing to the customer's profile image
    */
   profileImage?: string | undefined;
   /**
-   * Email address of the customer
+   * The email address of the customer
    */
   email: string;
   /**
-   * Phone number of the customer
+   * The phone number of the customer
    */
   phone?: string | undefined;
   /**
-   * Customer role in the company (.e.g. admin, coach, member)
+   * The role of the customer within the company (e.g., admin, coach, member)
    */
   role: CustomerRole;
 };

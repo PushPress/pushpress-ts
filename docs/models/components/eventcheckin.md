@@ -1,6 +1,6 @@
 # EventCheckin
 
-Checkin for an event
+Details of a customer's check-in for an event
 
 ## Example Usage
 
@@ -26,12 +26,12 @@ let value: EventCheckin = {
 
 | Field                                              | Type                                               | Required                                           | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `id`                                               | *string*                                           | :heavy_check_mark:                                 | Unique identifier for the event                    |
-| `name`                                             | *string*                                           | :heavy_check_mark:                                 | Name of the event                                  |
-| `customer`                                         | *string*                                           | :heavy_check_mark:                                 | UUID of the customer                               |
-| `company`                                          | *string*                                           | :heavy_check_mark:                                 | UUID of the company                                |
-| `kind`                                             | *string*                                           | :heavy_check_mark:                                 | N/A                                                |
-| `timestamp`                                        | *number*                                           | :heavy_check_mark:                                 | Unix timestamp of the event                        |
-| `role`                                             | [components.Role](../../models/components/role.md) | :heavy_check_mark:                                 | N/A                                                |
+| `id`                                               | *string*                                           | :heavy_check_mark:                                 | Unique identifier for the event check-in           |
+| `name`                                             | *string*                                           | :heavy_check_mark:                                 | Name of the event being checked into               |
+| `customer`                                         | *string*                                           | :heavy_check_mark:                                 | UUID of the customer checking in                   |
+| `company`                                          | *string*                                           | :heavy_check_mark:                                 | UUID of the company hosting the event              |
+| `kind`                                             | *string*                                           | :heavy_check_mark:                                 | Type of check-in, which is always 'event'          |
+| `timestamp`                                        | *number*                                           | :heavy_check_mark:                                 | Unix timestamp of when the check-in occurred       |
+| `role`                                             | [components.Role](../../models/components/role.md) | :heavy_check_mark:                                 | Role of the customer at the event                  |
 | `typeId`                                           | *string*                                           | :heavy_check_mark:                                 | UUID of the event type                             |
-| `type`                                             | [components.Type](../../models/components/type.md) | :heavy_check_mark:                                 | information about the type of the event            |
+| `type`                                             | [components.Type](../../models/components/type.md) | :heavy_check_mark:                                 | Information about the type of the event            |

@@ -14,6 +14,9 @@ export type DeleteWebhookGlobals = {
 
 export type DeleteWebhookRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

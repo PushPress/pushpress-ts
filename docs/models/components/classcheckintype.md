@@ -1,6 +1,6 @@
 # ClassCheckinType
 
-information about the type of the class
+Detailed information about the type of the class
 
 ## Example Usage
 
@@ -15,7 +15,7 @@ let value: ClassCheckinType = {
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `id`                   | *string*               | :heavy_check_mark:     | UUID of the class type |
-| `name`                 | *string*               | :heavy_check_mark:     | Name of the class type |
+| Field                              | Type                               | Required                           | Description                        |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| `id`                               | *string*                           | :heavy_check_mark:                 | UUID of the class type             |
+| `name`                             | *string*                           | :heavy_check_mark:                 | Descriptive name of the class type |

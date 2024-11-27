@@ -10,7 +10,7 @@ let value: ListApiKeysData = {
     {
       keyUuid: "key_asdfghjklqwertyuiop",
       apiKey: "sk_zyxvutsrqponmlkjihgfedcba",
-      clientUuid: "client_asdfghjklqwertyuiop",
+      companyId: "client_asdfghjklqwertyuiop",
       name: "My API Key",
       description: "Additional description to add context to the key",
       createdAt: 1577836800000,

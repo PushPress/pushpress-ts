@@ -23,7 +23,7 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Send an event via Ably Realtime
+ * Send Ably Realtime Event
  *
  * @remarks
  * Send an event to a websocket channel via Ably Realtime. Note that only first party apps can send realtime notifications

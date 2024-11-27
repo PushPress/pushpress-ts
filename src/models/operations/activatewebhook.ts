@@ -15,6 +15,9 @@ export type ActivateWebhookGlobals = {
 
 export type ActivateWebhookRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

@@ -5,11 +5,11 @@
 ```typescript
 import { Event } from "@pushpress/pushpress/models/webhooks";
 
-let value: Event = "app.installed";
+let value: Event = "checkin.created";
 ```
 
 ## Values
 
 ```typescript
-"app.installed"
+"checkin.created"
 ```

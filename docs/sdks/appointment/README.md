@@ -5,12 +5,12 @@
 
 ### Available Operations
 
-* [get](#get) - Get an appointment checkin
-* [list](#list) - Get a list of appointment checkins
+* [get](#get) - Get Appointment Checkin Details
+* [list](#list) - List Appointment Checkins
 
 ## get
 
-Get the details for an appointment checkin by its id, returns the appointment checkin object
+Get the checkin details for appointment including appointment details and checkin time
 
 ### Example Usage
 

@@ -1,6 +1,6 @@
 # AppointmentCheckin
 
-Checkin for an appointment
+Schema for checking in to an appointment, including relevant details such as customer and company information
 
 ## Example Usage
 
@@ -19,12 +19,12 @@ let value: AppointmentCheckin = {
 
 ## Fields
 
-| Field                                 | Type                                  | Required                              | Description                           |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `id`                                  | *string*                              | :heavy_check_mark:                    | Unique identifier for the appointment |
-| `name`                                | *string*                              | :heavy_minus_sign:                    | Name of the appointment               |
-| `customer`                            | *string*                              | :heavy_check_mark:                    | UUID of the customer                  |
-| `company`                             | *string*                              | :heavy_check_mark:                    | UUID of the company                   |
-| `timestamp`                           | *number*                              | :heavy_check_mark:                    | Unix timestamp of the appointment     |
-| `kind`                                | *string*                              | :heavy_check_mark:                    | N/A                                   |
-| `typeId`                              | *string*                              | :heavy_check_mark:                    | UUID of the appointment type          |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `id`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | A unique identifier for the appointment, typically a UUID                |
+| `name`                                                                   | *string*                                                                 | :heavy_minus_sign:                                                       | The name or title of the appointment, if available                       |
+| `customer`                                                               | *string*                                                                 | :heavy_check_mark:                                                       | The UUID of the customer associated with the appointment                 |
+| `company`                                                                | *string*                                                                 | :heavy_check_mark:                                                       | The UUID of the company hosting the appointment                          |
+| `timestamp`                                                              | *number*                                                                 | :heavy_check_mark:                                                       | The Unix timestamp representing the scheduled time of the appointment    |
+| `kind`                                                                   | *string*                                                                 | :heavy_check_mark:                                                       | A constant value indicating the type of check-in, which is 'appointment' |
+| `typeId`                                                                 | *string*                                                                 | :heavy_check_mark:                                                       | The UUID representing the type or category of the appointment            |

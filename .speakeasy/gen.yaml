@@ -13,10 +13,10 @@ generation:
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
   auth:
-    oAuth2ClientCredentialsEnabled: true
-    oAuth2PasswordEnabled: true
+    oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
 typescript:
-  version: 0.9.0
+  version: 0.10.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -25,6 +25,7 @@ typescript:
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError
+  enableReactQuery: false
   enumFormat: union
   envVarPrefix: PUSHPRESS
   flattenGlobalSecurity: true

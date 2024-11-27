@@ -24,10 +24,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get company information
+ * Get Company Details
  *
  * @remarks
- * Get company information associated with the current user
+ * Fetch the company details associated with the currently authenticated user.
  */
 export async function companyGet(
   client: PushPressCore,

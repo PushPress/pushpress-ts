@@ -3,15 +3,15 @@
 
 ## Overview
 
-Get Company Information
+Access and manage company details.
 
 ### Available Operations
 
-* [get](#get) - Get company information
+* [get](#get) - Get Company Details
 
 ## get
 
-Get company information associated with the current user
+Fetch the company details associated with the currently authenticated user.
 
 ### Example Usage
 

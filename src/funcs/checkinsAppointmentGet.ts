@@ -23,10 +23,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get an appointment checkin
+ * Get Appointment Checkin Details
  *
  * @remarks
- * Get the details for an appointment checkin by its id, returns the appointment checkin object
+ * Get the checkin details for appointment including appointment details and checkin time
  */
 export async function checkinsAppointmentGet(
   client: PushPressCore,

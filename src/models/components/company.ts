@@ -8,35 +8,35 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Represents an entity with one ore more PushPress accounts, whether its a gym, martial arts studio or mermaid swim school
+ * Represents an entity with one or more PushPress accounts, such as a gym, martial arts studio, or mermaid swim school
  */
 export type Company = {
   /**
-   * Unique identifier for the company
+   * A unique identifier for the company
    */
   id: string;
   /**
-   * Name of the company
+   * The name of the company
    */
   name: string;
   /**
-   * Subdomain of the company
+   * The subdomain associated with the company
    */
   subdomain: string;
   /**
-   * Default timezone of the company
+   * The default timezone of the company
    */
   defaultTimezone: string;
   /**
-   * Phone number of the company
+   * The contact phone number of the company
    */
   phone?: string | null | undefined;
   /**
-   * Email address of the company
+   * The contact email address of the company
    */
   email: string;
   /**
-   * URL of the company
+   * The website URL of the company
    */
   url?: string | undefined;
 };

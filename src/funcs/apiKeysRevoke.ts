@@ -26,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Revoke an API Key
  *
  * @remarks
- * Revoke an API Key. Only the company that created the key can revoke it.
+ * Immediately invalidates an active API key, preventing any further authentication attempts using this key. This is useful when a key may have been compromised or is no longer needed. This action cannot be undone - a new key must be generated if access is needed again.
  */
 export async function apiKeysRevoke(
   client: PushPressCore,

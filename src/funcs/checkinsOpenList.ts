@@ -3,7 +3,8 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { dlv } from "../lib/dlv.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -20,48 +21,58 @@ import {
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
+import {
+  createPageIterator,
+  haltIterator,
+  PageIterator,
+  Paginator,
+} from "../types/operations.js";
 
 /**
- * Get a Platform Webhook
+ * List Open Checkins
  *
  * @remarks
- * Get the details for a platform webhook including the signing secret and event subscriptions
+ * List open facility checkins
  */
-export async function webhooksGet(
+export async function checkinsOpenList(
   client: PushPressCore,
-  request: operations.GetWebhookRequest,
+  request: operations.ListOpenCheckinsRequest,
   options?: RequestOptions,
 ): Promise<
-  Result<
-    operations.GetWebhookResponseBody,
-    | APIError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
-    | RequestAbortedError
-    | RequestTimeoutError
-    | ConnectionError
+  PageIterator<
+    Result<
+      operations.ListOpenCheckinsResponse,
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    { page: number }
   >
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.GetWebhookRequest$outboundSchema.parse(value),
+    (value) => operations.ListOpenCheckinsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return haltIterator(parsed);
   }
   const payload = parsed.value;
   const body = null;
 
-  const pathParams = {
-    uuid: encodeSimple("uuid", payload.uuid, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
+  const path = pathToFunc("/checkins/open")();
 
-  const path = pathToFunc("/webhooks/{uuid}")(pathParams);
+  const query = encodeFormQuery({
+    "after": payload.after,
+    "before": payload.before,
+    "customer": payload.customer,
+    "limit": payload.limit,
+    "page": payload.page,
+  });
 
   const headers = new Headers({
     Accept: "application/json",
@@ -77,7 +88,7 @@ export async function webhooksGet(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "getWebhook",
+    operationID: "listOpenCheckins",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -104,27 +115,32 @@ export async function webhooksGet(
     method: "GET",
     path: path,
     headers: headers,
+    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return haltIterator(requestRes);
   }
   const req = requestRes.value;
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "404", "4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return haltIterator(doResult);
   }
   const response = doResult.value;
 
-  const [result] = await M.match<
-    operations.GetWebhookResponseBody,
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result, raw] = await M.match<
+    operations.ListOpenCheckinsResponse,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -133,12 +149,60 @@ export async function webhooksGet(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.GetWebhookResponseBody$inboundSchema),
-    M.fail([401, 403, 404, "4XX", "5XX"]),
-  )(response);
+    M.json(200, operations.ListOpenCheckinsResponse$inboundSchema, {
+      key: "Result",
+    }),
+    M.fail([401, 404, "4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return haltIterator(result);
   }
 
-  return result;
+  const nextFunc = (
+    responseData: unknown,
+  ): {
+    next: Paginator<
+      Result<
+        operations.ListOpenCheckinsResponse,
+        | APIError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { page: number };
+  } => {
+    const page = request?.page || 0;
+    const nextPage = page + 1;
+
+    if (!responseData) {
+      return { next: () => null };
+    }
+    const results = dlv(responseData, "data.resultArray");
+    if (!Array.isArray(results) || !results.length) {
+      return { next: () => null };
+    }
+    const limit = request?.limit || 0;
+    if (results.length < limit) {
+      return { next: () => null };
+    }
+
+    const nextVal = () =>
+      checkinsOpenList(
+        client,
+        {
+          ...request,
+          page: nextPage,
+        },
+        options,
+      );
+
+    return { next: nextVal, "~next": { page: nextPage } };
+  };
+
+  const page = { ...result, ...nextFunc(raw) };
+  return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

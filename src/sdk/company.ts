@@ -10,10 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Company extends ClientSDK {
   /**
-   * Get company information
+   * Get Company Details
    *
    * @remarks
-   * Get company information associated with the current user
+   * Fetch the company details associated with the currently authenticated user.
    */
   async get(
     request: operations.GetCompanyRequest,

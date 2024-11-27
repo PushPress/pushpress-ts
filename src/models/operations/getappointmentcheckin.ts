@@ -14,6 +14,9 @@ export type GetAppointmentCheckinGlobals = {
 
 export type GetAppointmentCheckinRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

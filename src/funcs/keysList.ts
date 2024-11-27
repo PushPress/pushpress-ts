@@ -23,7 +23,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a list of active keys in a given company
+ * List API Keys
+ *
+ * @remarks
+ * Retrieves a list of all active API keys associated with your account. The response includes metadata such as creation date, last used timestamp, and current status, helping you monitor key usage and manage access.
  */
 export async function keysList(
   client: PushPressCore,

@@ -23,10 +23,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a class checkin
+ * Get Event Checkin Details
  *
  * @remarks
- * Get the details for an event checkin by its id, returns the event checkin object
+ * Get the checkin details for event including event details and checkin time
  */
 export async function checkinsEventGet(
   client: PushPressCore,

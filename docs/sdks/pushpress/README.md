@@ -6,3 +6,6 @@ PushPress Platform API: The PushPress Platform API provides a comprehensive suit
 to facilitate seamless integration with the PushPress ecosystem. 
 This API allows developers to interact programmatically with the PushPress platform, 
 enabling the automation of various tasks and the extension of platform capabilities.
+
+
+### Available Operations

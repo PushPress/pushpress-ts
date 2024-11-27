@@ -6,13 +6,13 @@
 import { GetAppointmentCheckinRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetAppointmentCheckinRequest = {
-  uuid: "5d1d1f7f-9b04-4141-8561-b94819e5a2b4",
+  uuid: "90d0a4bf-3999-43f7-8db4-d6e9ebb8fa69",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `uuid`             | *string*           | :heavy_check_mark: | N/A                |
-| `companyId`        | *string*           | :heavy_minus_sign: | N/A                |
+| Field                                                | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `uuid`                                               | *string*                                             | :heavy_check_mark:                                   | N/A                                                  |
+| `companyId`                                          | *string*                                             | :heavy_minus_sign:                                   | When using multitenant API keys, specify the company |

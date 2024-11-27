@@ -27,7 +27,7 @@ import { Result } from "../types/fp.js";
  * Create a new API Key
  *
  * @remarks
- * Create a new api scoped to a specific company account
+ * Creates a new API key for authenticating requests. Admins in your account can create and view API keys.Consider implementing key rotation policies for enhanced security.
  */
 export async function keysCreate(
   client: PushPressCore,

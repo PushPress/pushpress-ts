@@ -8,16 +8,22 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Role of the customer at the event
+ */
 export const Role = {
   Staff: "staff",
   Coach: "coach",
   Assistant: "assistant",
   Attendee: "attendee",
 } as const;
+/**
+ * Role of the customer at the event
+ */
 export type Role = ClosedEnum<typeof Role>;
 
 /**
- * information about the type of the event
+ * Information about the type of the event
  */
 export type Type = {
   /**
@@ -31,37 +37,43 @@ export type Type = {
 };
 
 /**
- * Checkin for an event
+ * Details of a customer's check-in for an event
  */
 export type EventCheckin = {
   /**
-   * Unique identifier for the event
+   * Unique identifier for the event check-in
    */
   id: string;
   /**
-   * Name of the event
+   * Name of the event being checked into
    */
   name: string;
   /**
-   * UUID of the customer
+   * UUID of the customer checking in
    */
   customer: string;
   /**
-   * UUID of the company
+   * UUID of the company hosting the event
    */
   company: string;
+  /**
+   * Type of check-in, which is always 'event'
+   */
   kind?: "event" | undefined;
   /**
-   * Unix timestamp of the event
+   * Unix timestamp of when the check-in occurred
    */
   timestamp: number;
+  /**
+   * Role of the customer at the event
+   */
   role: Role;
   /**
    * UUID of the event type
    */
   typeId: string;
   /**
-   * information about the type of the event
+   * Information about the type of the event
    */
   type: Type;
 };

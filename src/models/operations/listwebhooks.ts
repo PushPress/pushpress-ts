@@ -14,6 +14,9 @@ export type ListWebhooksGlobals = {
 };
 
 export type ListWebhooksRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 
@@ -31,18 +34,24 @@ export type ListWebhooksEventTypes = ClosedEnum<typeof ListWebhooksEventTypes>;
 
 export type ListWebhooksData = {
   /**
-   * The unique identifier for the webhook
+   * A unique identifier for the webhook
    */
   id: string;
   /**
-   * The URL that receives the webhook
+   * The endpoint URL that will receive the webhook payloads
    */
   url: string;
+  /**
+   * A list of event types that the webhook is subscribed to
+   */
   eventTypes: Array<ListWebhooksEventTypes>;
   /**
-   * Whether the webhook is actively receiving events or is disabled
+   * Indicates whether the webhook is currently active and receiving events
    */
   active?: boolean | undefined;
+  /**
+   * A secret key used to sign the webhook payloads for security purposes
+   */
   signingSecret: string;
 };
 

@@ -14,6 +14,9 @@ export type GetClassCheckinGlobals = {
 
 export type GetClassCheckinRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 
