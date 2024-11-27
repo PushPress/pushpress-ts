@@ -5,7 +5,7 @@
 
 ### Available Operations
 
-* [send](#send) - Send an event via Ably Realtime
+* [send](#send) - Send Ably Realtime Event
 
 ## send
 

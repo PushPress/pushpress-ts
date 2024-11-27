@@ -3,12 +3,13 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -22,18 +23,18 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update a Platform Webhook
+ * Get Open Facility Details
  *
  * @remarks
- * Update the details for a platform webhook including the signing secret an event subscriptions
+ * Get the checkin details for an open facility checkin
  */
-export async function webhooksUpdate(
+export async function checkinsOpenGet(
   client: PushPressCore,
-  request: operations.UpdateWebhookRequest,
+  request: operations.GetOpenCheckinRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.UpdateWebhookResponseBody,
+    components.OpenCheckin,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -45,14 +46,14 @@ export async function webhooksUpdate(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.UpdateWebhookRequest$outboundSchema.parse(value),
+    (value) => operations.GetOpenCheckinRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.RequestBody, { explode: true });
+  const body = null;
 
   const pathParams = {
     uuid: encodeSimple("uuid", payload.uuid, {
@@ -61,10 +62,9 @@ export async function webhooksUpdate(
     }),
   };
 
-  const path = pathToFunc("/webhooks/{uuid}")(pathParams);
+  const path = pathToFunc("/checkins/open/{uuid}")(pathParams);
 
   const headers = new Headers({
-    "Content-Type": "application/json",
     Accept: "application/json",
     "company-id": encodeSimple(
       "company-id",
@@ -78,7 +78,7 @@ export async function webhooksUpdate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "updateWebhook",
+    operationID: "getOpenCheckin",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -102,7 +102,7 @@ export async function webhooksUpdate(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "PATCH",
+    method: "GET",
     path: path,
     headers: headers,
     body: body,
@@ -115,7 +115,7 @@ export async function webhooksUpdate(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "404", "4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -125,7 +125,7 @@ export async function webhooksUpdate(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.UpdateWebhookResponseBody,
+    components.OpenCheckin,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,8 +134,8 @@ export async function webhooksUpdate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.UpdateWebhookResponseBody$inboundSchema),
-    M.fail([401, 403, 404, "4XX", "5XX"]),
+    M.json(200, components.OpenCheckin$inboundSchema),
+    M.fail([401, 404, "4XX", "5XX"]),
   )(response);
   if (!result.ok) {
     return result;

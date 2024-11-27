@@ -10,13 +10,13 @@ sources:
         registry:
             location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas
 targets:
-  push-press:
-    target: typescript
-    source: PushPress-OAS
-    publish:
-      npm:
-        token: $npm_token
-    codeSamples:
-      registry:
-        location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas-code-samples
-      blocking: false
+    push-press:
+        target: typescript
+        source: PushPress-OAS
+        publish:
+            npm:
+                token: $npm_token
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/pushpress/pushpress/push-press-oas-typescript-code-samples
+            blocking: false

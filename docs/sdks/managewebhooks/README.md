@@ -1,19 +1,19 @@
-# Webhooks
-(*webhooks*)
+# ManageWebhooks
+(*manageWebhooks*)
 
 ## Overview
 
-Manage Webhooks And Events
+Create, update, delete, and list webhooks and events for real-time notifications and integrations.
 
 ### Available Operations
 
-* [create](#create) - Create a Platform Webhook
-* [list](#list) - List Platform Webhooks
-* [get](#get) - Get a Platform Webhook
-* [update](#update) - Update a Platform Webhook
-* [delete](#delete) - Delete a Platform Webhook
-* [activate](#activate) - Activate a Platform Webhook
-* [rotateSecret](#rotatesecret) - Rotate a Platform Webhook Signing Secret
+* [create](#create) - Create a Webhook
+* [list](#list) - List Webhooks
+* [get](#get) - Get Webhook Details
+* [update](#update) - Update a Webhook
+* [delete](#delete) - Delete a Webhook
+* [activate](#activate) - Activate a Webhook
+* [rotateSecret](#rotatesecret) - Rotate a Webhook Signing Secret
 
 ## create
 
@@ -29,7 +29,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.webhooks.create({
+  const result = await pushPress.manageWebhooks.create({
     requestBody: {
       url: "https://probable-heating.com/",
       eventTypes: [
@@ -51,7 +51,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksCreate } from "@pushpress/pushpress/funcs/webhooksCreate.js";
+import { manageWebhooksCreate } from "@pushpress/pushpress/funcs/manageWebhooksCreate.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -60,7 +60,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksCreate(pushPress, {
+  const res = await manageWebhooksCreate(pushPress, {
     requestBody: {
       url: "https://probable-heating.com/",
       eventTypes: [
@@ -121,7 +121,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.webhooks.list({});
+  const result = await pushPress.manageWebhooks.list({});
 
   // Handle the result
   console.log(result);
@@ -136,7 +136,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksList } from "@pushpress/pushpress/funcs/webhooksList.js";
+import { manageWebhooksList } from "@pushpress/pushpress/funcs/manageWebhooksList.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -145,7 +145,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksList(pushPress, {});
+  const res = await manageWebhooksList(pushPress, {});
 
   if (!res.ok) {
     throw res.error;
@@ -199,7 +199,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.webhooks.get({
+  const result = await pushPress.manageWebhooks.get({
     uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
@@ -216,7 +216,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksGet } from "@pushpress/pushpress/funcs/webhooksGet.js";
+import { manageWebhooksGet } from "@pushpress/pushpress/funcs/manageWebhooksGet.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -225,7 +225,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksGet(pushPress, {
+  const res = await manageWebhooksGet(pushPress, {
     uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
   });
 
@@ -275,7 +275,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.webhooks.update({
+  const result = await pushPress.manageWebhooks.update({
     uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85",
     requestBody: {
       eventTypes: [
@@ -299,7 +299,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksUpdate } from "@pushpress/pushpress/funcs/webhooksUpdate.js";
+import { manageWebhooksUpdate } from "@pushpress/pushpress/funcs/manageWebhooksUpdate.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -308,7 +308,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksUpdate(pushPress, {
+  const res = await manageWebhooksUpdate(pushPress, {
     uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85",
     requestBody: {
       eventTypes: [
@@ -365,7 +365,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  await pushPress.webhooks.delete({
+  await pushPress.manageWebhooks.delete({
     uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e",
   });
 
@@ -381,7 +381,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksDelete } from "@pushpress/pushpress/funcs/webhooksDelete.js";
+import { manageWebhooksDelete } from "@pushpress/pushpress/funcs/manageWebhooksDelete.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -390,7 +390,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksDelete(pushPress, {
+  const res = await manageWebhooksDelete(pushPress, {
     uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e",
   });
 
@@ -439,7 +439,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.webhooks.activate({
+  const result = await pushPress.manageWebhooks.activate({
     uuid: "83e8dc47-a7ee-4254-a515-a8964d09a8f7",
   });
 
@@ -456,7 +456,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksActivate } from "@pushpress/pushpress/funcs/webhooksActivate.js";
+import { manageWebhooksActivate } from "@pushpress/pushpress/funcs/manageWebhooksActivate.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -465,7 +465,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksActivate(pushPress, {
+  const res = await manageWebhooksActivate(pushPress, {
     uuid: "83e8dc47-a7ee-4254-a515-a8964d09a8f7",
   });
 
@@ -515,7 +515,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.webhooks.rotateSecret({
+  const result = await pushPress.manageWebhooks.rotateSecret({
     uuid: "c38e2dba-6b03-41e1-9888-dda2ad31b95e",
   });
 
@@ -532,7 +532,7 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { webhooksRotateSecret } from "@pushpress/pushpress/funcs/webhooksRotateSecret.js";
+import { manageWebhooksRotateSecret } from "@pushpress/pushpress/funcs/manageWebhooksRotateSecret.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -541,7 +541,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await webhooksRotateSecret(pushPress, {
+  const res = await manageWebhooksRotateSecret(pushPress, {
     uuid: "c38e2dba-6b03-41e1-9888-dda2ad31b95e",
   });
 

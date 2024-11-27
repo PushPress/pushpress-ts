@@ -23,10 +23,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get individual customer information
+ * Get Customer Details
  *
  * @remarks
- * Get individual customer information, including profile image, primary image, and other profile information. Only returns active customer data
+ * Get individual customer information, including profile image, primary image, and other profile information.
  */
 export async function customersGet(
   client: PushPressCore,

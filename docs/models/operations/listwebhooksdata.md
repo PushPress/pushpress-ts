@@ -7,9 +7,9 @@ import { ListWebhooksData } from "@pushpress/pushpress/models/operations";
 
 let value: ListWebhooksData = {
   id: "<id>",
-  url: "https://witty-stock.com",
+  url: "https://enchanted-disclosure.com/",
   eventTypes: [
-    "checkin.deleted",
+    "customer.created",
   ],
   signingSecret: "<value>",
 };
@@ -19,8 +19,8 @@ let value: ListWebhooksData = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `id`                                                                                     | *string*                                                                                 | :heavy_check_mark:                                                                       | The unique identifier for the webhook                                                    |
-| `url`                                                                                    | *string*                                                                                 | :heavy_check_mark:                                                                       | The URL that receives the webhook                                                        |
-| `eventTypes`                                                                             | [operations.ListWebhooksEventTypes](../../models/operations/listwebhookseventtypes.md)[] | :heavy_check_mark:                                                                       | N/A                                                                                      |
-| `active`                                                                                 | *boolean*                                                                                | :heavy_minus_sign:                                                                       | Whether the webhook is actively receiving events or is disabled                          |
-| `signingSecret`                                                                          | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `id`                                                                                     | *string*                                                                                 | :heavy_check_mark:                                                                       | A unique identifier for the webhook                                                      |
+| `url`                                                                                    | *string*                                                                                 | :heavy_check_mark:                                                                       | The endpoint URL that will receive the webhook payloads                                  |
+| `eventTypes`                                                                             | [operations.ListWebhooksEventTypes](../../models/operations/listwebhookseventtypes.md)[] | :heavy_check_mark:                                                                       | A list of event types that the webhook is subscribed to                                  |
+| `active`                                                                                 | *boolean*                                                                                | :heavy_minus_sign:                                                                       | Indicates whether the webhook is currently active and receiving events                   |
+| `signingSecret`                                                                          | *string*                                                                                 | :heavy_check_mark:                                                                       | A secret key used to sign the webhook payloads for security purposes                     |

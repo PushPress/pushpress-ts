@@ -11,9 +11,9 @@ let value: ListWebhooksResponseBody = {
   data: [
     {
       id: "<id>",
-      url: "https://decent-lender.com",
+      url: "https://rubbery-gift.biz/",
       eventTypes: [
-        "checkin.updated",
+        "checkin.created",
       ],
       signingSecret: "<value>",
     },

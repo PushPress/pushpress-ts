@@ -14,6 +14,9 @@ export type GetCustomerGlobals = {
 
 export type GetCustomerRequest = {
   uuid: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

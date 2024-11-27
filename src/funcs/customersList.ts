@@ -30,7 +30,7 @@ import {
 } from "../types/operations.js";
 
 /**
- * Get a list of customers
+ * List Customers
  *
  * @remarks
  * Get a list of customers in the current company
@@ -56,7 +56,8 @@ export async function customersList(
       | RequestAbortedError
       | RequestTimeoutError
       | ConnectionError
-    >
+    >,
+    { page: number }
   >
 > {
   const parsed = safeParse(
@@ -208,40 +209,43 @@ export async function customersList(
 
   const nextFunc = (
     responseData: unknown,
-  ): Paginator<
-    Result<
-      operations.ListCustomersResponse,
-      | errors.BadRequest
-      | errors.Unauthorized
-      | errors.NotFound
-      | errors.Timeout
-      | errors.RateLimited
-      | errors.InternalServerError
-      | APIError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
-      | RequestAbortedError
-      | RequestTimeoutError
-      | ConnectionError
-    >
-  > => {
+  ): {
+    next: Paginator<
+      Result<
+        operations.ListCustomersResponse,
+        | errors.BadRequest
+        | errors.Unauthorized
+        | errors.NotFound
+        | errors.Timeout
+        | errors.RateLimited
+        | errors.InternalServerError
+        | APIError
+        | SDKValidationError
+        | UnexpectedClientError
+        | InvalidRequestError
+        | RequestAbortedError
+        | RequestTimeoutError
+        | ConnectionError
+      >
+    >;
+    "~next"?: { page: number };
+  } => {
     const page = request?.page || 0;
     const nextPage = page + 1;
 
     if (!responseData) {
-      return () => null;
+      return { next: () => null };
     }
     const results = dlv(responseData, "data.resultArray");
     if (!Array.isArray(results) || !results.length) {
-      return () => null;
+      return { next: () => null };
     }
     const limit = request?.limit || 0;
     if (results.length < limit) {
-      return () => null;
+      return { next: () => null };
     }
 
-    return () =>
+    const nextVal = () =>
       customersList(
         client,
         {
@@ -250,8 +254,10 @@ export async function customersList(
         },
         options,
       );
+
+    return { next: nextVal, "~next": { page: nextPage } };
   };
 
-  const page = { ...result, next: nextFunc(raw) };
+  const page = { ...result, ...nextFunc(raw) };
   return { ...page, ...createPageIterator(page, (v) => !v.ok) };
 }

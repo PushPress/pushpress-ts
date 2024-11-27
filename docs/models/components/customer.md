@@ -1,6 +1,6 @@
 # Customer
 
-Schema representing a customer, former customer or lead served by Company
+Schema representing a customer, former customer, or lead served by the company
 
 ## Example Usage
 
@@ -29,12 +29,12 @@ let value: Customer = {
 
 ## Fields
 
-| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `id`                                                               | *string*                                                           | :heavy_check_mark:                                                 | Unique identifier for the customer                                 |
-| `name`                                                             | [components.Name](../../models/components/name.md)                 | :heavy_check_mark:                                                 | N/A                                                                |
-| `address`                                                          | [components.Address](../../models/components/address.md)           | :heavy_check_mark:                                                 | N/A                                                                |
-| `profileImage`                                                     | *string*                                                           | :heavy_minus_sign:                                                 | URL to the profile image of the customer                           |
-| `email`                                                            | *string*                                                           | :heavy_check_mark:                                                 | Email address of the customer                                      |
-| `phone`                                                            | *string*                                                           | :heavy_minus_sign:                                                 | Phone number of the customer                                       |
-| `role`                                                             | [components.CustomerRole](../../models/components/customerrole.md) | :heavy_check_mark:                                                 | Customer role in the company (.e.g. admin, coach, member)          |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `id`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | A unique identifier assigned to each customer                            |
+| `name`                                                                   | [components.Name](../../models/components/name.md)                       | :heavy_check_mark:                                                       | N/A                                                                      |
+| `address`                                                                | [components.Address](../../models/components/address.md)                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `profileImage`                                                           | *string*                                                                 | :heavy_minus_sign:                                                       | A URL pointing to the customer's profile image                           |
+| `email`                                                                  | *string*                                                                 | :heavy_check_mark:                                                       | The email address of the customer                                        |
+| `phone`                                                                  | *string*                                                                 | :heavy_minus_sign:                                                       | The phone number of the customer                                         |
+| `role`                                                                   | [components.CustomerRole](../../models/components/customerrole.md)       | :heavy_check_mark:                                                       | The role of the customer within the company (e.g., admin, coach, member) |

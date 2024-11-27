@@ -1,5 +1,7 @@
 # ClassCheckinRole
 
+Role of the customer in the class
+
 ## Example Usage
 
 ```typescript

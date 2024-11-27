@@ -18,6 +18,9 @@ export type GetApiKeySecurity = {
 
 export type GetApiKeyRequest = {
   id: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

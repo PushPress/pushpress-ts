@@ -9,7 +9,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Email extends ClientSDK {
   /**
-   * Send an email
+   * Send an Email
    *
    * @remarks
    * Send an email from the PushPress platform. Note that only first party apps can send emails

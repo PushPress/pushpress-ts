@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * information about the type of the class
+ * Detailed information about the type of the class
  */
 export type ClassCheckinType = {
   /**
@@ -17,37 +17,43 @@ export type ClassCheckinType = {
    */
   id: string;
   /**
-   * Name of the class type
+   * Descriptive name of the class type
    */
   name: string;
 };
 
+/**
+ * Role of the customer in the class
+ */
 export const ClassCheckinRole = {
   Staff: "staff",
   Coach: "coach",
   Assistant: "assistant",
   Attendee: "attendee",
 } as const;
+/**
+ * Role of the customer in the class
+ */
 export type ClassCheckinRole = ClosedEnum<typeof ClassCheckinRole>;
 
 /**
- * Checkin for a class
+ * Schema representing a checkin for a class
  */
 export type ClassCheckin = {
   /**
-   * Unique identifier for the checkin
+   * Unique identifier for the checkin record
    */
   id: string;
   /**
-   * UUID of the customer
+   * UUID of the customer who checked in
    */
   customer: string;
   /**
-   * UUID of the company
+   * UUID of the company hosting the class
    */
   company: string;
   /**
-   * Name of the checked-in class
+   * Name of the class that the customer checked into
    */
   name: string;
   /**
@@ -55,14 +61,20 @@ export type ClassCheckin = {
    */
   typeId: string;
   /**
-   * information about the type of the class
+   * Detailed information about the type of the class
    */
   type: ClassCheckinType;
+  /**
+   * Indicates that this checkin is for a class
+   */
   kind?: "class" | undefined;
   /**
-   * Unix timestamp of the checkin
+   * Unix timestamp representing the time of checkin
    */
   timestamp: number;
+  /**
+   * Role of the customer in the class
+   */
   role: ClassCheckinRole;
 };
 

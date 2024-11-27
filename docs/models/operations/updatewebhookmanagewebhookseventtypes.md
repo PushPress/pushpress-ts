@@ -1,11 +1,11 @@
-# UpdateWebhookWebhooksEventTypes
+# UpdateWebhookManageWebhooksEventTypes
 
 ## Example Usage
 
 ```typescript
-import { UpdateWebhookWebhooksEventTypes } from "@pushpress/pushpress/models/operations";
+import { UpdateWebhookManageWebhooksEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: UpdateWebhookWebhooksEventTypes = "customer.deleted";
+let value: UpdateWebhookManageWebhooksEventTypes = "app.uninstalled";
 ```
 
 ## Values

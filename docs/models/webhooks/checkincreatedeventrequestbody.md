@@ -19,15 +19,15 @@ let value: CheckinCreatedEventRequestBody = {
     timestamp: 1672531200000,
     role: "attendee",
   },
-  created: 518835,
+  created: 796392,
   event: "checkin.created",
 };
 ```
 
 ## Fields
 
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `data`                                                                                 | *components.Checkin*                                                                   | :heavy_check_mark:                                                                     | Checkin for a class, event, or appointment                                             |
-| `created`                                                                              | *number*                                                                               | :heavy_check_mark:                                                                     | Unix timestamp of the creation event                                                   |
-| `event`                                                                                | [webhooks.CheckinCreatedEventEvent](../../models/webhooks/checkincreatedeventevent.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| Field                                                       | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `data`                                                      | *components.Checkin*                                        | :heavy_check_mark:                                          | Checkin for a class, event, appointment or an open facility |
+| `created`                                                   | *number*                                                    | :heavy_check_mark:                                          | Unix timestamp representing when the event was created      |
+| `event`                                                     | [webhooks.Event](../../models/webhooks/event.md)            | :heavy_check_mark:                                          | N/A                                                         |

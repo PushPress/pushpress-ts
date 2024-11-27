@@ -10,11 +10,11 @@ let value: Address = {};
 
 ## Fields
 
-| Field                          | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `line1`                        | *string*                       | :heavy_minus_sign:             | Street address of the customer |
-| `line2`                        | *string*                       | :heavy_minus_sign:             | Street address of the customer |
-| `city`                         | *string*                       | :heavy_minus_sign:             | City of the customer           |
-| `country`                      | *string*                       | :heavy_minus_sign:             | Country of the customer        |
-| `state`                        | *string*                       | :heavy_minus_sign:             | State of the customer          |
-| `zip`                          | *string*                       | :heavy_minus_sign:             | Zip code of the customer       |
+| Field                                              | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `line1`                                            | *string*                                           | :heavy_minus_sign:                                 | The primary street address of the customer         |
+| `line2`                                            | *string*                                           | :heavy_minus_sign:                                 | An additional street address line for the customer |
+| `city`                                             | *string*                                           | :heavy_minus_sign:                                 | The city where the customer resides                |
+| `country`                                          | *string*                                           | :heavy_minus_sign:                                 | The country where the customer resides             |
+| `state`                                            | *string*                                           | :heavy_minus_sign:                                 | The state or province where the customer resides   |
+| `zip`                                              | *string*                                           | :heavy_minus_sign:                                 | The postal code of the customer's address          |

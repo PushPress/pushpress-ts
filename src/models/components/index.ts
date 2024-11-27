@@ -3,11 +3,11 @@
  */
 
 export * from "./apikey.js";
-export * from "./appinstall.js";
 export * from "./appointmentcheckin.js";
 export * from "./checkin.js";
 export * from "./classcheckin.js";
 export * from "./company.js";
 export * from "./customer.js";
 export * from "./eventcheckin.js";
+export * from "./opencheckin.js";
 export * from "./security.js";

@@ -18,6 +18,9 @@ export type RevokeApiKeySecurity = {
 
 export type RevokeApiKeyRequest = {
   id: string;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

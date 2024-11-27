@@ -1,6 +1,6 @@
 # Checkin
 
-Checkin for a class, event, or appointment
+Checkin for a class, event, appointment or an open facility
 
 
 ## Supported Types
@@ -51,6 +51,17 @@ const value: components.EventCheckin = {
     id: "cit_12345",
     name: "Weightlifting Seminar",
   },
+};
+```
+
+### `components.OpenCheckin`
+
+```typescript
+const value: components.OpenCheckin = {
+  id: "chk_12345",
+  customer: "usr_12345",
+  company: "cli_12345",
+  timestamp: 1672531200000,
 };
 ```
 

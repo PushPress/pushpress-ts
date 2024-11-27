@@ -8,32 +8,35 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Checkin for an appointment
+ * Schema for checking in to an appointment, including relevant details such as customer and company information
  */
 export type AppointmentCheckin = {
   /**
-   * Unique identifier for the appointment
+   * A unique identifier for the appointment, typically a UUID
    */
   id: string;
   /**
-   * Name of the appointment
+   * The name or title of the appointment, if available
    */
   name?: string | undefined;
   /**
-   * UUID of the customer
+   * The UUID of the customer associated with the appointment
    */
   customer: string;
   /**
-   * UUID of the company
+   * The UUID of the company hosting the appointment
    */
   company: string;
   /**
-   * Unix timestamp of the appointment
+   * The Unix timestamp representing the scheduled time of the appointment
    */
   timestamp: number;
+  /**
+   * A constant value indicating the type of check-in, which is 'appointment'
+   */
   kind?: "appointment" | undefined;
   /**
-   * UUID of the appointment type
+   * The UUID representing the type or category of the appointment
    */
   typeId: string;
 };

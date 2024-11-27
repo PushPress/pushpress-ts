@@ -23,7 +23,7 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Send an PushNotification
+ * Send Push Notification
  *
  * @remarks
  * Send a push notification message from the PushPress platform. Note that only first party apps can send push notifications

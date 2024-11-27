@@ -1,6 +1,6 @@
 # Type
 
-information about the type of the event
+Information about the type of the event
 
 ## Example Usage
 

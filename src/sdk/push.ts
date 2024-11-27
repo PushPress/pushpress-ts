@@ -9,7 +9,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Push extends ClientSDK {
   /**
-   * Send an PushNotification
+   * Send Push Notification
    *
    * @remarks
    * Send a push notification message from the PushPress platform. Note that only first party apps can send push notifications

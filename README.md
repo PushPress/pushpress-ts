@@ -113,7 +113,7 @@ run();
 
 ### [apiKeys](docs/sdks/apikeys/README.md)
 
-* [get](docs/sdks/apikeys/README.md#get) - Get a key by its ID
+* [get](docs/sdks/apikeys/README.md#get) - Get API Key
 * [revoke](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
 
 ### [checkins](docs/sdks/checkins/README.md)
@@ -121,62 +121,67 @@ run();
 
 #### [checkins.appointment](docs/sdks/appointment/README.md)
 
-* [get](docs/sdks/appointment/README.md#get) - Get an appointment checkin
-* [list](docs/sdks/appointment/README.md#list) - Get a list of appointment checkins
+* [get](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
+* [list](docs/sdks/appointment/README.md#list) - List Appointment Checkins
 
 #### [checkins.class](docs/sdks/class/README.md)
 
-* [get](docs/sdks/class/README.md#get) - Get an event checkin
-* [list](docs/sdks/class/README.md#list) - Get a list of class checkins
+* [get](docs/sdks/class/README.md#get) - Get Class Checkin Details
+* [list](docs/sdks/class/README.md#list) - List Class Checkins
 
 #### [checkins.event](docs/sdks/event/README.md)
 
-* [get](docs/sdks/event/README.md#get) - Get a class checkin
-* [list](docs/sdks/event/README.md#list) - Get a list of event checkins
+* [get](docs/sdks/event/README.md#get) - Get Event Checkin Details
+* [list](docs/sdks/event/README.md#list) - List Event Checkins
+
+#### [checkins.open](docs/sdks/open/README.md)
+
+* [get](docs/sdks/open/README.md#get) - Get Open Facility Details
+* [list](docs/sdks/open/README.md#list) - List Open Checkins
 
 ### [company](docs/sdks/company/README.md)
 
-* [get](docs/sdks/company/README.md#get) - Get company information
+* [get](docs/sdks/company/README.md#get) - Get Company Details
 
 ### [customers](docs/sdks/customers/README.md)
 
-* [get](docs/sdks/customers/README.md#get) - Get individual customer information
-* [list](docs/sdks/customers/README.md#list) - Get a list of customers
+* [get](docs/sdks/customers/README.md#get) - Get Customer Details
+* [list](docs/sdks/customers/README.md#list) - List Customers
 
 ### [keys](docs/sdks/keys/README.md)
 
 * [create](docs/sdks/keys/README.md#create) - Create a new API Key
-* [list](docs/sdks/keys/README.md#list) - Get a list of active keys in a given company
+* [list](docs/sdks/keys/README.md#list) - List API Keys
+
+### [manageWebhooks](docs/sdks/managewebhooks/README.md)
+
+* [create](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
+* [list](docs/sdks/managewebhooks/README.md#list) - List Webhooks
+* [get](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
+* [update](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
+* [delete](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
+* [activate](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
+* [rotateSecret](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
 
 ### [messages](docs/sdks/messages/README.md)
 
 
 #### [messages.email](docs/sdks/email/README.md)
 
-* [send](docs/sdks/email/README.md#send) - Send an email
+* [send](docs/sdks/email/README.md#send) - Send an Email
 
 #### [messages.push](docs/sdks/push/README.md)
 
-* [send](docs/sdks/push/README.md#send) - Send an PushNotification
+* [send](docs/sdks/push/README.md#send) - Send Push Notification
 
 #### [messages.realtime](docs/sdks/realtime/README.md)
 
-* [send](docs/sdks/realtime/README.md#send) - Send an event via Ably Realtime
+* [send](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 
 #### [messages.sms](docs/sdks/sms/README.md)
 
 * [send](docs/sdks/sms/README.md#send) - Send an SMS
 
-
-### [webhooks](docs/sdks/webhooks/README.md)
-
-* [create](docs/sdks/webhooks/README.md#create) - Create a Platform Webhook
-* [list](docs/sdks/webhooks/README.md#list) - List Platform Webhooks
-* [get](docs/sdks/webhooks/README.md#get) - Get a Platform Webhook
-* [update](docs/sdks/webhooks/README.md#update) - Update a Platform Webhook
-* [delete](docs/sdks/webhooks/README.md#delete) - Delete a Platform Webhook
-* [activate](docs/sdks/webhooks/README.md#activate) - Activate a Platform Webhook
-* [rotateSecret](docs/sdks/webhooks/README.md#rotatesecret) - Rotate a Platform Webhook Signing Secret
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -196,30 +201,32 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get a key by its ID
+- [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get API Key
 - [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
-- [`checkinsAppointmentGet`](docs/sdks/appointment/README.md#get) - Get an appointment checkin
-- [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - Get a list of appointment checkins
-- [`checkinsClassGet`](docs/sdks/class/README.md#get) - Get an event checkin
-- [`checkinsClassList`](docs/sdks/class/README.md#list) - Get a list of class checkins
-- [`checkinsEventGet`](docs/sdks/event/README.md#get) - Get a class checkin
-- [`checkinsEventList`](docs/sdks/event/README.md#list) - Get a list of event checkins
-- [`companyGet`](docs/sdks/company/README.md#get) - Get company information
-- [`customersGet`](docs/sdks/customers/README.md#get) - Get individual customer information
-- [`customersList`](docs/sdks/customers/README.md#list) - Get a list of customers
+- [`checkinsAppointmentGet`](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
+- [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - List Appointment Checkins
+- [`checkinsClassGet`](docs/sdks/class/README.md#get) - Get Class Checkin Details
+- [`checkinsClassList`](docs/sdks/class/README.md#list) - List Class Checkins
+- [`checkinsEventGet`](docs/sdks/event/README.md#get) - Get Event Checkin Details
+- [`checkinsEventList`](docs/sdks/event/README.md#list) - List Event Checkins
+- [`checkinsOpenGet`](docs/sdks/open/README.md#get) - Get Open Facility Details
+- [`checkinsOpenList`](docs/sdks/open/README.md#list) - List Open Checkins
+- [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
+- [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
+- [`customersList`](docs/sdks/customers/README.md#list) - List Customers
 - [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API Key
-- [`keysList`](docs/sdks/keys/README.md#list) - Get a list of active keys in a given company
-- [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an email
-- [`messagesPushSend`](docs/sdks/push/README.md#send) - Send an PushNotification
-- [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send an event via Ably Realtime
+- [`keysList`](docs/sdks/keys/README.md#list) - List API Keys
+- [`manageWebhooksActivate`](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
+- [`manageWebhooksCreate`](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
+- [`manageWebhooksDelete`](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
+- [`manageWebhooksGet`](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
+- [`manageWebhooksList`](docs/sdks/managewebhooks/README.md#list) - List Webhooks
+- [`manageWebhooksRotateSecret`](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
+- [`manageWebhooksUpdate`](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
+- [`messagesEmailSend`](docs/sdks/email/README.md#send) - Send an Email
+- [`messagesPushSend`](docs/sdks/push/README.md#send) - Send Push Notification
+- [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 - [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
-- [`webhooksActivate`](docs/sdks/webhooks/README.md#activate) - Activate a Platform Webhook
-- [`webhooksCreate`](docs/sdks/webhooks/README.md#create) - Create a Platform Webhook
-- [`webhooksDelete`](docs/sdks/webhooks/README.md#delete) - Delete a Platform Webhook
-- [`webhooksGet`](docs/sdks/webhooks/README.md#get) - Get a Platform Webhook
-- [`webhooksList`](docs/sdks/webhooks/README.md#list) - List Platform Webhooks
-- [`webhooksRotateSecret`](docs/sdks/webhooks/README.md#rotatesecret) - Rotate a Platform Webhook Signing Secret
-- [`webhooksUpdate`](docs/sdks/webhooks/README.md#update) - Update a Platform Webhook
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

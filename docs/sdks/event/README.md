@@ -5,12 +5,12 @@
 
 ### Available Operations
 
-* [get](#get) - Get a class checkin
-* [list](#list) - Get a list of event checkins
+* [get](#get) - Get Event Checkin Details
+* [list](#list) - List Event Checkins
 
 ## get
 
-Get the details for an event checkin by its id, returns the event checkin object
+Get the checkin details for event including event details and checkin time
 
 ### Example Usage
 

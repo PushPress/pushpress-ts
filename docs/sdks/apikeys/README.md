@@ -3,16 +3,16 @@
 
 ## Overview
 
-Manage API Keys
+Manage programmatic access to the API through secure authentication keys. API keys serve as credentials for your application to authenticate requests to API endpoints. Each key can be individually tracked, managed, and revoked to maintain security and access control.
 
 ### Available Operations
 
-* [get](#get) - Get a key by its ID
+* [get](#get) - Get API Key
 * [revoke](#revoke) - Revoke an API Key
 
 ## get
 
-Get a key by its ID
+Fetches detailed information about a specific API key and associated metadata
 
 ### Example Usage
 
@@ -89,7 +89,7 @@ run();
 
 ## revoke
 
-Revoke an API Key. Only the company that created the key can revoke it.
+Immediately invalidates an active API key, preventing any further authentication attempts using this key. This is useful when a key may have been compromised or is no longer needed. This action cannot be undone - a new key must be generated if access is needed again.
 
 ### Example Usage
 

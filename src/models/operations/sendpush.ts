@@ -32,6 +32,9 @@ export type SendPushRequestBody = {
 };
 
 export type SendPushRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
   requestBody: SendPushRequestBody;
 };

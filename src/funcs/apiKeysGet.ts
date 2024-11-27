@@ -23,7 +23,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get a key by its ID
+ * Get API Key
+ *
+ * @remarks
+ * Fetches detailed information about a specific API key and associated metadata
  */
 export async function apiKeysGet(
   client: PushPressCore,

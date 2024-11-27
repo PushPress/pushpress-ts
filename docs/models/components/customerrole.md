@@ -1,6 +1,6 @@
 # CustomerRole
 
-Customer role in the company (.e.g. admin, coach, member)
+The role of the customer within the company (e.g., admin, coach, member)
 
 ## Example Usage
 

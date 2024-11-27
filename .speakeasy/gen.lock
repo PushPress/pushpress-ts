@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 0e952b2925ffb507e8e93fae7b8ada2b
+  docChecksum: bbb6196e0bcb2e50860c011e5f0d9128
   docVersion: 3.0.0
-  speakeasyVersion: 1.441.1
-  generationVersion: 2.461.2
-  releaseVersion: 0.9.0
-  configChecksum: 9f5398a24877b36bfa05d0b29744f456
+  speakeasyVersion: 1.448.0
+  generationVersion: 2.466.0
+  releaseVersion: 0.10.0
+  configChecksum: 72bf6ea1631f000f2977b7da17c7a3cc
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.6
+    core: 3.18.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -35,7 +35,6 @@ features:
     retries: 2.83.0
     sdkHooks: 0.2.0
     serverIDs: 2.81.2
-    tests: 0.7.0
     unions: 2.85.8
     webhooks: 1.0.0
 generatedFiles:
@@ -51,9 +50,6 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/address.md
   - docs/models/components/apikey.md
-  - docs/models/components/app.md
-  - docs/models/components/appinstall.md
-  - docs/models/components/appinstallcompany.md
   - docs/models/components/appointmentcheckin.md
   - docs/models/components/checkin.md
   - docs/models/components/classcheckin.md
@@ -63,8 +59,8 @@ generatedFiles:
   - docs/models/components/customer.md
   - docs/models/components/customerrole.md
   - docs/models/components/eventcheckin.md
-  - docs/models/components/installation.md
   - docs/models/components/name.md
+  - docs/models/components/opencheckin.md
   - docs/models/components/role.md
   - docs/models/components/security.md
   - docs/models/components/type.md
@@ -104,6 +100,8 @@ generatedFiles:
   - docs/models/operations/getcustomerrequest.md
   - docs/models/operations/geteventcheckinglobals.md
   - docs/models/operations/geteventcheckinrequest.md
+  - docs/models/operations/getopencheckinglobals.md
+  - docs/models/operations/getopencheckinrequest.md
   - docs/models/operations/getwebhookeventtypes.md
   - docs/models/operations/getwebhookglobals.md
   - docs/models/operations/getwebhookrequest.md
@@ -133,6 +131,11 @@ generatedFiles:
   - docs/models/operations/listeventcheckinsrequest.md
   - docs/models/operations/listeventcheckinsresponse.md
   - docs/models/operations/listeventcheckinsresponsebody.md
+  - docs/models/operations/listopencheckinsdata.md
+  - docs/models/operations/listopencheckinsglobals.md
+  - docs/models/operations/listopencheckinsrequest.md
+  - docs/models/operations/listopencheckinsresponse.md
+  - docs/models/operations/listopencheckinsresponsebody.md
   - docs/models/operations/listwebhooksdata.md
   - docs/models/operations/listwebhookseventtypes.md
   - docs/models/operations/listwebhooksglobals.md
@@ -163,14 +166,10 @@ generatedFiles:
   - docs/models/operations/two.md
   - docs/models/operations/updatewebhookeventtypes.md
   - docs/models/operations/updatewebhookglobals.md
+  - docs/models/operations/updatewebhookmanagewebhookseventtypes.md
   - docs/models/operations/updatewebhookrequest.md
   - docs/models/operations/updatewebhookrequestbody.md
   - docs/models/operations/updatewebhookresponsebody.md
-  - docs/models/operations/updatewebhookwebhookseventtypes.md
-  - docs/models/webhooks/appinstalledeventrequestbody.md
-  - docs/models/webhooks/appuninstalledeventevent.md
-  - docs/models/webhooks/appuninstalledeventrequestbody.md
-  - docs/models/webhooks/checkincreatedeventevent.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
   - docs/models/webhooks/event.md
   - docs/sdks/apikeys/README.md
@@ -182,12 +181,13 @@ generatedFiles:
   - docs/sdks/email/README.md
   - docs/sdks/event/README.md
   - docs/sdks/keys/README.md
+  - docs/sdks/managewebhooks/README.md
   - docs/sdks/messages/README.md
+  - docs/sdks/open/README.md
   - docs/sdks/push/README.md
   - docs/sdks/pushpress/README.md
   - docs/sdks/realtime/README.md
   - docs/sdks/sms/README.md
-  - docs/sdks/webhooks/README.md
   - jsr.json
   - package.json
   - src/core.ts
@@ -199,22 +199,24 @@ generatedFiles:
   - src/funcs/checkinsClassList.ts
   - src/funcs/checkinsEventGet.ts
   - src/funcs/checkinsEventList.ts
+  - src/funcs/checkinsOpenGet.ts
+  - src/funcs/checkinsOpenList.ts
   - src/funcs/companyGet.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
   - src/funcs/keysCreate.ts
   - src/funcs/keysList.ts
+  - src/funcs/manageWebhooksActivate.ts
+  - src/funcs/manageWebhooksCreate.ts
+  - src/funcs/manageWebhooksDelete.ts
+  - src/funcs/manageWebhooksGet.ts
+  - src/funcs/manageWebhooksList.ts
+  - src/funcs/manageWebhooksRotateSecret.ts
+  - src/funcs/manageWebhooksUpdate.ts
   - src/funcs/messagesEmailSend.ts
   - src/funcs/messagesPushSend.ts
   - src/funcs/messagesRealtimeSend.ts
   - src/funcs/messagesSmsSend.ts
-  - src/funcs/webhooksActivate.ts
-  - src/funcs/webhooksCreate.ts
-  - src/funcs/webhooksDelete.ts
-  - src/funcs/webhooksGet.ts
-  - src/funcs/webhooksList.ts
-  - src/funcs/webhooksRotateSecret.ts
-  - src/funcs/webhooksUpdate.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -236,7 +238,6 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/models/components/apikey.ts
-  - src/models/components/appinstall.ts
   - src/models/components/appointmentcheckin.ts
   - src/models/components/checkin.ts
   - src/models/components/classcheckin.ts
@@ -244,6 +245,7 @@ generatedFiles:
   - src/models/components/customer.ts
   - src/models/components/eventcheckin.ts
   - src/models/components/index.ts
+  - src/models/components/opencheckin.ts
   - src/models/components/security.ts
   - src/models/errors/apierror.ts
   - src/models/errors/badrequest.ts
@@ -265,6 +267,7 @@ generatedFiles:
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/geteventcheckin.ts
+  - src/models/operations/getopencheckin.ts
   - src/models/operations/getwebhook.ts
   - src/models/operations/index.ts
   - src/models/operations/listapikeys.ts
@@ -272,6 +275,7 @@ generatedFiles:
   - src/models/operations/listclasscheckins.ts
   - src/models/operations/listcustomers.ts
   - src/models/operations/listeventcheckins.ts
+  - src/models/operations/listopencheckins.ts
   - src/models/operations/listwebhooks.ts
   - src/models/operations/revokeapikey.ts
   - src/models/operations/rotatewebhooksigningsecret.ts
@@ -280,8 +284,6 @@ generatedFiles:
   - src/models/operations/sendpush.ts
   - src/models/operations/sendsms.ts
   - src/models/operations/updatewebhook.ts
-  - src/models/webhooks/appinstalledevent.ts
-  - src/models/webhooks/appuninstalledevent.ts
   - src/models/webhooks/checkincreatedevent.ts
   - src/models/webhooks/index.ts
   - src/sdk/apikeys.ts
@@ -294,12 +296,13 @@ generatedFiles:
   - src/sdk/event.ts
   - src/sdk/index.ts
   - src/sdk/keys.ts
+  - src/sdk/managewebhooks.ts
   - src/sdk/messages.ts
+  - src/sdk/open.ts
   - src/sdk/push.ts
   - src/sdk/realtime.ts
   - src/sdk/sdk.ts
   - src/sdk/sms.ts
-  - src/sdk/webhooks.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -401,7 +404,7 @@ examples:
         application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
       responses:
         "201":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
         "401":
           application/json: {"key": "<value>"}
         "404":
@@ -418,7 +421,7 @@ examples:
     speakeasy-default-list-api-keys:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
+          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
         "401":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "404":
@@ -439,7 +442,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   revokeApiKey:
     speakeasy-default-revoke-api-key:
       parameters:
@@ -448,7 +451,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "clientUuid": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   sendEmail:
     speakeasy-default-send-email:
       requestBody:
@@ -577,3 +580,18 @@ examples:
       responses:
         "200":
           application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
+  getOpenCheckin:
+    speakeasy-default-get-open-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}
+  listOpenCheckins:
+    speakeasy-default-list-open-checkins:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}]}}
+generatedTests: {}

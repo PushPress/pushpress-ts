@@ -42,6 +42,9 @@ export type ListCustomersRequest = {
    * Filter by role such as admin, frontdesk, or member
    */
   role?: One | Array<Two> | undefined;
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

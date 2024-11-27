@@ -13,7 +13,7 @@ let value: Name = {
 
 ## Fields
 
-| Field                      | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `first`                    | *string*                   | :heavy_check_mark:         | First name of the customer |
-| `last`                     | *string*                   | :heavy_check_mark:         | Last name of the customer  |
+| Field                          | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `first`                        | *string*                       | :heavy_check_mark:             | The first name of the customer |
+| `last`                         | *string*                       | :heavy_check_mark:             | The last name of the customer  |

@@ -17,21 +17,24 @@ export type CreateApiKeySecurity = {
 };
 
 /**
- * Create a new key
+ * Create a new API key
  */
 export type CreateApiKeyRequestBody = {
   name: string;
   description?: string | undefined;
   /**
-   * unix timestamp in milliseconds
+   * expiration unix timestamp in milliseconds
    */
   expiresAt?: number | undefined;
 };
 
 export type CreateApiKeyRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
   /**
-   * Create a new key
+   * Create a new API key
    */
   requestBody: CreateApiKeyRequestBody;
 };

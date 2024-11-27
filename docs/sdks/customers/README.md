@@ -3,16 +3,16 @@
 
 ## Overview
 
-Get Customer Information
+Access and manage customer profile information.
 
 ### Available Operations
 
-* [get](#get) - Get individual customer information
-* [list](#list) - Get a list of customers
+* [get](#get) - Get Customer Details
+* [list](#list) - List Customers
 
 ## get
 
-Get individual customer information, including profile image, primary image, and other profile information. Only returns active customer data
+Get individual customer information, including profile image, primary image, and other profile information.
 
 ### Example Usage
 

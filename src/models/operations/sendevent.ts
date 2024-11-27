@@ -28,6 +28,9 @@ export type SendEventRequestBody = {
 };
 
 export type SendEventRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
   requestBody: SendEventRequestBody;
 };

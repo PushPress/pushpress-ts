@@ -5,7 +5,7 @@
 
 ### Available Operations
 
-* [send](#send) - Send an email
+* [send](#send) - Send an Email
 
 ## send
 

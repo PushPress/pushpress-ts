@@ -13,6 +13,9 @@ export type GetCompanyGlobals = {
 };
 
 export type GetCompanyRequest = {
+  /**
+   * When using multitenant API keys, specify the company
+   */
   companyId?: string | undefined;
 };
 

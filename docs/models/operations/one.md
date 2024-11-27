@@ -5,7 +5,7 @@
 ```typescript
 import { One } from "@pushpress/pushpress/models/operations";
 
-let value: One = "coach";
+let value: One = "admin";
 ```
 
 ## Values

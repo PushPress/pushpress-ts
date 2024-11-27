@@ -9,7 +9,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Realtime extends ClientSDK {
   /**
-   * Send an event via Ably Realtime
+   * Send Ably Realtime Event
    *
    * @remarks
    * Send an event to a websocket channel via Ably Realtime. Note that only first party apps can send realtime notifications
