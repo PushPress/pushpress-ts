@@ -2,18 +2,47 @@
 
 Default Response
 
-## Example Usage
+
+## Supported Types
+
+### `operations.One`
 
 ```typescript
-import { SendPushResponseBody } from "@pushpress/pushpress/models/operations";
-
-let value: SendPushResponseBody = {};
+const value: operations.One = {
+  id: "<id>",
+  errors: [
+    "<value>",
+  ],
+};
 ```
 
-## Fields
+### `operations.Two`
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `id`                                                   | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
-| `externalId`                                           | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
-| `errors`                                               | [operations.Errors](../../models/operations/errors.md) | :heavy_minus_sign:                                     | N/A                                                    |
+```typescript
+const value: operations.Two = {
+  errors: {
+    invalidAliases: {
+      externalId: [
+        "<id>",
+      ],
+    },
+  },
+};
+```
+
+### `operations.Three`
+
+```typescript
+const value: operations.Three = {
+  errors: [
+    "<value>",
+  ],
+};
+```
+
+### `operations.Four`
+
+```typescript
+const value: operations.Four = {};
+```
+

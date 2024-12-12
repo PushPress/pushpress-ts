@@ -8,18 +8,18 @@ import { CheckinCreatedEventRequestBody } from "@pushpress/pushpress/models/webh
 let value: CheckinCreatedEventRequestBody = {
   data: {
     id: "chk_12345",
+    name: "My Event",
     customer: "usr_12345",
     company: "cli_12345",
-    name: "My Class",
+    timestamp: 1672531200000,
+    role: "staff",
     typeId: "cit_12345",
     type: {
       id: "cit_12345",
-      name: "Group HIIT Training",
+      name: "Weightlifting Seminar",
     },
-    timestamp: 1672531200000,
-    role: "attendee",
   },
-  created: 796392,
+  created: 715190,
   event: "checkin.created",
 };
 ```

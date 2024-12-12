@@ -19,7 +19,7 @@ export type Name = {
   last: string;
 };
 
-export type Address = {
+export type CustomerAddress = {
   /**
    * The primary street address of the customer
    */
@@ -70,7 +70,7 @@ export type Customer = {
    */
   id: string;
   name: Name;
-  address: Address;
+  address: CustomerAddress;
   /**
    * A URL pointing to the customer's profile image
    */
@@ -137,18 +137,21 @@ export function nameFromJSON(
 }
 
 /** @internal */
-export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
-  z.object({
-    line1: z.string().optional(),
-    line2: z.string().optional(),
-    city: z.string().optional(),
-    country: z.string().optional(),
-    state: z.string().optional(),
-    zip: z.string().optional(),
-  });
+export const CustomerAddress$inboundSchema: z.ZodType<
+  CustomerAddress,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  line1: z.string().optional(),
+  line2: z.string().optional(),
+  city: z.string().optional(),
+  country: z.string().optional(),
+  state: z.string().optional(),
+  zip: z.string().optional(),
+});
 
 /** @internal */
-export type Address$Outbound = {
+export type CustomerAddress$Outbound = {
   line1?: string | undefined;
   line2?: string | undefined;
   city?: string | undefined;
@@ -158,10 +161,10 @@ export type Address$Outbound = {
 };
 
 /** @internal */
-export const Address$outboundSchema: z.ZodType<
-  Address$Outbound,
+export const CustomerAddress$outboundSchema: z.ZodType<
+  CustomerAddress$Outbound,
   z.ZodTypeDef,
-  Address
+  CustomerAddress
 > = z.object({
   line1: z.string().optional(),
   line2: z.string().optional(),
@@ -175,26 +178,28 @@ export const Address$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Address$ {
-  /** @deprecated use `Address$inboundSchema` instead. */
-  export const inboundSchema = Address$inboundSchema;
-  /** @deprecated use `Address$outboundSchema` instead. */
-  export const outboundSchema = Address$outboundSchema;
-  /** @deprecated use `Address$Outbound` instead. */
-  export type Outbound = Address$Outbound;
+export namespace CustomerAddress$ {
+  /** @deprecated use `CustomerAddress$inboundSchema` instead. */
+  export const inboundSchema = CustomerAddress$inboundSchema;
+  /** @deprecated use `CustomerAddress$outboundSchema` instead. */
+  export const outboundSchema = CustomerAddress$outboundSchema;
+  /** @deprecated use `CustomerAddress$Outbound` instead. */
+  export type Outbound = CustomerAddress$Outbound;
 }
 
-export function addressToJSON(address: Address): string {
-  return JSON.stringify(Address$outboundSchema.parse(address));
+export function customerAddressToJSON(
+  customerAddress: CustomerAddress,
+): string {
+  return JSON.stringify(CustomerAddress$outboundSchema.parse(customerAddress));
 }
 
-export function addressFromJSON(
+export function customerAddressFromJSON(
   jsonString: string,
-): SafeParseResult<Address, SDKValidationError> {
+): SafeParseResult<CustomerAddress, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Address$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Address' from JSON`,
+    (x) => CustomerAddress$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomerAddress' from JSON`,
   );
 }
 
@@ -225,7 +230,7 @@ export const Customer$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.lazy(() => Name$inboundSchema),
-  address: z.lazy(() => Address$inboundSchema),
+  address: z.lazy(() => CustomerAddress$inboundSchema),
   profileImage: z.string().optional(),
   email: z.string(),
   phone: z.string().optional(),
@@ -236,7 +241,7 @@ export const Customer$inboundSchema: z.ZodType<
 export type Customer$Outbound = {
   id: string;
   name: Name$Outbound;
-  address: Address$Outbound;
+  address: CustomerAddress$Outbound;
   profileImage?: string | undefined;
   email: string;
   phone?: string | undefined;
@@ -251,7 +256,7 @@ export const Customer$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.lazy(() => Name$outboundSchema),
-  address: z.lazy(() => Address$outboundSchema),
+  address: z.lazy(() => CustomerAddress$outboundSchema),
   profileImage: z.string().optional(),
   email: z.string(),
   phone: z.string().optional(),

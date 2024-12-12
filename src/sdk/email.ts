@@ -17,7 +17,7 @@ export class Email extends ClientSDK {
   async send(
     request: operations.SendEmailRequest,
     options?: RequestOptions,
-  ): Promise<any> {
+  ): Promise<operations.SendEmailResponseBody> {
     return unwrapAsync(messagesEmailSend(
       this,
       request,

@@ -14,34 +14,33 @@ export type ListCustomersGlobals = {
   companyId?: string | undefined;
 };
 
-export const Two = {
-  Admin: "admin",
-  Frontdesk: "frontdesk",
-  Coach: "coach",
-  Member: "member",
-} as const;
-export type Two = ClosedEnum<typeof Two>;
-
-export const One = {
-  Admin: "admin",
-  Frontdesk: "frontdesk",
-  Coach: "coach",
-  Member: "member",
-} as const;
-export type One = ClosedEnum<typeof One>;
-
 /**
  * Filter by role such as admin, frontdesk, or member
  */
-export type Role = One | Array<Two>;
+export const Role = {
+  Admin: "admin",
+  Frontdesk: "frontdesk",
+  Coach: "coach",
+  Member: "member",
+} as const;
+/**
+ * Filter by role such as admin, frontdesk, or member
+ */
+export type Role = ClosedEnum<typeof Role>;
 
 export type ListCustomersRequest = {
+  /**
+   * page number
+   */
   page?: number | undefined;
+  /**
+   * limit
+   */
   limit?: number | undefined;
   /**
    * Filter by role such as admin, frontdesk, or member
    */
-  role?: One | Array<Two> | undefined;
+  role?: Role | undefined;
   /**
    * When using multitenant API keys, specify the company
    */
@@ -126,51 +125,13 @@ export function listCustomersGlobalsFromJSON(
 }
 
 /** @internal */
-export const Two$inboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(Two);
+export const Role$inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(
+  Role,
+);
 
 /** @internal */
-export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> =
-  Two$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-}
-
-/** @internal */
-export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
-
-/** @internal */
-export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
-  One$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-}
-
-/** @internal */
-export const Role$inboundSchema: z.ZodType<Role, z.ZodTypeDef, unknown> = z
-  .union([One$inboundSchema, z.array(Two$inboundSchema)]);
-
-/** @internal */
-export type Role$Outbound = string | Array<string>;
-
-/** @internal */
-export const Role$outboundSchema: z.ZodType<Role$Outbound, z.ZodTypeDef, Role> =
-  z.union([One$outboundSchema, z.array(Two$outboundSchema)]);
+export const Role$outboundSchema: z.ZodNativeEnum<typeof Role> =
+  Role$inboundSchema;
 
 /**
  * @internal
@@ -181,22 +142,6 @@ export namespace Role$ {
   export const inboundSchema = Role$inboundSchema;
   /** @deprecated use `Role$outboundSchema` instead. */
   export const outboundSchema = Role$outboundSchema;
-  /** @deprecated use `Role$Outbound` instead. */
-  export type Outbound = Role$Outbound;
-}
-
-export function roleToJSON(role: Role): string {
-  return JSON.stringify(Role$outboundSchema.parse(role));
-}
-
-export function roleFromJSON(
-  jsonString: string,
-): SafeParseResult<Role, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Role$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Role' from JSON`,
-  );
 }
 
 /** @internal */
@@ -205,9 +150,9 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  page: z.number().default(1),
-  limit: z.number().default(10),
-  role: z.union([One$inboundSchema, z.array(Two$inboundSchema)]).optional(),
+  page: z.number().int().default(1),
+  limit: z.number().int().default(10),
+  role: Role$inboundSchema.optional(),
   "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -219,7 +164,7 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
 export type ListCustomersRequest$Outbound = {
   page: number;
   limit: number;
-  role?: string | Array<string> | undefined;
+  role?: string | undefined;
   "company-id"?: string | undefined;
 };
 
@@ -229,9 +174,9 @@ export const ListCustomersRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCustomersRequest
 > = z.object({
-  page: z.number().default(1),
-  limit: z.number().default(10),
-  role: z.union([One$outboundSchema, z.array(Two$outboundSchema)]).optional(),
+  page: z.number().int().default(1),
+  limit: z.number().int().default(10),
+  role: Role$outboundSchema.optional(),
   companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

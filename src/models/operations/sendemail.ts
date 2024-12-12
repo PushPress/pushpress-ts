@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -51,6 +52,18 @@ export type SendEmailRequest = {
    */
   companyId?: string | undefined;
   requestBody: SendEmailRequestBody;
+};
+
+export const Status = {
+  Success: "success",
+} as const;
+export type Status = ClosedEnum<typeof Status>;
+
+/**
+ * Default Response
+ */
+export type SendEmailResponseBody = {
+  status: Status;
 };
 
 /** @internal */
@@ -292,5 +305,78 @@ export function sendEmailRequestFromJSON(
     jsonString,
     (x) => SendEmailRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'SendEmailRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
+  .nativeEnum(Status);
+
+/** @internal */
+export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
+  Status$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Status$ {
+  /** @deprecated use `Status$inboundSchema` instead. */
+  export const inboundSchema = Status$inboundSchema;
+  /** @deprecated use `Status$outboundSchema` instead. */
+  export const outboundSchema = Status$outboundSchema;
+}
+
+/** @internal */
+export const SendEmailResponseBody$inboundSchema: z.ZodType<
+  SendEmailResponseBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  status: Status$inboundSchema,
+});
+
+/** @internal */
+export type SendEmailResponseBody$Outbound = {
+  status: string;
+};
+
+/** @internal */
+export const SendEmailResponseBody$outboundSchema: z.ZodType<
+  SendEmailResponseBody$Outbound,
+  z.ZodTypeDef,
+  SendEmailResponseBody
+> = z.object({
+  status: Status$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace SendEmailResponseBody$ {
+  /** @deprecated use `SendEmailResponseBody$inboundSchema` instead. */
+  export const inboundSchema = SendEmailResponseBody$inboundSchema;
+  /** @deprecated use `SendEmailResponseBody$outboundSchema` instead. */
+  export const outboundSchema = SendEmailResponseBody$outboundSchema;
+  /** @deprecated use `SendEmailResponseBody$Outbound` instead. */
+  export type Outbound = SendEmailResponseBody$Outbound;
+}
+
+export function sendEmailResponseBodyToJSON(
+  sendEmailResponseBody: SendEmailResponseBody,
+): string {
+  return JSON.stringify(
+    SendEmailResponseBody$outboundSchema.parse(sendEmailResponseBody),
+  );
+}
+
+export function sendEmailResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<SendEmailResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SendEmailResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SendEmailResponseBody' from JSON`,
   );
 }
