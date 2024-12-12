@@ -87,7 +87,7 @@ run();
 
 ### Response
 
-**Promise\<[any](../../models/.md)\>**
+**Promise\<[operations.SendEmailResponseBody](../../models/operations/sendemailresponsebody.md)\>**
 
 ### Errors
 

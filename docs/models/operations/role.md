@@ -2,20 +2,16 @@
 
 Filter by role such as admin, frontdesk, or member
 
-
-## Supported Types
-
-### `operations.One`
+## Example Usage
 
 ```typescript
-const value: operations.One = "coach";
+import { Role } from "@pushpress/pushpress/models/operations";
+
+let value: Role = "member";
 ```
 
-### `operations.Two[]`
+## Values
 
 ```typescript
-const value: operations.Two[] = [
-  "frontdesk",
-];
+"admin" | "frontdesk" | "coach" | "member"
 ```
-

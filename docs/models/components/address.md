@@ -5,16 +5,26 @@
 ```typescript
 import { Address } from "@pushpress/pushpress/models/components";
 
-let value: Address = {};
+let value: Address = {
+  city: "Lunaport",
+  state: "Vermont",
+  postalCode: "37559-0008",
+  country: {
+    name: "<value>",
+    iso: "<value>",
+  },
+  line1: "<value>",
+  line2: "<value>",
+};
 ```
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `line1`                                            | *string*                                           | :heavy_minus_sign:                                 | The primary street address of the customer         |
-| `line2`                                            | *string*                                           | :heavy_minus_sign:                                 | An additional street address line for the customer |
-| `city`                                             | *string*                                           | :heavy_minus_sign:                                 | The city where the customer resides                |
-| `country`                                          | *string*                                           | :heavy_minus_sign:                                 | The country where the customer resides             |
-| `state`                                            | *string*                                           | :heavy_minus_sign:                                 | The state or province where the customer resides   |
-| `zip`                                              | *string*                                           | :heavy_minus_sign:                                 | The postal code of the customer's address          |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `city`                                                   | *string*                                                 | :heavy_check_mark:                                       | The city of the company                                  |
+| `state`                                                  | *string*                                                 | :heavy_check_mark:                                       | The state of the company                                 |
+| `postalCode`                                             | *string*                                                 | :heavy_check_mark:                                       | The postal code of the company                           |
+| `country`                                                | [components.Country](../../models/components/country.md) | :heavy_check_mark:                                       | N/A                                                      |
+| `line1`                                                  | *string*                                                 | :heavy_check_mark:                                       | The first line of the company address                    |
+| `line2`                                                  | *string*                                                 | :heavy_check_mark:                                       | The second line of the company address                   |

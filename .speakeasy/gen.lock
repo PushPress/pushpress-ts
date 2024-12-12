@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: bbb6196e0bcb2e50860c011e5f0d9128
+  docChecksum: a9bcabd1e8617127f5241a595fc69cfb
   docVersion: 3.0.0
-  speakeasyVersion: 1.448.0
-  generationVersion: 2.466.0
-  releaseVersion: 0.10.0
-  configChecksum: 72bf6ea1631f000f2977b7da17c7a3cc
+  speakeasyVersion: 1.454.0
+  generationVersion: 2.477.0
+  releaseVersion: 0.11.0
+  configChecksum: 1e8a9b68f218226f3f8366753518d129
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.7
+    core: 3.18.9
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -36,7 +36,7 @@ features:
     sdkHooks: 0.2.0
     serverIDs: 2.81.2
     unions: 2.85.8
-    webhooks: 1.0.0
+    webhooks: 1.2.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -56,7 +56,9 @@ generatedFiles:
   - docs/models/components/classcheckinrole.md
   - docs/models/components/classcheckintype.md
   - docs/models/components/company.md
+  - docs/models/components/country.md
   - docs/models/components/customer.md
+  - docs/models/components/customeraddress.md
   - docs/models/components/customerrole.md
   - docs/models/components/eventcheckin.md
   - docs/models/components/name.md
@@ -87,6 +89,7 @@ generatedFiles:
   - docs/models/operations/deletewebhookrequest.md
   - docs/models/operations/errors.md
   - docs/models/operations/eventtypes.md
+  - docs/models/operations/four.md
   - docs/models/operations/getapikeyglobals.md
   - docs/models/operations/getapikeyrequest.md
   - docs/models/operations/getapikeysecurity.md
@@ -153,6 +156,7 @@ generatedFiles:
   - docs/models/operations/sendemailglobals.md
   - docs/models/operations/sendemailrequest.md
   - docs/models/operations/sendemailrequestbody.md
+  - docs/models/operations/sendemailresponsebody.md
   - docs/models/operations/sendeventglobals.md
   - docs/models/operations/sendeventrequest.md
   - docs/models/operations/sendeventrequestbody.md
@@ -163,6 +167,8 @@ generatedFiles:
   - docs/models/operations/sendsmsglobals.md
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
+  - docs/models/operations/status.md
+  - docs/models/operations/three.md
   - docs/models/operations/two.md
   - docs/models/operations/updatewebhookeventtypes.md
   - docs/models/operations/updatewebhookglobals.md
@@ -311,6 +317,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/webhooks.ts
   - tsconfig.json
 examples:
   getEventCheckin:
@@ -359,7 +366,7 @@ examples:
     speakeasy-default-get-company:
       responses:
         "200":
-          application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
+          application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "address": {"city": "Los Angeles", "state": "CA", "postalCode": "90210", "country": {"name": "United States", "iso": "US"}, "line1": "123 Street", "line2": "Apt 4B"}, "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
         "400":
           application/json: {"key": "<value>", "key1": "<value>"}
         "401":
@@ -458,7 +465,7 @@ examples:
         application/json: {"customer": "<value>", "subject": "<value>", "text": "<value>", "html": "<value>", "from": "<value>"}
       responses:
         "200":
-          application/json: "<value>"
+          application/json: {"status": "success"}
         "401":
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
@@ -492,7 +499,8 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>"}
-        "200": {}
+        "200":
+          application/json: {"errors": ["<value>"]}
   sendSms:
     speakeasy-default-send-sms:
       requestBody:
@@ -594,4 +602,8 @@ examples:
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}]}}
+  checkinCreatedEvent:
+    speakeasy-default-checkin-created-event:
+      requestBody:
+        application/json: {"data": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 420989, "event": "checkin.created"}
 generatedTests: {}

@@ -7,6 +7,41 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type Country = {
+  /**
+   * The name of the country
+   */
+  name: string;
+  /**
+   * The ISO code of the country
+   */
+  iso: string;
+};
+
+export type Address = {
+  /**
+   * The city of the company
+   */
+  city: string;
+  /**
+   * The state of the company
+   */
+  state: string;
+  /**
+   * The postal code of the company
+   */
+  postalCode: string;
+  country: Country;
+  /**
+   * The first line of the company address
+   */
+  line1: string;
+  /**
+   * The second line of the company address
+   */
+  line2: string;
+};
+
 /**
  * Represents an entity with one or more PushPress accounts, such as a gym, martial arts studio, or mermaid swim school
  */
@@ -23,6 +58,7 @@ export type Company = {
    * The subdomain associated with the company
    */
   subdomain: string;
+  address: Address;
   /**
    * The default timezone of the company
    */
@@ -42,11 +78,124 @@ export type Company = {
 };
 
 /** @internal */
+export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
+  z.object({
+    name: z.string(),
+    iso: z.string(),
+  });
+
+/** @internal */
+export type Country$Outbound = {
+  name: string;
+  iso: string;
+};
+
+/** @internal */
+export const Country$outboundSchema: z.ZodType<
+  Country$Outbound,
+  z.ZodTypeDef,
+  Country
+> = z.object({
+  name: z.string(),
+  iso: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Country$ {
+  /** @deprecated use `Country$inboundSchema` instead. */
+  export const inboundSchema = Country$inboundSchema;
+  /** @deprecated use `Country$outboundSchema` instead. */
+  export const outboundSchema = Country$outboundSchema;
+  /** @deprecated use `Country$Outbound` instead. */
+  export type Outbound = Country$Outbound;
+}
+
+export function countryToJSON(country: Country): string {
+  return JSON.stringify(Country$outboundSchema.parse(country));
+}
+
+export function countryFromJSON(
+  jsonString: string,
+): SafeParseResult<Country, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Country$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Country' from JSON`,
+  );
+}
+
+/** @internal */
+export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
+  z.object({
+    city: z.string(),
+    state: z.string(),
+    postalCode: z.string(),
+    country: z.lazy(() => Country$inboundSchema),
+    line1: z.string(),
+    line2: z.string(),
+  });
+
+/** @internal */
+export type Address$Outbound = {
+  city: string;
+  state: string;
+  postalCode: string;
+  country: Country$Outbound;
+  line1: string;
+  line2: string;
+};
+
+/** @internal */
+export const Address$outboundSchema: z.ZodType<
+  Address$Outbound,
+  z.ZodTypeDef,
+  Address
+> = z.object({
+  city: z.string(),
+  state: z.string(),
+  postalCode: z.string(),
+  country: z.lazy(() => Country$outboundSchema),
+  line1: z.string(),
+  line2: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Address$ {
+  /** @deprecated use `Address$inboundSchema` instead. */
+  export const inboundSchema = Address$inboundSchema;
+  /** @deprecated use `Address$outboundSchema` instead. */
+  export const outboundSchema = Address$outboundSchema;
+  /** @deprecated use `Address$Outbound` instead. */
+  export type Outbound = Address$Outbound;
+}
+
+export function addressToJSON(address: Address): string {
+  return JSON.stringify(Address$outboundSchema.parse(address));
+}
+
+export function addressFromJSON(
+  jsonString: string,
+): SafeParseResult<Address, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Address$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Address' from JSON`,
+  );
+}
+
+/** @internal */
 export const Company$inboundSchema: z.ZodType<Company, z.ZodTypeDef, unknown> =
   z.object({
     id: z.string(),
     name: z.string(),
     subdomain: z.string(),
+    address: z.lazy(() => Address$inboundSchema),
     defaultTimezone: z.string(),
     phone: z.nullable(z.string()).optional(),
     email: z.string(),
@@ -58,6 +207,7 @@ export type Company$Outbound = {
   id: string;
   name: string;
   subdomain: string;
+  address: Address$Outbound;
   defaultTimezone: string;
   phone?: string | null | undefined;
   email: string;
@@ -73,6 +223,7 @@ export const Company$outboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
   subdomain: z.string(),
+  address: z.lazy(() => Address$outboundSchema),
   defaultTimezone: z.string(),
   phone: z.nullable(z.string()).optional(),
   email: z.string(),
