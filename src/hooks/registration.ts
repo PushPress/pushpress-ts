@@ -1,7 +1,7 @@
 import { BeforeRequestHook, Hooks } from "./types.js";
 
 const beforeRequestHook: BeforeRequestHook = {
-  beforeRequest: (hookCtx, request) => {
+  beforeRequest: (_, request) => {
     return request;
   },
 };
