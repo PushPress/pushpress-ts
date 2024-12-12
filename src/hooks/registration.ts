@@ -1,20 +1,7 @@
 import { BeforeRequestHook, Hooks } from "./types.js";
-// @ts-expect-error only support node for now
-import crypto from "crypto";
 
 const beforeRequestHook: BeforeRequestHook = {
   beforeRequest: (hookCtx, request) => {
-    console.log("running hoook..........................");
-    // sign the request with an hmac
-    const hmac = crypto.createHmac("sha256", hookCtx.securitySource.apiKey);
-    hmac.update(request.url);
-    hmac.update(request.method);
-    hmac.update(request.headers.get("content-type") || "");
-    hmac.update(request.headers.get("accept") || "");
-    hmac.update(request.body || "");
-    const signature = hmac.digest("hex");
-
-    request.headers.set("api-key-signature", signature);
     return request;
   },
 };
