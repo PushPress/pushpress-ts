@@ -3,10 +3,10 @@ id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
   docChecksum: a9bcabd1e8617127f5241a595fc69cfb
   docVersion: 3.0.0
-  speakeasyVersion: 1.454.0
-  generationVersion: 2.477.0
-  releaseVersion: 0.11.0
-  configChecksum: 1e8a9b68f218226f3f8366753518d129
+  speakeasyVersion: 1.454.2
+  generationVersion: 2.477.4
+  releaseVersion: 0.11.1
+  configChecksum: 1d5a998d557e2f3cad37ad3f6824dad6
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -605,5 +605,5 @@ examples:
   checkinCreatedEvent:
     speakeasy-default-checkin-created-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 420989, "event": "checkin.created"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 420989, "event": "checkin.created"}
 generatedTests: {}
