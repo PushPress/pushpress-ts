@@ -113,6 +113,7 @@ export async function checkinsClassList(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,
@@ -175,7 +176,7 @@ export async function checkinsClassList(
     >;
     "~next"?: { page: number };
   } => {
-    const page = request?.page || 0;
+    const page = request?.page ?? 1;
     const nextPage = page + 1;
 
     if (!responseData) {
@@ -185,7 +186,7 @@ export async function checkinsClassList(
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }
-    const limit = request?.limit || 0;
+    const limit = request?.limit ?? 10;
     if (results.length < limit) {
       return { next: () => null };
     }

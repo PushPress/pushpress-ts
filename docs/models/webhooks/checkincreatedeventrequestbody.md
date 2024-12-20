@@ -1,5 +1,7 @@
 # CheckinCreatedEventRequestBody
 
+Checkin Created Event
+
 ## Example Usage
 
 ```typescript

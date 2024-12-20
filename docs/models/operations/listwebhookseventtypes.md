@@ -5,7 +5,7 @@
 ```typescript
 import { ListWebhooksEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: ListWebhooksEventTypes = "customer.deleted";
+let value: ListWebhooksEventTypes = "app.uninstalled";
 ```
 
 ## Values
