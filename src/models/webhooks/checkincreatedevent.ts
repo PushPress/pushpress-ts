@@ -14,6 +14,9 @@ export const Event = {
 } as const;
 export type Event = ClosedEnum<typeof Event>;
 
+/**
+ * Checkin Created Event
+ */
 export type CheckinCreatedEventRequestBody = {
   /**
    * Checkin for a class, event, appointment or an open facility

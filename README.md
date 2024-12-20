@@ -146,6 +146,10 @@ run();
 * [get](docs/sdks/open/README.md#get) - Get Open Facility Details
 * [list](docs/sdks/open/README.md#list) - List Open Checkins
 
+### [classes](docs/sdks/classes/README.md)
+
+* [get](docs/sdks/classes/README.md#get) - Get Details for a Class
+
 ### [company](docs/sdks/company/README.md)
 
 * [get](docs/sdks/company/README.md#get) - Get Company Details
@@ -189,6 +193,10 @@ run();
 
 * [send](docs/sdks/sms/README.md#send) - Send an SMS
 
+### [plans](docs/sdks/plans/README.md)
+
+* [get](docs/sdks/plans/README.md#get) - Get Plan details
+
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -218,6 +226,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`checkinsEventList`](docs/sdks/event/README.md#list) - List Event Checkins
 - [`checkinsOpenGet`](docs/sdks/open/README.md#get) - Get Open Facility Details
 - [`checkinsOpenList`](docs/sdks/open/README.md#list) - List Open Checkins
+- [`classesGet`](docs/sdks/classes/README.md#get) - Get Details for a Class
 - [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
 - [`customersList`](docs/sdks/customers/README.md#list) - List Customers
@@ -234,6 +243,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesPushSend`](docs/sdks/push/README.md#send) - Send Push Notification
 - [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 - [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
+- [`plansGet`](docs/sdks/plans/README.md#get) - Get Plan details
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

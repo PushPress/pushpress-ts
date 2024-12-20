@@ -7,7 +7,7 @@ The role of the customer within the company (e.g., admin, coach, member)
 ```typescript
 import { CustomerRole } from "@pushpress/pushpress/models/components";
 
-let value: CustomerRole = "coach";
+let value: CustomerRole = "member";
 ```
 
 ## Values

@@ -7,7 +7,7 @@ Filter by role such as admin, frontdesk, or member
 ```typescript
 import { Role } from "@pushpress/pushpress/models/operations";
 
-let value: Role = "member";
+let value: Role = "coach";
 ```
 
 ## Values

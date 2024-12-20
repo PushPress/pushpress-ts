@@ -17,33 +17,71 @@ export type Name = {
    * The last name of the customer
    */
   last: string;
+  /**
+   * What the customer prefers to be called
+   */
+  nickname: string | null;
 };
+
+/**
+ * The customer's gender, null if unknown or other
+ */
+export const Gender = {
+  Male: "male",
+  Female: "female",
+} as const;
+/**
+ * The customer's gender, null if unknown or other
+ */
+export type Gender = ClosedEnum<typeof Gender>;
 
 export type CustomerAddress = {
   /**
    * The primary street address of the customer
    */
-  line1?: string | undefined;
+  line1: string | null;
   /**
    * An additional street address line for the customer
    */
-  line2?: string | undefined;
+  line2: string | null;
   /**
    * The city where the customer resides
    */
-  city?: string | undefined;
+  city: string | null;
   /**
    * The country where the customer resides
    */
-  country?: string | undefined;
+  country: string | null;
   /**
    * The state or province where the customer resides
    */
-  state?: string | undefined;
+  state: string | null;
   /**
    * The postal code of the customer's address
    */
-  zip?: string | undefined;
+  zip: string | null;
+};
+
+export type EmergencyContact = {
+  /**
+   * The name of the emergency contact
+   */
+  name: string;
+  /**
+   * The phone number of the emergency contact
+   */
+  phone: string;
+  /**
+   * The relationship of the emergency contact to the customer
+   */
+  relationship: string;
+};
+
+export type MembershipDetails = {
+  /**
+   * The date the customer first became a member
+   */
+  initialMembershipStartDate: string | null;
 };
 
 /**
@@ -70,11 +108,21 @@ export type Customer = {
    */
   id: string;
   name: Name;
+  /**
+   * The customer's gender, null if unknown or other
+   */
+  gender: Gender | null;
+  /**
+   * The customer's date of birth, null if not provided, formatted YYYY-MM-DD
+   */
+  dob: string | null;
   address: CustomerAddress;
   /**
    * A URL pointing to the customer's profile image
    */
-  profileImage?: string | undefined;
+  profileImage: string | null;
+  emergencyContact?: EmergencyContact | undefined;
+  membershipDetails: MembershipDetails | null;
   /**
    * The email address of the customer
    */
@@ -82,7 +130,7 @@ export type Customer = {
   /**
    * The phone number of the customer
    */
-  phone?: string | undefined;
+  phone: string | null;
   /**
    * The role of the customer within the company (e.g., admin, coach, member)
    */
@@ -94,12 +142,14 @@ export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> = z
   .object({
     first: z.string(),
     last: z.string(),
+    nickname: z.nullable(z.string()),
   });
 
 /** @internal */
 export type Name$Outbound = {
   first: string;
   last: string;
+  nickname: string | null;
 };
 
 /** @internal */
@@ -107,6 +157,7 @@ export const Name$outboundSchema: z.ZodType<Name$Outbound, z.ZodTypeDef, Name> =
   z.object({
     first: z.string(),
     last: z.string(),
+    nickname: z.nullable(z.string()),
   });
 
 /**
@@ -137,27 +188,46 @@ export function nameFromJSON(
 }
 
 /** @internal */
+export const Gender$inboundSchema: z.ZodNativeEnum<typeof Gender> = z
+  .nativeEnum(Gender);
+
+/** @internal */
+export const Gender$outboundSchema: z.ZodNativeEnum<typeof Gender> =
+  Gender$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Gender$ {
+  /** @deprecated use `Gender$inboundSchema` instead. */
+  export const inboundSchema = Gender$inboundSchema;
+  /** @deprecated use `Gender$outboundSchema` instead. */
+  export const outboundSchema = Gender$outboundSchema;
+}
+
+/** @internal */
 export const CustomerAddress$inboundSchema: z.ZodType<
   CustomerAddress,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  line1: z.string().optional(),
-  line2: z.string().optional(),
-  city: z.string().optional(),
-  country: z.string().optional(),
-  state: z.string().optional(),
-  zip: z.string().optional(),
+  line1: z.nullable(z.string()),
+  line2: z.nullable(z.string()),
+  city: z.nullable(z.string()),
+  country: z.nullable(z.string()),
+  state: z.nullable(z.string()),
+  zip: z.nullable(z.string()),
 });
 
 /** @internal */
 export type CustomerAddress$Outbound = {
-  line1?: string | undefined;
-  line2?: string | undefined;
-  city?: string | undefined;
-  country?: string | undefined;
-  state?: string | undefined;
-  zip?: string | undefined;
+  line1: string | null;
+  line2: string | null;
+  city: string | null;
+  country: string | null;
+  state: string | null;
+  zip: string | null;
 };
 
 /** @internal */
@@ -166,12 +236,12 @@ export const CustomerAddress$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerAddress
 > = z.object({
-  line1: z.string().optional(),
-  line2: z.string().optional(),
-  city: z.string().optional(),
-  country: z.string().optional(),
-  state: z.string().optional(),
-  zip: z.string().optional(),
+  line1: z.nullable(z.string()),
+  line2: z.nullable(z.string()),
+  city: z.nullable(z.string()),
+  country: z.nullable(z.string()),
+  state: z.nullable(z.string()),
+  zip: z.nullable(z.string()),
 });
 
 /**
@@ -204,6 +274,120 @@ export function customerAddressFromJSON(
 }
 
 /** @internal */
+export const EmergencyContact$inboundSchema: z.ZodType<
+  EmergencyContact,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  name: z.string(),
+  phone: z.string(),
+  relationship: z.string(),
+});
+
+/** @internal */
+export type EmergencyContact$Outbound = {
+  name: string;
+  phone: string;
+  relationship: string;
+};
+
+/** @internal */
+export const EmergencyContact$outboundSchema: z.ZodType<
+  EmergencyContact$Outbound,
+  z.ZodTypeDef,
+  EmergencyContact
+> = z.object({
+  name: z.string(),
+  phone: z.string(),
+  relationship: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EmergencyContact$ {
+  /** @deprecated use `EmergencyContact$inboundSchema` instead. */
+  export const inboundSchema = EmergencyContact$inboundSchema;
+  /** @deprecated use `EmergencyContact$outboundSchema` instead. */
+  export const outboundSchema = EmergencyContact$outboundSchema;
+  /** @deprecated use `EmergencyContact$Outbound` instead. */
+  export type Outbound = EmergencyContact$Outbound;
+}
+
+export function emergencyContactToJSON(
+  emergencyContact: EmergencyContact,
+): string {
+  return JSON.stringify(
+    EmergencyContact$outboundSchema.parse(emergencyContact),
+  );
+}
+
+export function emergencyContactFromJSON(
+  jsonString: string,
+): SafeParseResult<EmergencyContact, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EmergencyContact$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EmergencyContact' from JSON`,
+  );
+}
+
+/** @internal */
+export const MembershipDetails$inboundSchema: z.ZodType<
+  MembershipDetails,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  initialMembershipStartDate: z.nullable(z.string()),
+});
+
+/** @internal */
+export type MembershipDetails$Outbound = {
+  initialMembershipStartDate: string | null;
+};
+
+/** @internal */
+export const MembershipDetails$outboundSchema: z.ZodType<
+  MembershipDetails$Outbound,
+  z.ZodTypeDef,
+  MembershipDetails
+> = z.object({
+  initialMembershipStartDate: z.nullable(z.string()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MembershipDetails$ {
+  /** @deprecated use `MembershipDetails$inboundSchema` instead. */
+  export const inboundSchema = MembershipDetails$inboundSchema;
+  /** @deprecated use `MembershipDetails$outboundSchema` instead. */
+  export const outboundSchema = MembershipDetails$outboundSchema;
+  /** @deprecated use `MembershipDetails$Outbound` instead. */
+  export type Outbound = MembershipDetails$Outbound;
+}
+
+export function membershipDetailsToJSON(
+  membershipDetails: MembershipDetails,
+): string {
+  return JSON.stringify(
+    MembershipDetails$outboundSchema.parse(membershipDetails),
+  );
+}
+
+export function membershipDetailsFromJSON(
+  jsonString: string,
+): SafeParseResult<MembershipDetails, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MembershipDetails$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MembershipDetails' from JSON`,
+  );
+}
+
+/** @internal */
 export const CustomerRole$inboundSchema: z.ZodNativeEnum<typeof CustomerRole> =
   z.nativeEnum(CustomerRole);
 
@@ -230,10 +414,14 @@ export const Customer$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.lazy(() => Name$inboundSchema),
+  gender: z.nullable(Gender$inboundSchema),
+  dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$inboundSchema),
-  profileImage: z.string().optional(),
+  profileImage: z.nullable(z.string()),
+  emergencyContact: z.lazy(() => EmergencyContact$inboundSchema).optional(),
+  membershipDetails: z.nullable(z.lazy(() => MembershipDetails$inboundSchema)),
   email: z.string(),
-  phone: z.string().optional(),
+  phone: z.nullable(z.string()),
   role: CustomerRole$inboundSchema,
 });
 
@@ -241,10 +429,14 @@ export const Customer$inboundSchema: z.ZodType<
 export type Customer$Outbound = {
   id: string;
   name: Name$Outbound;
+  gender: string | null;
+  dob: string | null;
   address: CustomerAddress$Outbound;
-  profileImage?: string | undefined;
+  profileImage: string | null;
+  emergencyContact?: EmergencyContact$Outbound | undefined;
+  membershipDetails: MembershipDetails$Outbound | null;
   email: string;
-  phone?: string | undefined;
+  phone: string | null;
   role: string;
 };
 
@@ -256,10 +448,14 @@ export const Customer$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   name: z.lazy(() => Name$outboundSchema),
+  gender: z.nullable(Gender$outboundSchema),
+  dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$outboundSchema),
-  profileImage: z.string().optional(),
+  profileImage: z.nullable(z.string()),
+  emergencyContact: z.lazy(() => EmergencyContact$outboundSchema).optional(),
+  membershipDetails: z.nullable(z.lazy(() => MembershipDetails$outboundSchema)),
   email: z.string(),
-  phone: z.string().optional(),
+  phone: z.nullable(z.string()),
   role: CustomerRole$outboundSchema,
 });
 

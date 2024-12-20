@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: a9bcabd1e8617127f5241a595fc69cfb
+  docChecksum: caf5ef41d3bad237fa066bcd26c53c67
   docVersion: 3.0.0
-  speakeasyVersion: 1.454.2
-  generationVersion: 2.477.4
-  releaseVersion: 0.11.1
-  configChecksum: 1d5a998d557e2f3cad37ad3f6824dad6
+  speakeasyVersion: 1.459.0
+  generationVersion: 2.483.1
+  releaseVersion: 0.12.0
+  configChecksum: 768dd33e80a38625a25ffe60cd4b88fc
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.9
+    core: 3.18.12
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -30,13 +30,13 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.0
     operationTimeout: 0.2.0
-    pagination: 2.82.7
+    pagination: 2.82.8
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
     serverIDs: 2.81.2
     unions: 2.85.8
-    webhooks: 1.2.0
+    webhooks: 1.3.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -50,8 +50,16 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/address.md
   - docs/models/components/apikey.md
+  - docs/models/components/app.md
+  - docs/models/components/appinstall.md
+  - docs/models/components/appinstallcompany.md
+  - docs/models/components/appointment.md
   - docs/models/components/appointmentcheckin.md
+  - docs/models/components/appointmenttype.md
+  - docs/models/components/category.md
   - docs/models/components/checkin.md
+  - docs/models/components/checkindetails.md
+  - docs/models/components/class.md
   - docs/models/components/classcheckin.md
   - docs/models/components/classcheckinrole.md
   - docs/models/components/classcheckintype.md
@@ -60,11 +68,27 @@ generatedFiles:
   - docs/models/components/customer.md
   - docs/models/components/customeraddress.md
   - docs/models/components/customerrole.md
+  - docs/models/components/emergencycontact.md
+  - docs/models/components/enrollment.md
+  - docs/models/components/entitlements.md
   - docs/models/components/eventcheckin.md
+  - docs/models/components/four.md
+  - docs/models/components/gender.md
+  - docs/models/components/installation.md
+  - docs/models/components/location.md
+  - docs/models/components/membershipdetails.md
+  - docs/models/components/metadata.md
   - docs/models/components/name.md
+  - docs/models/components/one.md
   - docs/models/components/opencheckin.md
+  - docs/models/components/plan.md
+  - docs/models/components/policies.md
+  - docs/models/components/recurrencedetails.md
   - docs/models/components/role.md
   - docs/models/components/security.md
+  - docs/models/components/status.md
+  - docs/models/components/three.md
+  - docs/models/components/two.md
   - docs/models/components/type.md
   - docs/models/errors/badrequest.md
   - docs/models/errors/internalservererror.md
@@ -89,6 +113,7 @@ generatedFiles:
   - docs/models/operations/deletewebhookrequest.md
   - docs/models/operations/errors.md
   - docs/models/operations/eventtypes.md
+  - docs/models/operations/expand.md
   - docs/models/operations/four.md
   - docs/models/operations/getapikeyglobals.md
   - docs/models/operations/getapikeyrequest.md
@@ -97,6 +122,8 @@ generatedFiles:
   - docs/models/operations/getappointmentcheckinrequest.md
   - docs/models/operations/getclasscheckinglobals.md
   - docs/models/operations/getclasscheckinrequest.md
+  - docs/models/operations/getclassglobals.md
+  - docs/models/operations/getclassrequest.md
   - docs/models/operations/getcompanyglobals.md
   - docs/models/operations/getcompanyrequest.md
   - docs/models/operations/getcustomerglobals.md
@@ -105,6 +132,8 @@ generatedFiles:
   - docs/models/operations/geteventcheckinrequest.md
   - docs/models/operations/getopencheckinglobals.md
   - docs/models/operations/getopencheckinrequest.md
+  - docs/models/operations/getplanglobals.md
+  - docs/models/operations/getplanrequest.md
   - docs/models/operations/getwebhookeventtypes.md
   - docs/models/operations/getwebhookglobals.md
   - docs/models/operations/getwebhookrequest.md
@@ -176,12 +205,43 @@ generatedFiles:
   - docs/models/operations/updatewebhookrequest.md
   - docs/models/operations/updatewebhookrequestbody.md
   - docs/models/operations/updatewebhookresponsebody.md
+  - docs/models/webhooks/appinstalledeventevent.md
+  - docs/models/webhooks/appinstalledeventrequestbody.md
+  - docs/models/webhooks/appointmentnoshoweventevent.md
+  - docs/models/webhooks/appointmentnoshoweventrequestbody.md
+  - docs/models/webhooks/appointmentrescheduledeventevent.md
+  - docs/models/webhooks/appointmentrescheduledeventrequestbody.md
+  - docs/models/webhooks/appointmentscheduledeventevent.md
+  - docs/models/webhooks/appointmentscheduledeventrequestbody.md
+  - docs/models/webhooks/appuninstalledeventevent.md
+  - docs/models/webhooks/appuninstalledeventrequestbody.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
+  - docs/models/webhooks/checkindeletedeventevent.md
+  - docs/models/webhooks/checkindeletedeventrequestbody.md
+  - docs/models/webhooks/checkinupdatedeventevent.md
+  - docs/models/webhooks/checkinupdatedeventrequestbody.md
+  - docs/models/webhooks/classnoshoweventevent.md
+  - docs/models/webhooks/classnoshoweventrequestbody.md
+  - docs/models/webhooks/customercreatedeventevent.md
+  - docs/models/webhooks/customercreatedeventrequestbody.md
+  - docs/models/webhooks/customerdeletedeventevent.md
+  - docs/models/webhooks/customerdeletedeventrequestbody.md
+  - docs/models/webhooks/customerupdatedeventevent.md
+  - docs/models/webhooks/customerupdatedeventrequestbody.md
+  - docs/models/webhooks/data.md
+  - docs/models/webhooks/enrollmentcreatedeventevent.md
+  - docs/models/webhooks/enrollmentcreatedeventrequestbody.md
+  - docs/models/webhooks/enrollmentstatuschangedevent.md
+  - docs/models/webhooks/enrollmentstatuschangedrequestbody.md
   - docs/models/webhooks/event.md
+  - docs/models/webhooks/memberappupdatedevent.md
+  - docs/models/webhooks/memberappupdatedrequestbody.md
+  - docs/models/webhooks/os.md
   - docs/sdks/apikeys/README.md
   - docs/sdks/appointment/README.md
   - docs/sdks/checkins/README.md
   - docs/sdks/class/README.md
+  - docs/sdks/classes/README.md
   - docs/sdks/company/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/email/README.md
@@ -190,6 +250,7 @@ generatedFiles:
   - docs/sdks/managewebhooks/README.md
   - docs/sdks/messages/README.md
   - docs/sdks/open/README.md
+  - docs/sdks/plans/README.md
   - docs/sdks/push/README.md
   - docs/sdks/pushpress/README.md
   - docs/sdks/realtime/README.md
@@ -207,6 +268,7 @@ generatedFiles:
   - src/funcs/checkinsEventList.ts
   - src/funcs/checkinsOpenGet.ts
   - src/funcs/checkinsOpenList.ts
+  - src/funcs/classesGet.ts
   - src/funcs/companyGet.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
@@ -223,6 +285,7 @@ generatedFiles:
   - src/funcs/messagesPushSend.ts
   - src/funcs/messagesRealtimeSend.ts
   - src/funcs/messagesSmsSend.ts
+  - src/funcs/plansGet.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -244,14 +307,19 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/models/components/apikey.ts
+  - src/models/components/appinstall.ts
+  - src/models/components/appointment.ts
   - src/models/components/appointmentcheckin.ts
   - src/models/components/checkin.ts
+  - src/models/components/class.ts
   - src/models/components/classcheckin.ts
   - src/models/components/company.ts
   - src/models/components/customer.ts
+  - src/models/components/enrollment.ts
   - src/models/components/eventcheckin.ts
   - src/models/components/index.ts
   - src/models/components/opencheckin.ts
+  - src/models/components/plan.ts
   - src/models/components/security.ts
   - src/models/errors/apierror.ts
   - src/models/errors/badrequest.ts
@@ -269,11 +337,13 @@ generatedFiles:
   - src/models/operations/deletewebhook.ts
   - src/models/operations/getapikey.ts
   - src/models/operations/getappointmentcheckin.ts
+  - src/models/operations/getclass.ts
   - src/models/operations/getclasscheckin.ts
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/geteventcheckin.ts
   - src/models/operations/getopencheckin.ts
+  - src/models/operations/getplan.ts
   - src/models/operations/getwebhook.ts
   - src/models/operations/index.ts
   - src/models/operations/listapikeys.ts
@@ -290,12 +360,27 @@ generatedFiles:
   - src/models/operations/sendpush.ts
   - src/models/operations/sendsms.ts
   - src/models/operations/updatewebhook.ts
+  - src/models/webhooks/appinstalledevent.ts
+  - src/models/webhooks/appointmentnoshowevent.ts
+  - src/models/webhooks/appointmentrescheduledevent.ts
+  - src/models/webhooks/appointmentscheduledevent.ts
+  - src/models/webhooks/appuninstalledevent.ts
   - src/models/webhooks/checkincreatedevent.ts
+  - src/models/webhooks/checkindeletedevent.ts
+  - src/models/webhooks/checkinupdatedevent.ts
+  - src/models/webhooks/classnoshowevent.ts
+  - src/models/webhooks/customercreatedevent.ts
+  - src/models/webhooks/customerdeletedevent.ts
+  - src/models/webhooks/customerupdatedevent.ts
+  - src/models/webhooks/enrollmentcreatedevent.ts
+  - src/models/webhooks/enrollmentstatuschanged.ts
   - src/models/webhooks/index.ts
+  - src/models/webhooks/memberappupdated.ts
   - src/sdk/apikeys.ts
   - src/sdk/appointment.ts
   - src/sdk/checkins.ts
   - src/sdk/class.ts
+  - src/sdk/classes.ts
   - src/sdk/company.ts
   - src/sdk/customers.ts
   - src/sdk/email.ts
@@ -305,6 +390,7 @@ generatedFiles:
   - src/sdk/managewebhooks.ts
   - src/sdk/messages.ts
   - src/sdk/open.ts
+  - src/sdk/plans.ts
   - src/sdk/push.ts
   - src/sdk/realtime.ts
   - src/sdk/sdk.ts
@@ -387,12 +473,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
+          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
   listCustomers:
     speakeasy-default-list-customers:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe"}, "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "state": "USA", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
         "400":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "401":
@@ -606,4 +692,79 @@ examples:
     speakeasy-default-checkin-created-event:
       requestBody:
         application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 420989, "event": "checkin.created"}
+  checkinUpdatedEvent:
+    speakeasy-default-checkin-updated-event:
+      requestBody:
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "previousvalues": "<value>", "created": 567981, "event": "checkin.updated"}
+  checkinDeletedEvent:
+    speakeasy-default-checkin-deleted-event:
+      requestBody:
+        application/json: {"data": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 336376, "event": "checkin.deleted"}
+  appInstalledEvent:
+    speakeasy-default-app-installed-event:
+      requestBody:
+        application/json: {"data": {"company": {"id": "company-uuid"}, "app": {"id": "app-uuid"}, "installation": {"id": "installation-uuid"}}, "created": 865806, "event": "app.installed"}
+  appUninstalledEvent:
+    speakeasy-default-app-uninstalled-event:
+      requestBody:
+        application/json: {"data": {"company": {"id": "company-uuid"}, "app": {"id": "app-uuid"}, "installation": {"id": "installation-uuid"}}, "created": 897950, "event": "app.uninstalled"}
+  appointmentScheduledEvent:
+    speakeasy-default-appointment-scheduled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 835440, "event": "appointment.scheduled"}
+  appointmentRescheduledEvent:
+    speakeasy-default-appointment-rescheduled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 846105, "event": "appointment.rescheduled"}
+  appointmentNoShowEvent:
+    speakeasy-default-appointment-no-show-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 840953, "event": "appointment.noshow"}
+  customerCreatedEvent:
+    speakeasy-default-customer-created-event:
+      requestBody:
+        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 453969, "event": "customer.created"}
+  customerUpdatedEvent:
+    speakeasy-default-customer-updated-event:
+      requestBody:
+        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "previousValues": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 673593, "event": "customer.updated"}
+  customerDeletedEvent:
+    speakeasy-default-customer-deleted-event:
+      requestBody:
+        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 522524, "event": "customer.deleted"}
+  classNoShowEvent:
+    speakeasy-default-class-no-show-event:
+      requestBody:
+        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 161533, "event": "class.noshow"}
+  enrollmentCreatedEvent:
+    speakeasy-default-enrollment-created-event:
+      requestBody:
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 804740, "event": "enrollment.created"}
+  enrollmentStatusChanged:
+    speakeasy-default-enrollment-status-changed:
+      requestBody:
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
+  memberAppUpdated:
+    speakeasy-default-member-app-updated:
+      requestBody:
+        application/json: {"created": 192348, "event": "memberapp.updated"}
+  getClass:
+    speakeasy-default-get-class:
+      parameters:
+        path:
+          id: "<id>"
+        query: {}
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}
+  getPlan:
+    speakeasy-default-get-plan:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "sub_12345", "name": "Unlimited Membership", "companyId": "client_12345", "recurrenceDetails": {"type": "recurring"}, "policies": {"allowClassCheckins": true, "allowOpenGymCheckins": true, "allow24HourAccess": false}, "category": {"name": "Crossfit"}}
 generatedTests: {}
