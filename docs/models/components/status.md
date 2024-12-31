@@ -5,7 +5,7 @@
 ```typescript
 import { Status } from "@pushpress/pushpress/models/components";
 
-let value: Status = "active";
+let value: Status = "paused";
 ```
 
 ## Values

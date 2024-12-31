@@ -118,9 +118,13 @@ export type Customer = {
   dob: string | null;
   address: CustomerAddress;
   /**
+   * The UUID of the assigned staff member
+   */
+  assignedToStaffId: string | null;
+  /**
    * A URL pointing to the customer's profile image
    */
-  profileImage: string | null;
+  profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact | undefined;
   membershipDetails: MembershipDetails | null;
   /**
@@ -417,7 +421,8 @@ export const Customer$inboundSchema: z.ZodType<
   gender: z.nullable(Gender$inboundSchema),
   dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$inboundSchema),
-  profileImage: z.nullable(z.string()),
+  assignedToStaffId: z.nullable(z.string()),
+  profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$inboundSchema).optional(),
   membershipDetails: z.nullable(z.lazy(() => MembershipDetails$inboundSchema)),
   email: z.string(),
@@ -432,7 +437,8 @@ export type Customer$Outbound = {
   gender: string | null;
   dob: string | null;
   address: CustomerAddress$Outbound;
-  profileImage: string | null;
+  assignedToStaffId: string | null;
+  profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact$Outbound | undefined;
   membershipDetails: MembershipDetails$Outbound | null;
   email: string;
@@ -451,7 +457,8 @@ export const Customer$outboundSchema: z.ZodType<
   gender: z.nullable(Gender$outboundSchema),
   dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$outboundSchema),
-  profileImage: z.nullable(z.string()),
+  assignedToStaffId: z.nullable(z.string()),
+  profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$outboundSchema).optional(),
   membershipDetails: z.nullable(z.lazy(() => MembershipDetails$outboundSchema)),
   email: z.string(),

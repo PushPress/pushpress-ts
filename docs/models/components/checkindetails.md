@@ -6,8 +6,8 @@
 import { CheckinDetails } from "@pushpress/pushpress/models/components";
 
 let value: CheckinDetails = {
-  checkins: 2088.77,
-  limit: 1613.10,
+  checkins: 2532.92,
+  limit: 4663.11,
 };
 ```
 

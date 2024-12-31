@@ -24,6 +24,7 @@ let value: Customer = {
     state: "NY",
     zip: "12345",
   },
+  assignedToStaffId: null,
   profileImage: "https://example.com/profile.jpg",
   membershipDetails: {
     initialMembershipStartDate: "2022-01-01",
@@ -43,7 +44,8 @@ let value: Customer = {
 | `gender`                                                                     | [components.Gender](../../models/components/gender.md)                       | :heavy_check_mark:                                                           | The customer's gender, null if unknown or other                              |
 | `dob`                                                                        | *string*                                                                     | :heavy_check_mark:                                                           | The customer's date of birth, null if not provided, formatted YYYY-MM-DD     |
 | `address`                                                                    | [components.CustomerAddress](../../models/components/customeraddress.md)     | :heavy_check_mark:                                                           | N/A                                                                          |
-| `profileImage`                                                               | *string*                                                                     | :heavy_check_mark:                                                           | A URL pointing to the customer's profile image                               |
+| `assignedToStaffId`                                                          | *string*                                                                     | :heavy_check_mark:                                                           | The UUID of the assigned staff member                                        |
+| `profileImage`                                                               | *string*                                                                     | :heavy_minus_sign:                                                           | A URL pointing to the customer's profile image                               |
 | `emergencyContact`                                                           | [components.EmergencyContact](../../models/components/emergencycontact.md)   | :heavy_minus_sign:                                                           | N/A                                                                          |
 | `membershipDetails`                                                          | [components.MembershipDetails](../../models/components/membershipdetails.md) | :heavy_check_mark:                                                           | N/A                                                                          |
 | `email`                                                                      | *string*                                                                     | :heavy_check_mark:                                                           | The email address of the customer                                            |

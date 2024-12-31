@@ -9,7 +9,7 @@ import { MemberAppUpdatedRequestBody } from "@pushpress/pushpress/models/webhook
 
 let value: MemberAppUpdatedRequestBody = {
   data: {},
-  created: 778157,
+  created: 780529,
   event: "memberapp.updated",
 };
 ```

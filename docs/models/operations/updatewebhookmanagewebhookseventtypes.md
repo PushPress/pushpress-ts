@@ -5,11 +5,11 @@
 ```typescript
 import { UpdateWebhookManageWebhooksEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: UpdateWebhookManageWebhooksEventTypes = "checkin.deleted";
+let value: UpdateWebhookManageWebhooksEventTypes = "reservation.noshowed";
 ```
 
 ## Values
 
 ```typescript
-"checkin.created" | "checkin.updated" | "checkin.deleted" | "customer.created" | "customer.updated" | "customer.deleted" | "app.installed" | "app.uninstalled"
+"app.installed" | "app.uninstalled" | "appointment.scheduled" | "appointment.rescheduled" | "appointment.noshowed" | "checkin.created" | "checkin.updated" | "checkin.deleted" | "class.cancelled" | "customer.created" | "customer.updated" | "customer.deleted" | "enrollment.created" | "enrollment.status.changed" | "memberapp.updated" | "reservation.created" | "reservation.waitlisted" | "reservation.cancelled" | "reservation.noshowed"
 ```
