@@ -6,10 +6,10 @@
 import { UpdateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: UpdateWebhookRequest = {
-  uuid: "b0c211a3-68db-4420-a447-ab462c0bcc45",
+  uuid: "8db42044-7ab4-462c-90bc-c45945370c18",
   requestBody: {
     eventTypes: [
-      "checkin.deleted",
+      "customer.updated",
     ],
   },
 };

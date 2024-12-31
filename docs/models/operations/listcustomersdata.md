@@ -24,6 +24,7 @@ let value: ListCustomersData = {
         state: "NY",
         zip: "12345",
       },
+      assignedToStaffId: null,
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",

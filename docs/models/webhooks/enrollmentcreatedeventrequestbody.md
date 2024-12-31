@@ -28,7 +28,7 @@ let value: EnrollmentCreatedEventRequestBody = {
       },
     ],
   },
-  created: 87129,
+  created: 832620,
   event: "enrollment.created",
 };
 ```

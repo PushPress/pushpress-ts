@@ -64,7 +64,7 @@ async function run() {
     requestBody: {
       url: "https://probable-heating.com/",
       eventTypes: [
-        "customer.created",
+        "checkin.deleted",
       ],
     },
   });

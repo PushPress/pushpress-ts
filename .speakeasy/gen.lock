@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: caf5ef41d3bad237fa066bcd26c53c67
+  docChecksum: 181a6b593e6a56ba8ac24db2a5197152
   docVersion: 3.0.0
-  speakeasyVersion: 1.459.0
-  generationVersion: 2.483.1
-  releaseVersion: 0.12.0
-  configChecksum: 768dd33e80a38625a25ffe60cd4b88fc
+  speakeasyVersion: 1.460.3
+  generationVersion: 2.484.0
+  releaseVersion: 0.13.0
+  configChecksum: e69b28d2eabdf1379908cf5628957187
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -20,13 +20,13 @@ features:
     devContainers: 2.90.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     globals: 2.82.1
     groups: 2.81.2
-    methodSecurity: 2.82.4
+    methodSecurity: 2.82.5
     nameOverrides: 2.81.2
     nullables: 0.1.0
     operationTimeout: 0.2.0
@@ -84,6 +84,8 @@ generatedFiles:
   - docs/models/components/plan.md
   - docs/models/components/policies.md
   - docs/models/components/recurrencedetails.md
+  - docs/models/components/reservation.md
+  - docs/models/components/reservationstatus.md
   - docs/models/components/role.md
   - docs/models/components/security.md
   - docs/models/components/status.md
@@ -207,8 +209,10 @@ generatedFiles:
   - docs/models/operations/updatewebhookresponsebody.md
   - docs/models/webhooks/appinstalledeventevent.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
-  - docs/models/webhooks/appointmentnoshoweventevent.md
-  - docs/models/webhooks/appointmentnoshoweventrequestbody.md
+  - docs/models/webhooks/appointmentcancelledeventevent.md
+  - docs/models/webhooks/appointmentcancelledeventrequestbody.md
+  - docs/models/webhooks/appointmentnoshowedeventevent.md
+  - docs/models/webhooks/appointmentnoshowedeventrequestbody.md
   - docs/models/webhooks/appointmentrescheduledeventevent.md
   - docs/models/webhooks/appointmentrescheduledeventrequestbody.md
   - docs/models/webhooks/appointmentscheduledeventevent.md
@@ -220,8 +224,8 @@ generatedFiles:
   - docs/models/webhooks/checkindeletedeventrequestbody.md
   - docs/models/webhooks/checkinupdatedeventevent.md
   - docs/models/webhooks/checkinupdatedeventrequestbody.md
-  - docs/models/webhooks/classnoshoweventevent.md
-  - docs/models/webhooks/classnoshoweventrequestbody.md
+  - docs/models/webhooks/classcancelledeventevent.md
+  - docs/models/webhooks/classcancelledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventevent.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
   - docs/models/webhooks/customerdeletedeventevent.md
@@ -237,6 +241,13 @@ generatedFiles:
   - docs/models/webhooks/memberappupdatedevent.md
   - docs/models/webhooks/memberappupdatedrequestbody.md
   - docs/models/webhooks/os.md
+  - docs/models/webhooks/previousvalues.md
+  - docs/models/webhooks/reservationcancelledeventevent.md
+  - docs/models/webhooks/reservationcancelledeventrequestbody.md
+  - docs/models/webhooks/reservationcreatedeventevent.md
+  - docs/models/webhooks/reservationcreatedeventrequestbody.md
+  - docs/models/webhooks/reservationwaitlistedeventevent.md
+  - docs/models/webhooks/reservationwaitlistedeventrequestbody.md
   - docs/sdks/apikeys/README.md
   - docs/sdks/appointment/README.md
   - docs/sdks/checkins/README.md
@@ -320,6 +331,7 @@ generatedFiles:
   - src/models/components/index.ts
   - src/models/components/opencheckin.ts
   - src/models/components/plan.ts
+  - src/models/components/reservation.ts
   - src/models/components/security.ts
   - src/models/errors/apierror.ts
   - src/models/errors/badrequest.ts
@@ -361,14 +373,15 @@ generatedFiles:
   - src/models/operations/sendsms.ts
   - src/models/operations/updatewebhook.ts
   - src/models/webhooks/appinstalledevent.ts
-  - src/models/webhooks/appointmentnoshowevent.ts
+  - src/models/webhooks/appointmentcancelledevent.ts
+  - src/models/webhooks/appointmentnoshowedevent.ts
   - src/models/webhooks/appointmentrescheduledevent.ts
   - src/models/webhooks/appointmentscheduledevent.ts
   - src/models/webhooks/appuninstalledevent.ts
   - src/models/webhooks/checkincreatedevent.ts
   - src/models/webhooks/checkindeletedevent.ts
   - src/models/webhooks/checkinupdatedevent.ts
-  - src/models/webhooks/classnoshowevent.ts
+  - src/models/webhooks/classcancelledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
   - src/models/webhooks/customerupdatedevent.ts
@@ -376,6 +389,9 @@ generatedFiles:
   - src/models/webhooks/enrollmentstatuschanged.ts
   - src/models/webhooks/index.ts
   - src/models/webhooks/memberappupdated.ts
+  - src/models/webhooks/reservationcancelledevent.ts
+  - src/models/webhooks/reservationcreatedevent.ts
+  - src/models/webhooks/reservationwaitlistedevent.ts
   - src/sdk/apikeys.ts
   - src/sdk/appointment.ts
   - src/sdk/checkins.ts
@@ -473,12 +489,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
+          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
   listCustomers:
     speakeasy-default-list-customers:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
         "400":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "401":
@@ -695,11 +711,11 @@ examples:
   checkinUpdatedEvent:
     speakeasy-default-checkin-updated-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "previousvalues": "<value>", "created": 567981, "event": "checkin.updated"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "created": 567981, "event": "checkin.updated"}
   checkinDeletedEvent:
     speakeasy-default-checkin-deleted-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 336376, "event": "checkin.deleted"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 336376, "event": "checkin.deleted"}
   appInstalledEvent:
     speakeasy-default-app-installed-event:
       requestBody:
@@ -723,15 +739,15 @@ examples:
   customerCreatedEvent:
     speakeasy-default-customer-created-event:
       requestBody:
-        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 453969, "event": "customer.created"}
+        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 453969, "event": "customer.created"}
   customerUpdatedEvent:
     speakeasy-default-customer-updated-event:
       requestBody:
-        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "previousValues": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 673593, "event": "customer.updated"}
+        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "previousValues": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 673593, "event": "customer.updated"}
   customerDeletedEvent:
     speakeasy-default-customer-deleted-event:
       requestBody:
-        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 522524, "event": "customer.deleted"}
+        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 522524, "event": "customer.deleted"}
   classNoShowEvent:
     speakeasy-default-class-no-show-event:
       requestBody:
@@ -767,4 +783,28 @@ examples:
       responses:
         "200":
           application/json: {"id": "sub_12345", "name": "Unlimited Membership", "companyId": "client_12345", "recurrenceDetails": {"type": "recurring"}, "policies": {"allowClassCheckins": true, "allowOpenGymCheckins": true, "allow24HourAccess": false}, "category": {"name": "Crossfit"}}
+  appointmentNoShowedEvent:
+    speakeasy-default-appointment-no-showed-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 391237, "event": "appointment.noshowed"}
+  appointmentCancelledEvent:
+    speakeasy-default-appointment-cancelled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 933074, "event": "appointment.cancelled"}
+  classCancelledEvent:
+    speakeasy-default-class-cancelled-event:
+      requestBody:
+        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 657431, "event": "class.cancelled"}
+  reservationCreatedEvent:
+    speakeasy-default-reservation-created-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 377467, "event": "reservation.created"}
+  reservationWaitlistedEvent:
+    speakeasy-default-reservation-waitlisted-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 902968, "event": "reservation.waitlisted"}
+  reservationCancelledEvent:
+    speakeasy-default-reservation-cancelled-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 611009, "event": "reservation.cancelled"}
 generatedTests: {}

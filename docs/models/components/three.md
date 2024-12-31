@@ -6,7 +6,7 @@
 import { Three } from "@pushpress/pushpress/models/components";
 
 let value: Three = {
-  occurrences: 971.01,
+  occurrences: 2828.07,
 };
 ```
 

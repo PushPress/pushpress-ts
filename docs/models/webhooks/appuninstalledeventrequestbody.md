@@ -19,7 +19,7 @@ let value: AppUninstalledEventRequestBody = {
       id: "installation-uuid",
     },
   },
-  created: 891773,
+  created: 963663,
   event: "app.uninstalled",
 };
 ```

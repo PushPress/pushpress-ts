@@ -15,4 +15,5 @@ export * from "./enrollment.js";
 export * from "./eventcheckin.js";
 export * from "./opencheckin.js";
 export * from "./plan.js";
+export * from "./reservation.js";
 export * from "./security.js";

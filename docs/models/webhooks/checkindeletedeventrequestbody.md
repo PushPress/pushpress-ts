@@ -9,14 +9,19 @@ import { CheckinDeletedEventRequestBody } from "@pushpress/pushpress/models/webh
 
 let value: CheckinDeletedEventRequestBody = {
   data: {
-    id: "apptschdl_12345",
-    name: "Personal Training",
+    id: "chk_12345",
+    name: "My Event",
     customer: "usr_12345",
     company: "cli_12345",
     timestamp: 1672531200000,
-    typeId: "appttype_12345",
+    role: "staff",
+    typeId: "cit_12345",
+    type: {
+      id: "cit_12345",
+      name: "Weightlifting Seminar",
+    },
   },
-  created: 645894,
+  created: 437587,
   event: "checkin.deleted",
 };
 ```

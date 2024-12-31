@@ -21,14 +21,25 @@ export type ListWebhooksRequest = {
 };
 
 export const ListWebhooksEventTypes = {
+  AppInstalled: "app.installed",
+  AppUninstalled: "app.uninstalled",
+  AppointmentScheduled: "appointment.scheduled",
+  AppointmentRescheduled: "appointment.rescheduled",
+  AppointmentNoshowed: "appointment.noshowed",
   CheckinCreated: "checkin.created",
   CheckinUpdated: "checkin.updated",
   CheckinDeleted: "checkin.deleted",
+  ClassCancelled: "class.cancelled",
   CustomerCreated: "customer.created",
   CustomerUpdated: "customer.updated",
   CustomerDeleted: "customer.deleted",
-  AppInstalled: "app.installed",
-  AppUninstalled: "app.uninstalled",
+  EnrollmentCreated: "enrollment.created",
+  EnrollmentStatusChanged: "enrollment.status.changed",
+  MemberappUpdated: "memberapp.updated",
+  ReservationCreated: "reservation.created",
+  ReservationWaitlisted: "reservation.waitlisted",
+  ReservationCancelled: "reservation.cancelled",
+  ReservationNoshowed: "reservation.noshowed",
 } as const;
 export type ListWebhooksEventTypes = ClosedEnum<typeof ListWebhooksEventTypes>;
 

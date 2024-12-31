@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://complete-provision.info",
+  url: "https://sniveling-republican.org",
   eventTypes: [
-    "customer.updated",
+    "app.uninstalled",
   ],
 };
 ```

@@ -9,6 +9,12 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type PreviousValues =
+  | components.OpenCheckin
+  | components.AppointmentCheckin
+  | components.EventCheckin
+  | components.ClassCheckin;
+
 export const CheckinUpdatedEventEvent = {
   CheckinUpdated: "checkin.updated",
 } as const;
@@ -24,13 +30,76 @@ export type CheckinUpdatedEventRequestBody = {
    * Checkin for a class, event, appointment or an open facility
    */
   data: components.Checkin;
-  previousvalues?: any | undefined;
+  previousValues?:
+    | components.OpenCheckin
+    | components.AppointmentCheckin
+    | components.EventCheckin
+    | components.ClassCheckin
+    | undefined;
   /**
    * Unix timestamp representing when the event was created
    */
   created: number;
   event: CheckinUpdatedEventEvent;
 };
+
+/** @internal */
+export const PreviousValues$inboundSchema: z.ZodType<
+  PreviousValues,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  components.OpenCheckin$inboundSchema,
+  components.AppointmentCheckin$inboundSchema,
+  components.EventCheckin$inboundSchema,
+  components.ClassCheckin$inboundSchema,
+]);
+
+/** @internal */
+export type PreviousValues$Outbound =
+  | components.OpenCheckin$Outbound
+  | components.AppointmentCheckin$Outbound
+  | components.EventCheckin$Outbound
+  | components.ClassCheckin$Outbound;
+
+/** @internal */
+export const PreviousValues$outboundSchema: z.ZodType<
+  PreviousValues$Outbound,
+  z.ZodTypeDef,
+  PreviousValues
+> = z.union([
+  components.OpenCheckin$outboundSchema,
+  components.AppointmentCheckin$outboundSchema,
+  components.EventCheckin$outboundSchema,
+  components.ClassCheckin$outboundSchema,
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace PreviousValues$ {
+  /** @deprecated use `PreviousValues$inboundSchema` instead. */
+  export const inboundSchema = PreviousValues$inboundSchema;
+  /** @deprecated use `PreviousValues$outboundSchema` instead. */
+  export const outboundSchema = PreviousValues$outboundSchema;
+  /** @deprecated use `PreviousValues$Outbound` instead. */
+  export type Outbound = PreviousValues$Outbound;
+}
+
+export function previousValuesToJSON(previousValues: PreviousValues): string {
+  return JSON.stringify(PreviousValues$outboundSchema.parse(previousValues));
+}
+
+export function previousValuesFromJSON(
+  jsonString: string,
+): SafeParseResult<PreviousValues, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PreviousValues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PreviousValues' from JSON`,
+  );
+}
 
 /** @internal */
 export const CheckinUpdatedEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -60,7 +129,12 @@ export const CheckinUpdatedEventRequestBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: components.Checkin$inboundSchema,
-  previousvalues: z.any().optional(),
+  previousValues: z.union([
+    components.OpenCheckin$inboundSchema,
+    components.AppointmentCheckin$inboundSchema,
+    components.EventCheckin$inboundSchema,
+    components.ClassCheckin$inboundSchema,
+  ]).optional(),
   created: z.number().int(),
   event: CheckinUpdatedEventEvent$inboundSchema,
 });
@@ -68,7 +142,12 @@ export const CheckinUpdatedEventRequestBody$inboundSchema: z.ZodType<
 /** @internal */
 export type CheckinUpdatedEventRequestBody$Outbound = {
   data: components.Checkin$Outbound;
-  previousvalues?: any | undefined;
+  previousValues?:
+    | components.OpenCheckin$Outbound
+    | components.AppointmentCheckin$Outbound
+    | components.EventCheckin$Outbound
+    | components.ClassCheckin$Outbound
+    | undefined;
   created: number;
   event: string;
 };
@@ -80,7 +159,12 @@ export const CheckinUpdatedEventRequestBody$outboundSchema: z.ZodType<
   CheckinUpdatedEventRequestBody
 > = z.object({
   data: components.Checkin$outboundSchema,
-  previousvalues: z.any().optional(),
+  previousValues: z.union([
+    components.OpenCheckin$outboundSchema,
+    components.AppointmentCheckin$outboundSchema,
+    components.EventCheckin$outboundSchema,
+    components.ClassCheckin$outboundSchema,
+  ]).optional(),
   created: z.number().int(),
   event: CheckinUpdatedEventEvent$outboundSchema,
 });
