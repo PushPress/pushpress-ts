@@ -35,32 +35,55 @@ export const Gender = {
  */
 export type Gender = ClosedEnum<typeof Gender>;
 
+/**
+ * Customer address. defaults to an empty string if no value is available
+ */
 export type CustomerAddress = {
   /**
    * The primary street address of the customer
    */
-  line1: string | null;
+  line1: string;
   /**
    * An additional street address line for the customer
    */
-  line2: string | null;
+  line2: string;
   /**
    * The city where the customer resides
    */
-  city: string | null;
+  city: string;
   /**
    * The country where the customer resides
    */
-  country: string | null;
+  country: string;
   /**
    * The state or province where the customer resides
    */
-  state: string | null;
+  state: string;
   /**
    * The postal code of the customer's address
    */
-  zip: string | null;
+  zip: string;
 };
+
+/**
+ * A typical full account is a primary account. It may have one or more linked accounts associated with it.
+ */
+export type Two = {
+  type?: "primary" | undefined;
+};
+
+/**
+ * A linked account may be linked to exactly one primary account. Linked accounts may have limited permissions and depend on the primary account for billing and other functionality.
+ */
+export type One = {
+  type?: "linked" | undefined;
+  /**
+   * The UUID of the primary account
+   */
+  primaryCustomerId: string;
+};
+
+export type Account = Two | One;
 
 export type EmergencyContact = {
   /**
@@ -116,11 +139,15 @@ export type Customer = {
    * The customer's date of birth, null if not provided, formatted YYYY-MM-DD
    */
   dob: string | null;
+  /**
+   * Customer address. defaults to an empty string if no value is available
+   */
   address: CustomerAddress;
   /**
    * The UUID of the assigned staff member
    */
   assignedToStaffId: string | null;
+  account: Two | One;
   /**
    * A URL pointing to the customer's profile image
    */
@@ -134,7 +161,7 @@ export type Customer = {
   /**
    * The phone number of the customer
    */
-  phone: string | null;
+  phone?: string | null | undefined;
   /**
    * The role of the customer within the company (e.g., admin, coach, member)
    */
@@ -216,22 +243,22 @@ export const CustomerAddress$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  line1: z.nullable(z.string()),
-  line2: z.nullable(z.string()),
-  city: z.nullable(z.string()),
-  country: z.nullable(z.string()),
-  state: z.nullable(z.string()),
-  zip: z.nullable(z.string()),
+  line1: z.string(),
+  line2: z.string(),
+  city: z.string(),
+  country: z.string(),
+  state: z.string(),
+  zip: z.string(),
 });
 
 /** @internal */
 export type CustomerAddress$Outbound = {
-  line1: string | null;
-  line2: string | null;
-  city: string | null;
-  country: string | null;
-  state: string | null;
-  zip: string | null;
+  line1: string;
+  line2: string;
+  city: string;
+  country: string;
+  state: string;
+  zip: string;
 };
 
 /** @internal */
@@ -240,12 +267,12 @@ export const CustomerAddress$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerAddress
 > = z.object({
-  line1: z.nullable(z.string()),
-  line2: z.nullable(z.string()),
-  city: z.nullable(z.string()),
-  country: z.nullable(z.string()),
-  state: z.nullable(z.string()),
-  zip: z.nullable(z.string()),
+  line1: z.string(),
+  line2: z.string(),
+  city: z.string(),
+  country: z.string(),
+  state: z.string(),
+  zip: z.string(),
 });
 
 /**
@@ -274,6 +301,141 @@ export function customerAddressFromJSON(
     jsonString,
     (x) => CustomerAddress$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CustomerAddress' from JSON`,
+  );
+}
+
+/** @internal */
+export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
+  .object({
+    type: z.literal("primary").optional(),
+  });
+
+/** @internal */
+export type Two$Outbound = {
+  type: "primary";
+};
+
+/** @internal */
+export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
+  .object({
+    type: z.literal("primary").default("primary" as const),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Two$ {
+  /** @deprecated use `Two$inboundSchema` instead. */
+  export const inboundSchema = Two$inboundSchema;
+  /** @deprecated use `Two$outboundSchema` instead. */
+  export const outboundSchema = Two$outboundSchema;
+  /** @deprecated use `Two$Outbound` instead. */
+  export type Outbound = Two$Outbound;
+}
+
+export function twoToJSON(two: Two): string {
+  return JSON.stringify(Two$outboundSchema.parse(two));
+}
+
+export function twoFromJSON(
+  jsonString: string,
+): SafeParseResult<Two, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Two$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Two' from JSON`,
+  );
+}
+
+/** @internal */
+export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
+  .object({
+    type: z.literal("linked").optional(),
+    primaryCustomerId: z.string(),
+  });
+
+/** @internal */
+export type One$Outbound = {
+  type: "linked";
+  primaryCustomerId: string;
+};
+
+/** @internal */
+export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
+  .object({
+    type: z.literal("linked").default("linked" as const),
+    primaryCustomerId: z.string(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace One$ {
+  /** @deprecated use `One$inboundSchema` instead. */
+  export const inboundSchema = One$inboundSchema;
+  /** @deprecated use `One$outboundSchema` instead. */
+  export const outboundSchema = One$outboundSchema;
+  /** @deprecated use `One$Outbound` instead. */
+  export type Outbound = One$Outbound;
+}
+
+export function oneToJSON(one: One): string {
+  return JSON.stringify(One$outboundSchema.parse(one));
+}
+
+export function oneFromJSON(
+  jsonString: string,
+): SafeParseResult<One, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => One$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'One' from JSON`,
+  );
+}
+
+/** @internal */
+export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
+  z.union([z.lazy(() => Two$inboundSchema), z.lazy(() => One$inboundSchema)]);
+
+/** @internal */
+export type Account$Outbound = Two$Outbound | One$Outbound;
+
+/** @internal */
+export const Account$outboundSchema: z.ZodType<
+  Account$Outbound,
+  z.ZodTypeDef,
+  Account
+> = z.union([
+  z.lazy(() => Two$outboundSchema),
+  z.lazy(() => One$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Account$ {
+  /** @deprecated use `Account$inboundSchema` instead. */
+  export const inboundSchema = Account$inboundSchema;
+  /** @deprecated use `Account$outboundSchema` instead. */
+  export const outboundSchema = Account$outboundSchema;
+  /** @deprecated use `Account$Outbound` instead. */
+  export type Outbound = Account$Outbound;
+}
+
+export function accountToJSON(account: Account): string {
+  return JSON.stringify(Account$outboundSchema.parse(account));
+}
+
+export function accountFromJSON(
+  jsonString: string,
+): SafeParseResult<Account, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Account$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Account' from JSON`,
   );
 }
 
@@ -422,11 +584,15 @@ export const Customer$inboundSchema: z.ZodType<
   dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$inboundSchema),
   assignedToStaffId: z.nullable(z.string()),
+  account: z.union([
+    z.lazy(() => Two$inboundSchema),
+    z.lazy(() => One$inboundSchema),
+  ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$inboundSchema).optional(),
   membershipDetails: z.nullable(z.lazy(() => MembershipDetails$inboundSchema)),
   email: z.string(),
-  phone: z.nullable(z.string()),
+  phone: z.nullable(z.string()).optional(),
   role: CustomerRole$inboundSchema,
 });
 
@@ -438,11 +604,12 @@ export type Customer$Outbound = {
   dob: string | null;
   address: CustomerAddress$Outbound;
   assignedToStaffId: string | null;
+  account: Two$Outbound | One$Outbound;
   profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact$Outbound | undefined;
   membershipDetails: MembershipDetails$Outbound | null;
   email: string;
-  phone: string | null;
+  phone?: string | null | undefined;
   role: string;
 };
 
@@ -458,11 +625,15 @@ export const Customer$outboundSchema: z.ZodType<
   dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$outboundSchema),
   assignedToStaffId: z.nullable(z.string()),
+  account: z.union([
+    z.lazy(() => Two$outboundSchema),
+    z.lazy(() => One$outboundSchema),
+  ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$outboundSchema).optional(),
   membershipDetails: z.nullable(z.lazy(() => MembershipDetails$outboundSchema)),
   email: z.string(),
-  phone: z.nullable(z.string()),
+  phone: z.nullable(z.string()).optional(),
   role: CustomerRole$outboundSchema,
 });
 

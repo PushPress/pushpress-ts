@@ -21,8 +21,6 @@ export type ListWebhooksRequest = {
 };
 
 export const ListWebhooksEventTypes = {
-  AppInstalled: "app.installed",
-  AppUninstalled: "app.uninstalled",
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -40,6 +38,8 @@ export const ListWebhooksEventTypes = {
   ReservationWaitlisted: "reservation.waitlisted",
   ReservationCancelled: "reservation.cancelled",
   ReservationNoshowed: "reservation.noshowed",
+  AppInstalled: "app.installed",
+  AppUninstalled: "app.uninstalled",
 } as const;
 export type ListWebhooksEventTypes = ClosedEnum<typeof ListWebhooksEventTypes>;
 
@@ -52,6 +52,10 @@ export type ListWebhooksData = {
    * The endpoint URL that will receive the webhook payloads
    */
   url: string;
+  /**
+   * The app ID with which application lifecyle event types (e.g. app.installed) are associated
+   */
+  appId?: string | undefined;
   /**
    * A list of event types that the webhook is subscribed to
    */
@@ -226,6 +230,7 @@ export const ListWebhooksData$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
+  appId: z.string().optional(),
   eventTypes: z.array(ListWebhooksEventTypes$inboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
@@ -235,6 +240,7 @@ export const ListWebhooksData$inboundSchema: z.ZodType<
 export type ListWebhooksData$Outbound = {
   id: string;
   url: string;
+  appId?: string | undefined;
   eventTypes: Array<string>;
   active: boolean;
   signingSecret: string;
@@ -248,6 +254,7 @@ export const ListWebhooksData$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
+  appId: z.string().optional(),
   eventTypes: z.array(ListWebhooksEventTypes$outboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),

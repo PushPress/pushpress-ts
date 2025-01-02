@@ -27,6 +27,7 @@ let value: ListCustomersResponse = {
             zip: "12345",
           },
           assignedToStaffId: null,
+          account: {},
           profileImage: "https://example.com/profile.jpg",
           membershipDetails: {
             initialMembershipStartDate: "2022-01-01",

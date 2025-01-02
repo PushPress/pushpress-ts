@@ -1,5 +1,7 @@
 # CustomerAddress
 
+Customer address. defaults to an empty string if no value is available
+
 ## Example Usage
 
 ```typescript

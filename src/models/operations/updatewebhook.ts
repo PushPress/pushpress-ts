@@ -14,8 +14,6 @@ export type UpdateWebhookGlobals = {
 };
 
 export const UpdateWebhookEventTypes = {
-  AppInstalled: "app.installed",
-  AppUninstalled: "app.uninstalled",
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -33,6 +31,8 @@ export const UpdateWebhookEventTypes = {
   ReservationWaitlisted: "reservation.waitlisted",
   ReservationCancelled: "reservation.cancelled",
   ReservationNoshowed: "reservation.noshowed",
+  AppInstalled: "app.installed",
+  AppUninstalled: "app.uninstalled",
 } as const;
 export type UpdateWebhookEventTypes = ClosedEnum<
   typeof UpdateWebhookEventTypes
@@ -59,8 +59,6 @@ export type UpdateWebhookRequest = {
 };
 
 export const UpdateWebhookManageWebhooksEventTypes = {
-  AppInstalled: "app.installed",
-  AppUninstalled: "app.uninstalled",
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -78,6 +76,8 @@ export const UpdateWebhookManageWebhooksEventTypes = {
   ReservationWaitlisted: "reservation.waitlisted",
   ReservationCancelled: "reservation.cancelled",
   ReservationNoshowed: "reservation.noshowed",
+  AppInstalled: "app.installed",
+  AppUninstalled: "app.uninstalled",
 } as const;
 export type UpdateWebhookManageWebhooksEventTypes = ClosedEnum<
   typeof UpdateWebhookManageWebhooksEventTypes
@@ -95,6 +95,10 @@ export type UpdateWebhookResponseBody = {
    * The endpoint URL that will receive the webhook payloads
    */
   url: string;
+  /**
+   * The app ID with which application lifecyle event types (e.g. app.installed) are associated
+   */
+  appId?: string | undefined;
   /**
    * A list of event types that the webhook is subscribed to
    */
@@ -351,6 +355,7 @@ export const UpdateWebhookResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
+  appId: z.string().optional(),
   eventTypes: z.array(UpdateWebhookManageWebhooksEventTypes$inboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
@@ -360,6 +365,7 @@ export const UpdateWebhookResponseBody$inboundSchema: z.ZodType<
 export type UpdateWebhookResponseBody$Outbound = {
   id: string;
   url: string;
+  appId?: string | undefined;
   eventTypes: Array<string>;
   active: boolean;
   signingSecret: string;
@@ -373,6 +379,7 @@ export const UpdateWebhookResponseBody$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
+  appId: z.string().optional(),
   eventTypes: z.array(UpdateWebhookManageWebhooksEventTypes$outboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
