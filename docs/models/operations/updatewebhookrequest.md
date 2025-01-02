@@ -9,7 +9,7 @@ let value: UpdateWebhookRequest = {
   uuid: "8db42044-7ab4-462c-90bc-c45945370c18",
   requestBody: {
     eventTypes: [
-      "customer.updated",
+      "enrollment.created",
     ],
   },
 };

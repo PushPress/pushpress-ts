@@ -16,16 +16,20 @@ export type Three = {
   occurrences: number;
 };
 
-export type Two = {
+export type RecurrenceDetails2 = {
   type?: "recurring" | undefined;
 };
 
-export type One = {
+export type RecurrenceDetails1 = {
   type?: "session-pack" | undefined;
   occurrences: number;
 };
 
-export type RecurrenceDetails = Two | Four | One | Three;
+export type RecurrenceDetails =
+  | RecurrenceDetails2
+  | Four
+  | RecurrenceDetails1
+  | Three;
 
 export type Policies = {
   allowClassCheckins: boolean;
@@ -53,7 +57,7 @@ export type Plan = {
    * unique identifier for the company
    */
   companyId: string;
-  recurrenceDetails: Two | Four | One | Three;
+  recurrenceDetails: RecurrenceDetails2 | Four | RecurrenceDetails1 | Three;
   policies: Policies;
   category: Category;
 };
@@ -153,93 +157,113 @@ export function threeFromJSON(
 }
 
 /** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.literal("recurring").optional(),
-  });
+export const RecurrenceDetails2$inboundSchema: z.ZodType<
+  RecurrenceDetails2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.literal("recurring").optional(),
+});
 
 /** @internal */
-export type Two$Outbound = {
+export type RecurrenceDetails2$Outbound = {
   type: "recurring";
 };
 
 /** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({
-    type: z.literal("recurring").default("recurring" as const),
-  });
+export const RecurrenceDetails2$outboundSchema: z.ZodType<
+  RecurrenceDetails2$Outbound,
+  z.ZodTypeDef,
+  RecurrenceDetails2
+> = z.object({
+  type: z.literal("recurring").default("recurring" as const),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
+export namespace RecurrenceDetails2$ {
+  /** @deprecated use `RecurrenceDetails2$inboundSchema` instead. */
+  export const inboundSchema = RecurrenceDetails2$inboundSchema;
+  /** @deprecated use `RecurrenceDetails2$outboundSchema` instead. */
+  export const outboundSchema = RecurrenceDetails2$outboundSchema;
+  /** @deprecated use `RecurrenceDetails2$Outbound` instead. */
+  export type Outbound = RecurrenceDetails2$Outbound;
 }
 
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
+export function recurrenceDetails2ToJSON(
+  recurrenceDetails2: RecurrenceDetails2,
+): string {
+  return JSON.stringify(
+    RecurrenceDetails2$outboundSchema.parse(recurrenceDetails2),
+  );
 }
 
-export function twoFromJSON(
+export function recurrenceDetails2FromJSON(
   jsonString: string,
-): SafeParseResult<Two, SDKValidationError> {
+): SafeParseResult<RecurrenceDetails2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Two$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Two' from JSON`,
+    (x) => RecurrenceDetails2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RecurrenceDetails2' from JSON`,
   );
 }
 
 /** @internal */
-export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-  .object({
-    type: z.literal("session-pack").optional(),
-    occurrences: z.number(),
-  });
+export const RecurrenceDetails1$inboundSchema: z.ZodType<
+  RecurrenceDetails1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  type: z.literal("session-pack").optional(),
+  occurrences: z.number(),
+});
 
 /** @internal */
-export type One$Outbound = {
+export type RecurrenceDetails1$Outbound = {
   type: "session-pack";
   occurrences: number;
 };
 
 /** @internal */
-export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
-  .object({
-    type: z.literal("session-pack").default("session-pack" as const),
-    occurrences: z.number(),
-  });
+export const RecurrenceDetails1$outboundSchema: z.ZodType<
+  RecurrenceDetails1$Outbound,
+  z.ZodTypeDef,
+  RecurrenceDetails1
+> = z.object({
+  type: z.literal("session-pack").default("session-pack" as const),
+  occurrences: z.number(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
+export namespace RecurrenceDetails1$ {
+  /** @deprecated use `RecurrenceDetails1$inboundSchema` instead. */
+  export const inboundSchema = RecurrenceDetails1$inboundSchema;
+  /** @deprecated use `RecurrenceDetails1$outboundSchema` instead. */
+  export const outboundSchema = RecurrenceDetails1$outboundSchema;
+  /** @deprecated use `RecurrenceDetails1$Outbound` instead. */
+  export type Outbound = RecurrenceDetails1$Outbound;
 }
 
-export function oneToJSON(one: One): string {
-  return JSON.stringify(One$outboundSchema.parse(one));
+export function recurrenceDetails1ToJSON(
+  recurrenceDetails1: RecurrenceDetails1,
+): string {
+  return JSON.stringify(
+    RecurrenceDetails1$outboundSchema.parse(recurrenceDetails1),
+  );
 }
 
-export function oneFromJSON(
+export function recurrenceDetails1FromJSON(
   jsonString: string,
-): SafeParseResult<One, SDKValidationError> {
+): SafeParseResult<RecurrenceDetails1, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => One$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'One' from JSON`,
+    (x) => RecurrenceDetails1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RecurrenceDetails1' from JSON`,
   );
 }
 
@@ -249,17 +273,17 @@ export const RecurrenceDetails$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Two$inboundSchema),
+  z.lazy(() => RecurrenceDetails2$inboundSchema),
   z.lazy(() => Four$inboundSchema),
-  z.lazy(() => One$inboundSchema),
+  z.lazy(() => RecurrenceDetails1$inboundSchema),
   z.lazy(() => Three$inboundSchema),
 ]);
 
 /** @internal */
 export type RecurrenceDetails$Outbound =
-  | Two$Outbound
+  | RecurrenceDetails2$Outbound
   | Four$Outbound
-  | One$Outbound
+  | RecurrenceDetails1$Outbound
   | Three$Outbound;
 
 /** @internal */
@@ -268,9 +292,9 @@ export const RecurrenceDetails$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RecurrenceDetails
 > = z.union([
-  z.lazy(() => Two$outboundSchema),
+  z.lazy(() => RecurrenceDetails2$outboundSchema),
   z.lazy(() => Four$outboundSchema),
-  z.lazy(() => One$outboundSchema),
+  z.lazy(() => RecurrenceDetails1$outboundSchema),
   z.lazy(() => Three$outboundSchema),
 ]);
 
@@ -418,9 +442,9 @@ export const Plan$inboundSchema: z.ZodType<Plan, z.ZodTypeDef, unknown> = z
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => Two$inboundSchema),
+      z.lazy(() => RecurrenceDetails2$inboundSchema),
       z.lazy(() => Four$inboundSchema),
-      z.lazy(() => One$inboundSchema),
+      z.lazy(() => RecurrenceDetails1$inboundSchema),
       z.lazy(() => Three$inboundSchema),
     ]),
     policies: z.lazy(() => Policies$inboundSchema),
@@ -433,9 +457,9 @@ export type Plan$Outbound = {
   name: string;
   companyId: string;
   recurrenceDetails:
-    | Two$Outbound
+    | RecurrenceDetails2$Outbound
     | Four$Outbound
-    | One$Outbound
+    | RecurrenceDetails1$Outbound
     | Three$Outbound;
   policies: Policies$Outbound;
   category: Category$Outbound;
@@ -448,9 +472,9 @@ export const Plan$outboundSchema: z.ZodType<Plan$Outbound, z.ZodTypeDef, Plan> =
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => Two$outboundSchema),
+      z.lazy(() => RecurrenceDetails2$outboundSchema),
       z.lazy(() => Four$outboundSchema),
-      z.lazy(() => One$outboundSchema),
+      z.lazy(() => RecurrenceDetails1$outboundSchema),
       z.lazy(() => Three$outboundSchema),
     ]),
     policies: z.lazy(() => Policies$outboundSchema),

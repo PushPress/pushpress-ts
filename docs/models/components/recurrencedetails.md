@@ -3,18 +3,18 @@
 
 ## Supported Types
 
-### `components.One`
+### `components.RecurrenceDetails1`
 
 ```typescript
-const value: components.One = {
+const value: components.RecurrenceDetails1 = {
   occurrences: 2961.40,
 };
 ```
 
-### `components.Two`
+### `components.RecurrenceDetails2`
 
 ```typescript
-const value: components.Two = {};
+const value: components.RecurrenceDetails2 = {};
 ```
 
 ### `components.Three`

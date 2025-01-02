@@ -13,7 +13,7 @@ let value: ListWebhooksResponseBody = {
       id: "<id>",
       url: "https://enraged-unique.org",
       eventTypes: [
-        "reservation.created",
+        "reservation.cancelled",
       ],
       signingSecret: "<value>",
     },

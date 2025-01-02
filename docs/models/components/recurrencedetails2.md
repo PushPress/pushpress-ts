@@ -1,13 +1,11 @@
-# Two
-
-A typical full account is a primary account. It may have one or more linked accounts associated with it.
+# RecurrenceDetails2
 
 ## Example Usage
 
 ```typescript
-import { Two } from "@pushpress/pushpress/models/components";
+import { RecurrenceDetails2 } from "@pushpress/pushpress/models/components";
 
-let value: Two = {};
+let value: RecurrenceDetails2 = {};
 ```
 
 ## Fields

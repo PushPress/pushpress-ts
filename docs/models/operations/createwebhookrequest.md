@@ -9,7 +9,7 @@ let value: CreateWebhookRequest = {
   requestBody: {
     url: "https://outlandish-verve.biz",
     eventTypes: [
-      "appointment.noshowed",
+      "checkin.updated",
     ],
   },
 };

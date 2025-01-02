@@ -14,8 +14,6 @@ export type CreateWebhookGlobals = {
 };
 
 export const EventTypes = {
-  AppInstalled: "app.installed",
-  AppUninstalled: "app.uninstalled",
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -33,16 +31,22 @@ export const EventTypes = {
   ReservationWaitlisted: "reservation.waitlisted",
   ReservationCancelled: "reservation.cancelled",
   ReservationNoshowed: "reservation.noshowed",
+  AppInstalled: "app.installed",
+  AppUninstalled: "app.uninstalled",
 } as const;
 export type EventTypes = ClosedEnum<typeof EventTypes>;
 
 export type CreateWebhookRequestBody = {
   /**
+   * Webhooks for application lifecycle events must be created with an app ID
+   */
+  appId?: string | undefined;
+  /**
    * The URL to send the webhook to
    */
   url: string;
   /**
-   * The event types to listen for, valid event types include check
+   * Webhooks are registered to specific events
    */
   eventTypes: Array<EventTypes>;
 };
@@ -56,8 +60,6 @@ export type CreateWebhookRequest = {
 };
 
 export const CreateWebhookEventTypes = {
-  AppInstalled: "app.installed",
-  AppUninstalled: "app.uninstalled",
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -75,6 +77,8 @@ export const CreateWebhookEventTypes = {
   ReservationWaitlisted: "reservation.waitlisted",
   ReservationCancelled: "reservation.cancelled",
   ReservationNoshowed: "reservation.noshowed",
+  AppInstalled: "app.installed",
+  AppUninstalled: "app.uninstalled",
 } as const;
 export type CreateWebhookEventTypes = ClosedEnum<
   typeof CreateWebhookEventTypes
@@ -92,6 +96,10 @@ export type CreateWebhookResponseBody = {
    * The endpoint URL that will receive the webhook payloads
    */
   url: string;
+  /**
+   * The app ID with which application lifecyle event types (e.g. app.installed) are associated
+   */
+  appId?: string | undefined;
   /**
    * A list of event types that the webhook is subscribed to
    */
@@ -193,12 +201,14 @@ export const CreateWebhookRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  appId: z.string().optional(),
   url: z.string(),
   eventTypes: z.array(EventTypes$inboundSchema),
 });
 
 /** @internal */
 export type CreateWebhookRequestBody$Outbound = {
+  appId?: string | undefined;
   url: string;
   eventTypes: Array<string>;
 };
@@ -209,6 +219,7 @@ export const CreateWebhookRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateWebhookRequestBody
 > = z.object({
+  appId: z.string().optional(),
   url: z.string(),
   eventTypes: z.array(EventTypes$outboundSchema),
 });
@@ -340,6 +351,7 @@ export const CreateWebhookResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
+  appId: z.string().optional(),
   eventTypes: z.array(CreateWebhookEventTypes$inboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
@@ -349,6 +361,7 @@ export const CreateWebhookResponseBody$inboundSchema: z.ZodType<
 export type CreateWebhookResponseBody$Outbound = {
   id: string;
   url: string;
+  appId?: string | undefined;
   eventTypes: Array<string>;
   active: boolean;
   signingSecret: string;
@@ -362,6 +375,7 @@ export const CreateWebhookResponseBody$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   url: z.string(),
+  appId: z.string().optional(),
   eventTypes: z.array(CreateWebhookEventTypes$outboundSchema),
   active: z.boolean().default(true),
   signingSecret: z.string(),
