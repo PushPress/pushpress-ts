@@ -6,7 +6,7 @@
 import { RotateWebhookSigningSecretRequest } from "@pushpress/pushpress/models/operations";
 
 let value: RotateWebhookSigningSecretRequest = {
-  uuid: "019ff62a-7f1c-443a-b3a8-684b65de035d",
+  uuid: "14342019-ff62-4a7f-b1c4-3a3a8684b65d",
 };
 ```
 

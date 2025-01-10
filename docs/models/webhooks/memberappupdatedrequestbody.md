@@ -9,7 +9,7 @@ import { MemberAppUpdatedRequestBody } from "@pushpress/pushpress/models/webhook
 
 let value: MemberAppUpdatedRequestBody = {
   data: {},
-  created: 780529,
+  created: 461479,
   event: "memberapp.updated",
 };
 ```
@@ -18,6 +18,6 @@ let value: MemberAppUpdatedRequestBody = {
 
 | Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `data`                                                                           | [webhooks.Data](../../models/webhooks/data.md)                                   | :heavy_check_mark:                                                               | N/A                                                                              |
+| `data`                                                                           | [webhooks.MemberAppUpdatedData](../../models/webhooks/memberappupdateddata.md)   | :heavy_check_mark:                                                               | N/A                                                                              |
 | `created`                                                                        | *number*                                                                         | :heavy_check_mark:                                                               | Unix timestamp representing when the event was created                           |
 | `event`                                                                          | [webhooks.MemberAppUpdatedEvent](../../models/webhooks/memberappupdatedevent.md) | :heavy_check_mark:                                                               | N/A                                                                              |

@@ -17,7 +17,7 @@ export type ReservationWaitlistedEventEvent = ClosedEnum<
 >;
 
 /**
- * Reservation Waitlisted Event (Not implemented)
+ * Reservation Waitlisted Event
  */
 export type ReservationWaitlistedEventRequestBody = {
   /**

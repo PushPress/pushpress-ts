@@ -7,7 +7,7 @@ Each platform has an appstore specific configuration
 ```typescript
 import { Os } from "@pushpress/pushpress/models/webhooks";
 
-let value: Os = "ios";
+let value: Os = "android";
 ```
 
 ## Values

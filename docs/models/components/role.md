@@ -7,7 +7,7 @@ Role of the customer at the event
 ```typescript
 import { Role } from "@pushpress/pushpress/models/components";
 
-let value: Role = "assistant";
+let value: Role = "staff";
 ```
 
 ## Values

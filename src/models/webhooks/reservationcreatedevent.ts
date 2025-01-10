@@ -17,7 +17,7 @@ export type ReservationCreatedEventEvent = ClosedEnum<
 >;
 
 /**
- * Reservation Created Event (Not implemented)
+ * Reservation Created Event
  */
 export type ReservationCreatedEventRequestBody = {
   /**

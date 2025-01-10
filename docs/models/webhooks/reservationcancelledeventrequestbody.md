@@ -1,6 +1,6 @@
 # ReservationCancelledEventRequestBody
 
-Reservation Cancelled Event (Not implemented)
+Reservation Cancelled Event
 
 ## Example Usage
 
@@ -16,7 +16,7 @@ let value: ReservationCancelledEventRequestBody = {
     registrationTimestamp: 1672531200000,
     status: "reserved",
   },
-  created: 799159,
+  created: 978619,
   event: "reservation.cancelled",
 };
 ```

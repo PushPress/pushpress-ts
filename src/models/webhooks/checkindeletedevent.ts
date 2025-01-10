@@ -6,8 +6,11 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type Data = {
+  id?: string | undefined;
+};
 
 export const CheckinDeletedEventEvent = {
   CheckinDeleted: "checkin.deleted",
@@ -17,19 +20,60 @@ export type CheckinDeletedEventEvent = ClosedEnum<
 >;
 
 /**
- * Checkin Deleted Event (Not implemented)
+ * Checkin Deleted Event
  */
 export type CheckinDeletedEventRequestBody = {
-  /**
-   * Checkin for a class, event, appointment or an open facility
-   */
-  data: components.Checkin;
+  data: Data;
   /**
    * Unix timestamp representing when the event was created
    */
   created: number;
   event: CheckinDeletedEventEvent;
 };
+
+/** @internal */
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.string().optional(),
+  });
+
+/** @internal */
+export type Data$Outbound = {
+  id?: string | undefined;
+};
+
+/** @internal */
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({
+    id: z.string().optional(),
+  });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Data$ {
+  /** @deprecated use `Data$inboundSchema` instead. */
+  export const inboundSchema = Data$inboundSchema;
+  /** @deprecated use `Data$outboundSchema` instead. */
+  export const outboundSchema = Data$outboundSchema;
+  /** @deprecated use `Data$Outbound` instead. */
+  export type Outbound = Data$Outbound;
+}
+
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
+}
+
+export function dataFromJSON(
+  jsonString: string,
+): SafeParseResult<Data, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
+  );
+}
 
 /** @internal */
 export const CheckinDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -58,14 +102,14 @@ export const CheckinDeletedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: components.Checkin$inboundSchema,
+  data: z.lazy(() => Data$inboundSchema),
   created: z.number().int(),
   event: CheckinDeletedEventEvent$inboundSchema,
 });
 
 /** @internal */
 export type CheckinDeletedEventRequestBody$Outbound = {
-  data: components.Checkin$Outbound;
+  data: Data$Outbound;
   created: number;
   event: string;
 };
@@ -76,7 +120,7 @@ export const CheckinDeletedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CheckinDeletedEventRequestBody
 > = z.object({
-  data: components.Checkin$outboundSchema,
+  data: z.lazy(() => Data$outboundSchema),
   created: z.number().int(),
   event: CheckinDeletedEventEvent$outboundSchema,
 });

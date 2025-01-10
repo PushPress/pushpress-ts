@@ -1,6 +1,6 @@
 # ReservationCreatedEventRequestBody
 
-Reservation Created Event (Not implemented)
+Reservation Created Event
 
 ## Example Usage
 
@@ -16,7 +16,7 @@ let value: ReservationCreatedEventRequestBody = {
     registrationTimestamp: 1672531200000,
     status: "reserved",
   },
-  created: 870013,
+  created: 778157,
   event: "reservation.created",
 };
 ```

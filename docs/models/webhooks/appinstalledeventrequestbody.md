@@ -1,6 +1,6 @@
 # AppInstalledEventRequestBody
 
-App Installed Event (Not implemented)
+App Installed Event
 
 ## Example Usage
 
@@ -19,7 +19,7 @@ let value: AppInstalledEventRequestBody = {
       id: "installation-uuid",
     },
   },
-  created: 891773,
+  created: 437587,
   event: "app.installed",
 };
 ```

@@ -3,7 +3,7 @@
  */
 
 export * from "./appinstalledevent.js";
-export * from "./appointmentcancelledevent.js";
+export * from "./appointmentcancelldevent.js";
 export * from "./appointmentnoshowedevent.js";
 export * from "./appointmentrescheduledevent.js";
 export * from "./appointmentscheduledevent.js";
