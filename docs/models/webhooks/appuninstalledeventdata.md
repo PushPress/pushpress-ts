@@ -1,11 +1,11 @@
-# Data
+# AppUninstalledEventData
 
 ## Example Usage
 
 ```typescript
-import { Data } from "@pushpress/pushpress/models/webhooks";
+import { AppUninstalledEventData } from "@pushpress/pushpress/models/webhooks";
 
-let value: Data = {};
+let value: AppUninstalledEventData = {};
 ```
 
 ## Fields

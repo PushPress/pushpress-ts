@@ -6,8 +6,11 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
-import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type CustomerDeletedEventData = {
+  id?: string | undefined;
+};
 
 export const CustomerDeletedEventEvent = {
   CustomerDeleted: "customer.deleted",
@@ -20,16 +23,67 @@ export type CustomerDeletedEventEvent = ClosedEnum<
  * Customer Deleted Event (Not implemented)
  */
 export type CustomerDeletedEventRequestBody = {
-  /**
-   * Schema representing a customer, former customer, or lead served by the company
-   */
-  data: components.Customer;
+  data: CustomerDeletedEventData;
   /**
    * Unix timestamp representing when the event was created
    */
   created: number;
   event: CustomerDeletedEventEvent;
 };
+
+/** @internal */
+export const CustomerDeletedEventData$inboundSchema: z.ZodType<
+  CustomerDeletedEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
+});
+
+/** @internal */
+export type CustomerDeletedEventData$Outbound = {
+  id?: string | undefined;
+};
+
+/** @internal */
+export const CustomerDeletedEventData$outboundSchema: z.ZodType<
+  CustomerDeletedEventData$Outbound,
+  z.ZodTypeDef,
+  CustomerDeletedEventData
+> = z.object({
+  id: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CustomerDeletedEventData$ {
+  /** @deprecated use `CustomerDeletedEventData$inboundSchema` instead. */
+  export const inboundSchema = CustomerDeletedEventData$inboundSchema;
+  /** @deprecated use `CustomerDeletedEventData$outboundSchema` instead. */
+  export const outboundSchema = CustomerDeletedEventData$outboundSchema;
+  /** @deprecated use `CustomerDeletedEventData$Outbound` instead. */
+  export type Outbound = CustomerDeletedEventData$Outbound;
+}
+
+export function customerDeletedEventDataToJSON(
+  customerDeletedEventData: CustomerDeletedEventData,
+): string {
+  return JSON.stringify(
+    CustomerDeletedEventData$outboundSchema.parse(customerDeletedEventData),
+  );
+}
+
+export function customerDeletedEventDataFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomerDeletedEventData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomerDeletedEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomerDeletedEventData' from JSON`,
+  );
+}
 
 /** @internal */
 export const CustomerDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -58,14 +112,14 @@ export const CustomerDeletedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: components.Customer$inboundSchema,
+  data: z.lazy(() => CustomerDeletedEventData$inboundSchema),
   created: z.number().int(),
   event: CustomerDeletedEventEvent$inboundSchema,
 });
 
 /** @internal */
 export type CustomerDeletedEventRequestBody$Outbound = {
-  data: components.Customer$Outbound;
+  data: CustomerDeletedEventData$Outbound;
   created: number;
   event: string;
 };
@@ -76,7 +130,7 @@ export const CustomerDeletedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerDeletedEventRequestBody
 > = z.object({
-  data: components.Customer$outboundSchema,
+  data: z.lazy(() => CustomerDeletedEventData$outboundSchema),
   created: z.number().int(),
   event: CustomerDeletedEventEvent$outboundSchema,
 });

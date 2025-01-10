@@ -21,6 +21,8 @@ export const ReservationStatus = {
   Waitlisted: "waitlisted",
   CheckedIn: "checked-in",
   Reserved: "reserved",
+  Cancelled: "cancelled",
+  LateCancelled: "late-cancelled",
 } as const;
 /**
  * Current status of the reservation
@@ -42,11 +44,11 @@ export type Reservation = {
   /**
    * Unique identifier for the customer
    */
-  customerId: string;
+  customerId?: string | null | undefined;
   /**
    * Unique identifier for the company
    */
-  companyId: string;
+  companyId?: string | null | undefined;
   /**
    * Unix timestamp of when the registration was made
    */
@@ -90,8 +92,8 @@ export const Reservation$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   reservedId: z.string(),
-  customerId: z.string(),
-  companyId: z.string(),
+  customerId: z.nullable(z.string()).optional(),
+  companyId: z.nullable(z.string()).optional(),
   registrationTimestamp: z.number(),
   status: ReservationStatus$inboundSchema,
   checkin: Checkin$inboundSchema.optional(),
@@ -101,8 +103,8 @@ export const Reservation$inboundSchema: z.ZodType<
 export type Reservation$Outbound = {
   id: string;
   reservedId: string;
-  customerId: string;
-  companyId: string;
+  customerId?: string | null | undefined;
+  companyId?: string | null | undefined;
   registrationTimestamp: number;
   status: string;
   checkin?: Checkin$Outbound | undefined;
@@ -116,8 +118,8 @@ export const Reservation$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   reservedId: z.string(),
-  customerId: z.string(),
-  companyId: z.string(),
+  customerId: z.nullable(z.string()).optional(),
+  companyId: z.nullable(z.string()).optional(),
   registrationTimestamp: z.number(),
   status: ReservationStatus$outboundSchema,
   checkin: Checkin$outboundSchema.optional(),

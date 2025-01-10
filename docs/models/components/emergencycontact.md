@@ -7,7 +7,7 @@ import { EmergencyContact } from "@pushpress/pushpress/models/components";
 
 let value: EmergencyContact = {
   name: "<value>",
-  phone: "1-706-721-3354 x912",
+  phone: "734.706.6213 x35491",
   relationship: "<value>",
 };
 ```

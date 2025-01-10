@@ -9,9 +9,9 @@ import { CreateWebhookResponseBody } from "@pushpress/pushpress/models/operation
 
 let value: CreateWebhookResponseBody = {
   id: "<id>",
-  url: "https://vengeful-pile.net/",
+  url: "https://whispered-embarrassment.biz",
   eventTypes: [
-    "checkin.deleted",
+    "appointment.noshowed",
   ],
   signingSecret: "<value>",
 };

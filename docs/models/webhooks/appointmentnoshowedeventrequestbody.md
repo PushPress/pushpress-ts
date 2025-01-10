@@ -1,6 +1,6 @@
 # AppointmentNoShowedEventRequestBody
 
-Appointment No Showed Event (Not implemented)
+Appointment No Showed Event
 
 ## Example Usage
 
@@ -18,7 +18,7 @@ let value: AppointmentNoShowedEventRequestBody = {
     startTimestamp: 1677721600,
     staffId: "usr_78910",
   },
-  created: 528895,
+  created: 791725,
   event: "appointment.noshowed",
 };
 ```

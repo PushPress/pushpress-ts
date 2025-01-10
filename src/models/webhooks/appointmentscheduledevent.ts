@@ -17,7 +17,7 @@ export type AppointmentScheduledEventEvent = ClosedEnum<
 >;
 
 /**
- * Appointment Scheduled Event (Not implemented)
+ * Appointment Scheduled Event
  */
 export type AppointmentScheduledEventRequestBody = {
   /**

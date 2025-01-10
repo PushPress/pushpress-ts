@@ -1,6 +1,6 @@
 # ReservationWaitlistedEventRequestBody
 
-Reservation Waitlisted Event (Not implemented)
+Reservation Waitlisted Event
 
 ## Example Usage
 
@@ -16,7 +16,7 @@ let value: ReservationWaitlistedEventRequestBody = {
     registrationTimestamp: 1672531200000,
     status: "reserved",
   },
-  created: 978619,
+  created: 870013,
   event: "reservation.waitlisted",
 };
 ```

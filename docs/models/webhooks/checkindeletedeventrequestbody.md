@@ -1,6 +1,6 @@
 # CheckinDeletedEventRequestBody
 
-Checkin Deleted Event (Not implemented)
+Checkin Deleted Event
 
 ## Example Usage
 
@@ -8,20 +8,8 @@ Checkin Deleted Event (Not implemented)
 import { CheckinDeletedEventRequestBody } from "@pushpress/pushpress/models/webhooks";
 
 let value: CheckinDeletedEventRequestBody = {
-  data: {
-    id: "chk_12345",
-    name: "My Event",
-    customer: "usr_12345",
-    company: "cli_12345",
-    timestamp: 1672531200000,
-    role: "staff",
-    typeId: "cit_12345",
-    type: {
-      id: "cit_12345",
-      name: "Weightlifting Seminar",
-    },
-  },
-  created: 437587,
+  data: {},
+  created: 645894,
   event: "checkin.deleted",
 };
 ```
@@ -30,6 +18,6 @@ let value: CheckinDeletedEventRequestBody = {
 
 | Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `data`                                                                                 | *components.Checkin*                                                                   | :heavy_check_mark:                                                                     | Checkin for a class, event, appointment or an open facility                            |
+| `data`                                                                                 | [webhooks.Data](../../models/webhooks/data.md)                                         | :heavy_check_mark:                                                                     | N/A                                                                                    |
 | `created`                                                                              | *number*                                                                               | :heavy_check_mark:                                                                     | Unix timestamp representing when the event was created                                 |
 | `event`                                                                                | [webhooks.CheckinDeletedEventEvent](../../models/webhooks/checkindeletedeventevent.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |

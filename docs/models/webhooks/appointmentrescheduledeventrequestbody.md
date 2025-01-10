@@ -1,6 +1,6 @@
 # AppointmentRescheduledEventRequestBody
 
-Appointment Rescheduled Event (Not implemented)
+Appointment Rescheduled Event
 
 ## Example Usage
 
@@ -18,7 +18,7 @@ let value: AppointmentRescheduledEventRequestBody = {
     startTimestamp: 1677721600,
     staffId: "usr_78910",
   },
-  created: 791725,
+  created: 383441,
   event: "appointment.rescheduled",
 };
 ```

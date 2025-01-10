@@ -15,7 +15,7 @@ export const AppInstalledEventEvent = {
 export type AppInstalledEventEvent = ClosedEnum<typeof AppInstalledEventEvent>;
 
 /**
- * App Installed Event (Not implemented)
+ * App Installed Event
  */
 export type AppInstalledEventRequestBody = {
   /**

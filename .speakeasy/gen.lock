@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 8d92b3448cf456b6461568b5c793b4c1
+  docChecksum: b3a7ff98d2a62df2157139aeebfb0265
   docVersion: 3.0.0
-  speakeasyVersion: 1.460.4
-  generationVersion: 2.484.0
-  releaseVersion: 0.14.0
-  configChecksum: 30954dad6da0c3a20362cce8a8ecc899
+  speakeasyVersion: 1.468.0
+  generationVersion: 2.492.3
+  releaseVersion: 0.15.0
+  configChecksum: e3142ffa2120ae6a1c19d1e4602221bb
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -36,7 +36,7 @@ features:
     sdkHooks: 0.2.0
     serverIDs: 2.81.2
     unions: 2.85.8
-    webhooks: 1.3.0
+    webhooks: 1.4.1
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -212,14 +212,15 @@ generatedFiles:
   - docs/models/operations/updatewebhookresponsebody.md
   - docs/models/webhooks/appinstalledeventevent.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
-  - docs/models/webhooks/appointmentcancelledeventevent.md
-  - docs/models/webhooks/appointmentcancelledeventrequestbody.md
+  - docs/models/webhooks/appointmentcancelldeventevent.md
+  - docs/models/webhooks/appointmentcancelldeventrequestbody.md
   - docs/models/webhooks/appointmentnoshowedeventevent.md
   - docs/models/webhooks/appointmentnoshowedeventrequestbody.md
   - docs/models/webhooks/appointmentrescheduledeventevent.md
   - docs/models/webhooks/appointmentrescheduledeventrequestbody.md
   - docs/models/webhooks/appointmentscheduledeventevent.md
   - docs/models/webhooks/appointmentscheduledeventrequestbody.md
+  - docs/models/webhooks/appuninstalledeventdata.md
   - docs/models/webhooks/appuninstalledeventevent.md
   - docs/models/webhooks/appuninstalledeventrequestbody.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
@@ -231,6 +232,7 @@ generatedFiles:
   - docs/models/webhooks/classcancelledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventevent.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
+  - docs/models/webhooks/customerdeletedeventdata.md
   - docs/models/webhooks/customerdeletedeventevent.md
   - docs/models/webhooks/customerdeletedeventrequestbody.md
   - docs/models/webhooks/customerupdatedeventevent.md
@@ -241,6 +243,7 @@ generatedFiles:
   - docs/models/webhooks/enrollmentstatuschangedevent.md
   - docs/models/webhooks/enrollmentstatuschangedrequestbody.md
   - docs/models/webhooks/event.md
+  - docs/models/webhooks/memberappupdateddata.md
   - docs/models/webhooks/memberappupdatedevent.md
   - docs/models/webhooks/memberappupdatedrequestbody.md
   - docs/models/webhooks/os.md
@@ -376,7 +379,7 @@ generatedFiles:
   - src/models/operations/sendsms.ts
   - src/models/operations/updatewebhook.ts
   - src/models/webhooks/appinstalledevent.ts
-  - src/models/webhooks/appointmentcancelledevent.ts
+  - src/models/webhooks/appointmentcancelldevent.ts
   - src/models/webhooks/appointmentnoshowedevent.ts
   - src/models/webhooks/appointmentrescheduledevent.ts
   - src/models/webhooks/appointmentscheduledevent.ts
@@ -718,7 +721,7 @@ examples:
   checkinDeletedEvent:
     speakeasy-default-checkin-deleted-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 336376, "event": "checkin.deleted"}
+        application/json: {"data": {"id": "chk_12345"}, "created": 336376, "event": "checkin.deleted"}
   appInstalledEvent:
     speakeasy-default-app-installed-event:
       requestBody:
@@ -726,7 +729,7 @@ examples:
   appUninstalledEvent:
     speakeasy-default-app-uninstalled-event:
       requestBody:
-        application/json: {"data": {"company": {"id": "company-uuid"}, "app": {"id": "app-uuid"}, "installation": {"id": "installation-uuid"}}, "created": 897950, "event": "app.uninstalled"}
+        application/json: {"created": 897950, "event": "app.uninstalled"}
   appointmentScheduledEvent:
     speakeasy-default-appointment-scheduled-event:
       requestBody:
@@ -750,7 +753,7 @@ examples:
   customerDeletedEvent:
     speakeasy-default-customer-deleted-event:
       requestBody:
-        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 522524, "event": "customer.deleted"}
+        application/json: {"data": {"id": "usr_1234"}, "created": 522524, "event": "customer.deleted"}
   classNoShowEvent:
     speakeasy-default-class-no-show-event:
       requestBody:
@@ -810,4 +813,8 @@ examples:
     speakeasy-default-reservation-cancelled-event:
       requestBody:
         application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 611009, "event": "reservation.cancelled"}
+  appointmentCancelldEvent:
+    speakeasy-default-appointment-cancelld-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 149774, "event": "appointment.canceled"}
 generatedTests: {}

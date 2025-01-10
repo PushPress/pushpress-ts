@@ -7,11 +7,11 @@ Current status of the reservation
 ```typescript
 import { ReservationStatus } from "@pushpress/pushpress/models/components";
 
-let value: ReservationStatus = "waitlisted";
+let value: ReservationStatus = "checked-in";
 ```
 
 ## Values
 
 ```typescript
-"waitlisted" | "checked-in" | "reserved"
+"waitlisted" | "checked-in" | "reserved" | "cancelled" | "late-cancelled"
 ```

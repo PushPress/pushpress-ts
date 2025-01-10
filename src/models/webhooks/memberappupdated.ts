@@ -20,7 +20,7 @@ export const Os = {
  */
 export type Os = ClosedEnum<typeof Os>;
 
-export type Data = {
+export type MemberAppUpdatedData = {
   /**
    * url of the app
    */
@@ -40,7 +40,7 @@ export type MemberAppUpdatedEvent = ClosedEnum<typeof MemberAppUpdatedEvent>;
  * Member App Updated (Not Implemented)
  */
 export type MemberAppUpdatedRequestBody = {
-  data: Data;
+  data: MemberAppUpdatedData;
   /**
    * Unix timestamp representing when the event was created
    */
@@ -66,49 +66,59 @@ export namespace Os$ {
 }
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    url: z.string().optional(),
-    os: Os$inboundSchema.optional(),
-  });
+export const MemberAppUpdatedData$inboundSchema: z.ZodType<
+  MemberAppUpdatedData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  url: z.string().optional(),
+  os: Os$inboundSchema.optional(),
+});
 
 /** @internal */
-export type Data$Outbound = {
+export type MemberAppUpdatedData$Outbound = {
   url?: string | undefined;
   os?: string | undefined;
 };
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    url: z.string().optional(),
-    os: Os$outboundSchema.optional(),
-  });
+export const MemberAppUpdatedData$outboundSchema: z.ZodType<
+  MemberAppUpdatedData$Outbound,
+  z.ZodTypeDef,
+  MemberAppUpdatedData
+> = z.object({
+  url: z.string().optional(),
+  os: Os$outboundSchema.optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
+export namespace MemberAppUpdatedData$ {
+  /** @deprecated use `MemberAppUpdatedData$inboundSchema` instead. */
+  export const inboundSchema = MemberAppUpdatedData$inboundSchema;
+  /** @deprecated use `MemberAppUpdatedData$outboundSchema` instead. */
+  export const outboundSchema = MemberAppUpdatedData$outboundSchema;
+  /** @deprecated use `MemberAppUpdatedData$Outbound` instead. */
+  export type Outbound = MemberAppUpdatedData$Outbound;
 }
 
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
+export function memberAppUpdatedDataToJSON(
+  memberAppUpdatedData: MemberAppUpdatedData,
+): string {
+  return JSON.stringify(
+    MemberAppUpdatedData$outboundSchema.parse(memberAppUpdatedData),
+  );
 }
 
-export function dataFromJSON(
+export function memberAppUpdatedDataFromJSON(
   jsonString: string,
-): SafeParseResult<Data, SDKValidationError> {
+): SafeParseResult<MemberAppUpdatedData, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Data$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data' from JSON`,
+    (x) => MemberAppUpdatedData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MemberAppUpdatedData' from JSON`,
   );
 }
 
@@ -139,14 +149,14 @@ export const MemberAppUpdatedRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => Data$inboundSchema),
+  data: z.lazy(() => MemberAppUpdatedData$inboundSchema),
   created: z.number().int(),
   event: MemberAppUpdatedEvent$inboundSchema,
 });
 
 /** @internal */
 export type MemberAppUpdatedRequestBody$Outbound = {
-  data: Data$Outbound;
+  data: MemberAppUpdatedData$Outbound;
   created: number;
   event: string;
 };
@@ -157,7 +167,7 @@ export const MemberAppUpdatedRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   MemberAppUpdatedRequestBody
 > = z.object({
-  data: z.lazy(() => Data$outboundSchema),
+  data: z.lazy(() => MemberAppUpdatedData$outboundSchema),
   created: z.number().int(),
   event: MemberAppUpdatedEvent$outboundSchema,
 });
