@@ -17,6 +17,7 @@ export const EventTypes = {
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
+  AppointmentCancelled: "appointment.cancelled",
   CheckinCreated: "checkin.created",
   CheckinUpdated: "checkin.updated",
   CheckinDeleted: "checkin.deleted",
