@@ -13,5 +13,5 @@ let value: ReservationStatus = "checked-in";
 ## Values
 
 ```typescript
-"waitlisted" | "checked-in" | "reserved" | "cancelled" | "late-cancelled"
+"waitlisted" | "checked-in" | "reserved" | "canceled" | "late-canceled"
 ```

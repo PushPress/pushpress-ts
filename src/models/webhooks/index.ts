@@ -3,7 +3,7 @@
  */
 
 export * from "./appinstalledevent.js";
-export * from "./appointmentcancelldevent.js";
+export * from "./appointmentcanceledevent.js";
 export * from "./appointmentnoshowedevent.js";
 export * from "./appointmentrescheduledevent.js";
 export * from "./appointmentscheduledevent.js";
@@ -11,13 +11,13 @@ export * from "./appuninstalledevent.js";
 export * from "./checkincreatedevent.js";
 export * from "./checkindeletedevent.js";
 export * from "./checkinupdatedevent.js";
-export * from "./classcancelledevent.js";
+export * from "./classcanceledevent.js";
 export * from "./customercreatedevent.js";
 export * from "./customerdeletedevent.js";
 export * from "./customerupdatedevent.js";
 export * from "./enrollmentcreatedevent.js";
 export * from "./enrollmentstatuschanged.js";
 export * from "./memberappupdated.js";
-export * from "./reservationcancelledevent.js";
+export * from "./reservationcanceledevent.js";
 export * from "./reservationcreatedevent.js";
 export * from "./reservationwaitlistedevent.js";

@@ -8,7 +8,7 @@ import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations
 let value: CreateWebhookRequestBody = {
   url: "https://dental-chasuble.info",
   eventTypes: [
-    "class.cancelled",
+    "class.canceled",
   ],
 };
 ```
