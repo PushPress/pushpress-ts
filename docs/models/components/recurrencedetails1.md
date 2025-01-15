@@ -6,7 +6,7 @@
 import { RecurrenceDetails1 } from "@pushpress/pushpress/models/components";
 
 let value: RecurrenceDetails1 = {
-  occurrences: 9767.61,
+  occurrences: 8379.45,
 };
 ```
 

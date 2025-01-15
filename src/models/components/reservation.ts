@@ -21,8 +21,8 @@ export const ReservationStatus = {
   Waitlisted: "waitlisted",
   CheckedIn: "checked-in",
   Reserved: "reserved",
-  Cancelled: "cancelled",
-  LateCancelled: "late-cancelled",
+  Canceled: "canceled",
+  LateCanceled: "late-canceled",
 } as const;
 /**
  * Current status of the reservation

@@ -7,7 +7,7 @@
 
 ```typescript
 const value: components.RecurrenceDetails1 = {
-  occurrences: 6048.46,
+  occurrences: 960.98,
 };
 ```
 
@@ -21,7 +21,7 @@ const value: components.RecurrenceDetails2 = {};
 
 ```typescript
 const value: components.Three = {
-  occurrences: 7392.64,
+  occurrences: 9764.6,
 };
 ```
 

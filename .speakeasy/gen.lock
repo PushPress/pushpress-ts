@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: b3a7ff98d2a62df2157139aeebfb0265
+  docChecksum: 68583636df65f204b5549b322bcd142a
   docVersion: 3.0.0
-  speakeasyVersion: 1.468.0
-  generationVersion: 2.492.3
-  releaseVersion: 0.15.0
-  configChecksum: e3142ffa2120ae6a1c19d1e4602221bb
+  speakeasyVersion: 1.468.7
+  generationVersion: 2.493.15
+  releaseVersion: 0.16.0
+  configChecksum: ec458adeec2f62dce319ed6c7cbd2e5c
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.12
+    core: 3.18.14
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -212,8 +212,8 @@ generatedFiles:
   - docs/models/operations/updatewebhookresponsebody.md
   - docs/models/webhooks/appinstalledeventevent.md
   - docs/models/webhooks/appinstalledeventrequestbody.md
-  - docs/models/webhooks/appointmentcancelldeventevent.md
-  - docs/models/webhooks/appointmentcancelldeventrequestbody.md
+  - docs/models/webhooks/appointmentcanceledeventevent.md
+  - docs/models/webhooks/appointmentcanceledeventrequestbody.md
   - docs/models/webhooks/appointmentnoshowedeventevent.md
   - docs/models/webhooks/appointmentnoshowedeventrequestbody.md
   - docs/models/webhooks/appointmentrescheduledeventevent.md
@@ -228,8 +228,8 @@ generatedFiles:
   - docs/models/webhooks/checkindeletedeventrequestbody.md
   - docs/models/webhooks/checkinupdatedeventevent.md
   - docs/models/webhooks/checkinupdatedeventrequestbody.md
-  - docs/models/webhooks/classcancelledeventevent.md
-  - docs/models/webhooks/classcancelledeventrequestbody.md
+  - docs/models/webhooks/classcanceledeventevent.md
+  - docs/models/webhooks/classcanceledeventrequestbody.md
   - docs/models/webhooks/customercreatedeventevent.md
   - docs/models/webhooks/customercreatedeventrequestbody.md
   - docs/models/webhooks/customerdeletedeventdata.md
@@ -243,13 +243,9 @@ generatedFiles:
   - docs/models/webhooks/enrollmentstatuschangedevent.md
   - docs/models/webhooks/enrollmentstatuschangedrequestbody.md
   - docs/models/webhooks/event.md
-  - docs/models/webhooks/memberappupdateddata.md
-  - docs/models/webhooks/memberappupdatedevent.md
-  - docs/models/webhooks/memberappupdatedrequestbody.md
-  - docs/models/webhooks/os.md
   - docs/models/webhooks/previousvalues.md
-  - docs/models/webhooks/reservationcancelledeventevent.md
-  - docs/models/webhooks/reservationcancelledeventrequestbody.md
+  - docs/models/webhooks/reservationcanceledeventevent.md
+  - docs/models/webhooks/reservationcanceledeventrequestbody.md
   - docs/models/webhooks/reservationcreatedeventevent.md
   - docs/models/webhooks/reservationcreatedeventrequestbody.md
   - docs/models/webhooks/reservationwaitlistedeventevent.md
@@ -379,7 +375,7 @@ generatedFiles:
   - src/models/operations/sendsms.ts
   - src/models/operations/updatewebhook.ts
   - src/models/webhooks/appinstalledevent.ts
-  - src/models/webhooks/appointmentcancelldevent.ts
+  - src/models/webhooks/appointmentcanceledevent.ts
   - src/models/webhooks/appointmentnoshowedevent.ts
   - src/models/webhooks/appointmentrescheduledevent.ts
   - src/models/webhooks/appointmentscheduledevent.ts
@@ -387,15 +383,14 @@ generatedFiles:
   - src/models/webhooks/checkincreatedevent.ts
   - src/models/webhooks/checkindeletedevent.ts
   - src/models/webhooks/checkinupdatedevent.ts
-  - src/models/webhooks/classcancelledevent.ts
+  - src/models/webhooks/classcanceledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
   - src/models/webhooks/customerupdatedevent.ts
   - src/models/webhooks/enrollmentcreatedevent.ts
   - src/models/webhooks/enrollmentstatuschanged.ts
   - src/models/webhooks/index.ts
-  - src/models/webhooks/memberappupdated.ts
-  - src/models/webhooks/reservationcancelledevent.ts
+  - src/models/webhooks/reservationcanceledevent.ts
   - src/models/webhooks/reservationcreatedevent.ts
   - src/models/webhooks/reservationwaitlistedevent.ts
   - src/sdk/apikeys.ts
@@ -729,7 +724,7 @@ examples:
   appUninstalledEvent:
     speakeasy-default-app-uninstalled-event:
       requestBody:
-        application/json: {"created": 897950, "event": "app.uninstalled"}
+        application/json: {"data": {}, "created": 897950, "event": "app.uninstalled"}
   appointmentScheduledEvent:
     speakeasy-default-appointment-scheduled-event:
       requestBody:
@@ -817,4 +812,16 @@ examples:
     speakeasy-default-appointment-cancelld-event:
       requestBody:
         application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 149774, "event": "appointment.canceled"}
+  appointmentCanceledEvent:
+    speakeasy-default-appointment-canceled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 710519, "event": "appointment.canceled"}
+  classCanceledEvent:
+    speakeasy-default-class-canceled-event:
+      requestBody:
+        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 97537, "event": "class.canceled"}
+  reservationCanceledEvent:
+    speakeasy-default-reservation-canceled-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 816068, "event": "reservation.canceled"}
 generatedTests: {}
