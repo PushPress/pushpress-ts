@@ -5,6 +5,7 @@
 import { PushPressCore } from "../core.js";
 import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { resolveSecurity } from "../lib/security.js";
@@ -68,14 +69,14 @@ export async function keysList(
     "limit": payload.limit,
   });
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
     "company-id": encodeSimple(
       "company-id",
       payload["company-id"] ?? client._options.companyId,
       { explode: false, charEncoding: "none" },
     ),
-  });
+  }));
 
   const requestSecurity = resolveSecurity(
     [

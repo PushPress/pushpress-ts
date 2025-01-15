@@ -1,13 +1,13 @@
-# ReservationCancelledEventRequestBody
+# ReservationCanceledEventRequestBody
 
-Reservation Cancelled Event
+Reservation canceled Event
 
 ## Example Usage
 
 ```typescript
-import { ReservationCancelledEventRequestBody } from "@pushpress/pushpress/models/webhooks";
+import { ReservationCanceledEventRequestBody } from "@pushpress/pushpress/models/webhooks";
 
-let value: ReservationCancelledEventRequestBody = {
+let value: ReservationCanceledEventRequestBody = {
   data: {
     id: "reg_12345",
     reservedId: "cal-12345",
@@ -17,7 +17,7 @@ let value: ReservationCancelledEventRequestBody = {
     status: "reserved",
   },
   created: 978619,
-  event: "reservation.cancelled",
+  event: "reservation.canceled",
 };
 ```
 
@@ -27,4 +27,4 @@ let value: ReservationCancelledEventRequestBody = {
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data`                                                                                                                                                              | [components.Reservation](../../models/components/reservation.md)                                                                                                    | :heavy_check_mark:                                                                                                                                                  | Schema for representing a reservation for a class or event                                                                                                          | {<br/>"id": "reg_12345",<br/>"customerId": "usr_12345",<br/>"companyId": "cli_12345",<br/>"reservedId": "cal-12345",<br/>"registrationTimestamp": 1672531200000,<br/>"status": "reserved"<br/>} |
 | `created`                                                                                                                                                           | *number*                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                  | Unix timestamp representing when the event was created                                                                                                              |                                                                                                                                                                     |
-| `event`                                                                                                                                                             | [webhooks.ReservationCancelledEventEvent](../../models/webhooks/reservationcancelledeventevent.md)                                                                  | :heavy_check_mark:                                                                                                                                                  | N/A                                                                                                                                                                 |                                                                                                                                                                     |
+| `event`                                                                                                                                                             | [webhooks.ReservationCanceledEventEvent](../../models/webhooks/reservationcanceledeventevent.md)                                                                    | :heavy_check_mark:                                                                                                                                                  | N/A                                                                                                                                                                 |                                                                                                                                                                     |

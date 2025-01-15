@@ -6,10 +6,10 @@
 import { UpdateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: UpdateWebhookRequest = {
-  uuid: "11a368db-4204-447a-9b46-2c0bcc459453",
+  uuid: "b0c211a3-68db-4420-a447-ab462c0bcc45",
   requestBody: {
     eventTypes: [
-      "appointment.scheduled",
+      "checkin.updated",
     ],
   },
 };

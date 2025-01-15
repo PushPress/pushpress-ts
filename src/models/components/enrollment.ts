@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export const Status = {
   Active: "active",
   Alert: "alert",
-  Cancelled: "cancelled",
+  Canceled: "canceled",
   Completed: "completed",
   Paused: "paused",
   Pendactivation: "pendactivation",

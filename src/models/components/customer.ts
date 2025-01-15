@@ -113,9 +113,12 @@ export type MembershipDetails = {
 export const CustomerRole = {
   Superuser: "superuser",
   Admin: "admin",
-  Frontdesk: "frontdesk",
   Coach: "coach",
+  Frontdesk: "frontdesk",
   Member: "member",
+  NonMember: "non-member",
+  ExMember: "ex-member",
+  Lead: "lead",
 } as const;
 /**
  * The role of the customer within the company (e.g., admin, coach, member)

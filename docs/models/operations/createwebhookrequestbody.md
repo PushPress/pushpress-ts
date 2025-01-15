@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://dental-chasuble.info",
+  url: "https://complete-provision.info",
   eventTypes: [
-    "class.cancelled",
+    "enrollment.created",
   ],
 };
 ```

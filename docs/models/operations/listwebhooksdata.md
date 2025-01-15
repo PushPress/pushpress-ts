@@ -7,9 +7,9 @@ import { ListWebhooksData } from "@pushpress/pushpress/models/operations";
 
 let value: ListWebhooksData = {
   id: "<id>",
-  url: "https://reasonable-schnitzel.biz",
+  url: "https://exalted-breastplate.com/",
   eventTypes: [
-    "enrollment.created",
+    "app.installed",
   ],
   signingSecret: "<value>",
 };
