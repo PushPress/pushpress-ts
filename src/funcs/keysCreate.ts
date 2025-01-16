@@ -44,6 +44,10 @@ export async function keysCreate(
     | errors.BadRequest
     | errors.RateLimited
     | errors.InternalServerError
+    | errors.NotFound
+    | errors.Timeout
+    | errors.BadRequest
+    | errors.Unauthorized
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -171,6 +175,10 @@ export async function keysCreate(
     | errors.BadRequest
     | errors.RateLimited
     | errors.InternalServerError
+    | errors.NotFound
+    | errors.Timeout
+    | errors.BadRequest
+    | errors.Unauthorized
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -180,16 +188,21 @@ export async function keysCreate(
     | ConnectionError
   >(
     M.json(201, components.ApiKey$inboundSchema),
-    M.jsonErr([401, 403, 407, 511], errors.Unauthorized$inboundSchema),
-    M.jsonErr([404, 501, 505], errors.NotFound$inboundSchema),
-    M.jsonErr([408, 504], errors.Timeout$inboundSchema),
-    M.jsonErr([413, 414, 415, 422, 431, 510], errors.BadRequest$inboundSchema),
+    M.jsonErr([401, 403, 407], errors.Unauthorized$inboundSchema),
+    M.jsonErr(404, errors.NotFound$inboundSchema),
+    M.jsonErr(408, errors.Timeout$inboundSchema),
+    M.jsonErr([413, 414, 415, 422, 431], errors.BadRequest$inboundSchema),
     M.jsonErr(429, errors.RateLimited$inboundSchema),
     M.jsonErr(
       [500, 502, 503, 506, 507, 508],
       errors.InternalServerError$inboundSchema,
     ),
-    M.fail(["4XX", "5XX"]),
+    M.jsonErr([501, 505], errors.NotFound$inboundSchema),
+    M.jsonErr(504, errors.Timeout$inboundSchema),
+    M.jsonErr(510, errors.BadRequest$inboundSchema),
+    M.jsonErr(511, errors.Unauthorized$inboundSchema),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

@@ -11,7 +11,7 @@ let value: CreateWebhookResponseBody = {
   id: "<id>",
   url: "https://unsteady-blight.name",
   eventTypes: [
-    "enrollment.created",
+    "enrollment.status.changed",
   ],
   signingSecret: "<value>",
 };

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 68583636df65f204b5549b322bcd142a
+  docChecksum: 73f68e14908b819330de756cb692c5a3
   docVersion: 3.0.0
-  speakeasyVersion: 1.468.7
-  generationVersion: 2.493.15
-  releaseVersion: 0.16.0
-  configChecksum: ec458adeec2f62dce319ed6c7cbd2e5c
+  speakeasyVersion: 1.468.9
+  generationVersion: 2.493.21
+  releaseVersion: 0.17.0
+  configChecksum: 133ac22e842a47d8e5c09ce482ae0e14
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.14
+    core: 3.18.16
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -240,6 +240,9 @@ generatedFiles:
   - docs/models/webhooks/data.md
   - docs/models/webhooks/enrollmentcreatedeventevent.md
   - docs/models/webhooks/enrollmentcreatedeventrequestbody.md
+  - docs/models/webhooks/enrollmentdeleteddata.md
+  - docs/models/webhooks/enrollmentdeletedevent.md
+  - docs/models/webhooks/enrollmentdeletedrequestbody.md
   - docs/models/webhooks/enrollmentstatuschangedevent.md
   - docs/models/webhooks/enrollmentstatuschangedrequestbody.md
   - docs/models/webhooks/event.md
@@ -388,6 +391,7 @@ generatedFiles:
   - src/models/webhooks/customerdeletedevent.ts
   - src/models/webhooks/customerupdatedevent.ts
   - src/models/webhooks/enrollmentcreatedevent.ts
+  - src/models/webhooks/enrollmentdeleted.ts
   - src/models/webhooks/enrollmentstatuschanged.ts
   - src/models/webhooks/index.ts
   - src/models/webhooks/reservationcanceledevent.ts
@@ -482,6 +486,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "500":
           application/json: {"key": "<value>"}
+        "501":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "504":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "511":
+          application/json: {"key": "<value>", "key1": "<value>"}
   getCustomer:
     speakeasy-default-get-customer:
       parameters:
@@ -508,6 +520,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>"}
+        "501":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "504":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "511":
+          application/json: {}
   createApiKey:
     speakeasy-default-create-api-key:
       requestBody:
@@ -527,6 +547,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "501":
+          application/json: {"key": "<value>"}
+        "504":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>"}
+        "511":
+          application/json: {}
   listApiKeys:
     speakeasy-default-list-api-keys:
       responses:
@@ -544,6 +572,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>"}
+        "501":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "504":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "511":
+          application/json: {}
   getApiKey:
     speakeasy-default-get-api-key:
       parameters:
@@ -581,6 +617,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>"}
+        "501":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "504":
+          application/json: {"key": "<value>"}
+        "510":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "511":
+          application/json: {}
   sendEvent:
     speakeasy-default-send-event:
       requestBody:
@@ -604,6 +648,14 @@ examples:
           application/json: {"key": "<value>"}
         "200":
           application/json: {"errors": ["<value>"]}
+        "501":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "504":
+          application/json: {"key": "<value>"}
+        "510":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "511":
+          application/json: {}
   sendSms:
     speakeasy-default-send-sms:
       requestBody:
@@ -630,6 +682,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "501":
+          application/json: {"key": "<value>"}
+        "504":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>"}
+        "511":
+          application/json: {}
   listWebhooks:
     speakeasy-default-list-webhooks:
       responses:
@@ -647,6 +707,14 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>"}
+        "501":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "504":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "511":
+          application/json: {}
   getWebhook:
     speakeasy-default-get-webhook:
       parameters:
@@ -824,4 +892,8 @@ examples:
     speakeasy-default-reservation-canceled-event:
       requestBody:
         application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 816068, "event": "reservation.canceled"}
+  enrollmentDeleted:
+    speakeasy-default-enrollment-deleted:
+      requestBody:
+        application/json: {"data": {}, "created": 230421, "event": "enrollment.deleted"}
 generatedTests: {}

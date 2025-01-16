@@ -138,7 +138,8 @@ export async function checkinsAppointmentGet(
     | ConnectionError
   >(
     M.json(200, components.AppointmentCheckin$inboundSchema),
-    M.fail([401, 404, "4XX", "5XX"]),
+    M.fail([401, 404, "4XX"]),
+    M.fail("5XX"),
   )(response);
   if (!result.ok) {
     return result;

@@ -55,17 +55,17 @@ export type Enrollment = {
    */
   id: string;
   /**
-   * unique identifier for the customer
+   * Unique identifier for the customer
    */
   customerId: string;
   /**
-   * unique identifier for the company
+   * Unique identifier for the company
    */
   companyId: string;
   /**
-   * unique identifier for the plan
+   * Unique identifier for the plan
    */
-  planId: string;
+  planId?: string | null | undefined;
   status: Status;
   checkinDetails: CheckinDetails;
   entitlements: Array<Entitlements>;
@@ -258,7 +258,7 @@ export const Enrollment$inboundSchema: z.ZodType<
   id: z.string(),
   customerId: z.string(),
   companyId: z.string(),
-  planId: z.string(),
+  planId: z.nullable(z.string()).optional(),
   status: Status$inboundSchema,
   checkinDetails: z.lazy(() => CheckinDetails$inboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$inboundSchema)),
@@ -269,7 +269,7 @@ export type Enrollment$Outbound = {
   id: string;
   customerId: string;
   companyId: string;
-  planId: string;
+  planId?: string | null | undefined;
   status: string;
   checkinDetails: CheckinDetails$Outbound;
   entitlements: Array<Entitlements$Outbound>;
@@ -284,7 +284,7 @@ export const Enrollment$outboundSchema: z.ZodType<
   id: z.string(),
   customerId: z.string(),
   companyId: z.string(),
-  planId: z.string(),
+  planId: z.nullable(z.string()).optional(),
   status: Status$outboundSchema,
   checkinDetails: z.lazy(() => CheckinDetails$outboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$outboundSchema)),

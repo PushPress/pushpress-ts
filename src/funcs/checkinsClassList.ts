@@ -154,7 +154,8 @@ export async function checkinsClassList(
     M.json(200, operations.ListClassCheckinsResponse$inboundSchema, {
       key: "Result",
     }),
-    M.fail([401, 404, "4XX", "5XX"]),
+    M.fail([401, 404, "4XX"]),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return haltIterator(result);

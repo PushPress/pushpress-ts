@@ -16,7 +16,7 @@ let value: ReservationCreatedEventRequestBody = {
     registrationTimestamp: 1672531200000,
     status: "reserved",
   },
-  created: 778157,
+  created: 870013,
   event: "reservation.created",
 };
 ```

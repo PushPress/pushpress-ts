@@ -17,13 +17,17 @@ export type EnrollmentStatusChangedEvent = ClosedEnum<
 >;
 
 /**
- * Enrollment Status Changed Event (Not implemented)
+ * Enrollment Status Changed Event
  */
 export type EnrollmentStatusChangedRequestBody = {
   /**
    * Schema representing a subscription that a customer has to a plan
    */
   data: components.Enrollment;
+  /**
+   * Schema representing a subscription that a customer has to a plan
+   */
+  previousValues?: components.Enrollment | undefined;
   /**
    * Unix timestamp representing when the event was created
    */
@@ -59,6 +63,7 @@ export const EnrollmentStatusChangedRequestBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: components.Enrollment$inboundSchema,
+  previousValues: components.Enrollment$inboundSchema.optional(),
   created: z.number().int(),
   event: EnrollmentStatusChangedEvent$inboundSchema,
 });
@@ -66,6 +71,7 @@ export const EnrollmentStatusChangedRequestBody$inboundSchema: z.ZodType<
 /** @internal */
 export type EnrollmentStatusChangedRequestBody$Outbound = {
   data: components.Enrollment$Outbound;
+  previousValues?: components.Enrollment$Outbound | undefined;
   created: number;
   event: string;
 };
@@ -77,6 +83,7 @@ export const EnrollmentStatusChangedRequestBody$outboundSchema: z.ZodType<
   EnrollmentStatusChangedRequestBody
 > = z.object({
   data: components.Enrollment$outboundSchema,
+  previousValues: components.Enrollment$outboundSchema.optional(),
   created: z.number().int(),
   event: EnrollmentStatusChangedEvent$outboundSchema,
 });

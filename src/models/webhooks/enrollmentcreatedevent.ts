@@ -17,7 +17,7 @@ export type EnrollmentCreatedEventEvent = ClosedEnum<
 >;
 
 /**
- * Enrollment Created Event (Not implemented)
+ * Enrollment Created Event
  */
 export type EnrollmentCreatedEventRequestBody = {
   /**
