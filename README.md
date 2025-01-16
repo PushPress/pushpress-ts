@@ -355,15 +355,19 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `get` method may throw the following errors:
 
-| Error Type                 | Status Code                       | Content Type     |
-| -------------------------- | --------------------------------- | ---------------- |
-| errors.BadRequest          | 400, 413, 414, 415, 422, 431, 510 | application/json |
-| errors.Unauthorized        | 401, 403, 407, 511                | application/json |
-| errors.NotFound            | 404, 501, 505                     | application/json |
-| errors.Timeout             | 408, 504                          | application/json |
-| errors.RateLimited         | 429                               | application/json |
-| errors.InternalServerError | 500, 502, 503, 506, 507, 508      | application/json |
-| errors.APIError            | 4XX, 5XX                          | \*/\*            |
+| Error Type                 | Status Code                  | Content Type     |
+| -------------------------- | ---------------------------- | ---------------- |
+| errors.BadRequest          | 400, 413, 414, 415, 422, 431 | application/json |
+| errors.Unauthorized        | 401, 403, 407                | application/json |
+| errors.NotFound            | 404                          | application/json |
+| errors.Timeout             | 408                          | application/json |
+| errors.RateLimited         | 429                          | application/json |
+| errors.InternalServerError | 500, 502, 503, 506, 507, 508 | application/json |
+| errors.NotFound            | 501, 505                     | application/json |
+| errors.Timeout             | 504                          | application/json |
+| errors.BadRequest          | 510                          | application/json |
+| errors.Unauthorized        | 511                          | application/json |
+| errors.APIError            | 4XX, 5XX                     | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
 
@@ -427,6 +431,26 @@ async function run() {
       }
       case (err instanceof InternalServerError): {
         // Handle err.data$: InternalServerErrorData
+        console.error(err);
+        return;
+      }
+      case (err instanceof NotFound): {
+        // Handle err.data$: NotFoundData
+        console.error(err);
+        return;
+      }
+      case (err instanceof Timeout): {
+        // Handle err.data$: TimeoutData
+        console.error(err);
+        return;
+      }
+      case (err instanceof BadRequest): {
+        // Handle err.data$: BadRequestData
+        console.error(err);
+        return;
+      }
+      case (err instanceof Unauthorized): {
+        // Handle err.data$: UnauthorizedData
         console.error(err);
         return;
       }

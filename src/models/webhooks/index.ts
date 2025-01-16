@@ -16,6 +16,7 @@ export * from "./customercreatedevent.js";
 export * from "./customerdeletedevent.js";
 export * from "./customerupdatedevent.js";
 export * from "./enrollmentcreatedevent.js";
+export * from "./enrollmentdeleted.js";
 export * from "./enrollmentstatuschanged.js";
 export * from "./reservationcanceledevent.js";
 export * from "./reservationcreatedevent.js";

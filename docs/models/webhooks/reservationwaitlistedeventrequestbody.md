@@ -16,7 +16,7 @@ let value: ReservationWaitlistedEventRequestBody = {
     registrationTimestamp: 1672531200000,
     status: "reserved",
   },
-  created: 870013,
+  created: 978619,
   event: "reservation.waitlisted",
 };
 ```

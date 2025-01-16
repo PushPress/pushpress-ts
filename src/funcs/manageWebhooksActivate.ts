@@ -136,7 +136,8 @@ export async function manageWebhooksActivate(
     | ConnectionError
   >(
     M.json(204, operations.ActivateWebhookResponseBody$inboundSchema),
-    M.fail([401, 403, "4XX", "5XX"]),
+    M.fail([401, 403, "4XX"]),
+    M.fail("5XX"),
   )(response);
   if (!result.ok) {
     return result;

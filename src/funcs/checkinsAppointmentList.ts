@@ -154,7 +154,8 @@ export async function checkinsAppointmentList(
     M.json(200, operations.ListAppointmentCheckinsResponse$inboundSchema, {
       key: "Result",
     }),
-    M.fail([401, "4XX", "5XX"]),
+    M.fail([401, "4XX"]),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return haltIterator(result);

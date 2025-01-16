@@ -1,6 +1,6 @@
 # EnrollmentCreatedEventRequestBody
 
-Enrollment Created Event (Not implemented)
+Enrollment Created Event
 
 ## Example Usage
 

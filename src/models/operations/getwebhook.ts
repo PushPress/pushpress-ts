@@ -35,6 +35,7 @@ export const GetWebhookEventTypes = {
   CustomerDeleted: "customer.deleted",
   EnrollmentCreated: "enrollment.created",
   EnrollmentStatusChanged: "enrollment.status.changed",
+  EnrollmentDeleted: "enrollment.deleted",
   MemberappUpdated: "memberapp.updated",
   ReservationCreated: "reservation.created",
   ReservationWaitlisted: "reservation.waitlisted",
