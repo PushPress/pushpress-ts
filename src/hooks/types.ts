@@ -5,7 +5,11 @@
 import { HTTPClient, RequestInput } from "../lib/http.js";
 import { RetryConfig } from "../lib/retries.js";
 import { SecurityState } from "../lib/security.js";
-import { WebhookRecipient } from "../types/webhooks.js";
+import { Result } from "../types/fp.js";
+import {
+  WebhookAuthenticationError,
+  WebhookRecipient,
+} from "../types/webhooks.js";
 
 export type HookContext = {
   operationID: string;
@@ -27,6 +31,7 @@ export type BeforeCreateRequestContext = HookContext & {};
 export type BeforeRequestContext = HookContext & {};
 export type AfterSuccessContext = HookContext & {};
 export type AfterErrorContext = HookContext & {};
+export type WebhookVerificationContext = {};
 
 /**
  * SDKInitHook is called when the SDK is initializing. The
@@ -89,6 +94,12 @@ export interface AfterErrorHook {
     error: unknown;
   }>;
 }
+export interface WebhookVerificationHook {
+  verifyWebhook: (
+    hookCtx: WebhookVerificationContext,
+    { request, secret }: { request: Request; secret: string },
+  ) => Awaitable<Result<true, WebhookAuthenticationError>>;
+}
 
 export interface Hooks {
   /** Registers a hook to be used by the SDK for initialization event. */
@@ -101,6 +112,8 @@ export interface Hooks {
   registerAfterSuccessHook(hook: AfterSuccessHook): void;
   /** Registers a hook to be used by the SDK for the after error event. */
   registerAfterErrorHook(hook: AfterErrorHook): void;
+  /** Registers a hook to be used by the SDK for the webhook verification event. */
+  registerWebhookVerificationHook(hook: WebhookVerificationHook): void;
 }
 
 export type Hook =
@@ -108,4 +121,5 @@ export type Hook =
   | BeforeCreateRequestHook
   | BeforeRequestHook
   | AfterSuccessHook
-  | AfterErrorHook;
+  | AfterErrorHook
+  | WebhookVerificationHook;
