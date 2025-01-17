@@ -197,6 +197,27 @@ run();
 
 * [get](docs/sdks/plans/README.md#get) - Get Plan details
 
+### [PushPress SDK](docs/sdks/pushpress/README.md)
+
+* [checkinCreatedEvent](docs/sdks/pushpress/README.md#checkincreatedevent)
+* [checkinUpdatedEvent](docs/sdks/pushpress/README.md#checkinupdatedevent)
+* [checkinDeletedEvent](docs/sdks/pushpress/README.md#checkindeletedevent)
+* [appInstalledEvent](docs/sdks/pushpress/README.md#appinstalledevent)
+* [appUninstalledEvent](docs/sdks/pushpress/README.md#appuninstalledevent)
+* [appointmentScheduledEvent](docs/sdks/pushpress/README.md#appointmentscheduledevent)
+* [appointmentRescheduledEvent](docs/sdks/pushpress/README.md#appointmentrescheduledevent)
+* [appointmentNoShowedEvent](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
+* [appointmentCanceledEvent](docs/sdks/pushpress/README.md#appointmentcanceledevent)
+* [customerCreatedEvent](docs/sdks/pushpress/README.md#customercreatedevent)
+* [customerUpdatedEvent](docs/sdks/pushpress/README.md#customerupdatedevent)
+* [customerDeletedEvent](docs/sdks/pushpress/README.md#customerdeletedevent)
+* [classCanceledEvent](docs/sdks/pushpress/README.md#classcanceledevent)
+* [enrollmentCreatedEvent](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
+* [enrollmentStatusChanged](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
+* [enrollmentDeleted](docs/sdks/pushpress/README.md#enrollmentdeleted)
+* [reservationCreatedEvent](docs/sdks/pushpress/README.md#reservationcreatedevent)
+* [reservationWaitlistedEvent](docs/sdks/pushpress/README.md#reservationwaitlistedevent)
+* [reservationCanceledEvent](docs/sdks/pushpress/README.md#reservationcanceledevent)
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -218,6 +239,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get API Key
 - [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
+- [`appInstalledEvent`](docs/sdks/pushpress/README.md#appinstalledevent)
+- [`appointmentCanceledEvent`](docs/sdks/pushpress/README.md#appointmentcanceledevent)
+- [`appointmentNoShowedEvent`](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
+- [`appointmentRescheduledEvent`](docs/sdks/pushpress/README.md#appointmentrescheduledevent)
+- [`appointmentScheduledEvent`](docs/sdks/pushpress/README.md#appointmentscheduledevent)
+- [`appUninstalledEvent`](docs/sdks/pushpress/README.md#appuninstalledevent)
+- [`checkinCreatedEvent`](docs/sdks/pushpress/README.md#checkincreatedevent)
+- [`checkinDeletedEvent`](docs/sdks/pushpress/README.md#checkindeletedevent)
 - [`checkinsAppointmentGet`](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
 - [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - List Appointment Checkins
 - [`checkinsClassGet`](docs/sdks/class/README.md#get) - Get Class Checkin Details
@@ -226,10 +255,18 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`checkinsEventList`](docs/sdks/event/README.md#list) - List Event Checkins
 - [`checkinsOpenGet`](docs/sdks/open/README.md#get) - Get Open Facility Details
 - [`checkinsOpenList`](docs/sdks/open/README.md#list) - List Open Checkins
+- [`checkinUpdatedEvent`](docs/sdks/pushpress/README.md#checkinupdatedevent)
+- [`classCanceledEvent`](docs/sdks/pushpress/README.md#classcanceledevent)
 - [`classesGet`](docs/sdks/classes/README.md#get) - Get Details for a Class
 - [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
+- [`customerCreatedEvent`](docs/sdks/pushpress/README.md#customercreatedevent)
+- [`customerDeletedEvent`](docs/sdks/pushpress/README.md#customerdeletedevent)
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
 - [`customersList`](docs/sdks/customers/README.md#list) - List Customers
+- [`customerUpdatedEvent`](docs/sdks/pushpress/README.md#customerupdatedevent)
+- [`enrollmentCreatedEvent`](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
+- [`enrollmentDeleted`](docs/sdks/pushpress/README.md#enrollmentdeleted)
+- [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
 - [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API Key
 - [`keysList`](docs/sdks/keys/README.md#list) - List API Keys
 - [`manageWebhooksActivate`](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
@@ -244,6 +281,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 - [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
 - [`plansGet`](docs/sdks/plans/README.md#get) - Get Plan details
+- [`reservationCanceledEvent`](docs/sdks/pushpress/README.md#reservationcanceledevent)
+- [`reservationCreatedEvent`](docs/sdks/pushpress/README.md#reservationcreatedevent)
+- [`reservationWaitlistedEvent`](docs/sdks/pushpress/README.md#reservationwaitlistedevent)
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -290,13 +330,25 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress({
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
-});
+const pushPress = new PushPress();
 
 async function run() {
-  const result = await pushPress.checkins.event.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  await pushPress.checkinCreatedEvent({
+    data: {
+      id: "chk_12345",
+      customer: "usr_12345",
+      company: "cli_12345",
+      name: "My Class",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      timestamp: 1672531200000,
+      role: "attendee",
+    },
+    created: 420989,
+    event: "checkin.created",
   }, {
     retries: {
       strategy: "backoff",
@@ -309,9 +361,6 @@ async function run() {
       retryConnectionErrors: false,
     },
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -333,16 +382,26 @@ const pushPress = new PushPress({
     },
     retryConnectionErrors: false,
   },
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  await pushPress.checkinCreatedEvent({
+    data: {
+      id: "chk_12345",
+      customer: "usr_12345",
+      company: "cli_12345",
+      name: "My Class",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      timestamp: 1672531200000,
+      role: "attendee",
+    },
+    created: 420989,
+    event: "checkin.created",
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -499,16 +558,26 @@ import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   server: "development",
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  await pushPress.checkinCreatedEvent({
+    data: {
+      id: "chk_12345",
+      customer: "usr_12345",
+      company: "cli_12345",
+      name: "My Class",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      timestamp: 1672531200000,
+      role: "attendee",
+    },
+    created: 420989,
+    event: "checkin.created",
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -523,16 +592,26 @@ import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   serverURL: "https://api.pushpress.com/v3",
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  await pushPress.checkinCreatedEvent({
+    data: {
+      id: "chk_12345",
+      customer: "usr_12345",
+      company: "cli_12345",
+      name: "My Class",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      timestamp: 1672531200000,
+      role: "attendee",
+    },
+    created: 420989,
+    event: "checkin.created",
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -609,12 +688,23 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  await pushPress.checkinCreatedEvent({
+    data: {
+      id: "chk_12345",
+      customer: "usr_12345",
+      company: "cli_12345",
+      name: "My Class",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      timestamp: 1672531200000,
+      role: "attendee",
+    },
+    created: 420989,
+    event: "checkin.created",
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

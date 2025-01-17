@@ -2,17 +2,26 @@
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress({
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
-});
+const pushPress = new PushPress();
 
 async function run() {
-  const result = await pushPress.checkins.event.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+  await pushPress.checkinCreatedEvent({
+    data: {
+      id: "chk_12345",
+      customer: "usr_12345",
+      company: "cli_12345",
+      name: "My Class",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      timestamp: 1672531200000,
+      role: "attendee",
+    },
+    created: 420989,
+    event: "checkin.created",
   });
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -3,10 +3,10 @@ id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
   docChecksum: 73f68e14908b819330de756cb692c5a3
   docVersion: 3.0.0
-  speakeasyVersion: 1.468.9
+  speakeasyVersion: 1.469.0
   generationVersion: 2.493.21
-  releaseVersion: 0.17.0
-  configChecksum: 133ac22e842a47d8e5c09ce482ae0e14
+  releaseVersion: 0.18.0
+  configChecksum: 9d37f869fe1054cad795e1931407d703
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -36,6 +36,7 @@ features:
     sdkHooks: 0.2.0
     serverIDs: 2.81.2
     unions: 2.85.8
+    webhookHandlers: 0.1.0
     webhooks: 1.4.1
 generatedFiles:
   - .devcontainer/README.md
@@ -276,6 +277,15 @@ generatedFiles:
   - src/core.ts
   - src/funcs/apiKeysGet.ts
   - src/funcs/apiKeysRevoke.ts
+  - src/funcs/appInstalledEvent.ts
+  - src/funcs/appUninstalledEvent.ts
+  - src/funcs/appointmentCanceledEvent.ts
+  - src/funcs/appointmentNoShowedEvent.ts
+  - src/funcs/appointmentRescheduledEvent.ts
+  - src/funcs/appointmentScheduledEvent.ts
+  - src/funcs/checkinCreatedEvent.ts
+  - src/funcs/checkinDeletedEvent.ts
+  - src/funcs/checkinUpdatedEvent.ts
   - src/funcs/checkinsAppointmentGet.ts
   - src/funcs/checkinsAppointmentList.ts
   - src/funcs/checkinsClassGet.ts
@@ -284,10 +294,17 @@ generatedFiles:
   - src/funcs/checkinsEventList.ts
   - src/funcs/checkinsOpenGet.ts
   - src/funcs/checkinsOpenList.ts
+  - src/funcs/classCanceledEvent.ts
   - src/funcs/classesGet.ts
   - src/funcs/companyGet.ts
+  - src/funcs/customerCreatedEvent.ts
+  - src/funcs/customerDeletedEvent.ts
+  - src/funcs/customerUpdatedEvent.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
+  - src/funcs/enrollmentCreatedEvent.ts
+  - src/funcs/enrollmentDeleted.ts
+  - src/funcs/enrollmentStatusChanged.ts
   - src/funcs/keysCreate.ts
   - src/funcs/keysList.ts
   - src/funcs/manageWebhooksActivate.ts
@@ -302,9 +319,14 @@ generatedFiles:
   - src/funcs/messagesRealtimeSend.ts
   - src/funcs/messagesSmsSend.ts
   - src/funcs/plansGet.ts
+  - src/funcs/reservationCanceledEvent.ts
+  - src/funcs/reservationCreatedEvent.ts
+  - src/funcs/reservationWaitlistedEvent.ts
+  - src/funcs/validateWebhook.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
+  - src/hooks/webhook-security.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
