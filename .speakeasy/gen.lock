@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 73f68e14908b819330de756cb692c5a3
+  docChecksum: dfe1bdfc96641d7f0f38b259a2e808c7
   docVersion: 3.0.0
-  speakeasyVersion: 1.469.0
-  generationVersion: 2.493.21
-  releaseVersion: 0.18.0
-  configChecksum: 9d37f869fe1054cad795e1931407d703
+  speakeasyVersion: 1.469.12
+  generationVersion: 2.493.34
+  releaseVersion: 0.19.0
+  configChecksum: 8763b5643d2f697cf3c677a2091a3f9a
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.16
+    core: 3.18.17
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -24,7 +24,7 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
-    globals: 2.82.1
+    globals: 2.82.2
     groups: 2.81.2
     methodSecurity: 2.82.5
     nameOverrides: 2.81.2
@@ -108,6 +108,7 @@ generatedFiles:
   - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
+  - docs/models/operations/createapikeyresponsebody.md
   - docs/models/operations/createapikeysecurity.md
   - docs/models/operations/createwebhookeventtypes.md
   - docs/models/operations/createwebhookglobals.md
@@ -236,8 +237,10 @@ generatedFiles:
   - docs/models/webhooks/customerdeletedeventdata.md
   - docs/models/webhooks/customerdeletedeventevent.md
   - docs/models/webhooks/customerdeletedeventrequestbody.md
-  - docs/models/webhooks/customerupdatedeventevent.md
-  - docs/models/webhooks/customerupdatedeventrequestbody.md
+  - docs/models/webhooks/customerdetailschangedeventevent.md
+  - docs/models/webhooks/customerdetailschangedeventrequestbody.md
+  - docs/models/webhooks/customerstatuschangedeventevent.md
+  - docs/models/webhooks/customerstatuschangedeventrequestbody.md
   - docs/models/webhooks/data.md
   - docs/models/webhooks/enrollmentcreatedeventevent.md
   - docs/models/webhooks/enrollmentcreatedeventrequestbody.md
@@ -299,7 +302,8 @@ generatedFiles:
   - src/funcs/companyGet.ts
   - src/funcs/customerCreatedEvent.ts
   - src/funcs/customerDeletedEvent.ts
-  - src/funcs/customerUpdatedEvent.ts
+  - src/funcs/customerDetailsChangedEvent.ts
+  - src/funcs/customerStatusChangedEvent.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
   - src/funcs/enrollmentCreatedEvent.ts
@@ -411,7 +415,8 @@ generatedFiles:
   - src/models/webhooks/classcanceledevent.ts
   - src/models/webhooks/customercreatedevent.ts
   - src/models/webhooks/customerdeletedevent.ts
-  - src/models/webhooks/customerupdatedevent.ts
+  - src/models/webhooks/customerdetailschangedevent.ts
+  - src/models/webhooks/customerstatuschangedevent.ts
   - src/models/webhooks/enrollmentcreatedevent.ts
   - src/models/webhooks/enrollmentdeleted.ts
   - src/models/webhooks/enrollmentstatuschanged.ts
@@ -449,6 +454,86 @@ generatedFiles:
   - src/types/webhooks.ts
   - tsconfig.json
 examples:
+  checkinCreatedEvent:
+    speakeasy-default-checkin-created-event:
+      requestBody:
+        application/json: {"data": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 420989, "event": "checkin.created"}
+  checkinUpdatedEvent:
+    speakeasy-default-checkin-updated-event:
+      requestBody:
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "previousValues": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 738207, "event": "checkin.updated"}
+  checkinDeletedEvent:
+    speakeasy-default-checkin-deleted-event:
+      requestBody:
+        application/json: {"data": {}, "created": 718383, "event": "checkin.deleted"}
+  appInstalledEvent:
+    speakeasy-default-app-installed-event:
+      requestBody:
+        application/json: {"data": {"company": {"id": "company-uuid"}, "app": {"id": "app-uuid"}, "installation": {"id": "installation-uuid"}}, "created": 865806, "event": "app.installed"}
+  appUninstalledEvent:
+    speakeasy-default-app-uninstalled-event:
+      requestBody:
+        application/json: {"data": {}, "created": 897950, "event": "app.uninstalled"}
+  appointmentScheduledEvent:
+    speakeasy-default-appointment-scheduled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 835440, "event": "appointment.scheduled"}
+  appointmentRescheduledEvent:
+    speakeasy-default-appointment-rescheduled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 846105, "event": "appointment.rescheduled"}
+  appointmentNoShowedEvent:
+    speakeasy-default-appointment-no-showed-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 391237, "event": "appointment.noshowed"}
+  appointmentCanceledEvent:
+    speakeasy-default-appointment-canceled-event:
+      requestBody:
+        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 710519, "event": "appointment.canceled"}
+  customerCreatedEvent:
+    speakeasy-default-customer-created-event:
+      requestBody:
+        application/json: {"data": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 453969, "event": "customer.created"}
+  customerStatusChangedEvent:
+    speakeasy-default-customer-status-changed-event:
+      requestBody:
+        application/json: {"data": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "previousValues": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 153704, "event": "customer.status.changed"}
+  customerDetailsChangedEvent:
+    speakeasy-default-customer-details-changed-event:
+      requestBody:
+        application/json: {"data": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 775111, "event": "customer.details.changed"}
+  customerDeletedEvent:
+    speakeasy-default-customer-deleted-event:
+      requestBody:
+        application/json: {"data": {}, "created": 522524, "event": "customer.deleted"}
+  classCanceledEvent:
+    speakeasy-default-class-canceled-event:
+      requestBody:
+        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 97537, "event": "class.canceled"}
+  enrollmentCreatedEvent:
+    speakeasy-default-enrollment-created-event:
+      requestBody:
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 804740, "event": "enrollment.created"}
+  enrollmentStatusChanged:
+    speakeasy-default-enrollment-status-changed:
+      requestBody:
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "previousValues": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
+  enrollmentDeleted:
+    speakeasy-default-enrollment-deleted:
+      requestBody:
+        application/json: {"data": {}, "created": 230421, "event": "enrollment.deleted"}
+  reservationCreatedEvent:
+    speakeasy-default-reservation-created-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 377467, "event": "reservation.created"}
+  reservationWaitlistedEvent:
+    speakeasy-default-reservation-waitlisted-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 902968, "event": "reservation.waitlisted"}
+  reservationCanceledEvent:
+    speakeasy-default-reservation-canceled-event:
+      requestBody:
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 816068, "event": "reservation.canceled"}
   getEventCheckin:
     speakeasy-default-get-event-checkin:
       parameters:
@@ -460,6 +545,11 @@ examples:
           application/json: {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
   listEventCheckins:
     speakeasy-default-list-event-checkins:
+      parameters:
+        query:
+          page: 1
+          limit: 10
+        header: {}
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
@@ -474,9 +564,33 @@ examples:
           application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}
   listClassCheckins:
     speakeasy-default-list-class-checkins:
+      parameters:
+        query:
+          page: 1
+          limit: 10
+        header: {}
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}]}}
+  getOpenCheckin:
+    speakeasy-default-get-open-checkin:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}
+  listOpenCheckins:
+    speakeasy-default-list-open-checkins:
+      parameters:
+        query:
+          page: 1
+          limit: 10
+        header: {}
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}]}}
   getAppointmentCheckin:
     speakeasy-default-get-appointment-checkin:
       parameters:
@@ -491,13 +605,23 @@ examples:
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}]}}
+  getClass:
+    speakeasy-default-get-class:
+      parameters:
+        path:
+          id: "<id>"
+        query: {}
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}
   getCompany:
     speakeasy-default-get-company:
       responses:
         "200":
           application/json: {"id": "client_asdfghjklqwertyuiop", "name": "PushPress", "subdomain": "pushpress", "address": {"city": "Los Angeles", "state": "CA", "postalCode": "90210", "country": {"name": "United States", "iso": "US"}, "line1": "123 Street", "line2": "Apt 4B"}, "defaultTimezone": "America/Los_Angeles", "phone": "(555) 555-5555", "email": "support@pushpress.com", "url": "https://pushpress.com"}
         "400":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "401":
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
@@ -507,15 +631,15 @@ examples:
         "429":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "500":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "501":
           application/json: {"key": "<value>", "key1": "<value>"}
         "504":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "510":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "511":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
   getCustomer:
     speakeasy-default-get-customer:
       parameters:
@@ -524,84 +648,93 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
+          application/json: {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}
   listCustomers:
     speakeasy-default-list-customers:
+      parameters:
+        query:
+          page: 1
+          limit: 10
+        header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
+          application/json: {"data": {"resultArray": [{"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}]}}
         "400":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "401":
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "408":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>"}
         "429":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "500":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "501":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "504":
           application/json: {"key": "<value>", "key1": "<value>"}
         "510":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
   createApiKey:
     speakeasy-default-create-api-key:
       requestBody:
         application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
       responses:
         "201":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "apiKey": "<value>"}
         "401":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "404":
           application/json: {"key": "<value>", "key1": "<value>"}
         "408":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "413":
           application/json: {"key": "<value>"}
         "429":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "501":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "504":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "510":
           application/json: {"key": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>"}
   listApiKeys:
     speakeasy-default-list-api-keys:
+      parameters:
+        query:
+          limit: 100
+        header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
+          application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
         "401":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "404":
           application/json: {"key": "<value>", "key1": "<value>"}
         "408":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "413":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>"}
         "429":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "500":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "501":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "504":
           application/json: {"key": "<value>", "key1": "<value>"}
         "510":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
   getApiKey:
     speakeasy-default-get-api-key:
       parameters:
@@ -610,7 +743,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   revokeApiKey:
     speakeasy-default-revoke-api-key:
       parameters:
@@ -619,7 +752,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "apiKey": "sk_zyxvutsrqponmlkjihgfedcba", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
   sendEmail:
     speakeasy-default-send-email:
       requestBody:
@@ -630,23 +763,23 @@ examples:
         "401":
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "408":
           application/json: {"key": "<value>", "key1": "<value>"}
         "413":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "429":
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "501":
           application/json: {"key": "<value>", "key1": "<value>"}
         "504":
-          application/json: {"key": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "510":
           application/json: {"key": "<value>", "key1": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>"}
   sendEvent:
     speakeasy-default-send-event:
       requestBody:
@@ -656,10 +789,12 @@ examples:
       requestBody:
         application/json: {"customers": ["<value>", "<value>"], "message": "<value>"}
       responses:
+        "200":
+          application/json: {"errors": {"invalid_aliases": {"external_id": ["<id>", "<id>"]}}}
         "401":
-          application/json: {"key": "<value>", "key1": "<value>"}
-        "404":
           application/json: {"key": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
         "408":
           application/json: {"key": "<value>", "key1": "<value>"}
         "413":
@@ -667,17 +802,15 @@ examples:
         "429":
           application/json: {"key": "<value>", "key1": "<value>"}
         "500":
-          application/json: {"key": "<value>"}
-        "200":
-          application/json: {"errors": ["<value>"]}
+          application/json: {"key": "<value>", "key1": "<value>"}
         "501":
-          application/json: {"key": "<value>", "key1": "<value>"}
-        "504":
           application/json: {"key": "<value>"}
-        "510":
+        "504":
           application/json: {"key": "<value>", "key1": "<value>"}
+        "510":
+          application/json: {"key": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>", "key1": "<value>"}
   sendSms:
     speakeasy-default-send-sms:
       requestBody:
@@ -685,48 +818,57 @@ examples:
       responses:
         "200":
           application/json: "<value>"
+  getPlan:
+    speakeasy-default-get-plan:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "sub_12345", "name": "Unlimited Membership", "companyId": "client_12345", "recurrenceDetails": {"type": "recurring"}, "policies": {"allowClassCheckins": true, "allowOpenGymCheckins": true, "allow24HourAccess": false}, "category": {"name": "Crossfit"}}
   createWebhook:
     speakeasy-default-create-webhook:
       requestBody:
         application/json: {"url": "https://probable-heating.com/", "eventTypes": []}
       responses:
         "201":
-          application/json: {"id": "<id>", "url": "https://well-documented-cd.biz", "eventTypes": [], "signingSecret": "<value>"}
+          application/json: {"id": "<id>", "url": "https://well-documented-cd.biz", "eventTypes": [], "active": true, "signingSecret": "<value>"}
         "400":
-          application/json: {"key": "<value>"}
-        "401":
-          application/json: {"key": "<value>", "key1": "<value>"}
-        "404":
-          application/json: {"key": "<value>"}
-        "408":
-          application/json: {"key": "<value>"}
-        "429":
-          application/json: {"key": "<value>", "key1": "<value>"}
-        "500":
           application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "401":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "404":
+          application/json: {"key": "<value>", "key1": "<value>"}
+        "408":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "429":
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+        "500":
+          application/json: {"key": "<value>", "key1": "<value>"}
         "501":
           application/json: {"key": "<value>"}
         "504":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "510":
           application/json: {"key": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>"}
   listWebhooks:
     speakeasy-default-list-webhooks:
       responses:
         "200":
-          application/json: {"data": [{"id": "<id>", "url": "https://remorseful-concentration.biz", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://productive-affect.net", "eventTypes": [], "signingSecret": "<value>"}, {"id": "<id>", "url": "https://roasted-language.name/", "eventTypes": [], "signingSecret": "<value>"}]}
+          application/json: {"data": [{"id": "<id>", "url": "https://remorseful-concentration.biz", "eventTypes": [], "active": true, "signingSecret": "<value>"}, {"id": "<id>", "url": "https://productive-affect.net", "eventTypes": [], "active": true, "signingSecret": "<value>"}, {"id": "<id>", "url": "https://roasted-language.name/", "eventTypes": [], "active": true, "signingSecret": "<value>"}]}
         "400":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>"}
         "401":
           application/json: {"key": "<value>", "key1": "<value>"}
         "404":
           application/json: {"key": "<value>", "key1": "<value>"}
         "408":
-          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
+          application/json: {"key": "<value>"}
         "429":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>", "key1": "<value>", "key2": "<value>"}
         "500":
           application/json: {"key": "<value>", "key1": "<value>"}
         "501":
@@ -734,9 +876,9 @@ examples:
         "504":
           application/json: {"key": "<value>", "key1": "<value>"}
         "510":
-          application/json: {"key": "<value>", "key1": "<value>"}
+          application/json: {"key": "<value>"}
         "511":
-          application/json: {}
+          application/json: {"key": "<value>"}
   getWebhook:
     speakeasy-default-get-webhook:
       parameters:
@@ -745,7 +887,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "<id>", "url": "https://glum-allocation.org", "eventTypes": ["customer.created"], "signingSecret": "<value>"}
+          application/json: {"id": "<id>", "url": "https://glum-allocation.org", "eventTypes": ["customer.details.changed"], "active": true, "signingSecret": "<value>"}
   updateWebhook:
     speakeasy-default-update-webhook:
       parameters:
@@ -753,10 +895,10 @@ examples:
           uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85"
         header: {}
       requestBody:
-        application/json: {"eventTypes": ["customer.updated", "checkin.deleted", "app.uninstalled"]}
+        application/json: {"eventTypes": ["enrollment.status.changed", "class.canceled", "app.uninstalled"]}
       responses:
         "200":
-          application/json: {"id": "<id>", "url": "https://mild-self-confidence.com", "eventTypes": [], "signingSecret": "<value>"}
+          application/json: {"id": "<id>", "url": "https://mild-self-confidence.com", "eventTypes": [], "active": true, "signingSecret": "<value>"}
   deleteWebhook:
     speakeasy-default-delete-webhook:
       parameters:
@@ -781,141 +923,5 @@ examples:
       responses:
         "200":
           application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
-  getOpenCheckin:
-    speakeasy-default-get-open-checkin:
-      parameters:
-        path:
-          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}
-  listOpenCheckins:
-    speakeasy-default-list-open-checkins:
-      responses:
-        "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}]}}
-  checkinCreatedEvent:
-    speakeasy-default-checkin-created-event:
-      requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 420989, "event": "checkin.created"}
-  checkinUpdatedEvent:
-    speakeasy-default-checkin-updated-event:
-      requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "created": 567981, "event": "checkin.updated"}
-  checkinDeletedEvent:
-    speakeasy-default-checkin-deleted-event:
-      requestBody:
-        application/json: {"data": {"id": "chk_12345"}, "created": 336376, "event": "checkin.deleted"}
-  appInstalledEvent:
-    speakeasy-default-app-installed-event:
-      requestBody:
-        application/json: {"data": {"company": {"id": "company-uuid"}, "app": {"id": "app-uuid"}, "installation": {"id": "installation-uuid"}}, "created": 865806, "event": "app.installed"}
-  appUninstalledEvent:
-    speakeasy-default-app-uninstalled-event:
-      requestBody:
-        application/json: {"data": {}, "created": 897950, "event": "app.uninstalled"}
-  appointmentScheduledEvent:
-    speakeasy-default-appointment-scheduled-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 835440, "event": "appointment.scheduled"}
-  appointmentRescheduledEvent:
-    speakeasy-default-appointment-rescheduled-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 846105, "event": "appointment.rescheduled"}
-  appointmentNoShowEvent:
-    speakeasy-default-appointment-no-show-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 840953, "event": "appointment.noshow"}
-  customerCreatedEvent:
-    speakeasy-default-customer-created-event:
-      requestBody:
-        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 453969, "event": "customer.created"}
-  customerUpdatedEvent:
-    speakeasy-default-customer-updated-event:
-      requestBody:
-        application/json: {"data": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "previousValues": {"id": "usr_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 673593, "event": "customer.updated"}
-  customerDeletedEvent:
-    speakeasy-default-customer-deleted-event:
-      requestBody:
-        application/json: {"data": {"id": "usr_1234"}, "created": 522524, "event": "customer.deleted"}
-  classNoShowEvent:
-    speakeasy-default-class-no-show-event:
-      requestBody:
-        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 161533, "event": "class.noshow"}
-  enrollmentCreatedEvent:
-    speakeasy-default-enrollment-created-event:
-      requestBody:
-        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 804740, "event": "enrollment.created"}
-  enrollmentStatusChanged:
-    speakeasy-default-enrollment-status-changed:
-      requestBody:
-        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
-  memberAppUpdated:
-    speakeasy-default-member-app-updated:
-      requestBody:
-        application/json: {"created": 192348, "event": "memberapp.updated"}
-  getClass:
-    speakeasy-default-get-class:
-      parameters:
-        path:
-          id: "<id>"
-        query: {}
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}
-  getPlan:
-    speakeasy-default-get-plan:
-      parameters:
-        path:
-          id: "<id>"
-        header: {}
-      responses:
-        "200":
-          application/json: {"id": "sub_12345", "name": "Unlimited Membership", "companyId": "client_12345", "recurrenceDetails": {"type": "recurring"}, "policies": {"allowClassCheckins": true, "allowOpenGymCheckins": true, "allow24HourAccess": false}, "category": {"name": "Crossfit"}}
-  appointmentNoShowedEvent:
-    speakeasy-default-appointment-no-showed-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 391237, "event": "appointment.noshowed"}
-  appointmentCancelledEvent:
-    speakeasy-default-appointment-cancelled-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 933074, "event": "appointment.cancelled"}
-  classCancelledEvent:
-    speakeasy-default-class-cancelled-event:
-      requestBody:
-        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 657431, "event": "class.cancelled"}
-  reservationCreatedEvent:
-    speakeasy-default-reservation-created-event:
-      requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 377467, "event": "reservation.created"}
-  reservationWaitlistedEvent:
-    speakeasy-default-reservation-waitlisted-event:
-      requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 902968, "event": "reservation.waitlisted"}
-  reservationCancelledEvent:
-    speakeasy-default-reservation-cancelled-event:
-      requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 611009, "event": "reservation.cancelled"}
-  appointmentCancelldEvent:
-    speakeasy-default-appointment-cancelld-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 149774, "event": "appointment.canceled"}
-  appointmentCanceledEvent:
-    speakeasy-default-appointment-canceled-event:
-      requestBody:
-        application/json: {"data": {"id": "apptschdl_12345", "type": {"name": "Personal Training"}, "companyId": "client_12345", "customerId": "usr_12345", "startTimestamp": 1677721600, "staffId": "usr_78910"}, "created": 710519, "event": "appointment.canceled"}
-  classCanceledEvent:
-    speakeasy-default-class-canceled-event:
-      requestBody:
-        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 97537, "event": "class.canceled"}
-  reservationCanceledEvent:
-    speakeasy-default-reservation-canceled-event:
-      requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 816068, "event": "reservation.canceled"}
-  enrollmentDeleted:
-    speakeasy-default-enrollment-deleted:
-      requestBody:
-        application/json: {"data": {}, "created": 230421, "event": "enrollment.deleted"}
+examplesVersion: 1.0.0
 generatedTests: {}

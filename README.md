@@ -93,14 +93,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -209,7 +209,8 @@ run();
 * [appointmentNoShowedEvent](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
 * [appointmentCanceledEvent](docs/sdks/pushpress/README.md#appointmentcanceledevent)
 * [customerCreatedEvent](docs/sdks/pushpress/README.md#customercreatedevent)
-* [customerUpdatedEvent](docs/sdks/pushpress/README.md#customerupdatedevent)
+* [customerStatusChangedEvent](docs/sdks/pushpress/README.md#customerstatuschangedevent)
+* [customerDetailsChangedEvent](docs/sdks/pushpress/README.md#customerdetailschangedevent)
 * [customerDeletedEvent](docs/sdks/pushpress/README.md#customerdeletedevent)
 * [classCanceledEvent](docs/sdks/pushpress/README.md#classcanceledevent)
 * [enrollmentCreatedEvent](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
@@ -261,9 +262,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
 - [`customerCreatedEvent`](docs/sdks/pushpress/README.md#customercreatedevent)
 - [`customerDeletedEvent`](docs/sdks/pushpress/README.md#customerdeletedevent)
+- [`customerDetailsChangedEvent`](docs/sdks/pushpress/README.md#customerdetailschangedevent)
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
 - [`customersList`](docs/sdks/customers/README.md#list) - List Customers
-- [`customerUpdatedEvent`](docs/sdks/pushpress/README.md#customerupdatedevent)
+- [`customerStatusChangedEvent`](docs/sdks/pushpress/README.md#customerstatuschangedevent)
 - [`enrollmentCreatedEvent`](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
 - [`enrollmentDeleted`](docs/sdks/pushpress/README.md#enrollmentdeleted)
 - [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
@@ -308,7 +310,10 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.list({});
+  const result = await pushPress.checkins.event.list({
+    page: 1,
+    limit: 10,
+  });
 
   for await (const page of result) {
     // Handle the page
@@ -338,14 +343,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -390,14 +395,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -566,14 +571,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -600,14 +605,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -693,14 +698,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",

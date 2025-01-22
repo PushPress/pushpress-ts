@@ -39,6 +39,22 @@ export type CreateApiKeyRequest = {
   requestBody: CreateApiKeyRequestBody;
 };
 
+/**
+ * Platform API key
+ */
+export type CreateApiKeyResponseBody = {
+  keyUuid: string;
+  companyId: string;
+  name: string;
+  description: string;
+  createdAt: number;
+  expiresAt?: number | null | undefined;
+  /**
+   * Newly created API key
+   */
+  apiKey: string;
+};
+
 /** @internal */
 export const CreateApiKeyGlobals$inboundSchema: z.ZodType<
   CreateApiKeyGlobals,
@@ -279,5 +295,77 @@ export function createApiKeyRequestFromJSON(
     jsonString,
     (x) => CreateApiKeyRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'CreateApiKeyRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const CreateApiKeyResponseBody$inboundSchema: z.ZodType<
+  CreateApiKeyResponseBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  keyUuid: z.string(),
+  companyId: z.string(),
+  name: z.string(),
+  description: z.string(),
+  createdAt: z.number(),
+  expiresAt: z.nullable(z.number()).optional(),
+  apiKey: z.string(),
+});
+
+/** @internal */
+export type CreateApiKeyResponseBody$Outbound = {
+  keyUuid: string;
+  companyId: string;
+  name: string;
+  description: string;
+  createdAt: number;
+  expiresAt?: number | null | undefined;
+  apiKey: string;
+};
+
+/** @internal */
+export const CreateApiKeyResponseBody$outboundSchema: z.ZodType<
+  CreateApiKeyResponseBody$Outbound,
+  z.ZodTypeDef,
+  CreateApiKeyResponseBody
+> = z.object({
+  keyUuid: z.string(),
+  companyId: z.string(),
+  name: z.string(),
+  description: z.string(),
+  createdAt: z.number(),
+  expiresAt: z.nullable(z.number()).optional(),
+  apiKey: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateApiKeyResponseBody$ {
+  /** @deprecated use `CreateApiKeyResponseBody$inboundSchema` instead. */
+  export const inboundSchema = CreateApiKeyResponseBody$inboundSchema;
+  /** @deprecated use `CreateApiKeyResponseBody$outboundSchema` instead. */
+  export const outboundSchema = CreateApiKeyResponseBody$outboundSchema;
+  /** @deprecated use `CreateApiKeyResponseBody$Outbound` instead. */
+  export type Outbound = CreateApiKeyResponseBody$Outbound;
+}
+
+export function createApiKeyResponseBodyToJSON(
+  createApiKeyResponseBody: CreateApiKeyResponseBody,
+): string {
+  return JSON.stringify(
+    CreateApiKeyResponseBody$outboundSchema.parse(createApiKeyResponseBody),
+  );
+}
+
+export function createApiKeyResponseBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateApiKeyResponseBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateApiKeyResponseBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateApiKeyResponseBody' from JSON`,
   );
 }

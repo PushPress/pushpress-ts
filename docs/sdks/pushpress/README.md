@@ -20,7 +20,8 @@ enabling the automation of various tasks and the extension of platform capabilit
 * [appointmentNoShowedEvent](#appointmentnoshowedevent)
 * [appointmentCanceledEvent](#appointmentcanceledevent)
 * [customerCreatedEvent](#customercreatedevent)
-* [customerUpdatedEvent](#customerupdatedevent)
+* [customerStatusChangedEvent](#customerstatuschangedevent)
+* [customerDetailsChangedEvent](#customerdetailschangedevent)
 * [customerDeletedEvent](#customerdeletedevent)
 * [classCanceledEvent](#classcanceledevent)
 * [enrollmentCreatedEvent](#enrollmentcreatedevent)
@@ -45,14 +46,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -82,14 +83,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Class",
+      name: "My Event",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
     },
     created: 420989,
     event: "checkin.created",
@@ -143,7 +144,20 @@ async function run() {
       company: "cli_12345",
       timestamp: 1672531200000,
     },
-    created: 567981,
+    previousValues: {
+      id: "chk_12345",
+      name: "My Class",
+      customer: "usr_12345",
+      company: "cli_12345",
+      timestamp: 1672531200000,
+      role: "attendee",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+    },
+    created: 738207,
     event: "checkin.updated",
   });
 
@@ -173,7 +187,20 @@ async function run() {
       company: "cli_12345",
       timestamp: 1672531200000,
     },
-    created: 567981,
+    previousValues: {
+      id: "chk_12345",
+      name: "My Class",
+      customer: "usr_12345",
+      company: "cli_12345",
+      timestamp: 1672531200000,
+      role: "attendee",
+      typeId: "cit_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+    },
+    created: 738207,
     event: "checkin.updated",
   });
 
@@ -219,10 +246,8 @@ const pushPress = new PushPress();
 
 async function run() {
   await pushPress.checkinDeletedEvent({
-    data: {
-      id: "chk_12345",
-    },
-    created: 336376,
+    data: {},
+    created: 718383,
     event: "checkin.deleted",
   });
 
@@ -246,10 +271,8 @@ const pushPress = new PushPressCore();
 
 async function run() {
   const res = await checkinDeletedEvent(pushPress, {
-    data: {
-      id: "chk_12345",
-    },
-    created: 336376,
+    data: {},
+    created: 718383,
     event: "checkin.deleted",
   });
 
@@ -821,6 +844,7 @@ async function run() {
   await pushPress.customerCreatedEvent({
     data: {
       id: "usr_1234",
+      companyId: "cli_1234",
       name: {
         first: "John",
         last: "Doe",
@@ -872,6 +896,7 @@ async function run() {
   const res = await customerCreatedEvent(pushPress, {
     data: {
       id: "usr_1234",
+      companyId: "cli_1234",
       name: {
         first: "John",
         last: "Doe",
@@ -932,7 +957,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## customerUpdatedEvent
+## customerStatusChangedEvent
 
 ### Example Usage
 
@@ -942,9 +967,10 @@ import { PushPress } from "@pushpress/pushpress";
 const pushPress = new PushPress();
 
 async function run() {
-  await pushPress.customerUpdatedEvent({
+  await pushPress.customerStatusChangedEvent({
     data: {
       id: "usr_1234",
+      companyId: "cli_1234",
       name: {
         first: "John",
         last: "Doe",
@@ -972,6 +998,7 @@ async function run() {
     },
     previousValues: {
       id: "usr_1234",
+      companyId: "cli_1234",
       name: {
         first: "John",
         last: "Doe",
@@ -997,8 +1024,8 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 673593,
-    event: "customer.updated",
+    created: 153704,
+    event: "customer.status.changed",
   });
 
 
@@ -1013,16 +1040,17 @@ The standalone function version of this method:
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { customerUpdatedEvent } from "@pushpress/pushpress/funcs/customerUpdatedEvent.js";
+import { customerStatusChangedEvent } from "@pushpress/pushpress/funcs/customerStatusChangedEvent.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore();
 
 async function run() {
-  const res = await customerUpdatedEvent(pushPress, {
+  const res = await customerStatusChangedEvent(pushPress, {
     data: {
       id: "usr_1234",
+      companyId: "cli_1234",
       name: {
         first: "John",
         last: "Doe",
@@ -1050,6 +1078,7 @@ async function run() {
     },
     previousValues: {
       id: "usr_1234",
+      companyId: "cli_1234",
       name: {
         first: "John",
         last: "Doe",
@@ -1075,8 +1104,8 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 673593,
-    event: "customer.updated",
+    created: 153704,
+    event: "customer.status.changed",
   });
 
   if (!res.ok) {
@@ -1095,7 +1124,133 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [webhooks.CustomerUpdatedEventRequestBody](../../models/webhooks/customerupdatedeventrequestbody.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [webhooks.CustomerStatusChangedEventRequestBody](../../models/webhooks/customerstatuschangedeventrequestbody.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## customerDetailsChangedEvent
+
+### Example Usage
+
+```typescript
+import { PushPress } from "@pushpress/pushpress";
+
+const pushPress = new PushPress();
+
+async function run() {
+  await pushPress.customerDetailsChangedEvent({
+    data: {
+      id: "usr_1234",
+      companyId: "cli_1234",
+      name: {
+        first: "John",
+        last: "Doe",
+        nickname: "jimmy",
+      },
+      gender: "male",
+      dob: "1990-01-01",
+      address: {
+        line1: "123 Main St",
+        line2: "Apt 1",
+        city: "Anytown",
+        country: "US",
+        state: "NY",
+        zip: "12345",
+      },
+      assignedToStaffId: null,
+      account: {},
+      profileImage: "https://example.com/profile.jpg",
+      membershipDetails: {
+        initialMembershipStartDate: "2022-01-01",
+      },
+      email: "john@doe.com",
+      phone: "+1-800-555-1234",
+      role: "member",
+    },
+    created: 775111,
+    event: "customer.details.changed",
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PushPressCore } from "@pushpress/pushpress/core.js";
+import { customerDetailsChangedEvent } from "@pushpress/pushpress/funcs/customerDetailsChangedEvent.js";
+
+// Use `PushPressCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const pushPress = new PushPressCore();
+
+async function run() {
+  const res = await customerDetailsChangedEvent(pushPress, {
+    data: {
+      id: "usr_1234",
+      companyId: "cli_1234",
+      name: {
+        first: "John",
+        last: "Doe",
+        nickname: "jimmy",
+      },
+      gender: "male",
+      dob: "1990-01-01",
+      address: {
+        line1: "123 Main St",
+        line2: "Apt 1",
+        city: "Anytown",
+        country: "US",
+        state: "NY",
+        zip: "12345",
+      },
+      assignedToStaffId: null,
+      account: {},
+      profileImage: "https://example.com/profile.jpg",
+      membershipDetails: {
+        initialMembershipStartDate: "2022-01-01",
+      },
+      email: "john@doe.com",
+      phone: "+1-800-555-1234",
+      role: "member",
+    },
+    created: 775111,
+    event: "customer.details.changed",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [webhooks.CustomerDetailsChangedEventRequestBody](../../models/webhooks/customerdetailschangedeventrequestbody.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1121,9 +1276,7 @@ const pushPress = new PushPress();
 
 async function run() {
   await pushPress.customerDeletedEvent({
-    data: {
-      id: "usr_1234",
-    },
+    data: {},
     created: 522524,
     event: "customer.deleted",
   });
@@ -1148,9 +1301,7 @@ const pushPress = new PushPressCore();
 
 async function run() {
   const res = await customerDeletedEvent(pushPress, {
-    data: {
-      id: "usr_1234",
-    },
+    data: {},
     created: 522524,
     event: "customer.deleted",
   });
@@ -1419,6 +1570,26 @@ async function run() {
         },
       ],
     },
+    previousValues: {
+      id: "sub_12345",
+      customerId: "usr_12345",
+      companyId: "client_12345",
+      planId: "plan_12345",
+      status: "active",
+      checkinDetails: {
+        checkins: 0,
+        limit: -1,
+      },
+      entitlements: [
+        {
+          type: "24_HOUR_ACCESS",
+          id: "plnentl_12345",
+          interval: "",
+          quantity: 1,
+          metadata: {},
+        },
+      ],
+    },
     created: 961657,
     event: "enrollment.status.changed",
   });
@@ -1444,6 +1615,26 @@ const pushPress = new PushPressCore();
 async function run() {
   const res = await enrollmentStatusChanged(pushPress, {
     data: {
+      id: "sub_12345",
+      customerId: "usr_12345",
+      companyId: "client_12345",
+      planId: "plan_12345",
+      status: "active",
+      checkinDetails: {
+        checkins: 0,
+        limit: -1,
+      },
+      entitlements: [
+        {
+          type: "24_HOUR_ACCESS",
+          id: "plnentl_12345",
+          interval: "",
+          quantity: 1,
+          metadata: {},
+        },
+      ],
+    },
+    previousValues: {
       id: "sub_12345",
       customerId: "usr_12345",
       companyId: "client_12345",

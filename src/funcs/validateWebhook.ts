@@ -31,7 +31,8 @@ export async function validateWebhook(client: PushPressCore, {
     | webhooks.AppointmentNoShowedEventRequestBody
     | webhooks.AppointmentCanceledEventRequestBody
     | webhooks.CustomerCreatedEventRequestBody
-    | webhooks.CustomerUpdatedEventRequestBody
+    | webhooks.CustomerStatusChangedEventRequestBody
+    | webhooks.CustomerDetailsChangedEventRequestBody
     | webhooks.CustomerDeletedEventRequestBody
     | webhooks.ClassCanceledEventRequestBody
     | webhooks.EnrollmentCreatedEventRequestBody
@@ -59,7 +60,8 @@ export async function validateWebhook(client: PushPressCore, {
     webhooks.appointmentNoShowedEventRequestBodyFromJSON,
     webhooks.appointmentCanceledEventRequestBodyFromJSON,
     webhooks.customerCreatedEventRequestBodyFromJSON,
-    webhooks.customerUpdatedEventRequestBodyFromJSON,
+    webhooks.customerStatusChangedEventRequestBodyFromJSON,
+    webhooks.customerDetailsChangedEventRequestBodyFromJSON,
     webhooks.customerDeletedEventRequestBodyFromJSON,
     webhooks.classCanceledEventRequestBodyFromJSON,
     webhooks.enrollmentCreatedEventRequestBodyFromJSON,

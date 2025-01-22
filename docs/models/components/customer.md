@@ -9,6 +9,7 @@ import { Customer } from "@pushpress/pushpress/models/components";
 
 let value: Customer = {
   id: "usr_1234",
+  companyId: "cli_1234",
   name: {
     first: "John",
     last: "Doe",
@@ -41,6 +42,7 @@ let value: Customer = {
 | Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `id`                                                                         | *string*                                                                     | :heavy_check_mark:                                                           | A unique identifier assigned to each customer                                |
+| `companyId`                                                                  | *string*                                                                     | :heavy_check_mark:                                                           | The unique identifier of the company the customer belongs to                 |
 | `name`                                                                       | [components.Name](../../models/components/name.md)                           | :heavy_check_mark:                                                           | N/A                                                                          |
 | `gender`                                                                     | [components.Gender](../../models/components/gender.md)                       | :heavy_check_mark:                                                           | The customer's gender, null if unknown or other                              |
 | `dob`                                                                        | *string*                                                                     | :heavy_check_mark:                                                           | The customer's date of birth, null if not provided, formatted YYYY-MM-DD     |
@@ -52,4 +54,4 @@ let value: Customer = {
 | `membershipDetails`                                                          | [components.MembershipDetails](../../models/components/membershipdetails.md) | :heavy_check_mark:                                                           | N/A                                                                          |
 | `email`                                                                      | *string*                                                                     | :heavy_check_mark:                                                           | The email address of the customer                                            |
 | `phone`                                                                      | *string*                                                                     | :heavy_minus_sign:                                                           | The phone number of the customer                                             |
-| `role`                                                                       | [components.CustomerRole](../../models/components/customerrole.md)           | :heavy_check_mark:                                                           | The role of the customer within the company (e.g., admin, coach, member)     |
+| `role`                                                                       | [components.CustomerRole](../../models/components/customerrole.md)           | :heavy_minus_sign:                                                           | The role of the customer within the company (e.g., admin, coach, member)     |

@@ -22,10 +22,10 @@ import * as webhooks from "../models/webhooks/index.js";
 import { Result } from "../types/fp.js";
 import { WebhookRecipient } from "../types/webhooks.js";
 
-export async function customerUpdatedEvent(
+export async function customerStatusChangedEvent(
   client: PushPressCore,
   recipient: WebhookRecipient,
-  request: webhooks.CustomerUpdatedEventRequestBody,
+  request: webhooks.CustomerStatusChangedEventRequestBody,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -42,7 +42,9 @@ export async function customerUpdatedEvent(
   const parsed = safeParse(
     request,
     (value) =>
-      webhooks.CustomerUpdatedEventRequestBody$outboundSchema.parse(value),
+      webhooks.CustomerStatusChangedEventRequestBody$outboundSchema.parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -59,7 +61,7 @@ export async function customerUpdatedEvent(
   }));
 
   const context = {
-    operationID: "customerUpdatedEvent",
+    operationID: "customerStatusChangedEvent",
     oAuth2Scopes: [],
     webhookRecipient: recipient,
     resolvedSecurity: null,

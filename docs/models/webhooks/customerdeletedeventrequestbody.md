@@ -9,7 +9,7 @@ import { CustomerDeletedEventRequestBody } from "@pushpress/pushpress/models/web
 
 let value: CustomerDeletedEventRequestBody = {
   data: {},
-  created: 71036,
+  created: 87129,
   event: "customer.deleted",
 };
 ```
