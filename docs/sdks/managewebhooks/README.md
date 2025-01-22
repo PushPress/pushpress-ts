@@ -287,8 +287,8 @@ async function run() {
     uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85",
     requestBody: {
       eventTypes: [
-        "customer.updated",
-        "checkin.deleted",
+        "enrollment.status.changed",
+        "class.canceled",
         "app.uninstalled",
       ],
     },
@@ -320,8 +320,8 @@ async function run() {
     uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85",
     requestBody: {
       eventTypes: [
-        "customer.updated",
-        "checkin.deleted",
+        "enrollment.status.changed",
+        "class.canceled",
         "app.uninstalled",
       ],
     },

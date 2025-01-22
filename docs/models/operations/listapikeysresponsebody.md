@@ -12,7 +12,6 @@ let value: ListApiKeysResponseBody = {
     resultArray: [
       {
         keyUuid: "key_asdfghjklqwertyuiop",
-        apiKey: "sk_zyxvutsrqponmlkjihgfedcba",
         companyId: "client_asdfghjklqwertyuiop",
         name: "My API Key",
         description: "Additional description to add context to the key",

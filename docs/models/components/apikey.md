@@ -9,7 +9,6 @@ import { ApiKey } from "@pushpress/pushpress/models/components";
 
 let value: ApiKey = {
   keyUuid: "key_asdfghjklqwertyuiop",
-  apiKey: "sk_zyxvutsrqponmlkjihgfedcba",
   companyId: "client_asdfghjklqwertyuiop",
   name: "My API Key",
   description: "Additional description to add context to the key",
@@ -22,7 +21,6 @@ let value: ApiKey = {
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `keyUuid`          | *string*           | :heavy_check_mark: | N/A                |
-| `apiKey`           | *string*           | :heavy_check_mark: | N/A                |
 | `companyId`        | *string*           | :heavy_check_mark: | N/A                |
 | `name`             | *string*           | :heavy_check_mark: | N/A                |
 | `description`      | *string*           | :heavy_check_mark: | N/A                |

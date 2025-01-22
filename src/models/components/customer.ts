@@ -133,6 +133,10 @@ export type Customer = {
    * A unique identifier assigned to each customer
    */
   id: string;
+  /**
+   * The unique identifier of the company the customer belongs to
+   */
+  companyId: string;
   name: Name;
   /**
    * The customer's gender, null if unknown or other
@@ -168,7 +172,7 @@ export type Customer = {
   /**
    * The role of the customer within the company (e.g., admin, coach, member)
    */
-  role: CustomerRole;
+  role?: CustomerRole | null | undefined;
 };
 
 /** @internal */
@@ -582,6 +586,7 @@ export const Customer$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  companyId: z.string(),
   name: z.lazy(() => Name$inboundSchema),
   gender: z.nullable(Gender$inboundSchema),
   dob: z.nullable(z.string()),
@@ -596,12 +601,13 @@ export const Customer$inboundSchema: z.ZodType<
   membershipDetails: z.nullable(z.lazy(() => MembershipDetails$inboundSchema)),
   email: z.string(),
   phone: z.nullable(z.string()).optional(),
-  role: CustomerRole$inboundSchema,
+  role: z.nullable(CustomerRole$inboundSchema).optional(),
 });
 
 /** @internal */
 export type Customer$Outbound = {
   id: string;
+  companyId: string;
   name: Name$Outbound;
   gender: string | null;
   dob: string | null;
@@ -613,7 +619,7 @@ export type Customer$Outbound = {
   membershipDetails: MembershipDetails$Outbound | null;
   email: string;
   phone?: string | null | undefined;
-  role: string;
+  role?: string | null | undefined;
 };
 
 /** @internal */
@@ -623,6 +629,7 @@ export const Customer$outboundSchema: z.ZodType<
   Customer
 > = z.object({
   id: z.string(),
+  companyId: z.string(),
   name: z.lazy(() => Name$outboundSchema),
   gender: z.nullable(Gender$outboundSchema),
   dob: z.nullable(z.string()),
@@ -637,7 +644,7 @@ export const Customer$outboundSchema: z.ZodType<
   membershipDetails: z.nullable(z.lazy(() => MembershipDetails$outboundSchema)),
   email: z.string(),
   phone: z.nullable(z.string()).optional(),
-  role: CustomerRole$outboundSchema,
+  role: z.nullable(CustomerRole$outboundSchema).optional(),
 });
 
 /**

@@ -14,7 +14,8 @@ import { checkinUpdatedEvent } from "../funcs/checkinUpdatedEvent.js";
 import { classCanceledEvent } from "../funcs/classCanceledEvent.js";
 import { customerCreatedEvent } from "../funcs/customerCreatedEvent.js";
 import { customerDeletedEvent } from "../funcs/customerDeletedEvent.js";
-import { customerUpdatedEvent } from "../funcs/customerUpdatedEvent.js";
+import { customerDetailsChangedEvent } from "../funcs/customerDetailsChangedEvent.js";
+import { customerStatusChangedEvent } from "../funcs/customerStatusChangedEvent.js";
 import { enrollmentCreatedEvent } from "../funcs/enrollmentCreatedEvent.js";
 import { enrollmentDeleted } from "../funcs/enrollmentDeleted.js";
 import { enrollmentStatusChanged } from "../funcs/enrollmentStatusChanged.js";
@@ -212,12 +213,25 @@ export class PushPress extends ClientSDK {
     ));
   }
 
-  async customerUpdatedEvent(
+  async customerStatusChangedEvent(
     recipient: WebhookRecipient,
-    request: webhooks.CustomerUpdatedEventRequestBody,
+    request: webhooks.CustomerStatusChangedEventRequestBody,
     options?: RequestOptions,
   ): Promise<void> {
-    return unwrapAsync(customerUpdatedEvent(
+    return unwrapAsync(customerStatusChangedEvent(
+      this,
+      recipient,
+      request,
+      options,
+    ));
+  }
+
+  async customerDetailsChangedEvent(
+    recipient: WebhookRecipient,
+    request: webhooks.CustomerDetailsChangedEventRequestBody,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(customerDetailsChangedEvent(
       this,
       recipient,
       request,
@@ -351,7 +365,8 @@ export class PushPress extends ClientSDK {
     | webhooks.AppointmentNoShowedEventRequestBody
     | webhooks.AppointmentCanceledEventRequestBody
     | webhooks.CustomerCreatedEventRequestBody
-    | webhooks.CustomerUpdatedEventRequestBody
+    | webhooks.CustomerStatusChangedEventRequestBody
+    | webhooks.CustomerDetailsChangedEventRequestBody
     | webhooks.CustomerDeletedEventRequestBody
     | webhooks.ClassCanceledEventRequestBody
     | webhooks.EnrollmentCreatedEventRequestBody

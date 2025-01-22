@@ -179,3 +179,13 @@ Based on:
 - [typescript v0.18.0] .
 ### Releases
 - [NPM v0.18.0] https://www.npmjs.com/package/@pushpress/pushpress/v/0.18.0 - .
+
+## 2025-01-22 18:00:04
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.469.12 (2.493.34) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.19.0] .
+### Releases
+- [NPM v0.19.0] https://www.npmjs.com/package/@pushpress/pushpress/v/0.19.0 - .

@@ -6,9 +6,9 @@
 import { Address } from "@pushpress/pushpress/models/components";
 
 let value: Address = {
-  city: "South Deion",
-  state: "Delaware",
-  postalCode: "61138",
+  city: "North Madisonville",
+  state: "Georgia",
+  postalCode: "80809",
   country: {
     name: "<value>",
     iso: "<value>",

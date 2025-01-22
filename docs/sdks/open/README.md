@@ -98,7 +98,10 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.checkins.open.list({});
+  const result = await pushPress.checkins.open.list({
+    page: 1,
+    limit: 10,
+  });
 
   for await (const page of result) {
     // Handle the page
@@ -124,7 +127,10 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await checkinsOpenList(pushPress, {});
+  const res = await checkinsOpenList(pushPress, {
+    page: 1,
+    limit: 10,
+  });
 
   if (!res.ok) {
     throw res.error;

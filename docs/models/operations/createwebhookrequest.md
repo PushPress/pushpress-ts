@@ -7,9 +7,9 @@ import { CreateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequest = {
   requestBody: {
-    url: "https://courageous-juggernaut.info/",
+    url: "https://sniveling-republican.org",
     eventTypes: [
-      "app.installed",
+      "appointment.rescheduled",
     ],
   },
 };

@@ -11,6 +11,7 @@ let value: ListCustomersResponse = {
       resultArray: [
         {
           id: "usr_1234",
+          companyId: "cli_1234",
           name: {
             first: "John",
             last: "Doe",

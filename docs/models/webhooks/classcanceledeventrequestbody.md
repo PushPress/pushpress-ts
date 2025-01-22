@@ -19,7 +19,7 @@ let value: ClassCanceledEventRequestBody = {
     start: 1704063600,
     end: 1704067200,
   },
-  created: 87129,
+  created: 20218,
   event: "class.canceled",
 };
 ```

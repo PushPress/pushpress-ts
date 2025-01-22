@@ -10,7 +10,6 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { resolveSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -37,7 +36,7 @@ export async function keysCreate(
   options?: RequestOptions,
 ): Promise<
   Result<
-    components.ApiKey,
+    operations.CreateApiKeyResponseBody,
     | errors.Unauthorized
     | errors.NotFound
     | errors.Timeout
@@ -168,7 +167,7 @@ export async function keysCreate(
   };
 
   const [result] = await M.match<
-    components.ApiKey,
+    operations.CreateApiKeyResponseBody,
     | errors.Unauthorized
     | errors.NotFound
     | errors.Timeout
@@ -187,7 +186,7 @@ export async function keysCreate(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(201, components.ApiKey$inboundSchema),
+    M.json(201, operations.CreateApiKeyResponseBody$inboundSchema),
     M.jsonErr([401, 403, 407], errors.Unauthorized$inboundSchema),
     M.jsonErr(404, errors.NotFound$inboundSchema),
     M.jsonErr(408, errors.Timeout$inboundSchema),

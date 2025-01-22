@@ -85,7 +85,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ApiKey](../../models/components/apikey.md)\>**
+**Promise\<[operations.CreateApiKeyResponseBody](../../models/operations/createapikeyresponsebody.md)\>**
 
 ### Errors
 
@@ -117,7 +117,9 @@ const pushPress = new PushPress();
 async function run() {
   const result = await pushPress.keys.list({
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
-  }, {});
+  }, {
+    limit: 100,
+  });
 
   // Handle the result
   console.log(result);
@@ -141,7 +143,9 @@ const pushPress = new PushPressCore();
 async function run() {
   const res = await keysList(pushPress, {
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
-  }, {});
+  }, {
+    limit: 100,
+  });
 
   if (!res.ok) {
     throw res.error;

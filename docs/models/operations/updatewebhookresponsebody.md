@@ -9,9 +9,9 @@ import { UpdateWebhookResponseBody } from "@pushpress/pushpress/models/operation
 
 let value: UpdateWebhookResponseBody = {
   id: "<id>",
-  url: "https://lawful-apricot.net/",
+  url: "https://minty-executor.name/",
   eventTypes: [
-    "appointment.rescheduled",
+    "app.uninstalled",
   ],
   signingSecret: "<value>",
 };

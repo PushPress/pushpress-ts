@@ -5,7 +5,6 @@
 import { keysCreate } from "../funcs/keysCreate.js";
 import { keysList } from "../funcs/keysList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
@@ -20,7 +19,7 @@ export class Keys extends ClientSDK {
     security: operations.CreateApiKeySecurity,
     request: operations.CreateApiKeyRequest,
     options?: RequestOptions,
-  ): Promise<components.ApiKey> {
+  ): Promise<operations.CreateApiKeyResponseBody> {
     return unwrapAsync(keysCreate(
       this,
       security,
