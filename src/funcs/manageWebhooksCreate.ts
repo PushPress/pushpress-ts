@@ -36,14 +36,14 @@ export async function manageWebhooksCreate(
 ): Promise<
   Result<
     operations.CreateWebhookResponseBody,
-    | errors.BadRequest
-    | errors.Unauthorized
     | errors.NotFound
+    | errors.Unauthorized
     | errors.Timeout
     | errors.RateLimited
-    | errors.InternalServerError
-    | errors.NotFound
+    | errors.BadRequest
     | errors.Timeout
+    | errors.NotFound
+    | errors.InternalServerError
     | errors.BadRequest
     | errors.Unauthorized
     | APIError
@@ -162,14 +162,14 @@ export async function manageWebhooksCreate(
 
   const [result] = await M.match<
     operations.CreateWebhookResponseBody,
-    | errors.BadRequest
-    | errors.Unauthorized
     | errors.NotFound
+    | errors.Unauthorized
     | errors.Timeout
     | errors.RateLimited
-    | errors.InternalServerError
-    | errors.NotFound
+    | errors.BadRequest
     | errors.Timeout
+    | errors.NotFound
+    | errors.InternalServerError
     | errors.BadRequest
     | errors.Unauthorized
     | APIError
@@ -181,17 +181,17 @@ export async function manageWebhooksCreate(
     | ConnectionError
   >(
     M.json(201, operations.CreateWebhookResponseBody$inboundSchema),
-    M.jsonErr([400, 413, 414, 415, 422, 431], errors.BadRequest$inboundSchema),
-    M.jsonErr([401, 403, 407], errors.Unauthorized$inboundSchema),
     M.jsonErr(404, errors.NotFound$inboundSchema),
+    M.jsonErr([401, 403, 407], errors.Unauthorized$inboundSchema),
     M.jsonErr(408, errors.Timeout$inboundSchema),
     M.jsonErr(429, errors.RateLimited$inboundSchema),
+    M.jsonErr([400, 413, 414, 415, 422, 431], errors.BadRequest$inboundSchema),
+    M.jsonErr(504, errors.Timeout$inboundSchema),
+    M.jsonErr([501, 505], errors.NotFound$inboundSchema),
     M.jsonErr(
       [500, 502, 503, 506, 507, 508],
       errors.InternalServerError$inboundSchema,
     ),
-    M.jsonErr([501, 505], errors.NotFound$inboundSchema),
-    M.jsonErr(504, errors.Timeout$inboundSchema),
     M.jsonErr(510, errors.BadRequest$inboundSchema),
     M.jsonErr(511, errors.Unauthorized$inboundSchema),
     M.fail("4XX"),

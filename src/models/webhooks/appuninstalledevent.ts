@@ -6,11 +6,8 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type AppUninstalledEventData = {
-  id?: string | undefined;
-};
 
 export const AppUninstalledEventEvent = {
   AppUninstalled: "app.uninstalled",
@@ -23,67 +20,16 @@ export type AppUninstalledEventEvent = ClosedEnum<
  * App Uninstalled Event
  */
 export type AppUninstalledEventRequestBody = {
-  data: AppUninstalledEventData;
+  /**
+   * Information about the app
+   */
+  data: components.AppInstall;
   /**
    * Unix timestamp representing when the event was created
    */
   created: number;
   event: AppUninstalledEventEvent;
 };
-
-/** @internal */
-export const AppUninstalledEventData$inboundSchema: z.ZodType<
-  AppUninstalledEventData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-});
-
-/** @internal */
-export type AppUninstalledEventData$Outbound = {
-  id?: string | undefined;
-};
-
-/** @internal */
-export const AppUninstalledEventData$outboundSchema: z.ZodType<
-  AppUninstalledEventData$Outbound,
-  z.ZodTypeDef,
-  AppUninstalledEventData
-> = z.object({
-  id: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppUninstalledEventData$ {
-  /** @deprecated use `AppUninstalledEventData$inboundSchema` instead. */
-  export const inboundSchema = AppUninstalledEventData$inboundSchema;
-  /** @deprecated use `AppUninstalledEventData$outboundSchema` instead. */
-  export const outboundSchema = AppUninstalledEventData$outboundSchema;
-  /** @deprecated use `AppUninstalledEventData$Outbound` instead. */
-  export type Outbound = AppUninstalledEventData$Outbound;
-}
-
-export function appUninstalledEventDataToJSON(
-  appUninstalledEventData: AppUninstalledEventData,
-): string {
-  return JSON.stringify(
-    AppUninstalledEventData$outboundSchema.parse(appUninstalledEventData),
-  );
-}
-
-export function appUninstalledEventDataFromJSON(
-  jsonString: string,
-): SafeParseResult<AppUninstalledEventData, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AppUninstalledEventData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AppUninstalledEventData' from JSON`,
-  );
-}
 
 /** @internal */
 export const AppUninstalledEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -112,14 +58,14 @@ export const AppUninstalledEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => AppUninstalledEventData$inboundSchema),
+  data: components.AppInstall$inboundSchema,
   created: z.number().int(),
   event: AppUninstalledEventEvent$inboundSchema,
 });
 
 /** @internal */
 export type AppUninstalledEventRequestBody$Outbound = {
-  data: AppUninstalledEventData$Outbound;
+  data: components.AppInstall$Outbound;
   created: number;
   event: string;
 };
@@ -130,7 +76,7 @@ export const AppUninstalledEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AppUninstalledEventRequestBody
 > = z.object({
-  data: z.lazy(() => AppUninstalledEventData$outboundSchema),
+  data: components.AppInstall$outboundSchema,
   created: z.number().int(),
   event: AppUninstalledEventEvent$outboundSchema,
 });

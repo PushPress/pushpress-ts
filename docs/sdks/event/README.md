@@ -98,10 +98,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.list({
-    page: 1,
-    limit: 10,
-  });
+  const result = await pushPress.checkins.event.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -127,10 +124,7 @@ const pushPress = new PushPressCore({
 });
 
 async function run() {
-  const res = await checkinsEventList(pushPress, {
-    page: 1,
-    limit: 10,
-  });
+  const res = await checkinsEventList(pushPress, {});
 
   if (!res.ok) {
     throw res.error;

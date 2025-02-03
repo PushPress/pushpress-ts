@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: dfe1bdfc96641d7f0f38b259a2e808c7
+  docChecksum: 3032ae45c99ac3ecca174e0b9c076662
   docVersion: 3.0.0
-  speakeasyVersion: 1.469.12
-  generationVersion: 2.493.34
-  releaseVersion: 0.19.0
-  configChecksum: 8763b5643d2f697cf3c677a2091a3f9a
+  speakeasyVersion: 1.482.0
+  generationVersion: 2.500.5
+  releaseVersion: 0.20.2
+  configChecksum: d8e32308ee8756637d992c83ecf83cf3
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.17
+    core: 3.18.22
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -37,12 +37,11 @@ features:
     serverIDs: 2.81.2
     unions: 2.85.8
     webhookHandlers: 0.1.0
-    webhooks: 1.4.1
+    webhooks: 1.5.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
   - .devcontainer/setup.sh
-  - .eslintrc.cjs
   - .gitattributes
   - .npmignore
   - FUNCTIONS.md
@@ -182,6 +181,8 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponsebody.md
   - docs/models/operations/one.md
   - docs/models/operations/replyto.md
+  - docs/models/operations/responsebody1.md
+  - docs/models/operations/responsebody2.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
@@ -222,7 +223,6 @@ generatedFiles:
   - docs/models/webhooks/appointmentrescheduledeventrequestbody.md
   - docs/models/webhooks/appointmentscheduledeventevent.md
   - docs/models/webhooks/appointmentscheduledeventrequestbody.md
-  - docs/models/webhooks/appuninstalledeventdata.md
   - docs/models/webhooks/appuninstalledeventevent.md
   - docs/models/webhooks/appuninstalledeventrequestbody.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
@@ -275,6 +275,7 @@ generatedFiles:
   - docs/sdks/pushpress/README.md
   - docs/sdks/realtime/README.md
   - docs/sdks/sms/README.md
+  - eslint.config.mjs
   - jsr.json
   - package.json
   - src/core.ts
@@ -330,7 +331,6 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
-  - src/hooks/webhook-security.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
@@ -457,11 +457,11 @@ examples:
   checkinCreatedEvent:
     speakeasy-default-checkin-created-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 420989, "event": "checkin.created"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 420989, "event": "checkin.created"}
   checkinUpdatedEvent:
     speakeasy-default-checkin-updated-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "previousValues": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 738207, "event": "checkin.updated"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "previousValues": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 738207, "event": "checkin.updated"}
   checkinDeletedEvent:
     speakeasy-default-checkin-deleted-event:
       requestBody:
@@ -473,7 +473,7 @@ examples:
   appUninstalledEvent:
     speakeasy-default-app-uninstalled-event:
       requestBody:
-        application/json: {"data": {}, "created": 897950, "event": "app.uninstalled"}
+        application/json: {"data": {"company": {"id": "company-uuid"}, "app": {"id": "app-uuid"}, "installation": {"id": "installation-uuid"}}, "created": 897950, "event": "app.uninstalled"}
   appointmentScheduledEvent:
     speakeasy-default-appointment-scheduled-event:
       requestBody:

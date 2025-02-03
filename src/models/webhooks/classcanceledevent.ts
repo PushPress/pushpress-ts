@@ -17,7 +17,7 @@ export type ClassCanceledEventEvent = ClosedEnum<
 >;
 
 /**
- * Class canceled Event (Not implemented)
+ * Class Canceled Event
  */
 export type ClassCanceledEventRequestBody = {
   /**

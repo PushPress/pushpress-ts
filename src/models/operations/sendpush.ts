@@ -56,13 +56,13 @@ export type Errors = {
   invalidAliases: InvalidAliases;
 };
 
-export type Two = {
+export type ResponseBody2 = {
   id?: string | null | undefined;
   externalId?: string | null | undefined;
   errors: Errors;
 };
 
-export type One = {
+export type ResponseBody1 = {
   id: string;
   errors: Array<string>;
 };
@@ -70,7 +70,7 @@ export type One = {
 /**
  * Default Response
  */
-export type SendPushResponseBody = Three | One | Four | Two;
+export type SendPushResponseBody = Three | ResponseBody1 | Four | ResponseBody2;
 
 /** @internal */
 export const SendPushGlobals$inboundSchema: z.ZodType<
@@ -476,107 +476,119 @@ export function errorsFromJSON(
 }
 
 /** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(z.string()).optional(),
-    external_id: z.nullable(z.string()).optional(),
-    errors: z.lazy(() => Errors$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "external_id": "externalId",
-    });
+export const ResponseBody2$inboundSchema: z.ZodType<
+  ResponseBody2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  external_id: z.nullable(z.string()).optional(),
+  errors: z.lazy(() => Errors$inboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    "external_id": "externalId",
   });
+});
 
 /** @internal */
-export type Two$Outbound = {
+export type ResponseBody2$Outbound = {
   id?: string | null | undefined;
   external_id?: string | null | undefined;
   errors: Errors$Outbound;
 };
 
 /** @internal */
-export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
-  .object({
-    id: z.nullable(z.string()).optional(),
-    externalId: z.nullable(z.string()).optional(),
-    errors: z.lazy(() => Errors$outboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      externalId: "external_id",
-    });
+export const ResponseBody2$outboundSchema: z.ZodType<
+  ResponseBody2$Outbound,
+  z.ZodTypeDef,
+  ResponseBody2
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  externalId: z.nullable(z.string()).optional(),
+  errors: z.lazy(() => Errors$outboundSchema),
+}).transform((v) => {
+  return remap$(v, {
+    externalId: "external_id",
   });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
+export namespace ResponseBody2$ {
+  /** @deprecated use `ResponseBody2$inboundSchema` instead. */
+  export const inboundSchema = ResponseBody2$inboundSchema;
+  /** @deprecated use `ResponseBody2$outboundSchema` instead. */
+  export const outboundSchema = ResponseBody2$outboundSchema;
+  /** @deprecated use `ResponseBody2$Outbound` instead. */
+  export type Outbound = ResponseBody2$Outbound;
 }
 
-export function twoToJSON(two: Two): string {
-  return JSON.stringify(Two$outboundSchema.parse(two));
+export function responseBody2ToJSON(responseBody2: ResponseBody2): string {
+  return JSON.stringify(ResponseBody2$outboundSchema.parse(responseBody2));
 }
 
-export function twoFromJSON(
+export function responseBody2FromJSON(
   jsonString: string,
-): SafeParseResult<Two, SDKValidationError> {
+): SafeParseResult<ResponseBody2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Two$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Two' from JSON`,
+    (x) => ResponseBody2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseBody2' from JSON`,
   );
 }
 
 /** @internal */
-export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.string(),
-    errors: z.array(z.string()),
-  });
+export const ResponseBody1$inboundSchema: z.ZodType<
+  ResponseBody1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  errors: z.array(z.string()),
+});
 
 /** @internal */
-export type One$Outbound = {
+export type ResponseBody1$Outbound = {
   id: string;
   errors: Array<string>;
 };
 
 /** @internal */
-export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
-  .object({
-    id: z.string(),
-    errors: z.array(z.string()),
-  });
+export const ResponseBody1$outboundSchema: z.ZodType<
+  ResponseBody1$Outbound,
+  z.ZodTypeDef,
+  ResponseBody1
+> = z.object({
+  id: z.string(),
+  errors: z.array(z.string()),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
+export namespace ResponseBody1$ {
+  /** @deprecated use `ResponseBody1$inboundSchema` instead. */
+  export const inboundSchema = ResponseBody1$inboundSchema;
+  /** @deprecated use `ResponseBody1$outboundSchema` instead. */
+  export const outboundSchema = ResponseBody1$outboundSchema;
+  /** @deprecated use `ResponseBody1$Outbound` instead. */
+  export type Outbound = ResponseBody1$Outbound;
 }
 
-export function oneToJSON(one: One): string {
-  return JSON.stringify(One$outboundSchema.parse(one));
+export function responseBody1ToJSON(responseBody1: ResponseBody1): string {
+  return JSON.stringify(ResponseBody1$outboundSchema.parse(responseBody1));
 }
 
-export function oneFromJSON(
+export function responseBody1FromJSON(
   jsonString: string,
-): SafeParseResult<One, SDKValidationError> {
+): SafeParseResult<ResponseBody1, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => One$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'One' from JSON`,
+    (x) => ResponseBody1$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseBody1' from JSON`,
   );
 }
 
@@ -587,17 +599,17 @@ export const SendPushResponseBody$inboundSchema: z.ZodType<
   unknown
 > = z.union([
   z.lazy(() => Three$inboundSchema),
-  z.lazy(() => One$inboundSchema),
+  z.lazy(() => ResponseBody1$inboundSchema),
   z.lazy(() => Four$inboundSchema),
-  z.lazy(() => Two$inboundSchema),
+  z.lazy(() => ResponseBody2$inboundSchema),
 ]);
 
 /** @internal */
 export type SendPushResponseBody$Outbound =
   | Three$Outbound
-  | One$Outbound
+  | ResponseBody1$Outbound
   | Four$Outbound
-  | Two$Outbound;
+  | ResponseBody2$Outbound;
 
 /** @internal */
 export const SendPushResponseBody$outboundSchema: z.ZodType<
@@ -606,9 +618,9 @@ export const SendPushResponseBody$outboundSchema: z.ZodType<
   SendPushResponseBody
 > = z.union([
   z.lazy(() => Three$outboundSchema),
-  z.lazy(() => One$outboundSchema),
+  z.lazy(() => ResponseBody1$outboundSchema),
   z.lazy(() => Four$outboundSchema),
-  z.lazy(() => Two$outboundSchema),
+  z.lazy(() => ResponseBody2$outboundSchema),
 ]);
 
 /**

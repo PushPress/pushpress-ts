@@ -1,6 +1,6 @@
 # CustomerCreatedEventRequestBody
 
-Customer Created Event (Not implemented)
+Customer Created Event
 
 ## Example Usage
 

@@ -17,7 +17,7 @@ export type CustomerCreatedEventEvent = ClosedEnum<
 >;
 
 /**
- * Customer Created Event (Not implemented)
+ * Customer Created Event
  */
 export type CustomerCreatedEventRequestBody = {
   /**

@@ -11,9 +11,9 @@ let value: ListWebhooksResponseBody = {
   data: [
     {
       id: "<id>",
-      url: "https://lovely-warming.org/",
+      url: "https://enraged-unique.org",
       eventTypes: [
-        "class.canceled",
+        "reservation.waitlisted",
       ],
       signingSecret: "<value>",
     },
