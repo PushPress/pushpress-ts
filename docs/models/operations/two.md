@@ -5,21 +5,11 @@
 ```typescript
 import { Two } from "@pushpress/pushpress/models/operations";
 
-let value: Two = {
-  errors: {
-    invalidAliases: {
-      externalId: [
-        "<id>",
-      ],
-    },
-  },
-};
+let value: Two = "class.canceled";
 ```
 
-## Fields
+## Values
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `id`                                                   | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
-| `externalId`                                           | *string*                                               | :heavy_minus_sign:                                     | N/A                                                    |
-| `errors`                                               | [operations.Errors](../../models/operations/errors.md) | :heavy_check_mark:                                     | N/A                                                    |
+```typescript
+"appointment.scheduled" | "appointment.rescheduled" | "appointment.noshowed" | "appointment.canceled" | "checkin.created" | "checkin.updated" | "checkin.deleted" | "class.canceled" | "customer.created" | "customer.details.changed" | "customer.status.changed" | "customer.deleted" | "enrollment.created" | "enrollment.status.changed" | "enrollment.deleted" | "memberapp.updated" | "reservation.created" | "reservation.waitlisted" | "reservation.canceled" | "reservation.noshowed"
+```

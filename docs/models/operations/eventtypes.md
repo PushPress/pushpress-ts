@@ -1,15 +1,23 @@
 # EventTypes
 
-## Example Usage
+Webhooks registration must either apply to a set application events (e.g app.installed, app.uninstalled) or to customer events
+
+
+## Supported Types
+
+### `operations.One[]`
 
 ```typescript
-import { EventTypes } from "@pushpress/pushpress/models/operations";
-
-let value: EventTypes = "customer.created";
+const value: operations.One[] = [
+  "app.installed",
+];
 ```
 
-## Values
+### `operations.Two[]`
 
 ```typescript
-"appointment.scheduled" | "appointment.rescheduled" | "appointment.noshowed" | "appointment.canceled" | "checkin.created" | "checkin.updated" | "checkin.deleted" | "class.canceled" | "customer.created" | "customer.details.changed" | "customer.status.changed" | "customer.deleted" | "enrollment.created" | "enrollment.status.changed" | "enrollment.deleted" | "memberapp.updated" | "reservation.created" | "reservation.waitlisted" | "reservation.canceled" | "reservation.noshowed" | "app.installed" | "app.uninstalled"
+const value: operations.Two[] = [
+  "appointment.noshowed",
+];
 ```
+

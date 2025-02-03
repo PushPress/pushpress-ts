@@ -46,14 +46,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -83,14 +83,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -146,15 +146,15 @@ async function run() {
     },
     previousValues: {
       id: "chk_12345",
-      name: "My Class",
+      name: "My Event",
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
     },
     created: 738207,
@@ -189,15 +189,15 @@ async function run() {
     },
     previousValues: {
       id: "chk_12345",
-      name: "My Class",
+      name: "My Event",
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      role: "attendee",
+      role: "staff",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Group HIIT Training",
+        name: "Weightlifting Seminar",
       },
     },
     created: 738207,
@@ -410,7 +410,17 @@ const pushPress = new PushPress();
 
 async function run() {
   await pushPress.appUninstalledEvent({
-    data: {},
+    data: {
+      company: {
+        id: "company-uuid",
+      },
+      app: {
+        id: "app-uuid",
+      },
+      installation: {
+        id: "installation-uuid",
+      },
+    },
     created: 897950,
     event: "app.uninstalled",
   });
@@ -435,7 +445,17 @@ const pushPress = new PushPressCore();
 
 async function run() {
   const res = await appUninstalledEvent(pushPress, {
-    data: {},
+    data: {
+      company: {
+        id: "company-uuid",
+      },
+      app: {
+        id: "app-uuid",
+      },
+      installation: {
+        id: "installation-uuid",
+      },
+    },
     created: 897950,
     event: "app.uninstalled",
   });
@@ -1353,7 +1373,6 @@ async function run() {
       coachUuid: "usr_12345",
       assistantCoachUuid: "usr_12345",
       company: "cli_12345",
-      title: "My Class",
       classTypeName: "HIIT",
       locationUuid: "loc_12345",
       start: 1704063600,
@@ -1388,7 +1407,6 @@ async function run() {
       coachUuid: "usr_12345",
       assistantCoachUuid: "usr_12345",
       company: "cli_12345",
-      title: "My Class",
       classTypeName: "HIIT",
       locationUuid: "loc_12345",
       start: 1704063600,

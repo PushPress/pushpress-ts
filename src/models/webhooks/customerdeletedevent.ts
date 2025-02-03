@@ -20,7 +20,7 @@ export type CustomerDeletedEventEvent = ClosedEnum<
 >;
 
 /**
- * Customer Deleted Event (Not implemented)
+ * Customer Deleted Event
  */
 export type CustomerDeletedEventRequestBody = {
   data: CustomerDeletedEventData;

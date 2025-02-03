@@ -93,14 +93,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -310,10 +310,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.list({
-    page: 1,
-    limit: 10,
-  });
+  const result = await pushPress.checkins.event.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -343,14 +340,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -395,14 +392,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -421,14 +418,14 @@ Some methods specify known errors which can be thrown. All the known errors are 
 
 | Error Type                 | Status Code                  | Content Type     |
 | -------------------------- | ---------------------------- | ---------------- |
-| errors.BadRequest          | 400, 413, 414, 415, 422, 431 | application/json |
-| errors.Unauthorized        | 401, 403, 407                | application/json |
 | errors.NotFound            | 404                          | application/json |
+| errors.Unauthorized        | 401, 403, 407                | application/json |
 | errors.Timeout             | 408                          | application/json |
 | errors.RateLimited         | 429                          | application/json |
-| errors.InternalServerError | 500, 502, 503, 506, 507, 508 | application/json |
-| errors.NotFound            | 501, 505                     | application/json |
+| errors.BadRequest          | 400, 413, 414, 415, 422, 431 | application/json |
 | errors.Timeout             | 504                          | application/json |
+| errors.NotFound            | 501, 505                     | application/json |
+| errors.InternalServerError | 500, 502, 503, 506, 507, 508 | application/json |
 | errors.BadRequest          | 510                          | application/json |
 | errors.Unauthorized        | 511                          | application/json |
 | errors.APIError            | 4XX, 5XX                     | \*/\*            |
@@ -468,18 +465,13 @@ async function run() {
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof BadRequest): {
-        // Handle err.data$: BadRequestData
+      case (err instanceof NotFound): {
+        // Handle err.data$: NotFoundData
         console.error(err);
         return;
       }
       case (err instanceof Unauthorized): {
         // Handle err.data$: UnauthorizedData
-        console.error(err);
-        return;
-      }
-      case (err instanceof NotFound): {
-        // Handle err.data$: NotFoundData
         console.error(err);
         return;
       }
@@ -493,8 +485,13 @@ async function run() {
         console.error(err);
         return;
       }
-      case (err instanceof InternalServerError): {
-        // Handle err.data$: InternalServerErrorData
+      case (err instanceof BadRequest): {
+        // Handle err.data$: BadRequestData
+        console.error(err);
+        return;
+      }
+      case (err instanceof Timeout): {
+        // Handle err.data$: TimeoutData
         console.error(err);
         return;
       }
@@ -503,8 +500,8 @@ async function run() {
         console.error(err);
         return;
       }
-      case (err instanceof Timeout): {
-        // Handle err.data$: TimeoutData
+      case (err instanceof InternalServerError): {
+        // Handle err.data$: InternalServerErrorData
         console.error(err);
         return;
       }
@@ -571,14 +568,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -605,14 +602,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",
@@ -698,14 +695,14 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
-      name: "My Event",
+      name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
       timestamp: 1672531200000,
-      role: "staff",
+      role: "attendee",
     },
     created: 420989,
     event: "checkin.created",

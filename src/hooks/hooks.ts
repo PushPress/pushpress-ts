@@ -21,7 +21,7 @@ import {
   WebhookVerificationContext,
   WebhookVerificationHook,
 } from "./types.js";
-import { WebhookSecurityHook } from "./webhook-security.js";
+import { WebhookSecurityHook } from "./webhook-security-custom.js";
 
 import { initHooks } from "./registration.js";
 

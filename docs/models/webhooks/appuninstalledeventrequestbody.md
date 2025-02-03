@@ -8,7 +8,17 @@ App Uninstalled Event
 import { AppUninstalledEventRequestBody } from "@pushpress/pushpress/models/webhooks";
 
 let value: AppUninstalledEventRequestBody = {
-  data: {},
+  data: {
+    company: {
+      id: "company-uuid",
+    },
+    app: {
+      id: "app-uuid",
+    },
+    installation: {
+      id: "installation-uuid",
+    },
+  },
   created: 891773,
   event: "app.uninstalled",
 };
@@ -16,8 +26,8 @@ let value: AppUninstalledEventRequestBody = {
 
 ## Fields
 
-| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `data`                                                                                 | [webhooks.AppUninstalledEventData](../../models/webhooks/appuninstalledeventdata.md)   | :heavy_check_mark:                                                                     | N/A                                                                                    |
-| `created`                                                                              | *number*                                                                               | :heavy_check_mark:                                                                     | Unix timestamp representing when the event was created                                 |
-| `event`                                                                                | [webhooks.AppUninstalledEventEvent](../../models/webhooks/appuninstalledeventevent.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `data`                                                                                                              | [components.AppInstall](../../models/components/appinstall.md)                                                      | :heavy_check_mark:                                                                                                  | Information about the app                                                                                           | {<br/>"company": {<br/>"id": "company-uuid"<br/>},<br/>"app": {<br/>"id": "app-uuid"<br/>},<br/>"installation": {<br/>"id": "installation-uuid"<br/>}<br/>} |
+| `created`                                                                                                           | *number*                                                                                                            | :heavy_check_mark:                                                                                                  | Unix timestamp representing when the event was created                                                              |                                                                                                                     |
+| `event`                                                                                                             | [webhooks.AppUninstalledEventEvent](../../models/webhooks/appuninstalledeventevent.md)                              | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |                                                                                                                     |

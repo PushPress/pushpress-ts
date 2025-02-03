@@ -1,6 +1,6 @@
 # CustomerDeletedEventRequestBody
 
-Customer Deleted Event (Not implemented)
+Customer Deleted Event
 
 ## Example Usage
 

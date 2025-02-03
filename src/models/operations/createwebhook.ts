@@ -13,7 +13,7 @@ export type CreateWebhookGlobals = {
   companyId?: string | undefined;
 };
 
-export const EventTypes = {
+export const Two = {
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -34,10 +34,19 @@ export const EventTypes = {
   ReservationWaitlisted: "reservation.waitlisted",
   ReservationCanceled: "reservation.canceled",
   ReservationNoshowed: "reservation.noshowed",
+} as const;
+export type Two = ClosedEnum<typeof Two>;
+
+export const One = {
   AppInstalled: "app.installed",
   AppUninstalled: "app.uninstalled",
 } as const;
-export type EventTypes = ClosedEnum<typeof EventTypes>;
+export type One = ClosedEnum<typeof One>;
+
+/**
+ * Webhooks registration must either apply to a set application events (e.g app.installed, app.uninstalled) or to customer events
+ */
+export type EventTypes = Array<One> | Array<Two>;
 
 export type CreateWebhookRequestBody = {
   /**
@@ -49,9 +58,9 @@ export type CreateWebhookRequestBody = {
    */
   url: string;
   /**
-   * Webhooks are registered to specific events
+   * Webhooks registration must either apply to a set application events (e.g app.installed, app.uninstalled) or to customer events
    */
-  eventTypes: Array<EventTypes>;
+  eventTypes: Array<One> | Array<Two>;
 };
 
 export type CreateWebhookRequest = {
@@ -183,12 +192,57 @@ export function createWebhookGlobalsFromJSON(
 }
 
 /** @internal */
-export const EventTypes$inboundSchema: z.ZodNativeEnum<typeof EventTypes> = z
-  .nativeEnum(EventTypes);
+export const Two$inboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(Two);
 
 /** @internal */
-export const EventTypes$outboundSchema: z.ZodNativeEnum<typeof EventTypes> =
-  EventTypes$inboundSchema;
+export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> =
+  Two$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Two$ {
+  /** @deprecated use `Two$inboundSchema` instead. */
+  export const inboundSchema = Two$inboundSchema;
+  /** @deprecated use `Two$outboundSchema` instead. */
+  export const outboundSchema = Two$outboundSchema;
+}
+
+/** @internal */
+export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
+
+/** @internal */
+export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
+  One$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace One$ {
+  /** @deprecated use `One$inboundSchema` instead. */
+  export const inboundSchema = One$inboundSchema;
+  /** @deprecated use `One$outboundSchema` instead. */
+  export const outboundSchema = One$outboundSchema;
+}
+
+/** @internal */
+export const EventTypes$inboundSchema: z.ZodType<
+  EventTypes,
+  z.ZodTypeDef,
+  unknown
+> = z.union([z.array(One$inboundSchema), z.array(Two$inboundSchema)]);
+
+/** @internal */
+export type EventTypes$Outbound = Array<string> | Array<string>;
+
+/** @internal */
+export const EventTypes$outboundSchema: z.ZodType<
+  EventTypes$Outbound,
+  z.ZodTypeDef,
+  EventTypes
+> = z.union([z.array(One$outboundSchema), z.array(Two$outboundSchema)]);
 
 /**
  * @internal
@@ -199,6 +253,22 @@ export namespace EventTypes$ {
   export const inboundSchema = EventTypes$inboundSchema;
   /** @deprecated use `EventTypes$outboundSchema` instead. */
   export const outboundSchema = EventTypes$outboundSchema;
+  /** @deprecated use `EventTypes$Outbound` instead. */
+  export type Outbound = EventTypes$Outbound;
+}
+
+export function eventTypesToJSON(eventTypes: EventTypes): string {
+  return JSON.stringify(EventTypes$outboundSchema.parse(eventTypes));
+}
+
+export function eventTypesFromJSON(
+  jsonString: string,
+): SafeParseResult<EventTypes, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventTypes$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventTypes' from JSON`,
+  );
 }
 
 /** @internal */
@@ -209,14 +279,14 @@ export const CreateWebhookRequestBody$inboundSchema: z.ZodType<
 > = z.object({
   appId: z.string().optional(),
   url: z.string(),
-  eventTypes: z.array(EventTypes$inboundSchema),
+  eventTypes: z.union([z.array(One$inboundSchema), z.array(Two$inboundSchema)]),
 });
 
 /** @internal */
 export type CreateWebhookRequestBody$Outbound = {
   appId?: string | undefined;
   url: string;
-  eventTypes: Array<string>;
+  eventTypes: Array<string> | Array<string>;
 };
 
 /** @internal */
@@ -227,7 +297,10 @@ export const CreateWebhookRequestBody$outboundSchema: z.ZodType<
 > = z.object({
   appId: z.string().optional(),
   url: z.string(),
-  eventTypes: z.array(EventTypes$outboundSchema),
+  eventTypes: z.union([
+    z.array(One$outboundSchema),
+    z.array(Two$outboundSchema),
+  ]),
 });
 
 /**

@@ -5,10 +5,10 @@ Default Response
 
 ## Supported Types
 
-### `operations.One`
+### `operations.ResponseBody1`
 
 ```typescript
-const value: operations.One = {
+const value: operations.ResponseBody1 = {
   id: "<id>",
   errors: [
     "<value>",
@@ -16,10 +16,10 @@ const value: operations.One = {
 };
 ```
 
-### `operations.Two`
+### `operations.ResponseBody2`
 
 ```typescript
-const value: operations.Two = {
+const value: operations.ResponseBody2 = {
   errors: {
     invalidAliases: {
       externalId: [

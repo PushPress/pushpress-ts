@@ -36,14 +36,14 @@ export async function messagesPushSend(
 ): Promise<
   Result<
     operations.SendPushResponseBody,
+    | errors.NotFound
     | errors.Unauthorized
-    | errors.NotFound
     | errors.Timeout
-    | errors.BadRequest
     | errors.RateLimited
-    | errors.InternalServerError
-    | errors.NotFound
+    | errors.BadRequest
     | errors.Timeout
+    | errors.NotFound
+    | errors.InternalServerError
     | errors.BadRequest
     | errors.Unauthorized
     | APIError
@@ -161,14 +161,14 @@ export async function messagesPushSend(
 
   const [result] = await M.match<
     operations.SendPushResponseBody,
+    | errors.NotFound
     | errors.Unauthorized
-    | errors.NotFound
     | errors.Timeout
-    | errors.BadRequest
     | errors.RateLimited
-    | errors.InternalServerError
-    | errors.NotFound
+    | errors.BadRequest
     | errors.Timeout
+    | errors.NotFound
+    | errors.InternalServerError
     | errors.BadRequest
     | errors.Unauthorized
     | APIError
@@ -180,17 +180,17 @@ export async function messagesPushSend(
     | ConnectionError
   >(
     M.json(200, operations.SendPushResponseBody$inboundSchema),
-    M.jsonErr([401, 403, 407], errors.Unauthorized$inboundSchema),
     M.jsonErr(404, errors.NotFound$inboundSchema),
+    M.jsonErr([401, 403, 407], errors.Unauthorized$inboundSchema),
     M.jsonErr(408, errors.Timeout$inboundSchema),
-    M.jsonErr([413, 414, 415, 422, 431], errors.BadRequest$inboundSchema),
     M.jsonErr(429, errors.RateLimited$inboundSchema),
+    M.jsonErr([413, 414, 415, 422, 431], errors.BadRequest$inboundSchema),
+    M.jsonErr(504, errors.Timeout$inboundSchema),
+    M.jsonErr([501, 505], errors.NotFound$inboundSchema),
     M.jsonErr(
       [500, 502, 503, 506, 507, 508],
       errors.InternalServerError$inboundSchema,
     ),
-    M.jsonErr([501, 505], errors.NotFound$inboundSchema),
-    M.jsonErr(504, errors.Timeout$inboundSchema),
     M.jsonErr(510, errors.BadRequest$inboundSchema),
     M.jsonErr(511, errors.Unauthorized$inboundSchema),
     M.fail("4XX"),

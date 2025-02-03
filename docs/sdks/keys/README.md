@@ -91,14 +91,14 @@ run();
 
 | Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.Unauthorized          | 401, 403, 407                | application/json             |
 | errors.NotFound              | 404                          | application/json             |
+| errors.Unauthorized          | 401, 403, 407                | application/json             |
 | errors.Timeout               | 408                          | application/json             |
-| errors.BadRequest            | 413, 414, 415, 422, 431      | application/json             |
 | errors.RateLimited           | 429                          | application/json             |
-| errors.InternalServerError   | 500, 502, 503, 506, 507, 508 | application/json             |
-| errors.NotFound              | 501, 505                     | application/json             |
+| errors.BadRequest            | 413, 414, 415, 422, 431      | application/json             |
 | errors.Timeout               | 504                          | application/json             |
+| errors.NotFound              | 501, 505                     | application/json             |
+| errors.InternalServerError   | 500, 502, 503, 506, 507, 508 | application/json             |
 | errors.BadRequest            | 510                          | application/json             |
 | errors.Unauthorized          | 511                          | application/json             |
 | errors.APIError              | 4XX, 5XX                     | \*/\*                        |
@@ -117,9 +117,7 @@ const pushPress = new PushPress();
 async function run() {
   const result = await pushPress.keys.list({
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
-  }, {
-    limit: 100,
-  });
+  }, {});
 
   // Handle the result
   console.log(result);
@@ -143,9 +141,7 @@ const pushPress = new PushPressCore();
 async function run() {
   const res = await keysList(pushPress, {
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
-  }, {
-    limit: 100,
-  });
+  }, {});
 
   if (!res.ok) {
     throw res.error;
@@ -178,14 +174,14 @@ run();
 
 | Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.Unauthorized          | 401, 403, 407                | application/json             |
 | errors.NotFound              | 404                          | application/json             |
+| errors.Unauthorized          | 401, 403, 407                | application/json             |
 | errors.Timeout               | 408                          | application/json             |
-| errors.BadRequest            | 413, 414, 415, 422, 431      | application/json             |
 | errors.RateLimited           | 429                          | application/json             |
-| errors.InternalServerError   | 500, 502, 503, 506, 507, 508 | application/json             |
-| errors.NotFound              | 501, 505                     | application/json             |
+| errors.BadRequest            | 413, 414, 415, 422, 431      | application/json             |
 | errors.Timeout               | 504                          | application/json             |
+| errors.NotFound              | 501, 505                     | application/json             |
+| errors.InternalServerError   | 500, 502, 503, 506, 507, 508 | application/json             |
 | errors.BadRequest            | 510                          | application/json             |
 | errors.Unauthorized          | 511                          | application/json             |
 | errors.APIError              | 4XX, 5XX                     | \*/\*                        |

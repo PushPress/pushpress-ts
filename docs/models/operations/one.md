@@ -5,17 +5,11 @@
 ```typescript
 import { One } from "@pushpress/pushpress/models/operations";
 
-let value: One = {
-  id: "<id>",
-  errors: [
-    "<value>",
-  ],
-};
+let value: One = "app.uninstalled";
 ```
 
-## Fields
+## Values
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *string*           | :heavy_check_mark: | N/A                |
-| `errors`           | *string*[]         | :heavy_check_mark: | N/A                |
+```typescript
+"app.installed" | "app.uninstalled"
+```
