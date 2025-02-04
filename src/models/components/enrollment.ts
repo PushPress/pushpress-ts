@@ -8,7 +8,7 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const Status = {
+export const EnrollmentStatus = {
   Active: "active",
   Alert: "alert",
   Canceled: "canceled",
@@ -17,7 +17,7 @@ export const Status = {
   Pendactivation: "pendactivation",
   Pendcancel: "pendcancel",
 } as const;
-export type Status = ClosedEnum<typeof Status>;
+export type EnrollmentStatus = ClosedEnum<typeof EnrollmentStatus>;
 
 export type CheckinDetails = {
   /**
@@ -66,28 +66,30 @@ export type Enrollment = {
    * Unique identifier for the plan
    */
   planId?: string | null | undefined;
-  status: Status;
+  status: EnrollmentStatus;
   checkinDetails: CheckinDetails;
   entitlements: Array<Entitlements>;
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const EnrollmentStatus$inboundSchema: z.ZodNativeEnum<
+  typeof EnrollmentStatus
+> = z.nativeEnum(EnrollmentStatus);
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
+export const EnrollmentStatus$outboundSchema: z.ZodNativeEnum<
+  typeof EnrollmentStatus
+> = EnrollmentStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
+export namespace EnrollmentStatus$ {
+  /** @deprecated use `EnrollmentStatus$inboundSchema` instead. */
+  export const inboundSchema = EnrollmentStatus$inboundSchema;
+  /** @deprecated use `EnrollmentStatus$outboundSchema` instead. */
+  export const outboundSchema = EnrollmentStatus$outboundSchema;
 }
 
 /** @internal */
@@ -259,7 +261,7 @@ export const Enrollment$inboundSchema: z.ZodType<
   customerId: z.string(),
   companyId: z.string(),
   planId: z.nullable(z.string()).optional(),
-  status: Status$inboundSchema,
+  status: EnrollmentStatus$inboundSchema,
   checkinDetails: z.lazy(() => CheckinDetails$inboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$inboundSchema)),
 });
@@ -285,7 +287,7 @@ export const Enrollment$outboundSchema: z.ZodType<
   customerId: z.string(),
   companyId: z.string(),
   planId: z.nullable(z.string()).optional(),
-  status: Status$outboundSchema,
+  status: EnrollmentStatus$outboundSchema,
   checkinDetails: z.lazy(() => CheckinDetails$outboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$outboundSchema)),
 });

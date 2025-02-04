@@ -6,6 +6,12 @@ import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  Reservation,
+  Reservation$inboundSchema,
+  Reservation$Outbound,
+  Reservation$outboundSchema,
+} from "./reservation.js";
 
 /**
  * Location information about where the class took place
@@ -50,6 +56,7 @@ export type Class = {
    * Location information about where the class took place
    */
   location?: Location | undefined;
+  reservations?: Array<Reservation> | undefined;
   /**
    * Start time of the event as a Unix timestamp in seconds
    */
@@ -121,6 +128,7 @@ export const Class$inboundSchema: z.ZodType<Class, z.ZodTypeDef, unknown> = z
     classTypeName: z.nullable(z.string()).optional(),
     locationUuid: z.nullable(z.string()).optional(),
     location: z.lazy(() => Location$inboundSchema).optional(),
+    reservations: z.array(Reservation$inboundSchema).optional(),
     start: z.number(),
     end: z.number(),
   });
@@ -135,6 +143,7 @@ export type Class$Outbound = {
   classTypeName?: string | null | undefined;
   locationUuid?: string | null | undefined;
   location?: Location$Outbound | undefined;
+  reservations?: Array<Reservation$Outbound> | undefined;
   start: number;
   end: number;
 };
@@ -153,6 +162,7 @@ export const Class$outboundSchema: z.ZodType<
   classTypeName: z.nullable(z.string()).optional(),
   locationUuid: z.nullable(z.string()).optional(),
   location: z.lazy(() => Location$outboundSchema).optional(),
+  reservations: z.array(Reservation$outboundSchema).optional(),
   start: z.number(),
   end: z.number(),
 });

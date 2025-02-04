@@ -1,15 +1,17 @@
 # Status
 
+Current status of the reservation
+
 ## Example Usage
 
 ```typescript
 import { Status } from "@pushpress/pushpress/models/components";
 
-let value: Status = "alert";
+let value: Status = "waitlisted";
 ```
 
 ## Values
 
 ```typescript
-"active" | "alert" | "canceled" | "completed" | "paused" | "pendactivation" | "pendcancel"
+"waitlisted" | "checked-in" | "reserved" | "canceled" | "late-canceled"
 ```

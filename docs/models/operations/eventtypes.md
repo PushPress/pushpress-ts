@@ -17,7 +17,7 @@ const value: operations.One[] = [
 
 ```typescript
 const value: operations.Two[] = [
-  "appointment.noshowed",
+  "customer.details.changed",
 ];
 ```
 

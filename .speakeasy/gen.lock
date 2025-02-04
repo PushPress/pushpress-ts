@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 3032ae45c99ac3ecca174e0b9c076662
+  docChecksum: ee42a62f93d1ccc72cd48c20eb44f4ee
   docVersion: 3.0.0
-  speakeasyVersion: 1.482.0
-  generationVersion: 2.500.5
-  releaseVersion: 0.20.2
-  configChecksum: d8e32308ee8756637d992c83ecf83cf3
+  speakeasyVersion: 1.484.0
+  generationVersion: 2.503.0
+  releaseVersion: 0.20.3
+  configChecksum: 9d89462df6b8673a2716eedc56c2d48c
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -71,6 +71,7 @@ generatedFiles:
   - docs/models/components/customerrole.md
   - docs/models/components/emergencycontact.md
   - docs/models/components/enrollment.md
+  - docs/models/components/enrollmentstatus.md
   - docs/models/components/entitlements.md
   - docs/models/components/eventcheckin.md
   - docs/models/components/four.md
@@ -88,7 +89,6 @@ generatedFiles:
   - docs/models/components/recurrencedetails1.md
   - docs/models/components/recurrencedetails2.md
   - docs/models/components/reservation.md
-  - docs/models/components/reservationstatus.md
   - docs/models/components/role.md
   - docs/models/components/security.md
   - docs/models/components/status.md

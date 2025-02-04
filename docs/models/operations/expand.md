@@ -11,5 +11,5 @@ let value: Expand = "location";
 ## Values
 
 ```typescript
-"location"
+"location" | "reservations"
 ```

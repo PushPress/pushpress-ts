@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://happy-go-lucky-tusk.net/",
+  url: "https://wasteful-roundabout.net/",
   eventTypes: [
-    "reservation.canceled",
+    "appointment.rescheduled",
   ],
 };
 ```

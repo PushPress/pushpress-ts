@@ -15,6 +15,7 @@ export type GetClassGlobals = {
 
 export const Expand = {
   Location: "location",
+  Reservations: "reservations",
 } as const;
 export type Expand = ClosedEnum<typeof Expand>;
 
