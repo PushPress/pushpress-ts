@@ -49,16 +49,17 @@ export class WebhookSecurity {
     secret: string;
     request: Request;
   }): Promise<Request> {
+    // Clone the original request to avoid mutating it
+    const newRequest = request.clone();
+
     // Validation: Ensure the request has a body and a secret is provided
     this._assert(request.body, "Unable to sign webhook with missing body");
     this._assert(secret, "Unable to sign webhook, missing secret");
 
-    // Clone the original request to avoid mutating it
-    const newRequest = request.clone();
+    const { data } = await request.json();
+    this._assert(data, "Unable to sign webhook with missing data attribute");
 
     // Read the body content from the request
-    const bodyBytes = await request.arrayBuffer();
-    this._assert(bodyBytes, "Unable to sign webhook with missing body");
 
     // Safely access the SubtleCrypto interface for cryptographic operations
     const crypto = globalThis?.crypto?.subtle;
@@ -81,8 +82,14 @@ export class WebhookSecurity {
     );
 
     // Generate the HMAC signature for the request body
-    const signatureBytes = await crypto.sign("HMAC", cryptoKey, bodyBytes);
-    //@ts-expect-error -- checking with speakeasy team about this
+    const signatureBytes = await crypto.sign(
+      "HMAC",
+      cryptoKey,
+      //@ts-expect-error -- speakeasy erecommend using node buffer api untile we need to support other runtimes
+      Buffer.from(JSON.stringify(data)),
+    );
+
+    //@ts-expect-error -- cspeakeasy erecommend using node buffer api untile we need to support other runtimes
     const encodedSignature = Buffer.from(signatureBytes).toString("hex");
 
     // Add the signature to the request headers
