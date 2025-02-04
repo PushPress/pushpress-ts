@@ -5,7 +5,7 @@
 ```typescript
 import { One } from "@pushpress/pushpress/models/operations";
 
-let value: One = "app.uninstalled";
+let value: One = "app.installed";
 ```
 
 ## Values

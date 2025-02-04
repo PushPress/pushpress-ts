@@ -7,7 +7,7 @@ import { CreateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequest = {
   requestBody: {
-    url: "https://next-monocle.org/",
+    url: "https://outlandish-verve.biz",
     eventTypes: [
       "app.installed",
     ],

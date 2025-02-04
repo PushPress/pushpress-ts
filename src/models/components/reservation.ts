@@ -17,7 +17,7 @@ import {
 /**
  * Current status of the reservation
  */
-export const ReservationStatus = {
+export const Status = {
   Waitlisted: "waitlisted",
   CheckedIn: "checked-in",
   Reserved: "reserved",
@@ -27,7 +27,7 @@ export const ReservationStatus = {
 /**
  * Current status of the reservation
  */
-export type ReservationStatus = ClosedEnum<typeof ReservationStatus>;
+export type Status = ClosedEnum<typeof Status>;
 
 /**
  * Schema for representing a reservation for a class or event
@@ -56,7 +56,7 @@ export type Reservation = {
   /**
    * Current status of the reservation
    */
-  status: ReservationStatus;
+  status: Status;
   /**
    * Checkin for a class, event, appointment or an open facility
    */
@@ -64,24 +64,22 @@ export type Reservation = {
 };
 
 /** @internal */
-export const ReservationStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ReservationStatus
-> = z.nativeEnum(ReservationStatus);
+export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
+  .nativeEnum(Status);
 
 /** @internal */
-export const ReservationStatus$outboundSchema: z.ZodNativeEnum<
-  typeof ReservationStatus
-> = ReservationStatus$inboundSchema;
+export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
+  Status$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ReservationStatus$ {
-  /** @deprecated use `ReservationStatus$inboundSchema` instead. */
-  export const inboundSchema = ReservationStatus$inboundSchema;
-  /** @deprecated use `ReservationStatus$outboundSchema` instead. */
-  export const outboundSchema = ReservationStatus$outboundSchema;
+export namespace Status$ {
+  /** @deprecated use `Status$inboundSchema` instead. */
+  export const inboundSchema = Status$inboundSchema;
+  /** @deprecated use `Status$outboundSchema` instead. */
+  export const outboundSchema = Status$outboundSchema;
 }
 
 /** @internal */
@@ -95,7 +93,7 @@ export const Reservation$inboundSchema: z.ZodType<
   customerId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
   registrationTimestamp: z.number(),
-  status: ReservationStatus$inboundSchema,
+  status: Status$inboundSchema,
   checkin: Checkin$inboundSchema.optional(),
 });
 
@@ -121,7 +119,7 @@ export const Reservation$outboundSchema: z.ZodType<
   customerId: z.nullable(z.string()).optional(),
   companyId: z.nullable(z.string()).optional(),
   registrationTimestamp: z.number(),
-  status: ReservationStatus$outboundSchema,
+  status: Status$outboundSchema,
   checkin: Checkin$outboundSchema.optional(),
 });
 

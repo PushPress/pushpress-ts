@@ -5,7 +5,7 @@
 ```typescript
 import { Two } from "@pushpress/pushpress/models/operations";
 
-let value: Two = "class.canceled";
+let value: Two = "customer.deleted";
 ```
 
 ## Values
