@@ -1,6 +1,6 @@
 # Two
 
-A typical full account is a primary account. It may have one or more linked accounts associated with it.
+A default full account is a primary account. It may have one or more linked accounts associated with it.
 
 ## Example Usage
 

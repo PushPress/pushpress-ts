@@ -13,7 +13,7 @@ export type CreateWebhookGlobals = {
   companyId?: string | undefined;
 };
 
-export const Two = {
+export const EventTypes2 = {
   AppointmentScheduled: "appointment.scheduled",
   AppointmentRescheduled: "appointment.rescheduled",
   AppointmentNoshowed: "appointment.noshowed",
@@ -35,18 +35,18 @@ export const Two = {
   ReservationCanceled: "reservation.canceled",
   ReservationNoshowed: "reservation.noshowed",
 } as const;
-export type Two = ClosedEnum<typeof Two>;
+export type EventTypes2 = ClosedEnum<typeof EventTypes2>;
 
-export const One = {
+export const EventTypes1 = {
   AppInstalled: "app.installed",
   AppUninstalled: "app.uninstalled",
 } as const;
-export type One = ClosedEnum<typeof One>;
+export type EventTypes1 = ClosedEnum<typeof EventTypes1>;
 
 /**
  * Webhooks registration must either apply to a set application events (e.g app.installed, app.uninstalled) or to customer events
  */
-export type EventTypes = Array<One> | Array<Two>;
+export type EventTypes = Array<EventTypes1> | Array<EventTypes2>;
 
 export type CreateWebhookRequestBody = {
   /**
@@ -60,7 +60,7 @@ export type CreateWebhookRequestBody = {
   /**
    * Webhooks registration must either apply to a set application events (e.g app.installed, app.uninstalled) or to customer events
    */
-  eventTypes: Array<One> | Array<Two>;
+  eventTypes: Array<EventTypes1> | Array<EventTypes2>;
 };
 
 export type CreateWebhookRequest = {
@@ -192,39 +192,41 @@ export function createWebhookGlobalsFromJSON(
 }
 
 /** @internal */
-export const Two$inboundSchema: z.ZodNativeEnum<typeof Two> = z.nativeEnum(Two);
+export const EventTypes2$inboundSchema: z.ZodNativeEnum<typeof EventTypes2> = z
+  .nativeEnum(EventTypes2);
 
 /** @internal */
-export const Two$outboundSchema: z.ZodNativeEnum<typeof Two> =
-  Two$inboundSchema;
+export const EventTypes2$outboundSchema: z.ZodNativeEnum<typeof EventTypes2> =
+  EventTypes2$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
+export namespace EventTypes2$ {
+  /** @deprecated use `EventTypes2$inboundSchema` instead. */
+  export const inboundSchema = EventTypes2$inboundSchema;
+  /** @deprecated use `EventTypes2$outboundSchema` instead. */
+  export const outboundSchema = EventTypes2$outboundSchema;
 }
 
 /** @internal */
-export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
+export const EventTypes1$inboundSchema: z.ZodNativeEnum<typeof EventTypes1> = z
+  .nativeEnum(EventTypes1);
 
 /** @internal */
-export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
-  One$inboundSchema;
+export const EventTypes1$outboundSchema: z.ZodNativeEnum<typeof EventTypes1> =
+  EventTypes1$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
+export namespace EventTypes1$ {
+  /** @deprecated use `EventTypes1$inboundSchema` instead. */
+  export const inboundSchema = EventTypes1$inboundSchema;
+  /** @deprecated use `EventTypes1$outboundSchema` instead. */
+  export const outboundSchema = EventTypes1$outboundSchema;
 }
 
 /** @internal */
@@ -232,7 +234,10 @@ export const EventTypes$inboundSchema: z.ZodType<
   EventTypes,
   z.ZodTypeDef,
   unknown
-> = z.union([z.array(One$inboundSchema), z.array(Two$inboundSchema)]);
+> = z.union([
+  z.array(EventTypes1$inboundSchema),
+  z.array(EventTypes2$inboundSchema),
+]);
 
 /** @internal */
 export type EventTypes$Outbound = Array<string> | Array<string>;
@@ -242,7 +247,10 @@ export const EventTypes$outboundSchema: z.ZodType<
   EventTypes$Outbound,
   z.ZodTypeDef,
   EventTypes
-> = z.union([z.array(One$outboundSchema), z.array(Two$outboundSchema)]);
+> = z.union([
+  z.array(EventTypes1$outboundSchema),
+  z.array(EventTypes2$outboundSchema),
+]);
 
 /**
  * @internal
@@ -279,7 +287,10 @@ export const CreateWebhookRequestBody$inboundSchema: z.ZodType<
 > = z.object({
   appId: z.string().optional(),
   url: z.string(),
-  eventTypes: z.union([z.array(One$inboundSchema), z.array(Two$inboundSchema)]),
+  eventTypes: z.union([
+    z.array(EventTypes1$inboundSchema),
+    z.array(EventTypes2$inboundSchema),
+  ]),
 });
 
 /** @internal */
@@ -298,8 +309,8 @@ export const CreateWebhookRequestBody$outboundSchema: z.ZodType<
   appId: z.string().optional(),
   url: z.string(),
   eventTypes: z.union([
-    z.array(One$outboundSchema),
-    z.array(Two$outboundSchema),
+    z.array(EventTypes1$outboundSchema),
+    z.array(EventTypes2$outboundSchema),
   ]),
 });
 

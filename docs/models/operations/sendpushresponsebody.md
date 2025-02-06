@@ -30,19 +30,19 @@ const value: operations.ResponseBody2 = {
 };
 ```
 
-### `operations.Three`
+### `operations.ResponseBody3`
 
 ```typescript
-const value: operations.Three = {
+const value: operations.ResponseBody3 = {
   errors: [
     "<value>",
   ],
 };
 ```
 
-### `operations.Four`
+### `operations.ResponseBody4`
 
 ```typescript
-const value: operations.Four = {};
+const value: operations.ResponseBody4 = {};
 ```
 

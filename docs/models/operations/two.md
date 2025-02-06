@@ -1,15 +1,19 @@
 # Two
 
+A default full account is a primary account. It may have one or more linked accounts associated with it.
+
 ## Example Usage
 
 ```typescript
 import { Two } from "@pushpress/pushpress/models/operations";
 
-let value: Two = "customer.deleted";
+let value: Two = {
+  type: "primary",
+};
 ```
 
-## Values
+## Fields
 
-```typescript
-"appointment.scheduled" | "appointment.rescheduled" | "appointment.noshowed" | "appointment.canceled" | "checkin.created" | "checkin.updated" | "checkin.deleted" | "class.canceled" | "customer.created" | "customer.details.changed" | "customer.status.changed" | "customer.deleted" | "enrollment.created" | "enrollment.status.changed" | "enrollment.deleted" | "memberapp.updated" | "reservation.created" | "reservation.waitlisted" | "reservation.canceled" | "reservation.noshowed"
-```
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `type`                                                           | [operations.AccountType](../../models/operations/accounttype.md) | :heavy_check_mark:                                               | N/A                                                              |

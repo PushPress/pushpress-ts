@@ -3,7 +3,9 @@
  */
 
 export * from "./activatewebhook.js";
+export * from "./countcheckins.js";
 export * from "./createapikey.js";
+export * from "./createcustomer.js";
 export * from "./createwebhook.js";
 export * from "./deletewebhook.js";
 export * from "./getapikey.js";

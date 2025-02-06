@@ -36,7 +36,7 @@ export const Gender = {
 export type Gender = ClosedEnum<typeof Gender>;
 
 /**
- * Customer address. defaults to an empty string if no value is available
+ * Customer address. Defaults to an empty string if no value is set.
  */
 export type CustomerAddress = {
   /**
@@ -66,7 +66,7 @@ export type CustomerAddress = {
 };
 
 /**
- * A typical full account is a primary account. It may have one or more linked accounts associated with it.
+ * A default full account is a primary account. It may have one or more linked accounts associated with it.
  */
 export type Two = {
   type?: "primary" | undefined;
@@ -147,13 +147,13 @@ export type Customer = {
    */
   dob: string | null;
   /**
-   * Customer address. defaults to an empty string if no value is available
+   * Customer address. Defaults to an empty string if no value is set.
    */
   address: CustomerAddress;
   /**
    * The UUID of the assigned staff member
    */
-  assignedToStaffId: string | null;
+  assignedToStaffId?: string | null | undefined;
   account: Two | One;
   /**
    * A URL pointing to the customer's profile image
@@ -591,7 +591,7 @@ export const Customer$inboundSchema: z.ZodType<
   gender: z.nullable(Gender$inboundSchema),
   dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$inboundSchema),
-  assignedToStaffId: z.nullable(z.string()),
+  assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
     z.lazy(() => Two$inboundSchema),
     z.lazy(() => One$inboundSchema),
@@ -612,7 +612,7 @@ export type Customer$Outbound = {
   gender: string | null;
   dob: string | null;
   address: CustomerAddress$Outbound;
-  assignedToStaffId: string | null;
+  assignedToStaffId?: string | null | undefined;
   account: Two$Outbound | One$Outbound;
   profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact$Outbound | undefined;
@@ -634,7 +634,7 @@ export const Customer$outboundSchema: z.ZodType<
   gender: z.nullable(Gender$outboundSchema),
   dob: z.nullable(z.string()),
   address: z.lazy(() => CustomerAddress$outboundSchema),
-  assignedToStaffId: z.nullable(z.string()),
+  assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
     z.lazy(() => Two$outboundSchema),
     z.lazy(() => One$outboundSchema),

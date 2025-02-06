@@ -5,19 +5,19 @@ Webhooks registration must either apply to a set application events (e.g app.ins
 
 ## Supported Types
 
-### `operations.One[]`
+### `operations.EventTypes1[]`
 
 ```typescript
-const value: operations.One[] = [
-  "app.installed",
+const value: operations.EventTypes1[] = [
+  "app.uninstalled",
 ];
 ```
 
-### `operations.Two[]`
+### `operations.EventTypes2[]`
 
 ```typescript
-const value: operations.Two[] = [
-  "customer.details.changed",
+const value: operations.EventTypes2[] = [
+  "checkin.created",
 ];
 ```
 
