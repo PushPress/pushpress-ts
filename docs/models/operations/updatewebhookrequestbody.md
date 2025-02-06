@@ -7,7 +7,7 @@ import { UpdateWebhookRequestBody } from "@pushpress/pushpress/models/operations
 
 let value: UpdateWebhookRequestBody = {
   eventTypes: [
-    "enrollment.created",
+    "customer.status.changed",
   ],
 };
 ```

@@ -6,7 +6,7 @@
 import { GetOpenCheckinRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetOpenCheckinRequest = {
-  uuid: "aa6e56ec-b1eb-4f2d-9291-dc961b7bdfd0",
+  uuid: "a6e56ecb-1ebf-42d2-a91d-c961b7bdfd05",
 };
 ```
 

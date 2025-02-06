@@ -5,7 +5,7 @@
 ```typescript
 import { UpdateWebhookEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: UpdateWebhookEventTypes = "customer.details.changed";
+let value: UpdateWebhookEventTypes = "customer.deleted";
 ```
 
 ## Values

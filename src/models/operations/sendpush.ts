@@ -39,12 +39,12 @@ export type SendPushRequest = {
   requestBody: SendPushRequestBody;
 };
 
-export type Four = {
+export type ResponseBody4 = {
   id?: string | null | undefined;
   externalId?: string | null | undefined;
 };
 
-export type Three = {
+export type ResponseBody3 = {
   errors: Array<string>;
 };
 
@@ -70,7 +70,11 @@ export type ResponseBody1 = {
 /**
  * Default Response
  */
-export type SendPushResponseBody = Three | ResponseBody1 | Four | ResponseBody2;
+export type SendPushResponseBody =
+  | ResponseBody3
+  | ResponseBody1
+  | ResponseBody4
+  | ResponseBody2;
 
 /** @internal */
 export const SendPushGlobals$inboundSchema: z.ZodType<
@@ -261,76 +265,85 @@ export function sendPushRequestFromJSON(
 }
 
 /** @internal */
-export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.nullable(z.string()).optional(),
-    external_id: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "external_id": "externalId",
-    });
+export const ResponseBody4$inboundSchema: z.ZodType<
+  ResponseBody4,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  external_id: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "external_id": "externalId",
   });
+});
 
 /** @internal */
-export type Four$Outbound = {
+export type ResponseBody4$Outbound = {
   id?: string | null | undefined;
   external_id?: string | null | undefined;
 };
 
 /** @internal */
-export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
-  z.object({
-    id: z.nullable(z.string()).optional(),
-    externalId: z.nullable(z.string()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      externalId: "external_id",
-    });
+export const ResponseBody4$outboundSchema: z.ZodType<
+  ResponseBody4$Outbound,
+  z.ZodTypeDef,
+  ResponseBody4
+> = z.object({
+  id: z.nullable(z.string()).optional(),
+  externalId: z.nullable(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    externalId: "external_id",
   });
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
+export namespace ResponseBody4$ {
+  /** @deprecated use `ResponseBody4$inboundSchema` instead. */
+  export const inboundSchema = ResponseBody4$inboundSchema;
+  /** @deprecated use `ResponseBody4$outboundSchema` instead. */
+  export const outboundSchema = ResponseBody4$outboundSchema;
+  /** @deprecated use `ResponseBody4$Outbound` instead. */
+  export type Outbound = ResponseBody4$Outbound;
 }
 
-export function fourToJSON(four: Four): string {
-  return JSON.stringify(Four$outboundSchema.parse(four));
+export function responseBody4ToJSON(responseBody4: ResponseBody4): string {
+  return JSON.stringify(ResponseBody4$outboundSchema.parse(responseBody4));
 }
 
-export function fourFromJSON(
+export function responseBody4FromJSON(
   jsonString: string,
-): SafeParseResult<Four, SDKValidationError> {
+): SafeParseResult<ResponseBody4, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Four$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Four' from JSON`,
+    (x) => ResponseBody4$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseBody4' from JSON`,
   );
 }
 
 /** @internal */
-export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
-  .object({
-    errors: z.array(z.string()),
-  });
+export const ResponseBody3$inboundSchema: z.ZodType<
+  ResponseBody3,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  errors: z.array(z.string()),
+});
 
 /** @internal */
-export type Three$Outbound = {
+export type ResponseBody3$Outbound = {
   errors: Array<string>;
 };
 
 /** @internal */
-export const Three$outboundSchema: z.ZodType<
-  Three$Outbound,
+export const ResponseBody3$outboundSchema: z.ZodType<
+  ResponseBody3$Outbound,
   z.ZodTypeDef,
-  Three
+  ResponseBody3
 > = z.object({
   errors: z.array(z.string()),
 });
@@ -339,26 +352,26 @@ export const Three$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-  /** @deprecated use `Three$Outbound` instead. */
-  export type Outbound = Three$Outbound;
+export namespace ResponseBody3$ {
+  /** @deprecated use `ResponseBody3$inboundSchema` instead. */
+  export const inboundSchema = ResponseBody3$inboundSchema;
+  /** @deprecated use `ResponseBody3$outboundSchema` instead. */
+  export const outboundSchema = ResponseBody3$outboundSchema;
+  /** @deprecated use `ResponseBody3$Outbound` instead. */
+  export type Outbound = ResponseBody3$Outbound;
 }
 
-export function threeToJSON(three: Three): string {
-  return JSON.stringify(Three$outboundSchema.parse(three));
+export function responseBody3ToJSON(responseBody3: ResponseBody3): string {
+  return JSON.stringify(ResponseBody3$outboundSchema.parse(responseBody3));
 }
 
-export function threeFromJSON(
+export function responseBody3FromJSON(
   jsonString: string,
-): SafeParseResult<Three, SDKValidationError> {
+): SafeParseResult<ResponseBody3, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Three$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Three' from JSON`,
+    (x) => ResponseBody3$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseBody3' from JSON`,
   );
 }
 
@@ -598,17 +611,17 @@ export const SendPushResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Three$inboundSchema),
+  z.lazy(() => ResponseBody3$inboundSchema),
   z.lazy(() => ResponseBody1$inboundSchema),
-  z.lazy(() => Four$inboundSchema),
+  z.lazy(() => ResponseBody4$inboundSchema),
   z.lazy(() => ResponseBody2$inboundSchema),
 ]);
 
 /** @internal */
 export type SendPushResponseBody$Outbound =
-  | Three$Outbound
+  | ResponseBody3$Outbound
   | ResponseBody1$Outbound
-  | Four$Outbound
+  | ResponseBody4$Outbound
   | ResponseBody2$Outbound;
 
 /** @internal */
@@ -617,9 +630,9 @@ export const SendPushResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendPushResponseBody
 > = z.union([
-  z.lazy(() => Three$outboundSchema),
+  z.lazy(() => ResponseBody3$outboundSchema),
   z.lazy(() => ResponseBody1$outboundSchema),
-  z.lazy(() => Four$outboundSchema),
+  z.lazy(() => ResponseBody4$outboundSchema),
   z.lazy(() => ResponseBody2$outboundSchema),
 ]);
 

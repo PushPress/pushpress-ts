@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: ee42a62f93d1ccc72cd48c20eb44f4ee
+  docChecksum: afa2971161a3985f3b25d316f5c42543
   docVersion: 3.0.0
-  speakeasyVersion: 1.484.0
-  generationVersion: 2.503.0
-  releaseVersion: 0.20.3
-  configChecksum: 9d89462df6b8673a2716eedc56c2d48c
+  speakeasyVersion: 1.486.0
+  generationVersion: 2.505.0
+  releaseVersion: 0.21.0
+  configChecksum: c30618085afb333c1ed187aaa5d9dc8e
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.11
-    core: 3.18.22
+    core: 3.19.0
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
@@ -101,14 +101,25 @@ generatedFiles:
   - docs/models/errors/ratelimited.md
   - docs/models/errors/timeout.md
   - docs/models/errors/unauthorized.md
+  - docs/models/operations/account.md
+  - docs/models/operations/accounttype.md
   - docs/models/operations/activatewebhookglobals.md
   - docs/models/operations/activatewebhookrequest.md
   - docs/models/operations/activatewebhookresponsebody.md
+  - docs/models/operations/address.md
+  - docs/models/operations/countcheckinsglobals.md
+  - docs/models/operations/countcheckinsrequest.md
+  - docs/models/operations/countcheckinsresponsebody.md
+  - docs/models/operations/countcheckinssessionqueryparaminclude.md
   - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
   - docs/models/operations/createapikeyresponsebody.md
   - docs/models/operations/createapikeysecurity.md
+  - docs/models/operations/createcustomerglobals.md
+  - docs/models/operations/createcustomerrequest.md
+  - docs/models/operations/createcustomerrequestbody.md
+  - docs/models/operations/createcustomerresponsebody.md
   - docs/models/operations/createwebhookeventtypes.md
   - docs/models/operations/createwebhookglobals.md
   - docs/models/operations/createwebhookrequest.md
@@ -117,10 +128,14 @@ generatedFiles:
   - docs/models/operations/data.md
   - docs/models/operations/deletewebhookglobals.md
   - docs/models/operations/deletewebhookrequest.md
+  - docs/models/operations/emergencycontact.md
   - docs/models/operations/errors.md
   - docs/models/operations/eventtypes.md
+  - docs/models/operations/eventtypes1.md
+  - docs/models/operations/eventtypes2.md
   - docs/models/operations/expand.md
   - docs/models/operations/four.md
+  - docs/models/operations/gender.md
   - docs/models/operations/getapikeyglobals.md
   - docs/models/operations/getapikeyrequest.md
   - docs/models/operations/getapikeysecurity.md
@@ -144,6 +159,7 @@ generatedFiles:
   - docs/models/operations/getwebhookglobals.md
   - docs/models/operations/getwebhookrequest.md
   - docs/models/operations/getwebhookresponsebody.md
+  - docs/models/operations/include.md
   - docs/models/operations/invalidaliases.md
   - docs/models/operations/listapikeysdata.md
   - docs/models/operations/listapikeysglobals.md
@@ -179,10 +195,16 @@ generatedFiles:
   - docs/models/operations/listwebhooksglobals.md
   - docs/models/operations/listwebhooksrequest.md
   - docs/models/operations/listwebhooksresponsebody.md
+  - docs/models/operations/name.md
   - docs/models/operations/one.md
+  - docs/models/operations/queryparam1.md
+  - docs/models/operations/queryparam2.md
+  - docs/models/operations/queryparaminclude.md
   - docs/models/operations/replyto.md
   - docs/models/operations/responsebody1.md
   - docs/models/operations/responsebody2.md
+  - docs/models/operations/responsebody3.md
+  - docs/models/operations/responsebody4.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
@@ -204,9 +226,12 @@ generatedFiles:
   - docs/models/operations/sendsmsglobals.md
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
+  - docs/models/operations/session.md
+  - docs/models/operations/sessionqueryparaminclude.md
   - docs/models/operations/status.md
   - docs/models/operations/three.md
   - docs/models/operations/two.md
+  - docs/models/operations/type.md
   - docs/models/operations/updatewebhookeventtypes.md
   - docs/models/operations/updatewebhookglobals.md
   - docs/models/operations/updatewebhookmanagewebhookseventtypes.md
@@ -294,6 +319,7 @@ generatedFiles:
   - src/funcs/checkinsAppointmentList.ts
   - src/funcs/checkinsClassGet.ts
   - src/funcs/checkinsClassList.ts
+  - src/funcs/checkinsCount.ts
   - src/funcs/checkinsEventGet.ts
   - src/funcs/checkinsEventList.ts
   - src/funcs/checkinsOpenGet.ts
@@ -305,6 +331,7 @@ generatedFiles:
   - src/funcs/customerDeletedEvent.ts
   - src/funcs/customerDetailsChangedEvent.ts
   - src/funcs/customerStatusChangedEvent.ts
+  - src/funcs/customersCreate.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
   - src/funcs/enrollmentCreatedEvent.ts
@@ -375,7 +402,9 @@ generatedFiles:
   - src/models/errors/timeout.ts
   - src/models/errors/unauthorized.ts
   - src/models/operations/activatewebhook.ts
+  - src/models/operations/countcheckins.ts
   - src/models/operations/createapikey.ts
+  - src/models/operations/createcustomer.ts
   - src/models/operations/createwebhook.ts
   - src/models/operations/deletewebhook.ts
   - src/models/operations/getapikey.ts
@@ -923,5 +952,17 @@ examples:
       responses:
         "200":
           application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
+  countCheckins:
+    speakeasy-default-count-checkins:
+      responses:
+        "200":
+          application/json: {"count": 2641.66}
+  createCustomer:
+    speakeasy-default-create-customer:
+      requestBody:
+        application/json: {"email": "Loyal79@yahoo.com"}
+      responses:
+        "200":
+          application/json: {"id": "<id>"}
 examplesVersion: 1.0.0
 generatedTests: {}

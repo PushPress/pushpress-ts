@@ -125,6 +125,7 @@ run();
 
 ### [checkins](docs/sdks/checkins/README.md)
 
+* [count](docs/sdks/checkins/README.md#count) - Get Checkin Count
 
 #### [checkins.appointment](docs/sdks/appointment/README.md)
 
@@ -156,8 +157,9 @@ run();
 
 ### [customers](docs/sdks/customers/README.md)
 
-* [get](docs/sdks/customers/README.md#get) - Get Customer Details
+* [create](docs/sdks/customers/README.md#create) - Create a new Customer
 * [list](docs/sdks/customers/README.md#list) - List Customers
+* [get](docs/sdks/customers/README.md#get) - Get Customer Details
 
 ### [keys](docs/sdks/keys/README.md)
 
@@ -252,6 +254,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - List Appointment Checkins
 - [`checkinsClassGet`](docs/sdks/class/README.md#get) - Get Class Checkin Details
 - [`checkinsClassList`](docs/sdks/class/README.md#list) - List Class Checkins
+- [`checkinsCount`](docs/sdks/checkins/README.md#count) - Get Checkin Count
 - [`checkinsEventGet`](docs/sdks/event/README.md#get) - Get Event Checkin Details
 - [`checkinsEventList`](docs/sdks/event/README.md#list) - List Event Checkins
 - [`checkinsOpenGet`](docs/sdks/open/README.md#get) - Get Open Facility Details
@@ -263,6 +266,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`customerCreatedEvent`](docs/sdks/pushpress/README.md#customercreatedevent)
 - [`customerDeletedEvent`](docs/sdks/pushpress/README.md#customerdeletedevent)
 - [`customerDetailsChangedEvent`](docs/sdks/pushpress/README.md#customerdetailschangedevent)
+- [`customersCreate`](docs/sdks/customers/README.md#create) - Create a new Customer
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
 - [`customersList`](docs/sdks/customers/README.md#list) - List Customers
 - [`customerStatusChangedEvent`](docs/sdks/pushpress/README.md#customerstatuschangedevent)

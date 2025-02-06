@@ -1,6 +1,6 @@
 # CustomerAddress
 
-Customer address. defaults to an empty string if no value is available
+Customer address. Defaults to an empty string if no value is set.
 
 ## Example Usage
 
