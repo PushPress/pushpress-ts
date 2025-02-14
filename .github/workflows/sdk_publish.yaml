@@ -21,3 +21,28 @@ jobs:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+  publish-private:
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9.3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "21.x"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@pushpress"
+      - run: |
+          git config --global user.email github.actions@pushpress.com
+          git config --global user.name "github"
+      - name: Install Deps
+        run: pnpm i
+      - name: Build
+        run: pnpm build
+      - name: Lint
+        run: pnpm lint
+      - name: Publish
+        run: pnpm publish
