@@ -32,6 +32,7 @@ import { Checkins } from "./checkins.js";
 import { Classes } from "./classes.js";
 import { Company } from "./company.js";
 import { Customers } from "./customers.js";
+import { Enrollment } from "./enrollment.js";
 import { Keys } from "./keys.js";
 import { ManageWebhooks } from "./managewebhooks.js";
 import { Messages } from "./messages.js";
@@ -56,6 +57,11 @@ export class PushPress extends ClientSDK {
   private _customers?: Customers;
   get customers(): Customers {
     return (this._customers ??= new Customers(this._options));
+  }
+
+  private _enrollment?: Enrollment;
+  get enrollment(): Enrollment {
+    return (this._enrollment ??= new Enrollment(this._options));
   }
 
   private _keys?: Keys;

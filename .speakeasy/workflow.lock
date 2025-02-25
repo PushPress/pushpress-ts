@@ -2,20 +2,20 @@ speakeasyVersion: 1.486.0
 sources:
     PushPress-OAS:
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:877eb87ddef45c7c41186176d7152f9dabcd5784eba93d13c8dd13db2340449a
-        sourceBlobDigest: sha256:a662f62148e37c5b4504027d98725f84867e2c28ed911eaa55f925abe9ae3a9b
+        sourceRevisionDigest: sha256:c30d7ba1f03ac9700901fa34eb53f2dc7cab104ee622ecbd9a9ec4a871826296
+        sourceBlobDigest: sha256:853b39dcdfc6455e8029a30a523009da0687fa9c121b933796bd5dfec48a6cd9
         tags:
             - latest
-            - speakeasy-sdk-regen-1738874190
+            - speakeasy-sdk-regen-1740522995
             - 3.0.0
 targets:
     push-press:
         source: PushPress-OAS
         sourceNamespace: push-press-oas
-        sourceRevisionDigest: sha256:877eb87ddef45c7c41186176d7152f9dabcd5784eba93d13c8dd13db2340449a
-        sourceBlobDigest: sha256:a662f62148e37c5b4504027d98725f84867e2c28ed911eaa55f925abe9ae3a9b
+        sourceRevisionDigest: sha256:c30d7ba1f03ac9700901fa34eb53f2dc7cab104ee622ecbd9a9ec4a871826296
+        sourceBlobDigest: sha256:853b39dcdfc6455e8029a30a523009da0687fa9c121b933796bd5dfec48a6cd9
         codeSamplesNamespace: push-press-oas-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:3b7cb3c414498ed9e3ee7fb2f981f2db1b925ffd174b5bc46424d1b0cec630df
+        codeSamplesRevisionDigest: sha256:814196350f0561f8e6fd23b58abe82af2cd5ea8a08c5d04e40525ade1c642619
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

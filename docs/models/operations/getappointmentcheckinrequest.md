@@ -6,7 +6,7 @@
 import { GetAppointmentCheckinRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetAppointmentCheckinRequest = {
-  uuid: "28030c35-eb02-4993-9e98-9b4632fb7340",
+  uuid: "5eb02993-e989-4b46-a32f-b734064b6201",
 };
 ```
 

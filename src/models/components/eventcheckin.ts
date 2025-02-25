@@ -41,29 +41,33 @@ export type Type = {
  */
 export type EventCheckin = {
   /**
-   * Unique identifier for the event check-in
+   * Unique identifier for the checkin record
    */
   id: string;
+  /**
+   * UUID of the customer who checked in
+   */
+  customer: string;
+  /**
+   * UUID of the company
+   */
+  company: string;
+  /**
+   * Unix timestamp representing the time of checkin
+   */
+  timestamp: number;
+  /**
+   * UUID of the enrollment record, null if the checkin is not associated with a plan enrollment
+   */
+  enrollmentId?: string | null | undefined;
   /**
    * Name of the event being checked into
    */
   name: string;
   /**
-   * UUID of the customer checking in
-   */
-  customer: string;
-  /**
-   * UUID of the company hosting the event
-   */
-  company: string;
-  /**
    * Type of check-in, which is always 'event'
    */
   kind?: "event" | undefined;
-  /**
-   * Unix timestamp of when the check-in occurred
-   */
-  timestamp: number;
   /**
    * Role of the customer at the event
    */
@@ -152,11 +156,12 @@ export const EventCheckin$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  name: z.string(),
   customer: z.string(),
   company: z.string(),
-  kind: z.literal("event").optional(),
   timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
+  name: z.string(),
+  kind: z.literal("event").optional(),
   role: Role$inboundSchema,
   typeId: z.string(),
   type: z.lazy(() => Type$inboundSchema),
@@ -165,11 +170,12 @@ export const EventCheckin$inboundSchema: z.ZodType<
 /** @internal */
 export type EventCheckin$Outbound = {
   id: string;
-  name: string;
   customer: string;
   company: string;
-  kind: "event";
   timestamp: number;
+  enrollmentId?: string | null | undefined;
+  name: string;
+  kind: "event";
   role: string;
   typeId: string;
   type: Type$Outbound;
@@ -182,11 +188,12 @@ export const EventCheckin$outboundSchema: z.ZodType<
   EventCheckin
 > = z.object({
   id: z.string(),
-  name: z.string(),
   customer: z.string(),
   company: z.string(),
-  kind: z.literal("event").default("event" as const),
   timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
+  name: z.string(),
+  kind: z.literal("event").default("event" as const),
   role: Role$outboundSchema,
   typeId: z.string(),
   type: z.lazy(() => Type$outboundSchema),

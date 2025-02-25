@@ -20,17 +20,21 @@ export type OpenCheckin = {
    */
   customer: string;
   /**
-   * UUID of the company where the checkin occurred
+   * UUID of the company
    */
   company: string;
-  /**
-   * Indicates that this checkin is for an open facility
-   */
-  kind?: "open" | undefined;
   /**
    * Unix timestamp representing the time of checkin
    */
   timestamp: number;
+  /**
+   * UUID of the enrollment record, null if the checkin is not associated with a plan enrollment
+   */
+  enrollmentId?: string | null | undefined;
+  /**
+   * Indicates that this checkin is for an open facility
+   */
+  kind?: "open" | undefined;
 };
 
 /** @internal */
@@ -42,8 +46,9 @@ export const OpenCheckin$inboundSchema: z.ZodType<
   id: z.string(),
   customer: z.string(),
   company: z.string(),
-  kind: z.literal("open").optional(),
   timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
+  kind: z.literal("open").optional(),
 });
 
 /** @internal */
@@ -51,8 +56,9 @@ export type OpenCheckin$Outbound = {
   id: string;
   customer: string;
   company: string;
-  kind: "open";
   timestamp: number;
+  enrollmentId?: string | null | undefined;
+  kind: "open";
 };
 
 /** @internal */
@@ -64,8 +70,9 @@ export const OpenCheckin$outboundSchema: z.ZodType<
   id: z.string(),
   customer: z.string(),
   company: z.string(),
-  kind: z.literal("open").default("open" as const),
   timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
+  kind: z.literal("open").default("open" as const),
 });
 
 /**
