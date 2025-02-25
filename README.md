@@ -93,13 +93,13 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
+      timestamp: 1672531200000,
       name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
-      timestamp: 1672531200000,
       role: "attendee",
     },
     created: 420989,
@@ -160,6 +160,10 @@ run();
 * [create](docs/sdks/customers/README.md#create) - Create a new Customer
 * [list](docs/sdks/customers/README.md#list) - List Customers
 * [get](docs/sdks/customers/README.md#get) - Get Customer Details
+
+### [enrollment](docs/sdks/enrollment/README.md)
+
+* [get](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
 
 ### [keys](docs/sdks/keys/README.md)
 
@@ -272,6 +276,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`customerStatusChangedEvent`](docs/sdks/pushpress/README.md#customerstatuschangedevent)
 - [`enrollmentCreatedEvent`](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
 - [`enrollmentDeleted`](docs/sdks/pushpress/README.md#enrollmentdeleted)
+- [`enrollmentGet`](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
 - [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
 - [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API Key
 - [`keysList`](docs/sdks/keys/README.md#list) - List API Keys
@@ -344,13 +349,13 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
+      timestamp: 1672531200000,
       name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
-      timestamp: 1672531200000,
       role: "attendee",
     },
     created: 420989,
@@ -396,13 +401,13 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
+      timestamp: 1672531200000,
       name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
-      timestamp: 1672531200000,
       role: "attendee",
     },
     created: 420989,
@@ -572,13 +577,13 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
+      timestamp: 1672531200000,
       name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
-      timestamp: 1672531200000,
       role: "attendee",
     },
     created: 420989,
@@ -606,13 +611,13 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
+      timestamp: 1672531200000,
       name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
-      timestamp: 1672531200000,
       role: "attendee",
     },
     created: 420989,
@@ -699,13 +704,13 @@ async function run() {
       id: "chk_12345",
       customer: "usr_12345",
       company: "cli_12345",
+      timestamp: 1672531200000,
       name: "My Class",
       typeId: "cit_12345",
       type: {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
-      timestamp: 1672531200000,
       role: "attendee",
     },
     created: 420989,

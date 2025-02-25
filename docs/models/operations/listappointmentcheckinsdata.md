@@ -9,10 +9,10 @@ let value: ListAppointmentCheckinsData = {
   resultArray: [
     {
       id: "apptschdl_12345",
-      name: "Personal Training",
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
+      name: "Personal Training",
       typeId: "appttype_12345",
     },
   ],

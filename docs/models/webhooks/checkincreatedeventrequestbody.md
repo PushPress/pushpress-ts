@@ -10,10 +10,10 @@ import { CheckinCreatedEventRequestBody } from "@pushpress/pushpress/models/webh
 let value: CheckinCreatedEventRequestBody = {
   data: {
     id: "chk_12345",
-    name: "My Event",
     customer: "usr_12345",
     company: "cli_12345",
     timestamp: 1672531200000,
+    name: "My Event",
     role: "staff",
     typeId: "cit_12345",
     type: {

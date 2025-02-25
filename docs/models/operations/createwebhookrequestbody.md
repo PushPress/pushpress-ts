@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://tough-vol.org/",
+  url: "https://back-possession.net",
   eventTypes: [
-    "memberapp.updated",
+    "checkin.updated",
   ],
 };
 ```

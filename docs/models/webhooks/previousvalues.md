@@ -19,10 +19,10 @@ const value: components.OpenCheckin = {
 ```typescript
 const value: components.EventCheckin = {
   id: "chk_12345",
-  name: "My Event",
   customer: "usr_12345",
   company: "cli_12345",
   timestamp: 1672531200000,
+  name: "My Event",
   role: "staff",
   typeId: "cit_12345",
   type: {
@@ -39,13 +39,13 @@ const value: components.ClassCheckin = {
   id: "chk_12345",
   customer: "usr_12345",
   company: "cli_12345",
+  timestamp: 1672531200000,
   name: "My Class",
   typeId: "cit_12345",
   type: {
     id: "cit_12345",
     name: "Group HIIT Training",
   },
-  timestamp: 1672531200000,
   role: "attendee",
 };
 ```
@@ -55,10 +55,10 @@ const value: components.ClassCheckin = {
 ```typescript
 const value: components.AppointmentCheckin = {
   id: "apptschdl_12345",
-  name: "Personal Training",
   customer: "usr_12345",
   company: "cli_12345",
   timestamp: 1672531200000,
+  name: "Personal Training",
   typeId: "appttype_12345",
 };
 ```
