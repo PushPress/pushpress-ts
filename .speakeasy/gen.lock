@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: afa2971161a3985f3b25d316f5c42543
+  docChecksum: 2dcf769b94365f489bdfa599e572a158
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.21.0
-  configChecksum: c30618085afb333c1ed187aaa5d9dc8e
+  releaseVersion: 0.23.0
+  configChecksum: ee24b28f615c3fa1e1f59e93ff42f205
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -57,6 +57,7 @@ generatedFiles:
   - docs/models/components/appointment.md
   - docs/models/components/appointmentcheckin.md
   - docs/models/components/appointmenttype.md
+  - docs/models/components/billingschedule.md
   - docs/models/components/category.md
   - docs/models/components/checkin.md
   - docs/models/components/checkindetails.md
@@ -83,6 +84,7 @@ generatedFiles:
   - docs/models/components/name.md
   - docs/models/components/one.md
   - docs/models/components/opencheckin.md
+  - docs/models/components/period.md
   - docs/models/components/plan.md
   - docs/models/components/policies.md
   - docs/models/components/recurrencedetails.md
@@ -149,6 +151,8 @@ generatedFiles:
   - docs/models/operations/getcompanyrequest.md
   - docs/models/operations/getcustomerglobals.md
   - docs/models/operations/getcustomerrequest.md
+  - docs/models/operations/getenrollmentglobals.md
+  - docs/models/operations/getenrollmentrequest.md
   - docs/models/operations/geteventcheckinglobals.md
   - docs/models/operations/geteventcheckinrequest.md
   - docs/models/operations/getopencheckinglobals.md
@@ -290,6 +294,7 @@ generatedFiles:
   - docs/sdks/company/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/email/README.md
+  - docs/sdks/enrollment/README.md
   - docs/sdks/event/README.md
   - docs/sdks/keys/README.md
   - docs/sdks/managewebhooks/README.md
@@ -336,6 +341,7 @@ generatedFiles:
   - src/funcs/customersList.ts
   - src/funcs/enrollmentCreatedEvent.ts
   - src/funcs/enrollmentDeleted.ts
+  - src/funcs/enrollmentGet.ts
   - src/funcs/enrollmentStatusChanged.ts
   - src/funcs/keysCreate.ts
   - src/funcs/keysList.ts
@@ -413,6 +419,7 @@ generatedFiles:
   - src/models/operations/getclasscheckin.ts
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
+  - src/models/operations/getenrollment.ts
   - src/models/operations/geteventcheckin.ts
   - src/models/operations/getopencheckin.ts
   - src/models/operations/getplan.ts
@@ -461,6 +468,7 @@ generatedFiles:
   - src/sdk/company.ts
   - src/sdk/customers.ts
   - src/sdk/email.ts
+  - src/sdk/enrollment.ts
   - src/sdk/event.ts
   - src/sdk/index.ts
   - src/sdk/keys.ts
@@ -486,11 +494,11 @@ examples:
   checkinCreatedEvent:
     speakeasy-default-checkin-created-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}, "created": 420989, "event": "checkin.created"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}, "created": 420989, "event": "checkin.created"}
   checkinUpdatedEvent:
     speakeasy-default-checkin-updated-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}, "previousValues": {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 738207, "event": "checkin.updated"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}, "previousValues": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 738207, "event": "checkin.updated"}
   checkinDeletedEvent:
     speakeasy-default-checkin-deleted-event:
       requestBody:
@@ -538,15 +546,15 @@ examples:
   classCanceledEvent:
     speakeasy-default-class-canceled-event:
       requestBody:
-        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}, "created": 97537, "event": "class.canceled"}
+        application/json: {"data": {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "reservations": [{"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}], "start": 1704063600, "end": 1704067200}, "created": 97537, "event": "class.canceled"}
   enrollmentCreatedEvent:
     speakeasy-default-enrollment-created-event:
       requestBody:
-        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 804740, "event": "enrollment.created"}
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 804740, "event": "enrollment.created"}
   enrollmentStatusChanged:
     speakeasy-default-enrollment-status-changed:
       requestBody:
-        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "previousValues": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "previousValues": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
   enrollmentDeleted:
     speakeasy-default-enrollment-deleted:
       requestBody:
@@ -554,15 +562,15 @@ examples:
   reservationCreatedEvent:
     speakeasy-default-reservation-created-event:
       requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 377467, "event": "reservation.created"}
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved", "checkin": {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "typeId": "appttype_12345"}}, "created": 377467, "event": "reservation.created"}
   reservationWaitlistedEvent:
     speakeasy-default-reservation-waitlisted-event:
       requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 902968, "event": "reservation.waitlisted"}
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved", "checkin": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}}, "created": 902968, "event": "reservation.waitlisted"}
   reservationCanceledEvent:
     speakeasy-default-reservation-canceled-event:
       requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}, "created": 816068, "event": "reservation.canceled"}
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved", "checkin": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}}, "created": 816068, "event": "reservation.canceled"}
   getEventCheckin:
     speakeasy-default-get-event-checkin:
       parameters:
@@ -571,7 +579,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
   listEventCheckins:
     speakeasy-default-list-event-checkins:
       parameters:
@@ -581,7 +589,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "name": "My Event", "customer": "usr_12345", "company": "cli_12345", "kind": "event", "timestamp": 1672531200000, "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
   getClassCheckin:
     speakeasy-default-get-class-checkin:
       parameters:
@@ -590,7 +598,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}
   listClassCheckins:
     speakeasy-default-list-class-checkins:
       parameters:
@@ -600,7 +608,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "timestamp": 1672531200000, "role": "attendee"}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}]}}
   getOpenCheckin:
     speakeasy-default-get-open-checkin:
       parameters:
@@ -609,7 +617,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}
   listOpenCheckins:
     speakeasy-default-list-open-checkins:
       parameters:
@@ -619,7 +627,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "kind": "open", "timestamp": 1672531200000}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}]}}
   getAppointmentCheckin:
     speakeasy-default-get-appointment-checkin:
       parameters:
@@ -628,12 +636,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}
+          application/json: {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "typeId": "appttype_12345"}
   listAppointmentCheckins:
     speakeasy-default-list-appointment-checkins:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "name": "Personal Training", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "appointment", "typeId": "appttype_12345"}]}}
+          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "typeId": "appttype_12345"}]}}
   getClass:
     speakeasy-default-get-class:
       parameters:
@@ -643,7 +651,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}
+          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "classTypeName": "HIIT", "locationUuid": "loc_12345", "reservations": [{"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved"}], "start": 1704063600, "end": 1704067200}
   getCompany:
     speakeasy-default-get-company:
       responses:
@@ -964,5 +972,14 @@ examples:
       responses:
         "200":
           application/json: {"id": "<id>"}
+  getEnrollment:
+    speakeasy-default-get-enrollment:
+      parameters:
+        path:
+          uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}
 examplesVersion: 1.0.0
 generatedTests: {}

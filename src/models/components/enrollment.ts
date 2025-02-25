@@ -8,6 +8,23 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const Period = {
+  Day: "day",
+  Week: "week",
+  Month: "month",
+  Year: "year",
+  Once: "once",
+} as const;
+export type Period = ClosedEnum<typeof Period>;
+
+export type BillingSchedule = {
+  period: Period;
+  /**
+   * The number of periods between bills
+   */
+  interval: number;
+};
+
 export const EnrollmentStatus = {
   Active: "active",
   Alert: "alert",
@@ -66,10 +83,105 @@ export type Enrollment = {
    * Unique identifier for the plan
    */
   planId?: string | null | undefined;
+  billingSchedule: BillingSchedule;
   status: EnrollmentStatus;
+  /**
+   * Date format string of start date
+   */
+  startDate?: string | null | undefined;
+  /**
+   * Date format string of end date e.g. 2022-01-01
+   */
+  endDate?: string | null | undefined;
+  /**
+   * Date format string of last charge date e.g. 2022-01-01
+   */
+  lastCharge?: string | null | undefined;
+  /**
+   * Date format string of next charge date e.g. 2022-01-01
+   */
+  nextCharge?: string | null | undefined;
+  /**
+   * Date format string of paid until date e.g. 2022-01-01
+   */
+  paidUntil?: string | null | undefined;
   checkinDetails: CheckinDetails;
   entitlements: Array<Entitlements>;
 };
+
+/** @internal */
+export const Period$inboundSchema: z.ZodNativeEnum<typeof Period> = z
+  .nativeEnum(Period);
+
+/** @internal */
+export const Period$outboundSchema: z.ZodNativeEnum<typeof Period> =
+  Period$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Period$ {
+  /** @deprecated use `Period$inboundSchema` instead. */
+  export const inboundSchema = Period$inboundSchema;
+  /** @deprecated use `Period$outboundSchema` instead. */
+  export const outboundSchema = Period$outboundSchema;
+}
+
+/** @internal */
+export const BillingSchedule$inboundSchema: z.ZodType<
+  BillingSchedule,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  period: Period$inboundSchema,
+  interval: z.number(),
+});
+
+/** @internal */
+export type BillingSchedule$Outbound = {
+  period: string;
+  interval: number;
+};
+
+/** @internal */
+export const BillingSchedule$outboundSchema: z.ZodType<
+  BillingSchedule$Outbound,
+  z.ZodTypeDef,
+  BillingSchedule
+> = z.object({
+  period: Period$outboundSchema,
+  interval: z.number(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BillingSchedule$ {
+  /** @deprecated use `BillingSchedule$inboundSchema` instead. */
+  export const inboundSchema = BillingSchedule$inboundSchema;
+  /** @deprecated use `BillingSchedule$outboundSchema` instead. */
+  export const outboundSchema = BillingSchedule$outboundSchema;
+  /** @deprecated use `BillingSchedule$Outbound` instead. */
+  export type Outbound = BillingSchedule$Outbound;
+}
+
+export function billingScheduleToJSON(
+  billingSchedule: BillingSchedule,
+): string {
+  return JSON.stringify(BillingSchedule$outboundSchema.parse(billingSchedule));
+}
+
+export function billingScheduleFromJSON(
+  jsonString: string,
+): SafeParseResult<BillingSchedule, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BillingSchedule$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BillingSchedule' from JSON`,
+  );
+}
 
 /** @internal */
 export const EnrollmentStatus$inboundSchema: z.ZodNativeEnum<
@@ -261,7 +373,13 @@ export const Enrollment$inboundSchema: z.ZodType<
   customerId: z.string(),
   companyId: z.string(),
   planId: z.nullable(z.string()).optional(),
+  billingSchedule: z.lazy(() => BillingSchedule$inboundSchema),
   status: EnrollmentStatus$inboundSchema,
+  startDate: z.nullable(z.string()).optional(),
+  endDate: z.nullable(z.string()).optional(),
+  lastCharge: z.nullable(z.string()).optional(),
+  nextCharge: z.nullable(z.string()).optional(),
+  paidUntil: z.nullable(z.string()).optional(),
   checkinDetails: z.lazy(() => CheckinDetails$inboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$inboundSchema)),
 });
@@ -272,7 +390,13 @@ export type Enrollment$Outbound = {
   customerId: string;
   companyId: string;
   planId?: string | null | undefined;
+  billingSchedule: BillingSchedule$Outbound;
   status: string;
+  startDate?: string | null | undefined;
+  endDate?: string | null | undefined;
+  lastCharge?: string | null | undefined;
+  nextCharge?: string | null | undefined;
+  paidUntil?: string | null | undefined;
   checkinDetails: CheckinDetails$Outbound;
   entitlements: Array<Entitlements$Outbound>;
 };
@@ -287,7 +411,13 @@ export const Enrollment$outboundSchema: z.ZodType<
   customerId: z.string(),
   companyId: z.string(),
   planId: z.nullable(z.string()).optional(),
+  billingSchedule: z.lazy(() => BillingSchedule$outboundSchema),
   status: EnrollmentStatus$outboundSchema,
+  startDate: z.nullable(z.string()).optional(),
+  endDate: z.nullable(z.string()).optional(),
+  lastCharge: z.nullable(z.string()).optional(),
+  nextCharge: z.nullable(z.string()).optional(),
+  paidUntil: z.nullable(z.string()).optional(),
   checkinDetails: z.lazy(() => CheckinDetails$outboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$outboundSchema)),
 });

@@ -1,12 +1,12 @@
-# GetWebhookRequest
+# GetEnrollmentRequest
 
 ## Example Usage
 
 ```typescript
-import { GetWebhookRequest } from "@pushpress/pushpress/models/operations";
+import { GetEnrollmentRequest } from "@pushpress/pushpress/models/operations";
 
-let value: GetWebhookRequest = {
-  uuid: "2e87e7b6-ebb5-4ca3-82cf-79d7f9ded2a6",
+let value: GetEnrollmentRequest = {
+  uuid: "9052f77a-52d3-4831-8dff-ec516320b0c2",
 };
 ```
 

@@ -49,9 +49,17 @@ export type ClassCheckin = {
    */
   customer: string;
   /**
-   * UUID of the company hosting the class
+   * UUID of the company
    */
   company: string;
+  /**
+   * Unix timestamp representing the time of checkin
+   */
+  timestamp: number;
+  /**
+   * UUID of the enrollment record, null if the checkin is not associated with a plan enrollment
+   */
+  enrollmentId?: string | null | undefined;
   /**
    * Name of the class that the customer checked into
    */
@@ -68,10 +76,6 @@ export type ClassCheckin = {
    * Indicates that this checkin is for a class
    */
   kind?: "class" | undefined;
-  /**
-   * Unix timestamp representing the time of checkin
-   */
-  timestamp: number;
   /**
    * Role of the customer in the class
    */
@@ -165,11 +169,12 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   id: z.string(),
   customer: z.string(),
   company: z.string(),
+  timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
   name: z.string(),
   typeId: z.string(),
   type: z.lazy(() => ClassCheckinType$inboundSchema),
   kind: z.literal("class").optional(),
-  timestamp: z.number(),
   role: ClassCheckinRole$inboundSchema,
 });
 
@@ -178,11 +183,12 @@ export type ClassCheckin$Outbound = {
   id: string;
   customer: string;
   company: string;
+  timestamp: number;
+  enrollmentId?: string | null | undefined;
   name: string;
   typeId: string;
   type: ClassCheckinType$Outbound;
   kind: "class";
-  timestamp: number;
   role: string;
 };
 
@@ -195,11 +201,12 @@ export const ClassCheckin$outboundSchema: z.ZodType<
   id: z.string(),
   customer: z.string(),
   company: z.string(),
+  timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
   name: z.string(),
   typeId: z.string(),
   type: z.lazy(() => ClassCheckinType$outboundSchema),
   kind: z.literal("class").default("class" as const),
-  timestamp: z.number(),
   role: ClassCheckinRole$outboundSchema,
 });
 

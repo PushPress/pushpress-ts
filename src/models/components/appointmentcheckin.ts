@@ -12,25 +12,29 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type AppointmentCheckin = {
   /**
-   * A unique identifier for the appointment, typically a UUID
+   * Unique identifier for the checkin record
    */
   id: string;
+  /**
+   * UUID of the customer who checked in
+   */
+  customer: string;
+  /**
+   * UUID of the company
+   */
+  company: string;
+  /**
+   * Unix timestamp representing the time of checkin
+   */
+  timestamp: number;
+  /**
+   * UUID of the enrollment record, null if the checkin is not associated with a plan enrollment
+   */
+  enrollmentId?: string | null | undefined;
   /**
    * The name or title of the appointment, if available
    */
   name?: string | undefined;
-  /**
-   * The UUID of the customer associated with the appointment
-   */
-  customer: string;
-  /**
-   * The UUID of the company hosting the appointment
-   */
-  company: string;
-  /**
-   * The Unix timestamp representing the scheduled time of the appointment
-   */
-  timestamp: number;
   /**
    * A constant value indicating the type of check-in, which is 'appointment'
    */
@@ -48,10 +52,11 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  name: z.string().optional(),
   customer: z.string(),
   company: z.string(),
   timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
+  name: z.string().optional(),
   kind: z.literal("appointment").optional(),
   typeId: z.string(),
 });
@@ -59,10 +64,11 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
 /** @internal */
 export type AppointmentCheckin$Outbound = {
   id: string;
-  name?: string | undefined;
   customer: string;
   company: string;
   timestamp: number;
+  enrollmentId?: string | null | undefined;
+  name?: string | undefined;
   kind: "appointment";
   typeId: string;
 };
@@ -74,10 +80,11 @@ export const AppointmentCheckin$outboundSchema: z.ZodType<
   AppointmentCheckin
 > = z.object({
   id: z.string(),
-  name: z.string().optional(),
   customer: z.string(),
   company: z.string(),
   timestamp: z.number(),
+  enrollmentId: z.nullable(z.string()).optional(),
+  name: z.string().optional(),
   kind: z.literal("appointment").default("appointment" as const),
   typeId: z.string(),
 });

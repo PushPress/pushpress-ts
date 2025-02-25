@@ -14,6 +14,7 @@ export * from "./getclass.js";
 export * from "./getclasscheckin.js";
 export * from "./getcompany.js";
 export * from "./getcustomer.js";
+export * from "./getenrollment.js";
 export * from "./geteventcheckin.js";
 export * from "./getopencheckin.js";
 export * from "./getplan.js";

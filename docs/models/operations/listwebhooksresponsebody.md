@@ -11,9 +11,9 @@ let value: ListWebhooksResponseBody = {
   data: [
     {
       id: "<id>",
-      url: "https://competent-awareness.biz/",
+      url: "https://flawless-cellar.info",
       eventTypes: [
-        "checkin.updated",
+        "app.uninstalled",
       ],
       signingSecret: "<value>",
     },
