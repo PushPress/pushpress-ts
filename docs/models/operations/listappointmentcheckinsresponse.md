@@ -15,6 +15,7 @@ let value: ListAppointmentCheckinsResponse = {
           company: "cli_12345",
           timestamp: 1672531200000,
           name: "Personal Training",
+          appointmentId: "apptschdl_12345",
           typeId: "appttype_12345",
         },
       ],

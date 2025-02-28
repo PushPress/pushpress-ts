@@ -16,6 +16,7 @@ let value: CheckinUpdatedEventRequestBody = {
     name: "My Event",
     role: "staff",
     typeId: "cit_12345",
+    eventId: "cal_item_12345",
     type: {
       id: "cit_12345",
       name: "Weightlifting Seminar",
@@ -28,6 +29,7 @@ let value: CheckinUpdatedEventRequestBody = {
     timestamp: 1672531200000,
     name: "My Class",
     typeId: "cit_12345",
+    classId: "cal_item_12345",
     type: {
       id: "cit_12345",
       name: "Group HIIT Training",

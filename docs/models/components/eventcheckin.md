@@ -15,6 +15,7 @@ let value: EventCheckin = {
   name: "My Event",
   role: "staff",
   typeId: "cit_12345",
+  eventId: "cal_item_12345",
   type: {
     id: "cit_12345",
     name: "Weightlifting Seminar",
@@ -35,4 +36,5 @@ let value: EventCheckin = {
 | `kind`                                                                                      | *string*                                                                                    | :heavy_check_mark:                                                                          | Type of check-in, which is always 'event'                                                   |
 | `role`                                                                                      | [components.Role](../../models/components/role.md)                                          | :heavy_check_mark:                                                                          | Role of the customer at the event                                                           |
 | `typeId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID of the event type                                                                      |
+| `eventId`                                                                                   | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID of the event                                                                           |
 | `type`                                                                                      | [components.Type](../../models/components/type.md)                                          | :heavy_check_mark:                                                                          | Information about the type of the event                                                     |
