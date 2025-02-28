@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 0508b67f346f9ab75b5e015c8df61b1b
+  docChecksum: eb9840f9135d3d9469722497befacc3b
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.25.0
-  configChecksum: 7d94cf6334426602d89659ac1644a18e
+  releaseVersion: 0.27.0
+  configChecksum: ea24c7efdb142fe946ec9f68c554fe21
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true

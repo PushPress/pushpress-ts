@@ -9,7 +9,11 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Data = {
-  id?: string | undefined;
+  id: string;
+  /**
+   * Unique identifier for the customer
+   */
+  customerId: string;
 };
 
 export const CheckinDeletedEventEvent = {
@@ -34,18 +38,21 @@ export type CheckinDeletedEventRequestBody = {
 /** @internal */
 export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .object({
-    id: z.string().optional(),
+    id: z.string(),
+    customerId: z.string(),
   });
 
 /** @internal */
 export type Data$Outbound = {
-  id?: string | undefined;
+  id: string;
+  customerId: string;
 };
 
 /** @internal */
 export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
   z.object({
-    id: z.string().optional(),
+    id: z.string(),
+    customerId: z.string(),
   });
 
 /**

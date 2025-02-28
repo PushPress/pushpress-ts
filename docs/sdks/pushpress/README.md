@@ -240,7 +240,10 @@ const pushPress = new PushPress();
 
 async function run() {
   await pushPress.checkinDeletedEvent({
-    data: {},
+    data: {
+      id: "<id>",
+      customerId: "<id>",
+    },
     created: 718383,
     event: "checkin.deleted",
   });
@@ -265,7 +268,10 @@ const pushPress = new PushPressCore();
 
 async function run() {
   const res = await checkinDeletedEvent(pushPress, {
-    data: {},
+    data: {
+      id: "<id>",
+      customerId: "<id>",
+    },
     created: 718383,
     event: "checkin.deleted",
   });

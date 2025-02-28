@@ -8,7 +8,10 @@ Checkin Deleted Event
 import { CheckinDeletedEventRequestBody } from "@pushpress/pushpress/models/webhooks";
 
 let value: CheckinDeletedEventRequestBody = {
-  data: {},
+  data: {
+    id: "<id>",
+    customerId: "<id>",
+  },
   created: 645894,
   event: "checkin.deleted",
 };
