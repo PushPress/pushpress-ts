@@ -17,6 +17,7 @@ let value: ListEventCheckinsResponse = {
           name: "My Event",
           role: "staff",
           typeId: "cit_12345",
+          eventId: "cal_item_12345",
           type: {
             id: "cit_12345",
             name: "Weightlifting Seminar",

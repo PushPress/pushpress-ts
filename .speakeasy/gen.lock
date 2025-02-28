@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 2dcf769b94365f489bdfa599e572a158
+  docChecksum: 0508b67f346f9ab75b5e015c8df61b1b
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.23.0
-  configChecksum: ee24b28f615c3fa1e1f59e93ff42f205
+  releaseVersion: 0.25.0
+  configChecksum: 7d94cf6334426602d89659ac1644a18e
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -494,11 +494,11 @@ examples:
   checkinCreatedEvent:
     speakeasy-default-checkin-created-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}, "created": 420989, "event": "checkin.created"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "eventId": "cal_item_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 420989, "event": "checkin.created"}
   checkinUpdatedEvent:
     speakeasy-default-checkin-updated-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}, "previousValues": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}, "created": 738207, "event": "checkin.updated"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}, "previousValues": {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "appointmentId": "apptschdl_12345", "typeId": "appttype_12345"}, "created": 738207, "event": "checkin.updated"}
   checkinDeletedEvent:
     speakeasy-default-checkin-deleted-event:
       requestBody:
@@ -562,7 +562,7 @@ examples:
   reservationCreatedEvent:
     speakeasy-default-reservation-created-event:
       requestBody:
-        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved", "checkin": {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "typeId": "appttype_12345"}}, "created": 377467, "event": "reservation.created"}
+        application/json: {"data": {"id": "reg_12345", "reservedId": "cal-12345", "customerId": "usr_12345", "companyId": "cli_12345", "registrationTimestamp": 1672531200000, "status": "reserved", "checkin": {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "appointmentId": "apptschdl_12345", "typeId": "appttype_12345"}}, "created": 377467, "event": "reservation.created"}
   reservationWaitlistedEvent:
     speakeasy-default-reservation-waitlisted-event:
       requestBody:
@@ -579,7 +579,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "eventId": "cal_item_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}
   listEventCheckins:
     speakeasy-default-list-event-checkins:
       parameters:
@@ -589,7 +589,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Event", "kind": "event", "role": "staff", "typeId": "cit_12345", "eventId": "cal_item_12345", "type": {"id": "cit_12345", "name": "Weightlifting Seminar"}}]}}
   getClassCheckin:
     speakeasy-default-get-class-checkin:
       parameters:
@@ -598,7 +598,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}
+          application/json: {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "classId": "cal_item_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}
   listClassCheckins:
     speakeasy-default-list-class-checkins:
       parameters:
@@ -608,7 +608,7 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}]}}
+          application/json: {"data": {"resultArray": [{"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "My Class", "typeId": "cit_12345", "classId": "cal_item_12345", "type": {"id": "cit_12345", "name": "Group HIIT Training"}, "kind": "class", "role": "attendee"}]}}
   getOpenCheckin:
     speakeasy-default-get-open-checkin:
       parameters:
@@ -636,12 +636,12 @@ examples:
         header: {}
       responses:
         "200":
-          application/json: {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "typeId": "appttype_12345"}
+          application/json: {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "appointmentId": "apptschdl_12345", "typeId": "appttype_12345"}
   listAppointmentCheckins:
     speakeasy-default-list-appointment-checkins:
       responses:
         "200":
-          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "typeId": "appttype_12345"}]}}
+          application/json: {"data": {"resultArray": [{"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "appointmentId": "apptschdl_12345", "typeId": "appttype_12345"}]}}
   getClass:
     speakeasy-default-get-class:
       parameters:

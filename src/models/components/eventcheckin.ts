@@ -77,6 +77,10 @@ export type EventCheckin = {
    */
   typeId: string;
   /**
+   * UUID of the event
+   */
+  eventId: string;
+  /**
    * Information about the type of the event
    */
   type: Type;
@@ -164,6 +168,7 @@ export const EventCheckin$inboundSchema: z.ZodType<
   kind: z.literal("event").optional(),
   role: Role$inboundSchema,
   typeId: z.string(),
+  eventId: z.string(),
   type: z.lazy(() => Type$inboundSchema),
 });
 
@@ -178,6 +183,7 @@ export type EventCheckin$Outbound = {
   kind: "event";
   role: string;
   typeId: string;
+  eventId: string;
   type: Type$Outbound;
 };
 
@@ -196,6 +202,7 @@ export const EventCheckin$outboundSchema: z.ZodType<
   kind: z.literal("event").default("event" as const),
   role: Role$outboundSchema,
   typeId: z.string(),
+  eventId: z.string(),
   type: z.lazy(() => Type$outboundSchema),
 });
 

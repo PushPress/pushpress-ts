@@ -13,6 +13,7 @@ let value: AppointmentCheckin = {
   company: "cli_12345",
   timestamp: 1672531200000,
   name: "Personal Training",
+  appointmentId: "apptschdl_12345",
   typeId: "appttype_12345",
 };
 ```
@@ -28,4 +29,5 @@ let value: AppointmentCheckin = {
 | `enrollmentId`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | UUID of the enrollment record, null if the checkin is not associated with a plan enrollment |
 | `name`                                                                                      | *string*                                                                                    | :heavy_minus_sign:                                                                          | The name or title of the appointment, if available                                          |
 | `kind`                                                                                      | *string*                                                                                    | :heavy_check_mark:                                                                          | A constant value indicating the type of check-in, which is 'appointment'                    |
+| `appointmentId`                                                                             | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID for the checked in appointment                                                         |
 | `typeId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | The UUID representing the type or category of the appointment                               |

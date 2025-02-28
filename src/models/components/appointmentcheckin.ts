@@ -40,6 +40,10 @@ export type AppointmentCheckin = {
    */
   kind?: "appointment" | undefined;
   /**
+   * UUID for the checked in appointment
+   */
+  appointmentId: string;
+  /**
    * The UUID representing the type or category of the appointment
    */
   typeId: string;
@@ -58,6 +62,7 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   kind: z.literal("appointment").optional(),
+  appointmentId: z.string(),
   typeId: z.string(),
 });
 
@@ -70,6 +75,7 @@ export type AppointmentCheckin$Outbound = {
   enrollmentId?: string | null | undefined;
   name?: string | undefined;
   kind: "appointment";
+  appointmentId: string;
   typeId: string;
 };
 
@@ -86,6 +92,7 @@ export const AppointmentCheckin$outboundSchema: z.ZodType<
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string().optional(),
   kind: z.literal("appointment").default("appointment" as const),
+  appointmentId: z.string(),
   typeId: z.string(),
 });
 

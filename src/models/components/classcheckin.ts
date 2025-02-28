@@ -69,6 +69,10 @@ export type ClassCheckin = {
    */
   typeId: string;
   /**
+   * UUID of the class
+   */
+  classId: string;
+  /**
    * Detailed information about the type of the class
    */
   type: ClassCheckinType;
@@ -173,6 +177,7 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string(),
   typeId: z.string(),
+  classId: z.string(),
   type: z.lazy(() => ClassCheckinType$inboundSchema),
   kind: z.literal("class").optional(),
   role: ClassCheckinRole$inboundSchema,
@@ -187,6 +192,7 @@ export type ClassCheckin$Outbound = {
   enrollmentId?: string | null | undefined;
   name: string;
   typeId: string;
+  classId: string;
   type: ClassCheckinType$Outbound;
   kind: "class";
   role: string;
@@ -205,6 +211,7 @@ export const ClassCheckin$outboundSchema: z.ZodType<
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string(),
   typeId: z.string(),
+  classId: z.string(),
   type: z.lazy(() => ClassCheckinType$outboundSchema),
   kind: z.literal("class").default("class" as const),
   role: ClassCheckinRole$outboundSchema,
