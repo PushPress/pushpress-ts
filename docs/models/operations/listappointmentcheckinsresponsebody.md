@@ -18,6 +18,7 @@ let value: ListAppointmentCheckinsResponseBody = {
         name: "Personal Training",
         appointmentId: "apptschdl_12345",
         typeId: "appttype_12345",
+        staffId: "usr_78910",
       },
     ],
   },
