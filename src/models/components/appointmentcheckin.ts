@@ -47,6 +47,10 @@ export type AppointmentCheckin = {
    * The UUID representing the type or category of the appointment
    */
   typeId: string;
+  /**
+   * unique identifier for the staff member, corresponding to a customer with a staff role
+   */
+  staffId: string;
 };
 
 /** @internal */
@@ -64,6 +68,7 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   kind: z.literal("appointment").optional(),
   appointmentId: z.string(),
   typeId: z.string(),
+  staffId: z.string(),
 });
 
 /** @internal */
@@ -77,6 +82,7 @@ export type AppointmentCheckin$Outbound = {
   kind: "appointment";
   appointmentId: string;
   typeId: string;
+  staffId: string;
 };
 
 /** @internal */
@@ -94,6 +100,7 @@ export const AppointmentCheckin$outboundSchema: z.ZodType<
   kind: z.literal("appointment").default("appointment" as const),
   appointmentId: z.string(),
   typeId: z.string(),
+  staffId: z.string(),
 });
 
 /**

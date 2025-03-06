@@ -28,6 +28,10 @@ export type Appointment = {
    */
   companyId: string;
   /**
+   * True when the appointment was canceled late
+   */
+  isLateCancel?: boolean | undefined;
+  /**
    * unique identifier for the customer
    */
   customerId: string;
@@ -102,6 +106,7 @@ export const Appointment$inboundSchema: z.ZodType<
   id: z.string(),
   type: z.lazy(() => AppointmentType$inboundSchema),
   companyId: z.string(),
+  isLateCancel: z.boolean().optional(),
   customerId: z.string(),
   startTimestamp: z.number(),
   staffId: z.string(),
@@ -112,6 +117,7 @@ export type Appointment$Outbound = {
   id: string;
   type: AppointmentType$Outbound;
   companyId: string;
+  isLateCancel?: boolean | undefined;
   customerId: string;
   startTimestamp: number;
   staffId: string;
@@ -126,6 +132,7 @@ export const Appointment$outboundSchema: z.ZodType<
   id: z.string(),
   type: z.lazy(() => AppointmentType$outboundSchema),
   companyId: z.string(),
+  isLateCancel: z.boolean().optional(),
   customerId: z.string(),
   startTimestamp: z.number(),
   staffId: z.string(),

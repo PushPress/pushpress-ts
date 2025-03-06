@@ -15,6 +15,7 @@ let value: AppointmentCheckin = {
   name: "Personal Training",
   appointmentId: "apptschdl_12345",
   typeId: "appttype_12345",
+  staffId: "usr_78910",
 };
 ```
 
@@ -31,3 +32,4 @@ let value: AppointmentCheckin = {
 | `kind`                                                                                      | *string*                                                                                    | :heavy_check_mark:                                                                          | A constant value indicating the type of check-in, which is 'appointment'                    |
 | `appointmentId`                                                                             | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID for the checked in appointment                                                         |
 | `typeId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | The UUID representing the type or category of the appointment                               |
+| `staffId`                                                                                   | *string*                                                                                    | :heavy_check_mark:                                                                          | unique identifier for the staff member, corresponding to a customer with a staff role       |
