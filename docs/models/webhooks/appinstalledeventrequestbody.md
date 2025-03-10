@@ -9,15 +9,9 @@ import { AppInstalledEventRequestBody } from "@pushpress/pushpress/models/webhoo
 
 let value: AppInstalledEventRequestBody = {
   data: {
-    company: {
-      id: "company-uuid",
-    },
-    app: {
-      id: "app-uuid",
-    },
-    installation: {
-      id: "installation-uuid",
-    },
+    clientUuid: "company-uuid",
+    appId: "app-uuid",
+    installationId: "installation-uuid",
   },
   created: 437587,
   event: "app.installed",
@@ -26,8 +20,8 @@ let value: AppInstalledEventRequestBody = {
 
 ## Fields
 
-| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `data`                                                                                                              | [components.AppInstall](../../models/components/appinstall.md)                                                      | :heavy_check_mark:                                                                                                  | Information about the app                                                                                           | {<br/>"company": {<br/>"id": "company-uuid"<br/>},<br/>"app": {<br/>"id": "app-uuid"<br/>},<br/>"installation": {<br/>"id": "installation-uuid"<br/>}<br/>} |
-| `created`                                                                                                           | *number*                                                                                                            | :heavy_check_mark:                                                                                                  | Unix timestamp representing when the event was created                                                              |                                                                                                                     |
-| `event`                                                                                                             | [webhooks.AppInstalledEventEvent](../../models/webhooks/appinstalledeventevent.md)                                  | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |                                                                                                                     |
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `data`                                                                                       | [components.AppInstall](../../models/components/appinstall.md)                               | :heavy_check_mark:                                                                           | Information about the app                                                                    | {<br/>"clientUuid": "company-uuid",<br/>"appId": "app-uuid",<br/>"installationId": "installation-uuid"<br/>} |
+| `created`                                                                                    | *number*                                                                                     | :heavy_check_mark:                                                                           | Unix timestamp representing when the event was created                                       |                                                                                              |
+| `event`                                                                                      | [webhooks.AppInstalledEventEvent](../../models/webhooks/appinstalledeventevent.md)           | :heavy_check_mark:                                                                           | N/A                                                                                          |                                                                                              |
