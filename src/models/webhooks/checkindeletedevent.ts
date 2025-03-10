@@ -14,6 +14,10 @@ export type Data = {
    * Unique identifier for the customer
    */
   customerId: string;
+  /**
+   * Unique identifier for the company the checkin was deleted from
+   */
+  companyId: string;
 };
 
 export const CheckinDeletedEventEvent = {
@@ -40,12 +44,14 @@ export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .object({
     id: z.string(),
     customerId: z.string(),
+    companyId: z.string(),
   });
 
 /** @internal */
 export type Data$Outbound = {
   id: string;
   customerId: string;
+  companyId: string;
 };
 
 /** @internal */
@@ -53,6 +59,7 @@ export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
   z.object({
     id: z.string(),
     customerId: z.string(),
+    companyId: z.string(),
   });
 
 /**

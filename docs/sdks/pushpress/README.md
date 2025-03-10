@@ -245,6 +245,7 @@ async function run() {
     data: {
       id: "<id>",
       customerId: "<id>",
+      companyId: "<id>",
     },
     created: 718383,
     event: "checkin.deleted",
@@ -273,6 +274,7 @@ async function run() {
     data: {
       id: "<id>",
       customerId: "<id>",
+      companyId: "<id>",
     },
     created: 718383,
     event: "checkin.deleted",
@@ -321,15 +323,9 @@ const pushPress = new PushPress();
 async function run() {
   await pushPress.appInstalledEvent({
     data: {
-      company: {
-        id: "company-uuid",
-      },
-      app: {
-        id: "app-uuid",
-      },
-      installation: {
-        id: "installation-uuid",
-      },
+      clientUuid: "company-uuid",
+      appId: "app-uuid",
+      installationId: "installation-uuid",
     },
     created: 865806,
     event: "app.installed",
@@ -356,15 +352,9 @@ const pushPress = new PushPressCore();
 async function run() {
   const res = await appInstalledEvent(pushPress, {
     data: {
-      company: {
-        id: "company-uuid",
-      },
-      app: {
-        id: "app-uuid",
-      },
-      installation: {
-        id: "installation-uuid",
-      },
+      clientUuid: "company-uuid",
+      appId: "app-uuid",
+      installationId: "installation-uuid",
     },
     created: 865806,
     event: "app.installed",
@@ -413,15 +403,9 @@ const pushPress = new PushPress();
 async function run() {
   await pushPress.appUninstalledEvent({
     data: {
-      company: {
-        id: "company-uuid",
-      },
-      app: {
-        id: "app-uuid",
-      },
-      installation: {
-        id: "installation-uuid",
-      },
+      clientUuid: "company-uuid",
+      appId: "app-uuid",
+      installationId: "installation-uuid",
     },
     created: 897950,
     event: "app.uninstalled",
@@ -448,15 +432,9 @@ const pushPress = new PushPressCore();
 async function run() {
   const res = await appUninstalledEvent(pushPress, {
     data: {
-      company: {
-        id: "company-uuid",
-      },
-      app: {
-        id: "app-uuid",
-      },
-      installation: {
-        id: "installation-uuid",
-      },
+      clientUuid: "company-uuid",
+      appId: "app-uuid",
+      installationId: "installation-uuid",
     },
     created: 897950,
     event: "app.uninstalled",

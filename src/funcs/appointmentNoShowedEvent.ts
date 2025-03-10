@@ -69,10 +69,10 @@ export async function appointmentNoShowedEvent(
       || {
         strategy: "backoff",
         backoff: {
-          initialInterval: 500,
-          maxInterval: 60000,
-          exponent: 1.5,
-          maxElapsedTime: 3600000,
+          initialInterval: 1000,
+          maxInterval: 30000,
+          exponent: 2,
+          maxElapsedTime: 300000,
         },
         retryConnectionErrors: true,
       }
