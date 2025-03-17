@@ -18,7 +18,7 @@ let value: AppointmentNoShowedEventRequestBody = {
     startTimestamp: 1677721600,
     staffId: "usr_78910",
   },
-  created: 791725,
+  created: 528895,
   event: "appointment.noshowed",
 };
 ```

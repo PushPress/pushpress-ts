@@ -10,10 +10,10 @@ import { CustomerAddress } from "@pushpress/pushpress/models/components";
 let value: CustomerAddress = {
   line1: "<value>",
   line2: "<value>",
-  city: "Fort Joyview",
-  country: "Egypt",
-  state: "Rhode Island",
-  zip: "50666",
+  city: "Aidenfurt",
+  country: "Myanmar",
+  state: "New Mexico",
+  zip: "63460-6621",
 };
 ```
 

@@ -13,62 +13,29 @@ export type CountCheckinsGlobals = {
   companyId?: string | undefined;
 };
 
-export const CountCheckinsSessionQueryParamInclude = {
-  Open: "open",
-} as const;
-export type CountCheckinsSessionQueryParamInclude = ClosedEnum<
-  typeof CountCheckinsSessionQueryParamInclude
->;
-
-export type Four = {
-  include: CountCheckinsSessionQueryParamInclude;
-};
-
-export const SessionQueryParamInclude = {
-  Appointments: "appointments",
-} as const;
-export type SessionQueryParamInclude = ClosedEnum<
-  typeof SessionQueryParamInclude
->;
-
-export type Three = {
-  include: SessionQueryParamInclude;
-  type?: string | null | undefined;
-  session?: string | null | undefined;
-};
-
-export const QueryParamInclude = {
-  Events: "events",
-} as const;
-export type QueryParamInclude = ClosedEnum<typeof QueryParamInclude>;
-
-export type QueryParam2 = {
-  include: QueryParamInclude;
-  type?: string | null | undefined;
-  session?: string | null | undefined;
-};
-
+/**
+ * When defined only include checkins for these categories
+ */
 export const Include = {
   Classes: "classes",
+  Events: "events",
+  Appointments: "appointments",
+  Open: "open",
 } as const;
-export type Include = ClosedEnum<typeof Include>;
-
-export type QueryParam1 = {
-  include: Include;
-  type?: string | null | undefined;
-  session?: string | null | undefined;
-};
-
 /**
- * Filter for checkins for specific session kinds and optionally filter further on the type
+ * When defined only include checkins for these categories
  */
-export type Session = Four | QueryParam1 | QueryParam2 | Three;
+export type Include = ClosedEnum<typeof Include>;
 
 export type CountCheckinsRequest = {
   /**
-   * Filter for checkins for specific session kinds and optionally filter further on the type
+   * When defined only include checkins for these categories
    */
-  session?: Four | QueryParam1 | QueryParam2 | Three | undefined;
+  include?: Include | undefined;
+  /**
+   * When defined only include sub categories of classes/appointments/events with this type
+   */
+  type?: string | undefined;
   customer?: string | undefined;
   /**
    * Checkins before this unix timestamp
@@ -154,225 +121,6 @@ export function countCheckinsGlobalsFromJSON(
 }
 
 /** @internal */
-export const CountCheckinsSessionQueryParamInclude$inboundSchema:
-  z.ZodNativeEnum<typeof CountCheckinsSessionQueryParamInclude> = z.nativeEnum(
-    CountCheckinsSessionQueryParamInclude,
-  );
-
-/** @internal */
-export const CountCheckinsSessionQueryParamInclude$outboundSchema:
-  z.ZodNativeEnum<typeof CountCheckinsSessionQueryParamInclude> =
-    CountCheckinsSessionQueryParamInclude$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CountCheckinsSessionQueryParamInclude$ {
-  /** @deprecated use `CountCheckinsSessionQueryParamInclude$inboundSchema` instead. */
-  export const inboundSchema =
-    CountCheckinsSessionQueryParamInclude$inboundSchema;
-  /** @deprecated use `CountCheckinsSessionQueryParamInclude$outboundSchema` instead. */
-  export const outboundSchema =
-    CountCheckinsSessionQueryParamInclude$outboundSchema;
-}
-
-/** @internal */
-export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
-  .object({
-    include: CountCheckinsSessionQueryParamInclude$inboundSchema,
-  });
-
-/** @internal */
-export type Four$Outbound = {
-  include: string;
-};
-
-/** @internal */
-export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
-  z.object({
-    include: CountCheckinsSessionQueryParamInclude$outboundSchema,
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
-export function fourToJSON(four: Four): string {
-  return JSON.stringify(Four$outboundSchema.parse(four));
-}
-
-export function fourFromJSON(
-  jsonString: string,
-): SafeParseResult<Four, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Four$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Four' from JSON`,
-  );
-}
-
-/** @internal */
-export const SessionQueryParamInclude$inboundSchema: z.ZodNativeEnum<
-  typeof SessionQueryParamInclude
-> = z.nativeEnum(SessionQueryParamInclude);
-
-/** @internal */
-export const SessionQueryParamInclude$outboundSchema: z.ZodNativeEnum<
-  typeof SessionQueryParamInclude
-> = SessionQueryParamInclude$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SessionQueryParamInclude$ {
-  /** @deprecated use `SessionQueryParamInclude$inboundSchema` instead. */
-  export const inboundSchema = SessionQueryParamInclude$inboundSchema;
-  /** @deprecated use `SessionQueryParamInclude$outboundSchema` instead. */
-  export const outboundSchema = SessionQueryParamInclude$outboundSchema;
-}
-
-/** @internal */
-export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
-  .object({
-    include: SessionQueryParamInclude$inboundSchema,
-    type: z.nullable(z.string()).optional(),
-    session: z.nullable(z.string()).optional(),
-  });
-
-/** @internal */
-export type Three$Outbound = {
-  include: string;
-  type?: string | null | undefined;
-  session?: string | null | undefined;
-};
-
-/** @internal */
-export const Three$outboundSchema: z.ZodType<
-  Three$Outbound,
-  z.ZodTypeDef,
-  Three
-> = z.object({
-  include: SessionQueryParamInclude$outboundSchema,
-  type: z.nullable(z.string()).optional(),
-  session: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-  /** @deprecated use `Three$Outbound` instead. */
-  export type Outbound = Three$Outbound;
-}
-
-export function threeToJSON(three: Three): string {
-  return JSON.stringify(Three$outboundSchema.parse(three));
-}
-
-export function threeFromJSON(
-  jsonString: string,
-): SafeParseResult<Three, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Three$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Three' from JSON`,
-  );
-}
-
-/** @internal */
-export const QueryParamInclude$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamInclude
-> = z.nativeEnum(QueryParamInclude);
-
-/** @internal */
-export const QueryParamInclude$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamInclude
-> = QueryParamInclude$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParamInclude$ {
-  /** @deprecated use `QueryParamInclude$inboundSchema` instead. */
-  export const inboundSchema = QueryParamInclude$inboundSchema;
-  /** @deprecated use `QueryParamInclude$outboundSchema` instead. */
-  export const outboundSchema = QueryParamInclude$outboundSchema;
-}
-
-/** @internal */
-export const QueryParam2$inboundSchema: z.ZodType<
-  QueryParam2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  include: QueryParamInclude$inboundSchema,
-  type: z.nullable(z.string()).optional(),
-  session: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
-export type QueryParam2$Outbound = {
-  include: string;
-  type?: string | null | undefined;
-  session?: string | null | undefined;
-};
-
-/** @internal */
-export const QueryParam2$outboundSchema: z.ZodType<
-  QueryParam2$Outbound,
-  z.ZodTypeDef,
-  QueryParam2
-> = z.object({
-  include: QueryParamInclude$outboundSchema,
-  type: z.nullable(z.string()).optional(),
-  session: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParam2$ {
-  /** @deprecated use `QueryParam2$inboundSchema` instead. */
-  export const inboundSchema = QueryParam2$inboundSchema;
-  /** @deprecated use `QueryParam2$outboundSchema` instead. */
-  export const outboundSchema = QueryParam2$outboundSchema;
-  /** @deprecated use `QueryParam2$Outbound` instead. */
-  export type Outbound = QueryParam2$Outbound;
-}
-
-export function queryParam2ToJSON(queryParam2: QueryParam2): string {
-  return JSON.stringify(QueryParam2$outboundSchema.parse(queryParam2));
-}
-
-export function queryParam2FromJSON(
-  jsonString: string,
-): SafeParseResult<QueryParam2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => QueryParam2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'QueryParam2' from JSON`,
-  );
-}
-
-/** @internal */
 export const Include$inboundSchema: z.ZodNativeEnum<typeof Include> = z
   .nativeEnum(Include);
 
@@ -392,128 +140,13 @@ export namespace Include$ {
 }
 
 /** @internal */
-export const QueryParam1$inboundSchema: z.ZodType<
-  QueryParam1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  include: Include$inboundSchema,
-  type: z.nullable(z.string()).optional(),
-  session: z.nullable(z.string()).optional(),
-});
-
-/** @internal */
-export type QueryParam1$Outbound = {
-  include: string;
-  type?: string | null | undefined;
-  session?: string | null | undefined;
-};
-
-/** @internal */
-export const QueryParam1$outboundSchema: z.ZodType<
-  QueryParam1$Outbound,
-  z.ZodTypeDef,
-  QueryParam1
-> = z.object({
-  include: Include$outboundSchema,
-  type: z.nullable(z.string()).optional(),
-  session: z.nullable(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParam1$ {
-  /** @deprecated use `QueryParam1$inboundSchema` instead. */
-  export const inboundSchema = QueryParam1$inboundSchema;
-  /** @deprecated use `QueryParam1$outboundSchema` instead. */
-  export const outboundSchema = QueryParam1$outboundSchema;
-  /** @deprecated use `QueryParam1$Outbound` instead. */
-  export type Outbound = QueryParam1$Outbound;
-}
-
-export function queryParam1ToJSON(queryParam1: QueryParam1): string {
-  return JSON.stringify(QueryParam1$outboundSchema.parse(queryParam1));
-}
-
-export function queryParam1FromJSON(
-  jsonString: string,
-): SafeParseResult<QueryParam1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => QueryParam1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'QueryParam1' from JSON`,
-  );
-}
-
-/** @internal */
-export const Session$inboundSchema: z.ZodType<Session, z.ZodTypeDef, unknown> =
-  z.union([
-    z.lazy(() => Four$inboundSchema),
-    z.lazy(() => QueryParam1$inboundSchema),
-    z.lazy(() => QueryParam2$inboundSchema),
-    z.lazy(() => Three$inboundSchema),
-  ]);
-
-/** @internal */
-export type Session$Outbound =
-  | Four$Outbound
-  | QueryParam1$Outbound
-  | QueryParam2$Outbound
-  | Three$Outbound;
-
-/** @internal */
-export const Session$outboundSchema: z.ZodType<
-  Session$Outbound,
-  z.ZodTypeDef,
-  Session
-> = z.union([
-  z.lazy(() => Four$outboundSchema),
-  z.lazy(() => QueryParam1$outboundSchema),
-  z.lazy(() => QueryParam2$outboundSchema),
-  z.lazy(() => Three$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Session$ {
-  /** @deprecated use `Session$inboundSchema` instead. */
-  export const inboundSchema = Session$inboundSchema;
-  /** @deprecated use `Session$outboundSchema` instead. */
-  export const outboundSchema = Session$outboundSchema;
-  /** @deprecated use `Session$Outbound` instead. */
-  export type Outbound = Session$Outbound;
-}
-
-export function sessionToJSON(session: Session): string {
-  return JSON.stringify(Session$outboundSchema.parse(session));
-}
-
-export function sessionFromJSON(
-  jsonString: string,
-): SafeParseResult<Session, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Session$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Session' from JSON`,
-  );
-}
-
-/** @internal */
 export const CountCheckinsRequest$inboundSchema: z.ZodType<
   CountCheckinsRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  session: z.union([
-    z.lazy(() => Four$inboundSchema),
-    z.lazy(() => QueryParam1$inboundSchema),
-    z.lazy(() => QueryParam2$inboundSchema),
-    z.lazy(() => Three$inboundSchema),
-  ]).optional(),
+  include: Include$inboundSchema.optional(),
+  type: z.string().optional(),
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
@@ -526,12 +159,8 @@ export const CountCheckinsRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CountCheckinsRequest$Outbound = {
-  session?:
-    | Four$Outbound
-    | QueryParam1$Outbound
-    | QueryParam2$Outbound
-    | Three$Outbound
-    | undefined;
+  include?: string | undefined;
+  type?: string | undefined;
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
@@ -544,12 +173,8 @@ export const CountCheckinsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CountCheckinsRequest
 > = z.object({
-  session: z.union([
-    z.lazy(() => Four$outboundSchema),
-    z.lazy(() => QueryParam1$outboundSchema),
-    z.lazy(() => QueryParam2$outboundSchema),
-    z.lazy(() => Three$outboundSchema),
-  ]).optional(),
+  include: Include$outboundSchema.optional(),
+  type: z.string().optional(),
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),

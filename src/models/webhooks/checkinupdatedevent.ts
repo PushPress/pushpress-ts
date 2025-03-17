@@ -23,7 +23,7 @@ export type CheckinUpdatedEventEvent = ClosedEnum<
 >;
 
 /**
- * not implemented
+ * Any general update to a checkin will trigger this event
  */
 export type CheckinUpdatedEventRequestBody = {
   /**

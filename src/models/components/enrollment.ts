@@ -60,7 +60,7 @@ export type Entitlements = {
   /**
    * misc metadata about the entitlement
    */
-  metadata: Metadata | null;
+  metadata: Metadata;
 };
 
 /**
@@ -311,7 +311,7 @@ export const Entitlements$inboundSchema: z.ZodType<
   id: z.string(),
   interval: z.string(),
   quantity: z.number(),
-  metadata: z.nullable(z.lazy(() => Metadata$inboundSchema)),
+  metadata: z.lazy(() => Metadata$inboundSchema),
 });
 
 /** @internal */
@@ -320,7 +320,7 @@ export type Entitlements$Outbound = {
   id: string;
   interval: string;
   quantity: number;
-  metadata: Metadata$Outbound | null;
+  metadata: Metadata$Outbound;
 };
 
 /** @internal */
@@ -333,7 +333,7 @@ export const Entitlements$outboundSchema: z.ZodType<
   id: z.string(),
   interval: z.string(),
   quantity: z.number(),
-  metadata: z.nullable(z.lazy(() => Metadata$outboundSchema)),
+  metadata: z.lazy(() => Metadata$outboundSchema),
 });
 
 /**

@@ -11,9 +11,9 @@ let value: ListWebhooksResponseBody = {
   data: [
     {
       id: "<id>",
-      url: "https://flawless-cellar.info",
+      url: "https://international-larva.name/",
       eventTypes: [
-        "app.uninstalled",
+        "enrollment.deleted",
       ],
       signingSecret: "<value>",
     },

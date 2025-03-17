@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: c4f923d89c695e2d9e93b6402274515c
+  docChecksum: e4022f0f45352c6083c7422ebb47dece
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.31.0
-  configChecksum: 414f83dc3b87ec810798e2fc73ef3343
+  releaseVersion: 0.33.0
+  configChecksum: 442df8271a7ea667f8366a05d4a1e4ea
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -109,7 +109,6 @@ generatedFiles:
   - docs/models/operations/countcheckinsglobals.md
   - docs/models/operations/countcheckinsrequest.md
   - docs/models/operations/countcheckinsresponsebody.md
-  - docs/models/operations/countcheckinssessionqueryparaminclude.md
   - docs/models/operations/createapikeyglobals.md
   - docs/models/operations/createapikeyrequest.md
   - docs/models/operations/createapikeyrequestbody.md
@@ -198,14 +197,9 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponsebody.md
   - docs/models/operations/name.md
   - docs/models/operations/one.md
-  - docs/models/operations/queryparam1.md
-  - docs/models/operations/queryparam2.md
-  - docs/models/operations/queryparaminclude.md
   - docs/models/operations/replyto.md
   - docs/models/operations/responsebody1.md
   - docs/models/operations/responsebody2.md
-  - docs/models/operations/responsebody3.md
-  - docs/models/operations/responsebody4.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
@@ -227,8 +221,6 @@ generatedFiles:
   - docs/models/operations/sendsmsglobals.md
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
-  - docs/models/operations/session.md
-  - docs/models/operations/sessionqueryparaminclude.md
   - docs/models/operations/status.md
   - docs/models/operations/three.md
   - docs/models/operations/two.md
@@ -274,6 +266,7 @@ generatedFiles:
   - docs/models/webhooks/enrollmentdeletedevent.md
   - docs/models/webhooks/enrollmentdeletedrequestbody.md
   - docs/models/webhooks/enrollmentstatuschangedevent.md
+  - docs/models/webhooks/enrollmentstatuschangedpreviousvalues.md
   - docs/models/webhooks/enrollmentstatuschangedrequestbody.md
   - docs/models/webhooks/event.md
   - docs/models/webhooks/previousvalues.md
@@ -551,7 +544,7 @@ examples:
   enrollmentStatusChanged:
     speakeasy-default-enrollment-status-changed:
       requestBody:
-        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "previousValues": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "previousValues": {"status": "active"}, "created": 961657, "event": "enrollment.status.changed"}
   enrollmentDeleted:
     speakeasy-default-enrollment-deleted:
       requestBody:

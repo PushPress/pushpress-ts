@@ -9,6 +9,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type EnrollmentStatusChangedPreviousValues = {
+  /**
+   * The previous status of the enrollment
+   */
+  status?: string | undefined;
+};
+
 export const EnrollmentStatusChangedEvent = {
   EnrollmentStatusChanged: "enrollment.status.changed",
 } as const;
@@ -24,16 +31,72 @@ export type EnrollmentStatusChangedRequestBody = {
    * Schema representing a subscription that a customer has to a plan
    */
   data: components.Enrollment;
-  /**
-   * Schema representing a subscription that a customer has to a plan
-   */
-  previousValues?: components.Enrollment | undefined;
+  previousValues: EnrollmentStatusChangedPreviousValues;
   /**
    * Unix timestamp representing when the event was created
    */
   created: number;
   event: EnrollmentStatusChangedEvent;
 };
+
+/** @internal */
+export const EnrollmentStatusChangedPreviousValues$inboundSchema: z.ZodType<
+  EnrollmentStatusChangedPreviousValues,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  status: z.string().optional(),
+});
+
+/** @internal */
+export type EnrollmentStatusChangedPreviousValues$Outbound = {
+  status?: string | undefined;
+};
+
+/** @internal */
+export const EnrollmentStatusChangedPreviousValues$outboundSchema: z.ZodType<
+  EnrollmentStatusChangedPreviousValues$Outbound,
+  z.ZodTypeDef,
+  EnrollmentStatusChangedPreviousValues
+> = z.object({
+  status: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EnrollmentStatusChangedPreviousValues$ {
+  /** @deprecated use `EnrollmentStatusChangedPreviousValues$inboundSchema` instead. */
+  export const inboundSchema =
+    EnrollmentStatusChangedPreviousValues$inboundSchema;
+  /** @deprecated use `EnrollmentStatusChangedPreviousValues$outboundSchema` instead. */
+  export const outboundSchema =
+    EnrollmentStatusChangedPreviousValues$outboundSchema;
+  /** @deprecated use `EnrollmentStatusChangedPreviousValues$Outbound` instead. */
+  export type Outbound = EnrollmentStatusChangedPreviousValues$Outbound;
+}
+
+export function enrollmentStatusChangedPreviousValuesToJSON(
+  enrollmentStatusChangedPreviousValues: EnrollmentStatusChangedPreviousValues,
+): string {
+  return JSON.stringify(
+    EnrollmentStatusChangedPreviousValues$outboundSchema.parse(
+      enrollmentStatusChangedPreviousValues,
+    ),
+  );
+}
+
+export function enrollmentStatusChangedPreviousValuesFromJSON(
+  jsonString: string,
+): SafeParseResult<EnrollmentStatusChangedPreviousValues, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      EnrollmentStatusChangedPreviousValues$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EnrollmentStatusChangedPreviousValues' from JSON`,
+  );
+}
 
 /** @internal */
 export const EnrollmentStatusChangedEvent$inboundSchema: z.ZodNativeEnum<
@@ -63,7 +126,9 @@ export const EnrollmentStatusChangedRequestBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: components.Enrollment$inboundSchema,
-  previousValues: components.Enrollment$inboundSchema.optional(),
+  previousValues: z.lazy(() =>
+    EnrollmentStatusChangedPreviousValues$inboundSchema
+  ),
   created: z.number().int(),
   event: EnrollmentStatusChangedEvent$inboundSchema,
 });
@@ -71,7 +136,7 @@ export const EnrollmentStatusChangedRequestBody$inboundSchema: z.ZodType<
 /** @internal */
 export type EnrollmentStatusChangedRequestBody$Outbound = {
   data: components.Enrollment$Outbound;
-  previousValues?: components.Enrollment$Outbound | undefined;
+  previousValues: EnrollmentStatusChangedPreviousValues$Outbound;
   created: number;
   event: string;
 };
@@ -83,7 +148,9 @@ export const EnrollmentStatusChangedRequestBody$outboundSchema: z.ZodType<
   EnrollmentStatusChangedRequestBody
 > = z.object({
   data: components.Enrollment$outboundSchema,
-  previousValues: components.Enrollment$outboundSchema.optional(),
+  previousValues: z.lazy(() =>
+    EnrollmentStatusChangedPreviousValues$outboundSchema
+  ),
   created: z.number().int(),
   event: EnrollmentStatusChangedEvent$outboundSchema,
 });

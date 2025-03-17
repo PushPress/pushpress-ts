@@ -5,7 +5,7 @@
 ```typescript
 import { GetWebhookEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: GetWebhookEventTypes = "customer.details.changed";
+let value: GetWebhookEventTypes = "appointment.canceled";
 ```
 
 ## Values
