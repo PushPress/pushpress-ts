@@ -6,7 +6,7 @@
 import { DeleteWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: DeleteWebhookRequest = {
-  uuid: "4b65de03-5dff-4e4f-931f-3b0be465b327",
+  uuid: "a8684b65-de03-45df-afe4-f31f3b0be465",
 };
 ```
 

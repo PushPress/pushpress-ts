@@ -128,6 +128,19 @@ export class PushPress extends ClientSDK {
     ));
   }
 
+  async enrollmentStatusChanged(
+    recipient: WebhookRecipient,
+    request: webhooks.EnrollmentStatusChangedRequestBody,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(enrollmentStatusChanged(
+      this,
+      recipient,
+      request,
+      options,
+    ));
+  }
+
   async appInstalledEvent(
     recipient: WebhookRecipient,
     request: webhooks.AppInstalledEventRequestBody,
@@ -284,19 +297,6 @@ export class PushPress extends ClientSDK {
     ));
   }
 
-  async enrollmentStatusChanged(
-    recipient: WebhookRecipient,
-    request: webhooks.EnrollmentStatusChangedRequestBody,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return unwrapAsync(enrollmentStatusChanged(
-      this,
-      recipient,
-      request,
-      options,
-    ));
-  }
-
   async enrollmentDeleted(
     recipient: WebhookRecipient,
     request: webhooks.EnrollmentDeletedRequestBody,
@@ -364,6 +364,7 @@ export class PushPress extends ClientSDK {
     | webhooks.CheckinCreatedEventRequestBody
     | webhooks.CheckinUpdatedEventRequestBody
     | webhooks.CheckinDeletedEventRequestBody
+    | webhooks.EnrollmentStatusChangedRequestBody
     | webhooks.AppInstalledEventRequestBody
     | webhooks.AppUninstalledEventRequestBody
     | webhooks.AppointmentScheduledEventRequestBody
@@ -376,7 +377,6 @@ export class PushPress extends ClientSDK {
     | webhooks.CustomerDeletedEventRequestBody
     | webhooks.ClassCanceledEventRequestBody
     | webhooks.EnrollmentCreatedEventRequestBody
-    | webhooks.EnrollmentStatusChangedRequestBody
     | webhooks.EnrollmentDeletedRequestBody
     | webhooks.ReservationCreatedEventRequestBody
     | webhooks.ReservationWaitlistedEventRequestBody

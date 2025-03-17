@@ -7,9 +7,9 @@ import { CreateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequest = {
   requestBody: {
-    url: "https://outstanding-dress.info/",
+    url: "https://spanish-sarong.biz",
     eventTypes: [
-      "app.installed",
+      "app.uninstalled",
     ],
   },
 };

@@ -1,5 +1,7 @@
 # Include
 
+When defined only include checkins for these categories
+
 ## Example Usage
 
 ```typescript
@@ -11,5 +13,5 @@ let value: Include = "classes";
 ## Values
 
 ```typescript
-"classes"
+"classes" | "events" | "appointments" | "open"
 ```

@@ -1,6 +1,6 @@
 # CheckinUpdatedEventRequestBody
 
-not implemented
+Any general update to a checkin will trigger this event
 
 ## Example Usage
 

@@ -6,7 +6,7 @@
 import { GetCustomerRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetCustomerRequest = {
-  uuid: "fcbe189f-4310-4eac-b491-7fe5f3ffcad4",
+  uuid: "2275fcbe-189f-4431-b0ea-c4917fe5f3ff",
 };
 ```
 

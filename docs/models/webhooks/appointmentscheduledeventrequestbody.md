@@ -18,7 +18,7 @@ let value: AppointmentScheduledEventRequestBody = {
     startTimestamp: 1677721600,
     staffId: "usr_78910",
   },
-  created: 963663,
+  created: 383441,
   event: "appointment.scheduled",
 };
 ```

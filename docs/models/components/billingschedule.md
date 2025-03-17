@@ -6,8 +6,8 @@
 import { BillingSchedule } from "@pushpress/pushpress/models/components";
 
 let value: BillingSchedule = {
-  period: "week",
-  interval: 4663.11,
+  period: "day",
+  interval: 9446.69,
 };
 ```
 

@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://back-possession.net",
+  url: "https://focused-glider.biz",
   eventTypes: [
-    "checkin.updated",
+    "appointment.rescheduled",
   ],
 };
 ```

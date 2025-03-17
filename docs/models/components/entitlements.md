@@ -9,7 +9,7 @@ let value: Entitlements = {
   type: "<value>",
   id: "<id>",
   interval: "<value>",
-  quantity: 6563.3,
+  quantity: 7742.34,
   metadata: {},
 };
 ```

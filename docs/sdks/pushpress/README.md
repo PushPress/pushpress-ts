@@ -13,6 +13,7 @@ enabling the automation of various tasks and the extension of platform capabilit
 * [checkinCreatedEvent](#checkincreatedevent)
 * [checkinUpdatedEvent](#checkinupdatedevent)
 * [checkinDeletedEvent](#checkindeletedevent)
+* [enrollmentStatusChanged](#enrollmentstatuschanged)
 * [appInstalledEvent](#appinstalledevent)
 * [appUninstalledEvent](#appuninstalledevent)
 * [appointmentScheduledEvent](#appointmentscheduledevent)
@@ -25,7 +26,6 @@ enabling the automation of various tasks and the extension of platform capabilit
 * [customerDeletedEvent](#customerdeletedevent)
 * [classCanceledEvent](#classcanceledevent)
 * [enrollmentCreatedEvent](#enrollmentcreatedevent)
-* [enrollmentStatusChanged](#enrollmentstatuschanged)
 * [enrollmentDeleted](#enrollmentdeleted)
 * [reservationCreatedEvent](#reservationcreatedevent)
 * [reservationWaitlistedEvent](#reservationwaitlistedevent)
@@ -297,6 +297,130 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [webhooks.CheckinDeletedEventRequestBody](../../models/webhooks/checkindeletedeventrequestbody.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## enrollmentStatusChanged
+
+### Example Usage
+
+```typescript
+import { PushPress } from "@pushpress/pushpress";
+
+const pushPress = new PushPress();
+
+async function run() {
+  await pushPress.enrollmentStatusChanged({
+    data: {
+      id: "sub_12345",
+      customerId: "usr_12345",
+      companyId: "client_12345",
+      planId: "plan_12345",
+      billingSchedule: {
+        period: "month",
+        interval: 1,
+      },
+      status: "active",
+      checkinDetails: {
+        checkins: 0,
+        limit: -1,
+      },
+      entitlements: [
+        {
+          type: "24_HOUR_ACCESS",
+          id: "plnentl_12345",
+          interval: "",
+          quantity: 1,
+          metadata: {},
+        },
+      ],
+    },
+    previousValues: {
+      status: "active",
+    },
+    created: 961657,
+    event: "enrollment.status.changed",
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PushPressCore } from "@pushpress/pushpress/core.js";
+import { enrollmentStatusChanged } from "@pushpress/pushpress/funcs/enrollmentStatusChanged.js";
+
+// Use `PushPressCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const pushPress = new PushPressCore();
+
+async function run() {
+  const res = await enrollmentStatusChanged(pushPress, {
+    data: {
+      id: "sub_12345",
+      customerId: "usr_12345",
+      companyId: "client_12345",
+      planId: "plan_12345",
+      billingSchedule: {
+        period: "month",
+        interval: 1,
+      },
+      status: "active",
+      checkinDetails: {
+        checkins: 0,
+        limit: -1,
+      },
+      entitlements: [
+        {
+          type: "24_HOUR_ACCESS",
+          id: "plnentl_12345",
+          interval: "",
+          quantity: 1,
+          metadata: {},
+        },
+      ],
+    },
+    previousValues: {
+      status: "active",
+    },
+    created: 961657,
+    event: "enrollment.status.changed",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [webhooks.EnrollmentStatusChangedRequestBody](../../models/webhooks/enrollmentstatuschangedrequestbody.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1551,172 +1675,6 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `request`                                                                                                                                                                      | [webhooks.EnrollmentCreatedEventRequestBody](../../models/webhooks/enrollmentcreatedeventrequestbody.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<void\>**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## enrollmentStatusChanged
-
-### Example Usage
-
-```typescript
-import { PushPress } from "@pushpress/pushpress";
-
-const pushPress = new PushPress();
-
-async function run() {
-  await pushPress.enrollmentStatusChanged({
-    data: {
-      id: "sub_12345",
-      customerId: "usr_12345",
-      companyId: "client_12345",
-      planId: "plan_12345",
-      billingSchedule: {
-        period: "month",
-        interval: 1,
-      },
-      status: "active",
-      checkinDetails: {
-        checkins: 0,
-        limit: -1,
-      },
-      entitlements: [
-        {
-          type: "24_HOUR_ACCESS",
-          id: "plnentl_12345",
-          interval: "",
-          quantity: 1,
-          metadata: {},
-        },
-      ],
-    },
-    previousValues: {
-      id: "sub_12345",
-      customerId: "usr_12345",
-      companyId: "client_12345",
-      planId: "plan_12345",
-      billingSchedule: {
-        period: "month",
-        interval: 1,
-      },
-      status: "active",
-      checkinDetails: {
-        checkins: 0,
-        limit: -1,
-      },
-      entitlements: [
-        {
-          type: "24_HOUR_ACCESS",
-          id: "plnentl_12345",
-          interval: "",
-          quantity: 1,
-          metadata: {},
-        },
-      ],
-    },
-    created: 961657,
-    event: "enrollment.status.changed",
-  });
-
-
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { enrollmentStatusChanged } from "@pushpress/pushpress/funcs/enrollmentStatusChanged.js";
-
-// Use `PushPressCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const pushPress = new PushPressCore();
-
-async function run() {
-  const res = await enrollmentStatusChanged(pushPress, {
-    data: {
-      id: "sub_12345",
-      customerId: "usr_12345",
-      companyId: "client_12345",
-      planId: "plan_12345",
-      billingSchedule: {
-        period: "month",
-        interval: 1,
-      },
-      status: "active",
-      checkinDetails: {
-        checkins: 0,
-        limit: -1,
-      },
-      entitlements: [
-        {
-          type: "24_HOUR_ACCESS",
-          id: "plnentl_12345",
-          interval: "",
-          quantity: 1,
-          metadata: {},
-        },
-      ],
-    },
-    previousValues: {
-      id: "sub_12345",
-      customerId: "usr_12345",
-      companyId: "client_12345",
-      planId: "plan_12345",
-      billingSchedule: {
-        period: "month",
-        interval: 1,
-      },
-      status: "active",
-      checkinDetails: {
-        checkins: 0,
-        limit: -1,
-      },
-      entitlements: [
-        {
-          type: "24_HOUR_ACCESS",
-          id: "plnentl_12345",
-          interval: "",
-          quantity: 1,
-          metadata: {},
-        },
-      ],
-    },
-    created: 961657,
-    event: "enrollment.status.changed",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [webhooks.EnrollmentStatusChangedRequestBody](../../models/webhooks/enrollmentstatuschangedrequestbody.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

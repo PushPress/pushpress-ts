@@ -24,6 +24,7 @@ export async function validateWebhook(client: PushPressCore, {
     | webhooks.CheckinCreatedEventRequestBody
     | webhooks.CheckinUpdatedEventRequestBody
     | webhooks.CheckinDeletedEventRequestBody
+    | webhooks.EnrollmentStatusChangedRequestBody
     | webhooks.AppInstalledEventRequestBody
     | webhooks.AppUninstalledEventRequestBody
     | webhooks.AppointmentScheduledEventRequestBody
@@ -36,7 +37,6 @@ export async function validateWebhook(client: PushPressCore, {
     | webhooks.CustomerDeletedEventRequestBody
     | webhooks.ClassCanceledEventRequestBody
     | webhooks.EnrollmentCreatedEventRequestBody
-    | webhooks.EnrollmentStatusChangedRequestBody
     | webhooks.EnrollmentDeletedRequestBody
     | webhooks.ReservationCreatedEventRequestBody
     | webhooks.ReservationWaitlistedEventRequestBody
@@ -53,6 +53,7 @@ export async function validateWebhook(client: PushPressCore, {
     webhooks.checkinCreatedEventRequestBodyFromJSON,
     webhooks.checkinUpdatedEventRequestBodyFromJSON,
     webhooks.checkinDeletedEventRequestBodyFromJSON,
+    webhooks.enrollmentStatusChangedRequestBodyFromJSON,
     webhooks.appInstalledEventRequestBodyFromJSON,
     webhooks.appUninstalledEventRequestBodyFromJSON,
     webhooks.appointmentScheduledEventRequestBodyFromJSON,
@@ -65,7 +66,6 @@ export async function validateWebhook(client: PushPressCore, {
     webhooks.customerDeletedEventRequestBodyFromJSON,
     webhooks.classCanceledEventRequestBodyFromJSON,
     webhooks.enrollmentCreatedEventRequestBodyFromJSON,
-    webhooks.enrollmentStatusChangedRequestBodyFromJSON,
     webhooks.enrollmentDeletedRequestBodyFromJSON,
     webhooks.reservationCreatedEventRequestBodyFromJSON,
     webhooks.reservationWaitlistedEventRequestBodyFromJSON,

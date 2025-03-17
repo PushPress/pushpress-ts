@@ -61,7 +61,8 @@ export async function checkinsCount(
     "after": payload.after,
     "before": payload.before,
     "customer": payload.customer,
-    "session": payload.session,
+    "include": payload.include,
+    "type": payload.type,
   });
 
   const headers = new Headers(compactMap({
