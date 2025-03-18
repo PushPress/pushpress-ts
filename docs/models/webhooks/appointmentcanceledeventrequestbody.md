@@ -18,7 +18,7 @@ let value: AppointmentCanceledEventRequestBody = {
     startTimestamp: 1677721600,
     staffId: "usr_78910",
   },
-  created: 568045,
+  created: 528895,
   event: "appointment.canceled",
 };
 ```

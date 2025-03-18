@@ -7,7 +7,7 @@ Role of the customer in the class
 ```typescript
 import { ClassCheckinRole } from "@pushpress/pushpress/models/components";
 
-let value: ClassCheckinRole = "attendee";
+let value: ClassCheckinRole = "coach";
 ```
 
 ## Values

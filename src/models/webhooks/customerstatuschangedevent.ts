@@ -25,10 +25,6 @@ export type CustomerStatusChangedEventRequestBody = {
    */
   data: components.Customer;
   /**
-   * Schema representing a customer, former customer, or lead served by the company
-   */
-  previousValues?: components.Customer | undefined;
-  /**
    * Unix timestamp representing when the event was created
    */
   created: number;
@@ -63,7 +59,6 @@ export const CustomerStatusChangedEventRequestBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: components.Customer$inboundSchema,
-  previousValues: components.Customer$inboundSchema.optional(),
   created: z.number().int(),
   event: CustomerStatusChangedEventEvent$inboundSchema,
 });
@@ -71,7 +66,6 @@ export const CustomerStatusChangedEventRequestBody$inboundSchema: z.ZodType<
 /** @internal */
 export type CustomerStatusChangedEventRequestBody$Outbound = {
   data: components.Customer$Outbound;
-  previousValues?: components.Customer$Outbound | undefined;
   created: number;
   event: string;
 };
@@ -83,7 +77,6 @@ export const CustomerStatusChangedEventRequestBody$outboundSchema: z.ZodType<
   CustomerStatusChangedEventRequestBody
 > = z.object({
   data: components.Customer$outboundSchema,
-  previousValues: components.Customer$outboundSchema.optional(),
   created: z.number().int(),
   event: CustomerStatusChangedEventEvent$outboundSchema,
 });

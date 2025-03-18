@@ -6,7 +6,7 @@
 import { GetEnrollmentRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetEnrollmentRequest = {
-  uuid: "ad4d9052-f77a-452d-a383-1dffec516320",
+  uuid: "3ffcad4d-9052-4f77-9a52-d3831dffec51",
 };
 ```
 
