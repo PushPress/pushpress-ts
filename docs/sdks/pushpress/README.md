@@ -1400,7 +1400,9 @@ const pushPress = new PushPress();
 
 async function run() {
   await pushPress.customerDeletedEvent({
-    data: {},
+    data: {
+      id: "<id>",
+    },
     created: 522524,
     event: "customer.deleted",
   });
@@ -1425,7 +1427,9 @@ const pushPress = new PushPressCore();
 
 async function run() {
   const res = await customerDeletedEvent(pushPress, {
-    data: {},
+    data: {
+      id: "<id>",
+    },
     created: 522524,
     event: "customer.deleted",
   });
@@ -1700,7 +1704,9 @@ const pushPress = new PushPress();
 
 async function run() {
   await pushPress.enrollmentDeleted({
-    data: {},
+    data: {
+      id: "<id>",
+    },
     created: 230421,
     event: "enrollment.deleted",
   });
@@ -1725,7 +1731,9 @@ const pushPress = new PushPressCore();
 
 async function run() {
   const res = await enrollmentDeleted(pushPress, {
-    data: {},
+    data: {
+      id: "<id>",
+    },
     created: 230421,
     event: "enrollment.deleted",
   });

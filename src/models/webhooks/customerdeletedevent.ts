@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CustomerDeletedEventData = {
-  id?: string | undefined;
+  id: string;
 };
 
 export const CustomerDeletedEventEvent = {
@@ -37,12 +37,12 @@ export const CustomerDeletedEventData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string().optional(),
+  id: z.string(),
 });
 
 /** @internal */
 export type CustomerDeletedEventData$Outbound = {
-  id?: string | undefined;
+  id: string;
 };
 
 /** @internal */
@@ -51,7 +51,7 @@ export const CustomerDeletedEventData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerDeletedEventData
 > = z.object({
-  id: z.string().optional(),
+  id: z.string(),
 });
 
 /**
