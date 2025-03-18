@@ -16,7 +16,7 @@ let value: ReservationCanceledEventRequestBody = {
     registrationTimestamp: 1672531200000,
     status: "reserved",
   },
-  created: 461479,
+  created: 799159,
   event: "reservation.canceled",
 };
 ```

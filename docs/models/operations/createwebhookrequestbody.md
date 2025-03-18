@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://focused-glider.biz",
+  url: "https://fatal-import.net/",
   eventTypes: [
-    "appointment.rescheduled",
+    "checkin.updated",
   ],
 };
 ```

@@ -13,7 +13,7 @@ let value: AppInstalledEventRequestBody = {
     appId: "app-uuid",
     installationId: "installation-uuid",
   },
-  created: 891773,
+  created: 437587,
   event: "app.installed",
 };
 ```

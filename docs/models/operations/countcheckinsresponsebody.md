@@ -8,7 +8,7 @@ Default Response
 import { CountCheckinsResponseBody } from "@pushpress/pushpress/models/operations";
 
 let value: CountCheckinsResponseBody = {
-  count: 3179.83,
+  count: 2828.07,
 };
 ```
 

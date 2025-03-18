@@ -146,16 +146,6 @@ async function run() {
       company: "cli_12345",
       timestamp: 1672531200000,
     },
-    previousValues: {
-      id: "apptschdl_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "Personal Training",
-      appointmentId: "apptschdl_12345",
-      typeId: "appttype_12345",
-      staffId: "usr_78910",
-    },
     created: 738207,
     event: "checkin.updated",
   });
@@ -185,16 +175,6 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-    },
-    previousValues: {
-      id: "apptschdl_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "Personal Training",
-      appointmentId: "apptschdl_12345",
-      typeId: "appttype_12345",
-      staffId: "usr_78910",
     },
     created: 738207,
     event: "checkin.updated",
@@ -346,9 +326,6 @@ async function run() {
         },
       ],
     },
-    previousValues: {
-      status: "active",
-    },
     created: 961657,
     event: "enrollment.status.changed",
   });
@@ -396,9 +373,6 @@ async function run() {
           metadata: {},
         },
       ],
-    },
-    previousValues: {
-      status: "active",
     },
     created: 961657,
     event: "enrollment.status.changed",
@@ -1120,34 +1094,6 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    previousValues: {
-      id: "usr_1234",
-      companyId: "cli_1234",
-      name: {
-        first: "John",
-        last: "Doe",
-        nickname: "jimmy",
-      },
-      gender: "male",
-      dob: "1990-01-01",
-      address: {
-        line1: "123 Main St",
-        line2: "Apt 1",
-        city: "Anytown",
-        country: "US",
-        state: "NY",
-        zip: "12345",
-      },
-      assignedToStaffId: null,
-      account: {},
-      profileImage: "https://example.com/profile.jpg",
-      membershipDetails: {
-        initialMembershipStartDate: "2022-01-01",
-      },
-      email: "john@doe.com",
-      phone: "+1-800-555-1234",
-      role: "member",
-    },
     created: 153704,
     event: "customer.status.changed",
   });
@@ -1173,34 +1119,6 @@ const pushPress = new PushPressCore();
 async function run() {
   const res = await customerStatusChangedEvent(pushPress, {
     data: {
-      id: "usr_1234",
-      companyId: "cli_1234",
-      name: {
-        first: "John",
-        last: "Doe",
-        nickname: "jimmy",
-      },
-      gender: "male",
-      dob: "1990-01-01",
-      address: {
-        line1: "123 Main St",
-        line2: "Apt 1",
-        city: "Anytown",
-        country: "US",
-        state: "NY",
-        zip: "12345",
-      },
-      assignedToStaffId: null,
-      account: {},
-      profileImage: "https://example.com/profile.jpg",
-      membershipDetails: {
-        initialMembershipStartDate: "2022-01-01",
-      },
-      email: "john@doe.com",
-      phone: "+1-800-555-1234",
-      role: "member",
-    },
-    previousValues: {
       id: "usr_1234",
       companyId: "cli_1234",
       name: {

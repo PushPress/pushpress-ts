@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 7a17e83cf1780818e34a7281c7e1bfc4
+  docChecksum: fee45c273fb1aa93d627d5583e3b56b3
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.35.0
-  configChecksum: 36a41fcf52accb09e0197560c8d63c21
+  releaseVersion: 0.38.0
+  configChecksum: c867d9ff13294903f4cd2caf0becd015
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -266,10 +266,8 @@ generatedFiles:
   - docs/models/webhooks/enrollmentdeletedevent.md
   - docs/models/webhooks/enrollmentdeletedrequestbody.md
   - docs/models/webhooks/enrollmentstatuschangedevent.md
-  - docs/models/webhooks/enrollmentstatuschangedpreviousvalues.md
   - docs/models/webhooks/enrollmentstatuschangedrequestbody.md
   - docs/models/webhooks/event.md
-  - docs/models/webhooks/previousvalues.md
   - docs/models/webhooks/reservationcanceledeventevent.md
   - docs/models/webhooks/reservationcanceledeventrequestbody.md
   - docs/models/webhooks/reservationcreatedeventevent.md
@@ -488,7 +486,7 @@ examples:
   checkinUpdatedEvent:
     speakeasy-default-checkin-updated-event:
       requestBody:
-        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}, "previousValues": {"id": "apptschdl_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "name": "Personal Training", "kind": "appointment", "appointmentId": "apptschdl_12345", "typeId": "appttype_12345", "staffId": "usr_78910"}, "created": 738207, "event": "checkin.updated"}
+        application/json: {"data": {"id": "chk_12345", "customer": "usr_12345", "company": "cli_12345", "timestamp": 1672531200000, "kind": "open"}, "created": 738207, "event": "checkin.updated"}
   checkinDeletedEvent:
     speakeasy-default-checkin-deleted-event:
       requestBody:
@@ -524,7 +522,7 @@ examples:
   customerStatusChangedEvent:
     speakeasy-default-customer-status-changed-event:
       requestBody:
-        application/json: {"data": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "previousValues": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 153704, "event": "customer.status.changed"}
+        application/json: {"data": {"id": "usr_1234", "companyId": "cli_1234", "name": {"first": "John", "last": "Doe", "nickname": "jimmy"}, "gender": "male", "dob": "1990-01-01", "address": {"line1": "123 Main St", "line2": "Apt 1", "city": "Anytown", "country": "US", "state": "NY", "zip": "12345"}, "assignedToStaffId": null, "account": {"type": "primary"}, "profileImage": "https://example.com/profile.jpg", "membershipDetails": {"initialMembershipStartDate": "2022-01-01"}, "email": "john@doe.com", "phone": "+1-800-555-1234", "role": "member"}, "created": 153704, "event": "customer.status.changed"}
   customerDetailsChangedEvent:
     speakeasy-default-customer-details-changed-event:
       requestBody:
@@ -544,7 +542,7 @@ examples:
   enrollmentStatusChanged:
     speakeasy-default-enrollment-status-changed:
       requestBody:
-        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "previousValues": {"status": "active"}, "created": 961657, "event": "enrollment.status.changed"}
+        application/json: {"data": {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}, "created": 961657, "event": "enrollment.status.changed"}
   enrollmentDeleted:
     speakeasy-default-enrollment-deleted:
       requestBody:

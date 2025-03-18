@@ -5,7 +5,7 @@
 ```typescript
 import { UpdateWebhookEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: UpdateWebhookEventTypes = "reservation.canceled";
+let value: UpdateWebhookEventTypes = "customer.created";
 ```
 
 ## Values

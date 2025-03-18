@@ -9,9 +9,9 @@ import { GetWebhookResponseBody } from "@pushpress/pushpress/models/operations";
 
 let value: GetWebhookResponseBody = {
   id: "<id>",
-  url: "https://impeccable-barge.info",
+  url: "https://untrue-singing.com",
   eventTypes: [
-    "checkin.updated",
+    "enrollment.status.changed",
   ],
   signingSecret: "<value>",
 };

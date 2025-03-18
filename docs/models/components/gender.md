@@ -7,7 +7,7 @@ The customer's gender, null if unknown or other
 ```typescript
 import { Gender } from "@pushpress/pushpress/models/components";
 
-let value: Gender = "male";
+let value: Gender = "female";
 ```
 
 ## Values
