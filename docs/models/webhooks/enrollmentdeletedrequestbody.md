@@ -8,7 +8,9 @@ Enrollment deleted, most often because of a failed initial payment
 import { EnrollmentDeletedRequestBody } from "@pushpress/pushpress/models/webhooks";
 
 let value: EnrollmentDeletedRequestBody = {
-  data: {},
+  data: {
+    id: "<id>",
+  },
   created: 870013,
   event: "enrollment.deleted",
 };

@@ -8,7 +8,10 @@ Customer Deleted Event
 import { CustomerDeletedEventRequestBody } from "@pushpress/pushpress/models/webhooks";
 
 let value: CustomerDeletedEventRequestBody = {
-  data: {},
+  data: {
+    id: "<id>",
+    companyId: "<id>",
+  },
   created: 20218,
   event: "customer.deleted",
 };
