@@ -152,6 +152,11 @@ run();
 
 * [get](docs/sdks/classes/README.md#get) - Get Details for a Class
 
+#### [classes.type](docs/sdks/type/README.md)
+
+* [get](docs/sdks/type/README.md#get) - Get a class type
+* [list](docs/sdks/type/README.md#list) - List class types for the given gym
+
 ### [company](docs/sdks/company/README.md)
 
 * [get](docs/sdks/company/README.md#get) - Get Company Details
@@ -267,6 +272,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`checkinUpdatedEvent`](docs/sdks/pushpress/README.md#checkinupdatedevent)
 - [`classCanceledEvent`](docs/sdks/pushpress/README.md#classcanceledevent)
 - [`classesGet`](docs/sdks/classes/README.md#get) - Get Details for a Class
+- [`classesTypeGet`](docs/sdks/type/README.md#get) - Get a class type
+- [`classesTypeList`](docs/sdks/type/README.md#list) - List class types for the given gym
 - [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
 - [`customerCreatedEvent`](docs/sdks/pushpress/README.md#customercreatedevent)
 - [`customerDeletedEvent`](docs/sdks/pushpress/README.md#customerdeletedevent)
