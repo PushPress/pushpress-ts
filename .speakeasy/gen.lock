@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: fee45c273fb1aa93d627d5583e3b56b3
+  docChecksum: 8a00b826bf3f4ca599678ffd2a9d8903
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.38.0
-  configChecksum: c867d9ff13294903f4cd2caf0becd015
+  releaseVersion: 0.40.0
+  configChecksum: 368b67751e736569cba6b4cc1320d648
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -143,6 +143,9 @@ generatedFiles:
   - docs/models/operations/getclasscheckinrequest.md
   - docs/models/operations/getclassglobals.md
   - docs/models/operations/getclassrequest.md
+  - docs/models/operations/getclasstypeglobals.md
+  - docs/models/operations/getclasstyperequest.md
+  - docs/models/operations/getclasstyperesponsebody.md
   - docs/models/operations/getcompanyglobals.md
   - docs/models/operations/getcompanyrequest.md
   - docs/models/operations/getcustomerglobals.md
@@ -176,6 +179,10 @@ generatedFiles:
   - docs/models/operations/listclasscheckinsrequest.md
   - docs/models/operations/listclasscheckinsresponse.md
   - docs/models/operations/listclasscheckinsresponsebody.md
+  - docs/models/operations/listclasstypesdata.md
+  - docs/models/operations/listclasstypesglobals.md
+  - docs/models/operations/listclasstypesrequest.md
+  - docs/models/operations/listclasstypesresponsebody.md
   - docs/models/operations/listcustomersdata.md
   - docs/models/operations/listcustomersglobals.md
   - docs/models/operations/listcustomersrequest.md
@@ -200,6 +207,7 @@ generatedFiles:
   - docs/models/operations/replyto.md
   - docs/models/operations/responsebody1.md
   - docs/models/operations/responsebody2.md
+  - docs/models/operations/resultarray.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
   - docs/models/operations/revokeapikeysecurity.md
@@ -293,6 +301,7 @@ generatedFiles:
   - docs/sdks/pushpress/README.md
   - docs/sdks/realtime/README.md
   - docs/sdks/sms/README.md
+  - docs/sdks/type/README.md
   - eslint.config.mjs
   - jsr.json
   - package.json
@@ -319,6 +328,8 @@ generatedFiles:
   - src/funcs/checkinsOpenList.ts
   - src/funcs/classCanceledEvent.ts
   - src/funcs/classesGet.ts
+  - src/funcs/classesTypeGet.ts
+  - src/funcs/classesTypeList.ts
   - src/funcs/companyGet.ts
   - src/funcs/customerCreatedEvent.ts
   - src/funcs/customerDeletedEvent.ts
@@ -405,6 +416,7 @@ generatedFiles:
   - src/models/operations/getappointmentcheckin.ts
   - src/models/operations/getclass.ts
   - src/models/operations/getclasscheckin.ts
+  - src/models/operations/getclasstype.ts
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/getenrollment.ts
@@ -416,6 +428,7 @@ generatedFiles:
   - src/models/operations/listapikeys.ts
   - src/models/operations/listappointmentcheckins.ts
   - src/models/operations/listclasscheckins.ts
+  - src/models/operations/listclasstypes.ts
   - src/models/operations/listcustomers.ts
   - src/models/operations/listeventcheckins.ts
   - src/models/operations/listopencheckins.ts
@@ -468,6 +481,7 @@ generatedFiles:
   - src/sdk/realtime.ts
   - src/sdk/sdk.ts
   - src/sdk/sms.ts
+  - src/sdk/type.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -969,5 +983,19 @@ examples:
       responses:
         "200":
           application/json: {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}
+  getClassType:
+    speakeasy-default-get-class-type:
+      parameters:
+        path:
+          id: "<id>"
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "companyId": "<id>", "name": "<value>"}
+  listClassTypes:
+    speakeasy-default-list-class-types:
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "<id>", "companyId": "<id>", "name": "<value>"}, {"id": "<id>", "companyId": "<id>", "name": "<value>"}, {"id": "<id>", "companyId": "<id>", "name": "<value>"}]}}
 examplesVersion: 1.0.0
 generatedTests: {}

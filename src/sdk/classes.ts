@@ -7,8 +7,14 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { Type } from "./type.js";
 
 export class Classes extends ClientSDK {
+  private _type?: Type;
+  get type(): Type {
+    return (this._type ??= new Type(this._options));
+  }
+
   /**
    * Get Details for a Class
    *
