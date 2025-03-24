@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 8a00b826bf3f4ca599678ffd2a9d8903
+  docChecksum: 26ae0713dd19b470d99d8c8b103493ef
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 0.40.0
-  configChecksum: 368b67751e736569cba6b4cc1320d648
+  releaseVersion: 1.1.0
+  configChecksum: 789efad8ead2282bf532a28bedb8b1ed
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -204,6 +204,7 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponsebody.md
   - docs/models/operations/name.md
   - docs/models/operations/one.md
+  - docs/models/operations/queryparamtype.md
   - docs/models/operations/replyto.md
   - docs/models/operations/responsebody1.md
   - docs/models/operations/responsebody2.md

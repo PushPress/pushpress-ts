@@ -27,6 +27,11 @@ export const Include = {
  */
 export type Include = ClosedEnum<typeof Include>;
 
+/**
+ * When defined only include sub categories of classes/appointments/events with this type
+ */
+export type QueryParamType = string | Array<string>;
+
 export type CountCheckinsRequest = {
   /**
    * When defined only include checkins for these categories
@@ -35,7 +40,7 @@ export type CountCheckinsRequest = {
   /**
    * When defined only include sub categories of classes/appointments/events with this type
    */
-  type?: string | undefined;
+  type?: string | Array<string> | undefined;
   customer?: string | undefined;
   /**
    * Checkins before this unix timestamp
@@ -140,13 +145,57 @@ export namespace Include$ {
 }
 
 /** @internal */
+export const QueryParamType$inboundSchema: z.ZodType<
+  QueryParamType,
+  z.ZodTypeDef,
+  unknown
+> = z.union([z.string(), z.array(z.string())]);
+
+/** @internal */
+export type QueryParamType$Outbound = string | Array<string>;
+
+/** @internal */
+export const QueryParamType$outboundSchema: z.ZodType<
+  QueryParamType$Outbound,
+  z.ZodTypeDef,
+  QueryParamType
+> = z.union([z.string(), z.array(z.string())]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace QueryParamType$ {
+  /** @deprecated use `QueryParamType$inboundSchema` instead. */
+  export const inboundSchema = QueryParamType$inboundSchema;
+  /** @deprecated use `QueryParamType$outboundSchema` instead. */
+  export const outboundSchema = QueryParamType$outboundSchema;
+  /** @deprecated use `QueryParamType$Outbound` instead. */
+  export type Outbound = QueryParamType$Outbound;
+}
+
+export function queryParamTypeToJSON(queryParamType: QueryParamType): string {
+  return JSON.stringify(QueryParamType$outboundSchema.parse(queryParamType));
+}
+
+export function queryParamTypeFromJSON(
+  jsonString: string,
+): SafeParseResult<QueryParamType, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => QueryParamType$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'QueryParamType' from JSON`,
+  );
+}
+
+/** @internal */
 export const CountCheckinsRequest$inboundSchema: z.ZodType<
   CountCheckinsRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
   include: Include$inboundSchema.optional(),
-  type: z.string().optional(),
+  type: z.union([z.string(), z.array(z.string())]).optional(),
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
@@ -160,7 +209,7 @@ export const CountCheckinsRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CountCheckinsRequest$Outbound = {
   include?: string | undefined;
-  type?: string | undefined;
+  type?: string | Array<string> | undefined;
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
@@ -174,7 +223,7 @@ export const CountCheckinsRequest$outboundSchema: z.ZodType<
   CountCheckinsRequest
 > = z.object({
   include: Include$outboundSchema.optional(),
-  type: z.string().optional(),
+  type: z.union([z.string(), z.array(z.string())]).optional(),
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
