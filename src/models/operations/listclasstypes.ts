@@ -19,7 +19,7 @@ export type ListClassTypesRequest = {
   companyId?: string | undefined;
 };
 
-export type ResultArray = {
+export type ListClassTypesResultArray = {
   /**
    * Unique identifier for the class type
    */
@@ -40,10 +40,14 @@ export type ResultArray = {
    * Description of the class type
    */
   description?: string | null | undefined;
+  /**
+   * Whether the class type is active and can be selected for a class
+   */
+  active: boolean;
 };
 
 export type ListClassTypesData = {
-  resultArray: Array<ResultArray>;
+  resultArray: Array<ListClassTypesResultArray>;
 };
 
 /**
@@ -178,8 +182,8 @@ export function listClassTypesRequestFromJSON(
 }
 
 /** @internal */
-export const ResultArray$inboundSchema: z.ZodType<
-  ResultArray,
+export const ListClassTypesResultArray$inboundSchema: z.ZodType<
+  ListClassTypesResultArray,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -188,54 +192,61 @@ export const ResultArray$inboundSchema: z.ZodType<
   name: z.string(),
   color: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  active: z.boolean(),
 });
 
 /** @internal */
-export type ResultArray$Outbound = {
+export type ListClassTypesResultArray$Outbound = {
   id: string;
   companyId: string;
   name: string;
   color?: string | null | undefined;
   description?: string | null | undefined;
+  active: boolean;
 };
 
 /** @internal */
-export const ResultArray$outboundSchema: z.ZodType<
-  ResultArray$Outbound,
+export const ListClassTypesResultArray$outboundSchema: z.ZodType<
+  ListClassTypesResultArray$Outbound,
   z.ZodTypeDef,
-  ResultArray
+  ListClassTypesResultArray
 > = z.object({
   id: z.string(),
   companyId: z.string(),
   name: z.string(),
   color: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  active: z.boolean(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ResultArray$ {
-  /** @deprecated use `ResultArray$inboundSchema` instead. */
-  export const inboundSchema = ResultArray$inboundSchema;
-  /** @deprecated use `ResultArray$outboundSchema` instead. */
-  export const outboundSchema = ResultArray$outboundSchema;
-  /** @deprecated use `ResultArray$Outbound` instead. */
-  export type Outbound = ResultArray$Outbound;
+export namespace ListClassTypesResultArray$ {
+  /** @deprecated use `ListClassTypesResultArray$inboundSchema` instead. */
+  export const inboundSchema = ListClassTypesResultArray$inboundSchema;
+  /** @deprecated use `ListClassTypesResultArray$outboundSchema` instead. */
+  export const outboundSchema = ListClassTypesResultArray$outboundSchema;
+  /** @deprecated use `ListClassTypesResultArray$Outbound` instead. */
+  export type Outbound = ListClassTypesResultArray$Outbound;
 }
 
-export function resultArrayToJSON(resultArray: ResultArray): string {
-  return JSON.stringify(ResultArray$outboundSchema.parse(resultArray));
+export function listClassTypesResultArrayToJSON(
+  listClassTypesResultArray: ListClassTypesResultArray,
+): string {
+  return JSON.stringify(
+    ListClassTypesResultArray$outboundSchema.parse(listClassTypesResultArray),
+  );
 }
 
-export function resultArrayFromJSON(
+export function listClassTypesResultArrayFromJSON(
   jsonString: string,
-): SafeParseResult<ResultArray, SDKValidationError> {
+): SafeParseResult<ListClassTypesResultArray, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => ResultArray$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResultArray' from JSON`,
+    (x) => ListClassTypesResultArray$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListClassTypesResultArray' from JSON`,
   );
 }
 
@@ -245,12 +256,12 @@ export const ListClassTypesData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  resultArray: z.array(z.lazy(() => ResultArray$inboundSchema)),
+  resultArray: z.array(z.lazy(() => ListClassTypesResultArray$inboundSchema)),
 });
 
 /** @internal */
 export type ListClassTypesData$Outbound = {
-  resultArray: Array<ResultArray$Outbound>;
+  resultArray: Array<ListClassTypesResultArray$Outbound>;
 };
 
 /** @internal */
@@ -259,7 +270,7 @@ export const ListClassTypesData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListClassTypesData
 > = z.object({
-  resultArray: z.array(z.lazy(() => ResultArray$outboundSchema)),
+  resultArray: z.array(z.lazy(() => ListClassTypesResultArray$outboundSchema)),
 });
 
 /**

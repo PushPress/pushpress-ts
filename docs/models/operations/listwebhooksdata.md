@@ -7,9 +7,9 @@ import { ListWebhooksData } from "@pushpress/pushpress/models/operations";
 
 let value: ListWebhooksData = {
   id: "<id>",
-  url: "https://assured-sediment.com/",
+  url: "https://slushy-ownership.biz/",
   eventTypes: [
-    "customer.deleted",
+    "appointment.canceled",
   ],
   signingSecret: "<value>",
 };

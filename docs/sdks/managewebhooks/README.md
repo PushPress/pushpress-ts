@@ -33,7 +33,9 @@ async function run() {
     requestBody: {
       url: "https://probable-heating.com/",
       eventTypes: [
-
+        "app.uninstalled",
+        "app.installed",
+        "app.installed",
       ],
     },
   });
@@ -64,7 +66,9 @@ async function run() {
     requestBody: {
       url: "https://probable-heating.com/",
       eventTypes: [
-  
+        "app.uninstalled",
+        "app.installed",
+        "app.installed",
       ],
     },
   });

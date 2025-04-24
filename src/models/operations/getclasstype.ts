@@ -44,6 +44,10 @@ export type GetClassTypeResponseBody = {
    * Description of the class type
    */
   description?: string | null | undefined;
+  /**
+   * Whether the class type is active and can be selected for a class
+   */
+  active: boolean;
 };
 
 /** @internal */
@@ -184,6 +188,7 @@ export const GetClassTypeResponseBody$inboundSchema: z.ZodType<
   name: z.string(),
   color: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  active: z.boolean(),
 });
 
 /** @internal */
@@ -193,6 +198,7 @@ export type GetClassTypeResponseBody$Outbound = {
   name: string;
   color?: string | null | undefined;
   description?: string | null | undefined;
+  active: boolean;
 };
 
 /** @internal */
@@ -206,6 +212,7 @@ export const GetClassTypeResponseBody$outboundSchema: z.ZodType<
   name: z.string(),
   color: z.nullable(z.string()).optional(),
   description: z.nullable(z.string()).optional(),
+  active: z.boolean(),
 });
 
 /**

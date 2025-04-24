@@ -1,0 +1,29 @@
+# GetAttributionResponseBody
+
+Default Response
+
+## Example Usage
+
+```typescript
+import { GetAttributionResponseBody } from "@pushpress/pushpress/models/operations";
+
+let value: GetAttributionResponseBody = {
+  customerId: "<id>",
+  companyId: "<id>",
+  event: "signup",
+};
+```
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `customerId`                                                                     | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `companyId`                                                                      | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `event`                                                                          | [operations.GetAttributionEvent](../../models/operations/getattributionevent.md) | :heavy_check_mark:                                                               | N/A                                                                              |
+| `referer`                                                                        | *string*                                                                         | :heavy_minus_sign:                                                               | The referer URL of the customer, industry accepted typo of referrer              |
+| `utmSource`                                                                      | *string*                                                                         | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `utmMedium`                                                                      | *string*                                                                         | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `utmCampaign`                                                                    | *string*                                                                         | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `utmContent`                                                                     | *string*                                                                         | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `utmTerm`                                                                        | *string*                                                                         | :heavy_minus_sign:                                                               | N/A                                                                              |
