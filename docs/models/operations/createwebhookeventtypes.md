@@ -5,7 +5,7 @@
 ```typescript
 import { CreateWebhookEventTypes } from "@pushpress/pushpress/models/operations";
 
-let value: CreateWebhookEventTypes = "reservation.waitlisted";
+let value: CreateWebhookEventTypes = "reservation.noshowed";
 ```
 
 ## Values

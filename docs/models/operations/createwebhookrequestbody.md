@@ -6,9 +6,9 @@
 import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequestBody = {
-  url: "https://fatal-import.net/",
+  url: "https://menacing-loyalty.net/",
   eventTypes: [
-    "checkin.updated",
+    "app.installed",
   ],
 };
 ```

@@ -10,8 +10,14 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
+import { Attributions } from "./attributions.js";
 
 export class Customers extends ClientSDK {
+  private _attributions?: Attributions;
+  get attributions(): Attributions {
+    return (this._attributions ??= new Attributions(this._options));
+  }
+
   /**
    * Create a new Customer
    *

@@ -167,6 +167,12 @@ run();
 * [list](docs/sdks/customers/README.md#list) - List Customers
 * [get](docs/sdks/customers/README.md#get) - Get Customer Details
 
+#### [customers.attributions](docs/sdks/attributions/README.md)
+
+* [create](docs/sdks/attributions/README.md#create) - Create a customer attribution
+* [list](docs/sdks/attributions/README.md#list) - List customer attributions
+* [get](docs/sdks/attributions/README.md#get) - Get a customer attribution
+
 ### [enrollment](docs/sdks/enrollment/README.md)
 
 * [get](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
@@ -278,6 +284,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`customerCreatedEvent`](docs/sdks/pushpress/README.md#customercreatedevent)
 - [`customerDeletedEvent`](docs/sdks/pushpress/README.md#customerdeletedevent)
 - [`customerDetailsChangedEvent`](docs/sdks/pushpress/README.md#customerdetailschangedevent)
+- [`customersAttributionsCreate`](docs/sdks/attributions/README.md#create) - Create a customer attribution
+- [`customersAttributionsGet`](docs/sdks/attributions/README.md#get) - Get a customer attribution
+- [`customersAttributionsList`](docs/sdks/attributions/README.md#list) - List customer attributions
 - [`customersCreate`](docs/sdks/customers/README.md#create) - Create a new Customer
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
 - [`customersList`](docs/sdks/customers/README.md#list) - List Customers
@@ -327,7 +336,7 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.checkins.event.list({});
+  const result = await pushPress.customers.list({});
 
   for await (const page of result) {
     // Handle the page
@@ -433,7 +442,7 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `get` method may throw the following errors:
+Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `list` method may throw the following errors:
 
 | Error Type                 | Status Code                  | Content Type     |
 | -------------------------- | ---------------------------- | ---------------- |
@@ -470,10 +479,12 @@ const pushPress = new PushPress({
 async function run() {
   let result;
   try {
-    result = await pushPress.company.get({});
+    result = await pushPress.customers.list({});
 
-    // Handle the result
-    console.log(result);
+    for await (const page of result) {
+      // Handle the page
+      console.log(page);
+    }
   } catch (err) {
     switch (true) {
       // The server response does not match the expected SDK schema

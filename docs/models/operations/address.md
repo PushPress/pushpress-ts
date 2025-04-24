@@ -10,10 +10,10 @@ import { Address } from "@pushpress/pushpress/models/operations";
 let value: Address = {
   line1: "<value>",
   line2: "<value>",
-  city: "East Albin",
-  country: "Bahamas",
-  state: "North Dakota",
-  zip: "58926",
+  city: "West Blancheboro",
+  country: "Botswana",
+  state: "Kansas",
+  zip: "06525",
 };
 ```
 

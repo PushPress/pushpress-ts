@@ -5,7 +5,7 @@
 ```typescript
 import { EventTypes2 } from "@pushpress/pushpress/models/operations";
 
-let value: EventTypes2 = "enrollment.deleted";
+let value: EventTypes2 = "customer.deleted";
 ```
 
 ## Values
