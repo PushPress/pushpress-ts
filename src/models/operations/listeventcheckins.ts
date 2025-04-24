@@ -37,7 +37,7 @@ export type ListEventCheckinsRequest = {
   companyId?: string | undefined;
 };
 
-export type Data = {
+export type ListEventCheckinsData = {
   resultArray: Array<components.EventCheckin>;
 };
 
@@ -45,7 +45,7 @@ export type Data = {
  * Default Response
  */
 export type ListEventCheckinsResponseBody = {
-  data: Data;
+  data: ListEventCheckinsData;
 };
 
 export type ListEventCheckinsResponse = {
@@ -192,46 +192,56 @@ export function listEventCheckinsRequestFromJSON(
 }
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    resultArray: z.array(components.EventCheckin$inboundSchema),
-  });
+export const ListEventCheckinsData$inboundSchema: z.ZodType<
+  ListEventCheckinsData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  resultArray: z.array(components.EventCheckin$inboundSchema),
+});
 
 /** @internal */
-export type Data$Outbound = {
+export type ListEventCheckinsData$Outbound = {
   resultArray: Array<components.EventCheckin$Outbound>;
 };
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    resultArray: z.array(components.EventCheckin$outboundSchema),
-  });
+export const ListEventCheckinsData$outboundSchema: z.ZodType<
+  ListEventCheckinsData$Outbound,
+  z.ZodTypeDef,
+  ListEventCheckinsData
+> = z.object({
+  resultArray: z.array(components.EventCheckin$outboundSchema),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
+export namespace ListEventCheckinsData$ {
+  /** @deprecated use `ListEventCheckinsData$inboundSchema` instead. */
+  export const inboundSchema = ListEventCheckinsData$inboundSchema;
+  /** @deprecated use `ListEventCheckinsData$outboundSchema` instead. */
+  export const outboundSchema = ListEventCheckinsData$outboundSchema;
+  /** @deprecated use `ListEventCheckinsData$Outbound` instead. */
+  export type Outbound = ListEventCheckinsData$Outbound;
 }
 
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
+export function listEventCheckinsDataToJSON(
+  listEventCheckinsData: ListEventCheckinsData,
+): string {
+  return JSON.stringify(
+    ListEventCheckinsData$outboundSchema.parse(listEventCheckinsData),
+  );
 }
 
-export function dataFromJSON(
+export function listEventCheckinsDataFromJSON(
   jsonString: string,
-): SafeParseResult<Data, SDKValidationError> {
+): SafeParseResult<ListEventCheckinsData, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Data$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data' from JSON`,
+    (x) => ListEventCheckinsData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListEventCheckinsData' from JSON`,
   );
 }
 
@@ -241,12 +251,12 @@ export const ListEventCheckinsResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => Data$inboundSchema),
+  data: z.lazy(() => ListEventCheckinsData$inboundSchema),
 });
 
 /** @internal */
 export type ListEventCheckinsResponseBody$Outbound = {
-  data: Data$Outbound;
+  data: ListEventCheckinsData$Outbound;
 };
 
 /** @internal */
@@ -255,7 +265,7 @@ export const ListEventCheckinsResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListEventCheckinsResponseBody
 > = z.object({
-  data: z.lazy(() => Data$outboundSchema),
+  data: z.lazy(() => ListEventCheckinsData$outboundSchema),
 });
 
 /**

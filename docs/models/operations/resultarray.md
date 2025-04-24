@@ -6,18 +6,22 @@
 import { ResultArray } from "@pushpress/pushpress/models/operations";
 
 let value: ResultArray = {
-  id: "<id>",
+  customerId: "<id>",
   companyId: "<id>",
-  name: "<value>",
+  event: "signup",
 };
 ```
 
 ## Fields
 
-| Field                                                  | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `id`                                                   | *string*                                               | :heavy_check_mark:                                     | Unique identifier for the class type                   |
-| `companyId`                                            | *string*                                               | :heavy_check_mark:                                     | Unique identifier for the company the class type is in |
-| `name`                                                 | *string*                                               | :heavy_check_mark:                                     | Name of the class type                                 |
-| `color`                                                | *string*                                               | :heavy_minus_sign:                                     | Hex code of color associated with the class type       |
-| `description`                                          | *string*                                               | :heavy_minus_sign:                                     | Description of the class type                          |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `customerId`                                                                         | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `companyId`                                                                          | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `event`                                                                              | [operations.ListAttributionsEvent](../../models/operations/listattributionsevent.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `referer`                                                                            | *string*                                                                             | :heavy_minus_sign:                                                                   | The referer URL of the customer, industry accepted typo of referrer                  |
+| `utmSource`                                                                          | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `utmMedium`                                                                          | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `utmCampaign`                                                                        | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `utmContent`                                                                         | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `utmTerm`                                                                            | *string*                                                                             | :heavy_minus_sign:                                                                   | N/A                                                                                  |

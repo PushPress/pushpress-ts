@@ -14,6 +14,7 @@ let value: ListClassTypesResponseBody = {
         id: "<id>",
         companyId: "<id>",
         name: "<value>",
+        active: false,
       },
     ],
   },

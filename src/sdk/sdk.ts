@@ -39,6 +39,11 @@ import { Messages } from "./messages.js";
 import { Plans } from "./plans.js";
 
 export class PushPress extends ClientSDK {
+  private _customers?: Customers;
+  get customers(): Customers {
+    return (this._customers ??= new Customers(this._options));
+  }
+
   private _checkins?: Checkins;
   get checkins(): Checkins {
     return (this._checkins ??= new Checkins(this._options));
@@ -52,11 +57,6 @@ export class PushPress extends ClientSDK {
   private _company?: Company;
   get company(): Company {
     return (this._company ??= new Company(this._options));
-  }
-
-  private _customers?: Customers;
-  get customers(): Customers {
-    return (this._customers ??= new Customers(this._options));
   }
 
   private _enrollment?: Enrollment;

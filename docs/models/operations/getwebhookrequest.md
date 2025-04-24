@@ -6,7 +6,7 @@
 import { GetWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: GetWebhookRequest = {
-  uuid: "688a426f-2e87-4e7b-b6eb-b5ca32cf79d7",
+  uuid: "7f9ded2a-6164-4d0f-9550-26e1fd753900",
 };
 ```
 
