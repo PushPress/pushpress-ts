@@ -9,9 +9,9 @@ import { UpdateWebhookResponseBody } from "@pushpress/pushpress/models/operation
 
 let value: UpdateWebhookResponseBody = {
   id: "<id>",
-  url: "https://weird-dependency.net/",
+  url: "https://equatorial-polyester.com",
   eventTypes: [
-    "appointment.rescheduled",
+    "reservation.created",
   ],
   signingSecret: "<value>",
 };

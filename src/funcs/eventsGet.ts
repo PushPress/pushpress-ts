@@ -10,6 +10,7 @@ import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
+import * as components from "../models/components/index.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -23,18 +24,18 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List customer attributions
+ * Get details for an event
  *
  * @remarks
- * List customer attributions, optionally filtering by customer id and/or attribution event
+ * Get details for an event
  */
-export async function customersAttributionsList(
+export async function eventsGet(
   client: PushPressCore,
-  request: operations.ListAttributionsRequest,
+  request: operations.GetEventRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.ListAttributionsResponseBody,
+    components.Event,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -46,7 +47,7 @@ export async function customersAttributionsList(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.ListAttributionsRequest$outboundSchema.parse(value),
+    (value) => operations.GetEventRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -55,11 +56,17 @@ export async function customersAttributionsList(
   const payload = parsed.value;
   const body = null;
 
-  const path = pathToFunc("/attributions/attributions")();
+  const pathParams = {
+    id: encodeSimple("id", payload.id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc("/events/{id}")(pathParams);
 
   const query = encodeFormQuery({
-    "attributionEvent": payload.attributionEvent,
-    "customer": payload.customer,
+    "expand": payload.expand,
   });
 
   const headers = new Headers(compactMap({
@@ -76,7 +83,7 @@ export async function customersAttributionsList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "listAttributions",
+    operationID: "getEvent",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -115,7 +122,7 @@ export async function customersAttributionsList(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "404", "4XX", "5XX"],
+    errorCodes: ["404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -125,7 +132,7 @@ export async function customersAttributionsList(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.ListAttributionsResponseBody,
+    components.Event,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -134,8 +141,8 @@ export async function customersAttributionsList(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.ListAttributionsResponseBody$inboundSchema),
-    M.fail([401, 403, 404, "4XX"]),
+    M.json(200, components.Event$inboundSchema),
+    M.fail([404, "4XX"]),
     M.fail("5XX"),
   )(response);
   if (!result.ok) {

@@ -9,7 +9,7 @@ import { CreateWebhookResponseBody } from "@pushpress/pushpress/models/operation
 
 let value: CreateWebhookResponseBody = {
   id: "<id>",
-  url: "https://serene-guard.org/",
+  url: "https://impish-term.net",
   eventTypes: [
     "memberapp.updated",
   ],

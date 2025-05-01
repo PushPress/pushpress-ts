@@ -11,9 +11,9 @@ let value: ListWebhooksResponseBody = {
   data: [
     {
       id: "<id>",
-      url: "https://whimsical-impostor.name",
+      url: "https://lavish-mouser.org",
       eventTypes: [
-        "reservation.canceled",
+        "customer.status.changed",
       ],
       signingSecret: "<value>",
     },

@@ -177,6 +177,10 @@ run();
 
 * [get](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
 
+### [events](docs/sdks/events/README.md)
+
+* [get](docs/sdks/events/README.md#get) - Get details for an event
+
 ### [keys](docs/sdks/keys/README.md)
 
 * [create](docs/sdks/keys/README.md#create) - Create a new API Key
@@ -295,6 +299,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`enrollmentDeleted`](docs/sdks/pushpress/README.md#enrollmentdeleted)
 - [`enrollmentGet`](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
 - [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
+- [`eventsGet`](docs/sdks/events/README.md#get) - Get details for an event
 - [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API Key
 - [`keysList`](docs/sdks/keys/README.md#list) - List API Keys
 - [`manageWebhooksActivate`](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook

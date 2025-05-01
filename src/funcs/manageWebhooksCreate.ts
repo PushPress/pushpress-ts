@@ -128,6 +128,7 @@ export async function manageWebhooksCreate(
       "404",
       "407",
       "408",
+      "409",
       "413",
       "414",
       "415",
@@ -194,7 +195,7 @@ export async function manageWebhooksCreate(
     ),
     M.jsonErr(510, errors.BadRequest$inboundSchema),
     M.jsonErr(511, errors.Unauthorized$inboundSchema),
-    M.fail("4XX"),
+    M.fail([409, "4XX"]),
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
