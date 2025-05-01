@@ -9,7 +9,7 @@ Webhooks registration must either apply to a set application events (e.g app.ins
 
 ```typescript
 const value: operations.EventTypes1[] = [
-  "app.uninstalled",
+  "app.installed",
 ];
 ```
 
@@ -17,7 +17,7 @@ const value: operations.EventTypes1[] = [
 
 ```typescript
 const value: operations.EventTypes2[] = [
-  "appointment.scheduled",
+  "customer.created",
 ];
 ```
 

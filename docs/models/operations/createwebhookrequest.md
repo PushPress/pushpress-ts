@@ -7,9 +7,9 @@ import { CreateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: CreateWebhookRequest = {
   requestBody: {
-    url: "https://well-to-do-cook.org/",
+    url: "https://deserted-teriyaki.name",
     eventTypes: [
-      "customer.details.changed",
+      "app.uninstalled",
     ],
   },
 };

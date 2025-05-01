@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 247834333507f9636b43d4eeea1f6948
+  docChecksum: 02ac2f6e1ea416166d8050d32424745a
   docVersion: 3.0.0
   speakeasyVersion: 1.486.0
   generationVersion: 2.505.0
-  releaseVersion: 1.3.0
-  configChecksum: de9b4cae41a296cbf1f1a874bf0f9ca4
+  releaseVersion: 1.5.0
+  configChecksum: b9ca7231165b839a0252dc14beb713f6
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -72,7 +72,9 @@ generatedFiles:
   - docs/models/components/enrollment.md
   - docs/models/components/enrollmentstatus.md
   - docs/models/components/entitlements.md
+  - docs/models/components/event.md
   - docs/models/components/eventcheckin.md
+  - docs/models/components/eventlocation.md
   - docs/models/components/four.md
   - docs/models/components/gender.md
   - docs/models/components/location.md
@@ -164,6 +166,8 @@ generatedFiles:
   - docs/models/operations/getenrollmentrequest.md
   - docs/models/operations/geteventcheckinglobals.md
   - docs/models/operations/geteventcheckinrequest.md
+  - docs/models/operations/geteventglobals.md
+  - docs/models/operations/geteventrequest.md
   - docs/models/operations/getopencheckinglobals.md
   - docs/models/operations/getopencheckinrequest.md
   - docs/models/operations/getplanglobals.md
@@ -220,6 +224,7 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponsebody.md
   - docs/models/operations/name.md
   - docs/models/operations/one.md
+  - docs/models/operations/queryparamexpand.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/replyto.md
   - docs/models/operations/responsebody1.md
@@ -310,6 +315,7 @@ generatedFiles:
   - docs/sdks/email/README.md
   - docs/sdks/enrollment/README.md
   - docs/sdks/event/README.md
+  - docs/sdks/events/README.md
   - docs/sdks/keys/README.md
   - docs/sdks/managewebhooks/README.md
   - docs/sdks/messages/README.md
@@ -363,6 +369,7 @@ generatedFiles:
   - src/funcs/enrollmentDeleted.ts
   - src/funcs/enrollmentGet.ts
   - src/funcs/enrollmentStatusChanged.ts
+  - src/funcs/eventsGet.ts
   - src/funcs/keysCreate.ts
   - src/funcs/keysList.ts
   - src/funcs/manageWebhooksActivate.ts
@@ -411,6 +418,7 @@ generatedFiles:
   - src/models/components/company.ts
   - src/models/components/customer.ts
   - src/models/components/enrollment.ts
+  - src/models/components/event.ts
   - src/models/components/eventcheckin.ts
   - src/models/components/index.ts
   - src/models/components/opencheckin.ts
@@ -443,6 +451,7 @@ generatedFiles:
   - src/models/operations/getcompany.ts
   - src/models/operations/getcustomer.ts
   - src/models/operations/getenrollment.ts
+  - src/models/operations/getevent.ts
   - src/models/operations/geteventcheckin.ts
   - src/models/operations/getopencheckin.ts
   - src/models/operations/getplan.ts
@@ -496,6 +505,7 @@ generatedFiles:
   - src/sdk/email.ts
   - src/sdk/enrollment.ts
   - src/sdk/event.ts
+  - src/sdk/events.ts
   - src/sdk/index.ts
   - src/sdk/keys.ts
   - src/sdk/managewebhooks.ts
@@ -799,6 +809,16 @@ examples:
       responses:
         "200":
           application/json: {"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}
+  getEvent:
+    speakeasy-default-get-event:
+      parameters:
+        path:
+          id: "<id>"
+        query: {}
+        header: {}
+      responses:
+        "200":
+          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}
   createApiKey:
     speakeasy-default-create-api-key:
       requestBody:
