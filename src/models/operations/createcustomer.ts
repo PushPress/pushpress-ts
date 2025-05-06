@@ -117,6 +117,10 @@ export type Account = Two | One;
 
 export type CreateCustomerRequestBody = {
   /**
+   * A unique identifier assigned to each customer
+   */
+  id?: string | undefined;
+  /**
    * The UUID of the assigned staff member
    */
   assignedToStaffId?: string | null | undefined;
@@ -596,6 +600,7 @@ export const CreateCustomerRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  id: z.string().optional(),
   assignedToStaffId: z.nullable(z.string()).optional(),
   address: z.lazy(() => Address$inboundSchema).optional(),
   name: z.lazy(() => Name$inboundSchema).optional(),
@@ -612,6 +617,7 @@ export const CreateCustomerRequestBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateCustomerRequestBody$Outbound = {
+  id?: string | undefined;
   assignedToStaffId?: string | null | undefined;
   address?: Address$Outbound | undefined;
   name?: Name$Outbound | undefined;
@@ -629,6 +635,7 @@ export const CreateCustomerRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateCustomerRequestBody
 > = z.object({
+  id: z.string().optional(),
   assignedToStaffId: z.nullable(z.string()).optional(),
   address: z.lazy(() => Address$outboundSchema).optional(),
   name: z.lazy(() => Name$outboundSchema).optional(),
