@@ -5,7 +5,7 @@
 ```typescript
 import { EnrollmentStatus } from "@pushpress/pushpress/models/components";
 
-let value: EnrollmentStatus = "pendcancel";
+let value: EnrollmentStatus = "alert";
 ```
 
 ## Values

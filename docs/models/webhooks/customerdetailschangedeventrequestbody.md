@@ -36,7 +36,7 @@ let value: CustomerDetailsChangedEventRequestBody = {
     phone: "+1-800-555-1234",
     role: "member",
   },
-  created: 71036,
+  created: 611008,
   event: "customer.details.changed",
 };
 ```

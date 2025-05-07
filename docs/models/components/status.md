@@ -7,7 +7,7 @@ Current status of the reservation
 ```typescript
 import { Status } from "@pushpress/pushpress/models/components";
 
-let value: Status = "checked-in";
+let value: Status = "canceled";
 ```
 
 ## Values

@@ -1403,6 +1403,16 @@ async function run() {
       company: "cli_12345",
       classTypeName: "HIIT",
       locationUuid: "loc_12345",
+      reservations: [
+        {
+          id: "reg_12345",
+          reservedId: "cal-12345",
+          customerId: "usr_12345",
+          companyId: "cli_12345",
+          registrationTimestamp: 1672531200000,
+          status: "reserved",
+        },
+      ],
       start: 1704063600,
       end: 1704067200,
     },
@@ -1437,6 +1447,16 @@ async function run() {
       company: "cli_12345",
       classTypeName: "HIIT",
       locationUuid: "loc_12345",
+      reservations: [
+        {
+          id: "reg_12345",
+          reservedId: "cal-12345",
+          customerId: "usr_12345",
+          companyId: "cli_12345",
+          registrationTimestamp: 1672531200000,
+          status: "reserved",
+        },
+      ],
       start: 1704063600,
       end: 1704067200,
     },
@@ -1687,8 +1707,18 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
+      checkin: {
+        id: "apptschdl_12345",
+        customer: "usr_12345",
+        company: "cli_12345",
+        timestamp: 1672531200000,
+        name: "Personal Training",
+        appointmentId: "apptschdl_12345",
+        typeId: "appttype_12345",
+        staffId: "usr_78910",
+      },
     },
-    created: 377467,
+    created: 931703,
     event: "reservation.created",
   });
 
@@ -1719,8 +1749,18 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
+      checkin: {
+        id: "apptschdl_12345",
+        customer: "usr_12345",
+        company: "cli_12345",
+        timestamp: 1672531200000,
+        name: "Personal Training",
+        appointmentId: "apptschdl_12345",
+        typeId: "appttype_12345",
+        staffId: "usr_78910",
+      },
     },
-    created: 377467,
+    created: 931703,
     event: "reservation.created",
   });
 
@@ -1773,8 +1813,14 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
+      checkin: {
+        id: "chk_12345",
+        customer: "usr_12345",
+        company: "cli_12345",
+        timestamp: 1672531200000,
+      },
     },
-    created: 902968,
+    created: 584139,
     event: "reservation.waitlisted",
   });
 
@@ -1805,8 +1851,14 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
+      checkin: {
+        id: "chk_12345",
+        customer: "usr_12345",
+        company: "cli_12345",
+        timestamp: 1672531200000,
+      },
     },
-    created: 902968,
+    created: 584139,
     event: "reservation.waitlisted",
   });
 
@@ -1859,8 +1911,14 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
+      checkin: {
+        id: "chk_12345",
+        customer: "usr_12345",
+        company: "cli_12345",
+        timestamp: 1672531200000,
+      },
     },
-    created: 816068,
+    created: 55232,
     event: "reservation.canceled",
   });
 
@@ -1891,8 +1949,14 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
+      checkin: {
+        id: "chk_12345",
+        customer: "usr_12345",
+        company: "cli_12345",
+        timestamp: 1672531200000,
+      },
     },
-    created: 816068,
+    created: 55232,
     event: "reservation.canceled",
   });
 

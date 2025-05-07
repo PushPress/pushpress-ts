@@ -7,9 +7,9 @@ import { ListWebhooksData } from "@pushpress/pushpress/models/operations";
 
 let value: ListWebhooksData = {
   id: "<id>",
-  url: "https://prime-designation.com",
+  url: "https://defenseless-density.org/",
   eventTypes: [
-    "reservation.waitlisted",
+    "enrollment.created",
   ],
   signingSecret: "<value>",
 };

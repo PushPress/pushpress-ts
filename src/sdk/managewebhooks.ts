@@ -4,6 +4,7 @@
 
 import { manageWebhooksActivate } from "../funcs/manageWebhooksActivate.js";
 import { manageWebhooksCreate } from "../funcs/manageWebhooksCreate.js";
+import { manageWebhooksDeactivate } from "../funcs/manageWebhooksDeactivate.js";
 import { manageWebhooksDelete } from "../funcs/manageWebhooksDelete.js";
 import { manageWebhooksGet } from "../funcs/manageWebhooksGet.js";
 import { manageWebhooksList } from "../funcs/manageWebhooksList.js";
@@ -86,13 +87,30 @@ export class ManageWebhooks extends ClientSDK {
    * Delete a Webhook
    *
    * @remarks
-   * Deregister a platform webhook
+   * Fully delete a platform webhook. If you want to unsubscribe to a webhook without fully deleting it, use the deactivate method instead
    */
   async delete(
     request: operations.DeleteWebhookRequest,
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(manageWebhooksDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Deactivate a Webhook
+   *
+   * @remarks
+   * deactivate a platform webhook. If you want to fully delete a webhook use the delete method
+   */
+  async deactivate(
+    request: operations.DeactivateWebhookRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DeactivateWebhookResponseBody> {
+    return unwrapAsync(manageWebhooksDeactivate(
       this,
       request,
       options,

@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * List platform webhooks for the current customer, including the signing secret and event subscriptions
  */
-export async function manageWebhooksList(
+export function manageWebhooksList(
   client: PushPressCore,
   request: operations.ListWebhooksRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.ListWebhooksResponseBody,
     | errors.NotFound
@@ -55,13 +56,49 @@ export async function manageWebhooksList(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PushPressCore,
+  request: operations.ListWebhooksRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.ListWebhooksResponseBody,
+      | errors.NotFound
+      | errors.Unauthorized
+      | errors.Timeout
+      | errors.RateLimited
+      | errors.BadRequest
+      | errors.Timeout
+      | errors.NotFound
+      | errors.InternalServerError
+      | errors.BadRequest
+      | errors.Unauthorized
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.ListWebhooksRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -82,6 +119,7 @@ export async function manageWebhooksList(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "listWebhooks",
     oAuth2Scopes: [],
 
@@ -114,7 +152,7 @@ export async function manageWebhooksList(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -151,7 +189,7 @@ export async function manageWebhooksList(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -197,8 +235,8 @@ export async function manageWebhooksList(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

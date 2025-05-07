@@ -6,7 +6,7 @@
 import { CreateCustomerRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: CreateCustomerRequestBody = {
-  email: "Mariano_Rice@gmail.com",
+  email: "Anthony.Gleichner@yahoo.com",
 };
 ```
 

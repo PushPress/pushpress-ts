@@ -11,7 +11,7 @@ let value: EnrollmentDeletedRequestBody = {
   data: {
     id: "<id>",
   },
-  created: 778157,
+  created: 408140,
   event: "enrollment.deleted",
 };
 ```

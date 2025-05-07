@@ -22,7 +22,7 @@ let value: CheckinCreatedEventRequestBody = {
       name: "Weightlifting Seminar",
     },
   },
-  created: 715190,
+  created: 216633,
   event: "checkin.created",
 };
 ```

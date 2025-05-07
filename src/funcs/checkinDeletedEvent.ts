@@ -19,15 +19,16 @@ import {
 } from "../models/errors/httpclienterrors.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as webhooks from "../models/webhooks/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 import { WebhookRecipient } from "../types/webhooks.js";
 
-export async function checkinDeletedEvent(
+export function checkinDeletedEvent(
   client: PushPressCore,
   recipient: WebhookRecipient,
   request: webhooks.CheckinDeletedEventRequestBody,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     void,
     | APIError
@@ -39,6 +40,34 @@ export async function checkinDeletedEvent(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    recipient,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PushPressCore,
+  recipient: WebhookRecipient,
+  request: webhooks.CheckinDeletedEventRequestBody,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      void,
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -46,7 +75,7 @@ export async function checkinDeletedEvent(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
@@ -59,6 +88,7 @@ export async function checkinDeletedEvent(
   }));
 
   const context = {
+    baseURL: baseURL ?? "",
     operationID: "checkinDeletedEvent",
     oAuth2Scopes: [],
     webhookRecipient: recipient,
@@ -89,7 +119,7 @@ export async function checkinDeletedEvent(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -100,7 +130,7 @@ export async function checkinDeletedEvent(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -119,8 +149,8 @@ export async function checkinDeletedEvent(
     M.fail("5XX"),
   )(response);
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

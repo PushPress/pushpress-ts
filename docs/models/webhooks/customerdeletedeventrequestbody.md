@@ -12,7 +12,7 @@ let value: CustomerDeletedEventRequestBody = {
     id: "<id>",
     companyId: "<id>",
   },
-  created: 87129,
+  created: 246852,
   event: "customer.deleted",
 };
 ```
