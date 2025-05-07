@@ -70,7 +70,8 @@ export class WebhookSecurity {
 
     // Encode the secret into bytes, assume UTF-8 encoding
     const encoder = new TextEncoder();
-    const secretBytes = encoder.encode(secret).buffer;
+    // assert as buffer source for cross runtime compatibility of types
+    const secretBytes = encoder.encode(secret).buffer as BufferSource;
 
     // Import the secret as a CryptoKey for HMAC signing
     const cryptoKey = await crypto.importKey(
@@ -85,11 +86,9 @@ export class WebhookSecurity {
     const signatureBytes = await crypto.sign(
       "HMAC",
       cryptoKey,
-      //@ts-expect-error -- speakeasy erecommend using node buffer api untile we need to support other runtimes
       Buffer.from(JSON.stringify(data)),
     );
 
-    //@ts-expect-error -- cspeakeasy erecommend using node buffer api untile we need to support other runtimes
     const encodedSignature = Buffer.from(signatureBytes).toString("hex");
 
     // Add the signature to the request headers

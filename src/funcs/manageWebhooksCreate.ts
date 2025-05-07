@@ -21,6 +21,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Create a platform webhook that can be used to listen for events on the pushpress platform at a given URL
  */
-export async function manageWebhooksCreate(
+export function manageWebhooksCreate(
   client: PushPressCore,
   request: operations.CreateWebhookRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.CreateWebhookResponseBody,
     | errors.NotFound
@@ -55,13 +56,49 @@ export async function manageWebhooksCreate(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: PushPressCore,
+  request: operations.CreateWebhookRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.CreateWebhookResponseBody,
+      | errors.NotFound
+      | errors.Unauthorized
+      | errors.Timeout
+      | errors.RateLimited
+      | errors.BadRequest
+      | errors.Timeout
+      | errors.NotFound
+      | errors.InternalServerError
+      | errors.BadRequest
+      | errors.Unauthorized
+      | APIError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.CreateWebhookRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -83,6 +120,7 @@ export async function manageWebhooksCreate(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createWebhook",
     oAuth2Scopes: [],
 
@@ -115,7 +153,7 @@ export async function manageWebhooksCreate(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || 10000,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -153,7 +191,7 @@ export async function manageWebhooksCreate(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -199,8 +237,8 @@ export async function manageWebhooksCreate(
     M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

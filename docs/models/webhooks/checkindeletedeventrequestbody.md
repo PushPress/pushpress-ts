@@ -13,7 +13,7 @@ let value: CheckinDeletedEventRequestBody = {
     customerId: "<id>",
     companyId: "<id>",
   },
-  created: 423655,
+  created: 218238,
   event: "checkin.deleted",
 };
 ```

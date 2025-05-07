@@ -8,6 +8,7 @@ export * from "./createapikey.js";
 export * from "./createattribution.js";
 export * from "./createcustomer.js";
 export * from "./createwebhook.js";
+export * from "./deactivatewebhook.js";
 export * from "./deletewebhook.js";
 export * from "./getapikey.js";
 export * from "./getappointmentcheckin.js";

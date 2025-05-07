@@ -17,7 +17,7 @@ const value: operations.EventTypes1[] = [
 
 ```typescript
 const value: operations.EventTypes2[] = [
-  "customer.created",
+  "checkin.deleted",
 ];
 ```
 

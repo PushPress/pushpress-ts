@@ -5,7 +5,7 @@
 ```typescript
 import { QueryParamExpand } from "@pushpress/pushpress/models/operations";
 
-let value: QueryParamExpand = "reservations";
+let value: QueryParamExpand = "location";
 ```
 
 ## Values

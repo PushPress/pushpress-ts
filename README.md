@@ -69,6 +69,93 @@ yarn add @pushpress/pushpress zod
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
+
+
+
+### Model Context Protocol (MCP) Server
+
+This SDK is also an installable MCP server where the various SDK methods are
+exposed as tools that can be invoked by AI applications.
+
+> Node.js v20 or greater is required to run the MCP server from npm.
+
+<details>
+<summary>Claude installation steps</summary>
+
+Add the following server definition to your `claude_desktop_config.json` file:
+
+```json
+{
+  "mcpServers": {
+    "PushPress": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "@pushpress/pushpress",
+        "--",
+        "mcp", "start",
+        "--api-key", "...",
+        "--company-id", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Cursor installation steps</summary>
+
+Create a `.cursor/mcp.json` file in your project root with the following content:
+
+```json
+{
+  "mcpServers": {
+    "PushPress": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "@pushpress/pushpress",
+        "--",
+        "mcp", "start",
+        "--api-key", "...",
+        "--company-id", "..."
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
+
+```bash
+curl -L -o mcp-server \
+    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+chmod +x mcp-server
+```
+
+If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
+
+
+```json
+{
+  "mcpServers": {
+    "Todos": {
+      "command": "./DOWNLOAD/PATH/mcp-server",
+      "args": [
+        "start"
+      ]
+    }
+  }
+}
+```
+
+For a full list of server arguments, run:
+
+```sh
+npx -y --package @pushpress/pushpress -- mcp start --help
+```
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -193,6 +280,7 @@ run();
 * [get](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
 * [update](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
 * [delete](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
+* [deactivate](docs/sdks/managewebhooks/README.md#deactivate) - Deactivate a Webhook
 * [activate](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
 * [rotateSecret](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
 
@@ -304,6 +392,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`keysList`](docs/sdks/keys/README.md#list) - List API Keys
 - [`manageWebhooksActivate`](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
 - [`manageWebhooksCreate`](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
+- [`manageWebhooksDeactivate`](docs/sdks/managewebhooks/README.md#deactivate) - Deactivate a Webhook
 - [`manageWebhooksDelete`](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
 - [`manageWebhooksGet`](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
 - [`manageWebhooksList`](docs/sdks/managewebhooks/README.md#list) - List Webhooks
@@ -582,11 +671,11 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 You can override the default server globally by passing a server name to the `server: keyof typeof ServerList` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name          | Server                              |
-| ------------- | ----------------------------------- |
-| `production`  | `https://api.pushpress.com/v3`      |
-| `staging`     | `https://api.pushpressstage.com/v3` |
-| `development` | `https://api.pushpressdev.com/v3`   |
+| Name          | Server                              | Description |
+| ------------- | ----------------------------------- | ----------- |
+| `production`  | `https://api.pushpress.com/v3`      | production  |
+| `staging`     | `https://api.pushpressstage.com/v3` | staging     |
+| `development` | `https://api.pushpressdev.com/v3`   | development |
 
 #### Example
 

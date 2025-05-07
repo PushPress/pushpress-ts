@@ -5,7 +5,7 @@
 ```typescript
 import { Expand } from "@pushpress/pushpress/models/operations";
 
-let value: Expand = "location";
+let value: Expand = "reservations";
 ```
 
 ## Values

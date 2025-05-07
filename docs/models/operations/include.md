@@ -7,7 +7,7 @@ When defined only include checkins for these categories
 ```typescript
 import { Include } from "@pushpress/pushpress/models/operations";
 
-let value: Include = "events";
+let value: Include = "appointments";
 ```
 
 ## Values

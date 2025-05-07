@@ -9,20 +9,16 @@ import { CheckinUpdatedEventRequestBody } from "@pushpress/pushpress/models/webh
 
 let value: CheckinUpdatedEventRequestBody = {
   data: {
-    id: "chk_12345",
+    id: "apptschdl_12345",
     customer: "usr_12345",
     company: "cli_12345",
     timestamp: 1672531200000,
-    name: "My Event",
-    role: "staff",
-    typeId: "cit_12345",
-    eventId: "cal_item_12345",
-    type: {
-      id: "cit_12345",
-      name: "Weightlifting Seminar",
-    },
+    name: "Personal Training",
+    appointmentId: "apptschdl_12345",
+    typeId: "appttype_12345",
+    staffId: "usr_78910",
   },
-  created: 544883,
+  created: 114172,
   event: "checkin.updated",
 };
 ```

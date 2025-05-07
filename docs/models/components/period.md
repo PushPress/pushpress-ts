@@ -5,7 +5,7 @@
 ```typescript
 import { Period } from "@pushpress/pushpress/models/components";
 
-let value: Period = "day";
+let value: Period = "month";
 ```
 
 ## Values
