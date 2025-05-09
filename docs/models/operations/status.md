@@ -5,11 +5,11 @@
 ```typescript
 import { Status } from "@pushpress/pushpress/models/operations";
 
-let value: Status = "success";
+let value: Status = "paused";
 ```
 
 ## Values
 
 ```typescript
-"success"
+"active" | "alert" | "canceled" | "completed" | "paused" | "pendactivation" | "pendcancel"
 ```
