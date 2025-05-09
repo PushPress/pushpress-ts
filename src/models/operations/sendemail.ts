@@ -54,16 +54,16 @@ export type SendEmailRequest = {
   requestBody: SendEmailRequestBody;
 };
 
-export const Status = {
+export const SendEmailStatus = {
   Success: "success",
 } as const;
-export type Status = ClosedEnum<typeof Status>;
+export type SendEmailStatus = ClosedEnum<typeof SendEmailStatus>;
 
 /**
  * Default Response
  */
 export type SendEmailResponseBody = {
-  status: Status;
+  status: SendEmailStatus;
 };
 
 /** @internal */
@@ -309,22 +309,24 @@ export function sendEmailRequestFromJSON(
 }
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
+export const SendEmailStatus$inboundSchema: z.ZodNativeEnum<
+  typeof SendEmailStatus
+> = z.nativeEnum(SendEmailStatus);
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
+export const SendEmailStatus$outboundSchema: z.ZodNativeEnum<
+  typeof SendEmailStatus
+> = SendEmailStatus$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
+export namespace SendEmailStatus$ {
+  /** @deprecated use `SendEmailStatus$inboundSchema` instead. */
+  export const inboundSchema = SendEmailStatus$inboundSchema;
+  /** @deprecated use `SendEmailStatus$outboundSchema` instead. */
+  export const outboundSchema = SendEmailStatus$outboundSchema;
 }
 
 /** @internal */
@@ -333,7 +335,7 @@ export const SendEmailResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: Status$inboundSchema,
+  status: SendEmailStatus$inboundSchema,
 });
 
 /** @internal */
@@ -347,7 +349,7 @@ export const SendEmailResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendEmailResponseBody
 > = z.object({
-  status: Status$outboundSchema,
+  status: SendEmailStatus$outboundSchema,
 });
 
 /**
