@@ -3,10 +3,12 @@
  */
 
 import { enrollmentGet } from "../funcs/enrollmentGet.js";
+import { enrollmentList } from "../funcs/enrollmentList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Enrollment extends ClientSDK {
   /**
@@ -20,6 +22,25 @@ export class Enrollment extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.Enrollment> {
     return unwrapAsync(enrollmentGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Plan Enrollments
+   *
+   * @remarks
+   * Get a list of enrollments in the current company
+   */
+  async list(
+    request: operations.ListEnrollmentsRequest,
+    options?: RequestOptions,
+  ): Promise<
+    PageIterator<operations.ListEnrollmentsResponse, { page: number }>
+  > {
+    return unwrapResultIterator(enrollmentList(
       this,
       request,
       options,

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 603af0531b917305c235355620d6cbf4
+  docChecksum: c8426232747504767370dbe8b0228463
   docVersion: 3.0.0
-  speakeasyVersion: 1.542.3
-  generationVersion: 2.597.9
-  releaseVersion: 1.8.0
-  configChecksum: 21182cb08b76119617b3ed6ab38e3f17
+  speakeasyVersion: 1.543.4
+  generationVersion: 2.598.22
+  releaseVersion: 1.9.0
+  configChecksum: ab527c137c816365d74574b724a8952f
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -23,7 +23,7 @@ features:
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.4
+    globalServerURLs: 2.82.5
     globals: 2.82.2
     groups: 2.81.2
     mcpServer: 0.9.2
@@ -211,6 +211,11 @@ generatedFiles:
   - docs/models/operations/listcustomersrequest.md
   - docs/models/operations/listcustomersresponse.md
   - docs/models/operations/listcustomersresponsebody.md
+  - docs/models/operations/listenrollmentsdata.md
+  - docs/models/operations/listenrollmentsglobals.md
+  - docs/models/operations/listenrollmentsrequest.md
+  - docs/models/operations/listenrollmentsresponse.md
+  - docs/models/operations/listenrollmentsresponsebody.md
   - docs/models/operations/listeventcheckinsdata.md
   - docs/models/operations/listeventcheckinsglobals.md
   - docs/models/operations/listeventcheckinsrequest.md
@@ -245,6 +250,7 @@ generatedFiles:
   - docs/models/operations/sendemailrequest.md
   - docs/models/operations/sendemailrequestbody.md
   - docs/models/operations/sendemailresponsebody.md
+  - docs/models/operations/sendemailstatus.md
   - docs/models/operations/sendeventglobals.md
   - docs/models/operations/sendeventrequest.md
   - docs/models/operations/sendeventrequestbody.md
@@ -372,6 +378,7 @@ generatedFiles:
   - src/funcs/enrollmentCreatedEvent.ts
   - src/funcs/enrollmentDeleted.ts
   - src/funcs/enrollmentGet.ts
+  - src/funcs/enrollmentList.ts
   - src/funcs/enrollmentStatusChanged.ts
   - src/funcs/eventsGet.ts
   - src/funcs/keysCreate.ts
@@ -446,6 +453,7 @@ generatedFiles:
   - src/mcp-server/tools/customersGet.ts
   - src/mcp-server/tools/customersList.ts
   - src/mcp-server/tools/enrollmentGet.ts
+  - src/mcp-server/tools/enrollmentList.ts
   - src/mcp-server/tools/eventsGet.ts
   - src/mcp-server/tools/manageWebhooksActivate.ts
   - src/mcp-server/tools/manageWebhooksCreate.ts
@@ -516,6 +524,7 @@ generatedFiles:
   - src/models/operations/listclasscheckins.ts
   - src/models/operations/listclasstypes.ts
   - src/models/operations/listcustomers.ts
+  - src/models/operations/listenrollments.ts
   - src/models/operations/listeventcheckins.ts
   - src/models/operations/listopencheckins.ts
   - src/models/operations/listwebhooks.ts
@@ -1126,5 +1135,15 @@ examples:
       responses:
         "200":
           application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
+  listEnrollments:
+    speakeasy-default-list-enrollments:
+      parameters:
+        query:
+          page: 1
+          limit: 10
+        header: {}
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "sub_12345", "customerId": "usr_12345", "companyId": "client_12345", "planId": "plan_12345", "billingSchedule": {"period": "month", "interval": 1}, "status": "active", "checkinDetails": {"checkins": 0, "limit": -1}, "entitlements": [{"type": "24_HOUR_ACCESS", "id": "plnentl_12345", "interval": "", "quantity": 1, "metadata": {}}]}]}}
 examplesVersion: 1.0.1
 generatedTests: {}
