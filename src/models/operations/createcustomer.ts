@@ -115,6 +115,18 @@ export type One = {
 
 export type Account = Two | One;
 
+/**
+ * The source of the lead
+ */
+export const Source = {
+  Platform: "PLATFORM",
+  GrowSync: "GROW_SYNC",
+} as const;
+/**
+ * The source of the lead
+ */
+export type Source = ClosedEnum<typeof Source>;
+
 export type CreateCustomerRequestBody = {
   /**
    * A unique identifier assigned to each customer
@@ -147,6 +159,10 @@ export type CreateCustomerRequestBody = {
    */
   gender?: Gender | null | undefined;
   account?: Two | One | undefined;
+  /**
+   * The source of the lead
+   */
+  source?: Source | undefined;
 };
 
 export type CreateCustomerRequest = {
@@ -595,6 +611,25 @@ export function accountFromJSON(
 }
 
 /** @internal */
+export const Source$inboundSchema: z.ZodNativeEnum<typeof Source> = z
+  .nativeEnum(Source);
+
+/** @internal */
+export const Source$outboundSchema: z.ZodNativeEnum<typeof Source> =
+  Source$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Source$ {
+  /** @deprecated use `Source$inboundSchema` instead. */
+  export const inboundSchema = Source$inboundSchema;
+  /** @deprecated use `Source$outboundSchema` instead. */
+  export const outboundSchema = Source$outboundSchema;
+}
+
+/** @internal */
 export const CreateCustomerRequestBody$inboundSchema: z.ZodType<
   CreateCustomerRequestBody,
   z.ZodTypeDef,
@@ -613,6 +648,7 @@ export const CreateCustomerRequestBody$inboundSchema: z.ZodType<
     z.lazy(() => Two$inboundSchema),
     z.lazy(() => One$inboundSchema),
   ]).optional(),
+  source: Source$inboundSchema.default("PLATFORM"),
 });
 
 /** @internal */
@@ -627,6 +663,7 @@ export type CreateCustomerRequestBody$Outbound = {
   dob?: string | null | undefined;
   gender?: string | null | undefined;
   account?: Two$Outbound | One$Outbound | undefined;
+  source: string;
 };
 
 /** @internal */
@@ -648,6 +685,7 @@ export const CreateCustomerRequestBody$outboundSchema: z.ZodType<
     z.lazy(() => Two$outboundSchema),
     z.lazy(() => One$outboundSchema),
   ]).optional(),
+  source: Source$outboundSchema.default("PLATFORM"),
 });
 
 /**

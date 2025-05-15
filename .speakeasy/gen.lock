@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: c8426232747504767370dbe8b0228463
+  docChecksum: 2f58054e56054849ca5feaf4357612f3
   docVersion: 3.0.0
-  speakeasyVersion: 1.543.4
-  generationVersion: 2.598.22
-  releaseVersion: 1.9.0
-  configChecksum: ab527c137c816365d74574b724a8952f
+  speakeasyVersion: 1.545.0
+  generationVersion: 2.599.0
+  releaseVersion: 1.10.0
+  configChecksum: 59e5df9e070828ca12d26cdc033a4c35
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -261,6 +261,7 @@ generatedFiles:
   - docs/models/operations/sendsmsglobals.md
   - docs/models/operations/sendsmsrequest.md
   - docs/models/operations/sendsmsrequestbody.md
+  - docs/models/operations/source.md
   - docs/models/operations/status.md
   - docs/models/operations/three.md
   - docs/models/operations/two.md
@@ -674,7 +675,7 @@ examples:
   createCustomer:
     speakeasy-default-create-customer:
       requestBody:
-        application/json: {"email": "Loyal79@yahoo.com"}
+        application/json: {"email": "Loyal79@yahoo.com", "source": "PLATFORM"}
       responses:
         "200":
           application/json: {"id": "<id>"}
