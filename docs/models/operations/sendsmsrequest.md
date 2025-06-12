@@ -5,12 +5,7 @@
 ```typescript
 import { SendSmsRequest } from "@pushpress/pushpress/models/operations";
 
-let value: SendSmsRequest = {
-  requestBody: {
-    message: "<value>",
-    to: "<value>",
-  },
-};
+let value: SendSmsRequest = {};
 ```
 
 ## Fields

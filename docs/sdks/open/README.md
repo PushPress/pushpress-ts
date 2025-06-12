@@ -18,15 +18,15 @@ Get the checkin details for an open facility checkin
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.checkins.open.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "b2ac1d16-7d4a-482f-bb6f-8534533fa1a8",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -44,22 +44,20 @@ import { checkinsOpenGet } from "@pushpress/pushpress/funcs/checkinsOpenGet.js";
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await checkinsOpenGet(pushPress, {
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "b2ac1d16-7d4a-482f-bb6f-8534533fa1a8",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("checkinsOpenGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -94,6 +92,7 @@ List open facility checkins
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -101,7 +100,6 @@ async function run() {
   const result = await pushPress.checkins.open.list({});
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -120,21 +118,19 @@ import { checkinsOpenList } from "@pushpress/pushpress/funcs/checkinsOpenList.js
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await checkinsOpenList(pushPress, {});
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("checkinsOpenList failed:", res.error);
   }
 }
 

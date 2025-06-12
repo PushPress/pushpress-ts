@@ -13,6 +13,7 @@ import {
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
+import { tool$appointmentsAppointmentsGet } from "./tools/appointmentsAppointmentsGet.js";
 import { tool$checkinsAppointmentGet } from "./tools/checkinsAppointmentGet.js";
 import { tool$checkinsAppointmentList } from "./tools/checkinsAppointmentList.js";
 import { tool$checkinsClassGet } from "./tools/checkinsClassGet.js";
@@ -35,6 +36,10 @@ import { tool$customersList } from "./tools/customersList.js";
 import { tool$enrollmentGet } from "./tools/enrollmentGet.js";
 import { tool$enrollmentList } from "./tools/enrollmentList.js";
 import { tool$eventsGet } from "./tools/eventsGet.js";
+import { tool$invitationsCreate } from "./tools/invitationsCreate.js";
+import { tool$invitationsDelete } from "./tools/invitationsDelete.js";
+import { tool$invitationsGet } from "./tools/invitationsGet.js";
+import { tool$invitationsList } from "./tools/invitationsList.js";
 import { tool$manageWebhooksActivate } from "./tools/manageWebhooksActivate.js";
 import { tool$manageWebhooksCreate } from "./tools/manageWebhooksCreate.js";
 import { tool$manageWebhooksDeactivate } from "./tools/manageWebhooksDeactivate.js";
@@ -60,7 +65,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "PushPress",
-    version: "1.10.0",
+    version: "1.11.0",
   });
 
   const client = new PushPressCore({
@@ -91,6 +96,7 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
+  tool(tool$appointmentsAppointmentsGet);
   tool(tool$customersCreate);
   tool(tool$customersList);
   tool(tool$customersGet);
@@ -100,6 +106,10 @@ export function createMCPServer(deps: {
   tool(tool$enrollmentGet);
   tool(tool$enrollmentList);
   tool(tool$eventsGet);
+  tool(tool$invitationsGet);
+  tool(tool$invitationsDelete);
+  tool(tool$invitationsList);
+  tool(tool$invitationsCreate);
   tool(tool$plansGet);
   tool(tool$manageWebhooksCreate);
   tool(tool$manageWebhooksList);

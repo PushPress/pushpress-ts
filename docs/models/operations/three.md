@@ -7,7 +7,9 @@ import { Three } from "@pushpress/pushpress/models/operations";
 
 let value: Three = {
   errors: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```

@@ -18,15 +18,15 @@ Get the checkin details for appointment including appointment details and checki
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.checkins.appointment.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "6fad5e7e-2ba5-462d-9079-02a6d91f5318",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -44,22 +44,20 @@ import { checkinsAppointmentGet } from "@pushpress/pushpress/funcs/checkinsAppoi
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await checkinsAppointmentGet(pushPress, {
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "6fad5e7e-2ba5-462d-9079-02a6d91f5318",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("checkinsAppointmentGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -94,6 +92,7 @@ list appointment checkins. Includes details about the appointment, customer and 
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -101,7 +100,6 @@ async function run() {
   const result = await pushPress.checkins.appointment.list({});
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -120,21 +118,19 @@ import { checkinsAppointmentList } from "@pushpress/pushpress/funcs/checkinsAppo
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await checkinsAppointmentList(pushPress, {});
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("checkinsAppointmentList failed:", res.error);
   }
 }
 

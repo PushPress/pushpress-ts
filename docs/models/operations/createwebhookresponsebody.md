@@ -10,9 +10,7 @@ import { CreateWebhookResponseBody } from "@pushpress/pushpress/models/operation
 let value: CreateWebhookResponseBody = {
   id: "<id>",
   url: "https://perky-octave.org/",
-  eventTypes: [
-    "checkin.deleted",
-  ],
+  eventTypes: [],
   signingSecret: "<value>",
 };
 ```

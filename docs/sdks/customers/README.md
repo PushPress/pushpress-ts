@@ -21,17 +21,17 @@ Create a new customer in the platform. Note that this endpoint only supports cre
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.customers.create({
     requestBody: {
-      email: "Loyal79@yahoo.com",
+      email: "Amir75@gmail.com",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,24 +49,22 @@ import { customersCreate } from "@pushpress/pushpress/funcs/customersCreate.js";
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await customersCreate(pushPress, {
     requestBody: {
-      email: "Loyal79@yahoo.com",
+      email: "Amir75@gmail.com",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -101,6 +99,7 @@ Get a list of customers in the current company
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -108,7 +107,6 @@ async function run() {
   const result = await pushPress.customers.list({});
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -127,21 +125,19 @@ import { customersList } from "@pushpress/pushpress/funcs/customersList.js";
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await customersList(pushPress, {});
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("customersList failed:", res.error);
   }
 }
 
@@ -187,15 +183,15 @@ Get individual customer information, including profile image, primary image, and
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.customers.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "2a049de9-7ab5-4dc3-abd5-4dc7be64e95d",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -213,22 +209,20 @@ import { customersGet } from "@pushpress/pushpress/funcs/customersGet.js";
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await customersGet(pushPress, {
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "2a049de9-7ab5-4dc3-abd5-4dc7be64e95d",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

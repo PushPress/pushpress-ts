@@ -17,6 +17,7 @@ Send an event to a websocket channel via Ably Realtime. Note that only first par
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -45,6 +46,7 @@ import { messagesRealtimeSend } from "@pushpress/pushpress/funcs/messagesRealtim
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -55,14 +57,12 @@ async function run() {
       event: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("messagesRealtimeSend failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

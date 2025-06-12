@@ -8,9 +8,7 @@ import { ResponseBody2 } from "@pushpress/pushpress/models/operations";
 let value: ResponseBody2 = {
   errors: {
     invalidAliases: {
-      externalId: [
-        "<id>",
-      ],
+      externalId: [],
     },
   },
 };

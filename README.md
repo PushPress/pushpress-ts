@@ -181,16 +181,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 }
@@ -210,6 +210,10 @@ run();
 
 * [get](docs/sdks/apikeys/README.md#get) - Get API Key
 * [revoke](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
+
+### [appointments](docs/sdks/appointments/README.md)
+
+* [appointmentsGet](docs/sdks/appointments/README.md#appointmentsget) - Get details for an appointment
 
 ### [checkins](docs/sdks/checkins/README.md)
 
@@ -268,6 +272,13 @@ run();
 ### [events](docs/sdks/events/README.md)
 
 * [get](docs/sdks/events/README.md#get) - Get details for an event
+
+### [invitations](docs/sdks/invitations/README.md)
+
+* [get](docs/sdks/invitations/README.md#get) - Get an invitation
+* [delete](docs/sdks/invitations/README.md#delete) - Delete an invitation
+* [list](docs/sdks/invitations/README.md#list) - List Invitations
+* [create](docs/sdks/invitations/README.md#create) - Create Invitations
 
 ### [keys](docs/sdks/keys/README.md)
 
@@ -355,6 +366,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`appointmentCanceledEvent`](docs/sdks/pushpress/README.md#appointmentcanceledevent)
 - [`appointmentNoShowedEvent`](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
 - [`appointmentRescheduledEvent`](docs/sdks/pushpress/README.md#appointmentrescheduledevent)
+- [`appointmentsAppointmentsGet`](docs/sdks/appointments/README.md#appointmentsget) - Get details for an appointment
 - [`appointmentScheduledEvent`](docs/sdks/pushpress/README.md#appointmentscheduledevent)
 - [`appUninstalledEvent`](docs/sdks/pushpress/README.md#appuninstalledevent)
 - [`checkinCreatedEvent`](docs/sdks/pushpress/README.md#checkincreatedevent)
@@ -390,6 +402,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`enrollmentList`](docs/sdks/enrollment/README.md#list) - List Plan Enrollments
 - [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
 - [`eventsGet`](docs/sdks/events/README.md#get) - Get details for an event
+- [`invitationsCreate`](docs/sdks/invitations/README.md#create) - Create Invitations
+- [`invitationsDelete`](docs/sdks/invitations/README.md#delete) - Delete an invitation
+- [`invitationsGet`](docs/sdks/invitations/README.md#get) - Get an invitation
+- [`invitationsList`](docs/sdks/invitations/README.md#list) - List Invitations
 - [`keysCreate`](docs/sdks/keys/README.md#create) - Create a new API Key
 - [`keysList`](docs/sdks/keys/README.md#list) - List API Keys
 - [`manageWebhooksActivate`](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
@@ -428,6 +444,7 @@ Here's an example of one such pagination call:
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -435,7 +452,6 @@ async function run() {
   const result = await pushPress.customers.list({});
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -463,16 +479,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   }, {
     retries: {
@@ -516,16 +532,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 }
@@ -538,112 +554,46 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `list` method may throw the following errors:
+[`PushPressError`](./src/models/errors/pushpresserror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Error Type                 | Status Code                  | Content Type     |
-| -------------------------- | ---------------------------- | ---------------- |
-| errors.NotFound            | 404                          | application/json |
-| errors.Unauthorized        | 401, 403, 407                | application/json |
-| errors.Timeout             | 408                          | application/json |
-| errors.RateLimited         | 429                          | application/json |
-| errors.BadRequest          | 400, 413, 414, 415, 422, 431 | application/json |
-| errors.Timeout             | 504                          | application/json |
-| errors.NotFound            | 501, 505                     | application/json |
-| errors.InternalServerError | 500, 502, 503, 506, 507, 508 | application/json |
-| errors.BadRequest          | 510                          | application/json |
-| errors.Unauthorized        | 511                          | application/json |
-| errors.APIError            | 4XX, 5XX                     | \*/\*            |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `APIError`.
-
+### Example
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
-import {
-  BadRequest,
-  InternalServerError,
-  NotFound,
-  RateLimited,
-  SDKValidationError,
-  Timeout,
-  Unauthorized,
-} from "@pushpress/pushpress/models/errors";
+import * as errors from "@pushpress/pushpress/models/errors";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  let result;
   try {
-    result = await pushPress.customers.list({});
+    const result = await pushPress.customers.list({});
 
     for await (const page of result) {
-      // Handle the page
       console.log(page);
     }
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof NotFound): {
-        // Handle err.data$: NotFoundData
-        console.error(err);
-        return;
-      }
-      case (err instanceof Unauthorized): {
-        // Handle err.data$: UnauthorizedData
-        console.error(err);
-        return;
-      }
-      case (err instanceof Timeout): {
-        // Handle err.data$: TimeoutData
-        console.error(err);
-        return;
-      }
-      case (err instanceof RateLimited): {
-        // Handle err.data$: RateLimitedData
-        console.error(err);
-        return;
-      }
-      case (err instanceof BadRequest): {
-        // Handle err.data$: BadRequestData
-        console.error(err);
-        return;
-      }
-      case (err instanceof Timeout): {
-        // Handle err.data$: TimeoutData
-        console.error(err);
-        return;
-      }
-      case (err instanceof NotFound): {
-        // Handle err.data$: NotFoundData
-        console.error(err);
-        return;
-      }
-      case (err instanceof InternalServerError): {
-        // Handle err.data$: InternalServerErrorData
-        console.error(err);
-        return;
-      }
-      case (err instanceof BadRequest): {
-        // Handle err.data$: BadRequestData
-        console.error(err);
-        return;
-      }
-      case (err instanceof Unauthorized): {
-        // Handle err.data$: UnauthorizedData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
+  } catch (error) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.PushPressError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.NotFound) {
+        console.log(error.data$.message); // string
+        console.log(error.data$.additionalProperties); // { [k: string]: any }
       }
     }
   }
@@ -653,17 +603,34 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+**Primary error:**
+* [`PushPressError`](./src/models/errors/pushpresserror.ts): The base class for HTTP error responses.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors (12)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`PushPressError`](./src/models/errors/pushpresserror.ts)**:
+* [`BadRequest`](docs/models/errors/badrequest.md): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 64 methods.*
+* [`Unauthorized`](docs/models/errors/unauthorized.md): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 64 methods.*
+* [`NotFound`](docs/models/errors/notfound.md): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 64 methods.*
+* [`Timeout`](docs/models/errors/timeout.md): Timeouts occurred with the request. Applicable to 8 of 64 methods.*
+* [`RateLimited`](docs/models/errors/ratelimited.md): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 64 methods.*
+* [`InternalServerError`](docs/models/errors/internalservererror.md): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 64 methods.*
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -695,16 +662,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 }
@@ -730,16 +697,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 }
@@ -824,16 +791,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 }
@@ -848,7 +815,9 @@ Some operations in this SDK require the security scheme to be specified at the r
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+});
 
 async function run() {
   const result = await pushPress.keys.create({
@@ -861,7 +830,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 

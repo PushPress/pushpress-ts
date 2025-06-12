@@ -11,16 +11,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 }

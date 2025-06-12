@@ -10,9 +10,7 @@ Default Response
 ```typescript
 const value: operations.ResponseBody1 = {
   id: "<id>",
-  errors: [
-    "<value>",
-  ],
+  errors: [],
 };
 ```
 
@@ -22,9 +20,7 @@ const value: operations.ResponseBody1 = {
 const value: operations.ResponseBody2 = {
   errors: {
     invalidAliases: {
-      externalId: [
-        "<id>",
-      ],
+      externalId: [],
     },
   },
 };
@@ -35,7 +31,9 @@ const value: operations.ResponseBody2 = {
 ```typescript
 const value: operations.Three = {
   errors: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```

@@ -19,7 +19,9 @@ Fetches detailed information about a specific API key and associated metadata
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+});
 
 async function run() {
   const result = await pushPress.apiKeys.get({
@@ -28,7 +30,6 @@ async function run() {
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -45,7 +46,9 @@ import { apiKeysGet } from "@pushpress/pushpress/funcs/apiKeysGet.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushPress = new PushPressCore();
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+});
 
 async function run() {
   const res = await apiKeysGet(pushPress, {
@@ -53,15 +56,12 @@ async function run() {
   }, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("apiKeysGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -96,7 +96,9 @@ Immediately invalidates an active API key, preventing any further authentication
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+});
 
 async function run() {
   const result = await pushPress.apiKeys.revoke({
@@ -105,7 +107,6 @@ async function run() {
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -122,7 +123,9 @@ import { apiKeysRevoke } from "@pushpress/pushpress/funcs/apiKeysRevoke.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushPress = new PushPressCore();
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+});
 
 async function run() {
   const res = await apiKeysRevoke(pushPress, {
@@ -130,15 +133,12 @@ async function run() {
   }, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("apiKeysRevoke failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -9,7 +9,7 @@ let value: ListWebhooksData = {
   id: "<id>",
   url: "https://defenseless-density.org/",
   eventTypes: [
-    "enrollment.created",
+    "appointment.rescheduled",
   ],
   signingSecret: "<value>",
 };

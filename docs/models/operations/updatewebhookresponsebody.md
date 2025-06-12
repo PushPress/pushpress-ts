@@ -10,9 +10,7 @@ import { UpdateWebhookResponseBody } from "@pushpress/pushpress/models/operation
 let value: UpdateWebhookResponseBody = {
   id: "<id>",
   url: "https://intent-finger.biz",
-  eventTypes: [
-    "appointment.rescheduled",
-  ],
+  eventTypes: [],
   signingSecret: "<value>",
 };
 ```

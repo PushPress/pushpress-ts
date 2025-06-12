@@ -8,16 +8,7 @@ Default Response
 import { ListWebhooksResponseBody } from "@pushpress/pushpress/models/operations";
 
 let value: ListWebhooksResponseBody = {
-  data: [
-    {
-      id: "<id>",
-      url: "https://submissive-monasticism.org/",
-      eventTypes: [
-        "appointment.noshowed",
-      ],
-      signingSecret: "<value>",
-    },
-  ],
+  data: [],
 };
 ```
 

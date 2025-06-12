@@ -18,15 +18,15 @@ Get the checkin details for class including class details and checkin time
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.checkins.class.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "4d184dfb-7902-4c7b-8233-5325727b8f75",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -44,22 +44,20 @@ import { checkinsClassGet } from "@pushpress/pushpress/funcs/checkinsClassGet.js
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await checkinsClassGet(pushPress, {
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "4d184dfb-7902-4c7b-8233-5325727b8f75",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("checkinsClassGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -94,6 +92,7 @@ list event checkins
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -101,7 +100,6 @@ async function run() {
   const result = await pushPress.checkins.class.list({});
 
   for await (const page of result) {
-    // Handle the page
     console.log(page);
   }
 }
@@ -120,21 +118,19 @@ import { checkinsClassList } from "@pushpress/pushpress/funcs/checkinsClassList.
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await checkinsClassList(pushPress, {});
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  for await (const page of result) {
-    // Handle the page
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
     console.log(page);
+  }
+  } else {
+    console.log("checkinsClassList failed:", res.error);
   }
 }
 

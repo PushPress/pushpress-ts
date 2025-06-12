@@ -14,6 +14,7 @@ export * from "./customer.js";
 export * from "./enrollment.js";
 export * from "./event.js";
 export * from "./eventcheckin.js";
+export * from "./invitation.js";
 export * from "./opencheckin.js";
 export * from "./plan.js";
 export * from "./reservation.js";

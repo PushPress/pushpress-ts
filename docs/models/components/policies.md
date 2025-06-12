@@ -7,8 +7,8 @@ import { Policies } from "@pushpress/pushpress/models/components";
 
 let value: Policies = {
   allowClassCheckins: false,
-  allowOpenGymCheckins: false,
-  allow24HourAccess: false,
+  allowOpenGymCheckins: true,
+  allow24HourAccess: true,
 };
 ```
 

@@ -9,13 +9,7 @@ import { ListAttributionsResponseBody } from "@pushpress/pushpress/models/operat
 
 let value: ListAttributionsResponseBody = {
   data: {
-    resultArray: [
-      {
-        customerId: "<id>",
-        companyId: "<id>",
-        event: "signup",
-      },
-    ],
+    resultArray: [],
   },
 };
 ```

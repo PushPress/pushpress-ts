@@ -28,18 +28,25 @@ import * as webhooks from "../models/webhooks/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { WebhookRecipient } from "../types/webhooks.js";
 import { APIKeys } from "./apikeys.js";
+import { Appointments } from "./appointments.js";
 import { Checkins } from "./checkins.js";
 import { Classes } from "./classes.js";
 import { Company } from "./company.js";
 import { Customers } from "./customers.js";
 import { Enrollment } from "./enrollment.js";
 import { Events } from "./events.js";
+import { Invitations } from "./invitations.js";
 import { Keys } from "./keys.js";
 import { ManageWebhooks } from "./managewebhooks.js";
 import { Messages } from "./messages.js";
 import { Plans } from "./plans.js";
 
 export class PushPress extends ClientSDK {
+  private _appointments?: Appointments;
+  get appointments(): Appointments {
+    return (this._appointments ??= new Appointments(this._options));
+  }
+
   private _customers?: Customers;
   get customers(): Customers {
     return (this._customers ??= new Customers(this._options));
@@ -68,6 +75,11 @@ export class PushPress extends ClientSDK {
   private _events?: Events;
   get events(): Events {
     return (this._events ??= new Events(this._options));
+  }
+
+  private _invitations?: Invitations;
+  get invitations(): Invitations {
+    return (this._invitations ??= new Invitations(this._options));
   }
 
   private _keys?: Keys;

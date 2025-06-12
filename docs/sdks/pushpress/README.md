@@ -47,16 +47,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
 
@@ -85,26 +85,24 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
-      name: "My Event",
-      role: "staff",
+      name: "My Class",
       typeId: "cit_12345",
-      eventId: "cal_item_12345",
+      classId: "cal_item_12345",
       type: {
         id: "cit_12345",
-        name: "Weightlifting Seminar",
+        name: "Group HIIT Training",
       },
+      role: "attendee",
     },
-    created: 420989,
+    created: 945274,
     event: "checkin.created",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("checkinCreatedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -145,8 +143,16 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
+      name: "My Class",
+      typeId: "cit_12345",
+      classId: "cal_item_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      role: "attendee",
     },
-    created: 567981,
+    created: 405810,
     event: "checkin.updated",
   });
 
@@ -175,18 +181,24 @@ async function run() {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
+      name: "My Class",
+      typeId: "cit_12345",
+      classId: "cal_item_12345",
+      type: {
+        id: "cit_12345",
+        name: "Group HIIT Training",
+      },
+      role: "attendee",
     },
-    created: 567981,
+    created: 405810,
     event: "checkin.updated",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("checkinUpdatedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -227,7 +239,7 @@ async function run() {
       customerId: "<id>",
       companyId: "<id>",
     },
-    created: 718383,
+    created: 746221,
     event: "checkin.deleted",
   });
 
@@ -256,17 +268,15 @@ async function run() {
       customerId: "<id>",
       companyId: "<id>",
     },
-    created: 718383,
+    created: 746221,
     event: "checkin.deleted",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("checkinDeletedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -326,7 +336,7 @@ async function run() {
         },
       ],
     },
-    created: 961657,
+    created: 450507,
     event: "enrollment.status.changed",
   });
 
@@ -374,17 +384,15 @@ async function run() {
         },
       ],
     },
-    created: 961657,
+    created: 450507,
     event: "enrollment.status.changed",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("enrollmentStatusChanged failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -425,7 +433,7 @@ async function run() {
       appId: "app-uuid",
       installationId: "installation-uuid",
     },
-    created: 865806,
+    created: 670878,
     event: "app.installed",
   });
 
@@ -454,17 +462,15 @@ async function run() {
       appId: "app-uuid",
       installationId: "installation-uuid",
     },
-    created: 865806,
+    created: 670878,
     event: "app.installed",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appInstalledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -505,7 +511,7 @@ async function run() {
       appId: "app-uuid",
       installationId: "installation-uuid",
     },
-    created: 897950,
+    created: 233289,
     event: "app.uninstalled",
   });
 
@@ -534,17 +540,15 @@ async function run() {
       appId: "app-uuid",
       installationId: "installation-uuid",
     },
-    created: 897950,
+    created: 233289,
     event: "app.uninstalled",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appUninstalledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -590,7 +594,7 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 835440,
+    created: 665804,
     event: "appointment.scheduled",
   });
 
@@ -624,17 +628,15 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 835440,
+    created: 665804,
     event: "appointment.scheduled",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appointmentScheduledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -680,7 +682,7 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 846105,
+    created: 937778,
     event: "appointment.rescheduled",
   });
 
@@ -714,17 +716,15 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 846105,
+    created: 937778,
     event: "appointment.rescheduled",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appointmentRescheduledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -770,7 +770,7 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 391237,
+    created: 316551,
     event: "appointment.noshowed",
   });
 
@@ -804,17 +804,15 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 391237,
+    created: 316551,
     event: "appointment.noshowed",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appointmentNoShowedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -860,7 +858,7 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 710519,
+    created: 206417,
     event: "appointment.canceled",
   });
 
@@ -894,17 +892,15 @@ async function run() {
       startTimestamp: 1677721600,
       staffId: "usr_78910",
     },
-    created: 710519,
+    created: 206417,
     event: "appointment.canceled",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appointmentCanceledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -968,7 +964,7 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 453969,
+    created: 118735,
     event: "customer.created",
   });
 
@@ -1020,17 +1016,15 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 453969,
+    created: 118735,
     event: "customer.created",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("customerCreatedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1094,7 +1088,7 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 153704,
+    created: 762255,
     event: "customer.status.changed",
   });
 
@@ -1146,17 +1140,15 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 153704,
+    created: 762255,
     event: "customer.status.changed",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("customerStatusChangedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1220,7 +1212,7 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 775111,
+    created: 352399,
     event: "customer.details.changed",
   });
 
@@ -1272,17 +1264,15 @@ async function run() {
       phone: "+1-800-555-1234",
       role: "member",
     },
-    created: 775111,
+    created: 352399,
     event: "customer.details.changed",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("customerDetailsChangedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1322,7 +1312,7 @@ async function run() {
       id: "<id>",
       companyId: "<id>",
     },
-    created: 522524,
+    created: 600472,
     event: "customer.deleted",
   });
 
@@ -1350,17 +1340,15 @@ async function run() {
       id: "<id>",
       companyId: "<id>",
     },
-    created: 522524,
+    created: 600472,
     event: "customer.deleted",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("customerDeletedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1401,22 +1389,13 @@ async function run() {
       coachUuid: "usr_12345",
       assistantCoachUuid: "usr_12345",
       company: "cli_12345",
+      title: "My Class",
       classTypeName: "HIIT",
       locationUuid: "loc_12345",
-      reservations: [
-        {
-          id: "reg_12345",
-          reservedId: "cal-12345",
-          customerId: "usr_12345",
-          companyId: "cli_12345",
-          registrationTimestamp: 1672531200000,
-          status: "reserved",
-        },
-      ],
       start: 1704063600,
       end: 1704067200,
     },
-    created: 97537,
+    created: 758442,
     event: "class.canceled",
   });
 
@@ -1445,32 +1424,21 @@ async function run() {
       coachUuid: "usr_12345",
       assistantCoachUuid: "usr_12345",
       company: "cli_12345",
+      title: "My Class",
       classTypeName: "HIIT",
       locationUuid: "loc_12345",
-      reservations: [
-        {
-          id: "reg_12345",
-          reservedId: "cal-12345",
-          customerId: "usr_12345",
-          companyId: "cli_12345",
-          registrationTimestamp: 1672531200000,
-          status: "reserved",
-        },
-      ],
       start: 1704063600,
       end: 1704067200,
     },
-    created: 97537,
+    created: 758442,
     event: "class.canceled",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("classCanceledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1530,7 +1498,7 @@ async function run() {
         },
       ],
     },
-    created: 804740,
+    created: 544872,
     event: "enrollment.created",
   });
 
@@ -1578,17 +1546,15 @@ async function run() {
         },
       ],
     },
-    created: 804740,
+    created: 544872,
     event: "enrollment.created",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("enrollmentCreatedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1627,7 +1593,7 @@ async function run() {
     data: {
       id: "<id>",
     },
-    created: 230421,
+    created: 795397,
     event: "enrollment.deleted",
   });
 
@@ -1654,17 +1620,15 @@ async function run() {
     data: {
       id: "<id>",
     },
-    created: 230421,
+    created: 795397,
     event: "enrollment.deleted",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("enrollmentDeleted failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1707,18 +1671,8 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
-      checkin: {
-        id: "apptschdl_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-        name: "Personal Training",
-        appointmentId: "apptschdl_12345",
-        typeId: "appttype_12345",
-        staffId: "usr_78910",
-      },
     },
-    created: 931703,
+    created: 549977,
     event: "reservation.created",
   });
 
@@ -1749,28 +1703,16 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
-      checkin: {
-        id: "apptschdl_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-        name: "Personal Training",
-        appointmentId: "apptschdl_12345",
-        typeId: "appttype_12345",
-        staffId: "usr_78910",
-      },
     },
-    created: 931703,
+    created: 549977,
     event: "reservation.created",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("reservationCreatedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1813,14 +1755,8 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
-      checkin: {
-        id: "chk_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-      },
     },
-    created: 584139,
+    created: 971326,
     event: "reservation.waitlisted",
   });
 
@@ -1851,24 +1787,16 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
-      checkin: {
-        id: "chk_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-      },
     },
-    created: 584139,
+    created: 971326,
     event: "reservation.waitlisted",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("reservationWaitlistedEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1911,14 +1839,8 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
-      checkin: {
-        id: "chk_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-      },
     },
-    created: 55232,
+    created: 276730,
     event: "reservation.canceled",
   });
 
@@ -1949,24 +1871,16 @@ async function run() {
       companyId: "cli_12345",
       registrationTimestamp: 1672531200000,
       status: "reserved",
-      checkin: {
-        id: "chk_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-      },
     },
-    created: 55232,
+    created: 276730,
     event: "reservation.canceled",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("reservationCanceledEvent failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

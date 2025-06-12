@@ -5,12 +5,7 @@
 ```typescript
 import { SendEventRequest } from "@pushpress/pushpress/models/operations";
 
-let value: SendEventRequest = {
-  requestBody: {
-    channel: "<value>",
-    event: "<value>",
-  },
-};
+let value: SendEventRequest = {};
 ```
 
 ## Fields

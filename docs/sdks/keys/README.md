@@ -17,7 +17,9 @@ Creates a new API key for authenticating requests. Admins in your account can cr
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+});
 
 async function run() {
   const result = await pushPress.keys.create({
@@ -30,7 +32,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -47,7 +48,9 @@ import { keysCreate } from "@pushpress/pushpress/funcs/keysCreate.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushPress = new PushPressCore();
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+});
 
 async function run() {
   const res = await keysCreate(pushPress, {
@@ -59,15 +62,12 @@ async function run() {
       expiresAt: 1672531200000,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("keysCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -112,14 +112,15 @@ Retrieves a list of all active API keys associated with your account. The respon
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+});
 
 async function run() {
   const result = await pushPress.keys.list({
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
   }, {});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -136,21 +137,20 @@ import { keysList } from "@pushpress/pushpress/funcs/keysList.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushPress = new PushPressCore();
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+});
 
 async function run() {
   const res = await keysList(pushPress, {
     bearer: process.env["PUSHPRESS_BEARER"] ?? "",
   }, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("keysList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
