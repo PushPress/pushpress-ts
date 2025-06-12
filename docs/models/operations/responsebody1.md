@@ -7,9 +7,7 @@ import { ResponseBody1 } from "@pushpress/pushpress/models/operations";
 
 let value: ResponseBody1 = {
   id: "<id>",
-  errors: [
-    "<value>",
-  ],
+  errors: [],
 };
 ```
 

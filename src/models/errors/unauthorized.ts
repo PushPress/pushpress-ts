@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { collectExtraKeys as collectExtraKeys$ } from "../../lib/schemas.js";
+import { PushPressError } from "./pushpresserror.js";
 
 /**
  * A collection of codes that generally means the client was not authenticated correctly for the request they want to make
@@ -18,19 +19,21 @@ export type UnauthorizedData = {
 /**
  * A collection of codes that generally means the client was not authenticated correctly for the request they want to make
  */
-export class Unauthorized extends Error {
+export class Unauthorized extends PushPressError {
   additionalProperties: { [k: string]: any } = {};
 
   /** The original data that was passed to this error instance. */
   data$: UnauthorizedData;
 
-  constructor(err: UnauthorizedData) {
+  constructor(
+    err: UnauthorizedData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.additionalProperties != null) {
       this.additionalProperties = err.additionalProperties;
     }
@@ -47,13 +50,20 @@ export const Unauthorized$inboundSchema: z.ZodType<
 > = collectExtraKeys$(
   z.object({
     message: z.string().optional(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
     .catchall(z.any()),
   "additionalProperties",
   true,
 )
   .transform((v) => {
-    return new Unauthorized(v);
+    return new Unauthorized(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

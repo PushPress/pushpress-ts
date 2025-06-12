@@ -10,9 +10,7 @@ import { GetWebhookResponseBody } from "@pushpress/pushpress/models/operations";
 let value: GetWebhookResponseBody = {
   id: "<id>",
   url: "https://passionate-dash.org",
-  eventTypes: [
-    "customer.created",
-  ],
+  eventTypes: [],
   signingSecret: "<value>",
 };
 ```

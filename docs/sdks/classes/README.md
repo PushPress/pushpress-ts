@@ -17,6 +17,7 @@ Get details for a class
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -25,7 +26,6 @@ async function run() {
     id: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -43,6 +43,7 @@ import { classesGet } from "@pushpress/pushpress/funcs/classesGet.js";
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
@@ -50,15 +51,12 @@ async function run() {
   const res = await classesGet(pushPress, {
     id: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("classesGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

@@ -5,6 +5,7 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { collectExtraKeys as collectExtraKeys$ } from "../../lib/schemas.js";
+import { PushPressError } from "./pushpresserror.js";
 
 /**
  * Timeouts occurred with the request
@@ -18,19 +19,21 @@ export type TimeoutData = {
 /**
  * Timeouts occurred with the request
  */
-export class Timeout extends Error {
+export class Timeout extends PushPressError {
   additionalProperties: { [k: string]: any } = {};
 
   /** The original data that was passed to this error instance. */
   data$: TimeoutData;
 
-  constructor(err: TimeoutData) {
+  constructor(
+    err: TimeoutData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.additionalProperties != null) {
       this.additionalProperties = err.additionalProperties;
     }
@@ -44,13 +47,20 @@ export const Timeout$inboundSchema: z.ZodType<Timeout, z.ZodTypeDef, unknown> =
   collectExtraKeys$(
     z.object({
       message: z.string().optional(),
+      request$: z.instanceof(Request),
+      response$: z.instanceof(Response),
+      body$: z.string(),
     })
       .catchall(z.any()),
     "additionalProperties",
     true,
   )
     .transform((v) => {
-      return new Timeout(v);
+      return new Timeout(v, {
+        request: v.request$,
+        response: v.response$,
+        body: v.body$,
+      });
     });
 
 /** @internal */

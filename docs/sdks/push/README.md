@@ -17,21 +17,18 @@ Send a push notification message from the PushPress platform. Note that only fir
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.messages.push.send({
     requestBody: {
-      customers: [
-        "<value>",
-        "<value>",
-      ],
+      customers: [],
       message: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,28 +46,23 @@ import { messagesPushSend } from "@pushpress/pushpress/funcs/messagesPushSend.js
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await messagesPushSend(pushPress, {
     requestBody: {
-      customers: [
-        "<value>",
-        "<value>",
-      ],
+      customers: [],
       message: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("messagesPushSend failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

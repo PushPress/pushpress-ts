@@ -7,7 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type AppointmentType = {
+export type Type = {
   /**
    * name of the appointment type
    */
@@ -22,7 +22,7 @@ export type Appointment = {
    * unique identifier for the appointment
    */
   id: string;
-  type: AppointmentType;
+  type: Type;
   /**
    * unique identifier for the company
    */
@@ -46,54 +46,46 @@ export type Appointment = {
 };
 
 /** @internal */
-export const AppointmentType$inboundSchema: z.ZodType<
-  AppointmentType,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  name: z.string(),
-});
+export const Type$inboundSchema: z.ZodType<Type, z.ZodTypeDef, unknown> = z
+  .object({
+    name: z.string(),
+  });
 
 /** @internal */
-export type AppointmentType$Outbound = {
+export type Type$Outbound = {
   name: string;
 };
 
 /** @internal */
-export const AppointmentType$outboundSchema: z.ZodType<
-  AppointmentType$Outbound,
-  z.ZodTypeDef,
-  AppointmentType
-> = z.object({
-  name: z.string(),
-});
+export const Type$outboundSchema: z.ZodType<Type$Outbound, z.ZodTypeDef, Type> =
+  z.object({
+    name: z.string(),
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AppointmentType$ {
-  /** @deprecated use `AppointmentType$inboundSchema` instead. */
-  export const inboundSchema = AppointmentType$inboundSchema;
-  /** @deprecated use `AppointmentType$outboundSchema` instead. */
-  export const outboundSchema = AppointmentType$outboundSchema;
-  /** @deprecated use `AppointmentType$Outbound` instead. */
-  export type Outbound = AppointmentType$Outbound;
+export namespace Type$ {
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
+  /** @deprecated use `Type$Outbound` instead. */
+  export type Outbound = Type$Outbound;
 }
 
-export function appointmentTypeToJSON(
-  appointmentType: AppointmentType,
-): string {
-  return JSON.stringify(AppointmentType$outboundSchema.parse(appointmentType));
+export function typeToJSON(type: Type): string {
+  return JSON.stringify(Type$outboundSchema.parse(type));
 }
 
-export function appointmentTypeFromJSON(
+export function typeFromJSON(
   jsonString: string,
-): SafeParseResult<AppointmentType, SDKValidationError> {
+): SafeParseResult<Type, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => AppointmentType$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AppointmentType' from JSON`,
+    (x) => Type$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Type' from JSON`,
   );
 }
 
@@ -104,7 +96,7 @@ export const Appointment$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  type: z.lazy(() => AppointmentType$inboundSchema),
+  type: z.lazy(() => Type$inboundSchema),
   companyId: z.string(),
   isLateCancel: z.boolean().optional(),
   customerId: z.string(),
@@ -115,7 +107,7 @@ export const Appointment$inboundSchema: z.ZodType<
 /** @internal */
 export type Appointment$Outbound = {
   id: string;
-  type: AppointmentType$Outbound;
+  type: Type$Outbound;
   companyId: string;
   isLateCancel?: boolean | undefined;
   customerId: string;
@@ -130,7 +122,7 @@ export const Appointment$outboundSchema: z.ZodType<
   Appointment
 > = z.object({
   id: z.string(),
-  type: z.lazy(() => AppointmentType$outboundSchema),
+  type: z.lazy(() => Type$outboundSchema),
   companyId: z.string(),
   isLateCancel: z.boolean().optional(),
   customerId: z.string(),

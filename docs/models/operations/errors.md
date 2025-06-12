@@ -7,9 +7,7 @@ import { Errors } from "@pushpress/pushpress/models/operations";
 
 let value: Errors = {
   invalidAliases: {
-    externalId: [
-      "<id>",
-    ],
+    externalId: [],
   },
 };
 ```

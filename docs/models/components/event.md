@@ -12,6 +12,7 @@ let value: Event = {
   coachUuid: "usr_12345",
   assistantCoachUuid: "usr_12345",
   company: "cli_12345",
+  title: "My Class",
   locationUuid: "loc_12345",
   start: 1704063600,
   end: 1704067200,

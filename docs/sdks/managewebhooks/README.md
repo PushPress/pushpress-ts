@@ -26,22 +26,18 @@ Create a platform webhook that can be used to listen for events on the pushpress
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.create({
     requestBody: {
-      url: "https://probable-heating.com/",
-      eventTypes: [
-        "app.uninstalled",
-        "app.installed",
-        "app.installed",
-      ],
+      url: "https://experienced-sailor.biz/",
+      eventTypes: [],
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -59,29 +55,23 @@ import { manageWebhooksCreate } from "@pushpress/pushpress/funcs/manageWebhooksC
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksCreate(pushPress, {
     requestBody: {
-      url: "https://probable-heating.com/",
-      eventTypes: [
-        "app.uninstalled",
-        "app.installed",
-        "app.installed",
-      ],
+      url: "https://experienced-sailor.biz/",
+      eventTypes: [],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -126,13 +116,13 @@ List platform webhooks for the current customer, including the signing secret an
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -150,20 +140,18 @@ import { manageWebhooksList } from "@pushpress/pushpress/funcs/manageWebhooksLis
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksList(pushPress, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -208,15 +196,15 @@ Get the details for a platform webhook including the signing secret and event su
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.get({
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "deeb5a05-74d4-40ad-b4be-a9265fd49428",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -234,22 +222,20 @@ import { manageWebhooksGet } from "@pushpress/pushpress/funcs/manageWebhooksGet.
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksGet(pushPress, {
-    uuid: "b888f774-3e7c-4135-a18c-6b985523c4bc",
+    uuid: "deeb5a05-74d4-40ad-b4be-a9265fd49428",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -284,22 +270,20 @@ Update the details for a platform webhook including the signing secret an event 
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.update({
-    uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85",
+    uuid: "0a224316-446d-47f1-a379-57345de97839",
     requestBody: {
       eventTypes: [
-        "enrollment.status.changed",
-        "class.canceled",
-        "app.uninstalled",
+        "enrollment.created",
       ],
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -317,29 +301,25 @@ import { manageWebhooksUpdate } from "@pushpress/pushpress/funcs/manageWebhooksU
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksUpdate(pushPress, {
-    uuid: "a7f0e743-2ce4-47cb-a60c-c78135ddeb85",
+    uuid: "0a224316-446d-47f1-a379-57345de97839",
     requestBody: {
       eventTypes: [
-        "enrollment.status.changed",
-        "class.canceled",
-        "app.uninstalled",
+        "enrollment.created",
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -374,12 +354,13 @@ Fully delete a platform webhook. If you want to unsubscribe to a webhook without
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   await pushPress.manageWebhooks.delete({
-    uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e",
+    uuid: "2f4cf1de-535d-40b8-9860-de80b52e1022",
   });
 
 
@@ -399,21 +380,20 @@ import { manageWebhooksDelete } from "@pushpress/pushpress/funcs/manageWebhooksD
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksDelete(pushPress, {
-    uuid: "8b6fe91a-a0b1-4b3e-ab7b-e83a32f2399e",
+    uuid: "2f4cf1de-535d-40b8-9860-de80b52e1022",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("manageWebhooksDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -448,15 +428,15 @@ deactivate a platform webhook. If you want to fully delete a webhook use the del
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.deactivate({
-    uuid: "53ffd33f-8bee-41f5-bf07-ed8a4622284d",
+    uuid: "aac976df-1243-4721-9c4a-bddeb49a3f35",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -474,22 +454,20 @@ import { manageWebhooksDeactivate } from "@pushpress/pushpress/funcs/manageWebho
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksDeactivate(pushPress, {
-    uuid: "53ffd33f-8bee-41f5-bf07-ed8a4622284d",
+    uuid: "aac976df-1243-4721-9c4a-bddeb49a3f35",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksDeactivate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -524,15 +502,15 @@ Activate a deleted platform webhook
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.activate({
-    uuid: "83e8dc47-a7ee-4254-a515-a8964d09a8f7",
+    uuid: "3d28f06f-5582-4ad9-a8c9-6a7cc7926ce5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -550,22 +528,20 @@ import { manageWebhooksActivate } from "@pushpress/pushpress/funcs/manageWebhook
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksActivate(pushPress, {
-    uuid: "83e8dc47-a7ee-4254-a515-a8964d09a8f7",
+    uuid: "3d28f06f-5582-4ad9-a8c9-6a7cc7926ce5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksActivate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -600,15 +576,15 @@ Rotate a platform webhook's signing secret
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const result = await pushPress.manageWebhooks.rotateSecret({
-    uuid: "c38e2dba-6b03-41e1-9888-dda2ad31b95e",
+    uuid: "1f27e34f-6a8a-4a55-94ac-6b9420afd6cb",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -626,22 +602,20 @@ import { manageWebhooksRotateSecret } from "@pushpress/pushpress/funcs/manageWeb
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const pushPress = new PushPressCore({
+  companyId: "<id>",
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
   const res = await manageWebhooksRotateSecret(pushPress, {
-    uuid: "c38e2dba-6b03-41e1-9888-dda2ad31b95e",
+    uuid: "1f27e34f-6a8a-4a55-94ac-6b9420afd6cb",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("manageWebhooksRotateSecret failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

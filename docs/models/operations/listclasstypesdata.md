@@ -6,14 +6,7 @@
 import { ListClassTypesData } from "@pushpress/pushpress/models/operations";
 
 let value: ListClassTypesData = {
-  resultArray: [
-    {
-      id: "<id>",
-      companyId: "<id>",
-      name: "<value>",
-      active: false,
-    },
-  ],
+  resultArray: [],
 };
 ```
 

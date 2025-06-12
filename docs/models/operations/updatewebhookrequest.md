@@ -7,11 +7,6 @@ import { UpdateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
 let value: UpdateWebhookRequest = {
   uuid: "f5aa9e8d-33b8-4ea9-a2a0-4723114fb58c",
-  requestBody: {
-    eventTypes: [
-      "enrollment.status.changed",
-    ],
-  },
 };
 ```
 

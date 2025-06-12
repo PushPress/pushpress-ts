@@ -15,7 +15,8 @@ const value: string = "Cade_Ritchie12@hotmail.com";
 
 ```typescript
 const value: string[] = [
-  "Mallory.Fadel@yahoo.com",
+  "Audie_Goyette58@yahoo.com",
+  "Ralph_Gleason85@yahoo.com",
 ];
 ```
 

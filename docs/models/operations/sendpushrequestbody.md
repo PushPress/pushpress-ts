@@ -6,9 +6,7 @@
 import { SendPushRequestBody } from "@pushpress/pushpress/models/operations";
 
 let value: SendPushRequestBody = {
-  customers: [
-    "<value>",
-  ],
+  customers: [],
   message: "<value>",
 };
 ```

@@ -9,14 +9,7 @@ import { ListClassTypesResponseBody } from "@pushpress/pushpress/models/operatio
 
 let value: ListClassTypesResponseBody = {
   data: {
-    resultArray: [
-      {
-        id: "<id>",
-        companyId: "<id>",
-        name: "<value>",
-        active: false,
-      },
-    ],
+    resultArray: [],
   },
 };
 ```

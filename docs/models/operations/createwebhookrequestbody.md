@@ -8,7 +8,7 @@ import { CreateWebhookRequestBody } from "@pushpress/pushpress/models/operations
 let value: CreateWebhookRequestBody = {
   url: "https://thin-gazebo.name",
   eventTypes: [
-    "app.uninstalled",
+    "app.installed",
   ],
 };
 ```
