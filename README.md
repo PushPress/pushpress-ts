@@ -272,6 +272,7 @@ run();
 ### [events](docs/sdks/events/README.md)
 
 * [get](docs/sdks/events/README.md#get) - Get details for an event
+* [list](docs/sdks/events/README.md#list) - List Events
 
 ### [invitations](docs/sdks/invitations/README.md)
 
@@ -402,6 +403,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`enrollmentList`](docs/sdks/enrollment/README.md#list) - List Plan Enrollments
 - [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
 - [`eventsGet`](docs/sdks/events/README.md#get) - Get details for an event
+- [`eventsList`](docs/sdks/events/README.md#list) - List Events
 - [`invitationsCreate`](docs/sdks/invitations/README.md#create) - Create Invitations
 - [`invitationsDelete`](docs/sdks/invitations/README.md#delete) - Delete an invitation
 - [`invitationsGet`](docs/sdks/invitations/README.md#get) - Get an invitation
@@ -620,12 +622,12 @@ run();
 
 
 **Inherit from [`PushPressError`](./src/models/errors/pushpresserror.ts)**:
-* [`BadRequest`](docs/models/errors/badrequest.md): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 64 methods.*
-* [`Unauthorized`](docs/models/errors/unauthorized.md): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 64 methods.*
-* [`NotFound`](docs/models/errors/notfound.md): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 64 methods.*
-* [`Timeout`](docs/models/errors/timeout.md): Timeouts occurred with the request. Applicable to 8 of 64 methods.*
-* [`RateLimited`](docs/models/errors/ratelimited.md): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 64 methods.*
-* [`InternalServerError`](docs/models/errors/internalservererror.md): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 64 methods.*
+* [`BadRequest`](docs/models/errors/badrequest.md): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 65 methods.*
+* [`Unauthorized`](docs/models/errors/unauthorized.md): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 65 methods.*
+* [`NotFound`](docs/models/errors/notfound.md): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 65 methods.*
+* [`Timeout`](docs/models/errors/timeout.md): Timeouts occurred with the request. Applicable to 8 of 65 methods.*
+* [`RateLimited`](docs/models/errors/ratelimited.md): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 65 methods.*
+* [`InternalServerError`](docs/models/errors/internalservererror.md): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 65 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

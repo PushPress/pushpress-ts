@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -12,6 +13,18 @@ import {
   Reservation$Outbound,
   Reservation$outboundSchema,
 } from "./reservation.js";
+
+/**
+ * an invite_only event restricts registration to people who have been invited
+ */
+export const Access = {
+  InviteOnly: "invite_only",
+  Open: "open",
+} as const;
+/**
+ * an invite_only event restricts registration to people who have been invited
+ */
+export type Access = ClosedEnum<typeof Access>;
 
 /**
  * Location information about where the event took place
@@ -32,6 +45,10 @@ export type Event = {
    * Unique identifier for the coach
    */
   coachUuid?: string | null | undefined;
+  /**
+   * an invite_only event restricts registration to people who have been invited
+   */
+  access: Access;
   /**
    * Unique identifier for the assistant coach, if any
    */
@@ -61,7 +78,30 @@ export type Event = {
    * End time of the event as a Unix timestamp in seconds
    */
   end: number;
+  /**
+   * Whether the event is an all-day event
+   */
+  isAllDay: boolean;
 };
+
+/** @internal */
+export const Access$inboundSchema: z.ZodNativeEnum<typeof Access> = z
+  .nativeEnum(Access);
+
+/** @internal */
+export const Access$outboundSchema: z.ZodNativeEnum<typeof Access> =
+  Access$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Access$ {
+  /** @deprecated use `Access$inboundSchema` instead. */
+  export const inboundSchema = Access$inboundSchema;
+  /** @deprecated use `Access$outboundSchema` instead. */
+  export const outboundSchema = Access$outboundSchema;
+}
 
 /** @internal */
 export const EventLocation$inboundSchema: z.ZodType<
@@ -118,6 +158,7 @@ export const Event$inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
   .object({
     id: z.string(),
     coachUuid: z.nullable(z.string()).optional(),
+    access: Access$inboundSchema,
     assistantCoachUuid: z.nullable(z.string()),
     company: z.nullable(z.string()).optional(),
     title: z.nullable(z.string().default("")),
@@ -126,12 +167,14 @@ export const Event$inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
     reservations: z.array(Reservation$inboundSchema).optional(),
     start: z.number(),
     end: z.number(),
+    isAllDay: z.boolean(),
   });
 
 /** @internal */
 export type Event$Outbound = {
   id: string;
   coachUuid?: string | null | undefined;
+  access: string;
   assistantCoachUuid: string | null;
   company?: string | null | undefined;
   title: string | null;
@@ -140,6 +183,7 @@ export type Event$Outbound = {
   reservations?: Array<Reservation$Outbound> | undefined;
   start: number;
   end: number;
+  isAllDay: boolean;
 };
 
 /** @internal */
@@ -150,6 +194,7 @@ export const Event$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   coachUuid: z.nullable(z.string()).optional(),
+  access: Access$outboundSchema,
   assistantCoachUuid: z.nullable(z.string()),
   company: z.nullable(z.string()).optional(),
   title: z.nullable(z.string().default("")),
@@ -158,6 +203,7 @@ export const Event$outboundSchema: z.ZodType<
   reservations: z.array(Reservation$outboundSchema).optional(),
   start: z.number(),
   end: z.number(),
+  isAllDay: z.boolean(),
 });
 
 /**

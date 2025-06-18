@@ -70,7 +70,7 @@ export type ResponseBody1 = {
 /**
  * Default Response
  */
-export type SendPushResponseBody = Three | ResponseBody1 | Four | ResponseBody2;
+export type SendPushResponseBody = ResponseBody1 | ResponseBody2 | Three | Four;
 
 /** @internal */
 export const SendPushGlobals$inboundSchema: z.ZodType<
@@ -598,18 +598,18 @@ export const SendPushResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Three$inboundSchema),
   z.lazy(() => ResponseBody1$inboundSchema),
-  z.lazy(() => Four$inboundSchema),
   z.lazy(() => ResponseBody2$inboundSchema),
+  z.lazy(() => Three$inboundSchema),
+  z.lazy(() => Four$inboundSchema),
 ]);
 
 /** @internal */
 export type SendPushResponseBody$Outbound =
-  | Three$Outbound
   | ResponseBody1$Outbound
-  | Four$Outbound
-  | ResponseBody2$Outbound;
+  | ResponseBody2$Outbound
+  | Three$Outbound
+  | Four$Outbound;
 
 /** @internal */
 export const SendPushResponseBody$outboundSchema: z.ZodType<
@@ -617,10 +617,10 @@ export const SendPushResponseBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SendPushResponseBody
 > = z.union([
-  z.lazy(() => Three$outboundSchema),
   z.lazy(() => ResponseBody1$outboundSchema),
-  z.lazy(() => Four$outboundSchema),
   z.lazy(() => ResponseBody2$outboundSchema),
+  z.lazy(() => Three$outboundSchema),
+  z.lazy(() => Four$outboundSchema),
 ]);
 
 /**

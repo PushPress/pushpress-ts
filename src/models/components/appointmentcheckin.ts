@@ -65,7 +65,7 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   timestamp: z.number(),
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string().optional(),
-  kind: z.literal("appointment").optional(),
+  kind: z.literal("appointment").default("appointment").optional(),
   appointmentId: z.string(),
   typeId: z.string(),
   staffId: z.string(),

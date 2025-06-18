@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: ec45fe12bc99da897739bd79afc22e1b
+  docChecksum: cd9b44e89c0c03a5b70abcda56681ace
   docVersion: 3.0.0
-  speakeasyVersion: 1.561.0
-  generationVersion: 2.628.0
-  releaseVersion: 1.11.0
-  configChecksum: 9ed6a985d8f46dc81f298bd92faec6fe
+  speakeasyVersion: 1.566.1
+  generationVersion: 2.630.9
+  releaseVersion: 1.11.1
+  configChecksum: 555b6879bab3a2bfbab424194602d748
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    constsAndDefaults: 0.1.11
+    constsAndDefaults: 0.1.12
     core: 3.21.11
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
@@ -36,7 +36,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.9
+    unions: 2.85.10
     webhookHandlers: 0.1.0
     webhooks: 1.5.0
 generatedFiles:
@@ -49,6 +49,7 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
+  - docs/models/components/access.md
   - docs/models/components/account.md
   - docs/models/components/address.md
   - docs/models/components/apikey.md
@@ -232,6 +233,11 @@ generatedFiles:
   - docs/models/operations/listeventcheckinsrequest.md
   - docs/models/operations/listeventcheckinsresponse.md
   - docs/models/operations/listeventcheckinsresponsebody.md
+  - docs/models/operations/listeventsdata.md
+  - docs/models/operations/listeventsglobals.md
+  - docs/models/operations/listeventsrequest.md
+  - docs/models/operations/listeventsresponse.md
+  - docs/models/operations/listeventsresponsebody.md
   - docs/models/operations/listinvitationsdata.md
   - docs/models/operations/listinvitationsglobals.md
   - docs/models/operations/listinvitationsrequest.md
@@ -249,6 +255,7 @@ generatedFiles:
   - docs/models/operations/listwebhooksresponsebody.md
   - docs/models/operations/name.md
   - docs/models/operations/one.md
+  - docs/models/operations/order.md
   - docs/models/operations/queryparamexpand.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/replyto.md
@@ -402,6 +409,7 @@ generatedFiles:
   - src/funcs/enrollmentList.ts
   - src/funcs/enrollmentStatusChanged.ts
   - src/funcs/eventsGet.ts
+  - src/funcs/eventsList.ts
   - src/funcs/invitationsCreate.ts
   - src/funcs/invitationsDelete.ts
   - src/funcs/invitationsGet.ts
@@ -481,6 +489,7 @@ generatedFiles:
   - src/mcp-server/tools/enrollmentGet.ts
   - src/mcp-server/tools/enrollmentList.ts
   - src/mcp-server/tools/eventsGet.ts
+  - src/mcp-server/tools/eventsList.ts
   - src/mcp-server/tools/invitationsCreate.ts
   - src/mcp-server/tools/invitationsDelete.ts
   - src/mcp-server/tools/invitationsGet.ts
@@ -563,6 +572,7 @@ generatedFiles:
   - src/models/operations/listcustomers.ts
   - src/models/operations/listenrollments.ts
   - src/models/operations/listeventcheckins.ts
+  - src/models/operations/listevents.ts
   - src/models/operations/listinvitations.ts
   - src/models/operations/listopencheckins.ts
   - src/models/operations/listwebhooks.ts
@@ -922,7 +932,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200}
+          application/json: {"id": "cal-12345", "coachUuid": "usr_12345", "access": "open", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200, "isAllDay": false}
   getInvitationById:
     speakeasy-default-get-invitation-by-id:
       parameters:
@@ -1199,5 +1209,15 @@ examples:
       responses:
         "200":
           application/json: {"webhookUuid": "<id>", "signingSecret": "<value>"}
+  listEvents:
+    speakeasy-default-list-events:
+      parameters:
+        query:
+          page: 1
+          limit: 10
+          order: "ascending"
+      responses:
+        "200":
+          application/json: {"data": {"resultArray": [{"id": "cal-12345", "coachUuid": "usr_12345", "access": "open", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200, "isAllDay": false}]}}
 examplesVersion: 1.0.2
 generatedTests: {}

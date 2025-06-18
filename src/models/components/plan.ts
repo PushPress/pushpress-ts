@@ -26,10 +26,10 @@ export type RecurrenceDetails1 = {
 };
 
 export type RecurrenceDetails =
-  | RecurrenceDetails2
-  | Four
   | RecurrenceDetails1
-  | Three;
+  | Three
+  | RecurrenceDetails2
+  | Four;
 
 export type Policies = {
   allowClassCheckins: boolean;
@@ -57,7 +57,7 @@ export type Plan = {
    * unique identifier for the company
    */
   companyId: string;
-  recurrenceDetails: RecurrenceDetails2 | Four | RecurrenceDetails1 | Three;
+  recurrenceDetails: RecurrenceDetails1 | Three | RecurrenceDetails2 | Four;
   policies: Policies;
   category: Category;
 };
@@ -65,7 +65,7 @@ export type Plan = {
 /** @internal */
 export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("non-recurring").optional(),
+    type: z.literal("non-recurring").default("non-recurring").optional(),
   });
 
 /** @internal */
@@ -109,7 +109,8 @@ export function fourFromJSON(
 /** @internal */
 export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("limited-recurring").optional(),
+    type: z.literal("limited-recurring").default("limited-recurring")
+      .optional(),
     occurrences: z.number(),
   });
 
@@ -162,7 +163,7 @@ export const RecurrenceDetails2$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("recurring").optional(),
+  type: z.literal("recurring").default("recurring").optional(),
 });
 
 /** @internal */
@@ -216,7 +217,7 @@ export const RecurrenceDetails1$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("session-pack").optional(),
+  type: z.literal("session-pack").default("session-pack").optional(),
   occurrences: z.number(),
 });
 
@@ -273,18 +274,18 @@ export const RecurrenceDetails$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => RecurrenceDetails2$inboundSchema),
-  z.lazy(() => Four$inboundSchema),
   z.lazy(() => RecurrenceDetails1$inboundSchema),
   z.lazy(() => Three$inboundSchema),
+  z.lazy(() => RecurrenceDetails2$inboundSchema),
+  z.lazy(() => Four$inboundSchema),
 ]);
 
 /** @internal */
 export type RecurrenceDetails$Outbound =
-  | RecurrenceDetails2$Outbound
-  | Four$Outbound
   | RecurrenceDetails1$Outbound
-  | Three$Outbound;
+  | Three$Outbound
+  | RecurrenceDetails2$Outbound
+  | Four$Outbound;
 
 /** @internal */
 export const RecurrenceDetails$outboundSchema: z.ZodType<
@@ -292,10 +293,10 @@ export const RecurrenceDetails$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RecurrenceDetails
 > = z.union([
-  z.lazy(() => RecurrenceDetails2$outboundSchema),
-  z.lazy(() => Four$outboundSchema),
   z.lazy(() => RecurrenceDetails1$outboundSchema),
   z.lazy(() => Three$outboundSchema),
+  z.lazy(() => RecurrenceDetails2$outboundSchema),
+  z.lazy(() => Four$outboundSchema),
 ]);
 
 /**
@@ -442,10 +443,10 @@ export const Plan$inboundSchema: z.ZodType<Plan, z.ZodTypeDef, unknown> = z
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => RecurrenceDetails2$inboundSchema),
-      z.lazy(() => Four$inboundSchema),
       z.lazy(() => RecurrenceDetails1$inboundSchema),
       z.lazy(() => Three$inboundSchema),
+      z.lazy(() => RecurrenceDetails2$inboundSchema),
+      z.lazy(() => Four$inboundSchema),
     ]),
     policies: z.lazy(() => Policies$inboundSchema),
     category: z.lazy(() => Category$inboundSchema),
@@ -457,10 +458,10 @@ export type Plan$Outbound = {
   name: string;
   companyId: string;
   recurrenceDetails:
-    | RecurrenceDetails2$Outbound
-    | Four$Outbound
     | RecurrenceDetails1$Outbound
-    | Three$Outbound;
+    | Three$Outbound
+    | RecurrenceDetails2$Outbound
+    | Four$Outbound;
   policies: Policies$Outbound;
   category: Category$Outbound;
 };
@@ -472,10 +473,10 @@ export const Plan$outboundSchema: z.ZodType<Plan$Outbound, z.ZodTypeDef, Plan> =
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => RecurrenceDetails2$outboundSchema),
-      z.lazy(() => Four$outboundSchema),
       z.lazy(() => RecurrenceDetails1$outboundSchema),
       z.lazy(() => Three$outboundSchema),
+      z.lazy(() => RecurrenceDetails2$outboundSchema),
+      z.lazy(() => Four$outboundSchema),
     ]),
     policies: z.lazy(() => Policies$outboundSchema),
     category: z.lazy(() => Category$outboundSchema),
