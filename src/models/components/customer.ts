@@ -83,7 +83,7 @@ export type One = {
   primaryCustomerId: string;
 };
 
-export type Account = Two | One;
+export type Account = One | Two;
 
 export type EmergencyContact = {
   /**
@@ -154,7 +154,7 @@ export type Customer = {
    * The UUID of the assigned staff member
    */
   assignedToStaffId?: string | null | undefined;
-  account: Two | One;
+  account: One | Two;
   /**
    * A URL pointing to the customer's profile image
    */
@@ -314,7 +314,7 @@ export function customerAddressFromJSON(
 /** @internal */
 export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("primary").optional(),
+    type: z.literal("primary").default("primary").optional(),
   });
 
 /** @internal */
@@ -358,7 +358,7 @@ export function twoFromJSON(
 /** @internal */
 export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("linked").optional(),
+    type: z.literal("linked").default("linked").optional(),
     primaryCustomerId: z.string(),
   });
 
@@ -404,10 +404,10 @@ export function oneFromJSON(
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
-  z.union([z.lazy(() => Two$inboundSchema), z.lazy(() => One$inboundSchema)]);
+  z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
 
 /** @internal */
-export type Account$Outbound = Two$Outbound | One$Outbound;
+export type Account$Outbound = One$Outbound | Two$Outbound;
 
 /** @internal */
 export const Account$outboundSchema: z.ZodType<
@@ -415,8 +415,8 @@ export const Account$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Account
 > = z.union([
-  z.lazy(() => Two$outboundSchema),
   z.lazy(() => One$outboundSchema),
+  z.lazy(() => Two$outboundSchema),
 ]);
 
 /**
@@ -593,8 +593,8 @@ export const Customer$inboundSchema: z.ZodType<
   address: z.lazy(() => CustomerAddress$inboundSchema),
   assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
-    z.lazy(() => Two$inboundSchema),
     z.lazy(() => One$inboundSchema),
+    z.lazy(() => Two$inboundSchema),
   ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$inboundSchema).optional(),
@@ -613,7 +613,7 @@ export type Customer$Outbound = {
   dob: string | null;
   address: CustomerAddress$Outbound;
   assignedToStaffId?: string | null | undefined;
-  account: Two$Outbound | One$Outbound;
+  account: One$Outbound | Two$Outbound;
   profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact$Outbound | undefined;
   membershipDetails: MembershipDetails$Outbound | null;
@@ -636,8 +636,8 @@ export const Customer$outboundSchema: z.ZodType<
   address: z.lazy(() => CustomerAddress$outboundSchema),
   assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
-    z.lazy(() => Two$outboundSchema),
     z.lazy(() => One$outboundSchema),
+    z.lazy(() => Two$outboundSchema),
   ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$outboundSchema).optional(),

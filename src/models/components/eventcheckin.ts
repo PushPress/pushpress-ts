@@ -175,7 +175,7 @@ export const EventCheckin$inboundSchema: z.ZodType<
   timestamp: z.number(),
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string(),
-  kind: z.literal("event").optional(),
+  kind: z.literal("event").default("event").optional(),
   role: Role$inboundSchema,
   typeId: z.string(),
   eventId: z.string(),

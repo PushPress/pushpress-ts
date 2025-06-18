@@ -36,6 +36,7 @@ export * from "./listclasstypes.js";
 export * from "./listcustomers.js";
 export * from "./listenrollments.js";
 export * from "./listeventcheckins.js";
+export * from "./listevents.js";
 export * from "./listinvitations.js";
 export * from "./listopencheckins.js";
 export * from "./listwebhooks.js";

@@ -48,7 +48,7 @@ export const OpenCheckin$inboundSchema: z.ZodType<
   company: z.string(),
   timestamp: z.number(),
   enrollmentId: z.nullable(z.string()).optional(),
-  kind: z.literal("open").optional(),
+  kind: z.literal("open").default("open").optional(),
 });
 
 /** @internal */

@@ -35,26 +35,26 @@ import {
  * Checkin for a class, event, appointment or an open facility
  */
 export type Checkin =
-  | OpenCheckin
-  | AppointmentCheckin
   | ClassCheckin
-  | EventCheckin;
+  | EventCheckin
+  | AppointmentCheckin
+  | OpenCheckin;
 
 /** @internal */
 export const Checkin$inboundSchema: z.ZodType<Checkin, z.ZodTypeDef, unknown> =
   z.union([
-    OpenCheckin$inboundSchema,
-    AppointmentCheckin$inboundSchema,
     ClassCheckin$inboundSchema,
     EventCheckin$inboundSchema,
+    AppointmentCheckin$inboundSchema,
+    OpenCheckin$inboundSchema,
   ]);
 
 /** @internal */
 export type Checkin$Outbound =
-  | OpenCheckin$Outbound
-  | AppointmentCheckin$Outbound
   | ClassCheckin$Outbound
-  | EventCheckin$Outbound;
+  | EventCheckin$Outbound
+  | AppointmentCheckin$Outbound
+  | OpenCheckin$Outbound;
 
 /** @internal */
 export const Checkin$outboundSchema: z.ZodType<
@@ -62,10 +62,10 @@ export const Checkin$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Checkin
 > = z.union([
-  OpenCheckin$outboundSchema,
-  AppointmentCheckin$outboundSchema,
   ClassCheckin$outboundSchema,
   EventCheckin$outboundSchema,
+  AppointmentCheckin$outboundSchema,
+  OpenCheckin$outboundSchema,
 ]);
 
 /**

@@ -3,10 +3,12 @@
  */
 
 import { eventsGet } from "../funcs/eventsGet.js";
+import { eventsList } from "../funcs/eventsList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Events extends ClientSDK {
   /**
@@ -20,6 +22,23 @@ export class Events extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.Event> {
     return unwrapAsync(eventsGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Events
+   *
+   * @remarks
+   * Get a paginated list of events
+   */
+  async list(
+    request: operations.ListEventsRequest,
+    options?: RequestOptions,
+  ): Promise<PageIterator<operations.ListEventsResponse, { page: number }>> {
+    return unwrapResultIterator(eventsList(
       this,
       request,
       options,

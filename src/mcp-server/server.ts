@@ -36,6 +36,7 @@ import { tool$customersList } from "./tools/customersList.js";
 import { tool$enrollmentGet } from "./tools/enrollmentGet.js";
 import { tool$enrollmentList } from "./tools/enrollmentList.js";
 import { tool$eventsGet } from "./tools/eventsGet.js";
+import { tool$eventsList } from "./tools/eventsList.js";
 import { tool$invitationsCreate } from "./tools/invitationsCreate.js";
 import { tool$invitationsDelete } from "./tools/invitationsDelete.js";
 import { tool$invitationsGet } from "./tools/invitationsGet.js";
@@ -65,7 +66,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "PushPress",
-    version: "1.11.0",
+    version: "1.11.1",
   });
 
   const client = new PushPressCore({
@@ -106,6 +107,7 @@ export function createMCPServer(deps: {
   tool(tool$enrollmentGet);
   tool(tool$enrollmentList);
   tool(tool$eventsGet);
+  tool(tool$eventsList);
   tool(tool$invitationsGet);
   tool(tool$invitationsDelete);
   tool(tool$invitationsList);

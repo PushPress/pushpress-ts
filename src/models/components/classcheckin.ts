@@ -179,7 +179,7 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   typeId: z.string(),
   classId: z.string(),
   type: z.lazy(() => ClassCheckinType$inboundSchema),
-  kind: z.literal("class").optional(),
+  kind: z.literal("class").default("class").optional(),
   role: ClassCheckinRole$inboundSchema,
 });
 

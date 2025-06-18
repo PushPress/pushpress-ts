@@ -113,7 +113,7 @@ export type One = {
   primaryCustomerId: string;
 };
 
-export type Account = Two | One;
+export type Account = One | Two;
 
 /**
  * The source of the lead
@@ -158,7 +158,7 @@ export type CreateCustomerRequestBody = {
    * The customer's gender, null if unknown or other
    */
   gender?: Gender | null | undefined;
-  account?: Two | One | undefined;
+  account?: One | Two | undefined;
   /**
    * The source of the lead
    */
@@ -568,10 +568,10 @@ export function oneFromJSON(
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
-  z.union([z.lazy(() => Two$inboundSchema), z.lazy(() => One$inboundSchema)]);
+  z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
 
 /** @internal */
-export type Account$Outbound = Two$Outbound | One$Outbound;
+export type Account$Outbound = One$Outbound | Two$Outbound;
 
 /** @internal */
 export const Account$outboundSchema: z.ZodType<
@@ -579,8 +579,8 @@ export const Account$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Account
 > = z.union([
-  z.lazy(() => Two$outboundSchema),
   z.lazy(() => One$outboundSchema),
+  z.lazy(() => Two$outboundSchema),
 ]);
 
 /**
@@ -645,8 +645,8 @@ export const CreateCustomerRequestBody$inboundSchema: z.ZodType<
   dob: z.nullable(z.string()).optional(),
   gender: z.nullable(Gender$inboundSchema).optional(),
   account: z.union([
-    z.lazy(() => Two$inboundSchema),
     z.lazy(() => One$inboundSchema),
+    z.lazy(() => Two$inboundSchema),
   ]).optional(),
   source: Source$inboundSchema.default("PLATFORM"),
 });
@@ -662,7 +662,7 @@ export type CreateCustomerRequestBody$Outbound = {
   emergencyContact?: EmergencyContact$Outbound | undefined;
   dob?: string | null | undefined;
   gender?: string | null | undefined;
-  account?: Two$Outbound | One$Outbound | undefined;
+  account?: One$Outbound | Two$Outbound | undefined;
   source: string;
 };
 
@@ -682,8 +682,8 @@ export const CreateCustomerRequestBody$outboundSchema: z.ZodType<
   dob: z.nullable(z.string()).optional(),
   gender: z.nullable(Gender$outboundSchema).optional(),
   account: z.union([
-    z.lazy(() => Two$outboundSchema),
     z.lazy(() => One$outboundSchema),
+    z.lazy(() => Two$outboundSchema),
   ]).optional(),
   source: Source$outboundSchema.default("PLATFORM"),
 });
