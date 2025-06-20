@@ -30,6 +30,7 @@ export type ListAttributionsRequest = {
 
 export const ListAttributionsEvent = {
   Signup: "signup",
+  ClientSignup: "client_signup",
 } as const;
 export type ListAttributionsEvent = ClosedEnum<typeof ListAttributionsEvent>;
 

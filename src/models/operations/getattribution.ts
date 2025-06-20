@@ -23,6 +23,7 @@ export type GetAttributionRequest = {
 
 export const GetAttributionEvent = {
   Signup: "signup",
+  ClientSignup: "client_signup",
 } as const;
 export type GetAttributionEvent = ClosedEnum<typeof GetAttributionEvent>;
 

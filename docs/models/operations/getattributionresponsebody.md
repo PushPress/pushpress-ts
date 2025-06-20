@@ -10,7 +10,7 @@ import { GetAttributionResponseBody } from "@pushpress/pushpress/models/operatio
 let value: GetAttributionResponseBody = {
   customerId: "<id>",
   companyId: "<id>",
-  event: "signup",
+  event: "client_signup",
 };
 ```
 

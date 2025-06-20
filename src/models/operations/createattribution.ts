@@ -15,6 +15,7 @@ export type CreateAttributionGlobals = {
 
 export const Event = {
   Signup: "signup",
+  ClientSignup: "client_signup",
 } as const;
 export type Event = ClosedEnum<typeof Event>;
 
@@ -89,6 +90,7 @@ export type CreateAttributionRequest = {
 
 export const CreateAttributionEvent = {
   Signup: "signup",
+  ClientSignup: "client_signup",
 } as const;
 export type CreateAttributionEvent = ClosedEnum<typeof CreateAttributionEvent>;
 

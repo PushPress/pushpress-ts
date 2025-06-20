@@ -36,6 +36,10 @@ export type ListEventsRequest = {
    */
   limit?: number | undefined;
   /**
+   * Filter by events that start after this timestamp (Unix Seconds)
+   */
+  startsAfter?: number | undefined;
+  /**
    * sort events by start timestamp
    */
   order?: Order | undefined;
@@ -150,6 +154,7 @@ export const ListEventsRequest$inboundSchema: z.ZodType<
 > = z.object({
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
+  startsAfter: z.number().optional(),
   order: Order$inboundSchema.default("ascending"),
   "company-id": z.string().optional(),
 }).transform((v) => {
@@ -162,6 +167,7 @@ export const ListEventsRequest$inboundSchema: z.ZodType<
 export type ListEventsRequest$Outbound = {
   page: number;
   limit: number;
+  startsAfter?: number | undefined;
   order: string;
   "company-id"?: string | undefined;
 };
@@ -174,6 +180,7 @@ export const ListEventsRequest$outboundSchema: z.ZodType<
 > = z.object({
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
+  startsAfter: z.number().optional(),
   order: Order$outboundSchema.default("ascending"),
   companyId: z.string().optional(),
 }).transform((v) => {

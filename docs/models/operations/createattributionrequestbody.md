@@ -7,7 +7,7 @@ import { CreateAttributionRequestBody } from "@pushpress/pushpress/models/operat
 
 let value: CreateAttributionRequestBody = {
   customerId: "<id>",
-  event: "signup",
+  event: "client_signup",
 };
 ```
 

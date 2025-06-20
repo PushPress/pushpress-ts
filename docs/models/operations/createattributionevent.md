@@ -11,5 +11,5 @@ let value: CreateAttributionEvent = "signup";
 ## Values
 
 ```typescript
-"signup"
+"signup" | "client_signup"
 ```

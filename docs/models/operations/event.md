@@ -11,5 +11,5 @@ let value: Event = "signup";
 ## Values
 
 ```typescript
-"signup"
+"signup" | "client_signup"
 ```

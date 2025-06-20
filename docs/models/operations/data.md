@@ -10,7 +10,7 @@ let value: Data = {
     {
       customerId: "<id>",
       companyId: "<id>",
-      event: "signup",
+      event: "client_signup",
     },
   ],
 };
