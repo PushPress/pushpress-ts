@@ -8,7 +8,7 @@ import { ResultArray } from "@pushpress/pushpress/models/operations";
 let value: ResultArray = {
   customerId: "<id>",
   companyId: "<id>",
-  event: "signup",
+  event: "client_signup",
 };
 ```
 

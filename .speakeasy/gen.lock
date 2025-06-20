@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: cd9b44e89c0c03a5b70abcda56681ace
+  docChecksum: ef4428222faa78f9799089188812483e
   docVersion: 3.0.0
-  speakeasyVersion: 1.566.1
-  generationVersion: 2.630.9
-  releaseVersion: 1.11.1
-  configChecksum: 555b6879bab3a2bfbab424194602d748
+  speakeasyVersion: 1.568.0
+  generationVersion: 2.632.2
+  releaseVersion: 1.11.2
+  configChecksum: 6bb5acb896b3524afba4edc4f0f50970
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -36,7 +36,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.10
+    unions: 2.85.11
     webhookHandlers: 0.1.0
     webhooks: 1.5.0
 generatedFiles:

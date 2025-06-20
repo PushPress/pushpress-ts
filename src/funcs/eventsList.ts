@@ -104,6 +104,7 @@ async function $do(
     "limit": payload.limit,
     "order": payload.order,
     "page": payload.page,
+    "startsAfter": payload.startsAfter,
   });
 
   const headers = new Headers(compactMap({
