@@ -101,6 +101,7 @@ async function $do(
   const path = pathToFunc("/events")();
 
   const query = encodeFormQuery({
+    "access": payload.access,
     "limit": payload.limit,
     "order": payload.order,
     "page": payload.page,
