@@ -1,6 +1,6 @@
 {
   "name": "@pushpress/pushpress",
-  "version": "1.11.2",
+  "version": "1.11.3",
   "author": "Speakeasy",
   "bin": {
     "mcp": "bin/mcp-server.js"

@@ -15,6 +15,18 @@ export type ListEventsGlobals = {
 };
 
 /**
+ * Some events require an invitation for signup, most invites and all classes are open registration
+ */
+export const Access = {
+  InviteOnly: "invite_only",
+  Open: "open",
+} as const;
+/**
+ * Some events require an invitation for signup, most invites and all classes are open registration
+ */
+export type Access = ClosedEnum<typeof Access>;
+
+/**
  * sort events by start timestamp
  */
 export const Order = {
@@ -39,6 +51,10 @@ export type ListEventsRequest = {
    * Filter by events that start after this timestamp (Unix Seconds)
    */
   startsAfter?: number | undefined;
+  /**
+   * Some events require an invitation for signup, most invites and all classes are open registration
+   */
+  access?: Access | undefined;
   /**
    * sort events by start timestamp
    */
@@ -127,6 +143,25 @@ export function listEventsGlobalsFromJSON(
 }
 
 /** @internal */
+export const Access$inboundSchema: z.ZodNativeEnum<typeof Access> = z
+  .nativeEnum(Access);
+
+/** @internal */
+export const Access$outboundSchema: z.ZodNativeEnum<typeof Access> =
+  Access$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Access$ {
+  /** @deprecated use `Access$inboundSchema` instead. */
+  export const inboundSchema = Access$inboundSchema;
+  /** @deprecated use `Access$outboundSchema` instead. */
+  export const outboundSchema = Access$outboundSchema;
+}
+
+/** @internal */
 export const Order$inboundSchema: z.ZodNativeEnum<typeof Order> = z.nativeEnum(
   Order,
 );
@@ -155,6 +190,7 @@ export const ListEventsRequest$inboundSchema: z.ZodType<
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
   startsAfter: z.number().optional(),
+  access: Access$inboundSchema.optional(),
   order: Order$inboundSchema.default("ascending"),
   "company-id": z.string().optional(),
 }).transform((v) => {
@@ -168,6 +204,7 @@ export type ListEventsRequest$Outbound = {
   page: number;
   limit: number;
   startsAfter?: number | undefined;
+  access?: string | undefined;
   order: string;
   "company-id"?: string | undefined;
 };
@@ -181,6 +218,7 @@ export const ListEventsRequest$outboundSchema: z.ZodType<
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
   startsAfter: z.number().optional(),
+  access: Access$outboundSchema.optional(),
   order: Order$outboundSchema.default("ascending"),
   companyId: z.string().optional(),
 }).transform((v) => {

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: ef4428222faa78f9799089188812483e
+  docChecksum: 41d774eef7e7f9086901ef29344bff4d
   docVersion: 3.0.0
   speakeasyVersion: 1.568.0
   generationVersion: 2.632.2
-  releaseVersion: 1.11.2
-  configChecksum: 6bb5acb896b3524afba4edc4f0f50970
+  releaseVersion: 1.11.3
+  configChecksum: ff841dd10664e1c46f53a6db15136f4c
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -105,6 +105,7 @@ generatedFiles:
   - docs/models/errors/ratelimited.md
   - docs/models/errors/timeout.md
   - docs/models/errors/unauthorized.md
+  - docs/models/operations/access.md
   - docs/models/operations/account.md
   - docs/models/operations/accounttype.md
   - docs/models/operations/activatewebhookglobals.md
