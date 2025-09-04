@@ -5,7 +5,14 @@
 ```typescript
 import { CreateInvitationsRequest } from "@pushpress/pushpress/models/operations";
 
-let value: CreateInvitationsRequest = {};
+let value: CreateInvitationsRequest = {
+  requestBody: {
+    eventId: "<id>",
+    customerIds: [
+      "<value 1>",
+    ],
+  },
+};
 ```
 
 ## Fields

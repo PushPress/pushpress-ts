@@ -13,6 +13,7 @@ Send an email from the PushPress platform. Note that only first party apps can s
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sendEmail" method="post" path="/messages/email/send" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

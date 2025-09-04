@@ -42,6 +42,10 @@ export type ListCustomersRequest = {
    */
   role?: Role | undefined;
   /**
+   * optional filter by email
+   */
+  email?: string | undefined;
+  /**
    * When using multitenant API keys, specify the company
    */
   companyId?: string | undefined;
@@ -153,6 +157,7 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
   role: Role$inboundSchema.optional(),
+  email: z.string().optional(),
   "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -165,6 +170,7 @@ export type ListCustomersRequest$Outbound = {
   page: number;
   limit: number;
   role?: string | undefined;
+  email?: string | undefined;
   "company-id"?: string | undefined;
 };
 
@@ -177,6 +183,7 @@ export const ListCustomersRequest$outboundSchema: z.ZodType<
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
   role: Role$outboundSchema.optional(),
+  email: z.string().optional(),
   companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

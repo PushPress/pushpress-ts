@@ -14,6 +14,7 @@ Get the enrollment details for the provided enrollment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEnrollment" method="get" path="/enrollments/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ Get a list of enrollments in the current company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listEnrollments" method="get" path="/enrollments" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

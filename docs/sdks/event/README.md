@@ -14,6 +14,7 @@ Get the checkin details for event including event details and checkin time
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEventCheckin" method="get" path="/checkins/event/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ List event checkins. Includes details about the event
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listEventCheckins" method="get" path="/checkins/event" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

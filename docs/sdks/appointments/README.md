@@ -13,6 +13,7 @@ Get details for an appointment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAppointment" method="get" path="/appts/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

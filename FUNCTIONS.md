@@ -40,6 +40,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,

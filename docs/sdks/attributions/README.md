@@ -15,6 +15,7 @@ Create a new customer attribution record
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createAttribution" method="post" path="/attributions/attributions" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -95,6 +96,7 @@ List customer attributions, optionally filtering by customer id and/or attributi
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAttributions" method="get" path="/attributions/attributions" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -165,6 +167,7 @@ Get a customer attribution by UUID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAttribution" method="get" path="/attributions/attributions/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

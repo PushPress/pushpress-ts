@@ -13,6 +13,7 @@ Get Plan details
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPlan" method="get" path="/plans/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

@@ -14,6 +14,7 @@ Get the checkin details for class including class details and checkin time
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassCheckin" method="get" path="/checkins/class/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ list event checkins
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listClassCheckins" method="get" path="/checkins/class" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

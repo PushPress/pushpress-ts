@@ -17,6 +17,7 @@ Create a new customer in the platform. Note that this endpoint only supports cre
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCustomer" method="post" path="/customers" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -95,6 +96,7 @@ Get a list of customers in the current company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listCustomers" method="get" path="/customers" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -179,6 +181,7 @@ Get individual customer information, including profile image, primary image, and
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCustomer" method="get" path="/customers/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

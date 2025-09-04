@@ -13,6 +13,7 @@ Get details for a class
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClass" method="get" path="/classes/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

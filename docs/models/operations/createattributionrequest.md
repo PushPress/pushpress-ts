@@ -5,7 +5,12 @@
 ```typescript
 import { CreateAttributionRequest } from "@pushpress/pushpress/models/operations";
 
-let value: CreateAttributionRequest = {};
+let value: CreateAttributionRequest = {
+  requestBody: {
+    customerId: "<id>",
+    event: "signup",
+  },
+};
 ```
 
 ## Fields

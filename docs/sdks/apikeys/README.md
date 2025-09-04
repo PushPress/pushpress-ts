@@ -16,6 +16,7 @@ Fetches detailed information about a specific API key and associated metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getApiKey" method="get" path="/keys/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -93,6 +94,7 @@ Immediately invalidates an active API key, preventing any further authentication
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="revokeApiKey" method="patch" path="/keys/{id}/revoke" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
