@@ -14,6 +14,7 @@ Get the checkin details for an open facility checkin
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getOpenCheckin" method="get" path="/checkins/open/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ List open facility checkins
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listOpenCheckins" method="get" path="/checkins/open" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

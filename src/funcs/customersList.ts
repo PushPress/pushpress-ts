@@ -114,6 +114,7 @@ async function $do(
   const path = pathToFunc("/customers")();
 
   const query = encodeFormQuery({
+    "email": payload.email,
     "limit": payload.limit,
     "page": payload.page,
     "role": payload.role,

@@ -5,7 +5,11 @@
 ```typescript
 import { CreateCustomerRequest } from "@pushpress/pushpress/models/operations";
 
-let value: CreateCustomerRequest = {};
+let value: CreateCustomerRequest = {
+  requestBody: {
+    email: "Maverick.Gottlieb@hotmail.com",
+  },
+};
 ```
 
 ## Fields

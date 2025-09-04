@@ -15,6 +15,7 @@ Fetch the company details associated with the currently authenticated user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getCompany" method="get" path="/company" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

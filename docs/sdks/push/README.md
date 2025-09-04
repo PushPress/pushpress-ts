@@ -13,6 +13,7 @@ Send a push notification message from the PushPress platform. Note that only fir
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sendPush" method="post" path="/messages/push/send" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

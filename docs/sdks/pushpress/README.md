@@ -35,6 +35,7 @@ enabling the automation of various tasks and the extension of platform capabilit
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="checkinCreatedEvent" method="post" path="Checkin Created" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -54,6 +55,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -92,6 +94,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -131,6 +134,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="checkinUpdatedEvent" method="post" path="Checkin Updated" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -150,6 +154,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 405810,
@@ -188,6 +193,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 405810,
@@ -227,6 +233,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="checkinDeletedEvent" method="post" path="Checkin Deleted" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -305,6 +312,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="enrollmentStatusChanged" method="post" path="Enrollment Status Changed" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -421,6 +429,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="appInstalledEvent" method="post" path="App Installed" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -499,6 +508,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="appUninstalledEvent" method="post" path="App Uninstalled" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -577,6 +587,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="appointmentScheduledEvent" method="post" path="Appointment Scheduled" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -665,6 +676,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="appointmentRescheduledEvent" method="post" path="Appointment Rescheduled" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -753,6 +765,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="appointmentNoShowedEvent" method="post" path="Appointment No Show" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -841,6 +854,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="appointmentCanceledEvent" method="post" path="Appointment Canceled" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -929,6 +943,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="customerCreatedEvent" method="post" path="Customer Created" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -955,7 +970,9 @@ async function run() {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
@@ -1007,7 +1024,9 @@ async function run() {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
@@ -1053,6 +1072,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="customerStatusChangedEvent" method="post" path="Customer Status Changed" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1079,7 +1099,9 @@ async function run() {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
@@ -1131,7 +1153,9 @@ async function run() {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
@@ -1177,6 +1201,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="customerDetailsChangedEvent" method="post" path="Customer Details Changed" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1203,7 +1228,9 @@ async function run() {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
@@ -1255,7 +1282,9 @@ async function run() {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
@@ -1301,6 +1330,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="customerDeletedEvent" method="post" path="Customer Deleted" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1377,6 +1407,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="classCanceledEvent" method="post" path="Class Canceled" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1467,6 +1498,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="enrollmentCreatedEvent" method="post" path="Enrollment Created" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1583,6 +1615,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="enrollmentDeleted" method="post" path="Enrollment Status Deleted" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1657,6 +1690,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="reservationCreatedEvent" method="post" path="Reservation Created" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1741,6 +1775,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="reservationWaitlistedEvent" method="post" path="Reservation Waitlisted" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -1825,6 +1860,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="reservationCanceledEvent" method="post" path="Reservation Canceled" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

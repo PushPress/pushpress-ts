@@ -5,7 +5,13 @@
 ```typescript
 import { CreateApiKeyRequest } from "@pushpress/pushpress/models/operations";
 
-let value: CreateApiKeyRequest = {};
+let value: CreateApiKeyRequest = {
+  requestBody: {
+    name: "my-key",
+    description: "my key",
+    expiresAt: 1672531200000,
+  },
+};
 ```
 
 ## Fields

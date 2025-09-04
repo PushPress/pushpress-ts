@@ -16,6 +16,7 @@ Get an invitation for an event by its id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getInvitationById" method="get" path="/invitations/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -90,6 +91,7 @@ Delete an invitation by its id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteInvitationById" method="delete" path="/invitations/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -164,6 +166,7 @@ Get a list of invitations in the current company
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listInvitations" method="get" path="/invitations" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -242,6 +245,7 @@ Invite a list of customers to an event
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createInvitations" method="post" path="/invitations" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

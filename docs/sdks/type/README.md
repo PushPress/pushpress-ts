@@ -14,6 +14,7 @@ Get Class type details
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getClassType" method="get" path="/classes/types/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ Get Class type details
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listClassTypes" method="get" path="/classes/types" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

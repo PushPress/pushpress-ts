@@ -14,6 +14,7 @@ Creates a new API key for authenticating requests. Admins in your account can cr
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createApiKey" method="post" path="/keys" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -109,6 +110,7 @@ Retrieves a list of all active API keys associated with your account. The respon
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listApiKeys" method="get" path="/keys" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

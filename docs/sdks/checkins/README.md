@@ -15,6 +15,7 @@ Get a count of checkins based on filter criteria, including event, customer and 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="countCheckins" method="get" path="/checkins/count" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

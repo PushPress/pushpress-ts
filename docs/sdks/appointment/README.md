@@ -14,6 +14,7 @@ Get the checkin details for appointment including appointment details and checki
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAppointmentCheckin" method="get" path="/checkins/appointment/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ list appointment checkins. Includes details about the appointment, customer and 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAppointmentCheckins" method="get" path="/checkins/appointment" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

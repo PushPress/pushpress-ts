@@ -188,6 +188,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -488,6 +489,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -541,6 +543,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -622,12 +625,12 @@ run();
 
 
 **Inherit from [`PushPressError`](./src/models/errors/pushpresserror.ts)**:
-* [`BadRequest`](docs/models/errors/badrequest.md): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 65 methods.*
-* [`Unauthorized`](docs/models/errors/unauthorized.md): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 65 methods.*
-* [`NotFound`](docs/models/errors/notfound.md): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 65 methods.*
-* [`Timeout`](docs/models/errors/timeout.md): Timeouts occurred with the request. Applicable to 8 of 65 methods.*
-* [`RateLimited`](docs/models/errors/ratelimited.md): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 65 methods.*
-* [`InternalServerError`](docs/models/errors/internalservererror.md): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 65 methods.*
+* [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 65 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 65 methods.*
+* [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 65 methods.*
+* [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 65 methods.*
+* [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 65 methods.*
+* [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 65 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -671,6 +674,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -706,6 +710,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,
@@ -800,6 +805,7 @@ async function run() {
         id: "cit_12345",
         name: "Group HIIT Training",
       },
+      kind: "class",
       role: "attendee",
     },
     created: 945274,

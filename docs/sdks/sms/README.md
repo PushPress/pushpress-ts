@@ -13,6 +13,7 @@ Send an SMS message from the PushPress platform. Note that only first party apps
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sendSms" method="post" path="/messages/sms/send" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

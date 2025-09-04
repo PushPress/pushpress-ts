@@ -5,7 +5,12 @@
 ```typescript
 import { CreateWebhookRequest } from "@pushpress/pushpress/models/operations";
 
-let value: CreateWebhookRequest = {};
+let value: CreateWebhookRequest = {
+  requestBody: {
+    url: "https://passionate-season.net",
+    eventTypes: [],
+  },
+};
 ```
 
 ## Fields

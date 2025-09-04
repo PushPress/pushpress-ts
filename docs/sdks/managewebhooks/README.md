@@ -22,6 +22,7 @@ Create a platform webhook that can be used to listen for events on the pushpress
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createWebhook" method="post" path="/webhooks" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -112,6 +113,7 @@ List platform webhooks for the current customer, including the signing secret an
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listWebhooks" method="get" path="/webhooks" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -192,6 +194,7 @@ Get the details for a platform webhook including the signing secret and event su
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getWebhook" method="get" path="/webhooks/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -266,6 +269,7 @@ Update the details for a platform webhook including the signing secret an event 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateWebhook" method="patch" path="/webhooks/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -350,6 +354,7 @@ Fully delete a platform webhook. If you want to unsubscribe to a webhook without
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteWebhook" method="delete" path="/webhooks/{uuid}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -424,6 +429,7 @@ deactivate a platform webhook. If you want to fully delete a webhook use the del
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deactivateWebhook" method="patch" path="/webhooks/{uuid}/deactivate" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -498,6 +504,7 @@ Activate a deleted platform webhook
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="activateWebhook" method="patch" path="/webhooks/{uuid}/activate" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -572,6 +579,7 @@ Rotate a platform webhook's signing secret
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="rotateWebhookSigningSecret" method="post" path="/webhooks/{uuid}/rotate-signing-secret" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

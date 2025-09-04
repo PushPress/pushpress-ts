@@ -14,6 +14,7 @@ Get details for an event
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getEvent" method="get" path="/events/{id}" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -88,6 +89,7 @@ Get a paginated list of events
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listEvents" method="get" path="/events" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

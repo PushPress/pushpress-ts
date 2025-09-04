@@ -13,6 +13,7 @@ Send an event to a websocket channel via Ably Realtime. Note that only first par
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sendEvent" method="post" path="/messages/notification/send" -->
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 

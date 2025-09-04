@@ -5,7 +5,15 @@
 ```typescript
 import { SendPushRequest } from "@pushpress/pushpress/models/operations";
 
-let value: SendPushRequest = {};
+let value: SendPushRequest = {
+  requestBody: {
+    customers: [
+      "<value 1>",
+      "<value 2>",
+    ],
+    message: "<value>",
+  },
+};
 ```
 
 ## Fields

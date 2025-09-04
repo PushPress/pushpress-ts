@@ -66,7 +66,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "PushPress",
-    version: "1.11.3",
+    version: "1.11.4",
   });
 
   const client = new PushPressCore({
