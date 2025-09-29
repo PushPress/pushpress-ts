@@ -10,6 +10,7 @@ export * from "./createcustomer.js";
 export * from "./createinvitations.js";
 export * from "./createwebhook.js";
 export * from "./deactivatewebhook.js";
+export * from "./deleteapikey.js";
 export * from "./deleteinvitationbyid.js";
 export * from "./deletewebhook.js";
 export * from "./getapikey.js";

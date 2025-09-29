@@ -13,14 +13,22 @@ export type GetEventGlobals = {
   companyId?: string | undefined;
 };
 
-export const QueryParamExpand = {
+export const QueryParam2 = {
   Location: "location",
   Reservations: "reservations",
 } as const;
-export type QueryParamExpand = ClosedEnum<typeof QueryParamExpand>;
+export type QueryParam2 = ClosedEnum<typeof QueryParam2>;
+
+export const QueryParam1 = {
+  Location: "location",
+  Reservations: "reservations",
+} as const;
+export type QueryParam1 = ClosedEnum<typeof QueryParam1>;
+
+export type QueryParamExpand = QueryParam1 | Array<QueryParam2>;
 
 export type GetEventRequest = {
-  expand?: Array<QueryParamExpand> | undefined;
+  expand?: QueryParam1 | Array<QueryParam2> | undefined;
   id: string;
   /**
    * When using multitenant API keys, specify the company
@@ -89,14 +97,59 @@ export function getEventGlobalsFromJSON(
 }
 
 /** @internal */
-export const QueryParamExpand$inboundSchema: z.ZodNativeEnum<
-  typeof QueryParamExpand
-> = z.nativeEnum(QueryParamExpand);
+export const QueryParam2$inboundSchema: z.ZodNativeEnum<typeof QueryParam2> = z
+  .nativeEnum(QueryParam2);
 
 /** @internal */
-export const QueryParamExpand$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamExpand
-> = QueryParamExpand$inboundSchema;
+export const QueryParam2$outboundSchema: z.ZodNativeEnum<typeof QueryParam2> =
+  QueryParam2$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace QueryParam2$ {
+  /** @deprecated use `QueryParam2$inboundSchema` instead. */
+  export const inboundSchema = QueryParam2$inboundSchema;
+  /** @deprecated use `QueryParam2$outboundSchema` instead. */
+  export const outboundSchema = QueryParam2$outboundSchema;
+}
+
+/** @internal */
+export const QueryParam1$inboundSchema: z.ZodNativeEnum<typeof QueryParam1> = z
+  .nativeEnum(QueryParam1);
+
+/** @internal */
+export const QueryParam1$outboundSchema: z.ZodNativeEnum<typeof QueryParam1> =
+  QueryParam1$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace QueryParam1$ {
+  /** @deprecated use `QueryParam1$inboundSchema` instead. */
+  export const inboundSchema = QueryParam1$inboundSchema;
+  /** @deprecated use `QueryParam1$outboundSchema` instead. */
+  export const outboundSchema = QueryParam1$outboundSchema;
+}
+
+/** @internal */
+export const QueryParamExpand$inboundSchema: z.ZodType<
+  QueryParamExpand,
+  z.ZodTypeDef,
+  unknown
+> = z.union([QueryParam1$inboundSchema, z.array(QueryParam2$inboundSchema)]);
+
+/** @internal */
+export type QueryParamExpand$Outbound = string | Array<string>;
+
+/** @internal */
+export const QueryParamExpand$outboundSchema: z.ZodType<
+  QueryParamExpand$Outbound,
+  z.ZodTypeDef,
+  QueryParamExpand
+> = z.union([QueryParam1$outboundSchema, z.array(QueryParam2$outboundSchema)]);
 
 /**
  * @internal
@@ -107,6 +160,26 @@ export namespace QueryParamExpand$ {
   export const inboundSchema = QueryParamExpand$inboundSchema;
   /** @deprecated use `QueryParamExpand$outboundSchema` instead. */
   export const outboundSchema = QueryParamExpand$outboundSchema;
+  /** @deprecated use `QueryParamExpand$Outbound` instead. */
+  export type Outbound = QueryParamExpand$Outbound;
+}
+
+export function queryParamExpandToJSON(
+  queryParamExpand: QueryParamExpand,
+): string {
+  return JSON.stringify(
+    QueryParamExpand$outboundSchema.parse(queryParamExpand),
+  );
+}
+
+export function queryParamExpandFromJSON(
+  jsonString: string,
+): SafeParseResult<QueryParamExpand, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => QueryParamExpand$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'QueryParamExpand' from JSON`,
+  );
 }
 
 /** @internal */
@@ -115,7 +188,10 @@ export const GetEventRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  expand: z.array(QueryParamExpand$inboundSchema).optional(),
+  expand: z.union([
+    QueryParam1$inboundSchema,
+    z.array(QueryParam2$inboundSchema),
+  ]).optional(),
   id: z.string(),
   "company-id": z.string().optional(),
 }).transform((v) => {
@@ -126,7 +202,7 @@ export const GetEventRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetEventRequest$Outbound = {
-  expand?: Array<string> | undefined;
+  expand?: string | Array<string> | undefined;
   id: string;
   "company-id"?: string | undefined;
 };
@@ -137,7 +213,10 @@ export const GetEventRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetEventRequest
 > = z.object({
-  expand: z.array(QueryParamExpand$outboundSchema).optional(),
+  expand: z.union([
+    QueryParam1$outboundSchema,
+    z.array(QueryParam2$outboundSchema),
+  ]).optional(),
   id: z.string(),
   companyId: z.string().optional(),
 }).transform((v) => {

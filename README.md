@@ -64,10 +64,7 @@ bun add @pushpress/pushpress
 ### Yarn
 
 ```bash
-yarn add @pushpress/pushpress zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @pushpress/pushpress
 ```
 
 
@@ -210,7 +207,8 @@ run();
 ### [apiKeys](docs/sdks/apikeys/README.md)
 
 * [get](docs/sdks/apikeys/README.md#get) - Get API Key
-* [revoke](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
+* [delete](docs/sdks/apikeys/README.md#delete) - Delete an API Key
+* [~~revoke~~](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key :warning: **Deprecated**
 
 ### [appointments](docs/sdks/appointments/README.md)
 
@@ -362,8 +360,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`apiKeysDelete`](docs/sdks/apikeys/README.md#delete) - Delete an API Key
 - [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get API Key
-- [`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key
 - [`appInstalledEvent`](docs/sdks/pushpress/README.md#appinstalledevent)
 - [`appointmentCanceledEvent`](docs/sdks/pushpress/README.md#appointmentcanceledevent)
 - [`appointmentNoShowedEvent`](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
@@ -427,6 +425,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`reservationCanceledEvent`](docs/sdks/pushpress/README.md#reservationcanceledevent)
 - [`reservationCreatedEvent`](docs/sdks/pushpress/README.md#reservationcreatedevent)
 - [`reservationWaitlistedEvent`](docs/sdks/pushpress/README.md#reservationwaitlistedevent)
+- ~~[`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke)~~ - Revoke an API Key :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -625,12 +624,12 @@ run();
 
 
 **Inherit from [`PushPressError`](./src/models/errors/pushpresserror.ts)**:
-* [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 65 methods.*
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 65 methods.*
-* [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 65 methods.*
-* [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 65 methods.*
-* [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 65 methods.*
-* [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 65 methods.*
+* [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 66 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 66 methods.*
+* [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 66 methods.*
+* [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 66 methods.*
+* [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 66 methods.*
+* [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 66 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -768,7 +767,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new PushPress({ httpClient });
+const sdk = new PushPress({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

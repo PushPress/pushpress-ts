@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: a99a8a156fac15430c8d2434c9e3ebe4
+  docChecksum: ca6890085a7d00d1763902c8f30ee2a0
   docVersion: 3.0.0
-  speakeasyVersion: 1.609.0
-  generationVersion: 2.692.0
-  releaseVersion: 1.11.4
-  configChecksum: 7c64be04775e2ccef55e379f7a88cc0a
+  speakeasyVersion: 1.631.4
+  generationVersion: 2.716.16
+  releaseVersion: 1.12.0
+  configChecksum: 6e4d25bec6e0172abda7223dc259593a
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,12 +15,13 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.12
-    core: 3.21.22
+    core: 3.21.25
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
+    deprecations: 2.81.1
+    devContainers: 2.90.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
@@ -36,7 +37,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.11
+    unions: 2.85.12
     webhookHandlers: 0.1.0
     webhooks: 1.5.0
 generatedFiles:
@@ -141,6 +142,9 @@ generatedFiles:
   - docs/models/operations/deactivatewebhookglobals.md
   - docs/models/operations/deactivatewebhookrequest.md
   - docs/models/operations/deactivatewebhookresponsebody.md
+  - docs/models/operations/deleteapikeyglobals.md
+  - docs/models/operations/deleteapikeyrequest.md
+  - docs/models/operations/deleteapikeysecurity.md
   - docs/models/operations/deleteinvitationbyidglobals.md
   - docs/models/operations/deleteinvitationbyidrequest.md
   - docs/models/operations/deleteinvitationbyidresponsebody.md
@@ -257,6 +261,8 @@ generatedFiles:
   - docs/models/operations/name.md
   - docs/models/operations/one.md
   - docs/models/operations/order.md
+  - docs/models/operations/queryparam1.md
+  - docs/models/operations/queryparam2.md
   - docs/models/operations/queryparamexpand.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/replyto.md
@@ -266,6 +272,7 @@ generatedFiles:
   - docs/models/operations/resultarray.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
+  - docs/models/operations/revokeapikeyrequestbody.md
   - docs/models/operations/revokeapikeysecurity.md
   - docs/models/operations/role.md
   - docs/models/operations/rotatewebhooksigningsecretglobals.md
@@ -372,6 +379,7 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/apiKeysDelete.ts
   - src/funcs/apiKeysGet.ts
   - src/funcs/apiKeysRevoke.ts
   - src/funcs/appInstalledEvent.ts
@@ -550,6 +558,7 @@ generatedFiles:
   - src/models/operations/createinvitations.ts
   - src/models/operations/createwebhook.ts
   - src/models/operations/deactivatewebhook.ts
+  - src/models/operations/deleteapikey.ts
   - src/models/operations/deleteinvitationbyid.ts
   - src/models/operations/deletewebhook.ts
   - src/models/operations/getapikey.ts
@@ -1002,7 +1011,7 @@ examples:
     speakeasy-default-list-api-keys:
       parameters:
         query:
-          limit: 100
+          limit: 50
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
@@ -1224,6 +1233,14 @@ examples:
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "cal-12345", "coachUuid": "usr_12345", "access": "open", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200, "isAllDay": false}]}}
+  deleteApiKey:
+    speakeasy-default-delete-api-key:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `pushpress.customers.list()`: \n  *  `request.email` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `pushpress.events.get()`: \n  *  `request.expand` **Changed** **Breaking** :warning:\n* `pushpress.apiKeys.delete()`: **Added**\n* `pushpress.apiKeys.revoke()`: **Deprecated**\n* `pushpress.apiKeys.revoke()`: \n  *  `request.requestBody` **Added**\n"

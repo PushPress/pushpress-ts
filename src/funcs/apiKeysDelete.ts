@@ -3,7 +3,7 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -26,17 +26,15 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Revoke an API Key
+ * Delete an API Key
  *
  * @remarks
  * Immediately invalidates an active API key, preventing any further authentication attempts using this key. This is useful when a key may have been compromised or is no longer needed. This action cannot be undone - a new key must be generated if access is needed again.
- *
- * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
-export function apiKeysRevoke(
+export function apiKeysDelete(
   client: PushPressCore,
-  security: operations.RevokeApiKeySecurity,
-  request: operations.RevokeApiKeyRequest,
+  security: operations.DeleteApiKeySecurity,
+  request: operations.DeleteApiKeyRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -61,8 +59,8 @@ export function apiKeysRevoke(
 
 async function $do(
   client: PushPressCore,
-  security: operations.RevokeApiKeySecurity,
-  request: operations.RevokeApiKeyRequest,
+  security: operations.DeleteApiKeySecurity,
+  request: operations.DeleteApiKeyRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -82,14 +80,14 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.RevokeApiKeyRequest$outboundSchema.parse(value),
+    (value) => operations.DeleteApiKeyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.RequestBody, { explode: true });
+  const body = null;
 
   const pathParams = {
     id: encodeSimple("id", payload.id, {
@@ -98,10 +96,9 @@ async function $do(
     }),
   };
 
-  const path = pathToFunc("/keys/{id}/revoke")(pathParams);
+  const path = pathToFunc("/keys/{id}")(pathParams);
 
   const headers = new Headers(compactMap({
-    "Content-Type": "application/json",
     Accept: "application/json",
     "company-id": encodeSimple(
       "company-id",
@@ -123,7 +120,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "revokeApiKey",
+    operationID: "deleteApiKey",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -147,7 +144,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "PATCH",
+    method: "DELETE",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,

@@ -158,7 +158,7 @@ export const ListApiKeysRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  limit: z.number().default(100),
+  limit: z.number().default(50),
   "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -178,7 +178,7 @@ export const ListApiKeysRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListApiKeysRequest
 > = z.object({
-  limit: z.number().default(100),
+  limit: z.number().default(50),
   companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
