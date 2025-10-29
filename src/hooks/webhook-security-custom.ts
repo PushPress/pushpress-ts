@@ -62,7 +62,8 @@ export class WebhookSecurity {
     // Read the body content from the request
 
     // Safely access the SubtleCrypto interface for cryptographic operations
-    const crypto = globalThis?.crypto?.subtle;
+    const crypto =
+      globalThis?.crypto?.subtle ?? (await import("crypto"))?.webcrypto?.subtle;
     this._assert(
       crypto,
       "SubtleCrypto not found, if you're using node 18, please upgrade to a more recent version of node",
