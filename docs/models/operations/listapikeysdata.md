@@ -13,6 +13,8 @@ let value: ListApiKeysData = {
       name: "My API Key",
       description: "Additional description to add context to the key",
       createdAt: 1577836800000,
+      lastUsedAt: null,
+      expiresAt: null,
     },
   ],
 };

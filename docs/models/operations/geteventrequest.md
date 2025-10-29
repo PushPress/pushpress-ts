@@ -12,8 +12,8 @@ let value: GetEventRequest = {
 
 ## Fields
 
-| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `expand`                                                                     | [operations.QueryParamExpand](../../models/operations/queryparamexpand.md)[] | :heavy_minus_sign:                                                           | N/A                                                                          |
-| `id`                                                                         | *string*                                                                     | :heavy_check_mark:                                                           | N/A                                                                          |
-| `companyId`                                                                  | *string*                                                                     | :heavy_minus_sign:                                                           | When using multitenant API keys, specify the company                         |
+| Field                                                | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `expand`                                             | *operations.QueryParamExpand*                        | :heavy_minus_sign:                                   | N/A                                                  |
+| `id`                                                 | *string*                                             | :heavy_check_mark:                                   | N/A                                                  |
+| `companyId`                                          | *string*                                             | :heavy_minus_sign:                                   | When using multitenant API keys, specify the company |
