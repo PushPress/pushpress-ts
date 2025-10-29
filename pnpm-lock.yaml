@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       zod:
-        specifier: ^3.20.0
+        specifier: ^3.25.0 || ^4.0.0
         version: 3.25.64
     devDependencies:
       '@eslint/js':
@@ -337,7 +337,6 @@ packages:
 
   bun@1.2.17:
     resolution: {integrity: sha512-lrUZTWS24eVy6v+Eph8VTwqFPcG7/XQ0rLBQEMNoQs2Vd7ctVdMGAzJKKGZRUQH+rgkD8rBeHGIVoWxX4vJLCA==}
-    cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
 
