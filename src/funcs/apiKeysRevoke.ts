@@ -3,7 +3,7 @@
  */
 
 import { PushPressCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -30,6 +30,8 @@ import { Result } from "../types/fp.js";
  *
  * @remarks
  * Immediately invalidates an active API key, preventing any further authentication attempts using this key. This is useful when a key may have been compromised or is no longer needed. This action cannot be undone - a new key must be generated if access is needed again.
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export function apiKeysRevoke(
   client: PushPressCore,
@@ -87,7 +89,7 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const pathParams = {
     id: encodeSimple("id", payload.id, {
@@ -99,6 +101,7 @@ async function $do(
   const path = pathToFunc("/keys/{id}/revoke")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
     "company-id": encodeSimple(
       "company-id",

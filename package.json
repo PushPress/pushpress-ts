@@ -1,6 +1,6 @@
 {
   "name": "@pushpress/pushpress",
-  "version": "1.11.4",
+  "version": "1.12.0",
   "author": "Speakeasy",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -37,6 +37,6 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
-    "zod": "^3.20.0"
+    "zod": "^3.25.0 || ^4.0.0"
   }
 }

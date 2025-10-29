@@ -1,15 +1,17 @@
 # QueryParamExpand
 
-## Example Usage
+
+## Supported Types
+
+### `operations.QueryParam1`
 
 ```typescript
-import { QueryParamExpand } from "@pushpress/pushpress/models/operations";
-
-let value: QueryParamExpand = "location";
+const value: operations.QueryParam1 = "reservations";
 ```
 
-## Values
+### `operations.QueryParam2[]`
 
 ```typescript
-"location" | "reservations"
+const value: operations.QueryParam2[] = [];
 ```
+

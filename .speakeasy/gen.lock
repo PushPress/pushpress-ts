@@ -1,31 +1,32 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: a99a8a156fac15430c8d2434c9e3ebe4
+  docChecksum: bcfe854593f5caaf15924542b079b8b7
   docVersion: 3.0.0
-  speakeasyVersion: 1.609.0
-  generationVersion: 2.692.0
-  releaseVersion: 1.11.4
-  configChecksum: 7c64be04775e2ccef55e379f7a88cc0a
+  speakeasyVersion: 1.642.2
+  generationVersion: 2.731.6
+  releaseVersion: 1.12.0
+  configChecksum: 148dc1090500ddbbe83a2f606c712196
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    additionalProperties: 0.1.1
+    additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
-    core: 3.21.22
+    core: 3.24.1
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
+    deprecations: 2.81.1
+    devContainers: 2.90.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
     globals: 2.82.2
-    groups: 2.81.2
+    groups: 2.81.3
     mcpServer: 0.9.3
     methodSecurity: 2.82.6
     nameOverrides: 2.81.2
@@ -36,7 +37,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.3.0
     serverIDs: 2.81.2
-    unions: 2.85.11
+    unions: 2.86.0
     webhookHandlers: 0.1.0
     webhooks: 1.5.0
 generatedFiles:
@@ -141,6 +142,9 @@ generatedFiles:
   - docs/models/operations/deactivatewebhookglobals.md
   - docs/models/operations/deactivatewebhookrequest.md
   - docs/models/operations/deactivatewebhookresponsebody.md
+  - docs/models/operations/deleteapikeyglobals.md
+  - docs/models/operations/deleteapikeyrequest.md
+  - docs/models/operations/deleteapikeysecurity.md
   - docs/models/operations/deleteinvitationbyidglobals.md
   - docs/models/operations/deleteinvitationbyidrequest.md
   - docs/models/operations/deleteinvitationbyidresponsebody.md
@@ -257,6 +261,8 @@ generatedFiles:
   - docs/models/operations/name.md
   - docs/models/operations/one.md
   - docs/models/operations/order.md
+  - docs/models/operations/queryparam1.md
+  - docs/models/operations/queryparam2.md
   - docs/models/operations/queryparamexpand.md
   - docs/models/operations/queryparamtype.md
   - docs/models/operations/replyto.md
@@ -266,6 +272,7 @@ generatedFiles:
   - docs/models/operations/resultarray.md
   - docs/models/operations/revokeapikeyglobals.md
   - docs/models/operations/revokeapikeyrequest.md
+  - docs/models/operations/revokeapikeyrequestbody.md
   - docs/models/operations/revokeapikeysecurity.md
   - docs/models/operations/role.md
   - docs/models/operations/rotatewebhooksigningsecretglobals.md
@@ -356,7 +363,6 @@ generatedFiles:
   - docs/sdks/invitations/README.md
   - docs/sdks/keys/README.md
   - docs/sdks/managewebhooks/README.md
-  - docs/sdks/messages/README.md
   - docs/sdks/open/README.md
   - docs/sdks/plans/README.md
   - docs/sdks/push/README.md
@@ -372,6 +378,7 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/apiKeysDelete.ts
   - src/funcs/apiKeysGet.ts
   - src/funcs/apiKeysRevoke.ts
   - src/funcs/appInstalledEvent.ts
@@ -550,6 +557,7 @@ generatedFiles:
   - src/models/operations/createinvitations.ts
   - src/models/operations/createwebhook.ts
   - src/models/operations/deactivatewebhook.ts
+  - src/models/operations/deleteapikey.ts
   - src/models/operations/deleteinvitationbyid.ts
   - src/models/operations/deletewebhook.ts
   - src/models/operations/getapikey.ts
@@ -977,7 +985,7 @@ examples:
         application/json: {"name": "my-key", "description": "my key", "expiresAt": 1672531200000}
       responses:
         "201":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "apiKey": "<value>"}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "lastUsedAt": null, "expiresAt": null, "apiKey": "<value>"}
         "404":
           application/json: {}
         "401":
@@ -1002,7 +1010,7 @@ examples:
     speakeasy-default-list-api-keys:
       parameters:
         query:
-          limit: 100
+          limit: 50
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}]}}
@@ -1033,7 +1041,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "lastUsedAt": null, "expiresAt": null}
   revokeApiKey:
     speakeasy-default-revoke-api-key:
       parameters:
@@ -1041,7 +1049,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000}
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "lastUsedAt": null, "expiresAt": null}
   sendEmail:
     speakeasy-default-send-email:
       requestBody:
@@ -1224,6 +1232,14 @@ examples:
       responses:
         "200":
           application/json: {"data": {"resultArray": [{"id": "cal-12345", "coachUuid": "usr_12345", "access": "open", "assistantCoachUuid": "usr_12345", "company": "cli_12345", "title": "My Class", "locationUuid": "loc_12345", "start": 1704063600, "end": 1704067200, "isAllDay": false}]}}
+  deleteApiKey:
+    speakeasy-default-delete-api-key:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "lastUsedAt": null, "expiresAt": null}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `pushpress.customers.list()`: \n  *  `request.email` **Added**\n"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `pushpress.events.get()`: \n  *  `request.expand` **Changed** **Breaking** :warning:\n* `pushpress.apiKeys.delete()`: **Added**\n* `pushpress.keys.list()`:  `response.data.resultArray.[].lastUsedAt` **Added**\n* `pushpress.keys.create()`:  `response.lastusedat` **Added**\n* `pushpress.apiKeys.get()`:  `response.lastusedat` **Added**\n* `pushpress.apiKeys.revoke()`: **Deprecated**\n* `pushpress.apiKeys.revoke()`: \n  *  `request.requestBody` **Added**\n  *  `response.lastusedat` **Added**\n"
