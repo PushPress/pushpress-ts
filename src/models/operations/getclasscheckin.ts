@@ -32,7 +32,6 @@ export const GetClassCheckinGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetClassCheckinGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetClassCheckinGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassCheckinGlobals$ {
-  /** @deprecated use `GetClassCheckinGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetClassCheckinGlobals$inboundSchema;
-  /** @deprecated use `GetClassCheckinGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetClassCheckinGlobals$outboundSchema;
-  /** @deprecated use `GetClassCheckinGlobals$Outbound` instead. */
-  export type Outbound = GetClassCheckinGlobals$Outbound;
-}
-
 export function getClassCheckinGlobalsToJSON(
   getClassCheckinGlobals: GetClassCheckinGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function getClassCheckinGlobalsToJSON(
     GetClassCheckinGlobals$outboundSchema.parse(getClassCheckinGlobals),
   );
 }
-
 export function getClassCheckinGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassCheckinGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const GetClassCheckinRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetClassCheckinRequest$Outbound = {
   uuid: string;
@@ -116,19 +100,6 @@ export const GetClassCheckinRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassCheckinRequest$ {
-  /** @deprecated use `GetClassCheckinRequest$inboundSchema` instead. */
-  export const inboundSchema = GetClassCheckinRequest$inboundSchema;
-  /** @deprecated use `GetClassCheckinRequest$outboundSchema` instead. */
-  export const outboundSchema = GetClassCheckinRequest$outboundSchema;
-  /** @deprecated use `GetClassCheckinRequest$Outbound` instead. */
-  export type Outbound = GetClassCheckinRequest$Outbound;
-}
-
 export function getClassCheckinRequestToJSON(
   getClassCheckinRequest: GetClassCheckinRequest,
 ): string {
@@ -136,7 +107,6 @@ export function getClassCheckinRequestToJSON(
     GetClassCheckinRequest$outboundSchema.parse(getClassCheckinRequest),
   );
 }
-
 export function getClassCheckinRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassCheckinRequest, SDKValidationError> {

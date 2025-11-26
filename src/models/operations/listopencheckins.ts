@@ -64,7 +64,6 @@ export const ListOpenCheckinsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListOpenCheckinsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -83,19 +82,6 @@ export const ListOpenCheckinsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListOpenCheckinsGlobals$ {
-  /** @deprecated use `ListOpenCheckinsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListOpenCheckinsGlobals$inboundSchema;
-  /** @deprecated use `ListOpenCheckinsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListOpenCheckinsGlobals$outboundSchema;
-  /** @deprecated use `ListOpenCheckinsGlobals$Outbound` instead. */
-  export type Outbound = ListOpenCheckinsGlobals$Outbound;
-}
-
 export function listOpenCheckinsGlobalsToJSON(
   listOpenCheckinsGlobals: ListOpenCheckinsGlobals,
 ): string {
@@ -103,7 +89,6 @@ export function listOpenCheckinsGlobalsToJSON(
     ListOpenCheckinsGlobals$outboundSchema.parse(listOpenCheckinsGlobals),
   );
 }
-
 export function listOpenCheckinsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListOpenCheckinsGlobals, SDKValidationError> {
@@ -131,7 +116,6 @@ export const ListOpenCheckinsRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListOpenCheckinsRequest$Outbound = {
   page: number;
@@ -160,19 +144,6 @@ export const ListOpenCheckinsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListOpenCheckinsRequest$ {
-  /** @deprecated use `ListOpenCheckinsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListOpenCheckinsRequest$inboundSchema;
-  /** @deprecated use `ListOpenCheckinsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListOpenCheckinsRequest$outboundSchema;
-  /** @deprecated use `ListOpenCheckinsRequest$Outbound` instead. */
-  export type Outbound = ListOpenCheckinsRequest$Outbound;
-}
-
 export function listOpenCheckinsRequestToJSON(
   listOpenCheckinsRequest: ListOpenCheckinsRequest,
 ): string {
@@ -180,7 +151,6 @@ export function listOpenCheckinsRequestToJSON(
     ListOpenCheckinsRequest$outboundSchema.parse(listOpenCheckinsRequest),
   );
 }
-
 export function listOpenCheckinsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListOpenCheckinsRequest, SDKValidationError> {
@@ -199,7 +169,6 @@ export const ListOpenCheckinsData$inboundSchema: z.ZodType<
 > = z.object({
   resultArray: z.array(components.OpenCheckin$inboundSchema),
 });
-
 /** @internal */
 export type ListOpenCheckinsData$Outbound = {
   resultArray: Array<components.OpenCheckin$Outbound>;
@@ -214,19 +183,6 @@ export const ListOpenCheckinsData$outboundSchema: z.ZodType<
   resultArray: z.array(components.OpenCheckin$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListOpenCheckinsData$ {
-  /** @deprecated use `ListOpenCheckinsData$inboundSchema` instead. */
-  export const inboundSchema = ListOpenCheckinsData$inboundSchema;
-  /** @deprecated use `ListOpenCheckinsData$outboundSchema` instead. */
-  export const outboundSchema = ListOpenCheckinsData$outboundSchema;
-  /** @deprecated use `ListOpenCheckinsData$Outbound` instead. */
-  export type Outbound = ListOpenCheckinsData$Outbound;
-}
-
 export function listOpenCheckinsDataToJSON(
   listOpenCheckinsData: ListOpenCheckinsData,
 ): string {
@@ -234,7 +190,6 @@ export function listOpenCheckinsDataToJSON(
     ListOpenCheckinsData$outboundSchema.parse(listOpenCheckinsData),
   );
 }
-
 export function listOpenCheckinsDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListOpenCheckinsData, SDKValidationError> {
@@ -253,7 +208,6 @@ export const ListOpenCheckinsResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => ListOpenCheckinsData$inboundSchema),
 });
-
 /** @internal */
 export type ListOpenCheckinsResponseBody$Outbound = {
   data: ListOpenCheckinsData$Outbound;
@@ -268,19 +222,6 @@ export const ListOpenCheckinsResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => ListOpenCheckinsData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListOpenCheckinsResponseBody$ {
-  /** @deprecated use `ListOpenCheckinsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListOpenCheckinsResponseBody$inboundSchema;
-  /** @deprecated use `ListOpenCheckinsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListOpenCheckinsResponseBody$outboundSchema;
-  /** @deprecated use `ListOpenCheckinsResponseBody$Outbound` instead. */
-  export type Outbound = ListOpenCheckinsResponseBody$Outbound;
-}
-
 export function listOpenCheckinsResponseBodyToJSON(
   listOpenCheckinsResponseBody: ListOpenCheckinsResponseBody,
 ): string {
@@ -290,7 +231,6 @@ export function listOpenCheckinsResponseBodyToJSON(
     ),
   );
 }
-
 export function listOpenCheckinsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListOpenCheckinsResponseBody, SDKValidationError> {
@@ -313,7 +253,6 @@ export const ListOpenCheckinsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListOpenCheckinsResponse$Outbound = {
   Result: ListOpenCheckinsResponseBody$Outbound;
@@ -332,19 +271,6 @@ export const ListOpenCheckinsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListOpenCheckinsResponse$ {
-  /** @deprecated use `ListOpenCheckinsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListOpenCheckinsResponse$inboundSchema;
-  /** @deprecated use `ListOpenCheckinsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListOpenCheckinsResponse$outboundSchema;
-  /** @deprecated use `ListOpenCheckinsResponse$Outbound` instead. */
-  export type Outbound = ListOpenCheckinsResponse$Outbound;
-}
-
 export function listOpenCheckinsResponseToJSON(
   listOpenCheckinsResponse: ListOpenCheckinsResponse,
 ): string {
@@ -352,7 +278,6 @@ export function listOpenCheckinsResponseToJSON(
     ListOpenCheckinsResponse$outboundSchema.parse(listOpenCheckinsResponse),
   );
 }
-
 export function listOpenCheckinsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListOpenCheckinsResponse, SDKValidationError> {

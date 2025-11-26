@@ -41,7 +41,6 @@ export const CreateInvitationsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type CreateInvitationsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -60,19 +59,6 @@ export const CreateInvitationsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInvitationsGlobals$ {
-  /** @deprecated use `CreateInvitationsGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreateInvitationsGlobals$inboundSchema;
-  /** @deprecated use `CreateInvitationsGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreateInvitationsGlobals$outboundSchema;
-  /** @deprecated use `CreateInvitationsGlobals$Outbound` instead. */
-  export type Outbound = CreateInvitationsGlobals$Outbound;
-}
-
 export function createInvitationsGlobalsToJSON(
   createInvitationsGlobals: CreateInvitationsGlobals,
 ): string {
@@ -80,7 +66,6 @@ export function createInvitationsGlobalsToJSON(
     CreateInvitationsGlobals$outboundSchema.parse(createInvitationsGlobals),
   );
 }
-
 export function createInvitationsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateInvitationsGlobals, SDKValidationError> {
@@ -100,7 +85,6 @@ export const CreateInvitationsRequestBody$inboundSchema: z.ZodType<
   eventId: z.string(),
   customerIds: z.array(z.string()),
 });
-
 /** @internal */
 export type CreateInvitationsRequestBody$Outbound = {
   eventId: string;
@@ -117,19 +101,6 @@ export const CreateInvitationsRequestBody$outboundSchema: z.ZodType<
   customerIds: z.array(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInvitationsRequestBody$ {
-  /** @deprecated use `CreateInvitationsRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateInvitationsRequestBody$inboundSchema;
-  /** @deprecated use `CreateInvitationsRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CreateInvitationsRequestBody$outboundSchema;
-  /** @deprecated use `CreateInvitationsRequestBody$Outbound` instead. */
-  export type Outbound = CreateInvitationsRequestBody$Outbound;
-}
-
 export function createInvitationsRequestBodyToJSON(
   createInvitationsRequestBody: CreateInvitationsRequestBody,
 ): string {
@@ -139,7 +110,6 @@ export function createInvitationsRequestBodyToJSON(
     ),
   );
 }
-
 export function createInvitationsRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateInvitationsRequestBody, SDKValidationError> {
@@ -164,7 +134,6 @@ export const CreateInvitationsRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type CreateInvitationsRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -186,19 +155,6 @@ export const CreateInvitationsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateInvitationsRequest$ {
-  /** @deprecated use `CreateInvitationsRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateInvitationsRequest$inboundSchema;
-  /** @deprecated use `CreateInvitationsRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateInvitationsRequest$outboundSchema;
-  /** @deprecated use `CreateInvitationsRequest$Outbound` instead. */
-  export type Outbound = CreateInvitationsRequest$Outbound;
-}
-
 export function createInvitationsRequestToJSON(
   createInvitationsRequest: CreateInvitationsRequest,
 ): string {
@@ -206,7 +162,6 @@ export function createInvitationsRequestToJSON(
     CreateInvitationsRequest$outboundSchema.parse(createInvitationsRequest),
   );
 }
-
 export function createInvitationsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateInvitationsRequest, SDKValidationError> {
@@ -225,7 +180,6 @@ export const ResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
 });
-
 /** @internal */
 export type ResponseBody$Outbound = {
   id: string;
@@ -240,23 +194,9 @@ export const ResponseBody$outboundSchema: z.ZodType<
   id: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBody$ {
-  /** @deprecated use `ResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ResponseBody$inboundSchema;
-  /** @deprecated use `ResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ResponseBody$outboundSchema;
-  /** @deprecated use `ResponseBody$Outbound` instead. */
-  export type Outbound = ResponseBody$Outbound;
-}
-
 export function responseBodyToJSON(responseBody: ResponseBody): string {
   return JSON.stringify(ResponseBody$outboundSchema.parse(responseBody));
 }
-
 export function responseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseBody, SDKValidationError> {

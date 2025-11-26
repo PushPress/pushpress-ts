@@ -33,22 +33,10 @@ export type AppInstalledEventRequestBody = {
 export const AppInstalledEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof AppInstalledEventEvent
 > = z.nativeEnum(AppInstalledEventEvent);
-
 /** @internal */
 export const AppInstalledEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof AppInstalledEventEvent
 > = AppInstalledEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppInstalledEventEvent$ {
-  /** @deprecated use `AppInstalledEventEvent$inboundSchema` instead. */
-  export const inboundSchema = AppInstalledEventEvent$inboundSchema;
-  /** @deprecated use `AppInstalledEventEvent$outboundSchema` instead. */
-  export const outboundSchema = AppInstalledEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const AppInstalledEventRequestBody$inboundSchema: z.ZodType<
@@ -60,7 +48,6 @@ export const AppInstalledEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: AppInstalledEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type AppInstalledEventRequestBody$Outbound = {
   data: components.AppInstall$Outbound;
@@ -79,19 +66,6 @@ export const AppInstalledEventRequestBody$outboundSchema: z.ZodType<
   event: AppInstalledEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppInstalledEventRequestBody$ {
-  /** @deprecated use `AppInstalledEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = AppInstalledEventRequestBody$inboundSchema;
-  /** @deprecated use `AppInstalledEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = AppInstalledEventRequestBody$outboundSchema;
-  /** @deprecated use `AppInstalledEventRequestBody$Outbound` instead. */
-  export type Outbound = AppInstalledEventRequestBody$Outbound;
-}
-
 export function appInstalledEventRequestBodyToJSON(
   appInstalledEventRequestBody: AppInstalledEventRequestBody,
 ): string {
@@ -101,7 +75,6 @@ export function appInstalledEventRequestBodyToJSON(
     ),
   );
 }
-
 export function appInstalledEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<AppInstalledEventRequestBody, SDKValidationError> {

@@ -35,22 +35,10 @@ export type AppointmentRescheduledEventRequestBody = {
 export const AppointmentRescheduledEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof AppointmentRescheduledEventEvent
 > = z.nativeEnum(AppointmentRescheduledEventEvent);
-
 /** @internal */
 export const AppointmentRescheduledEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof AppointmentRescheduledEventEvent
 > = AppointmentRescheduledEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppointmentRescheduledEventEvent$ {
-  /** @deprecated use `AppointmentRescheduledEventEvent$inboundSchema` instead. */
-  export const inboundSchema = AppointmentRescheduledEventEvent$inboundSchema;
-  /** @deprecated use `AppointmentRescheduledEventEvent$outboundSchema` instead. */
-  export const outboundSchema = AppointmentRescheduledEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const AppointmentRescheduledEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const AppointmentRescheduledEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: AppointmentRescheduledEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type AppointmentRescheduledEventRequestBody$Outbound = {
   data: components.Appointment$Outbound;
@@ -81,21 +68,6 @@ export const AppointmentRescheduledEventRequestBody$outboundSchema: z.ZodType<
   event: AppointmentRescheduledEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppointmentRescheduledEventRequestBody$ {
-  /** @deprecated use `AppointmentRescheduledEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    AppointmentRescheduledEventRequestBody$inboundSchema;
-  /** @deprecated use `AppointmentRescheduledEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    AppointmentRescheduledEventRequestBody$outboundSchema;
-  /** @deprecated use `AppointmentRescheduledEventRequestBody$Outbound` instead. */
-  export type Outbound = AppointmentRescheduledEventRequestBody$Outbound;
-}
-
 export function appointmentRescheduledEventRequestBodyToJSON(
   appointmentRescheduledEventRequestBody:
     AppointmentRescheduledEventRequestBody,
@@ -106,7 +78,6 @@ export function appointmentRescheduledEventRequestBodyToJSON(
     ),
   );
 }
-
 export function appointmentRescheduledEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<AppointmentRescheduledEventRequestBody, SDKValidationError> {

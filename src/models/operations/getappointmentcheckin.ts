@@ -32,7 +32,6 @@ export const GetAppointmentCheckinGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetAppointmentCheckinGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetAppointmentCheckinGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAppointmentCheckinGlobals$ {
-  /** @deprecated use `GetAppointmentCheckinGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetAppointmentCheckinGlobals$inboundSchema;
-  /** @deprecated use `GetAppointmentCheckinGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetAppointmentCheckinGlobals$outboundSchema;
-  /** @deprecated use `GetAppointmentCheckinGlobals$Outbound` instead. */
-  export type Outbound = GetAppointmentCheckinGlobals$Outbound;
-}
-
 export function getAppointmentCheckinGlobalsToJSON(
   getAppointmentCheckinGlobals: GetAppointmentCheckinGlobals,
 ): string {
@@ -73,7 +59,6 @@ export function getAppointmentCheckinGlobalsToJSON(
     ),
   );
 }
-
 export function getAppointmentCheckinGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAppointmentCheckinGlobals, SDKValidationError> {
@@ -97,7 +82,6 @@ export const GetAppointmentCheckinRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetAppointmentCheckinRequest$Outbound = {
   uuid: string;
@@ -118,19 +102,6 @@ export const GetAppointmentCheckinRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAppointmentCheckinRequest$ {
-  /** @deprecated use `GetAppointmentCheckinRequest$inboundSchema` instead. */
-  export const inboundSchema = GetAppointmentCheckinRequest$inboundSchema;
-  /** @deprecated use `GetAppointmentCheckinRequest$outboundSchema` instead. */
-  export const outboundSchema = GetAppointmentCheckinRequest$outboundSchema;
-  /** @deprecated use `GetAppointmentCheckinRequest$Outbound` instead. */
-  export type Outbound = GetAppointmentCheckinRequest$Outbound;
-}
-
 export function getAppointmentCheckinRequestToJSON(
   getAppointmentCheckinRequest: GetAppointmentCheckinRequest,
 ): string {
@@ -140,7 +111,6 @@ export function getAppointmentCheckinRequestToJSON(
     ),
   );
 }
-
 export function getAppointmentCheckinRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAppointmentCheckinRequest, SDKValidationError> {

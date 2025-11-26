@@ -61,7 +61,6 @@ export const ListAppointmentCheckinsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListAppointmentCheckinsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -80,19 +79,6 @@ export const ListAppointmentCheckinsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAppointmentCheckinsGlobals$ {
-  /** @deprecated use `ListAppointmentCheckinsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListAppointmentCheckinsGlobals$inboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListAppointmentCheckinsGlobals$outboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsGlobals$Outbound` instead. */
-  export type Outbound = ListAppointmentCheckinsGlobals$Outbound;
-}
-
 export function listAppointmentCheckinsGlobalsToJSON(
   listAppointmentCheckinsGlobals: ListAppointmentCheckinsGlobals,
 ): string {
@@ -102,7 +88,6 @@ export function listAppointmentCheckinsGlobalsToJSON(
     ),
   );
 }
-
 export function listAppointmentCheckinsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAppointmentCheckinsGlobals, SDKValidationError> {
@@ -129,7 +114,6 @@ export const ListAppointmentCheckinsRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListAppointmentCheckinsRequest$Outbound = {
   next?: string | undefined;
@@ -156,19 +140,6 @@ export const ListAppointmentCheckinsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAppointmentCheckinsRequest$ {
-  /** @deprecated use `ListAppointmentCheckinsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListAppointmentCheckinsRequest$inboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListAppointmentCheckinsRequest$outboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsRequest$Outbound` instead. */
-  export type Outbound = ListAppointmentCheckinsRequest$Outbound;
-}
-
 export function listAppointmentCheckinsRequestToJSON(
   listAppointmentCheckinsRequest: ListAppointmentCheckinsRequest,
 ): string {
@@ -178,7 +149,6 @@ export function listAppointmentCheckinsRequestToJSON(
     ),
   );
 }
-
 export function listAppointmentCheckinsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAppointmentCheckinsRequest, SDKValidationError> {
@@ -197,7 +167,6 @@ export const ListAppointmentCheckinsData$inboundSchema: z.ZodType<
 > = z.object({
   resultArray: z.array(components.AppointmentCheckin$inboundSchema),
 });
-
 /** @internal */
 export type ListAppointmentCheckinsData$Outbound = {
   resultArray: Array<components.AppointmentCheckin$Outbound>;
@@ -212,19 +181,6 @@ export const ListAppointmentCheckinsData$outboundSchema: z.ZodType<
   resultArray: z.array(components.AppointmentCheckin$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAppointmentCheckinsData$ {
-  /** @deprecated use `ListAppointmentCheckinsData$inboundSchema` instead. */
-  export const inboundSchema = ListAppointmentCheckinsData$inboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsData$outboundSchema` instead. */
-  export const outboundSchema = ListAppointmentCheckinsData$outboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsData$Outbound` instead. */
-  export type Outbound = ListAppointmentCheckinsData$Outbound;
-}
-
 export function listAppointmentCheckinsDataToJSON(
   listAppointmentCheckinsData: ListAppointmentCheckinsData,
 ): string {
@@ -234,7 +190,6 @@ export function listAppointmentCheckinsDataToJSON(
     ),
   );
 }
-
 export function listAppointmentCheckinsDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAppointmentCheckinsData, SDKValidationError> {
@@ -254,7 +209,6 @@ export const ListAppointmentCheckinsResponseBody$inboundSchema: z.ZodType<
   next: z.string().optional(),
   data: z.lazy(() => ListAppointmentCheckinsData$inboundSchema),
 });
-
 /** @internal */
 export type ListAppointmentCheckinsResponseBody$Outbound = {
   next?: string | undefined;
@@ -271,21 +225,6 @@ export const ListAppointmentCheckinsResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => ListAppointmentCheckinsData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAppointmentCheckinsResponseBody$ {
-  /** @deprecated use `ListAppointmentCheckinsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ListAppointmentCheckinsResponseBody$inboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ListAppointmentCheckinsResponseBody$outboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsResponseBody$Outbound` instead. */
-  export type Outbound = ListAppointmentCheckinsResponseBody$Outbound;
-}
-
 export function listAppointmentCheckinsResponseBodyToJSON(
   listAppointmentCheckinsResponseBody: ListAppointmentCheckinsResponseBody,
 ): string {
@@ -295,7 +234,6 @@ export function listAppointmentCheckinsResponseBodyToJSON(
     ),
   );
 }
-
 export function listAppointmentCheckinsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAppointmentCheckinsResponseBody, SDKValidationError> {
@@ -319,7 +257,6 @@ export const ListAppointmentCheckinsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListAppointmentCheckinsResponse$Outbound = {
   Result: ListAppointmentCheckinsResponseBody$Outbound;
@@ -338,19 +275,6 @@ export const ListAppointmentCheckinsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAppointmentCheckinsResponse$ {
-  /** @deprecated use `ListAppointmentCheckinsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListAppointmentCheckinsResponse$inboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListAppointmentCheckinsResponse$outboundSchema;
-  /** @deprecated use `ListAppointmentCheckinsResponse$Outbound` instead. */
-  export type Outbound = ListAppointmentCheckinsResponse$Outbound;
-}
-
 export function listAppointmentCheckinsResponseToJSON(
   listAppointmentCheckinsResponse: ListAppointmentCheckinsResponse,
 ): string {
@@ -360,7 +284,6 @@ export function listAppointmentCheckinsResponseToJSON(
     ),
   );
 }
-
 export function listAppointmentCheckinsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAppointmentCheckinsResponse, SDKValidationError> {

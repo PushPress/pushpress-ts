@@ -37,7 +37,6 @@ export const ApiKey$inboundSchema: z.ZodType<ApiKey, z.ZodTypeDef, unknown> = z
     lastUsedAt: z.nullable(z.number()).optional(),
     expiresAt: z.nullable(z.number()).optional(),
   });
-
 /** @internal */
 export type ApiKey$Outbound = {
   keyUuid: string;
@@ -64,23 +63,9 @@ export const ApiKey$outboundSchema: z.ZodType<
   expiresAt: z.nullable(z.number()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ApiKey$ {
-  /** @deprecated use `ApiKey$inboundSchema` instead. */
-  export const inboundSchema = ApiKey$inboundSchema;
-  /** @deprecated use `ApiKey$outboundSchema` instead. */
-  export const outboundSchema = ApiKey$outboundSchema;
-  /** @deprecated use `ApiKey$Outbound` instead. */
-  export type Outbound = ApiKey$Outbound;
-}
-
 export function apiKeyToJSON(apiKey: ApiKey): string {
   return JSON.stringify(ApiKey$outboundSchema.parse(apiKey));
 }
-
 export function apiKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<ApiKey, SDKValidationError> {

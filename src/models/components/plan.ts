@@ -26,10 +26,10 @@ export type RecurrenceDetails1 = {
 };
 
 export type RecurrenceDetails =
-  | RecurrenceDetails1
-  | Three
-  | RecurrenceDetails2
-  | Four;
+  | (RecurrenceDetails1 & { type: "session-pack" })
+  | (Three & { type: "limited-recurring" })
+  | (RecurrenceDetails2 & { type: "recurring" })
+  | (Four & { type: "non-recurring" });
 
 export type Policies = {
   allowClassCheckins: boolean;
@@ -57,7 +57,11 @@ export type Plan = {
    * unique identifier for the company
    */
   companyId: string;
-  recurrenceDetails: RecurrenceDetails1 | Three | RecurrenceDetails2 | Four;
+  recurrenceDetails:
+    | (RecurrenceDetails1 & { type: "session-pack" })
+    | (Three & { type: "limited-recurring" })
+    | (RecurrenceDetails2 & { type: "recurring" })
+    | (Four & { type: "non-recurring" });
   policies: Policies;
   category: Category;
 };
@@ -67,7 +71,6 @@ export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
   .object({
     type: z.literal("non-recurring").default("non-recurring").optional(),
   });
-
 /** @internal */
 export type Four$Outbound = {
   type: "non-recurring";
@@ -79,23 +82,9 @@ export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
     type: z.literal("non-recurring"),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
 export function fourToJSON(four: Four): string {
   return JSON.stringify(Four$outboundSchema.parse(four));
 }
-
 export function fourFromJSON(
   jsonString: string,
 ): SafeParseResult<Four, SDKValidationError> {
@@ -113,7 +102,6 @@ export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
       .optional(),
     occurrences: z.number(),
   });
-
 /** @internal */
 export type Three$Outbound = {
   type: "limited-recurring";
@@ -130,23 +118,9 @@ export const Three$outboundSchema: z.ZodType<
   occurrences: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-  /** @deprecated use `Three$Outbound` instead. */
-  export type Outbound = Three$Outbound;
-}
-
 export function threeToJSON(three: Three): string {
   return JSON.stringify(Three$outboundSchema.parse(three));
 }
-
 export function threeFromJSON(
   jsonString: string,
 ): SafeParseResult<Three, SDKValidationError> {
@@ -165,7 +139,6 @@ export const RecurrenceDetails2$inboundSchema: z.ZodType<
 > = z.object({
   type: z.literal("recurring").default("recurring").optional(),
 });
-
 /** @internal */
 export type RecurrenceDetails2$Outbound = {
   type: "recurring";
@@ -180,19 +153,6 @@ export const RecurrenceDetails2$outboundSchema: z.ZodType<
   type: z.literal("recurring"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RecurrenceDetails2$ {
-  /** @deprecated use `RecurrenceDetails2$inboundSchema` instead. */
-  export const inboundSchema = RecurrenceDetails2$inboundSchema;
-  /** @deprecated use `RecurrenceDetails2$outboundSchema` instead. */
-  export const outboundSchema = RecurrenceDetails2$outboundSchema;
-  /** @deprecated use `RecurrenceDetails2$Outbound` instead. */
-  export type Outbound = RecurrenceDetails2$Outbound;
-}
-
 export function recurrenceDetails2ToJSON(
   recurrenceDetails2: RecurrenceDetails2,
 ): string {
@@ -200,7 +160,6 @@ export function recurrenceDetails2ToJSON(
     RecurrenceDetails2$outboundSchema.parse(recurrenceDetails2),
   );
 }
-
 export function recurrenceDetails2FromJSON(
   jsonString: string,
 ): SafeParseResult<RecurrenceDetails2, SDKValidationError> {
@@ -220,7 +179,6 @@ export const RecurrenceDetails1$inboundSchema: z.ZodType<
   type: z.literal("session-pack").default("session-pack").optional(),
   occurrences: z.number(),
 });
-
 /** @internal */
 export type RecurrenceDetails1$Outbound = {
   type: "session-pack";
@@ -237,19 +195,6 @@ export const RecurrenceDetails1$outboundSchema: z.ZodType<
   occurrences: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RecurrenceDetails1$ {
-  /** @deprecated use `RecurrenceDetails1$inboundSchema` instead. */
-  export const inboundSchema = RecurrenceDetails1$inboundSchema;
-  /** @deprecated use `RecurrenceDetails1$outboundSchema` instead. */
-  export const outboundSchema = RecurrenceDetails1$outboundSchema;
-  /** @deprecated use `RecurrenceDetails1$Outbound` instead. */
-  export type Outbound = RecurrenceDetails1$Outbound;
-}
-
 export function recurrenceDetails1ToJSON(
   recurrenceDetails1: RecurrenceDetails1,
 ): string {
@@ -257,7 +202,6 @@ export function recurrenceDetails1ToJSON(
     RecurrenceDetails1$outboundSchema.parse(recurrenceDetails1),
   );
 }
-
 export function recurrenceDetails1FromJSON(
   jsonString: string,
 ): SafeParseResult<RecurrenceDetails1, SDKValidationError> {
@@ -274,18 +218,25 @@ export const RecurrenceDetails$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => RecurrenceDetails1$inboundSchema),
-  z.lazy(() => Three$inboundSchema),
-  z.lazy(() => RecurrenceDetails2$inboundSchema),
-  z.lazy(() => Four$inboundSchema),
+  z.lazy(() => RecurrenceDetails1$inboundSchema).and(
+    z.object({ type: z.literal("session-pack") }),
+  ),
+  z.lazy(() => Three$inboundSchema).and(
+    z.object({ type: z.literal("limited-recurring") }),
+  ),
+  z.lazy(() => RecurrenceDetails2$inboundSchema).and(
+    z.object({ type: z.literal("recurring") }),
+  ),
+  z.lazy(() => Four$inboundSchema).and(
+    z.object({ type: z.literal("non-recurring") }),
+  ),
 ]);
-
 /** @internal */
 export type RecurrenceDetails$Outbound =
-  | RecurrenceDetails1$Outbound
-  | Three$Outbound
-  | RecurrenceDetails2$Outbound
-  | Four$Outbound;
+  | (RecurrenceDetails1$Outbound & { type: "session-pack" })
+  | (Three$Outbound & { type: "limited-recurring" })
+  | (RecurrenceDetails2$Outbound & { type: "recurring" })
+  | (Four$Outbound & { type: "non-recurring" });
 
 /** @internal */
 export const RecurrenceDetails$outboundSchema: z.ZodType<
@@ -293,24 +244,19 @@ export const RecurrenceDetails$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RecurrenceDetails
 > = z.union([
-  z.lazy(() => RecurrenceDetails1$outboundSchema),
-  z.lazy(() => Three$outboundSchema),
-  z.lazy(() => RecurrenceDetails2$outboundSchema),
-  z.lazy(() => Four$outboundSchema),
+  z.lazy(() => RecurrenceDetails1$outboundSchema).and(
+    z.object({ type: z.literal("session-pack") }),
+  ),
+  z.lazy(() => Three$outboundSchema).and(
+    z.object({ type: z.literal("limited-recurring") }),
+  ),
+  z.lazy(() => RecurrenceDetails2$outboundSchema).and(
+    z.object({ type: z.literal("recurring") }),
+  ),
+  z.lazy(() => Four$outboundSchema).and(
+    z.object({ type: z.literal("non-recurring") }),
+  ),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RecurrenceDetails$ {
-  /** @deprecated use `RecurrenceDetails$inboundSchema` instead. */
-  export const inboundSchema = RecurrenceDetails$inboundSchema;
-  /** @deprecated use `RecurrenceDetails$outboundSchema` instead. */
-  export const outboundSchema = RecurrenceDetails$outboundSchema;
-  /** @deprecated use `RecurrenceDetails$Outbound` instead. */
-  export type Outbound = RecurrenceDetails$Outbound;
-}
 
 export function recurrenceDetailsToJSON(
   recurrenceDetails: RecurrenceDetails,
@@ -319,7 +265,6 @@ export function recurrenceDetailsToJSON(
     RecurrenceDetails$outboundSchema.parse(recurrenceDetails),
   );
 }
-
 export function recurrenceDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<RecurrenceDetails, SDKValidationError> {
@@ -340,7 +285,6 @@ export const Policies$inboundSchema: z.ZodType<
   allowOpenGymCheckins: z.boolean(),
   allow24HourAccess: z.boolean(),
 });
-
 /** @internal */
 export type Policies$Outbound = {
   allowClassCheckins: boolean;
@@ -359,23 +303,9 @@ export const Policies$outboundSchema: z.ZodType<
   allow24HourAccess: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Policies$ {
-  /** @deprecated use `Policies$inboundSchema` instead. */
-  export const inboundSchema = Policies$inboundSchema;
-  /** @deprecated use `Policies$outboundSchema` instead. */
-  export const outboundSchema = Policies$outboundSchema;
-  /** @deprecated use `Policies$Outbound` instead. */
-  export type Outbound = Policies$Outbound;
-}
-
 export function policiesToJSON(policies: Policies): string {
   return JSON.stringify(Policies$outboundSchema.parse(policies));
 }
-
 export function policiesFromJSON(
   jsonString: string,
 ): SafeParseResult<Policies, SDKValidationError> {
@@ -394,7 +324,6 @@ export const Category$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
 });
-
 /** @internal */
 export type Category$Outbound = {
   name: string;
@@ -409,23 +338,9 @@ export const Category$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Category$ {
-  /** @deprecated use `Category$inboundSchema` instead. */
-  export const inboundSchema = Category$inboundSchema;
-  /** @deprecated use `Category$outboundSchema` instead. */
-  export const outboundSchema = Category$outboundSchema;
-  /** @deprecated use `Category$Outbound` instead. */
-  export type Outbound = Category$Outbound;
-}
-
 export function categoryToJSON(category: Category): string {
   return JSON.stringify(Category$outboundSchema.parse(category));
 }
-
 export function categoryFromJSON(
   jsonString: string,
 ): SafeParseResult<Category, SDKValidationError> {
@@ -443,25 +358,32 @@ export const Plan$inboundSchema: z.ZodType<Plan, z.ZodTypeDef, unknown> = z
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => RecurrenceDetails1$inboundSchema),
-      z.lazy(() => Three$inboundSchema),
-      z.lazy(() => RecurrenceDetails2$inboundSchema),
-      z.lazy(() => Four$inboundSchema),
+      z.lazy(() => RecurrenceDetails1$inboundSchema).and(
+        z.object({ type: z.literal("session-pack") }),
+      ),
+      z.lazy(() => Three$inboundSchema).and(
+        z.object({ type: z.literal("limited-recurring") }),
+      ),
+      z.lazy(() => RecurrenceDetails2$inboundSchema).and(
+        z.object({ type: z.literal("recurring") }),
+      ),
+      z.lazy(() => Four$inboundSchema).and(
+        z.object({ type: z.literal("non-recurring") }),
+      ),
     ]),
     policies: z.lazy(() => Policies$inboundSchema),
     category: z.lazy(() => Category$inboundSchema),
   });
-
 /** @internal */
 export type Plan$Outbound = {
   id: string;
   name: string;
   companyId: string;
   recurrenceDetails:
-    | RecurrenceDetails1$Outbound
-    | Three$Outbound
-    | RecurrenceDetails2$Outbound
-    | Four$Outbound;
+    | (RecurrenceDetails1$Outbound & { type: "session-pack" })
+    | (Three$Outbound & { type: "limited-recurring" })
+    | (RecurrenceDetails2$Outbound & { type: "recurring" })
+    | (Four$Outbound & { type: "non-recurring" });
   policies: Policies$Outbound;
   category: Category$Outbound;
 };
@@ -473,32 +395,26 @@ export const Plan$outboundSchema: z.ZodType<Plan$Outbound, z.ZodTypeDef, Plan> =
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => RecurrenceDetails1$outboundSchema),
-      z.lazy(() => Three$outboundSchema),
-      z.lazy(() => RecurrenceDetails2$outboundSchema),
-      z.lazy(() => Four$outboundSchema),
+      z.lazy(() => RecurrenceDetails1$outboundSchema).and(
+        z.object({ type: z.literal("session-pack") }),
+      ),
+      z.lazy(() => Three$outboundSchema).and(
+        z.object({ type: z.literal("limited-recurring") }),
+      ),
+      z.lazy(() => RecurrenceDetails2$outboundSchema).and(
+        z.object({ type: z.literal("recurring") }),
+      ),
+      z.lazy(() => Four$outboundSchema).and(
+        z.object({ type: z.literal("non-recurring") }),
+      ),
     ]),
     policies: z.lazy(() => Policies$outboundSchema),
     category: z.lazy(() => Category$outboundSchema),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Plan$ {
-  /** @deprecated use `Plan$inboundSchema` instead. */
-  export const inboundSchema = Plan$inboundSchema;
-  /** @deprecated use `Plan$outboundSchema` instead. */
-  export const outboundSchema = Plan$outboundSchema;
-  /** @deprecated use `Plan$Outbound` instead. */
-  export type Outbound = Plan$Outbound;
-}
-
 export function planToJSON(plan: Plan): string {
   return JSON.stringify(Plan$outboundSchema.parse(plan));
 }
-
 export function planFromJSON(
   jsonString: string,
 ): SafeParseResult<Plan, SDKValidationError> {

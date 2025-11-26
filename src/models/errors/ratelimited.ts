@@ -54,7 +54,7 @@ export const RateLimited$inboundSchema: z.ZodType<
   })
     .catchall(z.any()),
   "additionalProperties",
-  true,
+  false,
 )
   .transform((v) => {
     return new RateLimited(v, {
@@ -90,16 +90,3 @@ export const RateLimited$outboundSchema: z.ZodType<
       };
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RateLimited$ {
-  /** @deprecated use `RateLimited$inboundSchema` instead. */
-  export const inboundSchema = RateLimited$inboundSchema;
-  /** @deprecated use `RateLimited$outboundSchema` instead. */
-  export const outboundSchema = RateLimited$outboundSchema;
-  /** @deprecated use `RateLimited$Outbound` instead. */
-  export type Outbound = RateLimited$Outbound;
-}

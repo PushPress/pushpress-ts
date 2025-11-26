@@ -48,7 +48,6 @@ export const ListApiKeysGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListApiKeysGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -67,19 +66,6 @@ export const ListApiKeysGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListApiKeysGlobals$ {
-  /** @deprecated use `ListApiKeysGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListApiKeysGlobals$inboundSchema;
-  /** @deprecated use `ListApiKeysGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListApiKeysGlobals$outboundSchema;
-  /** @deprecated use `ListApiKeysGlobals$Outbound` instead. */
-  export type Outbound = ListApiKeysGlobals$Outbound;
-}
-
 export function listApiKeysGlobalsToJSON(
   listApiKeysGlobals: ListApiKeysGlobals,
 ): string {
@@ -87,7 +73,6 @@ export function listApiKeysGlobalsToJSON(
     ListApiKeysGlobals$outboundSchema.parse(listApiKeysGlobals),
   );
 }
-
 export function listApiKeysGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListApiKeysGlobals, SDKValidationError> {
@@ -106,7 +91,6 @@ export const ListApiKeysSecurity$inboundSchema: z.ZodType<
 > = z.object({
   bearer: z.string(),
 });
-
 /** @internal */
 export type ListApiKeysSecurity$Outbound = {
   bearer: string;
@@ -121,19 +105,6 @@ export const ListApiKeysSecurity$outboundSchema: z.ZodType<
   bearer: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListApiKeysSecurity$ {
-  /** @deprecated use `ListApiKeysSecurity$inboundSchema` instead. */
-  export const inboundSchema = ListApiKeysSecurity$inboundSchema;
-  /** @deprecated use `ListApiKeysSecurity$outboundSchema` instead. */
-  export const outboundSchema = ListApiKeysSecurity$outboundSchema;
-  /** @deprecated use `ListApiKeysSecurity$Outbound` instead. */
-  export type Outbound = ListApiKeysSecurity$Outbound;
-}
-
 export function listApiKeysSecurityToJSON(
   listApiKeysSecurity: ListApiKeysSecurity,
 ): string {
@@ -141,7 +112,6 @@ export function listApiKeysSecurityToJSON(
     ListApiKeysSecurity$outboundSchema.parse(listApiKeysSecurity),
   );
 }
-
 export function listApiKeysSecurityFromJSON(
   jsonString: string,
 ): SafeParseResult<ListApiKeysSecurity, SDKValidationError> {
@@ -165,7 +135,6 @@ export const ListApiKeysRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListApiKeysRequest$Outbound = {
   limit: number;
@@ -186,19 +155,6 @@ export const ListApiKeysRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListApiKeysRequest$ {
-  /** @deprecated use `ListApiKeysRequest$inboundSchema` instead. */
-  export const inboundSchema = ListApiKeysRequest$inboundSchema;
-  /** @deprecated use `ListApiKeysRequest$outboundSchema` instead. */
-  export const outboundSchema = ListApiKeysRequest$outboundSchema;
-  /** @deprecated use `ListApiKeysRequest$Outbound` instead. */
-  export type Outbound = ListApiKeysRequest$Outbound;
-}
-
 export function listApiKeysRequestToJSON(
   listApiKeysRequest: ListApiKeysRequest,
 ): string {
@@ -206,7 +162,6 @@ export function listApiKeysRequestToJSON(
     ListApiKeysRequest$outboundSchema.parse(listApiKeysRequest),
   );
 }
-
 export function listApiKeysRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListApiKeysRequest, SDKValidationError> {
@@ -225,7 +180,6 @@ export const ListApiKeysData$inboundSchema: z.ZodType<
 > = z.object({
   resultArray: z.array(components.ApiKey$inboundSchema),
 });
-
 /** @internal */
 export type ListApiKeysData$Outbound = {
   resultArray: Array<components.ApiKey$Outbound>;
@@ -240,25 +194,11 @@ export const ListApiKeysData$outboundSchema: z.ZodType<
   resultArray: z.array(components.ApiKey$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListApiKeysData$ {
-  /** @deprecated use `ListApiKeysData$inboundSchema` instead. */
-  export const inboundSchema = ListApiKeysData$inboundSchema;
-  /** @deprecated use `ListApiKeysData$outboundSchema` instead. */
-  export const outboundSchema = ListApiKeysData$outboundSchema;
-  /** @deprecated use `ListApiKeysData$Outbound` instead. */
-  export type Outbound = ListApiKeysData$Outbound;
-}
-
 export function listApiKeysDataToJSON(
   listApiKeysData: ListApiKeysData,
 ): string {
   return JSON.stringify(ListApiKeysData$outboundSchema.parse(listApiKeysData));
 }
-
 export function listApiKeysDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListApiKeysData, SDKValidationError> {
@@ -277,7 +217,6 @@ export const ListApiKeysResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => ListApiKeysData$inboundSchema),
 });
-
 /** @internal */
 export type ListApiKeysResponseBody$Outbound = {
   data: ListApiKeysData$Outbound;
@@ -292,19 +231,6 @@ export const ListApiKeysResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => ListApiKeysData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListApiKeysResponseBody$ {
-  /** @deprecated use `ListApiKeysResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListApiKeysResponseBody$inboundSchema;
-  /** @deprecated use `ListApiKeysResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListApiKeysResponseBody$outboundSchema;
-  /** @deprecated use `ListApiKeysResponseBody$Outbound` instead. */
-  export type Outbound = ListApiKeysResponseBody$Outbound;
-}
-
 export function listApiKeysResponseBodyToJSON(
   listApiKeysResponseBody: ListApiKeysResponseBody,
 ): string {
@@ -312,7 +238,6 @@ export function listApiKeysResponseBodyToJSON(
     ListApiKeysResponseBody$outboundSchema.parse(listApiKeysResponseBody),
   );
 }
-
 export function listApiKeysResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListApiKeysResponseBody, SDKValidationError> {

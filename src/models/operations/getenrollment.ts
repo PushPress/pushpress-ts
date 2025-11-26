@@ -32,7 +32,6 @@ export const GetEnrollmentGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetEnrollmentGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetEnrollmentGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEnrollmentGlobals$ {
-  /** @deprecated use `GetEnrollmentGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetEnrollmentGlobals$inboundSchema;
-  /** @deprecated use `GetEnrollmentGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetEnrollmentGlobals$outboundSchema;
-  /** @deprecated use `GetEnrollmentGlobals$Outbound` instead. */
-  export type Outbound = GetEnrollmentGlobals$Outbound;
-}
-
 export function getEnrollmentGlobalsToJSON(
   getEnrollmentGlobals: GetEnrollmentGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function getEnrollmentGlobalsToJSON(
     GetEnrollmentGlobals$outboundSchema.parse(getEnrollmentGlobals),
   );
 }
-
 export function getEnrollmentGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetEnrollmentGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const GetEnrollmentRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetEnrollmentRequest$Outbound = {
   uuid: string;
@@ -116,19 +100,6 @@ export const GetEnrollmentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEnrollmentRequest$ {
-  /** @deprecated use `GetEnrollmentRequest$inboundSchema` instead. */
-  export const inboundSchema = GetEnrollmentRequest$inboundSchema;
-  /** @deprecated use `GetEnrollmentRequest$outboundSchema` instead. */
-  export const outboundSchema = GetEnrollmentRequest$outboundSchema;
-  /** @deprecated use `GetEnrollmentRequest$Outbound` instead. */
-  export type Outbound = GetEnrollmentRequest$Outbound;
-}
-
 export function getEnrollmentRequestToJSON(
   getEnrollmentRequest: GetEnrollmentRequest,
 ): string {
@@ -136,7 +107,6 @@ export function getEnrollmentRequestToJSON(
     GetEnrollmentRequest$outboundSchema.parse(getEnrollmentRequest),
   );
 }
-
 export function getEnrollmentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetEnrollmentRequest, SDKValidationError> {

@@ -32,7 +32,6 @@ export const GetEventCheckinGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetEventCheckinGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetEventCheckinGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEventCheckinGlobals$ {
-  /** @deprecated use `GetEventCheckinGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetEventCheckinGlobals$inboundSchema;
-  /** @deprecated use `GetEventCheckinGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetEventCheckinGlobals$outboundSchema;
-  /** @deprecated use `GetEventCheckinGlobals$Outbound` instead. */
-  export type Outbound = GetEventCheckinGlobals$Outbound;
-}
-
 export function getEventCheckinGlobalsToJSON(
   getEventCheckinGlobals: GetEventCheckinGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function getEventCheckinGlobalsToJSON(
     GetEventCheckinGlobals$outboundSchema.parse(getEventCheckinGlobals),
   );
 }
-
 export function getEventCheckinGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetEventCheckinGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const GetEventCheckinRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetEventCheckinRequest$Outbound = {
   uuid: string;
@@ -116,19 +100,6 @@ export const GetEventCheckinRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEventCheckinRequest$ {
-  /** @deprecated use `GetEventCheckinRequest$inboundSchema` instead. */
-  export const inboundSchema = GetEventCheckinRequest$inboundSchema;
-  /** @deprecated use `GetEventCheckinRequest$outboundSchema` instead. */
-  export const outboundSchema = GetEventCheckinRequest$outboundSchema;
-  /** @deprecated use `GetEventCheckinRequest$Outbound` instead. */
-  export type Outbound = GetEventCheckinRequest$Outbound;
-}
-
 export function getEventCheckinRequestToJSON(
   getEventCheckinRequest: GetEventCheckinRequest,
 ): string {
@@ -136,7 +107,6 @@ export function getEventCheckinRequestToJSON(
     GetEventCheckinRequest$outboundSchema.parse(getEventCheckinRequest),
   );
 }
-
 export function getEventCheckinRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetEventCheckinRequest, SDKValidationError> {

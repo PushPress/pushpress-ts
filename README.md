@@ -20,39 +20,33 @@ If you have specific requests or feedback, please feel free to file an issue.
 <br /><br />
 
 <!-- Start Summary [summary] -->
-
 ## Summary
 
-PushPress Platform API: The PushPress Platform API provides a comprehensive suite of endpoints designed
-to facilitate seamless integration with the PushPress ecosystem.
-This API allows developers to interact programmatically with the PushPress platform,
+PushPress Platform API: The PushPress Platform API provides a comprehensive suite of endpoints designed 
+to facilitate seamless integration with the PushPress ecosystem. 
+This API allows developers to interact programmatically with the PushPress platform, 
 enabling the automation of various tasks and the extension of platform capabilities.
-
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
-
 ## Table of Contents
-
 <!-- $toc-max-depth=2 -->
-
-- [SDK Installation](#sdk-installation)
-- [Requirements](#requirements)
-- [SDK Example Usage](#sdk-example-usage)
-- [Available Resources and Operations](#available-resources-and-operations)
-- [Standalone functions](#standalone-functions)
-- [Pagination](#pagination)
-- [Retries](#retries)
-- [Error Handling](#error-handling)
-- [Server Selection](#server-selection)
-- [Custom HTTP Client](#custom-http-client)
-- [Authentication](#authentication)
-- [Debugging](#debugging)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Standalone functions](#standalone-functions)
+  * [Pagination](#pagination)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Debugging](#debugging)
 
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
-
 ## SDK Installation
 
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
@@ -81,6 +75,8 @@ bun add @pushpress/pushpress
 yarn add @pushpress/pushpress
 ```
 
+
+
 ### Model Context Protocol (MCP) Server
 
 This SDK is also an installable MCP server where the various SDK methods are
@@ -99,16 +95,11 @@ Add the following server definition to your `claude_desktop_config.json` file:
     "PushPress": {
       "command": "npx",
       "args": [
-        "-y",
-        "--package",
-        "@pushpress/pushpress",
+        "-y", "--package", "@pushpress/pushpress",
         "--",
-        "mcp",
-        "start",
-        "--api-key",
-        "...",
-        "--company-id",
-        "..."
+        "mcp", "start",
+        "--api-key", "...",
+        "--company-id", "..."
       ]
     }
   }
@@ -128,16 +119,11 @@ Create a `.cursor/mcp.json` file in your project root with the following content
     "PushPress": {
       "command": "npx",
       "args": [
-        "-y",
-        "--package",
-        "@pushpress/pushpress",
+        "-y", "--package", "@pushpress/pushpress",
         "--",
-        "mcp",
-        "start",
-        "--api-key",
-        "...",
-        "--company-id",
-        "..."
+        "mcp", "start",
+        "--api-key", "...",
+        "--company-id", "..."
       ]
     }
   }
@@ -156,12 +142,15 @@ chmod +x mcp-server
 
 If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
 
+
 ```json
 {
   "mcpServers": {
     "Todos": {
       "command": "./DOWNLOAD/PATH/mcp-server",
-      "args": ["start"]
+      "args": [
+        "start"
+      ]
     }
   }
 }
@@ -172,19 +161,15 @@ For a full list of server arguments, run:
 ```sh
 npx -y --package @pushpress/pushpress -- mcp start --help
 ```
-
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
-
 ## Requirements
 
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
-
 <!-- End Requirements [requirements] -->
 
 <!-- Start SDK Example Usage [usage] -->
-
 ## SDK Example Usage
 
 ### Example
@@ -192,37 +177,25 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
 
 async function run() {
-  await pushPress.checkinCreatedEvent({
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
   });
+
+  console.log(result);
 }
 
 run();
-```
 
+```
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
-
 ## Available Resources and Operations
 
 <details open>
@@ -230,144 +203,120 @@ run();
 
 ### [apiKeys](docs/sdks/apikeys/README.md)
 
-- [get](docs/sdks/apikeys/README.md#get) - Get API Key
-- [delete](docs/sdks/apikeys/README.md#delete) - Delete an API Key
-- [~~revoke~~](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key :warning: **Deprecated**
+* [get](docs/sdks/apikeys/README.md#get) - Get API Key
+* [delete](docs/sdks/apikeys/README.md#delete) - Delete an API Key
+* [~~revoke~~](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key :warning: **Deprecated**
 
 ### [appointments](docs/sdks/appointments/README.md)
 
-- [appointmentsGet](docs/sdks/appointments/README.md#appointmentsget) - Get details for an appointment
+* [appointmentsGet](docs/sdks/appointments/README.md#appointmentsget) - Get details for an appointment
 
 ### [checkins](docs/sdks/checkins/README.md)
 
-- [count](docs/sdks/checkins/README.md#count) - Get Checkin Count
+* [count](docs/sdks/checkins/README.md#count) - Get Checkin Count
 
 #### [checkins.appointment](docs/sdks/appointment/README.md)
 
-- [get](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
-- [list](docs/sdks/appointment/README.md#list) - List Appointment Checkins
+* [get](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
+* [list](docs/sdks/appointment/README.md#list) - List Appointment Checkins
 
 #### [checkins.class](docs/sdks/class/README.md)
 
-- [get](docs/sdks/class/README.md#get) - Get Class Checkin Details
-- [list](docs/sdks/class/README.md#list) - List Class Checkins
+* [get](docs/sdks/class/README.md#get) - Get Class Checkin Details
+* [list](docs/sdks/class/README.md#list) - List Class Checkins
 
 #### [checkins.event](docs/sdks/event/README.md)
 
-- [get](docs/sdks/event/README.md#get) - Get Event Checkin Details
-- [list](docs/sdks/event/README.md#list) - List Event Checkins
+* [get](docs/sdks/event/README.md#get) - Get Event Checkin Details
+* [list](docs/sdks/event/README.md#list) - List Event Checkins
 
 #### [checkins.open](docs/sdks/open/README.md)
 
-- [get](docs/sdks/open/README.md#get) - Get Open Facility Details
-- [list](docs/sdks/open/README.md#list) - List Open Checkins
+* [get](docs/sdks/open/README.md#get) - Get Open Facility Details
+* [list](docs/sdks/open/README.md#list) - List Open Checkins
 
 ### [classes](docs/sdks/classes/README.md)
 
-- [get](docs/sdks/classes/README.md#get) - Get Details for a Class
+* [get](docs/sdks/classes/README.md#get) - Get Details for a Class
 
 #### [classes.type](docs/sdks/type/README.md)
 
-- [get](docs/sdks/type/README.md#get) - Get a class type
-- [list](docs/sdks/type/README.md#list) - List class types for the given gym
+* [get](docs/sdks/type/README.md#get) - Get a class type
+* [list](docs/sdks/type/README.md#list) - List class types for the given gym
 
 ### [company](docs/sdks/company/README.md)
 
-- [get](docs/sdks/company/README.md#get) - Get Company Details
+* [get](docs/sdks/company/README.md#get) - Get Company Details
 
 ### [customers](docs/sdks/customers/README.md)
 
-- [create](docs/sdks/customers/README.md#create) - Create a new Customer
-- [list](docs/sdks/customers/README.md#list) - List Customers
-- [get](docs/sdks/customers/README.md#get) - Get Customer Details
+* [create](docs/sdks/customers/README.md#create) - Create a new Customer
+* [list](docs/sdks/customers/README.md#list) - List Customers
+* [get](docs/sdks/customers/README.md#get) - Get Customer Details
 
 #### [customers.attributions](docs/sdks/attributions/README.md)
 
-- [create](docs/sdks/attributions/README.md#create) - Create a customer attribution
-- [list](docs/sdks/attributions/README.md#list) - List customer attributions
-- [get](docs/sdks/attributions/README.md#get) - Get a customer attribution
+* [create](docs/sdks/attributions/README.md#create) - Create a customer attribution
+* [list](docs/sdks/attributions/README.md#list) - List customer attributions
+* [get](docs/sdks/attributions/README.md#get) - Get a customer attribution
 
 ### [enrollment](docs/sdks/enrollment/README.md)
 
-- [get](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
-- [list](docs/sdks/enrollment/README.md#list) - List Plan Enrollments
+* [get](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
+* [list](docs/sdks/enrollment/README.md#list) - List Plan Enrollments
 
 ### [events](docs/sdks/events/README.md)
 
-- [get](docs/sdks/events/README.md#get) - Get details for an event
-- [list](docs/sdks/events/README.md#list) - List Events
+* [get](docs/sdks/events/README.md#get) - Get details for an event
+* [list](docs/sdks/events/README.md#list) - List Events
 
 ### [invitations](docs/sdks/invitations/README.md)
 
-- [get](docs/sdks/invitations/README.md#get) - Get an invitation
-- [delete](docs/sdks/invitations/README.md#delete) - Delete an invitation
-- [list](docs/sdks/invitations/README.md#list) - List Invitations
-- [create](docs/sdks/invitations/README.md#create) - Create Invitations
+* [get](docs/sdks/invitations/README.md#get) - Get an invitation
+* [delete](docs/sdks/invitations/README.md#delete) - Delete an invitation
+* [list](docs/sdks/invitations/README.md#list) - List Invitations
+* [create](docs/sdks/invitations/README.md#create) - Create Invitations
 
 ### [keys](docs/sdks/keys/README.md)
 
-- [create](docs/sdks/keys/README.md#create) - Create a new API Key
-- [list](docs/sdks/keys/README.md#list) - List API Keys
+* [create](docs/sdks/keys/README.md#create) - Create a new API Key
+* [list](docs/sdks/keys/README.md#list) - List API Keys
 
 ### [manageWebhooks](docs/sdks/managewebhooks/README.md)
 
-- [create](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
-- [list](docs/sdks/managewebhooks/README.md#list) - List Webhooks
-- [get](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
-- [update](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
-- [delete](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
-- [deactivate](docs/sdks/managewebhooks/README.md#deactivate) - Deactivate a Webhook
-- [activate](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
-- [rotateSecret](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
+* [create](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
+* [list](docs/sdks/managewebhooks/README.md#list) - List Webhooks
+* [get](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
+* [update](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
+* [delete](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
+* [deactivate](docs/sdks/managewebhooks/README.md#deactivate) - Deactivate a Webhook
+* [activate](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
+* [rotateSecret](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
 
 #### [messages.email](docs/sdks/email/README.md)
 
-- [send](docs/sdks/email/README.md#send) - Send an Email
+* [send](docs/sdks/email/README.md#send) - Send an Email
 
 #### [messages.push](docs/sdks/push/README.md)
 
-- [send](docs/sdks/push/README.md#send) - Send Push Notification
+* [send](docs/sdks/push/README.md#send) - Send Push Notification
 
 #### [messages.realtime](docs/sdks/realtime/README.md)
 
-- [send](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
+* [send](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 
 #### [messages.sms](docs/sdks/sms/README.md)
 
-- [send](docs/sdks/sms/README.md#send) - Send an SMS
+* [send](docs/sdks/sms/README.md#send) - Send an SMS
 
 ### [plans](docs/sdks/plans/README.md)
 
-- [get](docs/sdks/plans/README.md#get) - Get Plan details
-
-### [PushPress SDK](docs/sdks/pushpress/README.md)
-
-- [checkinCreatedEvent](docs/sdks/pushpress/README.md#checkincreatedevent)
-- [checkinUpdatedEvent](docs/sdks/pushpress/README.md#checkinupdatedevent)
-- [checkinDeletedEvent](docs/sdks/pushpress/README.md#checkindeletedevent)
-- [enrollmentStatusChanged](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
-- [appInstalledEvent](docs/sdks/pushpress/README.md#appinstalledevent)
-- [appUninstalledEvent](docs/sdks/pushpress/README.md#appuninstalledevent)
-- [appointmentScheduledEvent](docs/sdks/pushpress/README.md#appointmentscheduledevent)
-- [appointmentRescheduledEvent](docs/sdks/pushpress/README.md#appointmentrescheduledevent)
-- [appointmentNoShowedEvent](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
-- [appointmentCanceledEvent](docs/sdks/pushpress/README.md#appointmentcanceledevent)
-- [customerCreatedEvent](docs/sdks/pushpress/README.md#customercreatedevent)
-- [customerStatusChangedEvent](docs/sdks/pushpress/README.md#customerstatuschangedevent)
-- [customerDetailsChangedEvent](docs/sdks/pushpress/README.md#customerdetailschangedevent)
-- [customerDeletedEvent](docs/sdks/pushpress/README.md#customerdeletedevent)
-- [classCanceledEvent](docs/sdks/pushpress/README.md#classcanceledevent)
-- [enrollmentCreatedEvent](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
-- [enrollmentDeleted](docs/sdks/pushpress/README.md#enrollmentdeleted)
-- [reservationCreatedEvent](docs/sdks/pushpress/README.md#reservationcreatedevent)
-- [reservationWaitlistedEvent](docs/sdks/pushpress/README.md#reservationwaitlistedevent)
-- [reservationCanceledEvent](docs/sdks/pushpress/README.md#reservationcanceledevent)
+* [get](docs/sdks/plans/README.md#get) - Get Plan details
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Standalone functions [standalone-funcs] -->
-
 ## Standalone functions
 
 All the methods listed above are available as standalone functions. These
@@ -384,15 +333,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`apiKeysDelete`](docs/sdks/apikeys/README.md#delete) - Delete an API Key
 - [`apiKeysGet`](docs/sdks/apikeys/README.md#get) - Get API Key
-- [`appInstalledEvent`](docs/sdks/pushpress/README.md#appinstalledevent)
-- [`appointmentCanceledEvent`](docs/sdks/pushpress/README.md#appointmentcanceledevent)
-- [`appointmentNoShowedEvent`](docs/sdks/pushpress/README.md#appointmentnoshowedevent)
-- [`appointmentRescheduledEvent`](docs/sdks/pushpress/README.md#appointmentrescheduledevent)
 - [`appointmentsAppointmentsGet`](docs/sdks/appointments/README.md#appointmentsget) - Get details for an appointment
-- [`appointmentScheduledEvent`](docs/sdks/pushpress/README.md#appointmentscheduledevent)
-- [`appUninstalledEvent`](docs/sdks/pushpress/README.md#appuninstalledevent)
-- [`checkinCreatedEvent`](docs/sdks/pushpress/README.md#checkincreatedevent)
-- [`checkinDeletedEvent`](docs/sdks/pushpress/README.md#checkindeletedevent)
 - [`checkinsAppointmentGet`](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
 - [`checkinsAppointmentList`](docs/sdks/appointment/README.md#list) - List Appointment Checkins
 - [`checkinsClassGet`](docs/sdks/class/README.md#get) - Get Class Checkin Details
@@ -402,27 +343,18 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`checkinsEventList`](docs/sdks/event/README.md#list) - List Event Checkins
 - [`checkinsOpenGet`](docs/sdks/open/README.md#get) - Get Open Facility Details
 - [`checkinsOpenList`](docs/sdks/open/README.md#list) - List Open Checkins
-- [`checkinUpdatedEvent`](docs/sdks/pushpress/README.md#checkinupdatedevent)
-- [`classCanceledEvent`](docs/sdks/pushpress/README.md#classcanceledevent)
 - [`classesGet`](docs/sdks/classes/README.md#get) - Get Details for a Class
 - [`classesTypeGet`](docs/sdks/type/README.md#get) - Get a class type
 - [`classesTypeList`](docs/sdks/type/README.md#list) - List class types for the given gym
 - [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
-- [`customerCreatedEvent`](docs/sdks/pushpress/README.md#customercreatedevent)
-- [`customerDeletedEvent`](docs/sdks/pushpress/README.md#customerdeletedevent)
-- [`customerDetailsChangedEvent`](docs/sdks/pushpress/README.md#customerdetailschangedevent)
 - [`customersAttributionsCreate`](docs/sdks/attributions/README.md#create) - Create a customer attribution
 - [`customersAttributionsGet`](docs/sdks/attributions/README.md#get) - Get a customer attribution
 - [`customersAttributionsList`](docs/sdks/attributions/README.md#list) - List customer attributions
 - [`customersCreate`](docs/sdks/customers/README.md#create) - Create a new Customer
 - [`customersGet`](docs/sdks/customers/README.md#get) - Get Customer Details
 - [`customersList`](docs/sdks/customers/README.md#list) - List Customers
-- [`customerStatusChangedEvent`](docs/sdks/pushpress/README.md#customerstatuschangedevent)
-- [`enrollmentCreatedEvent`](docs/sdks/pushpress/README.md#enrollmentcreatedevent)
-- [`enrollmentDeleted`](docs/sdks/pushpress/README.md#enrollmentdeleted)
 - [`enrollmentGet`](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
 - [`enrollmentList`](docs/sdks/enrollment/README.md#list) - List Plan Enrollments
-- [`enrollmentStatusChanged`](docs/sdks/pushpress/README.md#enrollmentstatuschanged)
 - [`eventsGet`](docs/sdks/events/README.md#get) - Get details for an event
 - [`eventsList`](docs/sdks/events/README.md#list) - List Events
 - [`invitationsCreate`](docs/sdks/invitations/README.md#create) - Create Invitations
@@ -444,16 +376,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 - [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
 - [`plansGet`](docs/sdks/plans/README.md#get) - Get Plan details
-- [`reservationCanceledEvent`](docs/sdks/pushpress/README.md#reservationcanceledevent)
-- [`reservationCreatedEvent`](docs/sdks/pushpress/README.md#reservationcreatedevent)
-- [`reservationWaitlistedEvent`](docs/sdks/pushpress/README.md#reservationwaitlistedevent)
 - ~~[`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke)~~ - Revoke an API Key :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
 
 <!-- Start Pagination [pagination] -->
-
 ## Pagination
 
 Some of the endpoints in this SDK support pagination. To use pagination, you
@@ -482,64 +410,48 @@ async function run() {
 }
 
 run();
-```
 
+```
 <!-- End Pagination [pagination] -->
 
 <!-- Start Retries [retries] -->
-
 ## Retries
 
-Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
-
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
 
 async function run() {
-  await pushPress.checkinCreatedEvent(
-    {
-      data: {
-        id: "chk_12345",
-        customer: "usr_12345",
-        company: "cli_12345",
-        timestamp: 1672531200000,
-        name: "My Class",
-        typeId: "cit_12345",
-        classId: "cal_item_12345",
-        type: {
-          id: "cit_12345",
-          name: "Group HIIT Training",
-        },
-        kind: "class",
-        role: "attendee",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
       },
-      created: 945274,
-      event: "checkin.created",
+      retryConnectionErrors: false,
     },
-    {
-      retries: {
-        strategy: "backoff",
-        backoff: {
-          initialInterval: 1,
-          maxInterval: 50,
-          exponent: 1.1,
-          maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
-      },
-    },
-  );
+  });
+
+  console.log(result);
 }
 
 run();
+
 ```
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
-
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -554,37 +466,24 @@ const pushPress = new PushPress({
     },
     retryConnectionErrors: false,
   },
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushPress.checkinCreatedEvent({
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
   });
+
+  console.log(result);
 }
 
 run();
-```
 
+```
 <!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
-
 ## Error Handling
 
 [`PushPressError`](./src/models/errors/pushpresserror.ts) is the base class for all HTTP error responses. It has the following properties:
@@ -599,7 +498,6 @@ run();
 | `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
 ### Example
-
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 import * as errors from "@pushpress/pushpress/models/errors";
@@ -634,44 +532,40 @@ async function run() {
 }
 
 run();
+
 ```
 
 ### Error Classes
-
 **Primary error:**
-
-- [`PushPressError`](./src/models/errors/pushpresserror.ts): The base class for HTTP error responses.
+* [`PushPressError`](./src/models/errors/pushpresserror.ts): The base class for HTTP error responses.
 
 <details><summary>Less common errors (12)</summary>
 
 <br />
 
 **Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
 
-- [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
-- [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
-- [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
-- [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
-- [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
 
 **Inherit from [`PushPressError`](./src/models/errors/pushpresserror.ts)**:
-
-- [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 66 methods.\*
-- [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 66 methods.\*
-- [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 66 methods.\*
-- [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 66 methods.\*
-- [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 66 methods.\*
-- [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 66 methods.\*
-- [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+* [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 46 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 46 methods.*
+* [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 46 methods.*
+* [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 46 methods.*
+* [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 46 methods.*
+* [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 46 methods.*
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
 
 \* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
-
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
-
 ## Server Selection
 
 ### Select Server by Name
@@ -690,74 +584,49 @@ You can override the default server globally by passing a server name to the `se
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
-  server: "development",
+  server: "production",
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushPress.checkinCreatedEvent({
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
   });
+
+  console.log(result);
 }
 
 run();
+
 ```
 
 ### Override Server URL Per-Client
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
-
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   serverURL: "https://api.pushpress.com/v3",
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
 });
 
 async function run() {
-  await pushPress.checkinCreatedEvent({
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
   });
+
+  console.log(result);
 }
 
 run();
-```
 
+```
 <!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
-
 ## Custom HTTP Client
 
 The TypeScript SDK makes API calls using an `HTTPClient` that wraps the native
@@ -782,12 +651,12 @@ const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
   fetcher: (request) => {
     return fetch(request);
-  },
+  }
 });
 
 httpClient.addHook("beforeRequest", (request) => {
   const nextRequest = new Request(request, {
-    signal: request.signal || AbortSignal.timeout(5000),
+    signal: request.signal || AbortSignal.timeout(5000)
   });
 
   nextRequest.headers.set("x-custom-header", "custom value");
@@ -804,11 +673,9 @@ httpClient.addHook("requestError", (error, request) => {
 
 const sdk = new PushPress({ httpClient: httpClient });
 ```
-
 <!-- End Custom HTTP Client [http-client] -->
 
 <!-- Start Authentication [security] -->
-
 ## Authentication
 
 ### Per-Client Security Schemes
@@ -820,43 +687,29 @@ This SDK supports the following security scheme globally:
 | `apiKey` | apiKey | API key | `PUSHPRESS_API_KEY`  |
 
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
-
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
 const pushPress = new PushPress({
   apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+  companyId: "<id>",
 });
 
 async function run() {
-  await pushPress.checkinCreatedEvent({
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
   });
+
+  console.log(result);
 }
 
 run();
+
 ```
 
 ### Per-Operation Security Schemes
 
 Some operations in this SDK require the security scheme to be specified at the request level. For example:
-
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
@@ -865,29 +718,25 @@ const pushPress = new PushPress({
 });
 
 async function run() {
-  const result = await pushPress.keys.create(
-    {
-      bearer: process.env["PUSHPRESS_BEARER"] ?? "",
+  const result = await pushPress.keys.create({
+    bearer: process.env["PUSHPRESS_BEARER"] ?? "",
+  }, {
+    requestBody: {
+      name: "my-key",
+      description: "my key",
+      expiresAt: 1672531200000,
     },
-    {
-      requestBody: {
-        name: "my-key",
-        description: "my key",
-        expiresAt: 1672531200000,
-      },
-    },
-  );
+  });
 
   console.log(result);
 }
 
 run();
-```
 
+```
 <!-- End Authentication [security] -->
 
 <!-- Start Debugging [debug] -->
-
 ## Debugging
 
 You can setup your SDK to emit debug logs for SDK requests and responses.
@@ -904,7 +753,6 @@ const sdk = new PushPress({ debugLogger: console });
 ```
 
 You can also enable a default debug logger by setting an environment variable `PUSHPRESS_DEBUG` to true.
-
 <!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

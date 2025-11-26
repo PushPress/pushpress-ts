@@ -75,7 +75,6 @@ export const Location$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string().default(""),
 });
-
 /** @internal */
 export type Location$Outbound = {
   name: string;
@@ -90,23 +89,9 @@ export const Location$outboundSchema: z.ZodType<
   name: z.string().default(""),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Location$ {
-  /** @deprecated use `Location$inboundSchema` instead. */
-  export const inboundSchema = Location$inboundSchema;
-  /** @deprecated use `Location$outboundSchema` instead. */
-  export const outboundSchema = Location$outboundSchema;
-  /** @deprecated use `Location$Outbound` instead. */
-  export type Outbound = Location$Outbound;
-}
-
 export function locationToJSON(location: Location): string {
   return JSON.stringify(Location$outboundSchema.parse(location));
 }
-
 export function locationFromJSON(
   jsonString: string,
 ): SafeParseResult<Location, SDKValidationError> {
@@ -132,7 +117,6 @@ export const Class$inboundSchema: z.ZodType<Class, z.ZodTypeDef, unknown> = z
     start: z.number(),
     end: z.number(),
   });
-
 /** @internal */
 export type Class$Outbound = {
   id: string;
@@ -167,23 +151,9 @@ export const Class$outboundSchema: z.ZodType<
   end: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Class$ {
-  /** @deprecated use `Class$inboundSchema` instead. */
-  export const inboundSchema = Class$inboundSchema;
-  /** @deprecated use `Class$outboundSchema` instead. */
-  export const outboundSchema = Class$outboundSchema;
-  /** @deprecated use `Class$Outbound` instead. */
-  export type Outbound = Class$Outbound;
-}
-
 export function classToJSON(value: Class): string {
   return JSON.stringify(Class$outboundSchema.parse(value));
 }
-
 export function classFromJSON(
   jsonString: string,
 ): SafeParseResult<Class, SDKValidationError> {

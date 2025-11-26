@@ -92,7 +92,6 @@ export const ListEventsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListEventsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -111,19 +110,6 @@ export const ListEventsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEventsGlobals$ {
-  /** @deprecated use `ListEventsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListEventsGlobals$inboundSchema;
-  /** @deprecated use `ListEventsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListEventsGlobals$outboundSchema;
-  /** @deprecated use `ListEventsGlobals$Outbound` instead. */
-  export type Outbound = ListEventsGlobals$Outbound;
-}
-
 export function listEventsGlobalsToJSON(
   listEventsGlobals: ListEventsGlobals,
 ): string {
@@ -131,7 +117,6 @@ export function listEventsGlobalsToJSON(
     ListEventsGlobals$outboundSchema.parse(listEventsGlobals),
   );
 }
-
 export function listEventsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEventsGlobals, SDKValidationError> {
@@ -145,41 +130,17 @@ export function listEventsGlobalsFromJSON(
 /** @internal */
 export const Access$inboundSchema: z.ZodNativeEnum<typeof Access> = z
   .nativeEnum(Access);
-
 /** @internal */
 export const Access$outboundSchema: z.ZodNativeEnum<typeof Access> =
   Access$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Access$ {
-  /** @deprecated use `Access$inboundSchema` instead. */
-  export const inboundSchema = Access$inboundSchema;
-  /** @deprecated use `Access$outboundSchema` instead. */
-  export const outboundSchema = Access$outboundSchema;
-}
 
 /** @internal */
 export const Order$inboundSchema: z.ZodNativeEnum<typeof Order> = z.nativeEnum(
   Order,
 );
-
 /** @internal */
 export const Order$outboundSchema: z.ZodNativeEnum<typeof Order> =
   Order$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Order$ {
-  /** @deprecated use `Order$inboundSchema` instead. */
-  export const inboundSchema = Order$inboundSchema;
-  /** @deprecated use `Order$outboundSchema` instead. */
-  export const outboundSchema = Order$outboundSchema;
-}
 
 /** @internal */
 export const ListEventsRequest$inboundSchema: z.ZodType<
@@ -198,7 +159,6 @@ export const ListEventsRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListEventsRequest$Outbound = {
   page: number;
@@ -227,19 +187,6 @@ export const ListEventsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEventsRequest$ {
-  /** @deprecated use `ListEventsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListEventsRequest$inboundSchema;
-  /** @deprecated use `ListEventsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListEventsRequest$outboundSchema;
-  /** @deprecated use `ListEventsRequest$Outbound` instead. */
-  export type Outbound = ListEventsRequest$Outbound;
-}
-
 export function listEventsRequestToJSON(
   listEventsRequest: ListEventsRequest,
 ): string {
@@ -247,7 +194,6 @@ export function listEventsRequestToJSON(
     ListEventsRequest$outboundSchema.parse(listEventsRequest),
   );
 }
-
 export function listEventsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEventsRequest, SDKValidationError> {
@@ -266,7 +212,6 @@ export const ListEventsData$inboundSchema: z.ZodType<
 > = z.object({
   resultArray: z.array(components.Event$inboundSchema),
 });
-
 /** @internal */
 export type ListEventsData$Outbound = {
   resultArray: Array<components.Event$Outbound>;
@@ -281,23 +226,9 @@ export const ListEventsData$outboundSchema: z.ZodType<
   resultArray: z.array(components.Event$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEventsData$ {
-  /** @deprecated use `ListEventsData$inboundSchema` instead. */
-  export const inboundSchema = ListEventsData$inboundSchema;
-  /** @deprecated use `ListEventsData$outboundSchema` instead. */
-  export const outboundSchema = ListEventsData$outboundSchema;
-  /** @deprecated use `ListEventsData$Outbound` instead. */
-  export type Outbound = ListEventsData$Outbound;
-}
-
 export function listEventsDataToJSON(listEventsData: ListEventsData): string {
   return JSON.stringify(ListEventsData$outboundSchema.parse(listEventsData));
 }
-
 export function listEventsDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEventsData, SDKValidationError> {
@@ -316,7 +247,6 @@ export const ListEventsResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => ListEventsData$inboundSchema),
 });
-
 /** @internal */
 export type ListEventsResponseBody$Outbound = {
   data: ListEventsData$Outbound;
@@ -331,19 +261,6 @@ export const ListEventsResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => ListEventsData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEventsResponseBody$ {
-  /** @deprecated use `ListEventsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListEventsResponseBody$inboundSchema;
-  /** @deprecated use `ListEventsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListEventsResponseBody$outboundSchema;
-  /** @deprecated use `ListEventsResponseBody$Outbound` instead. */
-  export type Outbound = ListEventsResponseBody$Outbound;
-}
-
 export function listEventsResponseBodyToJSON(
   listEventsResponseBody: ListEventsResponseBody,
 ): string {
@@ -351,7 +268,6 @@ export function listEventsResponseBodyToJSON(
     ListEventsResponseBody$outboundSchema.parse(listEventsResponseBody),
   );
 }
-
 export function listEventsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEventsResponseBody, SDKValidationError> {
@@ -374,7 +290,6 @@ export const ListEventsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListEventsResponse$Outbound = {
   Result: ListEventsResponseBody$Outbound;
@@ -393,19 +308,6 @@ export const ListEventsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListEventsResponse$ {
-  /** @deprecated use `ListEventsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListEventsResponse$inboundSchema;
-  /** @deprecated use `ListEventsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListEventsResponse$outboundSchema;
-  /** @deprecated use `ListEventsResponse$Outbound` instead. */
-  export type Outbound = ListEventsResponse$Outbound;
-}
-
 export function listEventsResponseToJSON(
   listEventsResponse: ListEventsResponse,
 ): string {
@@ -413,7 +315,6 @@ export function listEventsResponseToJSON(
     ListEventsResponse$outboundSchema.parse(listEventsResponse),
   );
 }
-
 export function listEventsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListEventsResponse, SDKValidationError> {

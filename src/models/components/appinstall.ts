@@ -35,7 +35,6 @@ export const AppInstall$inboundSchema: z.ZodType<
   appId: z.string(),
   installationId: z.string(),
 });
-
 /** @internal */
 export type AppInstall$Outbound = {
   clientUuid: string;
@@ -54,23 +53,9 @@ export const AppInstall$outboundSchema: z.ZodType<
   installationId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppInstall$ {
-  /** @deprecated use `AppInstall$inboundSchema` instead. */
-  export const inboundSchema = AppInstall$inboundSchema;
-  /** @deprecated use `AppInstall$outboundSchema` instead. */
-  export const outboundSchema = AppInstall$outboundSchema;
-  /** @deprecated use `AppInstall$Outbound` instead. */
-  export type Outbound = AppInstall$Outbound;
-}
-
 export function appInstallToJSON(appInstall: AppInstall): string {
   return JSON.stringify(AppInstall$outboundSchema.parse(appInstall));
 }
-
 export function appInstallFromJSON(
   jsonString: string,
 ): SafeParseResult<AppInstall, SDKValidationError> {

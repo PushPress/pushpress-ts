@@ -72,7 +72,6 @@ export const ListAttributionsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListAttributionsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -91,19 +90,6 @@ export const ListAttributionsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAttributionsGlobals$ {
-  /** @deprecated use `ListAttributionsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListAttributionsGlobals$inboundSchema;
-  /** @deprecated use `ListAttributionsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListAttributionsGlobals$outboundSchema;
-  /** @deprecated use `ListAttributionsGlobals$Outbound` instead. */
-  export type Outbound = ListAttributionsGlobals$Outbound;
-}
-
 export function listAttributionsGlobalsToJSON(
   listAttributionsGlobals: ListAttributionsGlobals,
 ): string {
@@ -111,7 +97,6 @@ export function listAttributionsGlobalsToJSON(
     ListAttributionsGlobals$outboundSchema.parse(listAttributionsGlobals),
   );
 }
-
 export function listAttributionsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAttributionsGlobals, SDKValidationError> {
@@ -136,7 +121,6 @@ export const ListAttributionsRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListAttributionsRequest$Outbound = {
   customer?: string | undefined;
@@ -159,19 +143,6 @@ export const ListAttributionsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAttributionsRequest$ {
-  /** @deprecated use `ListAttributionsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListAttributionsRequest$inboundSchema;
-  /** @deprecated use `ListAttributionsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListAttributionsRequest$outboundSchema;
-  /** @deprecated use `ListAttributionsRequest$Outbound` instead. */
-  export type Outbound = ListAttributionsRequest$Outbound;
-}
-
 export function listAttributionsRequestToJSON(
   listAttributionsRequest: ListAttributionsRequest,
 ): string {
@@ -179,7 +150,6 @@ export function listAttributionsRequestToJSON(
     ListAttributionsRequest$outboundSchema.parse(listAttributionsRequest),
   );
 }
-
 export function listAttributionsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAttributionsRequest, SDKValidationError> {
@@ -194,22 +164,10 @@ export function listAttributionsRequestFromJSON(
 export const ListAttributionsEvent$inboundSchema: z.ZodNativeEnum<
   typeof ListAttributionsEvent
 > = z.nativeEnum(ListAttributionsEvent);
-
 /** @internal */
 export const ListAttributionsEvent$outboundSchema: z.ZodNativeEnum<
   typeof ListAttributionsEvent
 > = ListAttributionsEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAttributionsEvent$ {
-  /** @deprecated use `ListAttributionsEvent$inboundSchema` instead. */
-  export const inboundSchema = ListAttributionsEvent$inboundSchema;
-  /** @deprecated use `ListAttributionsEvent$outboundSchema` instead. */
-  export const outboundSchema = ListAttributionsEvent$outboundSchema;
-}
 
 /** @internal */
 export const ResultArray$inboundSchema: z.ZodType<
@@ -227,7 +185,6 @@ export const ResultArray$inboundSchema: z.ZodType<
   utmContent: z.nullable(z.string()).optional(),
   utmTerm: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type ResultArray$Outbound = {
   customerId: string;
@@ -258,23 +215,9 @@ export const ResultArray$outboundSchema: z.ZodType<
   utmTerm: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResultArray$ {
-  /** @deprecated use `ResultArray$inboundSchema` instead. */
-  export const inboundSchema = ResultArray$inboundSchema;
-  /** @deprecated use `ResultArray$outboundSchema` instead. */
-  export const outboundSchema = ResultArray$outboundSchema;
-  /** @deprecated use `ResultArray$Outbound` instead. */
-  export type Outbound = ResultArray$Outbound;
-}
-
 export function resultArrayToJSON(resultArray: ResultArray): string {
   return JSON.stringify(ResultArray$outboundSchema.parse(resultArray));
 }
-
 export function resultArrayFromJSON(
   jsonString: string,
 ): SafeParseResult<ResultArray, SDKValidationError> {
@@ -290,7 +233,6 @@ export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
   .object({
     resultArray: z.array(z.lazy(() => ResultArray$inboundSchema)),
   });
-
 /** @internal */
 export type Data$Outbound = {
   resultArray: Array<ResultArray$Outbound>;
@@ -302,23 +244,9 @@ export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
     resultArray: z.array(z.lazy(() => ResultArray$outboundSchema)),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
-}
-
 export function dataToJSON(data: Data): string {
   return JSON.stringify(Data$outboundSchema.parse(data));
 }
-
 export function dataFromJSON(
   jsonString: string,
 ): SafeParseResult<Data, SDKValidationError> {
@@ -337,7 +265,6 @@ export const ListAttributionsResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => Data$inboundSchema),
 });
-
 /** @internal */
 export type ListAttributionsResponseBody$Outbound = {
   data: Data$Outbound;
@@ -352,19 +279,6 @@ export const ListAttributionsResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => Data$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListAttributionsResponseBody$ {
-  /** @deprecated use `ListAttributionsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListAttributionsResponseBody$inboundSchema;
-  /** @deprecated use `ListAttributionsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListAttributionsResponseBody$outboundSchema;
-  /** @deprecated use `ListAttributionsResponseBody$Outbound` instead. */
-  export type Outbound = ListAttributionsResponseBody$Outbound;
-}
-
 export function listAttributionsResponseBodyToJSON(
   listAttributionsResponseBody: ListAttributionsResponseBody,
 ): string {
@@ -374,7 +288,6 @@ export function listAttributionsResponseBodyToJSON(
     ),
   );
 }
-
 export function listAttributionsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListAttributionsResponseBody, SDKValidationError> {

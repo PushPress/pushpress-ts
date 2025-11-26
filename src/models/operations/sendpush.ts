@@ -84,7 +84,6 @@ export const SendPushGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type SendPushGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -103,25 +102,11 @@ export const SendPushGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendPushGlobals$ {
-  /** @deprecated use `SendPushGlobals$inboundSchema` instead. */
-  export const inboundSchema = SendPushGlobals$inboundSchema;
-  /** @deprecated use `SendPushGlobals$outboundSchema` instead. */
-  export const outboundSchema = SendPushGlobals$outboundSchema;
-  /** @deprecated use `SendPushGlobals$Outbound` instead. */
-  export type Outbound = SendPushGlobals$Outbound;
-}
-
 export function sendPushGlobalsToJSON(
   sendPushGlobals: SendPushGlobals,
 ): string {
   return JSON.stringify(SendPushGlobals$outboundSchema.parse(sendPushGlobals));
 }
-
 export function sendPushGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<SendPushGlobals, SDKValidationError> {
@@ -143,7 +128,6 @@ export const SendPushRequestBody$inboundSchema: z.ZodType<
   type: z.string().optional(),
   data: z.any().optional(),
 });
-
 /** @internal */
 export type SendPushRequestBody$Outbound = {
   customers: Array<string>;
@@ -164,19 +148,6 @@ export const SendPushRequestBody$outboundSchema: z.ZodType<
   data: z.any().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendPushRequestBody$ {
-  /** @deprecated use `SendPushRequestBody$inboundSchema` instead. */
-  export const inboundSchema = SendPushRequestBody$inboundSchema;
-  /** @deprecated use `SendPushRequestBody$outboundSchema` instead. */
-  export const outboundSchema = SendPushRequestBody$outboundSchema;
-  /** @deprecated use `SendPushRequestBody$Outbound` instead. */
-  export type Outbound = SendPushRequestBody$Outbound;
-}
-
 export function sendPushRequestBodyToJSON(
   sendPushRequestBody: SendPushRequestBody,
 ): string {
@@ -184,7 +155,6 @@ export function sendPushRequestBodyToJSON(
     SendPushRequestBody$outboundSchema.parse(sendPushRequestBody),
   );
 }
-
 export function sendPushRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<SendPushRequestBody, SDKValidationError> {
@@ -209,7 +179,6 @@ export const SendPushRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type SendPushRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -231,25 +200,11 @@ export const SendPushRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendPushRequest$ {
-  /** @deprecated use `SendPushRequest$inboundSchema` instead. */
-  export const inboundSchema = SendPushRequest$inboundSchema;
-  /** @deprecated use `SendPushRequest$outboundSchema` instead. */
-  export const outboundSchema = SendPushRequest$outboundSchema;
-  /** @deprecated use `SendPushRequest$Outbound` instead. */
-  export type Outbound = SendPushRequest$Outbound;
-}
-
 export function sendPushRequestToJSON(
   sendPushRequest: SendPushRequest,
 ): string {
   return JSON.stringify(SendPushRequest$outboundSchema.parse(sendPushRequest));
 }
-
 export function sendPushRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<SendPushRequest, SDKValidationError> {
@@ -270,7 +225,6 @@ export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
       "external_id": "externalId",
     });
   });
-
 /** @internal */
 export type Four$Outbound = {
   id?: string | null | undefined;
@@ -288,23 +242,9 @@ export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
 export function fourToJSON(four: Four): string {
   return JSON.stringify(Four$outboundSchema.parse(four));
 }
-
 export function fourFromJSON(
   jsonString: string,
 ): SafeParseResult<Four, SDKValidationError> {
@@ -320,7 +260,6 @@ export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
   .object({
     errors: z.array(z.string()),
   });
-
 /** @internal */
 export type Three$Outbound = {
   errors: Array<string>;
@@ -335,23 +274,9 @@ export const Three$outboundSchema: z.ZodType<
   errors: z.array(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-  /** @deprecated use `Three$Outbound` instead. */
-  export type Outbound = Three$Outbound;
-}
-
 export function threeToJSON(three: Three): string {
   return JSON.stringify(Three$outboundSchema.parse(three));
 }
-
 export function threeFromJSON(
   jsonString: string,
 ): SafeParseResult<Three, SDKValidationError> {
@@ -374,7 +299,6 @@ export const InvalidAliases$inboundSchema: z.ZodType<
     "external_id": "externalId",
   });
 });
-
 /** @internal */
 export type InvalidAliases$Outbound = {
   external_id: Array<string>;
@@ -393,23 +317,9 @@ export const InvalidAliases$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InvalidAliases$ {
-  /** @deprecated use `InvalidAliases$inboundSchema` instead. */
-  export const inboundSchema = InvalidAliases$inboundSchema;
-  /** @deprecated use `InvalidAliases$outboundSchema` instead. */
-  export const outboundSchema = InvalidAliases$outboundSchema;
-  /** @deprecated use `InvalidAliases$Outbound` instead. */
-  export type Outbound = InvalidAliases$Outbound;
-}
-
 export function invalidAliasesToJSON(invalidAliases: InvalidAliases): string {
   return JSON.stringify(InvalidAliases$outboundSchema.parse(invalidAliases));
 }
-
 export function invalidAliasesFromJSON(
   jsonString: string,
 ): SafeParseResult<InvalidAliases, SDKValidationError> {
@@ -429,7 +339,6 @@ export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
       "invalid_aliases": "invalidAliases",
     });
   });
-
 /** @internal */
 export type Errors$Outbound = {
   invalid_aliases: InvalidAliases$Outbound;
@@ -448,23 +357,9 @@ export const Errors$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Errors$ {
-  /** @deprecated use `Errors$inboundSchema` instead. */
-  export const inboundSchema = Errors$inboundSchema;
-  /** @deprecated use `Errors$outboundSchema` instead. */
-  export const outboundSchema = Errors$outboundSchema;
-  /** @deprecated use `Errors$Outbound` instead. */
-  export type Outbound = Errors$Outbound;
-}
-
 export function errorsToJSON(errors: Errors): string {
   return JSON.stringify(Errors$outboundSchema.parse(errors));
 }
-
 export function errorsFromJSON(
   jsonString: string,
 ): SafeParseResult<Errors, SDKValidationError> {
@@ -489,7 +384,6 @@ export const ResponseBody2$inboundSchema: z.ZodType<
     "external_id": "externalId",
   });
 });
-
 /** @internal */
 export type ResponseBody2$Outbound = {
   id?: string | null | undefined;
@@ -512,23 +406,9 @@ export const ResponseBody2$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBody2$ {
-  /** @deprecated use `ResponseBody2$inboundSchema` instead. */
-  export const inboundSchema = ResponseBody2$inboundSchema;
-  /** @deprecated use `ResponseBody2$outboundSchema` instead. */
-  export const outboundSchema = ResponseBody2$outboundSchema;
-  /** @deprecated use `ResponseBody2$Outbound` instead. */
-  export type Outbound = ResponseBody2$Outbound;
-}
-
 export function responseBody2ToJSON(responseBody2: ResponseBody2): string {
   return JSON.stringify(ResponseBody2$outboundSchema.parse(responseBody2));
 }
-
 export function responseBody2FromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseBody2, SDKValidationError> {
@@ -548,7 +428,6 @@ export const ResponseBody1$inboundSchema: z.ZodType<
   id: z.string(),
   errors: z.array(z.string()),
 });
-
 /** @internal */
 export type ResponseBody1$Outbound = {
   id: string;
@@ -565,23 +444,9 @@ export const ResponseBody1$outboundSchema: z.ZodType<
   errors: z.array(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBody1$ {
-  /** @deprecated use `ResponseBody1$inboundSchema` instead. */
-  export const inboundSchema = ResponseBody1$inboundSchema;
-  /** @deprecated use `ResponseBody1$outboundSchema` instead. */
-  export const outboundSchema = ResponseBody1$outboundSchema;
-  /** @deprecated use `ResponseBody1$Outbound` instead. */
-  export type Outbound = ResponseBody1$Outbound;
-}
-
 export function responseBody1ToJSON(responseBody1: ResponseBody1): string {
   return JSON.stringify(ResponseBody1$outboundSchema.parse(responseBody1));
 }
-
 export function responseBody1FromJSON(
   jsonString: string,
 ): SafeParseResult<ResponseBody1, SDKValidationError> {
@@ -603,7 +468,6 @@ export const SendPushResponseBody$inboundSchema: z.ZodType<
   z.lazy(() => Three$inboundSchema),
   z.lazy(() => Four$inboundSchema),
 ]);
-
 /** @internal */
 export type SendPushResponseBody$Outbound =
   | ResponseBody1$Outbound
@@ -623,19 +487,6 @@ export const SendPushResponseBody$outboundSchema: z.ZodType<
   z.lazy(() => Four$outboundSchema),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendPushResponseBody$ {
-  /** @deprecated use `SendPushResponseBody$inboundSchema` instead. */
-  export const inboundSchema = SendPushResponseBody$inboundSchema;
-  /** @deprecated use `SendPushResponseBody$outboundSchema` instead. */
-  export const outboundSchema = SendPushResponseBody$outboundSchema;
-  /** @deprecated use `SendPushResponseBody$Outbound` instead. */
-  export type Outbound = SendPushResponseBody$Outbound;
-}
-
 export function sendPushResponseBodyToJSON(
   sendPushResponseBody: SendPushResponseBody,
 ): string {
@@ -643,7 +494,6 @@ export function sendPushResponseBodyToJSON(
     SendPushResponseBody$outboundSchema.parse(sendPushResponseBody),
   );
 }
-
 export function sendPushResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<SendPushResponseBody, SDKValidationError> {

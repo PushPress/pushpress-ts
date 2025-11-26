@@ -92,7 +92,6 @@ export const ListWebhooksGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListWebhooksGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -111,19 +110,6 @@ export const ListWebhooksGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhooksGlobals$ {
-  /** @deprecated use `ListWebhooksGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListWebhooksGlobals$inboundSchema;
-  /** @deprecated use `ListWebhooksGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListWebhooksGlobals$outboundSchema;
-  /** @deprecated use `ListWebhooksGlobals$Outbound` instead. */
-  export type Outbound = ListWebhooksGlobals$Outbound;
-}
-
 export function listWebhooksGlobalsToJSON(
   listWebhooksGlobals: ListWebhooksGlobals,
 ): string {
@@ -131,7 +117,6 @@ export function listWebhooksGlobalsToJSON(
     ListWebhooksGlobals$outboundSchema.parse(listWebhooksGlobals),
   );
 }
-
 export function listWebhooksGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListWebhooksGlobals, SDKValidationError> {
@@ -154,7 +139,6 @@ export const ListWebhooksRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListWebhooksRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -173,19 +157,6 @@ export const ListWebhooksRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhooksRequest$ {
-  /** @deprecated use `ListWebhooksRequest$inboundSchema` instead. */
-  export const inboundSchema = ListWebhooksRequest$inboundSchema;
-  /** @deprecated use `ListWebhooksRequest$outboundSchema` instead. */
-  export const outboundSchema = ListWebhooksRequest$outboundSchema;
-  /** @deprecated use `ListWebhooksRequest$Outbound` instead. */
-  export type Outbound = ListWebhooksRequest$Outbound;
-}
-
 export function listWebhooksRequestToJSON(
   listWebhooksRequest: ListWebhooksRequest,
 ): string {
@@ -193,7 +164,6 @@ export function listWebhooksRequestToJSON(
     ListWebhooksRequest$outboundSchema.parse(listWebhooksRequest),
   );
 }
-
 export function listWebhooksRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListWebhooksRequest, SDKValidationError> {
@@ -208,22 +178,10 @@ export function listWebhooksRequestFromJSON(
 export const ListWebhooksEventTypes$inboundSchema: z.ZodNativeEnum<
   typeof ListWebhooksEventTypes
 > = z.nativeEnum(ListWebhooksEventTypes);
-
 /** @internal */
 export const ListWebhooksEventTypes$outboundSchema: z.ZodNativeEnum<
   typeof ListWebhooksEventTypes
 > = ListWebhooksEventTypes$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhooksEventTypes$ {
-  /** @deprecated use `ListWebhooksEventTypes$inboundSchema` instead. */
-  export const inboundSchema = ListWebhooksEventTypes$inboundSchema;
-  /** @deprecated use `ListWebhooksEventTypes$outboundSchema` instead. */
-  export const outboundSchema = ListWebhooksEventTypes$outboundSchema;
-}
 
 /** @internal */
 export const ListWebhooksData$inboundSchema: z.ZodType<
@@ -238,7 +196,6 @@ export const ListWebhooksData$inboundSchema: z.ZodType<
   active: z.boolean().default(true),
   signingSecret: z.string(),
 });
-
 /** @internal */
 export type ListWebhooksData$Outbound = {
   id: string;
@@ -263,19 +220,6 @@ export const ListWebhooksData$outboundSchema: z.ZodType<
   signingSecret: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhooksData$ {
-  /** @deprecated use `ListWebhooksData$inboundSchema` instead. */
-  export const inboundSchema = ListWebhooksData$inboundSchema;
-  /** @deprecated use `ListWebhooksData$outboundSchema` instead. */
-  export const outboundSchema = ListWebhooksData$outboundSchema;
-  /** @deprecated use `ListWebhooksData$Outbound` instead. */
-  export type Outbound = ListWebhooksData$Outbound;
-}
-
 export function listWebhooksDataToJSON(
   listWebhooksData: ListWebhooksData,
 ): string {
@@ -283,7 +227,6 @@ export function listWebhooksDataToJSON(
     ListWebhooksData$outboundSchema.parse(listWebhooksData),
   );
 }
-
 export function listWebhooksDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListWebhooksData, SDKValidationError> {
@@ -302,7 +245,6 @@ export const ListWebhooksResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.array(z.lazy(() => ListWebhooksData$inboundSchema)),
 });
-
 /** @internal */
 export type ListWebhooksResponseBody$Outbound = {
   data: Array<ListWebhooksData$Outbound>;
@@ -317,19 +259,6 @@ export const ListWebhooksResponseBody$outboundSchema: z.ZodType<
   data: z.array(z.lazy(() => ListWebhooksData$outboundSchema)),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListWebhooksResponseBody$ {
-  /** @deprecated use `ListWebhooksResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListWebhooksResponseBody$inboundSchema;
-  /** @deprecated use `ListWebhooksResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListWebhooksResponseBody$outboundSchema;
-  /** @deprecated use `ListWebhooksResponseBody$Outbound` instead. */
-  export type Outbound = ListWebhooksResponseBody$Outbound;
-}
-
 export function listWebhooksResponseBodyToJSON(
   listWebhooksResponseBody: ListWebhooksResponseBody,
 ): string {
@@ -337,7 +266,6 @@ export function listWebhooksResponseBodyToJSON(
     ListWebhooksResponseBody$outboundSchema.parse(listWebhooksResponseBody),
   );
 }
-
 export function listWebhooksResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListWebhooksResponseBody, SDKValidationError> {

@@ -57,7 +57,6 @@ export const GetAttributionGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetAttributionGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -76,19 +75,6 @@ export const GetAttributionGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAttributionGlobals$ {
-  /** @deprecated use `GetAttributionGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetAttributionGlobals$inboundSchema;
-  /** @deprecated use `GetAttributionGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetAttributionGlobals$outboundSchema;
-  /** @deprecated use `GetAttributionGlobals$Outbound` instead. */
-  export type Outbound = GetAttributionGlobals$Outbound;
-}
-
 export function getAttributionGlobalsToJSON(
   getAttributionGlobals: GetAttributionGlobals,
 ): string {
@@ -96,7 +82,6 @@ export function getAttributionGlobalsToJSON(
     GetAttributionGlobals$outboundSchema.parse(getAttributionGlobals),
   );
 }
-
 export function getAttributionGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAttributionGlobals, SDKValidationError> {
@@ -120,7 +105,6 @@ export const GetAttributionRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetAttributionRequest$Outbound = {
   uuid: string;
@@ -141,19 +125,6 @@ export const GetAttributionRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAttributionRequest$ {
-  /** @deprecated use `GetAttributionRequest$inboundSchema` instead. */
-  export const inboundSchema = GetAttributionRequest$inboundSchema;
-  /** @deprecated use `GetAttributionRequest$outboundSchema` instead. */
-  export const outboundSchema = GetAttributionRequest$outboundSchema;
-  /** @deprecated use `GetAttributionRequest$Outbound` instead. */
-  export type Outbound = GetAttributionRequest$Outbound;
-}
-
 export function getAttributionRequestToJSON(
   getAttributionRequest: GetAttributionRequest,
 ): string {
@@ -161,7 +132,6 @@ export function getAttributionRequestToJSON(
     GetAttributionRequest$outboundSchema.parse(getAttributionRequest),
   );
 }
-
 export function getAttributionRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAttributionRequest, SDKValidationError> {
@@ -176,22 +146,10 @@ export function getAttributionRequestFromJSON(
 export const GetAttributionEvent$inboundSchema: z.ZodNativeEnum<
   typeof GetAttributionEvent
 > = z.nativeEnum(GetAttributionEvent);
-
 /** @internal */
 export const GetAttributionEvent$outboundSchema: z.ZodNativeEnum<
   typeof GetAttributionEvent
 > = GetAttributionEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAttributionEvent$ {
-  /** @deprecated use `GetAttributionEvent$inboundSchema` instead. */
-  export const inboundSchema = GetAttributionEvent$inboundSchema;
-  /** @deprecated use `GetAttributionEvent$outboundSchema` instead. */
-  export const outboundSchema = GetAttributionEvent$outboundSchema;
-}
 
 /** @internal */
 export const GetAttributionResponseBody$inboundSchema: z.ZodType<
@@ -209,7 +167,6 @@ export const GetAttributionResponseBody$inboundSchema: z.ZodType<
   utmContent: z.nullable(z.string()).optional(),
   utmTerm: z.nullable(z.string()).optional(),
 });
-
 /** @internal */
 export type GetAttributionResponseBody$Outbound = {
   customerId: string;
@@ -240,19 +197,6 @@ export const GetAttributionResponseBody$outboundSchema: z.ZodType<
   utmTerm: z.nullable(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAttributionResponseBody$ {
-  /** @deprecated use `GetAttributionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetAttributionResponseBody$inboundSchema;
-  /** @deprecated use `GetAttributionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetAttributionResponseBody$outboundSchema;
-  /** @deprecated use `GetAttributionResponseBody$Outbound` instead. */
-  export type Outbound = GetAttributionResponseBody$Outbound;
-}
-
 export function getAttributionResponseBodyToJSON(
   getAttributionResponseBody: GetAttributionResponseBody,
 ): string {
@@ -260,7 +204,6 @@ export function getAttributionResponseBodyToJSON(
     GetAttributionResponseBody$outboundSchema.parse(getAttributionResponseBody),
   );
 }
-
 export function getAttributionResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAttributionResponseBody, SDKValidationError> {

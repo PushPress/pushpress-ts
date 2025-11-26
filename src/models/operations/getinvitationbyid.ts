@@ -35,7 +35,6 @@ export const GetInvitationByIdGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetInvitationByIdGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -54,19 +53,6 @@ export const GetInvitationByIdGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetInvitationByIdGlobals$ {
-  /** @deprecated use `GetInvitationByIdGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetInvitationByIdGlobals$inboundSchema;
-  /** @deprecated use `GetInvitationByIdGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetInvitationByIdGlobals$outboundSchema;
-  /** @deprecated use `GetInvitationByIdGlobals$Outbound` instead. */
-  export type Outbound = GetInvitationByIdGlobals$Outbound;
-}
-
 export function getInvitationByIdGlobalsToJSON(
   getInvitationByIdGlobals: GetInvitationByIdGlobals,
 ): string {
@@ -74,7 +60,6 @@ export function getInvitationByIdGlobalsToJSON(
     GetInvitationByIdGlobals$outboundSchema.parse(getInvitationByIdGlobals),
   );
 }
-
 export function getInvitationByIdGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetInvitationByIdGlobals, SDKValidationError> {
@@ -98,7 +83,6 @@ export const GetInvitationByIdRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetInvitationByIdRequest$Outbound = {
   id: string;
@@ -119,19 +103,6 @@ export const GetInvitationByIdRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetInvitationByIdRequest$ {
-  /** @deprecated use `GetInvitationByIdRequest$inboundSchema` instead. */
-  export const inboundSchema = GetInvitationByIdRequest$inboundSchema;
-  /** @deprecated use `GetInvitationByIdRequest$outboundSchema` instead. */
-  export const outboundSchema = GetInvitationByIdRequest$outboundSchema;
-  /** @deprecated use `GetInvitationByIdRequest$Outbound` instead. */
-  export type Outbound = GetInvitationByIdRequest$Outbound;
-}
-
 export function getInvitationByIdRequestToJSON(
   getInvitationByIdRequest: GetInvitationByIdRequest,
 ): string {
@@ -139,7 +110,6 @@ export function getInvitationByIdRequestToJSON(
     GetInvitationByIdRequest$outboundSchema.parse(getInvitationByIdRequest),
   );
 }
-
 export function getInvitationByIdRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetInvitationByIdRequest, SDKValidationError> {

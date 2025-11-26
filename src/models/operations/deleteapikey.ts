@@ -36,7 +36,6 @@ export const DeleteApiKeyGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type DeleteApiKeyGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -55,19 +54,6 @@ export const DeleteApiKeyGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteApiKeyGlobals$ {
-  /** @deprecated use `DeleteApiKeyGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeleteApiKeyGlobals$inboundSchema;
-  /** @deprecated use `DeleteApiKeyGlobals$outboundSchema` instead. */
-  export const outboundSchema = DeleteApiKeyGlobals$outboundSchema;
-  /** @deprecated use `DeleteApiKeyGlobals$Outbound` instead. */
-  export type Outbound = DeleteApiKeyGlobals$Outbound;
-}
-
 export function deleteApiKeyGlobalsToJSON(
   deleteApiKeyGlobals: DeleteApiKeyGlobals,
 ): string {
@@ -75,7 +61,6 @@ export function deleteApiKeyGlobalsToJSON(
     DeleteApiKeyGlobals$outboundSchema.parse(deleteApiKeyGlobals),
   );
 }
-
 export function deleteApiKeyGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteApiKeyGlobals, SDKValidationError> {
@@ -94,7 +79,6 @@ export const DeleteApiKeySecurity$inboundSchema: z.ZodType<
 > = z.object({
   bearer: z.string(),
 });
-
 /** @internal */
 export type DeleteApiKeySecurity$Outbound = {
   bearer: string;
@@ -109,19 +93,6 @@ export const DeleteApiKeySecurity$outboundSchema: z.ZodType<
   bearer: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteApiKeySecurity$ {
-  /** @deprecated use `DeleteApiKeySecurity$inboundSchema` instead. */
-  export const inboundSchema = DeleteApiKeySecurity$inboundSchema;
-  /** @deprecated use `DeleteApiKeySecurity$outboundSchema` instead. */
-  export const outboundSchema = DeleteApiKeySecurity$outboundSchema;
-  /** @deprecated use `DeleteApiKeySecurity$Outbound` instead. */
-  export type Outbound = DeleteApiKeySecurity$Outbound;
-}
-
 export function deleteApiKeySecurityToJSON(
   deleteApiKeySecurity: DeleteApiKeySecurity,
 ): string {
@@ -129,7 +100,6 @@ export function deleteApiKeySecurityToJSON(
     DeleteApiKeySecurity$outboundSchema.parse(deleteApiKeySecurity),
   );
 }
-
 export function deleteApiKeySecurityFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteApiKeySecurity, SDKValidationError> {
@@ -153,7 +123,6 @@ export const DeleteApiKeyRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type DeleteApiKeyRequest$Outbound = {
   id: string;
@@ -174,19 +143,6 @@ export const DeleteApiKeyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteApiKeyRequest$ {
-  /** @deprecated use `DeleteApiKeyRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteApiKeyRequest$inboundSchema;
-  /** @deprecated use `DeleteApiKeyRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteApiKeyRequest$outboundSchema;
-  /** @deprecated use `DeleteApiKeyRequest$Outbound` instead. */
-  export type Outbound = DeleteApiKeyRequest$Outbound;
-}
-
 export function deleteApiKeyRequestToJSON(
   deleteApiKeyRequest: DeleteApiKeyRequest,
 ): string {
@@ -194,7 +150,6 @@ export function deleteApiKeyRequestToJSON(
     DeleteApiKeyRequest$outboundSchema.parse(deleteApiKeyRequest),
   );
 }
-
 export function deleteApiKeyRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteApiKeyRequest, SDKValidationError> {

@@ -56,7 +56,6 @@ export const ListInvitationsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListInvitationsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -75,19 +74,6 @@ export const ListInvitationsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListInvitationsGlobals$ {
-  /** @deprecated use `ListInvitationsGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListInvitationsGlobals$inboundSchema;
-  /** @deprecated use `ListInvitationsGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListInvitationsGlobals$outboundSchema;
-  /** @deprecated use `ListInvitationsGlobals$Outbound` instead. */
-  export type Outbound = ListInvitationsGlobals$Outbound;
-}
-
 export function listInvitationsGlobalsToJSON(
   listInvitationsGlobals: ListInvitationsGlobals,
 ): string {
@@ -95,7 +81,6 @@ export function listInvitationsGlobalsToJSON(
     ListInvitationsGlobals$outboundSchema.parse(listInvitationsGlobals),
   );
 }
-
 export function listInvitationsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListInvitationsGlobals, SDKValidationError> {
@@ -121,7 +106,6 @@ export const ListInvitationsRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListInvitationsRequest$Outbound = {
   page: number;
@@ -146,19 +130,6 @@ export const ListInvitationsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListInvitationsRequest$ {
-  /** @deprecated use `ListInvitationsRequest$inboundSchema` instead. */
-  export const inboundSchema = ListInvitationsRequest$inboundSchema;
-  /** @deprecated use `ListInvitationsRequest$outboundSchema` instead. */
-  export const outboundSchema = ListInvitationsRequest$outboundSchema;
-  /** @deprecated use `ListInvitationsRequest$Outbound` instead. */
-  export type Outbound = ListInvitationsRequest$Outbound;
-}
-
 export function listInvitationsRequestToJSON(
   listInvitationsRequest: ListInvitationsRequest,
 ): string {
@@ -166,7 +137,6 @@ export function listInvitationsRequestToJSON(
     ListInvitationsRequest$outboundSchema.parse(listInvitationsRequest),
   );
 }
-
 export function listInvitationsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListInvitationsRequest, SDKValidationError> {
@@ -185,7 +155,6 @@ export const ListInvitationsData$inboundSchema: z.ZodType<
 > = z.object({
   resultArray: z.array(components.Invitation$inboundSchema),
 });
-
 /** @internal */
 export type ListInvitationsData$Outbound = {
   resultArray: Array<components.Invitation$Outbound>;
@@ -200,19 +169,6 @@ export const ListInvitationsData$outboundSchema: z.ZodType<
   resultArray: z.array(components.Invitation$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListInvitationsData$ {
-  /** @deprecated use `ListInvitationsData$inboundSchema` instead. */
-  export const inboundSchema = ListInvitationsData$inboundSchema;
-  /** @deprecated use `ListInvitationsData$outboundSchema` instead. */
-  export const outboundSchema = ListInvitationsData$outboundSchema;
-  /** @deprecated use `ListInvitationsData$Outbound` instead. */
-  export type Outbound = ListInvitationsData$Outbound;
-}
-
 export function listInvitationsDataToJSON(
   listInvitationsData: ListInvitationsData,
 ): string {
@@ -220,7 +176,6 @@ export function listInvitationsDataToJSON(
     ListInvitationsData$outboundSchema.parse(listInvitationsData),
   );
 }
-
 export function listInvitationsDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListInvitationsData, SDKValidationError> {
@@ -239,7 +194,6 @@ export const ListInvitationsResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => ListInvitationsData$inboundSchema),
 });
-
 /** @internal */
 export type ListInvitationsResponseBody$Outbound = {
   data: ListInvitationsData$Outbound;
@@ -254,19 +208,6 @@ export const ListInvitationsResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => ListInvitationsData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListInvitationsResponseBody$ {
-  /** @deprecated use `ListInvitationsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListInvitationsResponseBody$inboundSchema;
-  /** @deprecated use `ListInvitationsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListInvitationsResponseBody$outboundSchema;
-  /** @deprecated use `ListInvitationsResponseBody$Outbound` instead. */
-  export type Outbound = ListInvitationsResponseBody$Outbound;
-}
-
 export function listInvitationsResponseBodyToJSON(
   listInvitationsResponseBody: ListInvitationsResponseBody,
 ): string {
@@ -276,7 +217,6 @@ export function listInvitationsResponseBodyToJSON(
     ),
   );
 }
-
 export function listInvitationsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListInvitationsResponseBody, SDKValidationError> {
@@ -299,7 +239,6 @@ export const ListInvitationsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
 /** @internal */
 export type ListInvitationsResponse$Outbound = {
   Result: ListInvitationsResponseBody$Outbound;
@@ -318,19 +257,6 @@ export const ListInvitationsResponse$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListInvitationsResponse$ {
-  /** @deprecated use `ListInvitationsResponse$inboundSchema` instead. */
-  export const inboundSchema = ListInvitationsResponse$inboundSchema;
-  /** @deprecated use `ListInvitationsResponse$outboundSchema` instead. */
-  export const outboundSchema = ListInvitationsResponse$outboundSchema;
-  /** @deprecated use `ListInvitationsResponse$Outbound` instead. */
-  export type Outbound = ListInvitationsResponse$Outbound;
-}
-
 export function listInvitationsResponseToJSON(
   listInvitationsResponse: ListInvitationsResponse,
 ): string {
@@ -338,7 +264,6 @@ export function listInvitationsResponseToJSON(
     ListInvitationsResponse$outboundSchema.parse(listInvitationsResponse),
   );
 }
-
 export function listInvitationsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ListInvitationsResponse, SDKValidationError> {

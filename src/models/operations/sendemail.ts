@@ -78,7 +78,6 @@ export const SendEmailGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type SendEmailGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -97,19 +96,6 @@ export const SendEmailGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEmailGlobals$ {
-  /** @deprecated use `SendEmailGlobals$inboundSchema` instead. */
-  export const inboundSchema = SendEmailGlobals$inboundSchema;
-  /** @deprecated use `SendEmailGlobals$outboundSchema` instead. */
-  export const outboundSchema = SendEmailGlobals$outboundSchema;
-  /** @deprecated use `SendEmailGlobals$Outbound` instead. */
-  export type Outbound = SendEmailGlobals$Outbound;
-}
-
 export function sendEmailGlobalsToJSON(
   sendEmailGlobals: SendEmailGlobals,
 ): string {
@@ -117,7 +103,6 @@ export function sendEmailGlobalsToJSON(
     SendEmailGlobals$outboundSchema.parse(sendEmailGlobals),
   );
 }
-
 export function sendEmailGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEmailGlobals, SDKValidationError> {
@@ -131,7 +116,6 @@ export function sendEmailGlobalsFromJSON(
 /** @internal */
 export const ReplyTo$inboundSchema: z.ZodType<ReplyTo, z.ZodTypeDef, unknown> =
   z.union([z.string(), z.array(z.string())]);
-
 /** @internal */
 export type ReplyTo$Outbound = string | Array<string>;
 
@@ -142,23 +126,9 @@ export const ReplyTo$outboundSchema: z.ZodType<
   ReplyTo
 > = z.union([z.string(), z.array(z.string())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReplyTo$ {
-  /** @deprecated use `ReplyTo$inboundSchema` instead. */
-  export const inboundSchema = ReplyTo$inboundSchema;
-  /** @deprecated use `ReplyTo$outboundSchema` instead. */
-  export const outboundSchema = ReplyTo$outboundSchema;
-  /** @deprecated use `ReplyTo$Outbound` instead. */
-  export type Outbound = ReplyTo$Outbound;
-}
-
 export function replyToToJSON(replyTo: ReplyTo): string {
   return JSON.stringify(ReplyTo$outboundSchema.parse(replyTo));
 }
-
 export function replyToFromJSON(
   jsonString: string,
 ): SafeParseResult<ReplyTo, SDKValidationError> {
@@ -183,7 +153,6 @@ export const SendEmailRequestBody$inboundSchema: z.ZodType<
   replyTo: z.union([z.string(), z.array(z.string())]).optional(),
   type: z.string().optional(),
 });
-
 /** @internal */
 export type SendEmailRequestBody$Outbound = {
   customer: string;
@@ -210,19 +179,6 @@ export const SendEmailRequestBody$outboundSchema: z.ZodType<
   type: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEmailRequestBody$ {
-  /** @deprecated use `SendEmailRequestBody$inboundSchema` instead. */
-  export const inboundSchema = SendEmailRequestBody$inboundSchema;
-  /** @deprecated use `SendEmailRequestBody$outboundSchema` instead. */
-  export const outboundSchema = SendEmailRequestBody$outboundSchema;
-  /** @deprecated use `SendEmailRequestBody$Outbound` instead. */
-  export type Outbound = SendEmailRequestBody$Outbound;
-}
-
 export function sendEmailRequestBodyToJSON(
   sendEmailRequestBody: SendEmailRequestBody,
 ): string {
@@ -230,7 +186,6 @@ export function sendEmailRequestBodyToJSON(
     SendEmailRequestBody$outboundSchema.parse(sendEmailRequestBody),
   );
 }
-
 export function sendEmailRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEmailRequestBody, SDKValidationError> {
@@ -255,7 +210,6 @@ export const SendEmailRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type SendEmailRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -277,19 +231,6 @@ export const SendEmailRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEmailRequest$ {
-  /** @deprecated use `SendEmailRequest$inboundSchema` instead. */
-  export const inboundSchema = SendEmailRequest$inboundSchema;
-  /** @deprecated use `SendEmailRequest$outboundSchema` instead. */
-  export const outboundSchema = SendEmailRequest$outboundSchema;
-  /** @deprecated use `SendEmailRequest$Outbound` instead. */
-  export type Outbound = SendEmailRequest$Outbound;
-}
-
 export function sendEmailRequestToJSON(
   sendEmailRequest: SendEmailRequest,
 ): string {
@@ -297,7 +238,6 @@ export function sendEmailRequestToJSON(
     SendEmailRequest$outboundSchema.parse(sendEmailRequest),
   );
 }
-
 export function sendEmailRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEmailRequest, SDKValidationError> {
@@ -312,22 +252,10 @@ export function sendEmailRequestFromJSON(
 export const SendEmailStatus$inboundSchema: z.ZodNativeEnum<
   typeof SendEmailStatus
 > = z.nativeEnum(SendEmailStatus);
-
 /** @internal */
 export const SendEmailStatus$outboundSchema: z.ZodNativeEnum<
   typeof SendEmailStatus
 > = SendEmailStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEmailStatus$ {
-  /** @deprecated use `SendEmailStatus$inboundSchema` instead. */
-  export const inboundSchema = SendEmailStatus$inboundSchema;
-  /** @deprecated use `SendEmailStatus$outboundSchema` instead. */
-  export const outboundSchema = SendEmailStatus$outboundSchema;
-}
 
 /** @internal */
 export const SendEmailResponseBody$inboundSchema: z.ZodType<
@@ -337,7 +265,6 @@ export const SendEmailResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   status: SendEmailStatus$inboundSchema,
 });
-
 /** @internal */
 export type SendEmailResponseBody$Outbound = {
   status: string;
@@ -352,19 +279,6 @@ export const SendEmailResponseBody$outboundSchema: z.ZodType<
   status: SendEmailStatus$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEmailResponseBody$ {
-  /** @deprecated use `SendEmailResponseBody$inboundSchema` instead. */
-  export const inboundSchema = SendEmailResponseBody$inboundSchema;
-  /** @deprecated use `SendEmailResponseBody$outboundSchema` instead. */
-  export const outboundSchema = SendEmailResponseBody$outboundSchema;
-  /** @deprecated use `SendEmailResponseBody$Outbound` instead. */
-  export type Outbound = SendEmailResponseBody$Outbound;
-}
-
 export function sendEmailResponseBodyToJSON(
   sendEmailResponseBody: SendEmailResponseBody,
 ): string {
@@ -372,7 +286,6 @@ export function sendEmailResponseBodyToJSON(
     SendEmailResponseBody$outboundSchema.parse(sendEmailResponseBody),
   );
 }
-
 export function sendEmailResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEmailResponseBody, SDKValidationError> {

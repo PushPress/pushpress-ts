@@ -54,7 +54,7 @@ export const Unauthorized$inboundSchema: z.ZodType<
   })
     .catchall(z.any()),
   "additionalProperties",
-  true,
+  false,
 )
   .transform((v) => {
     return new Unauthorized(v, {
@@ -90,16 +90,3 @@ export const Unauthorized$outboundSchema: z.ZodType<
       };
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Unauthorized$ {
-  /** @deprecated use `Unauthorized$inboundSchema` instead. */
-  export const inboundSchema = Unauthorized$inboundSchema;
-  /** @deprecated use `Unauthorized$outboundSchema` instead. */
-  export const outboundSchema = Unauthorized$outboundSchema;
-  /** @deprecated use `Unauthorized$Outbound` instead. */
-  export type Outbound = Unauthorized$Outbound;
-}

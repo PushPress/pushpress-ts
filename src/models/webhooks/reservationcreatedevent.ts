@@ -35,22 +35,10 @@ export type ReservationCreatedEventRequestBody = {
 export const ReservationCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof ReservationCreatedEventEvent
 > = z.nativeEnum(ReservationCreatedEventEvent);
-
 /** @internal */
 export const ReservationCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof ReservationCreatedEventEvent
 > = ReservationCreatedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReservationCreatedEventEvent$ {
-  /** @deprecated use `ReservationCreatedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = ReservationCreatedEventEvent$inboundSchema;
-  /** @deprecated use `ReservationCreatedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = ReservationCreatedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const ReservationCreatedEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const ReservationCreatedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: ReservationCreatedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type ReservationCreatedEventRequestBody$Outbound = {
   data: components.Reservation$Outbound;
@@ -81,20 +68,6 @@ export const ReservationCreatedEventRequestBody$outboundSchema: z.ZodType<
   event: ReservationCreatedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReservationCreatedEventRequestBody$ {
-  /** @deprecated use `ReservationCreatedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = ReservationCreatedEventRequestBody$inboundSchema;
-  /** @deprecated use `ReservationCreatedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ReservationCreatedEventRequestBody$outboundSchema;
-  /** @deprecated use `ReservationCreatedEventRequestBody$Outbound` instead. */
-  export type Outbound = ReservationCreatedEventRequestBody$Outbound;
-}
-
 export function reservationCreatedEventRequestBodyToJSON(
   reservationCreatedEventRequestBody: ReservationCreatedEventRequestBody,
 ): string {
@@ -104,7 +77,6 @@ export function reservationCreatedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function reservationCreatedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ReservationCreatedEventRequestBody, SDKValidationError> {

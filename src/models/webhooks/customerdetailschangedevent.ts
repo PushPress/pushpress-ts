@@ -35,22 +35,10 @@ export type CustomerDetailsChangedEventRequestBody = {
 export const CustomerDetailsChangedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof CustomerDetailsChangedEventEvent
 > = z.nativeEnum(CustomerDetailsChangedEventEvent);
-
 /** @internal */
 export const CustomerDetailsChangedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof CustomerDetailsChangedEventEvent
 > = CustomerDetailsChangedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerDetailsChangedEventEvent$ {
-  /** @deprecated use `CustomerDetailsChangedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = CustomerDetailsChangedEventEvent$inboundSchema;
-  /** @deprecated use `CustomerDetailsChangedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = CustomerDetailsChangedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const CustomerDetailsChangedEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const CustomerDetailsChangedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: CustomerDetailsChangedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type CustomerDetailsChangedEventRequestBody$Outbound = {
   data: components.Customer$Outbound;
@@ -81,21 +68,6 @@ export const CustomerDetailsChangedEventRequestBody$outboundSchema: z.ZodType<
   event: CustomerDetailsChangedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerDetailsChangedEventRequestBody$ {
-  /** @deprecated use `CustomerDetailsChangedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CustomerDetailsChangedEventRequestBody$inboundSchema;
-  /** @deprecated use `CustomerDetailsChangedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CustomerDetailsChangedEventRequestBody$outboundSchema;
-  /** @deprecated use `CustomerDetailsChangedEventRequestBody$Outbound` instead. */
-  export type Outbound = CustomerDetailsChangedEventRequestBody$Outbound;
-}
-
 export function customerDetailsChangedEventRequestBodyToJSON(
   customerDetailsChangedEventRequestBody:
     CustomerDetailsChangedEventRequestBody,
@@ -106,7 +78,6 @@ export function customerDetailsChangedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function customerDetailsChangedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomerDetailsChangedEventRequestBody, SDKValidationError> {

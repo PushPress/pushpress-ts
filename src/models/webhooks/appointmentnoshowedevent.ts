@@ -35,22 +35,10 @@ export type AppointmentNoShowedEventRequestBody = {
 export const AppointmentNoShowedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof AppointmentNoShowedEventEvent
 > = z.nativeEnum(AppointmentNoShowedEventEvent);
-
 /** @internal */
 export const AppointmentNoShowedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof AppointmentNoShowedEventEvent
 > = AppointmentNoShowedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppointmentNoShowedEventEvent$ {
-  /** @deprecated use `AppointmentNoShowedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = AppointmentNoShowedEventEvent$inboundSchema;
-  /** @deprecated use `AppointmentNoShowedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = AppointmentNoShowedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const AppointmentNoShowedEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const AppointmentNoShowedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: AppointmentNoShowedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type AppointmentNoShowedEventRequestBody$Outbound = {
   data: components.Appointment$Outbound;
@@ -81,21 +68,6 @@ export const AppointmentNoShowedEventRequestBody$outboundSchema: z.ZodType<
   event: AppointmentNoShowedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppointmentNoShowedEventRequestBody$ {
-  /** @deprecated use `AppointmentNoShowedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    AppointmentNoShowedEventRequestBody$inboundSchema;
-  /** @deprecated use `AppointmentNoShowedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    AppointmentNoShowedEventRequestBody$outboundSchema;
-  /** @deprecated use `AppointmentNoShowedEventRequestBody$Outbound` instead. */
-  export type Outbound = AppointmentNoShowedEventRequestBody$Outbound;
-}
-
 export function appointmentNoShowedEventRequestBodyToJSON(
   appointmentNoShowedEventRequestBody: AppointmentNoShowedEventRequestBody,
 ): string {
@@ -105,7 +77,6 @@ export function appointmentNoShowedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function appointmentNoShowedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<AppointmentNoShowedEventRequestBody, SDKValidationError> {

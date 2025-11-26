@@ -32,7 +32,6 @@ export const GetAppointmentGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetAppointmentGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetAppointmentGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAppointmentGlobals$ {
-  /** @deprecated use `GetAppointmentGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetAppointmentGlobals$inboundSchema;
-  /** @deprecated use `GetAppointmentGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetAppointmentGlobals$outboundSchema;
-  /** @deprecated use `GetAppointmentGlobals$Outbound` instead. */
-  export type Outbound = GetAppointmentGlobals$Outbound;
-}
-
 export function getAppointmentGlobalsToJSON(
   getAppointmentGlobals: GetAppointmentGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function getAppointmentGlobalsToJSON(
     GetAppointmentGlobals$outboundSchema.parse(getAppointmentGlobals),
   );
 }
-
 export function getAppointmentGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAppointmentGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const GetAppointmentRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetAppointmentRequest$Outbound = {
   id: string;
@@ -116,19 +100,6 @@ export const GetAppointmentRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAppointmentRequest$ {
-  /** @deprecated use `GetAppointmentRequest$inboundSchema` instead. */
-  export const inboundSchema = GetAppointmentRequest$inboundSchema;
-  /** @deprecated use `GetAppointmentRequest$outboundSchema` instead. */
-  export const outboundSchema = GetAppointmentRequest$outboundSchema;
-  /** @deprecated use `GetAppointmentRequest$Outbound` instead. */
-  export type Outbound = GetAppointmentRequest$Outbound;
-}
-
 export function getAppointmentRequestToJSON(
   getAppointmentRequest: GetAppointmentRequest,
 ): string {
@@ -136,7 +107,6 @@ export function getAppointmentRequestToJSON(
     GetAppointmentRequest$outboundSchema.parse(getAppointmentRequest),
   );
 }
-
 export function getAppointmentRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetAppointmentRequest, SDKValidationError> {

@@ -40,7 +40,6 @@ export const RotateWebhookSigningSecretGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type RotateWebhookSigningSecretGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -59,20 +58,6 @@ export const RotateWebhookSigningSecretGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RotateWebhookSigningSecretGlobals$ {
-  /** @deprecated use `RotateWebhookSigningSecretGlobals$inboundSchema` instead. */
-  export const inboundSchema = RotateWebhookSigningSecretGlobals$inboundSchema;
-  /** @deprecated use `RotateWebhookSigningSecretGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    RotateWebhookSigningSecretGlobals$outboundSchema;
-  /** @deprecated use `RotateWebhookSigningSecretGlobals$Outbound` instead. */
-  export type Outbound = RotateWebhookSigningSecretGlobals$Outbound;
-}
-
 export function rotateWebhookSigningSecretGlobalsToJSON(
   rotateWebhookSigningSecretGlobals: RotateWebhookSigningSecretGlobals,
 ): string {
@@ -82,7 +67,6 @@ export function rotateWebhookSigningSecretGlobalsToJSON(
     ),
   );
 }
-
 export function rotateWebhookSigningSecretGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<RotateWebhookSigningSecretGlobals, SDKValidationError> {
@@ -106,7 +90,6 @@ export const RotateWebhookSigningSecretRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type RotateWebhookSigningSecretRequest$Outbound = {
   uuid: string;
@@ -127,20 +110,6 @@ export const RotateWebhookSigningSecretRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RotateWebhookSigningSecretRequest$ {
-  /** @deprecated use `RotateWebhookSigningSecretRequest$inboundSchema` instead. */
-  export const inboundSchema = RotateWebhookSigningSecretRequest$inboundSchema;
-  /** @deprecated use `RotateWebhookSigningSecretRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    RotateWebhookSigningSecretRequest$outboundSchema;
-  /** @deprecated use `RotateWebhookSigningSecretRequest$Outbound` instead. */
-  export type Outbound = RotateWebhookSigningSecretRequest$Outbound;
-}
-
 export function rotateWebhookSigningSecretRequestToJSON(
   rotateWebhookSigningSecretRequest: RotateWebhookSigningSecretRequest,
 ): string {
@@ -150,7 +119,6 @@ export function rotateWebhookSigningSecretRequestToJSON(
     ),
   );
 }
-
 export function rotateWebhookSigningSecretRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<RotateWebhookSigningSecretRequest, SDKValidationError> {
@@ -170,7 +138,6 @@ export const RotateWebhookSigningSecretResponseBody$inboundSchema: z.ZodType<
   webhookUuid: z.string(),
   signingSecret: z.string(),
 });
-
 /** @internal */
 export type RotateWebhookSigningSecretResponseBody$Outbound = {
   webhookUuid: string;
@@ -187,21 +154,6 @@ export const RotateWebhookSigningSecretResponseBody$outboundSchema: z.ZodType<
   signingSecret: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RotateWebhookSigningSecretResponseBody$ {
-  /** @deprecated use `RotateWebhookSigningSecretResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    RotateWebhookSigningSecretResponseBody$inboundSchema;
-  /** @deprecated use `RotateWebhookSigningSecretResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    RotateWebhookSigningSecretResponseBody$outboundSchema;
-  /** @deprecated use `RotateWebhookSigningSecretResponseBody$Outbound` instead. */
-  export type Outbound = RotateWebhookSigningSecretResponseBody$Outbound;
-}
-
 export function rotateWebhookSigningSecretResponseBodyToJSON(
   rotateWebhookSigningSecretResponseBody:
     RotateWebhookSigningSecretResponseBody,
@@ -212,7 +164,6 @@ export function rotateWebhookSigningSecretResponseBodyToJSON(
     ),
   );
 }
-
 export function rotateWebhookSigningSecretResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<RotateWebhookSigningSecretResponseBody, SDKValidationError> {

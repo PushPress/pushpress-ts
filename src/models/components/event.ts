@@ -87,21 +87,9 @@ export type Event = {
 /** @internal */
 export const Access$inboundSchema: z.ZodNativeEnum<typeof Access> = z
   .nativeEnum(Access);
-
 /** @internal */
 export const Access$outboundSchema: z.ZodNativeEnum<typeof Access> =
   Access$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Access$ {
-  /** @deprecated use `Access$inboundSchema` instead. */
-  export const inboundSchema = Access$inboundSchema;
-  /** @deprecated use `Access$outboundSchema` instead. */
-  export const outboundSchema = Access$outboundSchema;
-}
 
 /** @internal */
 export const EventLocation$inboundSchema: z.ZodType<
@@ -111,7 +99,6 @@ export const EventLocation$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string().default(""),
 });
-
 /** @internal */
 export type EventLocation$Outbound = {
   name: string;
@@ -126,23 +113,9 @@ export const EventLocation$outboundSchema: z.ZodType<
   name: z.string().default(""),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventLocation$ {
-  /** @deprecated use `EventLocation$inboundSchema` instead. */
-  export const inboundSchema = EventLocation$inboundSchema;
-  /** @deprecated use `EventLocation$outboundSchema` instead. */
-  export const outboundSchema = EventLocation$outboundSchema;
-  /** @deprecated use `EventLocation$Outbound` instead. */
-  export type Outbound = EventLocation$Outbound;
-}
-
 export function eventLocationToJSON(eventLocation: EventLocation): string {
   return JSON.stringify(EventLocation$outboundSchema.parse(eventLocation));
 }
-
 export function eventLocationFromJSON(
   jsonString: string,
 ): SafeParseResult<EventLocation, SDKValidationError> {
@@ -169,7 +142,6 @@ export const Event$inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
     end: z.number(),
     isAllDay: z.boolean(),
   });
-
 /** @internal */
 export type Event$Outbound = {
   id: string;
@@ -206,23 +178,9 @@ export const Event$outboundSchema: z.ZodType<
   isAllDay: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Event$ {
-  /** @deprecated use `Event$inboundSchema` instead. */
-  export const inboundSchema = Event$inboundSchema;
-  /** @deprecated use `Event$outboundSchema` instead. */
-  export const outboundSchema = Event$outboundSchema;
-  /** @deprecated use `Event$Outbound` instead. */
-  export type Outbound = Event$Outbound;
-}
-
 export function eventToJSON(event: Event): string {
   return JSON.stringify(Event$outboundSchema.parse(event));
 }
-
 export function eventFromJSON(
   jsonString: string,
 ): SafeParseResult<Event, SDKValidationError> {

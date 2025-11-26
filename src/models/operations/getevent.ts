@@ -48,7 +48,6 @@ export const GetEventGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetEventGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -67,25 +66,11 @@ export const GetEventGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEventGlobals$ {
-  /** @deprecated use `GetEventGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetEventGlobals$inboundSchema;
-  /** @deprecated use `GetEventGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetEventGlobals$outboundSchema;
-  /** @deprecated use `GetEventGlobals$Outbound` instead. */
-  export type Outbound = GetEventGlobals$Outbound;
-}
-
 export function getEventGlobalsToJSON(
   getEventGlobals: GetEventGlobals,
 ): string {
   return JSON.stringify(GetEventGlobals$outboundSchema.parse(getEventGlobals));
 }
-
 export function getEventGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetEventGlobals, SDKValidationError> {
@@ -99,40 +84,16 @@ export function getEventGlobalsFromJSON(
 /** @internal */
 export const QueryParam2$inboundSchema: z.ZodNativeEnum<typeof QueryParam2> = z
   .nativeEnum(QueryParam2);
-
 /** @internal */
 export const QueryParam2$outboundSchema: z.ZodNativeEnum<typeof QueryParam2> =
   QueryParam2$inboundSchema;
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParam2$ {
-  /** @deprecated use `QueryParam2$inboundSchema` instead. */
-  export const inboundSchema = QueryParam2$inboundSchema;
-  /** @deprecated use `QueryParam2$outboundSchema` instead. */
-  export const outboundSchema = QueryParam2$outboundSchema;
-}
-
 /** @internal */
 export const QueryParam1$inboundSchema: z.ZodNativeEnum<typeof QueryParam1> = z
   .nativeEnum(QueryParam1);
-
 /** @internal */
 export const QueryParam1$outboundSchema: z.ZodNativeEnum<typeof QueryParam1> =
   QueryParam1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParam1$ {
-  /** @deprecated use `QueryParam1$inboundSchema` instead. */
-  export const inboundSchema = QueryParam1$inboundSchema;
-  /** @deprecated use `QueryParam1$outboundSchema` instead. */
-  export const outboundSchema = QueryParam1$outboundSchema;
-}
 
 /** @internal */
 export const QueryParamExpand$inboundSchema: z.ZodType<
@@ -140,7 +101,6 @@ export const QueryParamExpand$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([QueryParam1$inboundSchema, z.array(QueryParam2$inboundSchema)]);
-
 /** @internal */
 export type QueryParamExpand$Outbound = string | Array<string>;
 
@@ -151,19 +111,6 @@ export const QueryParamExpand$outboundSchema: z.ZodType<
   QueryParamExpand
 > = z.union([QueryParam1$outboundSchema, z.array(QueryParam2$outboundSchema)]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParamExpand$ {
-  /** @deprecated use `QueryParamExpand$inboundSchema` instead. */
-  export const inboundSchema = QueryParamExpand$inboundSchema;
-  /** @deprecated use `QueryParamExpand$outboundSchema` instead. */
-  export const outboundSchema = QueryParamExpand$outboundSchema;
-  /** @deprecated use `QueryParamExpand$Outbound` instead. */
-  export type Outbound = QueryParamExpand$Outbound;
-}
-
 export function queryParamExpandToJSON(
   queryParamExpand: QueryParamExpand,
 ): string {
@@ -171,7 +118,6 @@ export function queryParamExpandToJSON(
     QueryParamExpand$outboundSchema.parse(queryParamExpand),
   );
 }
-
 export function queryParamExpandFromJSON(
   jsonString: string,
 ): SafeParseResult<QueryParamExpand, SDKValidationError> {
@@ -199,7 +145,6 @@ export const GetEventRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetEventRequest$Outbound = {
   expand?: string | Array<string> | undefined;
@@ -225,25 +170,11 @@ export const GetEventRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetEventRequest$ {
-  /** @deprecated use `GetEventRequest$inboundSchema` instead. */
-  export const inboundSchema = GetEventRequest$inboundSchema;
-  /** @deprecated use `GetEventRequest$outboundSchema` instead. */
-  export const outboundSchema = GetEventRequest$outboundSchema;
-  /** @deprecated use `GetEventRequest$Outbound` instead. */
-  export type Outbound = GetEventRequest$Outbound;
-}
-
 export function getEventRequestToJSON(
   getEventRequest: GetEventRequest,
 ): string {
   return JSON.stringify(GetEventRequest$outboundSchema.parse(getEventRequest));
 }
-
 export function getEventRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetEventRequest, SDKValidationError> {

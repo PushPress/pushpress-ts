@@ -32,7 +32,6 @@ export const GetPlanGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetPlanGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,23 +50,9 @@ export const GetPlanGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPlanGlobals$ {
-  /** @deprecated use `GetPlanGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetPlanGlobals$inboundSchema;
-  /** @deprecated use `GetPlanGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetPlanGlobals$outboundSchema;
-  /** @deprecated use `GetPlanGlobals$Outbound` instead. */
-  export type Outbound = GetPlanGlobals$Outbound;
-}
-
 export function getPlanGlobalsToJSON(getPlanGlobals: GetPlanGlobals): string {
   return JSON.stringify(GetPlanGlobals$outboundSchema.parse(getPlanGlobals));
 }
-
 export function getPlanGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetPlanGlobals, SDKValidationError> {
@@ -91,7 +76,6 @@ export const GetPlanRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetPlanRequest$Outbound = {
   id: string;
@@ -112,23 +96,9 @@ export const GetPlanRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetPlanRequest$ {
-  /** @deprecated use `GetPlanRequest$inboundSchema` instead. */
-  export const inboundSchema = GetPlanRequest$inboundSchema;
-  /** @deprecated use `GetPlanRequest$outboundSchema` instead. */
-  export const outboundSchema = GetPlanRequest$outboundSchema;
-  /** @deprecated use `GetPlanRequest$Outbound` instead. */
-  export type Outbound = GetPlanRequest$Outbound;
-}
-
 export function getPlanRequestToJSON(getPlanRequest: GetPlanRequest): string {
   return JSON.stringify(GetPlanRequest$outboundSchema.parse(getPlanRequest));
 }
-
 export function getPlanRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetPlanRequest, SDKValidationError> {

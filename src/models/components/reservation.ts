@@ -66,21 +66,9 @@ export type Reservation = {
 /** @internal */
 export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
   .nativeEnum(Status);
-
 /** @internal */
 export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
   Status$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
-}
 
 /** @internal */
 export const Reservation$inboundSchema: z.ZodType<
@@ -96,7 +84,6 @@ export const Reservation$inboundSchema: z.ZodType<
   status: Status$inboundSchema,
   checkin: Checkin$inboundSchema.optional(),
 });
-
 /** @internal */
 export type Reservation$Outbound = {
   id: string;
@@ -123,23 +110,9 @@ export const Reservation$outboundSchema: z.ZodType<
   checkin: Checkin$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Reservation$ {
-  /** @deprecated use `Reservation$inboundSchema` instead. */
-  export const inboundSchema = Reservation$inboundSchema;
-  /** @deprecated use `Reservation$outboundSchema` instead. */
-  export const outboundSchema = Reservation$outboundSchema;
-  /** @deprecated use `Reservation$Outbound` instead. */
-  export type Outbound = Reservation$Outbound;
-}
-
 export function reservationToJSON(reservation: Reservation): string {
   return JSON.stringify(Reservation$outboundSchema.parse(reservation));
 }
-
 export function reservationFromJSON(
   jsonString: string,
 ): SafeParseResult<Reservation, SDKValidationError> {

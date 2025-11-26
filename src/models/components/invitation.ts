@@ -26,7 +26,6 @@ export const Invitation$inboundSchema: z.ZodType<
   eventId: z.string(),
   customerId: z.string(),
 });
-
 /** @internal */
 export type Invitation$Outbound = {
   id: string;
@@ -45,23 +44,9 @@ export const Invitation$outboundSchema: z.ZodType<
   customerId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Invitation$ {
-  /** @deprecated use `Invitation$inboundSchema` instead. */
-  export const inboundSchema = Invitation$inboundSchema;
-  /** @deprecated use `Invitation$outboundSchema` instead. */
-  export const outboundSchema = Invitation$outboundSchema;
-  /** @deprecated use `Invitation$Outbound` instead. */
-  export type Outbound = Invitation$Outbound;
-}
-
 export function invitationToJSON(invitation: Invitation): string {
   return JSON.stringify(Invitation$outboundSchema.parse(invitation));
 }
-
 export function invitationFromJSON(
   jsonString: string,
 ): SafeParseResult<Invitation, SDKValidationError> {

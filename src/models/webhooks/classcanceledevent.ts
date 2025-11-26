@@ -35,22 +35,10 @@ export type ClassCanceledEventRequestBody = {
 export const ClassCanceledEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof ClassCanceledEventEvent
 > = z.nativeEnum(ClassCanceledEventEvent);
-
 /** @internal */
 export const ClassCanceledEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof ClassCanceledEventEvent
 > = ClassCanceledEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClassCanceledEventEvent$ {
-  /** @deprecated use `ClassCanceledEventEvent$inboundSchema` instead. */
-  export const inboundSchema = ClassCanceledEventEvent$inboundSchema;
-  /** @deprecated use `ClassCanceledEventEvent$outboundSchema` instead. */
-  export const outboundSchema = ClassCanceledEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const ClassCanceledEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const ClassCanceledEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: ClassCanceledEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type ClassCanceledEventRequestBody$Outbound = {
   data: components.Class$Outbound;
@@ -81,19 +68,6 @@ export const ClassCanceledEventRequestBody$outboundSchema: z.ZodType<
   event: ClassCanceledEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClassCanceledEventRequestBody$ {
-  /** @deprecated use `ClassCanceledEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = ClassCanceledEventRequestBody$inboundSchema;
-  /** @deprecated use `ClassCanceledEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = ClassCanceledEventRequestBody$outboundSchema;
-  /** @deprecated use `ClassCanceledEventRequestBody$Outbound` instead. */
-  export type Outbound = ClassCanceledEventRequestBody$Outbound;
-}
-
 export function classCanceledEventRequestBodyToJSON(
   classCanceledEventRequestBody: ClassCanceledEventRequestBody,
 ): string {
@@ -103,7 +77,6 @@ export function classCanceledEventRequestBodyToJSON(
     ),
   );
 }
-
 export function classCanceledEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ClassCanceledEventRequestBody, SDKValidationError> {

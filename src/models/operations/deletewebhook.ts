@@ -32,7 +32,6 @@ export const DeleteWebhookGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type DeleteWebhookGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const DeleteWebhookGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteWebhookGlobals$ {
-  /** @deprecated use `DeleteWebhookGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeleteWebhookGlobals$inboundSchema;
-  /** @deprecated use `DeleteWebhookGlobals$outboundSchema` instead. */
-  export const outboundSchema = DeleteWebhookGlobals$outboundSchema;
-  /** @deprecated use `DeleteWebhookGlobals$Outbound` instead. */
-  export type Outbound = DeleteWebhookGlobals$Outbound;
-}
-
 export function deleteWebhookGlobalsToJSON(
   deleteWebhookGlobals: DeleteWebhookGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function deleteWebhookGlobalsToJSON(
     DeleteWebhookGlobals$outboundSchema.parse(deleteWebhookGlobals),
   );
 }
-
 export function deleteWebhookGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteWebhookGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const DeleteWebhookRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type DeleteWebhookRequest$Outbound = {
   uuid: string;
@@ -116,19 +100,6 @@ export const DeleteWebhookRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteWebhookRequest$ {
-  /** @deprecated use `DeleteWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteWebhookRequest$inboundSchema;
-  /** @deprecated use `DeleteWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteWebhookRequest$outboundSchema;
-  /** @deprecated use `DeleteWebhookRequest$Outbound` instead. */
-  export type Outbound = DeleteWebhookRequest$Outbound;
-}
-
 export function deleteWebhookRequestToJSON(
   deleteWebhookRequest: DeleteWebhookRequest,
 ): string {
@@ -136,7 +107,6 @@ export function deleteWebhookRequestToJSON(
     DeleteWebhookRequest$outboundSchema.parse(deleteWebhookRequest),
   );
 }
-
 export function deleteWebhookRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteWebhookRequest, SDKValidationError> {

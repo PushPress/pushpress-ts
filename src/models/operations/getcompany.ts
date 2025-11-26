@@ -31,7 +31,6 @@ export const GetCompanyGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetCompanyGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -50,19 +49,6 @@ export const GetCompanyGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCompanyGlobals$ {
-  /** @deprecated use `GetCompanyGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetCompanyGlobals$inboundSchema;
-  /** @deprecated use `GetCompanyGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetCompanyGlobals$outboundSchema;
-  /** @deprecated use `GetCompanyGlobals$Outbound` instead. */
-  export type Outbound = GetCompanyGlobals$Outbound;
-}
-
 export function getCompanyGlobalsToJSON(
   getCompanyGlobals: GetCompanyGlobals,
 ): string {
@@ -70,7 +56,6 @@ export function getCompanyGlobalsToJSON(
     GetCompanyGlobals$outboundSchema.parse(getCompanyGlobals),
   );
 }
-
 export function getCompanyGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetCompanyGlobals, SDKValidationError> {
@@ -93,7 +78,6 @@ export const GetCompanyRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetCompanyRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -112,19 +96,6 @@ export const GetCompanyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCompanyRequest$ {
-  /** @deprecated use `GetCompanyRequest$inboundSchema` instead. */
-  export const inboundSchema = GetCompanyRequest$inboundSchema;
-  /** @deprecated use `GetCompanyRequest$outboundSchema` instead. */
-  export const outboundSchema = GetCompanyRequest$outboundSchema;
-  /** @deprecated use `GetCompanyRequest$Outbound` instead. */
-  export type Outbound = GetCompanyRequest$Outbound;
-}
-
 export function getCompanyRequestToJSON(
   getCompanyRequest: GetCompanyRequest,
 ): string {
@@ -132,7 +103,6 @@ export function getCompanyRequestToJSON(
     GetCompanyRequest$outboundSchema.parse(getCompanyRequest),
   );
 }
-
 export function getCompanyRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetCompanyRequest, SDKValidationError> {

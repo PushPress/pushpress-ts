@@ -20,37 +20,24 @@ specific category of applications.
 
 ```typescript
 import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { checkinCreatedEvent } from "@pushpress/pushpress/funcs/checkinCreatedEvent.js";
+import { appointmentsAppointmentsGet } from "@pushpress/pushpress/funcs/appointmentsAppointmentsGet.js";
 
 // Use `PushPressCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const pushPress = new PushPressCore();
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
 
 async function run() {
-  const res = await checkinCreatedEvent(pushPress, {
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const res = await appointmentsAppointmentsGet(pushPress, {
+    id: "<id>",
   });
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
-    console.log("checkinCreatedEvent failed:", res.error);
+    console.log("appointmentsAppointmentsGet failed:", res.error);
   }
 }
 

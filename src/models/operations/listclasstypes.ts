@@ -69,7 +69,6 @@ export const ListClassTypesGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListClassTypesGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -88,19 +87,6 @@ export const ListClassTypesGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListClassTypesGlobals$ {
-  /** @deprecated use `ListClassTypesGlobals$inboundSchema` instead. */
-  export const inboundSchema = ListClassTypesGlobals$inboundSchema;
-  /** @deprecated use `ListClassTypesGlobals$outboundSchema` instead. */
-  export const outboundSchema = ListClassTypesGlobals$outboundSchema;
-  /** @deprecated use `ListClassTypesGlobals$Outbound` instead. */
-  export type Outbound = ListClassTypesGlobals$Outbound;
-}
-
 export function listClassTypesGlobalsToJSON(
   listClassTypesGlobals: ListClassTypesGlobals,
 ): string {
@@ -108,7 +94,6 @@ export function listClassTypesGlobalsToJSON(
     ListClassTypesGlobals$outboundSchema.parse(listClassTypesGlobals),
   );
 }
-
 export function listClassTypesGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ListClassTypesGlobals, SDKValidationError> {
@@ -131,7 +116,6 @@ export const ListClassTypesRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ListClassTypesRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -150,19 +134,6 @@ export const ListClassTypesRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListClassTypesRequest$ {
-  /** @deprecated use `ListClassTypesRequest$inboundSchema` instead. */
-  export const inboundSchema = ListClassTypesRequest$inboundSchema;
-  /** @deprecated use `ListClassTypesRequest$outboundSchema` instead. */
-  export const outboundSchema = ListClassTypesRequest$outboundSchema;
-  /** @deprecated use `ListClassTypesRequest$Outbound` instead. */
-  export type Outbound = ListClassTypesRequest$Outbound;
-}
-
 export function listClassTypesRequestToJSON(
   listClassTypesRequest: ListClassTypesRequest,
 ): string {
@@ -170,7 +141,6 @@ export function listClassTypesRequestToJSON(
     ListClassTypesRequest$outboundSchema.parse(listClassTypesRequest),
   );
 }
-
 export function listClassTypesRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ListClassTypesRequest, SDKValidationError> {
@@ -194,7 +164,6 @@ export const ListClassTypesResultArray$inboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   active: z.boolean(),
 });
-
 /** @internal */
 export type ListClassTypesResultArray$Outbound = {
   id: string;
@@ -219,19 +188,6 @@ export const ListClassTypesResultArray$outboundSchema: z.ZodType<
   active: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListClassTypesResultArray$ {
-  /** @deprecated use `ListClassTypesResultArray$inboundSchema` instead. */
-  export const inboundSchema = ListClassTypesResultArray$inboundSchema;
-  /** @deprecated use `ListClassTypesResultArray$outboundSchema` instead. */
-  export const outboundSchema = ListClassTypesResultArray$outboundSchema;
-  /** @deprecated use `ListClassTypesResultArray$Outbound` instead. */
-  export type Outbound = ListClassTypesResultArray$Outbound;
-}
-
 export function listClassTypesResultArrayToJSON(
   listClassTypesResultArray: ListClassTypesResultArray,
 ): string {
@@ -239,7 +195,6 @@ export function listClassTypesResultArrayToJSON(
     ListClassTypesResultArray$outboundSchema.parse(listClassTypesResultArray),
   );
 }
-
 export function listClassTypesResultArrayFromJSON(
   jsonString: string,
 ): SafeParseResult<ListClassTypesResultArray, SDKValidationError> {
@@ -258,7 +213,6 @@ export const ListClassTypesData$inboundSchema: z.ZodType<
 > = z.object({
   resultArray: z.array(z.lazy(() => ListClassTypesResultArray$inboundSchema)),
 });
-
 /** @internal */
 export type ListClassTypesData$Outbound = {
   resultArray: Array<ListClassTypesResultArray$Outbound>;
@@ -273,19 +227,6 @@ export const ListClassTypesData$outboundSchema: z.ZodType<
   resultArray: z.array(z.lazy(() => ListClassTypesResultArray$outboundSchema)),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListClassTypesData$ {
-  /** @deprecated use `ListClassTypesData$inboundSchema` instead. */
-  export const inboundSchema = ListClassTypesData$inboundSchema;
-  /** @deprecated use `ListClassTypesData$outboundSchema` instead. */
-  export const outboundSchema = ListClassTypesData$outboundSchema;
-  /** @deprecated use `ListClassTypesData$Outbound` instead. */
-  export type Outbound = ListClassTypesData$Outbound;
-}
-
 export function listClassTypesDataToJSON(
   listClassTypesData: ListClassTypesData,
 ): string {
@@ -293,7 +234,6 @@ export function listClassTypesDataToJSON(
     ListClassTypesData$outboundSchema.parse(listClassTypesData),
   );
 }
-
 export function listClassTypesDataFromJSON(
   jsonString: string,
 ): SafeParseResult<ListClassTypesData, SDKValidationError> {
@@ -312,7 +252,6 @@ export const ListClassTypesResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   data: z.lazy(() => ListClassTypesData$inboundSchema),
 });
-
 /** @internal */
 export type ListClassTypesResponseBody$Outbound = {
   data: ListClassTypesData$Outbound;
@@ -327,19 +266,6 @@ export const ListClassTypesResponseBody$outboundSchema: z.ZodType<
   data: z.lazy(() => ListClassTypesData$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListClassTypesResponseBody$ {
-  /** @deprecated use `ListClassTypesResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ListClassTypesResponseBody$inboundSchema;
-  /** @deprecated use `ListClassTypesResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ListClassTypesResponseBody$outboundSchema;
-  /** @deprecated use `ListClassTypesResponseBody$Outbound` instead. */
-  export type Outbound = ListClassTypesResponseBody$Outbound;
-}
-
 export function listClassTypesResponseBodyToJSON(
   listClassTypesResponseBody: ListClassTypesResponseBody,
 ): string {
@@ -347,7 +273,6 @@ export function listClassTypesResponseBodyToJSON(
     ListClassTypesResponseBody$outboundSchema.parse(listClassTypesResponseBody),
   );
 }
-
 export function listClassTypesResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ListClassTypesResponseBody, SDKValidationError> {
