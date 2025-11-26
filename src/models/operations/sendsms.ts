@@ -43,7 +43,6 @@ export const SendSmsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type SendSmsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -62,23 +61,9 @@ export const SendSmsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendSmsGlobals$ {
-  /** @deprecated use `SendSmsGlobals$inboundSchema` instead. */
-  export const inboundSchema = SendSmsGlobals$inboundSchema;
-  /** @deprecated use `SendSmsGlobals$outboundSchema` instead. */
-  export const outboundSchema = SendSmsGlobals$outboundSchema;
-  /** @deprecated use `SendSmsGlobals$Outbound` instead. */
-  export type Outbound = SendSmsGlobals$Outbound;
-}
-
 export function sendSmsGlobalsToJSON(sendSmsGlobals: SendSmsGlobals): string {
   return JSON.stringify(SendSmsGlobals$outboundSchema.parse(sendSmsGlobals));
 }
-
 export function sendSmsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<SendSmsGlobals, SDKValidationError> {
@@ -98,7 +83,6 @@ export const SendSmsRequestBody$inboundSchema: z.ZodType<
   message: z.string(),
   to: z.string(),
 });
-
 /** @internal */
 export type SendSmsRequestBody$Outbound = {
   message: string;
@@ -115,19 +99,6 @@ export const SendSmsRequestBody$outboundSchema: z.ZodType<
   to: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendSmsRequestBody$ {
-  /** @deprecated use `SendSmsRequestBody$inboundSchema` instead. */
-  export const inboundSchema = SendSmsRequestBody$inboundSchema;
-  /** @deprecated use `SendSmsRequestBody$outboundSchema` instead. */
-  export const outboundSchema = SendSmsRequestBody$outboundSchema;
-  /** @deprecated use `SendSmsRequestBody$Outbound` instead. */
-  export type Outbound = SendSmsRequestBody$Outbound;
-}
-
 export function sendSmsRequestBodyToJSON(
   sendSmsRequestBody: SendSmsRequestBody,
 ): string {
@@ -135,7 +106,6 @@ export function sendSmsRequestBodyToJSON(
     SendSmsRequestBody$outboundSchema.parse(sendSmsRequestBody),
   );
 }
-
 export function sendSmsRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<SendSmsRequestBody, SDKValidationError> {
@@ -160,7 +130,6 @@ export const SendSmsRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type SendSmsRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -182,23 +151,9 @@ export const SendSmsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendSmsRequest$ {
-  /** @deprecated use `SendSmsRequest$inboundSchema` instead. */
-  export const inboundSchema = SendSmsRequest$inboundSchema;
-  /** @deprecated use `SendSmsRequest$outboundSchema` instead. */
-  export const outboundSchema = SendSmsRequest$outboundSchema;
-  /** @deprecated use `SendSmsRequest$Outbound` instead. */
-  export type Outbound = SendSmsRequest$Outbound;
-}
-
 export function sendSmsRequestToJSON(sendSmsRequest: SendSmsRequest): string {
   return JSON.stringify(SendSmsRequest$outboundSchema.parse(sendSmsRequest));
 }
-
 export function sendSmsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<SendSmsRequest, SDKValidationError> {

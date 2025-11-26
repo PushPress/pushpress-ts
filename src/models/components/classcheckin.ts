@@ -95,7 +95,6 @@ export const ClassCheckinType$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
 });
-
 /** @internal */
 export type ClassCheckinType$Outbound = {
   id: string;
@@ -112,19 +111,6 @@ export const ClassCheckinType$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClassCheckinType$ {
-  /** @deprecated use `ClassCheckinType$inboundSchema` instead. */
-  export const inboundSchema = ClassCheckinType$inboundSchema;
-  /** @deprecated use `ClassCheckinType$outboundSchema` instead. */
-  export const outboundSchema = ClassCheckinType$outboundSchema;
-  /** @deprecated use `ClassCheckinType$Outbound` instead. */
-  export type Outbound = ClassCheckinType$Outbound;
-}
-
 export function classCheckinTypeToJSON(
   classCheckinType: ClassCheckinType,
 ): string {
@@ -132,7 +118,6 @@ export function classCheckinTypeToJSON(
     ClassCheckinType$outboundSchema.parse(classCheckinType),
   );
 }
-
 export function classCheckinTypeFromJSON(
   jsonString: string,
 ): SafeParseResult<ClassCheckinType, SDKValidationError> {
@@ -147,22 +132,10 @@ export function classCheckinTypeFromJSON(
 export const ClassCheckinRole$inboundSchema: z.ZodNativeEnum<
   typeof ClassCheckinRole
 > = z.nativeEnum(ClassCheckinRole);
-
 /** @internal */
 export const ClassCheckinRole$outboundSchema: z.ZodNativeEnum<
   typeof ClassCheckinRole
 > = ClassCheckinRole$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClassCheckinRole$ {
-  /** @deprecated use `ClassCheckinRole$inboundSchema` instead. */
-  export const inboundSchema = ClassCheckinRole$inboundSchema;
-  /** @deprecated use `ClassCheckinRole$outboundSchema` instead. */
-  export const outboundSchema = ClassCheckinRole$outboundSchema;
-}
 
 /** @internal */
 export const ClassCheckin$inboundSchema: z.ZodType<
@@ -182,7 +155,6 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   kind: z.literal("class").default("class").optional(),
   role: ClassCheckinRole$inboundSchema,
 });
-
 /** @internal */
 export type ClassCheckin$Outbound = {
   id: string;
@@ -217,23 +189,9 @@ export const ClassCheckin$outboundSchema: z.ZodType<
   role: ClassCheckinRole$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ClassCheckin$ {
-  /** @deprecated use `ClassCheckin$inboundSchema` instead. */
-  export const inboundSchema = ClassCheckin$inboundSchema;
-  /** @deprecated use `ClassCheckin$outboundSchema` instead. */
-  export const outboundSchema = ClassCheckin$outboundSchema;
-  /** @deprecated use `ClassCheckin$Outbound` instead. */
-  export type Outbound = ClassCheckin$Outbound;
-}
-
 export function classCheckinToJSON(classCheckin: ClassCheckin): string {
   return JSON.stringify(ClassCheckin$outboundSchema.parse(classCheckin));
 }
-
 export function classCheckinFromJSON(
   jsonString: string,
 ): SafeParseResult<ClassCheckin, SDKValidationError> {

@@ -70,7 +70,6 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   typeId: z.string(),
   staffId: z.string(),
 });
-
 /** @internal */
 export type AppointmentCheckin$Outbound = {
   id: string;
@@ -103,19 +102,6 @@ export const AppointmentCheckin$outboundSchema: z.ZodType<
   staffId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppointmentCheckin$ {
-  /** @deprecated use `AppointmentCheckin$inboundSchema` instead. */
-  export const inboundSchema = AppointmentCheckin$inboundSchema;
-  /** @deprecated use `AppointmentCheckin$outboundSchema` instead. */
-  export const outboundSchema = AppointmentCheckin$outboundSchema;
-  /** @deprecated use `AppointmentCheckin$Outbound` instead. */
-  export type Outbound = AppointmentCheckin$Outbound;
-}
-
 export function appointmentCheckinToJSON(
   appointmentCheckin: AppointmentCheckin,
 ): string {
@@ -123,7 +109,6 @@ export function appointmentCheckinToJSON(
     AppointmentCheckin$outboundSchema.parse(appointmentCheckin),
   );
 }
-
 export function appointmentCheckinFromJSON(
   jsonString: string,
 ): SafeParseResult<AppointmentCheckin, SDKValidationError> {

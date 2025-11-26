@@ -2,28 +2,17 @@
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
 
-const pushPress = new PushPress();
+const pushPress = new PushPress({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
 
 async function run() {
-  await pushPress.checkinCreatedEvent({
-    data: {
-      id: "chk_12345",
-      customer: "usr_12345",
-      company: "cli_12345",
-      timestamp: 1672531200000,
-      name: "My Class",
-      typeId: "cit_12345",
-      classId: "cal_item_12345",
-      type: {
-        id: "cit_12345",
-        name: "Group HIIT Training",
-      },
-      kind: "class",
-      role: "attendee",
-    },
-    created: 945274,
-    event: "checkin.created",
+  const result = await pushPress.appointments.appointmentsGet({
+    id: "<id>",
   });
+
+  console.log(result);
 }
 
 run();

@@ -46,7 +46,6 @@ export const ActivateWebhookGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ActivateWebhookGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -65,19 +64,6 @@ export const ActivateWebhookGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivateWebhookGlobals$ {
-  /** @deprecated use `ActivateWebhookGlobals$inboundSchema` instead. */
-  export const inboundSchema = ActivateWebhookGlobals$inboundSchema;
-  /** @deprecated use `ActivateWebhookGlobals$outboundSchema` instead. */
-  export const outboundSchema = ActivateWebhookGlobals$outboundSchema;
-  /** @deprecated use `ActivateWebhookGlobals$Outbound` instead. */
-  export type Outbound = ActivateWebhookGlobals$Outbound;
-}
-
 export function activateWebhookGlobalsToJSON(
   activateWebhookGlobals: ActivateWebhookGlobals,
 ): string {
@@ -85,7 +71,6 @@ export function activateWebhookGlobalsToJSON(
     ActivateWebhookGlobals$outboundSchema.parse(activateWebhookGlobals),
   );
 }
-
 export function activateWebhookGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivateWebhookGlobals, SDKValidationError> {
@@ -109,7 +94,6 @@ export const ActivateWebhookRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type ActivateWebhookRequest$Outbound = {
   uuid: string;
@@ -130,19 +114,6 @@ export const ActivateWebhookRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivateWebhookRequest$ {
-  /** @deprecated use `ActivateWebhookRequest$inboundSchema` instead. */
-  export const inboundSchema = ActivateWebhookRequest$inboundSchema;
-  /** @deprecated use `ActivateWebhookRequest$outboundSchema` instead. */
-  export const outboundSchema = ActivateWebhookRequest$outboundSchema;
-  /** @deprecated use `ActivateWebhookRequest$Outbound` instead. */
-  export type Outbound = ActivateWebhookRequest$Outbound;
-}
-
 export function activateWebhookRequestToJSON(
   activateWebhookRequest: ActivateWebhookRequest,
 ): string {
@@ -150,7 +121,6 @@ export function activateWebhookRequestToJSON(
     ActivateWebhookRequest$outboundSchema.parse(activateWebhookRequest),
   );
 }
-
 export function activateWebhookRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<ActivateWebhookRequest, SDKValidationError> {
@@ -165,19 +135,7 @@ export function activateWebhookRequestFromJSON(
 export const ActivateWebhookResponseBody$inboundSchema: z.ZodNativeEnum<
   typeof ActivateWebhookResponseBody
 > = z.nativeEnum(ActivateWebhookResponseBody);
-
 /** @internal */
 export const ActivateWebhookResponseBody$outboundSchema: z.ZodNativeEnum<
   typeof ActivateWebhookResponseBody
 > = ActivateWebhookResponseBody$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ActivateWebhookResponseBody$ {
-  /** @deprecated use `ActivateWebhookResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ActivateWebhookResponseBody$inboundSchema;
-  /** @deprecated use `ActivateWebhookResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ActivateWebhookResponseBody$outboundSchema;
-}

@@ -47,7 +47,6 @@ export const CustomerDeletedEventData$inboundSchema: z.ZodType<
   id: z.string(),
   companyId: z.string(),
 });
-
 /** @internal */
 export type CustomerDeletedEventData$Outbound = {
   id: string;
@@ -64,19 +63,6 @@ export const CustomerDeletedEventData$outboundSchema: z.ZodType<
   companyId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerDeletedEventData$ {
-  /** @deprecated use `CustomerDeletedEventData$inboundSchema` instead. */
-  export const inboundSchema = CustomerDeletedEventData$inboundSchema;
-  /** @deprecated use `CustomerDeletedEventData$outboundSchema` instead. */
-  export const outboundSchema = CustomerDeletedEventData$outboundSchema;
-  /** @deprecated use `CustomerDeletedEventData$Outbound` instead. */
-  export type Outbound = CustomerDeletedEventData$Outbound;
-}
-
 export function customerDeletedEventDataToJSON(
   customerDeletedEventData: CustomerDeletedEventData,
 ): string {
@@ -84,7 +70,6 @@ export function customerDeletedEventDataToJSON(
     CustomerDeletedEventData$outboundSchema.parse(customerDeletedEventData),
   );
 }
-
 export function customerDeletedEventDataFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomerDeletedEventData, SDKValidationError> {
@@ -99,22 +84,10 @@ export function customerDeletedEventDataFromJSON(
 export const CustomerDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof CustomerDeletedEventEvent
 > = z.nativeEnum(CustomerDeletedEventEvent);
-
 /** @internal */
 export const CustomerDeletedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof CustomerDeletedEventEvent
 > = CustomerDeletedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerDeletedEventEvent$ {
-  /** @deprecated use `CustomerDeletedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = CustomerDeletedEventEvent$inboundSchema;
-  /** @deprecated use `CustomerDeletedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = CustomerDeletedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const CustomerDeletedEventRequestBody$inboundSchema: z.ZodType<
@@ -126,7 +99,6 @@ export const CustomerDeletedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: CustomerDeletedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type CustomerDeletedEventRequestBody$Outbound = {
   data: CustomerDeletedEventData$Outbound;
@@ -145,19 +117,6 @@ export const CustomerDeletedEventRequestBody$outboundSchema: z.ZodType<
   event: CustomerDeletedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerDeletedEventRequestBody$ {
-  /** @deprecated use `CustomerDeletedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CustomerDeletedEventRequestBody$inboundSchema;
-  /** @deprecated use `CustomerDeletedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CustomerDeletedEventRequestBody$outboundSchema;
-  /** @deprecated use `CustomerDeletedEventRequestBody$Outbound` instead. */
-  export type Outbound = CustomerDeletedEventRequestBody$Outbound;
-}
-
 export function customerDeletedEventRequestBodyToJSON(
   customerDeletedEventRequestBody: CustomerDeletedEventRequestBody,
 ): string {
@@ -167,7 +126,6 @@ export function customerDeletedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function customerDeletedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomerDeletedEventRequestBody, SDKValidationError> {

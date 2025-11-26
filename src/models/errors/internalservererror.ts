@@ -54,7 +54,7 @@ export const InternalServerError$inboundSchema: z.ZodType<
   })
     .catchall(z.any()),
   "additionalProperties",
-  true,
+  false,
 )
   .transform((v) => {
     return new InternalServerError(v, {
@@ -90,16 +90,3 @@ export const InternalServerError$outboundSchema: z.ZodType<
       };
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace InternalServerError$ {
-  /** @deprecated use `InternalServerError$inboundSchema` instead. */
-  export const inboundSchema = InternalServerError$inboundSchema;
-  /** @deprecated use `InternalServerError$outboundSchema` instead. */
-  export const outboundSchema = InternalServerError$outboundSchema;
-  /** @deprecated use `InternalServerError$Outbound` instead. */
-  export type Outbound = InternalServerError$Outbound;
-}

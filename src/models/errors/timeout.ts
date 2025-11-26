@@ -51,7 +51,7 @@ export const Timeout$inboundSchema: z.ZodType<Timeout, z.ZodTypeDef, unknown> =
     })
       .catchall(z.any()),
     "additionalProperties",
-    true,
+    false,
   )
     .transform((v) => {
       return new Timeout(v, {
@@ -87,16 +87,3 @@ export const Timeout$outboundSchema: z.ZodType<
       };
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Timeout$ {
-  /** @deprecated use `Timeout$inboundSchema` instead. */
-  export const inboundSchema = Timeout$inboundSchema;
-  /** @deprecated use `Timeout$outboundSchema` instead. */
-  export const outboundSchema = Timeout$outboundSchema;
-  /** @deprecated use `Timeout$Outbound` instead. */
-  export type Outbound = Timeout$Outbound;
-}

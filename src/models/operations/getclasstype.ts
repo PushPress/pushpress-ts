@@ -62,7 +62,6 @@ export const GetClassTypeGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetClassTypeGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -81,19 +80,6 @@ export const GetClassTypeGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassTypeGlobals$ {
-  /** @deprecated use `GetClassTypeGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetClassTypeGlobals$inboundSchema;
-  /** @deprecated use `GetClassTypeGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetClassTypeGlobals$outboundSchema;
-  /** @deprecated use `GetClassTypeGlobals$Outbound` instead. */
-  export type Outbound = GetClassTypeGlobals$Outbound;
-}
-
 export function getClassTypeGlobalsToJSON(
   getClassTypeGlobals: GetClassTypeGlobals,
 ): string {
@@ -101,7 +87,6 @@ export function getClassTypeGlobalsToJSON(
     GetClassTypeGlobals$outboundSchema.parse(getClassTypeGlobals),
   );
 }
-
 export function getClassTypeGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassTypeGlobals, SDKValidationError> {
@@ -125,7 +110,6 @@ export const GetClassTypeRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetClassTypeRequest$Outbound = {
   id: string;
@@ -146,19 +130,6 @@ export const GetClassTypeRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassTypeRequest$ {
-  /** @deprecated use `GetClassTypeRequest$inboundSchema` instead. */
-  export const inboundSchema = GetClassTypeRequest$inboundSchema;
-  /** @deprecated use `GetClassTypeRequest$outboundSchema` instead. */
-  export const outboundSchema = GetClassTypeRequest$outboundSchema;
-  /** @deprecated use `GetClassTypeRequest$Outbound` instead. */
-  export type Outbound = GetClassTypeRequest$Outbound;
-}
-
 export function getClassTypeRequestToJSON(
   getClassTypeRequest: GetClassTypeRequest,
 ): string {
@@ -166,7 +137,6 @@ export function getClassTypeRequestToJSON(
     GetClassTypeRequest$outboundSchema.parse(getClassTypeRequest),
   );
 }
-
 export function getClassTypeRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassTypeRequest, SDKValidationError> {
@@ -190,7 +160,6 @@ export const GetClassTypeResponseBody$inboundSchema: z.ZodType<
   description: z.nullable(z.string()).optional(),
   active: z.boolean(),
 });
-
 /** @internal */
 export type GetClassTypeResponseBody$Outbound = {
   id: string;
@@ -215,19 +184,6 @@ export const GetClassTypeResponseBody$outboundSchema: z.ZodType<
   active: z.boolean(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassTypeResponseBody$ {
-  /** @deprecated use `GetClassTypeResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetClassTypeResponseBody$inboundSchema;
-  /** @deprecated use `GetClassTypeResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetClassTypeResponseBody$outboundSchema;
-  /** @deprecated use `GetClassTypeResponseBody$Outbound` instead. */
-  export type Outbound = GetClassTypeResponseBody$Outbound;
-}
-
 export function getClassTypeResponseBodyToJSON(
   getClassTypeResponseBody: GetClassTypeResponseBody,
 ): string {
@@ -235,7 +191,6 @@ export function getClassTypeResponseBodyToJSON(
     GetClassTypeResponseBody$outboundSchema.parse(getClassTypeResponseBody),
   );
 }
-
 export function getClassTypeResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassTypeResponseBody, SDKValidationError> {

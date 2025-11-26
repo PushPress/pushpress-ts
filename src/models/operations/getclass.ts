@@ -40,7 +40,6 @@ export const GetClassGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetClassGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -59,25 +58,11 @@ export const GetClassGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassGlobals$ {
-  /** @deprecated use `GetClassGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetClassGlobals$inboundSchema;
-  /** @deprecated use `GetClassGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetClassGlobals$outboundSchema;
-  /** @deprecated use `GetClassGlobals$Outbound` instead. */
-  export type Outbound = GetClassGlobals$Outbound;
-}
-
 export function getClassGlobalsToJSON(
   getClassGlobals: GetClassGlobals,
 ): string {
   return JSON.stringify(GetClassGlobals$outboundSchema.parse(getClassGlobals));
 }
-
 export function getClassGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassGlobals, SDKValidationError> {
@@ -91,21 +76,9 @@ export function getClassGlobalsFromJSON(
 /** @internal */
 export const Expand$inboundSchema: z.ZodNativeEnum<typeof Expand> = z
   .nativeEnum(Expand);
-
 /** @internal */
 export const Expand$outboundSchema: z.ZodNativeEnum<typeof Expand> =
   Expand$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Expand$ {
-  /** @deprecated use `Expand$inboundSchema` instead. */
-  export const inboundSchema = Expand$inboundSchema;
-  /** @deprecated use `Expand$outboundSchema` instead. */
-  export const outboundSchema = Expand$outboundSchema;
-}
 
 /** @internal */
 export const GetClassRequest$inboundSchema: z.ZodType<
@@ -121,7 +94,6 @@ export const GetClassRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetClassRequest$Outbound = {
   expand?: Array<string> | undefined;
@@ -144,25 +116,11 @@ export const GetClassRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetClassRequest$ {
-  /** @deprecated use `GetClassRequest$inboundSchema` instead. */
-  export const inboundSchema = GetClassRequest$inboundSchema;
-  /** @deprecated use `GetClassRequest$outboundSchema` instead. */
-  export const outboundSchema = GetClassRequest$outboundSchema;
-  /** @deprecated use `GetClassRequest$Outbound` instead. */
-  export type Outbound = GetClassRequest$Outbound;
-}
-
 export function getClassRequestToJSON(
   getClassRequest: GetClassRequest,
 ): string {
   return JSON.stringify(GetClassRequest$outboundSchema.parse(getClassRequest));
 }
-
 export function getClassRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetClassRequest, SDKValidationError> {

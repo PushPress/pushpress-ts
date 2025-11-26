@@ -33,21 +33,9 @@ export type CheckinCreatedEventRequestBody = {
 export const Event$inboundSchema: z.ZodNativeEnum<typeof Event> = z.nativeEnum(
   Event,
 );
-
 /** @internal */
 export const Event$outboundSchema: z.ZodNativeEnum<typeof Event> =
   Event$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Event$ {
-  /** @deprecated use `Event$inboundSchema` instead. */
-  export const inboundSchema = Event$inboundSchema;
-  /** @deprecated use `Event$outboundSchema` instead. */
-  export const outboundSchema = Event$outboundSchema;
-}
 
 /** @internal */
 export const CheckinCreatedEventRequestBody$inboundSchema: z.ZodType<
@@ -59,7 +47,6 @@ export const CheckinCreatedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: Event$inboundSchema,
 });
-
 /** @internal */
 export type CheckinCreatedEventRequestBody$Outbound = {
   data: components.Checkin$Outbound;
@@ -78,19 +65,6 @@ export const CheckinCreatedEventRequestBody$outboundSchema: z.ZodType<
   event: Event$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckinCreatedEventRequestBody$ {
-  /** @deprecated use `CheckinCreatedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CheckinCreatedEventRequestBody$inboundSchema;
-  /** @deprecated use `CheckinCreatedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CheckinCreatedEventRequestBody$outboundSchema;
-  /** @deprecated use `CheckinCreatedEventRequestBody$Outbound` instead. */
-  export type Outbound = CheckinCreatedEventRequestBody$Outbound;
-}
-
 export function checkinCreatedEventRequestBodyToJSON(
   checkinCreatedEventRequestBody: CheckinCreatedEventRequestBody,
 ): string {
@@ -100,7 +74,6 @@ export function checkinCreatedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function checkinCreatedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CheckinCreatedEventRequestBody, SDKValidationError> {

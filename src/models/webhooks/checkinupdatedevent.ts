@@ -35,22 +35,10 @@ export type CheckinUpdatedEventRequestBody = {
 export const CheckinUpdatedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof CheckinUpdatedEventEvent
 > = z.nativeEnum(CheckinUpdatedEventEvent);
-
 /** @internal */
 export const CheckinUpdatedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof CheckinUpdatedEventEvent
 > = CheckinUpdatedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckinUpdatedEventEvent$ {
-  /** @deprecated use `CheckinUpdatedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = CheckinUpdatedEventEvent$inboundSchema;
-  /** @deprecated use `CheckinUpdatedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = CheckinUpdatedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const CheckinUpdatedEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const CheckinUpdatedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: CheckinUpdatedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type CheckinUpdatedEventRequestBody$Outbound = {
   data: components.Checkin$Outbound;
@@ -81,19 +68,6 @@ export const CheckinUpdatedEventRequestBody$outboundSchema: z.ZodType<
   event: CheckinUpdatedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckinUpdatedEventRequestBody$ {
-  /** @deprecated use `CheckinUpdatedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CheckinUpdatedEventRequestBody$inboundSchema;
-  /** @deprecated use `CheckinUpdatedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CheckinUpdatedEventRequestBody$outboundSchema;
-  /** @deprecated use `CheckinUpdatedEventRequestBody$Outbound` instead. */
-  export type Outbound = CheckinUpdatedEventRequestBody$Outbound;
-}
-
 export function checkinUpdatedEventRequestBodyToJSON(
   checkinUpdatedEventRequestBody: CheckinUpdatedEventRequestBody,
 ): string {
@@ -103,7 +77,6 @@ export function checkinUpdatedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function checkinUpdatedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CheckinUpdatedEventRequestBody, SDKValidationError> {

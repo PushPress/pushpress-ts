@@ -74,7 +74,6 @@ export const CreateApiKeyGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type CreateApiKeyGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -93,19 +92,6 @@ export const CreateApiKeyGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApiKeyGlobals$ {
-  /** @deprecated use `CreateApiKeyGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreateApiKeyGlobals$inboundSchema;
-  /** @deprecated use `CreateApiKeyGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreateApiKeyGlobals$outboundSchema;
-  /** @deprecated use `CreateApiKeyGlobals$Outbound` instead. */
-  export type Outbound = CreateApiKeyGlobals$Outbound;
-}
-
 export function createApiKeyGlobalsToJSON(
   createApiKeyGlobals: CreateApiKeyGlobals,
 ): string {
@@ -113,7 +99,6 @@ export function createApiKeyGlobalsToJSON(
     CreateApiKeyGlobals$outboundSchema.parse(createApiKeyGlobals),
   );
 }
-
 export function createApiKeyGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateApiKeyGlobals, SDKValidationError> {
@@ -132,7 +117,6 @@ export const CreateApiKeySecurity$inboundSchema: z.ZodType<
 > = z.object({
   bearer: z.string(),
 });
-
 /** @internal */
 export type CreateApiKeySecurity$Outbound = {
   bearer: string;
@@ -147,19 +131,6 @@ export const CreateApiKeySecurity$outboundSchema: z.ZodType<
   bearer: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApiKeySecurity$ {
-  /** @deprecated use `CreateApiKeySecurity$inboundSchema` instead. */
-  export const inboundSchema = CreateApiKeySecurity$inboundSchema;
-  /** @deprecated use `CreateApiKeySecurity$outboundSchema` instead. */
-  export const outboundSchema = CreateApiKeySecurity$outboundSchema;
-  /** @deprecated use `CreateApiKeySecurity$Outbound` instead. */
-  export type Outbound = CreateApiKeySecurity$Outbound;
-}
-
 export function createApiKeySecurityToJSON(
   createApiKeySecurity: CreateApiKeySecurity,
 ): string {
@@ -167,7 +138,6 @@ export function createApiKeySecurityToJSON(
     CreateApiKeySecurity$outboundSchema.parse(createApiKeySecurity),
   );
 }
-
 export function createApiKeySecurityFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateApiKeySecurity, SDKValidationError> {
@@ -188,7 +158,6 @@ export const CreateApiKeyRequestBody$inboundSchema: z.ZodType<
   description: z.string().optional(),
   expiresAt: z.number().optional(),
 });
-
 /** @internal */
 export type CreateApiKeyRequestBody$Outbound = {
   name: string;
@@ -207,19 +176,6 @@ export const CreateApiKeyRequestBody$outboundSchema: z.ZodType<
   expiresAt: z.number().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApiKeyRequestBody$ {
-  /** @deprecated use `CreateApiKeyRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateApiKeyRequestBody$inboundSchema;
-  /** @deprecated use `CreateApiKeyRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CreateApiKeyRequestBody$outboundSchema;
-  /** @deprecated use `CreateApiKeyRequestBody$Outbound` instead. */
-  export type Outbound = CreateApiKeyRequestBody$Outbound;
-}
-
 export function createApiKeyRequestBodyToJSON(
   createApiKeyRequestBody: CreateApiKeyRequestBody,
 ): string {
@@ -227,7 +183,6 @@ export function createApiKeyRequestBodyToJSON(
     CreateApiKeyRequestBody$outboundSchema.parse(createApiKeyRequestBody),
   );
 }
-
 export function createApiKeyRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateApiKeyRequestBody, SDKValidationError> {
@@ -252,7 +207,6 @@ export const CreateApiKeyRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type CreateApiKeyRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -274,19 +228,6 @@ export const CreateApiKeyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApiKeyRequest$ {
-  /** @deprecated use `CreateApiKeyRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateApiKeyRequest$inboundSchema;
-  /** @deprecated use `CreateApiKeyRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateApiKeyRequest$outboundSchema;
-  /** @deprecated use `CreateApiKeyRequest$Outbound` instead. */
-  export type Outbound = CreateApiKeyRequest$Outbound;
-}
-
 export function createApiKeyRequestToJSON(
   createApiKeyRequest: CreateApiKeyRequest,
 ): string {
@@ -294,7 +235,6 @@ export function createApiKeyRequestToJSON(
     CreateApiKeyRequest$outboundSchema.parse(createApiKeyRequest),
   );
 }
-
 export function createApiKeyRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateApiKeyRequest, SDKValidationError> {
@@ -320,7 +260,6 @@ export const CreateApiKeyResponseBody$inboundSchema: z.ZodType<
   expiresAt: z.nullable(z.number()).optional(),
   apiKey: z.string(),
 });
-
 /** @internal */
 export type CreateApiKeyResponseBody$Outbound = {
   keyUuid: string;
@@ -349,19 +288,6 @@ export const CreateApiKeyResponseBody$outboundSchema: z.ZodType<
   apiKey: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateApiKeyResponseBody$ {
-  /** @deprecated use `CreateApiKeyResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateApiKeyResponseBody$inboundSchema;
-  /** @deprecated use `CreateApiKeyResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateApiKeyResponseBody$outboundSchema;
-  /** @deprecated use `CreateApiKeyResponseBody$Outbound` instead. */
-  export type Outbound = CreateApiKeyResponseBody$Outbound;
-}
-
 export function createApiKeyResponseBodyToJSON(
   createApiKeyResponseBody: CreateApiKeyResponseBody,
 ): string {
@@ -369,7 +295,6 @@ export function createApiKeyResponseBodyToJSON(
     CreateApiKeyResponseBody$outboundSchema.parse(createApiKeyResponseBody),
   );
 }
-
 export function createApiKeyResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CreateApiKeyResponseBody, SDKValidationError> {

@@ -32,7 +32,6 @@ export const GetOpenCheckinGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetOpenCheckinGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetOpenCheckinGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetOpenCheckinGlobals$ {
-  /** @deprecated use `GetOpenCheckinGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetOpenCheckinGlobals$inboundSchema;
-  /** @deprecated use `GetOpenCheckinGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetOpenCheckinGlobals$outboundSchema;
-  /** @deprecated use `GetOpenCheckinGlobals$Outbound` instead. */
-  export type Outbound = GetOpenCheckinGlobals$Outbound;
-}
-
 export function getOpenCheckinGlobalsToJSON(
   getOpenCheckinGlobals: GetOpenCheckinGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function getOpenCheckinGlobalsToJSON(
     GetOpenCheckinGlobals$outboundSchema.parse(getOpenCheckinGlobals),
   );
 }
-
 export function getOpenCheckinGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetOpenCheckinGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const GetOpenCheckinRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetOpenCheckinRequest$Outbound = {
   uuid: string;
@@ -116,19 +100,6 @@ export const GetOpenCheckinRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetOpenCheckinRequest$ {
-  /** @deprecated use `GetOpenCheckinRequest$inboundSchema` instead. */
-  export const inboundSchema = GetOpenCheckinRequest$inboundSchema;
-  /** @deprecated use `GetOpenCheckinRequest$outboundSchema` instead. */
-  export const outboundSchema = GetOpenCheckinRequest$outboundSchema;
-  /** @deprecated use `GetOpenCheckinRequest$Outbound` instead. */
-  export type Outbound = GetOpenCheckinRequest$Outbound;
-}
-
 export function getOpenCheckinRequestToJSON(
   getOpenCheckinRequest: GetOpenCheckinRequest,
 ): string {
@@ -136,7 +107,6 @@ export function getOpenCheckinRequestToJSON(
     GetOpenCheckinRequest$outboundSchema.parse(getOpenCheckinRequest),
   );
 }
-
 export function getOpenCheckinRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetOpenCheckinRequest, SDKValidationError> {

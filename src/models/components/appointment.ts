@@ -50,7 +50,6 @@ export const Type$inboundSchema: z.ZodType<Type, z.ZodTypeDef, unknown> = z
   .object({
     name: z.string(),
   });
-
 /** @internal */
 export type Type$Outbound = {
   name: string;
@@ -62,23 +61,9 @@ export const Type$outboundSchema: z.ZodType<Type$Outbound, z.ZodTypeDef, Type> =
     name: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-  /** @deprecated use `Type$Outbound` instead. */
-  export type Outbound = Type$Outbound;
-}
-
 export function typeToJSON(type: Type): string {
   return JSON.stringify(Type$outboundSchema.parse(type));
 }
-
 export function typeFromJSON(
   jsonString: string,
 ): SafeParseResult<Type, SDKValidationError> {
@@ -103,7 +88,6 @@ export const Appointment$inboundSchema: z.ZodType<
   startTimestamp: z.number(),
   staffId: z.string(),
 });
-
 /** @internal */
 export type Appointment$Outbound = {
   id: string;
@@ -130,23 +114,9 @@ export const Appointment$outboundSchema: z.ZodType<
   staffId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Appointment$ {
-  /** @deprecated use `Appointment$inboundSchema` instead. */
-  export const inboundSchema = Appointment$inboundSchema;
-  /** @deprecated use `Appointment$outboundSchema` instead. */
-  export const outboundSchema = Appointment$outboundSchema;
-  /** @deprecated use `Appointment$Outbound` instead. */
-  export type Outbound = Appointment$Outbound;
-}
-
 export function appointmentToJSON(appointment: Appointment): string {
   return JSON.stringify(Appointment$outboundSchema.parse(appointment));
 }
-
 export function appointmentFromJSON(
   jsonString: string,
 ): SafeParseResult<Appointment, SDKValidationError> {

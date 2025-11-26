@@ -35,22 +35,10 @@ export type EnrollmentCreatedEventRequestBody = {
 export const EnrollmentCreatedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof EnrollmentCreatedEventEvent
 > = z.nativeEnum(EnrollmentCreatedEventEvent);
-
 /** @internal */
 export const EnrollmentCreatedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof EnrollmentCreatedEventEvent
 > = EnrollmentCreatedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnrollmentCreatedEventEvent$ {
-  /** @deprecated use `EnrollmentCreatedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = EnrollmentCreatedEventEvent$inboundSchema;
-  /** @deprecated use `EnrollmentCreatedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = EnrollmentCreatedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const EnrollmentCreatedEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const EnrollmentCreatedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: EnrollmentCreatedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type EnrollmentCreatedEventRequestBody$Outbound = {
   data: components.Enrollment$Outbound;
@@ -81,20 +68,6 @@ export const EnrollmentCreatedEventRequestBody$outboundSchema: z.ZodType<
   event: EnrollmentCreatedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnrollmentCreatedEventRequestBody$ {
-  /** @deprecated use `EnrollmentCreatedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = EnrollmentCreatedEventRequestBody$inboundSchema;
-  /** @deprecated use `EnrollmentCreatedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    EnrollmentCreatedEventRequestBody$outboundSchema;
-  /** @deprecated use `EnrollmentCreatedEventRequestBody$Outbound` instead. */
-  export type Outbound = EnrollmentCreatedEventRequestBody$Outbound;
-}
-
 export function enrollmentCreatedEventRequestBodyToJSON(
   enrollmentCreatedEventRequestBody: EnrollmentCreatedEventRequestBody,
 ): string {
@@ -104,7 +77,6 @@ export function enrollmentCreatedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function enrollmentCreatedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<EnrollmentCreatedEventRequestBody, SDKValidationError> {

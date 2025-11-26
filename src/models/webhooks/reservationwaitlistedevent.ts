@@ -35,22 +35,10 @@ export type ReservationWaitlistedEventRequestBody = {
 export const ReservationWaitlistedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof ReservationWaitlistedEventEvent
 > = z.nativeEnum(ReservationWaitlistedEventEvent);
-
 /** @internal */
 export const ReservationWaitlistedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof ReservationWaitlistedEventEvent
 > = ReservationWaitlistedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReservationWaitlistedEventEvent$ {
-  /** @deprecated use `ReservationWaitlistedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = ReservationWaitlistedEventEvent$inboundSchema;
-  /** @deprecated use `ReservationWaitlistedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = ReservationWaitlistedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const ReservationWaitlistedEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const ReservationWaitlistedEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: ReservationWaitlistedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type ReservationWaitlistedEventRequestBody$Outbound = {
   data: components.Reservation$Outbound;
@@ -81,21 +68,6 @@ export const ReservationWaitlistedEventRequestBody$outboundSchema: z.ZodType<
   event: ReservationWaitlistedEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReservationWaitlistedEventRequestBody$ {
-  /** @deprecated use `ReservationWaitlistedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ReservationWaitlistedEventRequestBody$inboundSchema;
-  /** @deprecated use `ReservationWaitlistedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ReservationWaitlistedEventRequestBody$outboundSchema;
-  /** @deprecated use `ReservationWaitlistedEventRequestBody$Outbound` instead. */
-  export type Outbound = ReservationWaitlistedEventRequestBody$Outbound;
-}
-
 export function reservationWaitlistedEventRequestBodyToJSON(
   reservationWaitlistedEventRequestBody: ReservationWaitlistedEventRequestBody,
 ): string {
@@ -105,7 +77,6 @@ export function reservationWaitlistedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function reservationWaitlistedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ReservationWaitlistedEventRequestBody, SDKValidationError> {

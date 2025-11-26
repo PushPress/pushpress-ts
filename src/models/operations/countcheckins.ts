@@ -75,7 +75,6 @@ export const CountCheckinsGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type CountCheckinsGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -94,19 +93,6 @@ export const CountCheckinsGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CountCheckinsGlobals$ {
-  /** @deprecated use `CountCheckinsGlobals$inboundSchema` instead. */
-  export const inboundSchema = CountCheckinsGlobals$inboundSchema;
-  /** @deprecated use `CountCheckinsGlobals$outboundSchema` instead. */
-  export const outboundSchema = CountCheckinsGlobals$outboundSchema;
-  /** @deprecated use `CountCheckinsGlobals$Outbound` instead. */
-  export type Outbound = CountCheckinsGlobals$Outbound;
-}
-
 export function countCheckinsGlobalsToJSON(
   countCheckinsGlobals: CountCheckinsGlobals,
 ): string {
@@ -114,7 +100,6 @@ export function countCheckinsGlobalsToJSON(
     CountCheckinsGlobals$outboundSchema.parse(countCheckinsGlobals),
   );
 }
-
 export function countCheckinsGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<CountCheckinsGlobals, SDKValidationError> {
@@ -128,21 +113,9 @@ export function countCheckinsGlobalsFromJSON(
 /** @internal */
 export const Include$inboundSchema: z.ZodNativeEnum<typeof Include> = z
   .nativeEnum(Include);
-
 /** @internal */
 export const Include$outboundSchema: z.ZodNativeEnum<typeof Include> =
   Include$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Include$ {
-  /** @deprecated use `Include$inboundSchema` instead. */
-  export const inboundSchema = Include$inboundSchema;
-  /** @deprecated use `Include$outboundSchema` instead. */
-  export const outboundSchema = Include$outboundSchema;
-}
 
 /** @internal */
 export const QueryParamType$inboundSchema: z.ZodType<
@@ -150,7 +123,6 @@ export const QueryParamType$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([z.string(), z.array(z.string())]);
-
 /** @internal */
 export type QueryParamType$Outbound = string | Array<string>;
 
@@ -161,23 +133,9 @@ export const QueryParamType$outboundSchema: z.ZodType<
   QueryParamType
 > = z.union([z.string(), z.array(z.string())]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QueryParamType$ {
-  /** @deprecated use `QueryParamType$inboundSchema` instead. */
-  export const inboundSchema = QueryParamType$inboundSchema;
-  /** @deprecated use `QueryParamType$outboundSchema` instead. */
-  export const outboundSchema = QueryParamType$outboundSchema;
-  /** @deprecated use `QueryParamType$Outbound` instead. */
-  export type Outbound = QueryParamType$Outbound;
-}
-
 export function queryParamTypeToJSON(queryParamType: QueryParamType): string {
   return JSON.stringify(QueryParamType$outboundSchema.parse(queryParamType));
 }
-
 export function queryParamTypeFromJSON(
   jsonString: string,
 ): SafeParseResult<QueryParamType, SDKValidationError> {
@@ -205,7 +163,6 @@ export const CountCheckinsRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type CountCheckinsRequest$Outbound = {
   include?: string | undefined;
@@ -234,19 +191,6 @@ export const CountCheckinsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CountCheckinsRequest$ {
-  /** @deprecated use `CountCheckinsRequest$inboundSchema` instead. */
-  export const inboundSchema = CountCheckinsRequest$inboundSchema;
-  /** @deprecated use `CountCheckinsRequest$outboundSchema` instead. */
-  export const outboundSchema = CountCheckinsRequest$outboundSchema;
-  /** @deprecated use `CountCheckinsRequest$Outbound` instead. */
-  export type Outbound = CountCheckinsRequest$Outbound;
-}
-
 export function countCheckinsRequestToJSON(
   countCheckinsRequest: CountCheckinsRequest,
 ): string {
@@ -254,7 +198,6 @@ export function countCheckinsRequestToJSON(
     CountCheckinsRequest$outboundSchema.parse(countCheckinsRequest),
   );
 }
-
 export function countCheckinsRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<CountCheckinsRequest, SDKValidationError> {
@@ -273,7 +216,6 @@ export const CountCheckinsResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   count: z.number(),
 });
-
 /** @internal */
 export type CountCheckinsResponseBody$Outbound = {
   count: number;
@@ -288,19 +230,6 @@ export const CountCheckinsResponseBody$outboundSchema: z.ZodType<
   count: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CountCheckinsResponseBody$ {
-  /** @deprecated use `CountCheckinsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CountCheckinsResponseBody$inboundSchema;
-  /** @deprecated use `CountCheckinsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CountCheckinsResponseBody$outboundSchema;
-  /** @deprecated use `CountCheckinsResponseBody$Outbound` instead. */
-  export type Outbound = CountCheckinsResponseBody$Outbound;
-}
-
 export function countCheckinsResponseBodyToJSON(
   countCheckinsResponseBody: CountCheckinsResponseBody,
 ): string {
@@ -308,7 +237,6 @@ export function countCheckinsResponseBodyToJSON(
     CountCheckinsResponseBody$outboundSchema.parse(countCheckinsResponseBody),
   );
 }
-
 export function countCheckinsResponseBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CountCheckinsResponseBody, SDKValidationError> {

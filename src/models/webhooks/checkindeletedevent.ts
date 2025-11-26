@@ -8,7 +8,7 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Data = {
+export type CheckinDeletedEventData = {
   id: string;
   /**
    * Unique identifier for the customer
@@ -31,7 +31,7 @@ export type CheckinDeletedEventEvent = ClosedEnum<
  * Checkin Deleted Event
  */
 export type CheckinDeletedEventRequestBody = {
-  data: Data;
+  data: CheckinDeletedEventData;
   /**
    * Unix timestamp representing when the event was created
    */
@@ -40,52 +40,47 @@ export type CheckinDeletedEventRequestBody = {
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.string(),
-    customerId: z.string(),
-    companyId: z.string(),
-  });
-
+export const CheckinDeletedEventData$inboundSchema: z.ZodType<
+  CheckinDeletedEventData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  customerId: z.string(),
+  companyId: z.string(),
+});
 /** @internal */
-export type Data$Outbound = {
+export type CheckinDeletedEventData$Outbound = {
   id: string;
   customerId: string;
   companyId: string;
 };
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    id: z.string(),
-    customerId: z.string(),
-    companyId: z.string(),
-  });
+export const CheckinDeletedEventData$outboundSchema: z.ZodType<
+  CheckinDeletedEventData$Outbound,
+  z.ZodTypeDef,
+  CheckinDeletedEventData
+> = z.object({
+  id: z.string(),
+  customerId: z.string(),
+  companyId: z.string(),
+});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
+export function checkinDeletedEventDataToJSON(
+  checkinDeletedEventData: CheckinDeletedEventData,
+): string {
+  return JSON.stringify(
+    CheckinDeletedEventData$outboundSchema.parse(checkinDeletedEventData),
+  );
 }
-
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
-}
-
-export function dataFromJSON(
+export function checkinDeletedEventDataFromJSON(
   jsonString: string,
-): SafeParseResult<Data, SDKValidationError> {
+): SafeParseResult<CheckinDeletedEventData, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Data$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data' from JSON`,
+    (x) => CheckinDeletedEventData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckinDeletedEventData' from JSON`,
   );
 }
 
@@ -93,22 +88,10 @@ export function dataFromJSON(
 export const CheckinDeletedEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof CheckinDeletedEventEvent
 > = z.nativeEnum(CheckinDeletedEventEvent);
-
 /** @internal */
 export const CheckinDeletedEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof CheckinDeletedEventEvent
 > = CheckinDeletedEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckinDeletedEventEvent$ {
-  /** @deprecated use `CheckinDeletedEventEvent$inboundSchema` instead. */
-  export const inboundSchema = CheckinDeletedEventEvent$inboundSchema;
-  /** @deprecated use `CheckinDeletedEventEvent$outboundSchema` instead. */
-  export const outboundSchema = CheckinDeletedEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const CheckinDeletedEventRequestBody$inboundSchema: z.ZodType<
@@ -116,14 +99,13 @@ export const CheckinDeletedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => Data$inboundSchema),
+  data: z.lazy(() => CheckinDeletedEventData$inboundSchema),
   created: z.number().int(),
   event: CheckinDeletedEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type CheckinDeletedEventRequestBody$Outbound = {
-  data: Data$Outbound;
+  data: CheckinDeletedEventData$Outbound;
   created: number;
   event: string;
 };
@@ -134,23 +116,10 @@ export const CheckinDeletedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CheckinDeletedEventRequestBody
 > = z.object({
-  data: z.lazy(() => Data$outboundSchema),
+  data: z.lazy(() => CheckinDeletedEventData$outboundSchema),
   created: z.number().int(),
   event: CheckinDeletedEventEvent$outboundSchema,
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckinDeletedEventRequestBody$ {
-  /** @deprecated use `CheckinDeletedEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CheckinDeletedEventRequestBody$inboundSchema;
-  /** @deprecated use `CheckinDeletedEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CheckinDeletedEventRequestBody$outboundSchema;
-  /** @deprecated use `CheckinDeletedEventRequestBody$Outbound` instead. */
-  export type Outbound = CheckinDeletedEventRequestBody$Outbound;
-}
 
 export function checkinDeletedEventRequestBodyToJSON(
   checkinDeletedEventRequestBody: CheckinDeletedEventRequestBody,
@@ -161,7 +130,6 @@ export function checkinDeletedEventRequestBodyToJSON(
     ),
   );
 }
-
 export function checkinDeletedEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<CheckinDeletedEventRequestBody, SDKValidationError> {

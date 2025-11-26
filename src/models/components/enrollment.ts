@@ -112,21 +112,9 @@ export type Enrollment = {
 /** @internal */
 export const Period$inboundSchema: z.ZodNativeEnum<typeof Period> = z
   .nativeEnum(Period);
-
 /** @internal */
 export const Period$outboundSchema: z.ZodNativeEnum<typeof Period> =
   Period$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Period$ {
-  /** @deprecated use `Period$inboundSchema` instead. */
-  export const inboundSchema = Period$inboundSchema;
-  /** @deprecated use `Period$outboundSchema` instead. */
-  export const outboundSchema = Period$outboundSchema;
-}
 
 /** @internal */
 export const BillingSchedule$inboundSchema: z.ZodType<
@@ -137,7 +125,6 @@ export const BillingSchedule$inboundSchema: z.ZodType<
   period: Period$inboundSchema,
   interval: z.number(),
 });
-
 /** @internal */
 export type BillingSchedule$Outbound = {
   period: string;
@@ -154,25 +141,11 @@ export const BillingSchedule$outboundSchema: z.ZodType<
   interval: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BillingSchedule$ {
-  /** @deprecated use `BillingSchedule$inboundSchema` instead. */
-  export const inboundSchema = BillingSchedule$inboundSchema;
-  /** @deprecated use `BillingSchedule$outboundSchema` instead. */
-  export const outboundSchema = BillingSchedule$outboundSchema;
-  /** @deprecated use `BillingSchedule$Outbound` instead. */
-  export type Outbound = BillingSchedule$Outbound;
-}
-
 export function billingScheduleToJSON(
   billingSchedule: BillingSchedule,
 ): string {
   return JSON.stringify(BillingSchedule$outboundSchema.parse(billingSchedule));
 }
-
 export function billingScheduleFromJSON(
   jsonString: string,
 ): SafeParseResult<BillingSchedule, SDKValidationError> {
@@ -187,22 +160,10 @@ export function billingScheduleFromJSON(
 export const EnrollmentStatus$inboundSchema: z.ZodNativeEnum<
   typeof EnrollmentStatus
 > = z.nativeEnum(EnrollmentStatus);
-
 /** @internal */
 export const EnrollmentStatus$outboundSchema: z.ZodNativeEnum<
   typeof EnrollmentStatus
 > = EnrollmentStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnrollmentStatus$ {
-  /** @deprecated use `EnrollmentStatus$inboundSchema` instead. */
-  export const inboundSchema = EnrollmentStatus$inboundSchema;
-  /** @deprecated use `EnrollmentStatus$outboundSchema` instead. */
-  export const outboundSchema = EnrollmentStatus$outboundSchema;
-}
 
 /** @internal */
 export const CheckinDetails$inboundSchema: z.ZodType<
@@ -213,7 +174,6 @@ export const CheckinDetails$inboundSchema: z.ZodType<
   checkins: z.number(),
   limit: z.number(),
 });
-
 /** @internal */
 export type CheckinDetails$Outbound = {
   checkins: number;
@@ -230,23 +190,9 @@ export const CheckinDetails$outboundSchema: z.ZodType<
   limit: z.number(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckinDetails$ {
-  /** @deprecated use `CheckinDetails$inboundSchema` instead. */
-  export const inboundSchema = CheckinDetails$inboundSchema;
-  /** @deprecated use `CheckinDetails$outboundSchema` instead. */
-  export const outboundSchema = CheckinDetails$outboundSchema;
-  /** @deprecated use `CheckinDetails$Outbound` instead. */
-  export type Outbound = CheckinDetails$Outbound;
-}
-
 export function checkinDetailsToJSON(checkinDetails: CheckinDetails): string {
   return JSON.stringify(CheckinDetails$outboundSchema.parse(checkinDetails));
 }
-
 export function checkinDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<CheckinDetails, SDKValidationError> {
@@ -263,7 +209,6 @@ export const Metadata$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type Metadata$Outbound = {};
 
@@ -274,23 +219,9 @@ export const Metadata$outboundSchema: z.ZodType<
   Metadata
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Metadata$ {
-  /** @deprecated use `Metadata$inboundSchema` instead. */
-  export const inboundSchema = Metadata$inboundSchema;
-  /** @deprecated use `Metadata$outboundSchema` instead. */
-  export const outboundSchema = Metadata$outboundSchema;
-  /** @deprecated use `Metadata$Outbound` instead. */
-  export type Outbound = Metadata$Outbound;
-}
-
 export function metadataToJSON(metadata: Metadata): string {
   return JSON.stringify(Metadata$outboundSchema.parse(metadata));
 }
-
 export function metadataFromJSON(
   jsonString: string,
 ): SafeParseResult<Metadata, SDKValidationError> {
@@ -313,7 +244,6 @@ export const Entitlements$inboundSchema: z.ZodType<
   quantity: z.number(),
   metadata: z.lazy(() => Metadata$inboundSchema),
 });
-
 /** @internal */
 export type Entitlements$Outbound = {
   type: string;
@@ -336,23 +266,9 @@ export const Entitlements$outboundSchema: z.ZodType<
   metadata: z.lazy(() => Metadata$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Entitlements$ {
-  /** @deprecated use `Entitlements$inboundSchema` instead. */
-  export const inboundSchema = Entitlements$inboundSchema;
-  /** @deprecated use `Entitlements$outboundSchema` instead. */
-  export const outboundSchema = Entitlements$outboundSchema;
-  /** @deprecated use `Entitlements$Outbound` instead. */
-  export type Outbound = Entitlements$Outbound;
-}
-
 export function entitlementsToJSON(entitlements: Entitlements): string {
   return JSON.stringify(Entitlements$outboundSchema.parse(entitlements));
 }
-
 export function entitlementsFromJSON(
   jsonString: string,
 ): SafeParseResult<Entitlements, SDKValidationError> {
@@ -383,7 +299,6 @@ export const Enrollment$inboundSchema: z.ZodType<
   checkinDetails: z.lazy(() => CheckinDetails$inboundSchema),
   entitlements: z.array(z.lazy(() => Entitlements$inboundSchema)),
 });
-
 /** @internal */
 export type Enrollment$Outbound = {
   id: string;
@@ -422,23 +337,9 @@ export const Enrollment$outboundSchema: z.ZodType<
   entitlements: z.array(z.lazy(() => Entitlements$outboundSchema)),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Enrollment$ {
-  /** @deprecated use `Enrollment$inboundSchema` instead. */
-  export const inboundSchema = Enrollment$inboundSchema;
-  /** @deprecated use `Enrollment$outboundSchema` instead. */
-  export const outboundSchema = Enrollment$outboundSchema;
-  /** @deprecated use `Enrollment$Outbound` instead. */
-  export type Outbound = Enrollment$Outbound;
-}
-
 export function enrollmentToJSON(enrollment: Enrollment): string {
   return JSON.stringify(Enrollment$outboundSchema.parse(enrollment));
 }
-
 export function enrollmentFromJSON(
   jsonString: string,
 ): SafeParseResult<Enrollment, SDKValidationError> {

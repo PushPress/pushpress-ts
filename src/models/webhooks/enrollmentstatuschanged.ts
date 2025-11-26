@@ -35,22 +35,10 @@ export type EnrollmentStatusChangedRequestBody = {
 export const EnrollmentStatusChangedEvent$inboundSchema: z.ZodNativeEnum<
   typeof EnrollmentStatusChangedEvent
 > = z.nativeEnum(EnrollmentStatusChangedEvent);
-
 /** @internal */
 export const EnrollmentStatusChangedEvent$outboundSchema: z.ZodNativeEnum<
   typeof EnrollmentStatusChangedEvent
 > = EnrollmentStatusChangedEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnrollmentStatusChangedEvent$ {
-  /** @deprecated use `EnrollmentStatusChangedEvent$inboundSchema` instead. */
-  export const inboundSchema = EnrollmentStatusChangedEvent$inboundSchema;
-  /** @deprecated use `EnrollmentStatusChangedEvent$outboundSchema` instead. */
-  export const outboundSchema = EnrollmentStatusChangedEvent$outboundSchema;
-}
 
 /** @internal */
 export const EnrollmentStatusChangedRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const EnrollmentStatusChangedRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: EnrollmentStatusChangedEvent$inboundSchema,
 });
-
 /** @internal */
 export type EnrollmentStatusChangedRequestBody$Outbound = {
   data: components.Enrollment$Outbound;
@@ -81,20 +68,6 @@ export const EnrollmentStatusChangedRequestBody$outboundSchema: z.ZodType<
   event: EnrollmentStatusChangedEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EnrollmentStatusChangedRequestBody$ {
-  /** @deprecated use `EnrollmentStatusChangedRequestBody$inboundSchema` instead. */
-  export const inboundSchema = EnrollmentStatusChangedRequestBody$inboundSchema;
-  /** @deprecated use `EnrollmentStatusChangedRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    EnrollmentStatusChangedRequestBody$outboundSchema;
-  /** @deprecated use `EnrollmentStatusChangedRequestBody$Outbound` instead. */
-  export type Outbound = EnrollmentStatusChangedRequestBody$Outbound;
-}
-
 export function enrollmentStatusChangedRequestBodyToJSON(
   enrollmentStatusChangedRequestBody: EnrollmentStatusChangedRequestBody,
 ): string {
@@ -104,7 +77,6 @@ export function enrollmentStatusChangedRequestBodyToJSON(
     ),
   );
 }
-
 export function enrollmentStatusChangedRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<EnrollmentStatusChangedRequestBody, SDKValidationError> {

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: bcfe854593f5caaf15924542b079b8b7
+  docChecksum: 8f3d84f6da4a73a60f9ab0d32936c807
   docVersion: 3.0.0
-  speakeasyVersion: 1.642.2
-  generationVersion: 2.731.6
-  releaseVersion: 1.12.0
-  configChecksum: 148dc1090500ddbbe83a2f606c712196
+  speakeasyVersion: 1.662.0
+  generationVersion: 2.763.3
+  releaseVersion: 1.13.0
+  configChecksum: 91bf6478180c2a29c9b3b67eb61b7775
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
-    core: 3.24.1
+    core: 3.26.10
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.1
@@ -24,7 +24,7 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     globals: 2.82.2
     groups: 2.81.3
     mcpServer: 0.9.3
@@ -39,7 +39,7 @@ features:
     serverIDs: 2.81.2
     unions: 2.86.0
     webhookHandlers: 0.1.0
-    webhooks: 1.5.0
+    webhooks: 1.5.1
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -317,6 +317,7 @@ generatedFiles:
   - docs/models/webhooks/appuninstalledeventevent.md
   - docs/models/webhooks/appuninstalledeventrequestbody.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
+  - docs/models/webhooks/checkindeletedeventdata.md
   - docs/models/webhooks/checkindeletedeventevent.md
   - docs/models/webhooks/checkindeletedeventrequestbody.md
   - docs/models/webhooks/checkinupdatedeventevent.md
@@ -366,14 +367,13 @@ generatedFiles:
   - docs/sdks/open/README.md
   - docs/sdks/plans/README.md
   - docs/sdks/push/README.md
-  - docs/sdks/pushpress/README.md
   - docs/sdks/realtime/README.md
   - docs/sdks/sms/README.md
   - docs/sdks/type/README.md
   - eslint.config.mjs
   - examples/.env.template
   - examples/README.md
-  - examples/checkinCreatedEvent.example.ts
+  - examples/appointmentsAppointmentsGet.example.ts
   - examples/package.json
   - jsr.json
   - package.json
@@ -381,16 +381,7 @@ generatedFiles:
   - src/funcs/apiKeysDelete.ts
   - src/funcs/apiKeysGet.ts
   - src/funcs/apiKeysRevoke.ts
-  - src/funcs/appInstalledEvent.ts
-  - src/funcs/appUninstalledEvent.ts
-  - src/funcs/appointmentCanceledEvent.ts
-  - src/funcs/appointmentNoShowedEvent.ts
-  - src/funcs/appointmentRescheduledEvent.ts
-  - src/funcs/appointmentScheduledEvent.ts
   - src/funcs/appointmentsAppointmentsGet.ts
-  - src/funcs/checkinCreatedEvent.ts
-  - src/funcs/checkinDeletedEvent.ts
-  - src/funcs/checkinUpdatedEvent.ts
   - src/funcs/checkinsAppointmentGet.ts
   - src/funcs/checkinsAppointmentList.ts
   - src/funcs/checkinsClassGet.ts
@@ -400,26 +391,18 @@ generatedFiles:
   - src/funcs/checkinsEventList.ts
   - src/funcs/checkinsOpenGet.ts
   - src/funcs/checkinsOpenList.ts
-  - src/funcs/classCanceledEvent.ts
   - src/funcs/classesGet.ts
   - src/funcs/classesTypeGet.ts
   - src/funcs/classesTypeList.ts
   - src/funcs/companyGet.ts
-  - src/funcs/customerCreatedEvent.ts
-  - src/funcs/customerDeletedEvent.ts
-  - src/funcs/customerDetailsChangedEvent.ts
-  - src/funcs/customerStatusChangedEvent.ts
   - src/funcs/customersAttributionsCreate.ts
   - src/funcs/customersAttributionsGet.ts
   - src/funcs/customersAttributionsList.ts
   - src/funcs/customersCreate.ts
   - src/funcs/customersGet.ts
   - src/funcs/customersList.ts
-  - src/funcs/enrollmentCreatedEvent.ts
-  - src/funcs/enrollmentDeleted.ts
   - src/funcs/enrollmentGet.ts
   - src/funcs/enrollmentList.ts
-  - src/funcs/enrollmentStatusChanged.ts
   - src/funcs/eventsGet.ts
   - src/funcs/eventsList.ts
   - src/funcs/invitationsCreate.ts
@@ -441,9 +424,6 @@ generatedFiles:
   - src/funcs/messagesRealtimeSend.ts
   - src/funcs/messagesSmsSend.ts
   - src/funcs/plansGet.ts
-  - src/funcs/reservationCanceledEvent.ts
-  - src/funcs/reservationCreatedEvent.ts
-  - src/funcs/reservationWaitlistedEvent.ts
   - src/funcs/validateWebhook.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -651,6 +631,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/unrecognized.ts
   - src/types/webhooks.ts
   - tsconfig.json
 examples:
@@ -1242,4 +1223,3 @@ examples:
           application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "lastUsedAt": null, "expiresAt": null}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Typescript SDK Changes Detected:\n* `pushpress.events.get()`: \n  *  `request.expand` **Changed** **Breaking** :warning:\n* `pushpress.apiKeys.delete()`: **Added**\n* `pushpress.keys.list()`:  `response.data.resultArray.[].lastUsedAt` **Added**\n* `pushpress.keys.create()`:  `response.lastusedat` **Added**\n* `pushpress.apiKeys.get()`:  `response.lastusedat` **Added**\n* `pushpress.apiKeys.revoke()`: **Deprecated**\n* `pushpress.apiKeys.revoke()`: \n  *  `request.requestBody` **Added**\n  *  `response.lastusedat` **Added**\n"

@@ -47,7 +47,6 @@ export const SendEventGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type SendEventGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -66,19 +65,6 @@ export const SendEventGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEventGlobals$ {
-  /** @deprecated use `SendEventGlobals$inboundSchema` instead. */
-  export const inboundSchema = SendEventGlobals$inboundSchema;
-  /** @deprecated use `SendEventGlobals$outboundSchema` instead. */
-  export const outboundSchema = SendEventGlobals$outboundSchema;
-  /** @deprecated use `SendEventGlobals$Outbound` instead. */
-  export type Outbound = SendEventGlobals$Outbound;
-}
-
 export function sendEventGlobalsToJSON(
   sendEventGlobals: SendEventGlobals,
 ): string {
@@ -86,7 +72,6 @@ export function sendEventGlobalsToJSON(
     SendEventGlobals$outboundSchema.parse(sendEventGlobals),
   );
 }
-
 export function sendEventGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEventGlobals, SDKValidationError> {
@@ -107,7 +92,6 @@ export const SendEventRequestBody$inboundSchema: z.ZodType<
   event: z.string(),
   data: z.any().optional(),
 });
-
 /** @internal */
 export type SendEventRequestBody$Outbound = {
   channel: string;
@@ -126,19 +110,6 @@ export const SendEventRequestBody$outboundSchema: z.ZodType<
   data: z.any().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEventRequestBody$ {
-  /** @deprecated use `SendEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = SendEventRequestBody$inboundSchema;
-  /** @deprecated use `SendEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = SendEventRequestBody$outboundSchema;
-  /** @deprecated use `SendEventRequestBody$Outbound` instead. */
-  export type Outbound = SendEventRequestBody$Outbound;
-}
-
 export function sendEventRequestBodyToJSON(
   sendEventRequestBody: SendEventRequestBody,
 ): string {
@@ -146,7 +117,6 @@ export function sendEventRequestBodyToJSON(
     SendEventRequestBody$outboundSchema.parse(sendEventRequestBody),
   );
 }
-
 export function sendEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEventRequestBody, SDKValidationError> {
@@ -171,7 +141,6 @@ export const SendEventRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type SendEventRequest$Outbound = {
   "company-id"?: string | undefined;
@@ -193,19 +162,6 @@ export const SendEventRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SendEventRequest$ {
-  /** @deprecated use `SendEventRequest$inboundSchema` instead. */
-  export const inboundSchema = SendEventRequest$inboundSchema;
-  /** @deprecated use `SendEventRequest$outboundSchema` instead. */
-  export const outboundSchema = SendEventRequest$outboundSchema;
-  /** @deprecated use `SendEventRequest$Outbound` instead. */
-  export type Outbound = SendEventRequest$Outbound;
-}
-
 export function sendEventRequestToJSON(
   sendEventRequest: SendEventRequest,
 ): string {
@@ -213,7 +169,6 @@ export function sendEventRequestToJSON(
     SendEventRequest$outboundSchema.parse(sendEventRequest),
   );
 }
-
 export function sendEventRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<SendEventRequest, SDKValidationError> {

@@ -39,7 +39,6 @@ export const RevokeApiKeyGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type RevokeApiKeyGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -58,19 +57,6 @@ export const RevokeApiKeyGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RevokeApiKeyGlobals$ {
-  /** @deprecated use `RevokeApiKeyGlobals$inboundSchema` instead. */
-  export const inboundSchema = RevokeApiKeyGlobals$inboundSchema;
-  /** @deprecated use `RevokeApiKeyGlobals$outboundSchema` instead. */
-  export const outboundSchema = RevokeApiKeyGlobals$outboundSchema;
-  /** @deprecated use `RevokeApiKeyGlobals$Outbound` instead. */
-  export type Outbound = RevokeApiKeyGlobals$Outbound;
-}
-
 export function revokeApiKeyGlobalsToJSON(
   revokeApiKeyGlobals: RevokeApiKeyGlobals,
 ): string {
@@ -78,7 +64,6 @@ export function revokeApiKeyGlobalsToJSON(
     RevokeApiKeyGlobals$outboundSchema.parse(revokeApiKeyGlobals),
   );
 }
-
 export function revokeApiKeyGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<RevokeApiKeyGlobals, SDKValidationError> {
@@ -97,7 +82,6 @@ export const RevokeApiKeySecurity$inboundSchema: z.ZodType<
 > = z.object({
   bearer: z.string(),
 });
-
 /** @internal */
 export type RevokeApiKeySecurity$Outbound = {
   bearer: string;
@@ -112,19 +96,6 @@ export const RevokeApiKeySecurity$outboundSchema: z.ZodType<
   bearer: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RevokeApiKeySecurity$ {
-  /** @deprecated use `RevokeApiKeySecurity$inboundSchema` instead. */
-  export const inboundSchema = RevokeApiKeySecurity$inboundSchema;
-  /** @deprecated use `RevokeApiKeySecurity$outboundSchema` instead. */
-  export const outboundSchema = RevokeApiKeySecurity$outboundSchema;
-  /** @deprecated use `RevokeApiKeySecurity$Outbound` instead. */
-  export type Outbound = RevokeApiKeySecurity$Outbound;
-}
-
 export function revokeApiKeySecurityToJSON(
   revokeApiKeySecurity: RevokeApiKeySecurity,
 ): string {
@@ -132,7 +103,6 @@ export function revokeApiKeySecurityToJSON(
     RevokeApiKeySecurity$outboundSchema.parse(revokeApiKeySecurity),
   );
 }
-
 export function revokeApiKeySecurityFromJSON(
   jsonString: string,
 ): SafeParseResult<RevokeApiKeySecurity, SDKValidationError> {
@@ -149,7 +119,6 @@ export const RevokeApiKeyRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({});
-
 /** @internal */
 export type RevokeApiKeyRequestBody$Outbound = {};
 
@@ -160,19 +129,6 @@ export const RevokeApiKeyRequestBody$outboundSchema: z.ZodType<
   RevokeApiKeyRequestBody
 > = z.object({});
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RevokeApiKeyRequestBody$ {
-  /** @deprecated use `RevokeApiKeyRequestBody$inboundSchema` instead. */
-  export const inboundSchema = RevokeApiKeyRequestBody$inboundSchema;
-  /** @deprecated use `RevokeApiKeyRequestBody$outboundSchema` instead. */
-  export const outboundSchema = RevokeApiKeyRequestBody$outboundSchema;
-  /** @deprecated use `RevokeApiKeyRequestBody$Outbound` instead. */
-  export type Outbound = RevokeApiKeyRequestBody$Outbound;
-}
-
 export function revokeApiKeyRequestBodyToJSON(
   revokeApiKeyRequestBody: RevokeApiKeyRequestBody,
 ): string {
@@ -180,7 +136,6 @@ export function revokeApiKeyRequestBodyToJSON(
     RevokeApiKeyRequestBody$outboundSchema.parse(revokeApiKeyRequestBody),
   );
 }
-
 export function revokeApiKeyRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<RevokeApiKeyRequestBody, SDKValidationError> {
@@ -207,7 +162,6 @@ export const RevokeApiKeyRequest$inboundSchema: z.ZodType<
     "RequestBody": "requestBody",
   });
 });
-
 /** @internal */
 export type RevokeApiKeyRequest$Outbound = {
   id: string;
@@ -232,19 +186,6 @@ export const RevokeApiKeyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RevokeApiKeyRequest$ {
-  /** @deprecated use `RevokeApiKeyRequest$inboundSchema` instead. */
-  export const inboundSchema = RevokeApiKeyRequest$inboundSchema;
-  /** @deprecated use `RevokeApiKeyRequest$outboundSchema` instead. */
-  export const outboundSchema = RevokeApiKeyRequest$outboundSchema;
-  /** @deprecated use `RevokeApiKeyRequest$Outbound` instead. */
-  export type Outbound = RevokeApiKeyRequest$Outbound;
-}
-
 export function revokeApiKeyRequestToJSON(
   revokeApiKeyRequest: RevokeApiKeyRequest,
 ): string {
@@ -252,7 +193,6 @@ export function revokeApiKeyRequestToJSON(
     RevokeApiKeyRequest$outboundSchema.parse(revokeApiKeyRequest),
   );
 }
-
 export function revokeApiKeyRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<RevokeApiKeyRequest, SDKValidationError> {

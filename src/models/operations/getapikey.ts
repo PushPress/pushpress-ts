@@ -36,7 +36,6 @@ export const GetApiKeyGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetApiKeyGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -55,19 +54,6 @@ export const GetApiKeyGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetApiKeyGlobals$ {
-  /** @deprecated use `GetApiKeyGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetApiKeyGlobals$inboundSchema;
-  /** @deprecated use `GetApiKeyGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetApiKeyGlobals$outboundSchema;
-  /** @deprecated use `GetApiKeyGlobals$Outbound` instead. */
-  export type Outbound = GetApiKeyGlobals$Outbound;
-}
-
 export function getApiKeyGlobalsToJSON(
   getApiKeyGlobals: GetApiKeyGlobals,
 ): string {
@@ -75,7 +61,6 @@ export function getApiKeyGlobalsToJSON(
     GetApiKeyGlobals$outboundSchema.parse(getApiKeyGlobals),
   );
 }
-
 export function getApiKeyGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiKeyGlobals, SDKValidationError> {
@@ -94,7 +79,6 @@ export const GetApiKeySecurity$inboundSchema: z.ZodType<
 > = z.object({
   bearer: z.string(),
 });
-
 /** @internal */
 export type GetApiKeySecurity$Outbound = {
   bearer: string;
@@ -109,19 +93,6 @@ export const GetApiKeySecurity$outboundSchema: z.ZodType<
   bearer: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetApiKeySecurity$ {
-  /** @deprecated use `GetApiKeySecurity$inboundSchema` instead. */
-  export const inboundSchema = GetApiKeySecurity$inboundSchema;
-  /** @deprecated use `GetApiKeySecurity$outboundSchema` instead. */
-  export const outboundSchema = GetApiKeySecurity$outboundSchema;
-  /** @deprecated use `GetApiKeySecurity$Outbound` instead. */
-  export type Outbound = GetApiKeySecurity$Outbound;
-}
-
 export function getApiKeySecurityToJSON(
   getApiKeySecurity: GetApiKeySecurity,
 ): string {
@@ -129,7 +100,6 @@ export function getApiKeySecurityToJSON(
     GetApiKeySecurity$outboundSchema.parse(getApiKeySecurity),
   );
 }
-
 export function getApiKeySecurityFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiKeySecurity, SDKValidationError> {
@@ -153,7 +123,6 @@ export const GetApiKeyRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetApiKeyRequest$Outbound = {
   id: string;
@@ -174,19 +143,6 @@ export const GetApiKeyRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetApiKeyRequest$ {
-  /** @deprecated use `GetApiKeyRequest$inboundSchema` instead. */
-  export const inboundSchema = GetApiKeyRequest$inboundSchema;
-  /** @deprecated use `GetApiKeyRequest$outboundSchema` instead. */
-  export const outboundSchema = GetApiKeyRequest$outboundSchema;
-  /** @deprecated use `GetApiKeyRequest$Outbound` instead. */
-  export type Outbound = GetApiKeyRequest$Outbound;
-}
-
 export function getApiKeyRequestToJSON(
   getApiKeyRequest: GetApiKeyRequest,
 ): string {
@@ -194,7 +150,6 @@ export function getApiKeyRequestToJSON(
     GetApiKeyRequest$outboundSchema.parse(getApiKeyRequest),
   );
 }
-
 export function getApiKeyRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiKeyRequest, SDKValidationError> {

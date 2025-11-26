@@ -90,21 +90,9 @@ export type EventCheckin = {
 export const Role$inboundSchema: z.ZodNativeEnum<typeof Role> = z.nativeEnum(
   Role,
 );
-
 /** @internal */
 export const Role$outboundSchema: z.ZodNativeEnum<typeof Role> =
   Role$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Role$ {
-  /** @deprecated use `Role$inboundSchema` instead. */
-  export const inboundSchema = Role$inboundSchema;
-  /** @deprecated use `Role$outboundSchema` instead. */
-  export const outboundSchema = Role$outboundSchema;
-}
 
 /** @internal */
 export const EventCheckinType$inboundSchema: z.ZodType<
@@ -115,7 +103,6 @@ export const EventCheckinType$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string(),
 });
-
 /** @internal */
 export type EventCheckinType$Outbound = {
   id: string;
@@ -132,19 +119,6 @@ export const EventCheckinType$outboundSchema: z.ZodType<
   name: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventCheckinType$ {
-  /** @deprecated use `EventCheckinType$inboundSchema` instead. */
-  export const inboundSchema = EventCheckinType$inboundSchema;
-  /** @deprecated use `EventCheckinType$outboundSchema` instead. */
-  export const outboundSchema = EventCheckinType$outboundSchema;
-  /** @deprecated use `EventCheckinType$Outbound` instead. */
-  export type Outbound = EventCheckinType$Outbound;
-}
-
 export function eventCheckinTypeToJSON(
   eventCheckinType: EventCheckinType,
 ): string {
@@ -152,7 +126,6 @@ export function eventCheckinTypeToJSON(
     EventCheckinType$outboundSchema.parse(eventCheckinType),
   );
 }
-
 export function eventCheckinTypeFromJSON(
   jsonString: string,
 ): SafeParseResult<EventCheckinType, SDKValidationError> {
@@ -181,7 +154,6 @@ export const EventCheckin$inboundSchema: z.ZodType<
   eventId: z.string(),
   type: z.lazy(() => EventCheckinType$inboundSchema),
 });
-
 /** @internal */
 export type EventCheckin$Outbound = {
   id: string;
@@ -216,23 +188,9 @@ export const EventCheckin$outboundSchema: z.ZodType<
   type: z.lazy(() => EventCheckinType$outboundSchema),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventCheckin$ {
-  /** @deprecated use `EventCheckin$inboundSchema` instead. */
-  export const inboundSchema = EventCheckin$inboundSchema;
-  /** @deprecated use `EventCheckin$outboundSchema` instead. */
-  export const outboundSchema = EventCheckin$outboundSchema;
-  /** @deprecated use `EventCheckin$Outbound` instead. */
-  export type Outbound = EventCheckin$Outbound;
-}
-
 export function eventCheckinToJSON(eventCheckin: EventCheckin): string {
   return JSON.stringify(EventCheckin$outboundSchema.parse(eventCheckin));
 }
-
 export function eventCheckinFromJSON(
   jsonString: string,
 ): SafeParseResult<EventCheckin, SDKValidationError> {

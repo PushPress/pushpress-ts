@@ -54,7 +54,7 @@ export const BadRequest$inboundSchema: z.ZodType<
   })
     .catchall(z.any()),
   "additionalProperties",
-  true,
+  false,
 )
   .transform((v) => {
     return new BadRequest(v, {
@@ -90,16 +90,3 @@ export const BadRequest$outboundSchema: z.ZodType<
       };
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BadRequest$ {
-  /** @deprecated use `BadRequest$inboundSchema` instead. */
-  export const inboundSchema = BadRequest$inboundSchema;
-  /** @deprecated use `BadRequest$outboundSchema` instead. */
-  export const outboundSchema = BadRequest$outboundSchema;
-  /** @deprecated use `BadRequest$Outbound` instead. */
-  export type Outbound = BadRequest$Outbound;
-}

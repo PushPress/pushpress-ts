@@ -35,22 +35,10 @@ export type ReservationCanceledEventRequestBody = {
 export const ReservationCanceledEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof ReservationCanceledEventEvent
 > = z.nativeEnum(ReservationCanceledEventEvent);
-
 /** @internal */
 export const ReservationCanceledEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof ReservationCanceledEventEvent
 > = ReservationCanceledEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReservationCanceledEventEvent$ {
-  /** @deprecated use `ReservationCanceledEventEvent$inboundSchema` instead. */
-  export const inboundSchema = ReservationCanceledEventEvent$inboundSchema;
-  /** @deprecated use `ReservationCanceledEventEvent$outboundSchema` instead. */
-  export const outboundSchema = ReservationCanceledEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const ReservationCanceledEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const ReservationCanceledEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: ReservationCanceledEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type ReservationCanceledEventRequestBody$Outbound = {
   data: components.Reservation$Outbound;
@@ -81,21 +68,6 @@ export const ReservationCanceledEventRequestBody$outboundSchema: z.ZodType<
   event: ReservationCanceledEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReservationCanceledEventRequestBody$ {
-  /** @deprecated use `ReservationCanceledEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    ReservationCanceledEventRequestBody$inboundSchema;
-  /** @deprecated use `ReservationCanceledEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    ReservationCanceledEventRequestBody$outboundSchema;
-  /** @deprecated use `ReservationCanceledEventRequestBody$Outbound` instead. */
-  export type Outbound = ReservationCanceledEventRequestBody$Outbound;
-}
-
 export function reservationCanceledEventRequestBodyToJSON(
   reservationCanceledEventRequestBody: ReservationCanceledEventRequestBody,
 ): string {
@@ -105,7 +77,6 @@ export function reservationCanceledEventRequestBodyToJSON(
     ),
   );
 }
-
 export function reservationCanceledEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<ReservationCanceledEventRequestBody, SDKValidationError> {

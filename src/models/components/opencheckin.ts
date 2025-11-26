@@ -50,7 +50,6 @@ export const OpenCheckin$inboundSchema: z.ZodType<
   enrollmentId: z.nullable(z.string()).optional(),
   kind: z.literal("open").default("open").optional(),
 });
-
 /** @internal */
 export type OpenCheckin$Outbound = {
   id: string;
@@ -75,23 +74,9 @@ export const OpenCheckin$outboundSchema: z.ZodType<
   kind: z.literal("open"),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpenCheckin$ {
-  /** @deprecated use `OpenCheckin$inboundSchema` instead. */
-  export const inboundSchema = OpenCheckin$inboundSchema;
-  /** @deprecated use `OpenCheckin$outboundSchema` instead. */
-  export const outboundSchema = OpenCheckin$outboundSchema;
-  /** @deprecated use `OpenCheckin$Outbound` instead. */
-  export type Outbound = OpenCheckin$Outbound;
-}
-
 export function openCheckinToJSON(openCheckin: OpenCheckin): string {
   return JSON.stringify(OpenCheckin$outboundSchema.parse(openCheckin));
 }
-
 export function openCheckinFromJSON(
   jsonString: string,
 ): SafeParseResult<OpenCheckin, SDKValidationError> {

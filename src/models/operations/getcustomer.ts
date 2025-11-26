@@ -32,7 +32,6 @@ export const GetCustomerGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetCustomerGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -51,19 +50,6 @@ export const GetCustomerGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomerGlobals$ {
-  /** @deprecated use `GetCustomerGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetCustomerGlobals$inboundSchema;
-  /** @deprecated use `GetCustomerGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetCustomerGlobals$outboundSchema;
-  /** @deprecated use `GetCustomerGlobals$Outbound` instead. */
-  export type Outbound = GetCustomerGlobals$Outbound;
-}
-
 export function getCustomerGlobalsToJSON(
   getCustomerGlobals: GetCustomerGlobals,
 ): string {
@@ -71,7 +57,6 @@ export function getCustomerGlobalsToJSON(
     GetCustomerGlobals$outboundSchema.parse(getCustomerGlobals),
   );
 }
-
 export function getCustomerGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<GetCustomerGlobals, SDKValidationError> {
@@ -95,7 +80,6 @@ export const GetCustomerRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type GetCustomerRequest$Outbound = {
   uuid: string;
@@ -116,19 +100,6 @@ export const GetCustomerRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetCustomerRequest$ {
-  /** @deprecated use `GetCustomerRequest$inboundSchema` instead. */
-  export const inboundSchema = GetCustomerRequest$inboundSchema;
-  /** @deprecated use `GetCustomerRequest$outboundSchema` instead. */
-  export const outboundSchema = GetCustomerRequest$outboundSchema;
-  /** @deprecated use `GetCustomerRequest$Outbound` instead. */
-  export type Outbound = GetCustomerRequest$Outbound;
-}
-
 export function getCustomerRequestToJSON(
   getCustomerRequest: GetCustomerRequest,
 ): string {
@@ -136,7 +107,6 @@ export function getCustomerRequestToJSON(
     GetCustomerRequest$outboundSchema.parse(getCustomerRequest),
   );
 }
-
 export function getCustomerRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<GetCustomerRequest, SDKValidationError> {

@@ -49,7 +49,6 @@ export const DeleteInvitationByIdGlobals$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type DeleteInvitationByIdGlobals$Outbound = {
   "company-id"?: string | undefined;
@@ -68,19 +67,6 @@ export const DeleteInvitationByIdGlobals$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteInvitationByIdGlobals$ {
-  /** @deprecated use `DeleteInvitationByIdGlobals$inboundSchema` instead. */
-  export const inboundSchema = DeleteInvitationByIdGlobals$inboundSchema;
-  /** @deprecated use `DeleteInvitationByIdGlobals$outboundSchema` instead. */
-  export const outboundSchema = DeleteInvitationByIdGlobals$outboundSchema;
-  /** @deprecated use `DeleteInvitationByIdGlobals$Outbound` instead. */
-  export type Outbound = DeleteInvitationByIdGlobals$Outbound;
-}
-
 export function deleteInvitationByIdGlobalsToJSON(
   deleteInvitationByIdGlobals: DeleteInvitationByIdGlobals,
 ): string {
@@ -90,7 +76,6 @@ export function deleteInvitationByIdGlobalsToJSON(
     ),
   );
 }
-
 export function deleteInvitationByIdGlobalsFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteInvitationByIdGlobals, SDKValidationError> {
@@ -114,7 +99,6 @@ export const DeleteInvitationByIdRequest$inboundSchema: z.ZodType<
     "company-id": "companyId",
   });
 });
-
 /** @internal */
 export type DeleteInvitationByIdRequest$Outbound = {
   id: string;
@@ -135,19 +119,6 @@ export const DeleteInvitationByIdRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteInvitationByIdRequest$ {
-  /** @deprecated use `DeleteInvitationByIdRequest$inboundSchema` instead. */
-  export const inboundSchema = DeleteInvitationByIdRequest$inboundSchema;
-  /** @deprecated use `DeleteInvitationByIdRequest$outboundSchema` instead. */
-  export const outboundSchema = DeleteInvitationByIdRequest$outboundSchema;
-  /** @deprecated use `DeleteInvitationByIdRequest$Outbound` instead. */
-  export type Outbound = DeleteInvitationByIdRequest$Outbound;
-}
-
 export function deleteInvitationByIdRequestToJSON(
   deleteInvitationByIdRequest: DeleteInvitationByIdRequest,
 ): string {
@@ -157,7 +128,6 @@ export function deleteInvitationByIdRequestToJSON(
     ),
   );
 }
-
 export function deleteInvitationByIdRequestFromJSON(
   jsonString: string,
 ): SafeParseResult<DeleteInvitationByIdRequest, SDKValidationError> {
@@ -172,19 +142,7 @@ export function deleteInvitationByIdRequestFromJSON(
 export const DeleteInvitationByIdResponseBody$inboundSchema: z.ZodNativeEnum<
   typeof DeleteInvitationByIdResponseBody
 > = z.nativeEnum(DeleteInvitationByIdResponseBody);
-
 /** @internal */
 export const DeleteInvitationByIdResponseBody$outboundSchema: z.ZodNativeEnum<
   typeof DeleteInvitationByIdResponseBody
 > = DeleteInvitationByIdResponseBody$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteInvitationByIdResponseBody$ {
-  /** @deprecated use `DeleteInvitationByIdResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteInvitationByIdResponseBody$inboundSchema;
-  /** @deprecated use `DeleteInvitationByIdResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteInvitationByIdResponseBody$outboundSchema;
-}

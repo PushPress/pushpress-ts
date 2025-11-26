@@ -35,26 +35,27 @@ import {
  * Checkin for a class, event, appointment or an open facility
  */
 export type Checkin =
-  | ClassCheckin
-  | EventCheckin
-  | AppointmentCheckin
-  | OpenCheckin;
+  | (ClassCheckin & { kind: "class" })
+  | (EventCheckin & { kind: "event" })
+  | (AppointmentCheckin & { kind: "appointment" })
+  | (OpenCheckin & { kind: "open" });
 
 /** @internal */
 export const Checkin$inboundSchema: z.ZodType<Checkin, z.ZodTypeDef, unknown> =
   z.union([
-    ClassCheckin$inboundSchema,
-    EventCheckin$inboundSchema,
-    AppointmentCheckin$inboundSchema,
-    OpenCheckin$inboundSchema,
+    ClassCheckin$inboundSchema.and(z.object({ kind: z.literal("class") })),
+    EventCheckin$inboundSchema.and(z.object({ kind: z.literal("event") })),
+    AppointmentCheckin$inboundSchema.and(
+      z.object({ kind: z.literal("appointment") }),
+    ),
+    OpenCheckin$inboundSchema.and(z.object({ kind: z.literal("open") })),
   ]);
-
 /** @internal */
 export type Checkin$Outbound =
-  | ClassCheckin$Outbound
-  | EventCheckin$Outbound
-  | AppointmentCheckin$Outbound
-  | OpenCheckin$Outbound;
+  | (ClassCheckin$Outbound & { kind: "class" })
+  | (EventCheckin$Outbound & { kind: "event" })
+  | (AppointmentCheckin$Outbound & { kind: "appointment" })
+  | (OpenCheckin$Outbound & { kind: "open" });
 
 /** @internal */
 export const Checkin$outboundSchema: z.ZodType<
@@ -62,29 +63,17 @@ export const Checkin$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Checkin
 > = z.union([
-  ClassCheckin$outboundSchema,
-  EventCheckin$outboundSchema,
-  AppointmentCheckin$outboundSchema,
-  OpenCheckin$outboundSchema,
+  ClassCheckin$outboundSchema.and(z.object({ kind: z.literal("class") })),
+  EventCheckin$outboundSchema.and(z.object({ kind: z.literal("event") })),
+  AppointmentCheckin$outboundSchema.and(
+    z.object({ kind: z.literal("appointment") }),
+  ),
+  OpenCheckin$outboundSchema.and(z.object({ kind: z.literal("open") })),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Checkin$ {
-  /** @deprecated use `Checkin$inboundSchema` instead. */
-  export const inboundSchema = Checkin$inboundSchema;
-  /** @deprecated use `Checkin$outboundSchema` instead. */
-  export const outboundSchema = Checkin$outboundSchema;
-  /** @deprecated use `Checkin$Outbound` instead. */
-  export type Outbound = Checkin$Outbound;
-}
 
 export function checkinToJSON(checkin: Checkin): string {
   return JSON.stringify(Checkin$outboundSchema.parse(checkin));
 }
-
 export function checkinFromJSON(
   jsonString: string,
 ): SafeParseResult<Checkin, SDKValidationError> {

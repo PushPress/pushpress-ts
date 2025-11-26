@@ -54,7 +54,7 @@ export const NotFound$inboundSchema: z.ZodType<
   })
     .catchall(z.any()),
   "additionalProperties",
-  true,
+  false,
 )
   .transform((v) => {
     return new NotFound(v, {
@@ -90,16 +90,3 @@ export const NotFound$outboundSchema: z.ZodType<
       };
     }),
   );
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NotFound$ {
-  /** @deprecated use `NotFound$inboundSchema` instead. */
-  export const inboundSchema = NotFound$inboundSchema;
-  /** @deprecated use `NotFound$outboundSchema` instead. */
-  export const outboundSchema = NotFound$outboundSchema;
-  /** @deprecated use `NotFound$Outbound` instead. */
-  export type Outbound = NotFound$Outbound;
-}

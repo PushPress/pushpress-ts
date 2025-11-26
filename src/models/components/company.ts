@@ -83,7 +83,6 @@ export const Country$inboundSchema: z.ZodType<Country, z.ZodTypeDef, unknown> =
     name: z.string(),
     iso: z.string(),
   });
-
 /** @internal */
 export type Country$Outbound = {
   name: string;
@@ -100,23 +99,9 @@ export const Country$outboundSchema: z.ZodType<
   iso: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Country$ {
-  /** @deprecated use `Country$inboundSchema` instead. */
-  export const inboundSchema = Country$inboundSchema;
-  /** @deprecated use `Country$outboundSchema` instead. */
-  export const outboundSchema = Country$outboundSchema;
-  /** @deprecated use `Country$Outbound` instead. */
-  export type Outbound = Country$Outbound;
-}
-
 export function countryToJSON(country: Country): string {
   return JSON.stringify(Country$outboundSchema.parse(country));
 }
-
 export function countryFromJSON(
   jsonString: string,
 ): SafeParseResult<Country, SDKValidationError> {
@@ -137,7 +122,6 @@ export const Address$inboundSchema: z.ZodType<Address, z.ZodTypeDef, unknown> =
     line1: z.string(),
     line2: z.string(),
   });
-
 /** @internal */
 export type Address$Outbound = {
   city: string;
@@ -162,23 +146,9 @@ export const Address$outboundSchema: z.ZodType<
   line2: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Address$ {
-  /** @deprecated use `Address$inboundSchema` instead. */
-  export const inboundSchema = Address$inboundSchema;
-  /** @deprecated use `Address$outboundSchema` instead. */
-  export const outboundSchema = Address$outboundSchema;
-  /** @deprecated use `Address$Outbound` instead. */
-  export type Outbound = Address$Outbound;
-}
-
 export function addressToJSON(address: Address): string {
   return JSON.stringify(Address$outboundSchema.parse(address));
 }
-
 export function addressFromJSON(
   jsonString: string,
 ): SafeParseResult<Address, SDKValidationError> {
@@ -201,7 +171,6 @@ export const Company$inboundSchema: z.ZodType<Company, z.ZodTypeDef, unknown> =
     email: z.string(),
     url: z.string().optional(),
   });
-
 /** @internal */
 export type Company$Outbound = {
   id: string;
@@ -230,23 +199,9 @@ export const Company$outboundSchema: z.ZodType<
   url: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Company$ {
-  /** @deprecated use `Company$inboundSchema` instead. */
-  export const inboundSchema = Company$inboundSchema;
-  /** @deprecated use `Company$outboundSchema` instead. */
-  export const outboundSchema = Company$outboundSchema;
-  /** @deprecated use `Company$Outbound` instead. */
-  export type Outbound = Company$Outbound;
-}
-
 export function companyToJSON(company: Company): string {
   return JSON.stringify(Company$outboundSchema.parse(company));
 }
-
 export function companyFromJSON(
   jsonString: string,
 ): SafeParseResult<Company, SDKValidationError> {

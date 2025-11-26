@@ -83,7 +83,7 @@ export type One = {
   primaryCustomerId: string;
 };
 
-export type Account = One | Two;
+export type Account = (One & { type: "linked" }) | (Two & { type: "primary" });
 
 export type EmergencyContact = {
   /**
@@ -154,7 +154,7 @@ export type Customer = {
    * The UUID of the assigned staff member
    */
   assignedToStaffId?: string | null | undefined;
-  account: One | Two;
+  account: (One & { type: "linked" }) | (Two & { type: "primary" });
   /**
    * A URL pointing to the customer's profile image
    */
@@ -182,7 +182,6 @@ export const Name$inboundSchema: z.ZodType<Name, z.ZodTypeDef, unknown> = z
     last: z.string(),
     nickname: z.nullable(z.string()),
   });
-
 /** @internal */
 export type Name$Outbound = {
   first: string;
@@ -198,23 +197,9 @@ export const Name$outboundSchema: z.ZodType<Name$Outbound, z.ZodTypeDef, Name> =
     nickname: z.nullable(z.string()),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Name$ {
-  /** @deprecated use `Name$inboundSchema` instead. */
-  export const inboundSchema = Name$inboundSchema;
-  /** @deprecated use `Name$outboundSchema` instead. */
-  export const outboundSchema = Name$outboundSchema;
-  /** @deprecated use `Name$Outbound` instead. */
-  export type Outbound = Name$Outbound;
-}
-
 export function nameToJSON(name: Name): string {
   return JSON.stringify(Name$outboundSchema.parse(name));
 }
-
 export function nameFromJSON(
   jsonString: string,
 ): SafeParseResult<Name, SDKValidationError> {
@@ -228,21 +213,9 @@ export function nameFromJSON(
 /** @internal */
 export const Gender$inboundSchema: z.ZodNativeEnum<typeof Gender> = z
   .nativeEnum(Gender);
-
 /** @internal */
 export const Gender$outboundSchema: z.ZodNativeEnum<typeof Gender> =
   Gender$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Gender$ {
-  /** @deprecated use `Gender$inboundSchema` instead. */
-  export const inboundSchema = Gender$inboundSchema;
-  /** @deprecated use `Gender$outboundSchema` instead. */
-  export const outboundSchema = Gender$outboundSchema;
-}
 
 /** @internal */
 export const CustomerAddress$inboundSchema: z.ZodType<
@@ -257,7 +230,6 @@ export const CustomerAddress$inboundSchema: z.ZodType<
   state: z.string(),
   zip: z.string(),
 });
-
 /** @internal */
 export type CustomerAddress$Outbound = {
   line1: string;
@@ -282,25 +254,11 @@ export const CustomerAddress$outboundSchema: z.ZodType<
   zip: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerAddress$ {
-  /** @deprecated use `CustomerAddress$inboundSchema` instead. */
-  export const inboundSchema = CustomerAddress$inboundSchema;
-  /** @deprecated use `CustomerAddress$outboundSchema` instead. */
-  export const outboundSchema = CustomerAddress$outboundSchema;
-  /** @deprecated use `CustomerAddress$Outbound` instead. */
-  export type Outbound = CustomerAddress$Outbound;
-}
-
 export function customerAddressToJSON(
   customerAddress: CustomerAddress,
 ): string {
   return JSON.stringify(CustomerAddress$outboundSchema.parse(customerAddress));
 }
-
 export function customerAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<CustomerAddress, SDKValidationError> {
@@ -316,7 +274,6 @@ export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
   .object({
     type: z.literal("primary").default("primary").optional(),
   });
-
 /** @internal */
 export type Two$Outbound = {
   type: "primary";
@@ -328,23 +285,9 @@ export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
     type: z.literal("primary"),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
 export function twoToJSON(two: Two): string {
   return JSON.stringify(Two$outboundSchema.parse(two));
 }
-
 export function twoFromJSON(
   jsonString: string,
 ): SafeParseResult<Two, SDKValidationError> {
@@ -361,7 +304,6 @@ export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
     type: z.literal("linked").default("linked").optional(),
     primaryCustomerId: z.string(),
   });
-
 /** @internal */
 export type One$Outbound = {
   type: "linked";
@@ -375,23 +317,9 @@ export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
     primaryCustomerId: z.string(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
-}
-
 export function oneToJSON(one: One): string {
   return JSON.stringify(One$outboundSchema.parse(one));
 }
-
 export function oneFromJSON(
   jsonString: string,
 ): SafeParseResult<One, SDKValidationError> {
@@ -404,10 +332,18 @@ export function oneFromJSON(
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
-  z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
-
+  z.union([
+    z.lazy(() => One$inboundSchema).and(
+      z.object({ type: z.literal("linked") }),
+    ),
+    z.lazy(() => Two$inboundSchema).and(
+      z.object({ type: z.literal("primary") }),
+    ),
+  ]);
 /** @internal */
-export type Account$Outbound = One$Outbound | Two$Outbound;
+export type Account$Outbound =
+  | (One$Outbound & { type: "linked" })
+  | (Two$Outbound & { type: "primary" });
 
 /** @internal */
 export const Account$outboundSchema: z.ZodType<
@@ -415,27 +351,15 @@ export const Account$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Account
 > = z.union([
-  z.lazy(() => One$outboundSchema),
-  z.lazy(() => Two$outboundSchema),
+  z.lazy(() => One$outboundSchema).and(z.object({ type: z.literal("linked") })),
+  z.lazy(() => Two$outboundSchema).and(
+    z.object({ type: z.literal("primary") }),
+  ),
 ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Account$ {
-  /** @deprecated use `Account$inboundSchema` instead. */
-  export const inboundSchema = Account$inboundSchema;
-  /** @deprecated use `Account$outboundSchema` instead. */
-  export const outboundSchema = Account$outboundSchema;
-  /** @deprecated use `Account$Outbound` instead. */
-  export type Outbound = Account$Outbound;
-}
 
 export function accountToJSON(account: Account): string {
   return JSON.stringify(Account$outboundSchema.parse(account));
 }
-
 export function accountFromJSON(
   jsonString: string,
 ): SafeParseResult<Account, SDKValidationError> {
@@ -456,7 +380,6 @@ export const EmergencyContact$inboundSchema: z.ZodType<
   phone: z.string(),
   relationship: z.string(),
 });
-
 /** @internal */
 export type EmergencyContact$Outbound = {
   name: string;
@@ -475,19 +398,6 @@ export const EmergencyContact$outboundSchema: z.ZodType<
   relationship: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EmergencyContact$ {
-  /** @deprecated use `EmergencyContact$inboundSchema` instead. */
-  export const inboundSchema = EmergencyContact$inboundSchema;
-  /** @deprecated use `EmergencyContact$outboundSchema` instead. */
-  export const outboundSchema = EmergencyContact$outboundSchema;
-  /** @deprecated use `EmergencyContact$Outbound` instead. */
-  export type Outbound = EmergencyContact$Outbound;
-}
-
 export function emergencyContactToJSON(
   emergencyContact: EmergencyContact,
 ): string {
@@ -495,7 +405,6 @@ export function emergencyContactToJSON(
     EmergencyContact$outboundSchema.parse(emergencyContact),
   );
 }
-
 export function emergencyContactFromJSON(
   jsonString: string,
 ): SafeParseResult<EmergencyContact, SDKValidationError> {
@@ -514,7 +423,6 @@ export const MembershipDetails$inboundSchema: z.ZodType<
 > = z.object({
   initialMembershipStartDate: z.nullable(z.string()),
 });
-
 /** @internal */
 export type MembershipDetails$Outbound = {
   initialMembershipStartDate: string | null;
@@ -529,19 +437,6 @@ export const MembershipDetails$outboundSchema: z.ZodType<
   initialMembershipStartDate: z.nullable(z.string()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MembershipDetails$ {
-  /** @deprecated use `MembershipDetails$inboundSchema` instead. */
-  export const inboundSchema = MembershipDetails$inboundSchema;
-  /** @deprecated use `MembershipDetails$outboundSchema` instead. */
-  export const outboundSchema = MembershipDetails$outboundSchema;
-  /** @deprecated use `MembershipDetails$Outbound` instead. */
-  export type Outbound = MembershipDetails$Outbound;
-}
-
 export function membershipDetailsToJSON(
   membershipDetails: MembershipDetails,
 ): string {
@@ -549,7 +444,6 @@ export function membershipDetailsToJSON(
     MembershipDetails$outboundSchema.parse(membershipDetails),
   );
 }
-
 export function membershipDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<MembershipDetails, SDKValidationError> {
@@ -563,21 +457,9 @@ export function membershipDetailsFromJSON(
 /** @internal */
 export const CustomerRole$inboundSchema: z.ZodNativeEnum<typeof CustomerRole> =
   z.nativeEnum(CustomerRole);
-
 /** @internal */
 export const CustomerRole$outboundSchema: z.ZodNativeEnum<typeof CustomerRole> =
   CustomerRole$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CustomerRole$ {
-  /** @deprecated use `CustomerRole$inboundSchema` instead. */
-  export const inboundSchema = CustomerRole$inboundSchema;
-  /** @deprecated use `CustomerRole$outboundSchema` instead. */
-  export const outboundSchema = CustomerRole$outboundSchema;
-}
 
 /** @internal */
 export const Customer$inboundSchema: z.ZodType<
@@ -593,8 +475,12 @@ export const Customer$inboundSchema: z.ZodType<
   address: z.lazy(() => CustomerAddress$inboundSchema),
   assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
-    z.lazy(() => One$inboundSchema),
-    z.lazy(() => Two$inboundSchema),
+    z.lazy(() => One$inboundSchema).and(
+      z.object({ type: z.literal("linked") }),
+    ),
+    z.lazy(() => Two$inboundSchema).and(
+      z.object({ type: z.literal("primary") }),
+    ),
   ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$inboundSchema).optional(),
@@ -603,7 +489,6 @@ export const Customer$inboundSchema: z.ZodType<
   phone: z.nullable(z.string()).optional(),
   role: z.nullable(CustomerRole$inboundSchema).optional(),
 });
-
 /** @internal */
 export type Customer$Outbound = {
   id: string;
@@ -613,7 +498,9 @@ export type Customer$Outbound = {
   dob: string | null;
   address: CustomerAddress$Outbound;
   assignedToStaffId?: string | null | undefined;
-  account: One$Outbound | Two$Outbound;
+  account:
+    | (One$Outbound & { type: "linked" })
+    | (Two$Outbound & { type: "primary" });
   profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact$Outbound | undefined;
   membershipDetails: MembershipDetails$Outbound | null;
@@ -636,8 +523,12 @@ export const Customer$outboundSchema: z.ZodType<
   address: z.lazy(() => CustomerAddress$outboundSchema),
   assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
-    z.lazy(() => One$outboundSchema),
-    z.lazy(() => Two$outboundSchema),
+    z.lazy(() => One$outboundSchema).and(
+      z.object({ type: z.literal("linked") }),
+    ),
+    z.lazy(() => Two$outboundSchema).and(
+      z.object({ type: z.literal("primary") }),
+    ),
   ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$outboundSchema).optional(),
@@ -647,23 +538,9 @@ export const Customer$outboundSchema: z.ZodType<
   role: z.nullable(CustomerRole$outboundSchema).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Customer$ {
-  /** @deprecated use `Customer$inboundSchema` instead. */
-  export const inboundSchema = Customer$inboundSchema;
-  /** @deprecated use `Customer$outboundSchema` instead. */
-  export const outboundSchema = Customer$outboundSchema;
-  /** @deprecated use `Customer$Outbound` instead. */
-  export type Outbound = Customer$Outbound;
-}
-
 export function customerToJSON(customer: Customer): string {
   return JSON.stringify(Customer$outboundSchema.parse(customer));
 }
-
 export function customerFromJSON(
   jsonString: string,
 ): SafeParseResult<Customer, SDKValidationError> {

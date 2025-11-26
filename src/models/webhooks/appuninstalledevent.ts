@@ -35,22 +35,10 @@ export type AppUninstalledEventRequestBody = {
 export const AppUninstalledEventEvent$inboundSchema: z.ZodNativeEnum<
   typeof AppUninstalledEventEvent
 > = z.nativeEnum(AppUninstalledEventEvent);
-
 /** @internal */
 export const AppUninstalledEventEvent$outboundSchema: z.ZodNativeEnum<
   typeof AppUninstalledEventEvent
 > = AppUninstalledEventEvent$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppUninstalledEventEvent$ {
-  /** @deprecated use `AppUninstalledEventEvent$inboundSchema` instead. */
-  export const inboundSchema = AppUninstalledEventEvent$inboundSchema;
-  /** @deprecated use `AppUninstalledEventEvent$outboundSchema` instead. */
-  export const outboundSchema = AppUninstalledEventEvent$outboundSchema;
-}
 
 /** @internal */
 export const AppUninstalledEventRequestBody$inboundSchema: z.ZodType<
@@ -62,7 +50,6 @@ export const AppUninstalledEventRequestBody$inboundSchema: z.ZodType<
   created: z.number().int(),
   event: AppUninstalledEventEvent$inboundSchema,
 });
-
 /** @internal */
 export type AppUninstalledEventRequestBody$Outbound = {
   data: components.AppInstall$Outbound;
@@ -81,19 +68,6 @@ export const AppUninstalledEventRequestBody$outboundSchema: z.ZodType<
   event: AppUninstalledEventEvent$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AppUninstalledEventRequestBody$ {
-  /** @deprecated use `AppUninstalledEventRequestBody$inboundSchema` instead. */
-  export const inboundSchema = AppUninstalledEventRequestBody$inboundSchema;
-  /** @deprecated use `AppUninstalledEventRequestBody$outboundSchema` instead. */
-  export const outboundSchema = AppUninstalledEventRequestBody$outboundSchema;
-  /** @deprecated use `AppUninstalledEventRequestBody$Outbound` instead. */
-  export type Outbound = AppUninstalledEventRequestBody$Outbound;
-}
-
 export function appUninstalledEventRequestBodyToJSON(
   appUninstalledEventRequestBody: AppUninstalledEventRequestBody,
 ): string {
@@ -103,7 +77,6 @@ export function appUninstalledEventRequestBodyToJSON(
     ),
   );
 }
-
 export function appUninstalledEventRequestBodyFromJSON(
   jsonString: string,
 ): SafeParseResult<AppUninstalledEventRequestBody, SDKValidationError> {
