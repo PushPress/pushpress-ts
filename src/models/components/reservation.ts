@@ -61,6 +61,10 @@ export type Reservation = {
    * Checkin for a class, event, appointment or an open facility
    */
   checkin?: Checkin | undefined;
+  /**
+   * Unique identifier for the recurring reservation template
+   */
+  templateId?: string | null | undefined;
 };
 
 /** @internal */
@@ -83,6 +87,7 @@ export const Reservation$inboundSchema: z.ZodType<
   registrationTimestamp: z.number(),
   status: Status$inboundSchema,
   checkin: Checkin$inboundSchema.optional(),
+  templateId: z.nullable(z.string()).optional(),
 });
 /** @internal */
 export type Reservation$Outbound = {
@@ -93,6 +98,7 @@ export type Reservation$Outbound = {
   registrationTimestamp: number;
   status: string;
   checkin?: Checkin$Outbound | undefined;
+  templateId?: string | null | undefined;
 };
 
 /** @internal */
@@ -108,6 +114,7 @@ export const Reservation$outboundSchema: z.ZodType<
   registrationTimestamp: z.number(),
   status: Status$outboundSchema,
   checkin: Checkin$outboundSchema.optional(),
+  templateId: z.nullable(z.string()).optional(),
 });
 
 export function reservationToJSON(reservation: Reservation): string {

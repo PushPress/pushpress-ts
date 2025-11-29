@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5d762f7e-65e3-46eb-8762-e7545be8964b
 management:
-  docChecksum: 8f3d84f6da4a73a60f9ab0d32936c807
+  docChecksum: 45c2405460d39b19298401e8f6d71632
   docVersion: 3.0.0
-  speakeasyVersion: 1.662.0
-  generationVersion: 2.763.3
-  releaseVersion: 1.13.0
-  configChecksum: 91bf6478180c2a29c9b3b67eb61b7775
+  speakeasyVersion: 1.665.0
+  generationVersion: 2.767.2
+  releaseVersion: 1.14.0
+  configChecksum: cd7d05270f81a5d6d8d5ac352990d275
   repoURL: https://github.com/PushPress/pushpress-ts.git
   installationURL: https://github.com/PushPress/pushpress-ts
   published: true
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.2
     constsAndDefaults: 0.1.12
-    core: 3.26.10
+    core: 3.26.13
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.1
@@ -35,9 +35,9 @@ features:
     pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.3.0
+    sdkHooks: 0.4.0
     serverIDs: 2.81.2
-    unions: 2.86.0
+    unions: 2.86.2
     webhookHandlers: 0.1.0
     webhooks: 1.5.1
 generatedFiles:
@@ -317,7 +317,6 @@ generatedFiles:
   - docs/models/webhooks/appuninstalledeventevent.md
   - docs/models/webhooks/appuninstalledeventrequestbody.md
   - docs/models/webhooks/checkincreatedeventrequestbody.md
-  - docs/models/webhooks/checkindeletedeventdata.md
   - docs/models/webhooks/checkindeletedeventevent.md
   - docs/models/webhooks/checkindeletedeventrequestbody.md
   - docs/models/webhooks/checkinupdatedeventevent.md
@@ -1223,3 +1222,8 @@ examples:
           application/json: {"keyUuid": "key_asdfghjklqwertyuiop", "companyId": "client_asdfghjklqwertyuiop", "name": "My API Key", "description": "Additional description to add context to the key", "createdAt": 1577836800000, "lastUsedAt": null, "expiresAt": null}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Typescript SDK Changes:
+  * `pushpress.classes.get()`:  `response.reservations.[].templateId` **Added**
+  * `pushpress.events.get()`:  `response.reservations.[].templateId` **Added**
+  * `pushpress.events.list()`:  `response.data.resultArray.[].reservations.[].templateId` **Added**

@@ -23,7 +23,6 @@ export async function validateWebhook(client: PushPressCore, {
   Result<
     | webhooks.CheckinCreatedEventRequestBody
     | webhooks.CheckinUpdatedEventRequestBody
-    | webhooks.AppointmentCanceledEventRequestBody
     | webhooks.CheckinDeletedEventRequestBody
     | webhooks.EnrollmentStatusChangedRequestBody
     | webhooks.AppInstalledEventRequestBody
@@ -31,6 +30,7 @@ export async function validateWebhook(client: PushPressCore, {
     | webhooks.AppointmentScheduledEventRequestBody
     | webhooks.AppointmentRescheduledEventRequestBody
     | webhooks.AppointmentNoShowedEventRequestBody
+    | webhooks.AppointmentCanceledEventRequestBody
     | webhooks.CustomerCreatedEventRequestBody
     | webhooks.CustomerStatusChangedEventRequestBody
     | webhooks.CustomerDetailsChangedEventRequestBody
@@ -52,7 +52,6 @@ export async function validateWebhook(client: PushPressCore, {
   const knownSchemas = [
     webhooks.checkinCreatedEventRequestBodyFromJSON,
     webhooks.checkinUpdatedEventRequestBodyFromJSON,
-    webhooks.appointmentCanceledEventRequestBodyFromJSON,
     webhooks.checkinDeletedEventRequestBodyFromJSON,
     webhooks.enrollmentStatusChangedRequestBodyFromJSON,
     webhooks.appInstalledEventRequestBodyFromJSON,
@@ -60,6 +59,7 @@ export async function validateWebhook(client: PushPressCore, {
     webhooks.appointmentScheduledEventRequestBodyFromJSON,
     webhooks.appointmentRescheduledEventRequestBodyFromJSON,
     webhooks.appointmentNoShowedEventRequestBodyFromJSON,
+    webhooks.appointmentCanceledEventRequestBodyFromJSON,
     webhooks.customerCreatedEventRequestBodyFromJSON,
     webhooks.customerStatusChangedEventRequestBodyFromJSON,
     webhooks.customerDetailsChangedEventRequestBodyFromJSON,

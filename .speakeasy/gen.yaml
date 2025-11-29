@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.13.0
+  version: 1.14.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -52,6 +52,7 @@ typescript:
   flatteningOrder: parameters-first
   formStringArrayEncodeMode: encoded-string
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateExamples: true
   imports:
     option: openapi
@@ -69,6 +70,7 @@ typescript:
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
   moduleFormat: commonjs
+  multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: '@pushpress/pushpress'
   responseFormat: flat
