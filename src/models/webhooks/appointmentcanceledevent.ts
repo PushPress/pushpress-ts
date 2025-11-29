@@ -6,19 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-export type Data = {
-  id: string;
-  /**
-   * Unique identifier for the customer
-   */
-  customerId: string;
-  /**
-   * Unique identifier for the company the appointment was canceled from
-   */
-  companyId: string;
-};
 
 export const AppointmentCanceledEventEvent = {
   AppointmentCanceled: "appointment.canceled",
@@ -31,48 +20,16 @@ export type AppointmentCanceledEventEvent = ClosedEnum<
  * Appointment Canceled Event
  */
 export type AppointmentCanceledEventRequestBody = {
-  data: Data;
+  /**
+   * Schema for representing a Regsitration for some scheduled event
+   */
+  data: components.Appointment;
   /**
    * Unix timestamp representing when the event was created
    */
   created: number;
   event: AppointmentCanceledEventEvent;
 };
-
-/** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    id: z.string(),
-    customerId: z.string(),
-    companyId: z.string(),
-  });
-/** @internal */
-export type Data$Outbound = {
-  id: string;
-  customerId: string;
-  companyId: string;
-};
-
-/** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    id: z.string(),
-    customerId: z.string(),
-    companyId: z.string(),
-  });
-
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
-}
-export function dataFromJSON(
-  jsonString: string,
-): SafeParseResult<Data, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Data$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data' from JSON`,
-  );
-}
 
 /** @internal */
 export const AppointmentCanceledEventEvent$inboundSchema: z.ZodNativeEnum<
@@ -89,13 +46,13 @@ export const AppointmentCanceledEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => Data$inboundSchema),
+  data: components.Appointment$inboundSchema,
   created: z.number().int(),
   event: AppointmentCanceledEventEvent$inboundSchema,
 });
 /** @internal */
 export type AppointmentCanceledEventRequestBody$Outbound = {
-  data: Data$Outbound;
+  data: components.Appointment$Outbound;
   created: number;
   event: string;
 };
@@ -106,7 +63,7 @@ export const AppointmentCanceledEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AppointmentCanceledEventRequestBody
 > = z.object({
-  data: z.lazy(() => Data$outboundSchema),
+  data: components.Appointment$outboundSchema,
   created: z.number().int(),
   event: AppointmentCanceledEventEvent$outboundSchema,
 });

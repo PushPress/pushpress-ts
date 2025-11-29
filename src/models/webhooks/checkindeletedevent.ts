@@ -8,7 +8,7 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type CheckinDeletedEventData = {
+export type Data = {
   id: string;
   /**
    * Unique identifier for the customer
@@ -31,7 +31,7 @@ export type CheckinDeletedEventEvent = ClosedEnum<
  * Checkin Deleted Event
  */
 export type CheckinDeletedEventRequestBody = {
-  data: CheckinDeletedEventData;
+  data: Data;
   /**
    * Unix timestamp representing when the event was created
    */
@@ -40,47 +40,37 @@ export type CheckinDeletedEventRequestBody = {
 };
 
 /** @internal */
-export const CheckinDeletedEventData$inboundSchema: z.ZodType<
-  CheckinDeletedEventData,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  customerId: z.string(),
-  companyId: z.string(),
-});
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
+  .object({
+    id: z.string(),
+    customerId: z.string(),
+    companyId: z.string(),
+  });
 /** @internal */
-export type CheckinDeletedEventData$Outbound = {
+export type Data$Outbound = {
   id: string;
   customerId: string;
   companyId: string;
 };
 
 /** @internal */
-export const CheckinDeletedEventData$outboundSchema: z.ZodType<
-  CheckinDeletedEventData$Outbound,
-  z.ZodTypeDef,
-  CheckinDeletedEventData
-> = z.object({
-  id: z.string(),
-  customerId: z.string(),
-  companyId: z.string(),
-});
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({
+    id: z.string(),
+    customerId: z.string(),
+    companyId: z.string(),
+  });
 
-export function checkinDeletedEventDataToJSON(
-  checkinDeletedEventData: CheckinDeletedEventData,
-): string {
-  return JSON.stringify(
-    CheckinDeletedEventData$outboundSchema.parse(checkinDeletedEventData),
-  );
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
 }
-export function checkinDeletedEventDataFromJSON(
+export function dataFromJSON(
   jsonString: string,
-): SafeParseResult<CheckinDeletedEventData, SDKValidationError> {
+): SafeParseResult<Data, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CheckinDeletedEventData$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckinDeletedEventData' from JSON`,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
   );
 }
 
@@ -99,13 +89,13 @@ export const CheckinDeletedEventRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => CheckinDeletedEventData$inboundSchema),
+  data: z.lazy(() => Data$inboundSchema),
   created: z.number().int(),
   event: CheckinDeletedEventEvent$inboundSchema,
 });
 /** @internal */
 export type CheckinDeletedEventRequestBody$Outbound = {
-  data: CheckinDeletedEventData$Outbound;
+  data: Data$Outbound;
   created: number;
   event: string;
 };
@@ -116,7 +106,7 @@ export const CheckinDeletedEventRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CheckinDeletedEventRequestBody
 > = z.object({
-  data: z.lazy(() => CheckinDeletedEventData$outboundSchema),
+  data: z.lazy(() => Data$outboundSchema),
   created: z.number().int(),
   event: CheckinDeletedEventEvent$outboundSchema,
 });

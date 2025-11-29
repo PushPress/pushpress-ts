@@ -100,7 +100,6 @@ export class PushPress extends ClientSDK {
   }): Promise<
     | webhooks.CheckinCreatedEventRequestBody
     | webhooks.CheckinUpdatedEventRequestBody
-    | webhooks.AppointmentCanceledEventRequestBody
     | webhooks.CheckinDeletedEventRequestBody
     | webhooks.EnrollmentStatusChangedRequestBody
     | webhooks.AppInstalledEventRequestBody
@@ -108,6 +107,7 @@ export class PushPress extends ClientSDK {
     | webhooks.AppointmentScheduledEventRequestBody
     | webhooks.AppointmentRescheduledEventRequestBody
     | webhooks.AppointmentNoShowedEventRequestBody
+    | webhooks.AppointmentCanceledEventRequestBody
     | webhooks.CustomerCreatedEventRequestBody
     | webhooks.CustomerStatusChangedEventRequestBody
     | webhooks.CustomerDetailsChangedEventRequestBody
