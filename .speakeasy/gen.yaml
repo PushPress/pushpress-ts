@@ -69,10 +69,10 @@ typescript:
   maxMethodParams: 0
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
-  moduleFormat: commonjs
+  moduleFormat: dual
   multipartArrayFormat: legacy
   outputModelSuffix: output
-  packageName: '@pushpress/pushpress'
+  packageName: "@pushpress/pushpress"
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
