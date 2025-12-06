@@ -31,7 +31,7 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
+    "@modelcontextprotocol/sdk": ">=1.5.0 <1.25.0",
     "zod": "^3.25.0 || ^4.0.0"
   }
 }
