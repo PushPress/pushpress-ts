@@ -11,7 +11,9 @@ let value: Plan = {
   id: "sub_12345",
   name: "Unlimited Membership",
   companyId: "client_12345",
-  recurrenceDetails: {},
+  recurrenceDetails: {
+    type: "recurring",
+  },
   policies: {
     allowClassCheckins: true,
     allowOpenGymCheckins: true,

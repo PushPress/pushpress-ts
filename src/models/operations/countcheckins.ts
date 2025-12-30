@@ -32,6 +32,20 @@ export type Include = ClosedEnum<typeof Include>;
  */
 export type QueryParamType = string | Array<string>;
 
+/**
+ * whether to include checkins that happened outside of pushpress, currently defaults to true for backwards compatibility, but may default to false in the future
+ */
+export const IncludeHistoricalCheckins = {
+  True: "true",
+  False: "false",
+} as const;
+/**
+ * whether to include checkins that happened outside of pushpress, currently defaults to true for backwards compatibility, but may default to false in the future
+ */
+export type IncludeHistoricalCheckins = ClosedEnum<
+  typeof IncludeHistoricalCheckins
+>;
+
 export type CountCheckinsRequest = {
   /**
    * When defined only include checkins for these categories
@@ -42,6 +56,10 @@ export type CountCheckinsRequest = {
    */
   type?: string | Array<string> | undefined;
   customer?: string | undefined;
+  /**
+   * whether to include checkins that happened outside of pushpress, currently defaults to true for backwards compatibility, but may default to false in the future
+   */
+  includeHistoricalCheckins?: IncludeHistoricalCheckins | undefined;
   /**
    * Checkins before this unix timestamp
    */
@@ -147,6 +165,15 @@ export function queryParamTypeFromJSON(
 }
 
 /** @internal */
+export const IncludeHistoricalCheckins$inboundSchema: z.ZodNativeEnum<
+  typeof IncludeHistoricalCheckins
+> = z.nativeEnum(IncludeHistoricalCheckins);
+/** @internal */
+export const IncludeHistoricalCheckins$outboundSchema: z.ZodNativeEnum<
+  typeof IncludeHistoricalCheckins
+> = IncludeHistoricalCheckins$inboundSchema;
+
+/** @internal */
 export const CountCheckinsRequest$inboundSchema: z.ZodType<
   CountCheckinsRequest,
   z.ZodTypeDef,
@@ -155,6 +182,9 @@ export const CountCheckinsRequest$inboundSchema: z.ZodType<
   include: Include$inboundSchema.optional(),
   type: z.union([z.string(), z.array(z.string())]).optional(),
   customer: z.string().optional(),
+  includeHistoricalCheckins: IncludeHistoricalCheckins$inboundSchema.default(
+    "true",
+  ),
   before: z.number().optional(),
   after: z.number().optional(),
   "company-id": z.string().optional(),
@@ -168,6 +198,7 @@ export type CountCheckinsRequest$Outbound = {
   include?: string | undefined;
   type?: string | Array<string> | undefined;
   customer?: string | undefined;
+  includeHistoricalCheckins: string;
   before?: number | undefined;
   after?: number | undefined;
   "company-id"?: string | undefined;
@@ -182,6 +213,9 @@ export const CountCheckinsRequest$outboundSchema: z.ZodType<
   include: Include$outboundSchema.optional(),
   type: z.union([z.string(), z.array(z.string())]).optional(),
   customer: z.string().optional(),
+  includeHistoricalCheckins: IncludeHistoricalCheckins$outboundSchema.default(
+    "true",
+  ),
   before: z.number().optional(),
   after: z.number().optional(),
   companyId: z.string().optional(),

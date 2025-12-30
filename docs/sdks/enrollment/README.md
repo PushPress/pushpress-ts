@@ -1,5 +1,4 @@
 # Enrollment
-(*enrollment*)
 
 ## Overview
 

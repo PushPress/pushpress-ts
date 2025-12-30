@@ -12,6 +12,7 @@ let value: OpenCheckin = {
   customer: "usr_12345",
   company: "cli_12345",
   timestamp: 1672531200000,
+  kind: "open",
 };
 ```
 
@@ -24,4 +25,4 @@ let value: OpenCheckin = {
 | `company`                                                                                   | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID of the company                                                                         |
 | `timestamp`                                                                                 | *number*                                                                                    | :heavy_check_mark:                                                                          | Unix timestamp representing the time of checkin                                             |
 | `enrollmentId`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | UUID of the enrollment record, null if the checkin is not associated with a plan enrollment |
-| `kind`                                                                                      | *string*                                                                                    | :heavy_check_mark:                                                                          | Indicates that this checkin is for an open facility                                         |
+| `kind`                                                                                      | *"open"*                                                                                    | :heavy_check_mark:                                                                          | Indicates that this checkin is for an open facility                                         |

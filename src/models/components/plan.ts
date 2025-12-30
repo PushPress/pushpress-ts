@@ -8,28 +8,28 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Four = {
-  type?: "non-recurring" | undefined;
+  type: "non-recurring";
 };
 
 export type Three = {
-  type?: "limited-recurring" | undefined;
+  type: "limited-recurring";
   occurrences: number;
 };
 
 export type RecurrenceDetails2 = {
-  type?: "recurring" | undefined;
+  type: "recurring";
 };
 
 export type RecurrenceDetails1 = {
-  type?: "session-pack" | undefined;
+  type: "session-pack";
   occurrences: number;
 };
 
 export type RecurrenceDetails =
-  | (RecurrenceDetails1 & { type: "session-pack" })
-  | (Three & { type: "limited-recurring" })
-  | (RecurrenceDetails2 & { type: "recurring" })
-  | (Four & { type: "non-recurring" });
+  | RecurrenceDetails1
+  | RecurrenceDetails2
+  | Three
+  | Four;
 
 export type Policies = {
   allowClassCheckins: boolean;
@@ -57,11 +57,7 @@ export type Plan = {
    * unique identifier for the company
    */
   companyId: string;
-  recurrenceDetails:
-    | (RecurrenceDetails1 & { type: "session-pack" })
-    | (Three & { type: "limited-recurring" })
-    | (RecurrenceDetails2 & { type: "recurring" })
-    | (Four & { type: "non-recurring" });
+  recurrenceDetails: RecurrenceDetails1 | RecurrenceDetails2 | Three | Four;
   policies: Policies;
   category: Category;
 };
@@ -69,7 +65,7 @@ export type Plan = {
 /** @internal */
 export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("non-recurring").default("non-recurring").optional(),
+    type: z.literal("non-recurring"),
   });
 /** @internal */
 export type Four$Outbound = {
@@ -98,8 +94,7 @@ export function fourFromJSON(
 /** @internal */
 export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("limited-recurring").default("limited-recurring")
-      .optional(),
+    type: z.literal("limited-recurring"),
     occurrences: z.number(),
   });
 /** @internal */
@@ -137,7 +132,7 @@ export const RecurrenceDetails2$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("recurring").default("recurring").optional(),
+  type: z.literal("recurring"),
 });
 /** @internal */
 export type RecurrenceDetails2$Outbound = {
@@ -176,7 +171,7 @@ export const RecurrenceDetails1$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: z.literal("session-pack").default("session-pack").optional(),
+  type: z.literal("session-pack"),
   occurrences: z.number(),
 });
 /** @internal */
@@ -218,25 +213,17 @@ export const RecurrenceDetails$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => RecurrenceDetails1$inboundSchema).and(
-    z.object({ type: z.literal("session-pack") }),
-  ),
-  z.lazy(() => Three$inboundSchema).and(
-    z.object({ type: z.literal("limited-recurring") }),
-  ),
-  z.lazy(() => RecurrenceDetails2$inboundSchema).and(
-    z.object({ type: z.literal("recurring") }),
-  ),
-  z.lazy(() => Four$inboundSchema).and(
-    z.object({ type: z.literal("non-recurring") }),
-  ),
+  z.lazy(() => RecurrenceDetails1$inboundSchema),
+  z.lazy(() => RecurrenceDetails2$inboundSchema),
+  z.lazy(() => Three$inboundSchema),
+  z.lazy(() => Four$inboundSchema),
 ]);
 /** @internal */
 export type RecurrenceDetails$Outbound =
-  | (RecurrenceDetails1$Outbound & { type: "session-pack" })
-  | (Three$Outbound & { type: "limited-recurring" })
-  | (RecurrenceDetails2$Outbound & { type: "recurring" })
-  | (Four$Outbound & { type: "non-recurring" });
+  | RecurrenceDetails1$Outbound
+  | RecurrenceDetails2$Outbound
+  | Three$Outbound
+  | Four$Outbound;
 
 /** @internal */
 export const RecurrenceDetails$outboundSchema: z.ZodType<
@@ -244,18 +231,10 @@ export const RecurrenceDetails$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RecurrenceDetails
 > = z.union([
-  z.lazy(() => RecurrenceDetails1$outboundSchema).and(
-    z.object({ type: z.literal("session-pack") }),
-  ),
-  z.lazy(() => Three$outboundSchema).and(
-    z.object({ type: z.literal("limited-recurring") }),
-  ),
-  z.lazy(() => RecurrenceDetails2$outboundSchema).and(
-    z.object({ type: z.literal("recurring") }),
-  ),
-  z.lazy(() => Four$outboundSchema).and(
-    z.object({ type: z.literal("non-recurring") }),
-  ),
+  z.lazy(() => RecurrenceDetails1$outboundSchema),
+  z.lazy(() => RecurrenceDetails2$outboundSchema),
+  z.lazy(() => Three$outboundSchema),
+  z.lazy(() => Four$outboundSchema),
 ]);
 
 export function recurrenceDetailsToJSON(
@@ -358,18 +337,10 @@ export const Plan$inboundSchema: z.ZodType<Plan, z.ZodTypeDef, unknown> = z
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => RecurrenceDetails1$inboundSchema).and(
-        z.object({ type: z.literal("session-pack") }),
-      ),
-      z.lazy(() => Three$inboundSchema).and(
-        z.object({ type: z.literal("limited-recurring") }),
-      ),
-      z.lazy(() => RecurrenceDetails2$inboundSchema).and(
-        z.object({ type: z.literal("recurring") }),
-      ),
-      z.lazy(() => Four$inboundSchema).and(
-        z.object({ type: z.literal("non-recurring") }),
-      ),
+      z.lazy(() => RecurrenceDetails1$inboundSchema),
+      z.lazy(() => RecurrenceDetails2$inboundSchema),
+      z.lazy(() => Three$inboundSchema),
+      z.lazy(() => Four$inboundSchema),
     ]),
     policies: z.lazy(() => Policies$inboundSchema),
     category: z.lazy(() => Category$inboundSchema),
@@ -380,10 +351,10 @@ export type Plan$Outbound = {
   name: string;
   companyId: string;
   recurrenceDetails:
-    | (RecurrenceDetails1$Outbound & { type: "session-pack" })
-    | (Three$Outbound & { type: "limited-recurring" })
-    | (RecurrenceDetails2$Outbound & { type: "recurring" })
-    | (Four$Outbound & { type: "non-recurring" });
+    | RecurrenceDetails1$Outbound
+    | RecurrenceDetails2$Outbound
+    | Three$Outbound
+    | Four$Outbound;
   policies: Policies$Outbound;
   category: Category$Outbound;
 };
@@ -395,18 +366,10 @@ export const Plan$outboundSchema: z.ZodType<Plan$Outbound, z.ZodTypeDef, Plan> =
     name: z.string(),
     companyId: z.string(),
     recurrenceDetails: z.union([
-      z.lazy(() => RecurrenceDetails1$outboundSchema).and(
-        z.object({ type: z.literal("session-pack") }),
-      ),
-      z.lazy(() => Three$outboundSchema).and(
-        z.object({ type: z.literal("limited-recurring") }),
-      ),
-      z.lazy(() => RecurrenceDetails2$outboundSchema).and(
-        z.object({ type: z.literal("recurring") }),
-      ),
-      z.lazy(() => Four$outboundSchema).and(
-        z.object({ type: z.literal("non-recurring") }),
-      ),
+      z.lazy(() => RecurrenceDetails1$outboundSchema),
+      z.lazy(() => RecurrenceDetails2$outboundSchema),
+      z.lazy(() => Three$outboundSchema),
+      z.lazy(() => Four$outboundSchema),
     ]),
     policies: z.lazy(() => Policies$outboundSchema),
     category: z.lazy(() => Category$outboundSchema),

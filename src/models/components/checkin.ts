@@ -35,27 +35,25 @@ import {
  * Checkin for a class, event, appointment or an open facility
  */
 export type Checkin =
-  | (ClassCheckin & { kind: "class" })
-  | (EventCheckin & { kind: "event" })
-  | (AppointmentCheckin & { kind: "appointment" })
-  | (OpenCheckin & { kind: "open" });
+  | ClassCheckin
+  | AppointmentCheckin
+  | EventCheckin
+  | OpenCheckin;
 
 /** @internal */
 export const Checkin$inboundSchema: z.ZodType<Checkin, z.ZodTypeDef, unknown> =
   z.union([
-    ClassCheckin$inboundSchema.and(z.object({ kind: z.literal("class") })),
-    EventCheckin$inboundSchema.and(z.object({ kind: z.literal("event") })),
-    AppointmentCheckin$inboundSchema.and(
-      z.object({ kind: z.literal("appointment") }),
-    ),
-    OpenCheckin$inboundSchema.and(z.object({ kind: z.literal("open") })),
+    ClassCheckin$inboundSchema,
+    AppointmentCheckin$inboundSchema,
+    EventCheckin$inboundSchema,
+    OpenCheckin$inboundSchema,
   ]);
 /** @internal */
 export type Checkin$Outbound =
-  | (ClassCheckin$Outbound & { kind: "class" })
-  | (EventCheckin$Outbound & { kind: "event" })
-  | (AppointmentCheckin$Outbound & { kind: "appointment" })
-  | (OpenCheckin$Outbound & { kind: "open" });
+  | ClassCheckin$Outbound
+  | AppointmentCheckin$Outbound
+  | EventCheckin$Outbound
+  | OpenCheckin$Outbound;
 
 /** @internal */
 export const Checkin$outboundSchema: z.ZodType<
@@ -63,12 +61,10 @@ export const Checkin$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Checkin
 > = z.union([
-  ClassCheckin$outboundSchema.and(z.object({ kind: z.literal("class") })),
-  EventCheckin$outboundSchema.and(z.object({ kind: z.literal("event") })),
-  AppointmentCheckin$outboundSchema.and(
-    z.object({ kind: z.literal("appointment") }),
-  ),
-  OpenCheckin$outboundSchema.and(z.object({ kind: z.literal("open") })),
+  ClassCheckin$outboundSchema,
+  AppointmentCheckin$outboundSchema,
+  EventCheckin$outboundSchema,
+  OpenCheckin$outboundSchema,
 ]);
 
 export function checkinToJSON(checkin: Checkin): string {

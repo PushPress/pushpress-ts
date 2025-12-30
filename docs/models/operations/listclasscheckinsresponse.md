@@ -21,6 +21,7 @@ let value: ListClassCheckinsResponse = {
             id: "cit_12345",
             name: "Group HIIT Training",
           },
+          kind: "class",
           role: "attendee",
         },
       ],

@@ -7,11 +7,13 @@ A default full account is a primary account. It may have one or more linked acco
 ```typescript
 import { Two } from "@pushpress/pushpress/models/components";
 
-let value: Two = {};
+let value: Two = {
+  type: "primary",
+};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `type`             | *string*           | :heavy_check_mark: | N/A                |
+| `type`             | *"primary"*        | :heavy_check_mark: | N/A                |

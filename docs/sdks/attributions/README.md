@@ -1,5 +1,4 @@
-# Attributions
-(*customers.attributions*)
+# Customers.Attributions
 
 ## Overview
 

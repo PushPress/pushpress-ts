@@ -34,7 +34,7 @@ export type OpenCheckin = {
   /**
    * Indicates that this checkin is for an open facility
    */
-  kind?: "open" | undefined;
+  kind: "open";
 };
 
 /** @internal */
@@ -48,7 +48,7 @@ export const OpenCheckin$inboundSchema: z.ZodType<
   company: z.string(),
   timestamp: z.number(),
   enrollmentId: z.nullable(z.string()).optional(),
-  kind: z.literal("open").default("open").optional(),
+  kind: z.literal("open"),
 });
 /** @internal */
 export type OpenCheckin$Outbound = {

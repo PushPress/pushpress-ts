@@ -1,5 +1,4 @@
-# Event
-(*checkins.event*)
+# Checkins.Event
 
 ## Overview
 

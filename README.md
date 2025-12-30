@@ -75,6 +75,8 @@ bun add @pushpress/pushpress
 yarn add @pushpress/pushpress
 ```
 
+> [!NOTE]
+> This package is published with CommonJS and ES Modules (ESM) support.
 
 
 ### Model Context Protocol (MCP) Server
@@ -201,88 +203,88 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [apiKeys](docs/sdks/apikeys/README.md)
+### [APIKeys](docs/sdks/apikeys/README.md)
 
 * [get](docs/sdks/apikeys/README.md#get) - Get API Key
 * [delete](docs/sdks/apikeys/README.md#delete) - Delete an API Key
 * [~~revoke~~](docs/sdks/apikeys/README.md#revoke) - Revoke an API Key :warning: **Deprecated**
 
-### [appointments](docs/sdks/appointments/README.md)
+### [Appointments](docs/sdks/appointments/README.md)
 
 * [appointmentsGet](docs/sdks/appointments/README.md#appointmentsget) - Get details for an appointment
 
-### [checkins](docs/sdks/checkins/README.md)
+### [Checkins](docs/sdks/checkins/README.md)
 
 * [count](docs/sdks/checkins/README.md#count) - Get Checkin Count
 
-#### [checkins.appointment](docs/sdks/appointment/README.md)
+#### [Checkins.Appointment](docs/sdks/appointment/README.md)
 
 * [get](docs/sdks/appointment/README.md#get) - Get Appointment Checkin Details
 * [list](docs/sdks/appointment/README.md#list) - List Appointment Checkins
 
-#### [checkins.class](docs/sdks/class/README.md)
+#### [Checkins.Class](docs/sdks/class/README.md)
 
 * [get](docs/sdks/class/README.md#get) - Get Class Checkin Details
 * [list](docs/sdks/class/README.md#list) - List Class Checkins
 
-#### [checkins.event](docs/sdks/event/README.md)
+#### [Checkins.Event](docs/sdks/event/README.md)
 
 * [get](docs/sdks/event/README.md#get) - Get Event Checkin Details
 * [list](docs/sdks/event/README.md#list) - List Event Checkins
 
-#### [checkins.open](docs/sdks/open/README.md)
+#### [Checkins.Open](docs/sdks/open/README.md)
 
 * [get](docs/sdks/open/README.md#get) - Get Open Facility Details
 * [list](docs/sdks/open/README.md#list) - List Open Checkins
 
-### [classes](docs/sdks/classes/README.md)
+### [Classes](docs/sdks/classes/README.md)
 
 * [get](docs/sdks/classes/README.md#get) - Get Details for a Class
 
-#### [classes.type](docs/sdks/type/README.md)
+### [Classes.Type](docs/sdks/type/README.md)
 
 * [get](docs/sdks/type/README.md#get) - Get a class type
 * [list](docs/sdks/type/README.md#list) - List class types for the given gym
 
-### [company](docs/sdks/company/README.md)
+### [Company](docs/sdks/company/README.md)
 
 * [get](docs/sdks/company/README.md#get) - Get Company Details
 
-### [customers](docs/sdks/customers/README.md)
+### [Customers](docs/sdks/customers/README.md)
 
 * [create](docs/sdks/customers/README.md#create) - Create a new Customer
 * [list](docs/sdks/customers/README.md#list) - List Customers
 * [get](docs/sdks/customers/README.md#get) - Get Customer Details
 
-#### [customers.attributions](docs/sdks/attributions/README.md)
+#### [Customers.Attributions](docs/sdks/attributions/README.md)
 
 * [create](docs/sdks/attributions/README.md#create) - Create a customer attribution
 * [list](docs/sdks/attributions/README.md#list) - List customer attributions
 * [get](docs/sdks/attributions/README.md#get) - Get a customer attribution
 
-### [enrollment](docs/sdks/enrollment/README.md)
+### [Enrollment](docs/sdks/enrollment/README.md)
 
 * [get](docs/sdks/enrollment/README.md#get) - Get Plan Enrollment Details
 * [list](docs/sdks/enrollment/README.md#list) - List Plan Enrollments
 
-### [events](docs/sdks/events/README.md)
+### [Events](docs/sdks/events/README.md)
 
 * [get](docs/sdks/events/README.md#get) - Get details for an event
 * [list](docs/sdks/events/README.md#list) - List Events
 
-### [invitations](docs/sdks/invitations/README.md)
+### [Invitations](docs/sdks/invitations/README.md)
 
 * [get](docs/sdks/invitations/README.md#get) - Get an invitation
 * [delete](docs/sdks/invitations/README.md#delete) - Delete an invitation
 * [list](docs/sdks/invitations/README.md#list) - List Invitations
 * [create](docs/sdks/invitations/README.md#create) - Create Invitations
 
-### [keys](docs/sdks/keys/README.md)
+### [Keys](docs/sdks/keys/README.md)
 
 * [create](docs/sdks/keys/README.md#create) - Create a new API Key
 * [list](docs/sdks/keys/README.md#list) - List API Keys
 
-### [manageWebhooks](docs/sdks/managewebhooks/README.md)
+### [ManageWebhooks](docs/sdks/managewebhooks/README.md)
 
 * [create](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
 * [list](docs/sdks/managewebhooks/README.md#list) - List Webhooks
@@ -293,23 +295,23 @@ run();
 * [activate](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
 * [rotateSecret](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
 
-#### [messages.email](docs/sdks/email/README.md)
+### [Messages.Email](docs/sdks/email/README.md)
 
 * [send](docs/sdks/email/README.md#send) - Send an Email
 
-#### [messages.push](docs/sdks/push/README.md)
+### [Messages.Push](docs/sdks/push/README.md)
 
 * [send](docs/sdks/push/README.md#send) - Send Push Notification
 
-#### [messages.realtime](docs/sdks/realtime/README.md)
+### [Messages.Realtime](docs/sdks/realtime/README.md)
 
 * [send](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 
-#### [messages.sms](docs/sdks/sms/README.md)
+### [Messages.Sms](docs/sdks/sms/README.md)
 
 * [send](docs/sdks/sms/README.md#send) - Send an SMS
 
-### [plans](docs/sdks/plans/README.md)
+### [Plans](docs/sdks/plans/README.md)
 
 * [get](docs/sdks/plans/README.md#get) - Get Plan details
 

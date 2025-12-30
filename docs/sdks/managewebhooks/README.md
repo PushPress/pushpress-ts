@@ -1,5 +1,4 @@
 # ManageWebhooks
-(*manageWebhooks*)
 
 ## Overview
 

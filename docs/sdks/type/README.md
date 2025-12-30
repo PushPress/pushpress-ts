@@ -1,5 +1,4 @@
-# Type
-(*classes.type*)
+# Classes.Type
 
 ## Overview
 

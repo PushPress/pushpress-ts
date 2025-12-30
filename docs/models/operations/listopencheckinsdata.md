@@ -12,6 +12,7 @@ let value: ListOpenCheckinsData = {
       customer: "usr_12345",
       company: "cli_12345",
       timestamp: 1672531200000,
+      kind: "open",
     },
   ],
 };

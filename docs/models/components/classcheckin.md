@@ -19,6 +19,7 @@ let value: ClassCheckin = {
     id: "cit_12345",
     name: "Group HIIT Training",
   },
+  kind: "class",
   role: "attendee",
 };
 ```
@@ -36,5 +37,5 @@ let value: ClassCheckin = {
 | `typeId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID of the class type                                                                      |
 | `classId`                                                                                   | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID of the class                                                                           |
 | `type`                                                                                      | [components.ClassCheckinType](../../models/components/classcheckintype.md)                  | :heavy_check_mark:                                                                          | Detailed information about the type of the class                                            |
-| `kind`                                                                                      | *string*                                                                                    | :heavy_check_mark:                                                                          | Indicates that this checkin is for a class                                                  |
+| `kind`                                                                                      | *"class"*                                                                                   | :heavy_check_mark:                                                                          | Indicates that this checkin is for a class                                                  |
 | `role`                                                                                      | [components.ClassCheckinRole](../../models/components/classcheckinrole.md)                  | :heavy_check_mark:                                                                          | Role of the customer in the class                                                           |

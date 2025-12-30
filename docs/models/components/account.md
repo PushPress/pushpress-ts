@@ -7,6 +7,7 @@
 
 ```typescript
 const value: components.One = {
+  type: "linked",
   primaryCustomerId: "<id>",
 };
 ```
@@ -14,6 +15,8 @@ const value: components.One = {
 ### `components.Two`
 
 ```typescript
-const value: components.Two = {};
+const value: components.Two = {
+  type: "primary",
+};
 ```
 

@@ -13,6 +13,7 @@ let value: AppointmentCheckin = {
   company: "cli_12345",
   timestamp: 1672531200000,
   name: "Personal Training",
+  kind: "appointment",
   appointmentId: "apptschdl_12345",
   typeId: "appttype_12345",
   staffId: "usr_78910",
@@ -29,7 +30,7 @@ let value: AppointmentCheckin = {
 | `timestamp`                                                                                 | *number*                                                                                    | :heavy_check_mark:                                                                          | Unix timestamp representing the time of checkin                                             |
 | `enrollmentId`                                                                              | *string*                                                                                    | :heavy_minus_sign:                                                                          | UUID of the enrollment record, null if the checkin is not associated with a plan enrollment |
 | `name`                                                                                      | *string*                                                                                    | :heavy_minus_sign:                                                                          | The name or title of the appointment, if available                                          |
-| `kind`                                                                                      | *string*                                                                                    | :heavy_check_mark:                                                                          | A constant value indicating the type of check-in, which is 'appointment'                    |
+| `kind`                                                                                      | *"appointment"*                                                                             | :heavy_check_mark:                                                                          | A constant value indicating the type of check-in, which is 'appointment'                    |
 | `appointmentId`                                                                             | *string*                                                                                    | :heavy_check_mark:                                                                          | UUID for the checked in appointment                                                         |
 | `typeId`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | The UUID representing the type or category of the appointment                               |
 | `staffId`                                                                                   | *string*                                                                                    | :heavy_check_mark:                                                                          | unique identifier for the staff member, corresponding to a customer with a staff role       |

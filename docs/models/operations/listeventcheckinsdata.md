@@ -13,6 +13,7 @@ let value: ListEventCheckinsData = {
       company: "cli_12345",
       timestamp: 1672531200000,
       name: "My Event",
+      kind: "event",
       role: "staff",
       typeId: "cit_12345",
       eventId: "cal_item_12345",

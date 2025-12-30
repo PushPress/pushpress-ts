@@ -69,21 +69,21 @@ export type CustomerAddress = {
  * A default full account is a primary account. It may have one or more linked accounts associated with it.
  */
 export type Two = {
-  type?: "primary" | undefined;
+  type: "primary";
 };
 
 /**
  * A linked account may be linked to exactly one primary account. Linked accounts may have limited permissions and depend on the primary account for billing and other functionality.
  */
 export type One = {
-  type?: "linked" | undefined;
+  type: "linked";
   /**
    * The UUID of the primary account
    */
   primaryCustomerId: string;
 };
 
-export type Account = (One & { type: "linked" }) | (Two & { type: "primary" });
+export type Account = One | Two;
 
 export type EmergencyContact = {
   /**
@@ -154,7 +154,7 @@ export type Customer = {
    * The UUID of the assigned staff member
    */
   assignedToStaffId?: string | null | undefined;
-  account: (One & { type: "linked" }) | (Two & { type: "primary" });
+  account: One | Two;
   /**
    * A URL pointing to the customer's profile image
    */
@@ -272,7 +272,7 @@ export function customerAddressFromJSON(
 /** @internal */
 export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("primary").default("primary").optional(),
+    type: z.literal("primary"),
   });
 /** @internal */
 export type Two$Outbound = {
@@ -301,7 +301,7 @@ export function twoFromJSON(
 /** @internal */
 export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
   .object({
-    type: z.literal("linked").default("linked").optional(),
+    type: z.literal("linked"),
     primaryCustomerId: z.string(),
   });
 /** @internal */
@@ -332,18 +332,9 @@ export function oneFromJSON(
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
-  z.union([
-    z.lazy(() => One$inboundSchema).and(
-      z.object({ type: z.literal("linked") }),
-    ),
-    z.lazy(() => Two$inboundSchema).and(
-      z.object({ type: z.literal("primary") }),
-    ),
-  ]);
+  z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
 /** @internal */
-export type Account$Outbound =
-  | (One$Outbound & { type: "linked" })
-  | (Two$Outbound & { type: "primary" });
+export type Account$Outbound = One$Outbound | Two$Outbound;
 
 /** @internal */
 export const Account$outboundSchema: z.ZodType<
@@ -351,10 +342,8 @@ export const Account$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Account
 > = z.union([
-  z.lazy(() => One$outboundSchema).and(z.object({ type: z.literal("linked") })),
-  z.lazy(() => Two$outboundSchema).and(
-    z.object({ type: z.literal("primary") }),
-  ),
+  z.lazy(() => One$outboundSchema),
+  z.lazy(() => Two$outboundSchema),
 ]);
 
 export function accountToJSON(account: Account): string {
@@ -475,12 +464,8 @@ export const Customer$inboundSchema: z.ZodType<
   address: z.lazy(() => CustomerAddress$inboundSchema),
   assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
-    z.lazy(() => One$inboundSchema).and(
-      z.object({ type: z.literal("linked") }),
-    ),
-    z.lazy(() => Two$inboundSchema).and(
-      z.object({ type: z.literal("primary") }),
-    ),
+    z.lazy(() => One$inboundSchema),
+    z.lazy(() => Two$inboundSchema),
   ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$inboundSchema).optional(),
@@ -498,9 +483,7 @@ export type Customer$Outbound = {
   dob: string | null;
   address: CustomerAddress$Outbound;
   assignedToStaffId?: string | null | undefined;
-  account:
-    | (One$Outbound & { type: "linked" })
-    | (Two$Outbound & { type: "primary" });
+  account: One$Outbound | Two$Outbound;
   profileImage?: string | null | undefined;
   emergencyContact?: EmergencyContact$Outbound | undefined;
   membershipDetails: MembershipDetails$Outbound | null;
@@ -523,12 +506,8 @@ export const Customer$outboundSchema: z.ZodType<
   address: z.lazy(() => CustomerAddress$outboundSchema),
   assignedToStaffId: z.nullable(z.string()).optional(),
   account: z.union([
-    z.lazy(() => One$outboundSchema).and(
-      z.object({ type: z.literal("linked") }),
-    ),
-    z.lazy(() => Two$outboundSchema).and(
-      z.object({ type: z.literal("primary") }),
-    ),
+    z.lazy(() => One$outboundSchema),
+    z.lazy(() => Two$outboundSchema),
   ]),
   profileImage: z.nullable(z.string()).optional(),
   emergencyContact: z.lazy(() => EmergencyContact$outboundSchema).optional(),

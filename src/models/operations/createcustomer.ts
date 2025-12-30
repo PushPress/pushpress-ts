@@ -85,35 +85,25 @@ export const Gender = {
  */
 export type Gender = ClosedEnum<typeof Gender>;
 
-export const AccountType = {
-  Primary: "primary",
-} as const;
-export type AccountType = ClosedEnum<typeof AccountType>;
-
 /**
  * A default full account is a primary account. It may have one or more linked accounts associated with it.
  */
 export type Two = {
-  type: AccountType;
+  type: "primary";
 };
-
-export const Type = {
-  Linked: "linked",
-} as const;
-export type Type = ClosedEnum<typeof Type>;
 
 /**
  * A linked account may be linked to exactly one primary account. Linked accounts may have limited permissions and depend on the primary account for billing and other functionality.
  */
 export type One = {
-  type: Type;
+  type: "linked";
   /**
    * The UUID of the primary account
    */
   primaryCustomerId: string;
 };
 
-export type Account = (One & { type: "linked" }) | (Two & { type: "primary" });
+export type Account = One | Two;
 
 /**
  * The source of the lead
@@ -158,10 +148,7 @@ export type CreateCustomerRequestBody = {
    * The customer's gender, null if unknown or other
    */
   gender?: Gender | null | undefined;
-  account?:
-    | (One & { type: "linked" })
-    | (Two & { type: "primary" })
-    | undefined;
+  account?: One | Two | undefined;
   /**
    * The source of the lead
    */
@@ -368,26 +355,19 @@ export const Gender$outboundSchema: z.ZodNativeEnum<typeof Gender> =
   Gender$inboundSchema;
 
 /** @internal */
-export const AccountType$inboundSchema: z.ZodNativeEnum<typeof AccountType> = z
-  .nativeEnum(AccountType);
-/** @internal */
-export const AccountType$outboundSchema: z.ZodNativeEnum<typeof AccountType> =
-  AccountType$inboundSchema;
-
-/** @internal */
 export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
   .object({
-    type: AccountType$inboundSchema,
+    type: z.literal("primary"),
   });
 /** @internal */
 export type Two$Outbound = {
-  type: string;
+  type: "primary";
 };
 
 /** @internal */
 export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
   .object({
-    type: AccountType$outboundSchema,
+    type: z.literal("primary"),
   });
 
 export function twoToJSON(two: Two): string {
@@ -404,29 +384,21 @@ export function twoFromJSON(
 }
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/** @internal */
 export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
   .object({
-    type: Type$inboundSchema,
+    type: z.literal("linked"),
     primaryCustomerId: z.string(),
   });
 /** @internal */
 export type One$Outbound = {
-  type: string;
+  type: "linked";
   primaryCustomerId: string;
 };
 
 /** @internal */
 export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
   .object({
-    type: Type$outboundSchema,
+    type: z.literal("linked"),
     primaryCustomerId: z.string(),
   });
 
@@ -445,18 +417,9 @@ export function oneFromJSON(
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
-  z.union([
-    z.lazy(() => One$inboundSchema).and(
-      z.object({ type: z.literal("linked") }),
-    ),
-    z.lazy(() => Two$inboundSchema).and(
-      z.object({ type: z.literal("primary") }),
-    ),
-  ]);
+  z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
 /** @internal */
-export type Account$Outbound =
-  | (One$Outbound & { type: "linked" })
-  | (Two$Outbound & { type: "primary" });
+export type Account$Outbound = One$Outbound | Two$Outbound;
 
 /** @internal */
 export const Account$outboundSchema: z.ZodType<
@@ -464,10 +427,8 @@ export const Account$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Account
 > = z.union([
-  z.lazy(() => One$outboundSchema).and(z.object({ type: z.literal("linked") })),
-  z.lazy(() => Two$outboundSchema).and(
-    z.object({ type: z.literal("primary") }),
-  ),
+  z.lazy(() => One$outboundSchema),
+  z.lazy(() => Two$outboundSchema),
 ]);
 
 export function accountToJSON(account: Account): string {
@@ -506,12 +467,8 @@ export const CreateCustomerRequestBody$inboundSchema: z.ZodType<
   dob: z.nullable(z.string()).optional(),
   gender: z.nullable(Gender$inboundSchema).optional(),
   account: z.union([
-    z.lazy(() => One$inboundSchema).and(
-      z.object({ type: z.literal("linked") }),
-    ),
-    z.lazy(() => Two$inboundSchema).and(
-      z.object({ type: z.literal("primary") }),
-    ),
+    z.lazy(() => One$inboundSchema),
+    z.lazy(() => Two$inboundSchema),
   ]).optional(),
   source: Source$inboundSchema.default("PLATFORM"),
 });
@@ -526,10 +483,7 @@ export type CreateCustomerRequestBody$Outbound = {
   emergencyContact?: EmergencyContact$Outbound | undefined;
   dob?: string | null | undefined;
   gender?: string | null | undefined;
-  account?:
-    | (One$Outbound & { type: "linked" })
-    | (Two$Outbound & { type: "primary" })
-    | undefined;
+  account?: One$Outbound | Two$Outbound | undefined;
   source: string;
 };
 
@@ -549,12 +503,8 @@ export const CreateCustomerRequestBody$outboundSchema: z.ZodType<
   dob: z.nullable(z.string()).optional(),
   gender: z.nullable(Gender$outboundSchema).optional(),
   account: z.union([
-    z.lazy(() => One$outboundSchema).and(
-      z.object({ type: z.literal("linked") }),
-    ),
-    z.lazy(() => Two$outboundSchema).and(
-      z.object({ type: z.literal("primary") }),
-    ),
+    z.lazy(() => One$outboundSchema),
+    z.lazy(() => Two$outboundSchema),
   ]).optional(),
   source: Source$outboundSchema.default("PLATFORM"),
 });

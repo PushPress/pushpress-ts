@@ -6,6 +6,7 @@
 import { RecurrenceDetails1 } from "@pushpress/pushpress/models/components";
 
 let value: RecurrenceDetails1 = {
+  type: "session-pack",
   occurrences: 9313.57,
 };
 ```
@@ -14,5 +15,5 @@ let value: RecurrenceDetails1 = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `type`             | *string*           | :heavy_check_mark: | N/A                |
+| `type`             | *"session-pack"*   | :heavy_check_mark: | N/A                |
 | `occurrences`      | *number*           | :heavy_check_mark: | N/A                |

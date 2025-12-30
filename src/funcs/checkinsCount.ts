@@ -92,6 +92,7 @@ async function $do(
     "before": payload.before,
     "customer": payload.customer,
     "include": payload.include,
+    "includeHistoricalCheckins": payload.includeHistoricalCheckins,
     "type": payload.type,
   });
 

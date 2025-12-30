@@ -20,6 +20,7 @@ let value: CheckinCreatedEventRequestBody = {
       id: "cit_12345",
       name: "Group HIIT Training",
     },
+    kind: "class",
     role: "attendee",
   },
   created: 658341,

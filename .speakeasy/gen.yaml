@@ -23,12 +23,13 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 1.14.0
+  version: 1.14.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -40,7 +41,7 @@ typescript:
   author: Speakeasy
   baseErrorName: PushPressError
   clientServerStatusCodesAsErrors: true
-  constFieldsAlwaysOptional: true
+  constFieldsAlwaysOptional: false
   defaultErrorName: APIError
   enableCustomCodeRegions: false
   enableMCPServer: true
@@ -72,7 +73,8 @@ typescript:
   moduleFormat: dual
   multipartArrayFormat: legacy
   outputModelSuffix: output
-  packageName: "@pushpress/pushpress"
+  packageName: '@pushpress/pushpress'
+  preApplyUnionDiscriminators: true
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2

@@ -1,5 +1,4 @@
 # Appointments
-(*appointments*)
 
 ## Overview
 
