@@ -1,5 +1,4 @@
-# Class
-(*checkins.class*)
+# Checkins.Class
 
 ## Overview
 

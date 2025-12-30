@@ -1,5 +1,4 @@
-# Open
-(*checkins.open*)
+# Checkins.Open
 
 ## Overview
 

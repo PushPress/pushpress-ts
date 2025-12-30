@@ -1,5 +1,4 @@
 # Checkins
-(*checkins*)
 
 ## Overview
 

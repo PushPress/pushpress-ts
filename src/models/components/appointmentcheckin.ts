@@ -38,7 +38,7 @@ export type AppointmentCheckin = {
   /**
    * A constant value indicating the type of check-in, which is 'appointment'
    */
-  kind?: "appointment" | undefined;
+  kind: "appointment";
   /**
    * UUID for the checked in appointment
    */
@@ -65,7 +65,7 @@ export const AppointmentCheckin$inboundSchema: z.ZodType<
   timestamp: z.number(),
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string().optional(),
-  kind: z.literal("appointment").default("appointment").optional(),
+  kind: z.literal("appointment"),
   appointmentId: z.string(),
   typeId: z.string(),
   staffId: z.string(),

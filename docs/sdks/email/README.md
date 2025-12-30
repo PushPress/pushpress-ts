@@ -1,5 +1,4 @@
-# Email
-(*messages.email*)
+# Messages.Email
 
 ## Overview
 

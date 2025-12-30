@@ -5,11 +5,13 @@
 ```typescript
 import { RecurrenceDetails2 } from "@pushpress/pushpress/models/components";
 
-let value: RecurrenceDetails2 = {};
+let value: RecurrenceDetails2 = {
+  type: "recurring",
+};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `type`             | *string*           | :heavy_check_mark: | N/A                |
+| `type`             | *"recurring"*      | :heavy_check_mark: | N/A                |

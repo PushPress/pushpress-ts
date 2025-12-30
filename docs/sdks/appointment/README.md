@@ -1,5 +1,4 @@
-# Appointment
-(*checkins.appointment*)
+# Checkins.Appointment
 
 ## Overview
 

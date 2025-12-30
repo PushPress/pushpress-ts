@@ -8,6 +8,7 @@ A linked account may be linked to exactly one primary account. Linked accounts m
 import { One } from "@pushpress/pushpress/models/components";
 
 let value: One = {
+  type: "linked",
   primaryCustomerId: "<id>",
 };
 ```
@@ -16,5 +17,5 @@ let value: One = {
 
 | Field                           | Type                            | Required                        | Description                     |
 | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `type`                          | *string*                        | :heavy_check_mark:              | N/A                             |
+| `type`                          | *"linked"*                      | :heavy_check_mark:              | N/A                             |
 | `primaryCustomerId`             | *string*                        | :heavy_check_mark:              | The UUID of the primary account |

@@ -67,7 +67,7 @@ export type EventCheckin = {
   /**
    * Type of check-in, which is always 'event'
    */
-  kind?: "event" | undefined;
+  kind: "event";
   /**
    * Role of the customer at the event
    */
@@ -148,7 +148,7 @@ export const EventCheckin$inboundSchema: z.ZodType<
   timestamp: z.number(),
   enrollmentId: z.nullable(z.string()).optional(),
   name: z.string(),
-  kind: z.literal("event").default("event").optional(),
+  kind: z.literal("event"),
   role: Role$inboundSchema,
   typeId: z.string(),
   eventId: z.string(),

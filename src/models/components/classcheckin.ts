@@ -79,7 +79,7 @@ export type ClassCheckin = {
   /**
    * Indicates that this checkin is for a class
    */
-  kind?: "class" | undefined;
+  kind: "class";
   /**
    * Role of the customer in the class
    */
@@ -152,7 +152,7 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   typeId: z.string(),
   classId: z.string(),
   type: z.lazy(() => ClassCheckinType$inboundSchema),
-  kind: z.literal("class").default("class").optional(),
+  kind: z.literal("class"),
   role: ClassCheckinRole$inboundSchema,
 });
 /** @internal */

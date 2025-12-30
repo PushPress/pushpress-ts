@@ -26,7 +26,9 @@ let value: ListCustomersData = {
         zip: "12345",
       },
       assignedToStaffId: null,
-      account: {},
+      account: {
+        type: "primary",
+      },
       profileImage: "https://example.com/profile.jpg",
       membershipDetails: {
         initialMembershipStartDate: "2022-01-01",
