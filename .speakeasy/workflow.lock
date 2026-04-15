@@ -22,7 +22,7 @@ workflow:
     sources:
         PushPress-OAS:
             inputs:
-                - location: https://api.pushpressdev.com/platform/docs/openapi.json
+                - location: https://api.pushpressdev.com/v3/platform/docs/openapi.json
             overlays:
                 - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-modifications-overlay.yaml
                 - location: https://raw.githubusercontent.com/speakeasy-sdks/pushpress-typescript-sdk/refs/heads/main/.speakeasy/speakeasy-suggest-error-types.yaml
