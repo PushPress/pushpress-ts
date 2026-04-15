@@ -2,7 +2,7 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: https://api.pushpressdev.com/platform/docs/json
+    schemaPath: https://api.pushpressdev.com/v3/platform/docs/openapi.json
   sdkClassName: PushPress
   maintainOpenAPIOrder: true
   usageSnippets:

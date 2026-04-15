@@ -3,7 +3,7 @@
     <h1>Typescript SDK</h1>
     <p><strong>Complete Gym Management Platform.</strong></p>
     <p>Developer-friendly & type-safe Typescript SDK specifically catered to leverage the <strong>PushPress</strong> API.</p>
-    <a href="https://api.pushpressdev.com/platform/docs"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=4c2cec&style=for-the-badge" /></a>
+    <a href="https://api.pushpressdev.com/v3/platform/docs"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=4c2cec&style=for-the-badge" /></a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
