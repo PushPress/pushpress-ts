@@ -3,10 +3,12 @@
  */
 
 import { classesGet } from "../funcs/classesGet.js";
+import { classesList } from "../funcs/classesList.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 import { Type } from "./type.js";
 
 export class Classes extends ClientSDK {
@@ -26,6 +28,23 @@ export class Classes extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.Class> {
     return unwrapAsync(classesGet(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List Classes
+   *
+   * @remarks
+   * Get a paginated list of classes
+   */
+  async list(
+    request: operations.ListClassesRequest,
+    options?: RequestOptions,
+  ): Promise<PageIterator<operations.ListClassesResponse, { page: number }>> {
+    return unwrapResultIterator(classesList(
       this,
       request,
       options,

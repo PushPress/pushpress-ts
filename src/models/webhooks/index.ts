@@ -10,6 +10,7 @@ export * from "./appointmentscheduledevent.js";
 export * from "./appuninstalledevent.js";
 export * from "./checkincreatedevent.js";
 export * from "./checkindeletedevent.js";
+export * from "./checkinfailedevent.js";
 export * from "./checkinupdatedevent.js";
 export * from "./classcanceledevent.js";
 export * from "./customercreatedevent.js";

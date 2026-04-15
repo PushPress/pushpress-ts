@@ -17,26 +17,26 @@ export type ListEventsGlobals = {
 /**
  * Some events require an invitation for signup, most invites and all classes are open registration
  */
-export const Access = {
+export const QueryParamAccess = {
   InviteOnly: "invite_only",
   Open: "open",
 } as const;
 /**
  * Some events require an invitation for signup, most invites and all classes are open registration
  */
-export type Access = ClosedEnum<typeof Access>;
+export type QueryParamAccess = ClosedEnum<typeof QueryParamAccess>;
 
 /**
  * sort events by start timestamp
  */
-export const Order = {
+export const QueryParamOrder = {
   Ascending: "ascending",
   Descending: "descending",
 } as const;
 /**
  * sort events by start timestamp
  */
-export type Order = ClosedEnum<typeof Order>;
+export type QueryParamOrder = ClosedEnum<typeof QueryParamOrder>;
 
 export type ListEventsRequest = {
   /**
@@ -54,11 +54,11 @@ export type ListEventsRequest = {
   /**
    * Some events require an invitation for signup, most invites and all classes are open registration
    */
-  access?: Access | undefined;
+  access?: QueryParamAccess | undefined;
   /**
    * sort events by start timestamp
    */
-  order?: Order | undefined;
+  order?: QueryParamOrder | undefined;
   /**
    * When using multitenant API keys, specify the company
    */
@@ -128,19 +128,22 @@ export function listEventsGlobalsFromJSON(
 }
 
 /** @internal */
-export const Access$inboundSchema: z.ZodNativeEnum<typeof Access> = z
-  .nativeEnum(Access);
+export const QueryParamAccess$inboundSchema: z.ZodNativeEnum<
+  typeof QueryParamAccess
+> = z.nativeEnum(QueryParamAccess);
 /** @internal */
-export const Access$outboundSchema: z.ZodNativeEnum<typeof Access> =
-  Access$inboundSchema;
+export const QueryParamAccess$outboundSchema: z.ZodNativeEnum<
+  typeof QueryParamAccess
+> = QueryParamAccess$inboundSchema;
 
 /** @internal */
-export const Order$inboundSchema: z.ZodNativeEnum<typeof Order> = z.nativeEnum(
-  Order,
-);
+export const QueryParamOrder$inboundSchema: z.ZodNativeEnum<
+  typeof QueryParamOrder
+> = z.nativeEnum(QueryParamOrder);
 /** @internal */
-export const Order$outboundSchema: z.ZodNativeEnum<typeof Order> =
-  Order$inboundSchema;
+export const QueryParamOrder$outboundSchema: z.ZodNativeEnum<
+  typeof QueryParamOrder
+> = QueryParamOrder$inboundSchema;
 
 /** @internal */
 export const ListEventsRequest$inboundSchema: z.ZodType<
@@ -151,8 +154,8 @@ export const ListEventsRequest$inboundSchema: z.ZodType<
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
   startsAfter: z.number().optional(),
-  access: Access$inboundSchema.optional(),
-  order: Order$inboundSchema.default("ascending"),
+  access: QueryParamAccess$inboundSchema.optional(),
+  order: QueryParamOrder$inboundSchema.default("ascending"),
   "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -178,8 +181,8 @@ export const ListEventsRequest$outboundSchema: z.ZodType<
   page: z.number().int().default(1),
   limit: z.number().int().default(10),
   startsAfter: z.number().optional(),
-  access: Access$outboundSchema.optional(),
-  order: Order$outboundSchema.default("ascending"),
+  access: QueryParamAccess$outboundSchema.optional(),
+  order: QueryParamOrder$outboundSchema.default("ascending"),
   companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

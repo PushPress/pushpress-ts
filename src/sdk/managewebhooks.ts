@@ -67,23 +67,6 @@ export class ManageWebhooks extends ClientSDK {
   }
 
   /**
-   * Update a Webhook
-   *
-   * @remarks
-   * Update the details for a platform webhook including the signing secret an event subscriptions
-   */
-  async update(
-    request: operations.UpdateWebhookRequest,
-    options?: RequestOptions,
-  ): Promise<operations.UpdateWebhookResponseBody> {
-    return unwrapAsync(manageWebhooksUpdate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * Delete a Webhook
    *
    * @remarks
@@ -94,6 +77,23 @@ export class ManageWebhooks extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(manageWebhooksDelete(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update a Webhook
+   *
+   * @remarks
+   * Update the details for a platform webhook including the signing secret an event subscriptions
+   */
+  async update(
+    request: operations.UpdateWebhookRequest,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateWebhookResponseBody> {
+    return unwrapAsync(manageWebhooksUpdate(
       this,
       request,
       options,

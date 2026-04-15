@@ -16,6 +16,8 @@ const value: components.ClassCheckin = {
   name: "My Class",
   typeId: "cit_12345",
   classId: "cal_item_12345",
+  source: "staff app",
+  result: "success",
   type: {
     id: "cit_12345",
     name: "Group HIIT Training",

@@ -1,6 +1,6 @@
 # Order
 
-sort events by start timestamp
+sort classes by start timestamp
 
 ## Example Usage
 

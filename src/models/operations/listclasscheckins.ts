@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,6 +13,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type ListClassCheckinsGlobals = {
   companyId?: string | undefined;
 };
+
+/**
+ * Filter checkins by result status (success or failure)
+ */
+export const QueryParamResult = {
+  Success: "success",
+  Failure: "failure",
+} as const;
+/**
+ * Filter checkins by result status (success or failure)
+ */
+export type QueryParamResult = ClosedEnum<typeof QueryParamResult>;
 
 export type ListClassCheckinsRequest = {
   /**
@@ -31,6 +44,10 @@ export type ListClassCheckinsRequest = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
+  /**
+   * Filter checkins by result status (success or failure)
+   */
+  result?: QueryParamResult | undefined;
   /**
    * When using multitenant API keys, specify the company
    */
@@ -100,6 +117,15 @@ export function listClassCheckinsGlobalsFromJSON(
 }
 
 /** @internal */
+export const QueryParamResult$inboundSchema: z.ZodNativeEnum<
+  typeof QueryParamResult
+> = z.nativeEnum(QueryParamResult);
+/** @internal */
+export const QueryParamResult$outboundSchema: z.ZodNativeEnum<
+  typeof QueryParamResult
+> = QueryParamResult$inboundSchema;
+
+/** @internal */
 export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   ListClassCheckinsRequest,
   z.ZodTypeDef,
@@ -110,6 +136,7 @@ export const ListClassCheckinsRequest$inboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
+  result: QueryParamResult$inboundSchema.default("success"),
   "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -123,6 +150,7 @@ export type ListClassCheckinsRequest$Outbound = {
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
+  result: string;
   "company-id"?: string | undefined;
 };
 
@@ -137,6 +165,7 @@ export const ListClassCheckinsRequest$outboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
+  result: QueryParamResult$outboundSchema.default("success"),
   companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

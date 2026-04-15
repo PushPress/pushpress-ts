@@ -9,8 +9,8 @@ Create, update, delete, and list webhooks and events for real-time notifications
 * [create](#create) - Create a Webhook
 * [list](#list) - List Webhooks
 * [get](#get) - Get Webhook Details
-* [update](#update) - Update a Webhook
 * [delete](#delete) - Delete a Webhook
+* [update](#update) - Update a Webhook
 * [deactivate](#deactivate) - Deactivate a Webhook
 * [activate](#activate) - Activate a Webhook
 * [rotateSecret](#rotatesecret) - Rotate a Webhook Signing Secret
@@ -262,6 +262,81 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## delete
+
+Fully delete a platform webhook. If you want to unsubscribe to a webhook without fully deleting it, use the deactivate method instead
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="deleteWebhook" method="delete" path="/webhooks/{uuid}" -->
+```typescript
+import { PushPress } from "@pushpress/pushpress";
+
+const pushPress = new PushPress({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
+
+async function run() {
+  await pushPress.manageWebhooks.delete({
+    uuid: "2f4cf1de-535d-40b8-9860-de80b52e1022",
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PushPressCore } from "@pushpress/pushpress/core.js";
+import { manageWebhooksDelete } from "@pushpress/pushpress/funcs/manageWebhooksDelete.js";
+
+// Use `PushPressCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
+
+async function run() {
+  const res = await manageWebhooksDelete(pushPress, {
+    uuid: "2f4cf1de-535d-40b8-9860-de80b52e1022",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("manageWebhooksDelete failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.DeleteWebhookRequest](../../models/operations/deletewebhookrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## update
 
 Update the details for a platform webhook including the signing secret an event subscriptions
@@ -340,81 +415,6 @@ run();
 ### Response
 
 **Promise\<[operations.UpdateWebhookResponseBody](../../models/operations/updatewebhookresponsebody.md)\>**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## delete
-
-Fully delete a platform webhook. If you want to unsubscribe to a webhook without fully deleting it, use the deactivate method instead
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="deleteWebhook" method="delete" path="/webhooks/{uuid}" -->
-```typescript
-import { PushPress } from "@pushpress/pushpress";
-
-const pushPress = new PushPress({
-  companyId: "<id>",
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
-});
-
-async function run() {
-  await pushPress.manageWebhooks.delete({
-    uuid: "2f4cf1de-535d-40b8-9860-de80b52e1022",
-  });
-
-
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { manageWebhooksDelete } from "@pushpress/pushpress/funcs/manageWebhooksDelete.js";
-
-// Use `PushPressCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const pushPress = new PushPressCore({
-  companyId: "<id>",
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
-});
-
-async function run() {
-  const res = await manageWebhooksDelete(pushPress, {
-    uuid: "2f4cf1de-535d-40b8-9860-de80b52e1022",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    
-  } else {
-    console.log("manageWebhooksDelete failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DeleteWebhookRequest](../../models/operations/deletewebhookrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<void\>**
 
 ### Errors
 

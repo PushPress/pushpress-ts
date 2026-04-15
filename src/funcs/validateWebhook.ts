@@ -22,6 +22,7 @@ export async function validateWebhook(client: PushPressCore, {
 }): Promise<
   Result<
     | webhooks.CheckinCreatedEventRequestBody
+    | webhooks.CheckinFailedEventRequestBody
     | webhooks.CheckinUpdatedEventRequestBody
     | webhooks.CheckinDeletedEventRequestBody
     | webhooks.EnrollmentStatusChangedRequestBody
@@ -51,6 +52,7 @@ export async function validateWebhook(client: PushPressCore, {
   }
   const knownSchemas = [
     webhooks.checkinCreatedEventRequestBodyFromJSON,
+    webhooks.checkinFailedEventRequestBodyFromJSON,
     webhooks.checkinUpdatedEventRequestBodyFromJSON,
     webhooks.checkinDeletedEventRequestBodyFromJSON,
     webhooks.enrollmentStatusChangedRequestBodyFromJSON,

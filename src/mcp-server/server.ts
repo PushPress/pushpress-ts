@@ -24,6 +24,7 @@ import { tool$checkinsEventList } from "./tools/checkinsEventList.js";
 import { tool$checkinsOpenGet } from "./tools/checkinsOpenGet.js";
 import { tool$checkinsOpenList } from "./tools/checkinsOpenList.js";
 import { tool$classesGet } from "./tools/classesGet.js";
+import { tool$classesList } from "./tools/classesList.js";
 import { tool$classesTypeGet } from "./tools/classesTypeGet.js";
 import { tool$classesTypeList } from "./tools/classesTypeList.js";
 import { tool$companyGet } from "./tools/companyGet.js";
@@ -54,6 +55,8 @@ import { tool$messagesPushSend } from "./tools/messagesPushSend.js";
 import { tool$messagesRealtimeSend } from "./tools/messagesRealtimeSend.js";
 import { tool$messagesSmsSend } from "./tools/messagesSmsSend.js";
 import { tool$plansGet } from "./tools/plansGet.js";
+import { tool$reservationsGet } from "./tools/reservationsGet.js";
+import { tool$reservationsList } from "./tools/reservationsList.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -66,7 +69,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "PushPress",
-    version: "1.14.1",
+    version: "1.15.0",
   });
 
   const client = new PushPressCore({
@@ -98,11 +101,12 @@ export function createMCPServer(deps: {
   void register; // suppress unused warnings
 
   tool(tool$appointmentsAppointmentsGet);
-  tool(tool$customersCreate);
   tool(tool$customersList);
+  tool(tool$customersCreate);
   tool(tool$customersGet);
   tool(tool$checkinsCount);
   tool(tool$classesGet);
+  tool(tool$classesList);
   tool(tool$companyGet);
   tool(tool$enrollmentGet);
   tool(tool$enrollmentList);
@@ -113,16 +117,18 @@ export function createMCPServer(deps: {
   tool(tool$invitationsList);
   tool(tool$invitationsCreate);
   tool(tool$plansGet);
+  tool(tool$reservationsList);
+  tool(tool$reservationsGet);
   tool(tool$manageWebhooksCreate);
   tool(tool$manageWebhooksList);
   tool(tool$manageWebhooksGet);
-  tool(tool$manageWebhooksUpdate);
   tool(tool$manageWebhooksDelete);
+  tool(tool$manageWebhooksUpdate);
   tool(tool$manageWebhooksDeactivate);
   tool(tool$manageWebhooksActivate);
   tool(tool$manageWebhooksRotateSecret);
-  tool(tool$customersAttributionsCreate);
   tool(tool$customersAttributionsList);
+  tool(tool$customersAttributionsCreate);
   tool(tool$customersAttributionsGet);
   tool(tool$checkinsEventGet);
   tool(tool$checkinsEventList);

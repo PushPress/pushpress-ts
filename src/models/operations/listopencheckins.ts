@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,6 +13,20 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type ListOpenCheckinsGlobals = {
   companyId?: string | undefined;
 };
+
+/**
+ * Filter checkins by result status (success or failure)
+ */
+export const ListOpenCheckinsQueryParamResult = {
+  Success: "success",
+  Failure: "failure",
+} as const;
+/**
+ * Filter checkins by result status (success or failure)
+ */
+export type ListOpenCheckinsQueryParamResult = ClosedEnum<
+  typeof ListOpenCheckinsQueryParamResult
+>;
 
 export type ListOpenCheckinsRequest = {
   /**
@@ -31,6 +46,10 @@ export type ListOpenCheckinsRequest = {
    * Get all checkins after this unix timestamp (seconds)
    */
   after?: number | undefined;
+  /**
+   * Filter checkins by result status (success or failure)
+   */
+  result?: ListOpenCheckinsQueryParamResult | undefined;
   /**
    * When using multitenant API keys, specify the company
    */
@@ -100,6 +119,15 @@ export function listOpenCheckinsGlobalsFromJSON(
 }
 
 /** @internal */
+export const ListOpenCheckinsQueryParamResult$inboundSchema: z.ZodNativeEnum<
+  typeof ListOpenCheckinsQueryParamResult
+> = z.nativeEnum(ListOpenCheckinsQueryParamResult);
+/** @internal */
+export const ListOpenCheckinsQueryParamResult$outboundSchema: z.ZodNativeEnum<
+  typeof ListOpenCheckinsQueryParamResult
+> = ListOpenCheckinsQueryParamResult$inboundSchema;
+
+/** @internal */
 export const ListOpenCheckinsRequest$inboundSchema: z.ZodType<
   ListOpenCheckinsRequest,
   z.ZodTypeDef,
@@ -110,6 +138,7 @@ export const ListOpenCheckinsRequest$inboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
+  result: ListOpenCheckinsQueryParamResult$inboundSchema.default("success"),
   "company-id": z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -123,6 +152,7 @@ export type ListOpenCheckinsRequest$Outbound = {
   customer?: string | undefined;
   before?: number | undefined;
   after?: number | undefined;
+  result: string;
   "company-id"?: string | undefined;
 };
 
@@ -137,6 +167,7 @@ export const ListOpenCheckinsRequest$outboundSchema: z.ZodType<
   customer: z.string().optional(),
   before: z.number().optional(),
   after: z.number().optional(),
+  result: ListOpenCheckinsQueryParamResult$outboundSchema.default("success"),
   companyId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

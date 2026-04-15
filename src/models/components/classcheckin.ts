@@ -9,6 +9,18 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
+ * Indicates if the customer was permitted to check into the class, for details about any failures, see failureReason
+ */
+export const Result = {
+  Success: "success",
+  Failure: "failure",
+} as const;
+/**
+ * Indicates if the customer was permitted to check into the class, for details about any failures, see failureReason
+ */
+export type Result = ClosedEnum<typeof Result>;
+
+/**
  * Detailed information about the type of the class
  */
 export type ClassCheckinType = {
@@ -73,6 +85,18 @@ export type ClassCheckin = {
    */
   classId: string;
   /**
+   * Source of the checkin provided at checkin time, (e.g kiosk, staff app), will be an empty string when the source was not provided
+   */
+  source: string;
+  /**
+   * Indicates if the customer was permitted to check into the class, for details about any failures, see failureReason
+   */
+  result: Result;
+  /**
+   * Only populated when a checkin fails, a message containing details about why the failure occurred
+   */
+  failureReason?: string | null | undefined;
+  /**
    * Detailed information about the type of the class
    */
   type: ClassCheckinType;
@@ -85,6 +109,13 @@ export type ClassCheckin = {
    */
   role: ClassCheckinRole;
 };
+
+/** @internal */
+export const Result$inboundSchema: z.ZodNativeEnum<typeof Result> = z
+  .nativeEnum(Result);
+/** @internal */
+export const Result$outboundSchema: z.ZodNativeEnum<typeof Result> =
+  Result$inboundSchema;
 
 /** @internal */
 export const ClassCheckinType$inboundSchema: z.ZodType<
@@ -151,6 +182,9 @@ export const ClassCheckin$inboundSchema: z.ZodType<
   name: z.string(),
   typeId: z.string(),
   classId: z.string(),
+  source: z.string(),
+  result: Result$inboundSchema,
+  failureReason: z.nullable(z.string()).optional(),
   type: z.lazy(() => ClassCheckinType$inboundSchema),
   kind: z.literal("class"),
   role: ClassCheckinRole$inboundSchema,
@@ -165,6 +199,9 @@ export type ClassCheckin$Outbound = {
   name: string;
   typeId: string;
   classId: string;
+  source: string;
+  result: string;
+  failureReason?: string | null | undefined;
   type: ClassCheckinType$Outbound;
   kind: "class";
   role: string;
@@ -184,6 +221,9 @@ export const ClassCheckin$outboundSchema: z.ZodType<
   name: z.string(),
   typeId: z.string(),
   classId: z.string(),
+  source: z.string(),
+  result: Result$outboundSchema,
+  failureReason: z.nullable(z.string()).optional(),
   type: z.lazy(() => ClassCheckinType$outboundSchema),
   kind: z.literal("class"),
   role: ClassCheckinRole$outboundSchema,
