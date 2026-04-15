@@ -38,6 +38,7 @@
     "@eslint/js": "^9.26.0",
     "@stricli/core": "^1.1.1",
     "@types/express": "^4.17.21",
+    "bun": "1.2.17",
     "bun-types": "1.2.17",
     "eslint": "^9.26.0",
     "express": "^4.21.2",
@@ -140,6 +141,11 @@
         "default": "./dist/commonjs/*.js"
       }
     }
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "bun"
+    ]
   },
   "main": "./dist/commonjs/index.js",
   "types": "./dist/commonjs/index.d.ts",
