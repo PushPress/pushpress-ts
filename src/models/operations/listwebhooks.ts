@@ -27,6 +27,7 @@ export const ListWebhooksEventTypes = {
   AppointmentCanceled: "appointment.canceled",
   CheckinCreated: "checkin.created",
   CheckinUpdated: "checkin.updated",
+  CheckinFailed: "checkin.failed",
   CheckinDeleted: "checkin.deleted",
   ClassCanceled: "class.canceled",
   CustomerCreated: "customer.created",

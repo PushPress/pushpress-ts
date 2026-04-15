@@ -240,6 +240,7 @@ run();
 ### [Classes](docs/sdks/classes/README.md)
 
 * [get](docs/sdks/classes/README.md#get) - Get Details for a Class
+* [list](docs/sdks/classes/README.md#list) - List Classes
 
 ### [Classes.Type](docs/sdks/type/README.md)
 
@@ -252,14 +253,14 @@ run();
 
 ### [Customers](docs/sdks/customers/README.md)
 
-* [create](docs/sdks/customers/README.md#create) - Create a new Customer
 * [list](docs/sdks/customers/README.md#list) - List Customers
+* [create](docs/sdks/customers/README.md#create) - Create a new Customer
 * [get](docs/sdks/customers/README.md#get) - Get Customer Details
 
 #### [Customers.Attributions](docs/sdks/attributions/README.md)
 
-* [create](docs/sdks/attributions/README.md#create) - Create a customer attribution
 * [list](docs/sdks/attributions/README.md#list) - List customer attributions
+* [create](docs/sdks/attributions/README.md#create) - Create a customer attribution
 * [get](docs/sdks/attributions/README.md#get) - Get a customer attribution
 
 ### [Enrollment](docs/sdks/enrollment/README.md)
@@ -289,8 +290,8 @@ run();
 * [create](docs/sdks/managewebhooks/README.md#create) - Create a Webhook
 * [list](docs/sdks/managewebhooks/README.md#list) - List Webhooks
 * [get](docs/sdks/managewebhooks/README.md#get) - Get Webhook Details
-* [update](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
 * [delete](docs/sdks/managewebhooks/README.md#delete) - Delete a Webhook
+* [update](docs/sdks/managewebhooks/README.md#update) - Update a Webhook
 * [deactivate](docs/sdks/managewebhooks/README.md#deactivate) - Deactivate a Webhook
 * [activate](docs/sdks/managewebhooks/README.md#activate) - Activate a Webhook
 * [rotateSecret](docs/sdks/managewebhooks/README.md#rotatesecret) - Rotate a Webhook Signing Secret
@@ -314,6 +315,11 @@ run();
 ### [Plans](docs/sdks/plans/README.md)
 
 * [get](docs/sdks/plans/README.md#get) - Get Plan details
+
+### [Reservations](docs/sdks/reservations/README.md)
+
+* [list](docs/sdks/reservations/README.md#list) - List Reservations
+* [get](docs/sdks/reservations/README.md#get) - Get Details for a Reservation
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -346,6 +352,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`checkinsOpenGet`](docs/sdks/open/README.md#get) - Get Open Facility Details
 - [`checkinsOpenList`](docs/sdks/open/README.md#list) - List Open Checkins
 - [`classesGet`](docs/sdks/classes/README.md#get) - Get Details for a Class
+- [`classesList`](docs/sdks/classes/README.md#list) - List Classes
 - [`classesTypeGet`](docs/sdks/type/README.md#get) - Get a class type
 - [`classesTypeList`](docs/sdks/type/README.md#list) - List class types for the given gym
 - [`companyGet`](docs/sdks/company/README.md#get) - Get Company Details
@@ -378,6 +385,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`messagesRealtimeSend`](docs/sdks/realtime/README.md#send) - Send Ably Realtime Event
 - [`messagesSmsSend`](docs/sdks/sms/README.md#send) - Send an SMS
 - [`plansGet`](docs/sdks/plans/README.md#get) - Get Plan details
+- [`reservationsGet`](docs/sdks/reservations/README.md#get) - Get Details for a Reservation
+- [`reservationsList`](docs/sdks/reservations/README.md#list) - List Reservations
 - ~~[`apiKeysRevoke`](docs/sdks/apikeys/README.md#revoke)~~ - Revoke an API Key :warning: **Deprecated**
 
 </details>
@@ -554,12 +563,12 @@ run();
 
 
 **Inherit from [`PushPressError`](./src/models/errors/pushpresserror.ts)**:
-* [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 46 methods.*
-* [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 46 methods.*
-* [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 46 methods.*
-* [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 46 methods.*
-* [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 46 methods.*
-* [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 46 methods.*
+* [`BadRequest`](./src/models/errors/badrequest.ts): A collection of codes that generally means the end user got something wrong in making the request. Applicable to 8 of 49 methods.*
+* [`Unauthorized`](./src/models/errors/unauthorized.ts): A collection of codes that generally means the client was not authenticated correctly for the request they want to make. Applicable to 8 of 49 methods.*
+* [`NotFound`](./src/models/errors/notfound.ts): Status codes relating to the resource/entity they are requesting not being found or endpoints/routes not existing. Applicable to 8 of 49 methods.*
+* [`Timeout`](./src/models/errors/timeout.ts): Timeouts occurred with the request. Applicable to 8 of 49 methods.*
+* [`RateLimited`](./src/models/errors/ratelimited.ts): Status codes relating to the client being rate limited by the server. Status code `429`. Applicable to 8 of 49 methods.*
+* [`InternalServerError`](./src/models/errors/internalservererror.ts): A collection of status codes that generally mean the server failed in an unexpected way. Applicable to 8 of 49 methods.*
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -641,19 +650,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { PushPress } from "@pushpress/pushpress";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "@pushpress/pushpress/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {

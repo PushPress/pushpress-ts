@@ -93,7 +93,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/checkins/appointment/{uuid}")(pathParams);
 
   const headers = new Headers(compactMap({

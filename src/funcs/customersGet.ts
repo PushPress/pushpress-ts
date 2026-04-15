@@ -92,7 +92,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/customers/{uuid}")(pathParams);
 
   const headers = new Headers(compactMap({
@@ -150,7 +149,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "404", "4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -172,7 +171,7 @@ async function $do(
   >(
     M.json(200, components.Customer$inboundSchema),
     M.fail([401, 404, "4XX"]),
-    M.fail("5XX"),
+    M.fail([500, "5XX"]),
   )(response, req);
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

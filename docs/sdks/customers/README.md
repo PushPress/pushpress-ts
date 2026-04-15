@@ -6,88 +6,9 @@ Access and manage customer profile information.
 
 ### Available Operations
 
-* [create](#create) - Create a new Customer
 * [list](#list) - List Customers
+* [create](#create) - Create a new Customer
 * [get](#get) - Get Customer Details
-
-## create
-
-Create a new customer in the platform. Note that this endpoint only supports creating leads at this time
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="createCustomer" method="post" path="/customers" -->
-```typescript
-import { PushPress } from "@pushpress/pushpress";
-
-const pushPress = new PushPress({
-  companyId: "<id>",
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
-});
-
-async function run() {
-  const result = await pushPress.customers.create({
-    requestBody: {
-      email: "Amir75@gmail.com",
-    },
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { PushPressCore } from "@pushpress/pushpress/core.js";
-import { customersCreate } from "@pushpress/pushpress/funcs/customersCreate.js";
-
-// Use `PushPressCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const pushPress = new PushPressCore({
-  companyId: "<id>",
-  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
-});
-
-async function run() {
-  const res = await customersCreate(pushPress, {
-    requestBody: {
-      email: "Amir75@gmail.com",
-    },
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("customersCreate failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateCustomerRequest](../../models/operations/createcustomerrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.CreateCustomerResponseBody](../../models/operations/createcustomerresponsebody.md)\>**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
 
 ## list
 
@@ -173,6 +94,85 @@ run();
 | errors.BadRequest            | 510                          | application/json             |
 | errors.Unauthorized          | 511                          | application/json             |
 | errors.APIError              | 4XX, 5XX                     | \*/\*                        |
+
+## create
+
+Create a new customer in the platform. Note that this endpoint only supports creating leads at this time
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="createCustomer" method="post" path="/customers" -->
+```typescript
+import { PushPress } from "@pushpress/pushpress";
+
+const pushPress = new PushPress({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
+
+async function run() {
+  const result = await pushPress.customers.create({
+    requestBody: {
+      email: "Amir75@gmail.com",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { PushPressCore } from "@pushpress/pushpress/core.js";
+import { customersCreate } from "@pushpress/pushpress/funcs/customersCreate.js";
+
+// Use `PushPressCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const pushPress = new PushPressCore({
+  companyId: "<id>",
+  apiKey: process.env["PUSHPRESS_API_KEY"] ?? "",
+});
+
+async function run() {
+  const res = await customersCreate(pushPress, {
+    requestBody: {
+      email: "Amir75@gmail.com",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("customersCreate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.CreateCustomerRequest](../../models/operations/createcustomerrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.CreateCustomerResponseBody](../../models/operations/createcustomerresponsebody.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
 
 ## get
 

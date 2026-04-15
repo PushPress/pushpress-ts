@@ -19,6 +19,7 @@ import { Keys } from "./keys.js";
 import { ManageWebhooks } from "./managewebhooks.js";
 import { Messages } from "./messages.js";
 import { Plans } from "./plans.js";
+import { Reservations } from "./reservations.js";
 
 export class PushPress extends ClientSDK {
   private _appointments?: Appointments;
@@ -81,6 +82,11 @@ export class PushPress extends ClientSDK {
     return (this._plans ??= new Plans(this._options));
   }
 
+  private _reservations?: Reservations;
+  get reservations(): Reservations {
+    return (this._reservations ??= new Reservations(this._options));
+  }
+
   private _manageWebhooks?: ManageWebhooks;
   get manageWebhooks(): ManageWebhooks {
     return (this._manageWebhooks ??= new ManageWebhooks(this._options));
@@ -99,6 +105,7 @@ export class PushPress extends ClientSDK {
     secret: string;
   }): Promise<
     | webhooks.CheckinCreatedEventRequestBody
+    | webhooks.CheckinFailedEventRequestBody
     | webhooks.CheckinUpdatedEventRequestBody
     | webhooks.CheckinDeletedEventRequestBody
     | webhooks.EnrollmentStatusChangedRequestBody

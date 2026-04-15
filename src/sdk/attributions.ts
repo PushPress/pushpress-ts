@@ -11,23 +11,6 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Attributions extends ClientSDK {
   /**
-   * Create a customer attribution
-   *
-   * @remarks
-   * Create a new customer attribution record
-   */
-  async create(
-    request: operations.CreateAttributionRequest,
-    options?: RequestOptions,
-  ): Promise<operations.CreateAttributionResponseBody> {
-    return unwrapAsync(customersAttributionsCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * List customer attributions
    *
    * @remarks
@@ -38,6 +21,23 @@ export class Attributions extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.ListAttributionsResponseBody> {
     return unwrapAsync(customersAttributionsList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create a customer attribution
+   *
+   * @remarks
+   * Create a new customer attribution record
+   */
+  async create(
+    request: operations.CreateAttributionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateAttributionResponseBody> {
+    return unwrapAsync(customersAttributionsCreate(
       this,
       request,
       options,

@@ -19,23 +19,6 @@ export class Customers extends ClientSDK {
   }
 
   /**
-   * Create a new Customer
-   *
-   * @remarks
-   * Create a new customer in the platform. Note that this endpoint only supports creating leads at this time
-   */
-  async create(
-    request: operations.CreateCustomerRequest,
-    options?: RequestOptions,
-  ): Promise<operations.CreateCustomerResponseBody> {
-    return unwrapAsync(customersCreate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
    * List Customers
    *
    * @remarks
@@ -46,6 +29,23 @@ export class Customers extends ClientSDK {
     options?: RequestOptions,
   ): Promise<PageIterator<operations.ListCustomersResponse, { page: number }>> {
     return unwrapResultIterator(customersList(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create a new Customer
+   *
+   * @remarks
+   * Create a new customer in the platform. Note that this endpoint only supports creating leads at this time
+   */
+  async create(
+    request: operations.CreateCustomerRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateCustomerResponseBody> {
+    return unwrapAsync(customersCreate(
       this,
       request,
       options,

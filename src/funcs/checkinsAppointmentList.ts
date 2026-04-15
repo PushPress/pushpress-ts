@@ -220,11 +220,15 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "data.next");
+    const nextCursor = dlv(responseData, "next");
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
     if (nextCursor.trim() === "") {
+      return { next: () => null };
+    }
+    const results = dlv(responseData, "data.resultArray");
+    if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }
 

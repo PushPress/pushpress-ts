@@ -92,7 +92,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/webhooks/{uuid}/rotate-signing-secret")(pathParams);
 
   const headers = new Headers(compactMap({
